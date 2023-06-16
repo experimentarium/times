@@ -8,7 +8,9 @@ Welcome to TIMES - The Integrated MARKAL-EFOM System's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :titlesonly:
+   
+   part-1
 
 
 
