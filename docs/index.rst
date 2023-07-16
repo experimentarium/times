@@ -10,7 +10,10 @@ Welcome to TIMES - The Integrated MARKAL-EFOM System's documentation!
    :maxdepth: 2
    :titlesonly:
    
-   part-1
+   part-1/index
+   part-2/index
+   part-3/index
+   part-4/index
 
 
 
