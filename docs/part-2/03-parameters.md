@@ -1,4 +1,4 @@
-#  Parameters
+# Parameters
 
 While sets describe structural information of the energy system or
 qualitative characteristics of its entities (e.g. processes or
@@ -93,10 +93,10 @@ The enhanced interpolation/extrapolation facility provides the user with
 the following options to control the interpolation and extrapolation of
 each individual time series:
 
-  --------------------------------------------------------------------------
+  ---------- --------------------------------------------------- -----------
   **Option   **Action**                                          **Applies
   code**                                                         to**
-  ---------- --------------------------------------------------- -----------
+
   0 (or      Interpolation and extrapolation of data in the      All
   none)      default way as predefined in TIMES (see below)      
 
@@ -134,7 +134,7 @@ each individual time series:
   YEAR\      Log-linear interpolation beyond the specified YEAR, All
   (≥ 1000)   and both forward and backward extrapolation outside 
              the interpolation window.                           
-  --------------------------------------------------------------------------
+  ---------- --------------------------------------------------- -----------
 
   : Table 6: Option codes for the control of time series data
   interpolation
@@ -401,9 +401,9 @@ following **datayear** for which the SHAPE index is specified. The
 extrapolation options are available for all of the SHAPE and MULTI
 parameters listed in Table 8.
 
-  -----------------------------------------------------------------------
-  **Option code**   **Action**
   ----------------- -----------------------------------------------------
+  **Option code**   **Action**
+
   \<= 0 (or none)   No extrapolation (default)
 
   1                 Extrapolation between data points only
@@ -412,7 +412,7 @@ parameters listed in Table 8.
 
   11                Extrapolation between data points only, migration at
                     ends
-  -----------------------------------------------------------------------
+  ----------------- -----------------------------------------------------
 
   : Table 9: Option codes for the extrapolation of SHAPE/MULTI indexes.
 
@@ -506,9 +506,9 @@ timeslices.[^21]
 
 The TIMES pre-processor supports different inheritance and aggregation
 rules, which depend on the type of attribute. The main characteristics
-of the different inheritance and aggregation rules are summarised in .
-The specific rules applied to each individual parameter are listed in
-the detailed reference further below.
+of the different inheritance and aggregation rules are summarised in
+Table 10. The specific rules applied to each individual parameter are
+listed in the detailed reference further below.
 
 The different aggregation rules are illustrated by examples in Figure 9.
 It should be noted that if input data are specified on two timeslice
@@ -528,7 +528,8 @@ bounds that are either inherited or aggregated to the target timeslice
 level will always override any upper and lower bounds simultaneously
 specified.
 
-![](media/image11.wmf)
+![](media/image9.wmf){width="6.447916666666667in"
+height="5.385416666666667in"}
 
 Figure 9: Inheritance and aggregation rules for timeslice specific
 parameters in TIMES
@@ -540,9 +541,9 @@ facilitate the recognition by the user of to which part of the model a
 parameter relates the following naming conventions apply to the prefixes
 of the parameters (Table 11).
 
-  -----------------------------------------------------------------------
-  **Prefix**            **Related model component**
   --------------------- -------------------------------------------------
+  **Prefix**            **Related model component**
+
   G\_                   Global characteristic
 
   ACT\_                 Activity of a process
@@ -566,16 +567,16 @@ of the parameters (Table 11).
   STG\_                 Storage process
 
   UC\_                  User constraint
-  -----------------------------------------------------------------------
+  --------------------- -------------------------------------------------
 
   : Table 11: Naming conventions for user input parameters
 
 For brevity, the default interpolation/extrapolation method for each
 parameter is given by using the abbreviations listed in Table 12.
 
-  -----------------------------------------------------------------------
-  **Abbreviation**      **Description**
   --------------------- -------------------------------------------------
+  **Abbreviation**      **Description**
+
   STD                   Standard full inter-/extrapolation (option 3)
 
   MIG                   Migration (option 10)
@@ -585,7 +586,7 @@ parameter is given by using the abbreviations listed in Table 12.
   none                  No default inter-/extrapolation
 
   N/A                   Inter-/extrapolation not applicable
-  -----------------------------------------------------------------------
+  --------------------- -------------------------------------------------
 
   : Table 12: Abbreviations for default I/E method in Table 13.
 
@@ -6960,6 +6961,7 @@ naming conventions apply to the prefixes of the report parameters:
 
 : Table 15: Report parameters in TIMES
 
+
 ### Acronyms used in cost reporting parameters
 
 The acronyms used in the reporting parameters for referring to certain
@@ -6970,7 +6972,7 @@ accessible in VEDA-BE through that same dimension.
 +--------------+-------------------------------------------------------+
 | **Cost       | **Component acronyms**                                |
 | parameter**  |                                                       |
-+==============+=======================================================+
++--------------+-------------------------------------------------------+
 | CAP_NEW\     | Newly installed capacity and lump-sum investment      |
 | (r           | costs by vintage and commissioning period:            |
 | ,v,p,t,uc_n) |                                                       |
@@ -7073,11 +7075,11 @@ comparing the full cost associated with each technology.
 Levelized cost can be calculated according to the following general
 formula:
 
-  -------------------------------------------------------------------------
-  ![](media/image13.wmf)                                            \(1\)
-  ----------------------------------------------------------------- -------
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  $$LEC = \frac{\sum_{t = 1}^{n}{\frac{IC_{t}}{(1 + r)^{t - 1}} + \frac{OC_{t} + VC_{t} + \sum_{i}^{}{FC_{i,t} + FD_{i,t}} + \sum_{j}^{}{ED_{j,t}}}{(1 + r)^{t - 0.5}} -}\frac{\sum_{k}^{}{BD_{k,t}}}{(1 + r)^{t - 0.5}}}{\sum_{t = 1}^{n}\frac{\sum_{m}^{}{MO_{m,t}}}{(1 + r)^{t - 0.5}}}$$   \(1\)
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------
 
-  -------------------------------------------------------------------------
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   : Table 17: Core TIMES parameters related to the modelling of CHP
   processes.

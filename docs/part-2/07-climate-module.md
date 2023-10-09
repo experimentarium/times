@@ -1,4 +1,4 @@
-#  The TIMES Climate Module 
+# The TIMES Climate Module
 
 ## Introduction
 
@@ -94,10 +94,12 @@ with
 b\) CH4 accumulation is represented by a so-called single-box model in
 which the atmospheric methane concentration obeys the following
 equations assuming a constant annual decay rate of the anthropogenic
-concentrations ![](media/image393.wmf) (whereas the natural
-concentration is assumed in equilibrium):
+concentrations $\Phi_{CH4}$ (whereas the natural concentration is
+assumed in equilibrium):
 
-![](media/image394.wmf)
+$${CH4_{atm}(y) = (1 - \Phi_{CH4}) \cdot CH4_{atm}(y - 1) + EA_{CH4}(y)(1a)
+}{CH4_{up}(y) = CH4_{up}(y - 1)(1b)
+}{CH4_{tot}(y) = CH4_{atm}(y) + CH4_{up}(y)(1c)}$$
 
 where
 
@@ -111,13 +113,15 @@ where
 -   *d~CH4~ =2.84* (the density of *CH4,* expressed in *Mt/ppbv*) is
     then used to convert concentration in Mt into ppbv.
 
--   ![](media/image395.wmf) is the one-year retention rate of CH~4~ in
-    the atmosphere, see Table A-1.
+-   $1 - \Phi_{CH4}$ is the one-year retention rate of CH~4~ in the
+    atmosphere, see Table A-1.
 
 c\) N2O accumulation is also represented by a single-box model in which
 the atmospheric N2O concentration obeys the following equations:
 
-![](media/image396.wmf)
+$${N2O_{atm}(y) = (1 - \Phi_{N2O}) \cdot N2O_{atm}(y - 1) + EA_{N2O}(y)(1b)
+}{N2O_{up}(y) = N2O_{up}(y - 1)(2b)
+}{N2O_{tot}(y) = N2O_{atm}(y) + N2O_{up}(y)(2c)}$$
 
 where
 
@@ -131,8 +135,8 @@ where
 -   *d~N2O~* = 7.81 (the density of *N2O,* expressed in *Mt/ppbv*) is
     then used to convert concentration in Mt to ppbv units.
 
--   ![](media/image397.wmf) is the one-year retention rate of N~2~O in
-    the atmosphere, see table A-1.
+-   $1 - \Phi_{N2O}$ is the one-year retention rate of N~2~O in the
+    atmosphere, see table A-1.
 
 > *Note*: For both CH~4~ and N~2~O, the total atmospheric concentrations
 > (UP+ATM) are used in the forcing expressions (see below) and are
@@ -144,7 +148,7 @@ We assume, as is routinely done in atmospheric science, that the
 atmospheric radiative forcing caused by the various gases are additive
 (IPCC, 2007). Thus:
 
-![](media/image398.wmf)
+$$\Delta F(y) = \Delta F_{CO2}(y) + \Delta F_{CH4}(y) + \Delta F_{N2O}(y) + EXOFOR(y)(3)$$
 
 We now explain these four terms.
 
@@ -153,7 +157,7 @@ forcing, *∆F~CO2~(y)*, is derived from empirical measurements and
 climate models (IPCC 2007).
 
   ------------------------------------------------------------------------
-  *∆F~CO2~(y) = γ ×* ![](media/image399.wmf)                        (4a)
+  *∆F~CO2~(y) = γ ×* $\frac{\ln\frac{(M_{atm}(y)}{M_{0}})}{\ln 2}$  (4a)
   ----------------------------------------------------------------- ------
 
   ------------------------------------------------------------------------
@@ -171,16 +175,16 @@ where:
 b)  The radiative forcing due to atmospheric CH4 is given by the
     following expression (IPCC, 2001)
 
-> ![](media/image400.wmf)
+> $$\Delta F_{CH4}(y) = 0.036 \cdot \left( \sqrt{CH4_{y}} - \sqrt{CH4_{0}} \right) - \left\lbrack f(CH4_{y},N2O_{0}) - f(CH4_{0},N2O_{0}) \right\rbrack(4b)$$
 
 c)  The radiative forcing due to atmospheric N2O is given by the
     following expression (IPCC, 2001)
 
-> ![](media/image401.wmf)
+> $$\Delta F_{N2O}(y) = 0.12 \cdot \left( \sqrt{N2O_{y}} - \sqrt{N2O_{0}} \right) - \left\lbrack f(CH4_{0},N2O_{y}) - f(CH4_{0},N2O_{0}) \right\rbrack(4c)$$
 >
 > where:
 >
-> ![](media/image402.wmf)
+> $$f(x,y) = 0.47 \cdot \ln\left\lbrack 1 + 2.01 \cdot 10^{- 5} \cdot (xy)^{0.75} + 5.31 \cdot 10^{- 15} \cdot x(xy)^{1.52} \right\rbrack(4d)$$
 >
 > Note that the *f(x,y)* function, which quantifies the cross-effects on
 > forcing of the presence in the atmosphere of both gases (CH4 and N2O),
@@ -242,16 +246,16 @@ approximation inaccurate. We denote the interval (M~1~,M~2~).
 > By denoting the pre-industrial concentration level as *M~0~*, the
 > general formulas for the two estimates are as follows:
 
-  ----------------------------------------------------------------------------
-  *Overestimate:*    ![](media/image403.wmf)                           \(5\)
-  ------------------ ------------------------------------------------- -------
-  *Underestimate*:   ![](media/image404.wmf)                           \(6\)
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  *Overestimate:*    $$F_{1}(M) = \frac{\gamma}{\ln 2} \cdot \left\lbrack \ln(\frac{\gamma}{slope \cdot \ln(2) \cdot M_{0}}) - 1 \right\rbrack + slope \cdot M$$   \(5\)
+  ------------------ --------------------------------------------------------------------------------------------------------------------------------------------- -------
+  *Underestimate*:   $$F_{2}(M) = \gamma \cdot \ln(M_{1}/M_{0})/\ln 2 + slope \cdot (M - M_{1})$$                                                                  \(6\)
 
-  *Final             ![](media/image405.wmf)                           \(7\)
-  approximation*:                                                      
+  *Final             $$F_{3}(M) = \frac{F_{1}(M) + F_{2}(M)}{2}$$                                                                                                  \(7\)
+  approximation*:                                                                                                                                                  
 
-  where:             ![](media/image406.wmf)                           
-  ----------------------------------------------------------------------------
+  where:             $$slope = \gamma \cdot \frac{\ln(M_{2}/M_{1})/\ln 2}{(M_{2} - M_{1})}$$                                                                       
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   : Table D-2*.* Iput parameters specific to demand functions
 
@@ -313,9 +317,9 @@ also provide Table A-2 summarizing the default values of the parameters.
 The Climate Module (CLI) extension of TIMES can be activated and
 employed by using the Parameters and Switches described in this chapter.
 
-Besides the basic input data parameters described in Table A-1, the user
-also has full control over the CLI component being activated by means of
-the \$SET CLI YES switch. This switch is provided by the data handling
+Besides the basic input data parameters described in , the user also has
+full control over the CLI component being activated by means of the
+\$SET CLI YES switch. This switch is provided by the data handling
 system when the user indicates that the CLI option is to be included:
 
 > \$SET CLI YES
@@ -574,8 +578,8 @@ to consist of only a single value, because the actual concentration in
 >
 > CM_CONST(\'PHI-N2O\') = 0.008803;
 
-Here ![](media/image407.wmf), ![](media/image408.wmf), are the one-year
-decay rates for methane and N~2~O respectively
+Here $\Phi_{CH4}$, $\Phi_{N2O}$, are the one-year decay rates for
+methane and N~2~O respectively
 
 > **Parameters for the linear CH~4~ and N~2~O forcing approximations:**
 >
@@ -908,16 +912,15 @@ represent directly the dual values of these constraints at year y.
 
 Table A-2 shows the default values of all parameters of the Climate Module except exogenous forcing. All defaults may be modified by the user. {#table-a-2-shows-the-default-values-of-all-parameters-of-the-climate-module-except-exogenous-forcing.-all-defaults-may-be-modified-by-the-user. .Header-03}
 
--  CS and SIGMA1 may be assumed random, in which case the default values are not used. The user must specify their values explicitly using the appropriate parameter names described earlier.
-- The parameters highlighted blue are upper bounds on five climate variables (in this example, they are set high enough to be inoperative).
-- The three parameters highlighted pink concern the extension of emissions beyond EOH, as described in the separate note on this subject.
+CS and SIGMA1 may be assumed random, in which case the default values are not used. The user must specify their values explicitly using the appropriate parameter names described earlier. {#cs-and-sigma1-may-be-assumed-random-in-which-case-the-default-values-are-not-used.-the-user-must-specify-their-values-explicitly-using-the-appropriate-parameter-names-described-earlier. .Header-03}
 
-Table A-3 shows an example of specification of the EXOFORCING time series.
+The parameters highlighted blue are upper bounds on five climate variables (in this example, they are set high enough to be inoperative). {#the-parameters-highlighted-blue-are-upper-bounds-on-five-climate-variables-in-this-example-they-are-set-high-enough-to-be-inoperative. .Header-03}
 
+The three parameters highlighted pink concern the extension of emissions beyond EOH, as described in the separate note on this subject.  {#the-three-parameters-highlighted-pink-concern-the-extension-of-emissions-beyond-eoh-as-described-in-the-separate-note-on-this-subject. .Header-03}
 
-**Table A-2. Parameters of the climatic module (default values)**
+shows an example of specification of the EXOFORCING time series. {#shows-an-example-of-specification-of-the-exoforcing-time-series. .Header-03}
 
------------------------------------------------------------------------------
+  -----------------------------------------------------------------------------
   **Attribute**    **Lim**   **DataYear**   **Item**       **Default value**
   ---------------- --------- -------------- -------------- --------------------
   CM_HISTORY                 2005           CO2-ATM        807.27
@@ -994,6 +997,7 @@ Table A-3 shows an example of specification of the EXOFORCING time series.
   -----------------------------------------------------------------------------
 
   : Table D-5*.* Model variables employed in demand functions
+
 
 **Table A-3. Example of EXOFORCING (from TIAM-WORLD, 2010 version)**
 
@@ -1148,13 +1152,14 @@ General notation:
 -   *B(t):* first year in period *t, t=1 to T*
 
 -   *m(t):* milestone year of period t (approximate middle year of
-    period, defined as ![](media/image409.wmf)
+    period, defined as
+    $m(t) = B(t) + \left\lfloor (D(t) - 1)/2 \right\rfloor$
 
 -   *y:* designates a year, while *t* designates a period (ranging from
     1 to T)
 
 -   *Υ:* designates the calibration year, which can be chosen by the
-    user to be either *B*(1)--1, *m*(1)--1, or *m*(1)*,* see section 3.2
+    user to be either *B*(1)--1, *m*(1)--1, or *m*(1)*,* see section
     above.
 
   -------------------------------------------------------------------------
@@ -1219,9 +1224,23 @@ global emissions / forcing (when undiscounted).
 
 **Equation:**
 
-![](media/image410.wmf)
+$$EQ\_ CLITOT_{cm\_ tkind,t}\forall\left\lbrack \left( t \in \mathbf{milestonyr} \right) \right\rbrack$$
 
-![](media/image411.wmf)
+$${\sum_{\begin{aligned}
+ & cm\_ tkind \in \mathbf{cm}\_\mathbf{emis} \\
+ & (r,c,s) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{c},\mathbf{t},\mathbf{s}}
+\end{aligned}}^{}{VAR\_ COMNET_{r,t,c,s} \times CM\_ GHGMAP_{r,c,cm\_ tkind}}
+}{\sum_{\mathbf{cm}\_\mathbf{emi}\mathbf{s}_{\mathbf{cm}\_\mathbf{tkind}}}^{}\left( \begin{aligned}
+ & CM\_ LINFOR_{t,cm\_ emis,'N'} \times \\
+ & \left( \sum_{\begin{aligned}
+ & \mathbf{cm}\_\mathbf{atbo}\mathbf{x}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{box}} \\
+ & \mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}
+\end{aligned}}^{}{VAR\_ CLIBOX_{cm\_ var}} \right) \\
+ & CM\_ LINFOR_{t,cm\_ emis,'FX'}
+\end{aligned} \right) + 
+}{+ CM\_ EXOFORC_{t}
+}{\left\{ = \right\}
+}{VAR\_ CLITOT_{cm\_ tkind,t}}$$
 
 ### EQ_CLICONC(cm_var,cm_box,t)
 
@@ -1255,11 +1274,37 @@ of little interest.
 
 **Equation:**
 
-![](media/image412.wmf)
+$$EQ\_ CLICONC_{cm\_ emis,cm\_ box,t}\forall\left\lbrack \left( t \in \mathbf{milestonyr} \right) \right\rbrack$$
 
-![](media/image413.wmf)
+$${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}2}}^{}{VAR\_ CLIBOX_{cm\_ var,t - 1} \times CM\_ AA_{cm\_ emis,t,cm\_ box,cm\_ box2}} + 
+}{CM\_ BB_{cm\_ emis,t,cm\_ box} \times VAR\_ CLITOT_{cm\_ emis,t} + 
+}{CM\_ CC_{cm\_ emis,t,cm\_ box} \times VAR\_ CLITOT_{cm\_ emis,t - 1} + 
+}{\sum_{\begin{matrix}
+\mathbf{miyr}\_\mathbf{1}_{t} \\
+\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}\mathbf{2}}
+\end{matrix}}^{\sum}{CM\_ CONS{Tcm\_ emis,t,cm\_ box,cm\_ box2}_{cm\_ var}}
+}{\left\{ = \right\}
+}{\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
 
-![](media/image414.wmf)
+$$
+{CM\_ AA_{cm\_ emis,t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}
+}{PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
+(1 - PHI\_ AT\_ UP) & PHI\_ UP\_ AT & 0 \\
+PHI\_ AT\_ UP & (1 - PHI\_ U\_ AT - PHI\_ UP\_ LO) & PHI\_ LO\_ UP \\
+0 & PHI\_ UP\_ LO & (1 - PHI\_ LO\_ UP)
+\end{bmatrix}
+}
+{CM\_ BB_{cm\_ emis,t,i} = \left\{ BB_{i1}(t) \right\}\text{  is the first column of the matrix: }
+}{BB(t) = \ \sum_{i = 0}^{p(t) - 1}{PHI^{i}}ifp(t) \geq 1
+}{BB(t) = 0ifp(t) = 0
+}{CM\_ CC_{cm\_ emis,t,i} = \left\{ CC_{i1}(t) \right\}\text{  is the first column of the matrix :}
+}{CC(t) = \ \sum_{i = p(t)}^{n(t) - 1}{PHI^{i}}ifn(t) \geq p(t) + 1
+}{CC(t) = 0ifn(t) = p(t)
+}{p(t)\text{  } = \text{  }\left\lfloor \frac{D(t) + 1}{2} \right\rfloor,n(t)\text{  } = \ m(t) - m(t - 1)\mspace{6mu} if\ t \neq 1,\text{   }
+}{p(t)\text{  } = \ m(t) - \Upsilon,n(t)\text{  } = \ p(t)ift = 1
+}{D(t)\text{  is the number of years in period }t,andm(t)\text{is the middle year of period}\ t\text{ defined as}
+}{m(t) = B(t) + \left\lfloor \frac{D(t) - 1}{2} \right\rfloor
+}{\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to}\ x}$$
 
 ### EQ_CLITEMP(cm_var,cm_box,t)
 
@@ -1292,11 +1337,35 @@ of little interest.
 
 **Equation:**
 
-![](media/image415.wmf)
+$$EQ\_ CLITEMP_{cm\_ box,t}\forall\left\lbrack \left( t \in \mathbf{milestonyr} \right) \right\rbrack$$
 
-![](media/image416.wmf)
+$${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}2}}^{}{VAR\_ CLIBOX_{cm\_ var,t - 1} \times CM\_ AA_{'FORCING',t,cm\_ box,cm\_ box2}} + 
+}{CM\_ BB_{'FORCING',t,cm\_ box} \times VAR\_ CLITOT_{'FORCING',t} + 
+}{CM\_ CC_{'FORCING',t,cm\_ box} \times VAR\_ CLITOT_{'FORCING',t - 1} + 
+}{\sum_{\begin{matrix}
+\mathbf{miyr}\_\mathbf{1}_{t} \\
+\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}\mathbf{2}}
+\end{matrix}}^{\sum}{CM\_ CONS{T'FORCING',t,cm\_ box,cm\_ box2}_{cm\_ var}}
+}{\left\{ = \right\}
+}{\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
 
-![](media/image417.wmf)
+$$
+{CM\_ AA_{'FORCING',t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}
+}{PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
+(1 - SIGMA1 \times (LAMBDA + SIGMA2) & SIGMA1 \times SIGMA2 & 0 \\
+SIGMA3 & (1 - SIGMA3) & 0 \\
+0 & 0 & 0
+\end{bmatrix}
+}
+{CM\_ BB_{'FORCING',t,i} = \left\{ BB_{i1}(t) \right\}\text{  is the first column of the matrix: }
+}{BB(t) = SIGMA1 \times \ \sum_{i = 0}^{n(t) - 1}{\frac{n(t) - i}{n(t)} \times PHI^{i}}\mspace{6mu}
+}{CM\_ CC_{'FORCING',t,i} = \left\{ CC_{i1}(t) \right\}\text{  is the first column of the matrix :}
+}{CC(t) = \ SIGMA1 \times \sum_{i = 0}^{n(t) - 1}{\frac{i}{n(t)} \times PHI^{i}}
+}{n(t)\text{  } = \ m(t) - m(t - 1)\mspace{6mu}\mspace{6mu} if\ t \neq 1,\text{   }
+}{n(t)\text{  } = \ m(t) - Yift = 1
+}{D(t)\text{  is the number of years in period }t,\text{ and}m(t)\text{is the middle year of period}\ t\text{ defined as}
+}{m(t) = B(t) + \left\lfloor \frac{D(t) - 1}{2} \right\rfloor
+}{\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to}\ x}$$
 
 ### EQ_CLIMAX(y,cm_var)
 
@@ -1337,35 +1406,45 @@ factors" exist, only regional ones).
 
 **Equation:**
 
-![](media/image418.wmf)
+$$EQ\_ CLIMA{X_{y,cm\_ var}}^{}\forall\left\lbrack \left\{ (y,cm\_{var})|CM\_ MAXC_{y,cm\_ var} \right\} \right\rbrack$$
 
 **Case A. For total emissions, up to m(T)**
 
-![](media/image419.wmf)
+$${\alpha_{y} \times VAR\_ CLITOT_{cm\_ emis,t - 1} + \beta_{y} \times VAR\_ CLITOT_{cm\_ emis,t}
+}{\leq CM\_ MAXC_{y,cm\_ emis}}$$
 
 **Case B. For atmospheric GHG concentrations, up to m(T)**
 
-![](media/image420.wmf)
+$${\sum_{\begin{matrix}
+\mathbf{cm}\_\mathbf{atbo}\mathbf{x}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{box}} \\
+\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}
+\end{matrix}}^{}{\alpha_{y} \times VAR\_ CLIBOX_{cm\_ var,t - 1} + \beta_{y} \times VAR\_ CLIBOX_{cm\_ var,t}}
+}{\leq CM\_ MAXC_{y,cm\_ var}}$$
 
 **Case C. For total radiative forcing, up to m(T)**
 
-![](media/image421.wmf)
+$${\alpha_{y} \times VAR\_ CLITOT_{'FORCING',t - 1} + \beta_{y} \times VAR\_ CLITOT_{'FORCING',t}
+}{\leq CM\_ MAXC_{y,'FORCING'}}$$
 
 **Case D. For increase in global atmospheric temperature, up to m(T):**
 
-![](media/image422.wmf)
+$${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},'\mathbf{ATM}'}}^{}{\alpha_{y} \times VAR\_ CLIBOX_{cm\_ var,t - 1} + \beta_{y} \times VAR\_ CLIBOX_{cm\_ var,t}}
+}{\leq CM\_ MAXC_{y,cm\_ var}}$$
 
 **Case E. For atmospheric GHG concentrations, beyond m(T):**
 
-![](media/image423.wmf)
+$$\sum_{\begin{matrix}
+\mathbf{cm}\_\mathbf{atbo}\mathbf{x}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{box}} \\
+\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}
+\end{matrix}}^{}{VAR\_ CLIBOX_{cm\_ var,y}}\quad \leq \quad CM\_ MAXC_{y,cm\_ var}$$
 
 **Case F. For total radiative forcing, beyond m(T):**
 
-![](media/image424.wmf)
+$$VAR\_ CLITOT_{'FORCING',y}\quad \leq \quad CM\_ MAXC_{y,'FORCING'}$$
 
 **Case G. For increase in global atmospheric temperature, beyond m(T):**
 
-![](media/image425.wmf)
+$$\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},'\mathbf{ATM}'}}^{}{VAR\_ CLIBOX_{cm\_ var,y}}\quad \leq \quad CM\_ MAXC_{y,cm\_ var}$$
 
 ## References {#references .unnumbered}
 

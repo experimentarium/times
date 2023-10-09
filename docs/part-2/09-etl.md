@@ -1,4 +1,4 @@
-#  Endogenous Technological Learning (ETL)
+# Endogenous Technological Learning (ETL)
 
 ## Introduction
 
@@ -36,20 +36,20 @@ several technologies learns, thereby benefiting all the related
 
 Like all other aspects of TIMES the user describes the ETL components of
 the energy system by means of a Set and the Parameters and Switches
-described in this chapter. and below describe the User Input Parameters,
-and the Matrix Coefficient and Internal Model Sets and Parameters,
-respectively, that are associated with the Endogenous Technological
-Learning option. Note that the special clustered learning ETL option
-requires one additional User Input Parameter (ETL-CLUSTER), and two
-additional Matrix Coefficient/Internal Model Parameters (CLUSTER and
-NTCHTEG).
+described in this chapter. Table C-1 and Table C-2 below describe the
+User Input Parameters, and the Matrix Coefficient and Internal Model
+Sets and Parameters, respectively, that are associated with the
+Endogenous Technological Learning option. Note that the special
+clustered learning ETL option requires one additional User Input
+Parameter (ETL-CLUSTER), and two additional Matrix Coefficient/Internal
+Model Parameters (CLUSTER and NTCHTEG).
 
-Besides the basic data described in the user controls whether or not the
-ETL component is activated by means of the \$SET ETL 'YES' switch. This
-switch is provided by the data handling system when the user indicates
-that the ETL option is to be included in a run. This permits the easy
-exclusion of the feature if the user does not want to perform a MIP
-solve without having to remove the ETL data.
+Besides the basic data described in Table the user controls whether or
+not the ETL component is activated by means of the \$SET ETL 'YES'
+switch. This switch is provided by the data handling system when the
+user indicates that the ETL option is to be included in a run. This
+permits the easy exclusion of the feature if the user does not want to
+perform a MIP solve without having to remove the ETL data.
 
 +-------+-------+--------+--------+---------+-------------------------+
 | **    | **    | **R    | *      | **Ins   | **Description**         |
@@ -467,11 +467,11 @@ solve without having to remove the ETL data.
 ## Variables
 
 The variables that are used to model the Endogenous Technological
-Learning option in TIMES are presented in below. As is the case with the
-modeling of lumpy investments, the primary role of the variables and
-equations used to model ETL is to control the standard TIMES investment
-variable (VAR_NCAP) and the associated dynamic cost of these
-investments, so ETL is rather self-contained. That is the VAR_NCAP
+Learning option in TIMES are presented in Table below. As is the case
+with the modeling of lumpy investments, the primary role of the
+variables and equations used to model ETL is to control the standard
+TIMES investment variable (VAR_NCAP) and the associated dynamic cost of
+these investments, so ETL is rather self-contained. That is the VAR_NCAP
 variable links the ETL decisions to the rest of the model, and the
 VAR_IC investment cost variable determines the associated contribution
 to the regional investment costs (VAR_OBJINV). Note that the special
@@ -847,13 +847,17 @@ limited usefulness, as discussed in Section 10.3 of PART I.
 
 **Equation**
 
-![](media/image442.wmf)
+$$EQ\_ CC_{r,t,p}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \right) \right\rbrack$$
 
-> ![](media/image443.wmf)
+> $VAR\_ CCAP_{r,t,p}$
 >
-> ![](media/image444.wmf)
+> $\left\{ = \right\}$
 >
-> ![](media/image445.wmf)
+> ![{\"mathml\":\"\<math
+> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+> for Microsoft
+> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+> height="7.507655293088364e-3in"}
 
 ### EQ_CLU(r,t,p)
 
@@ -890,13 +894,20 @@ parameter.
 
 **Equation**
 
-> ![](media/image446.wmf)
+> $$EQ\_ CLU_{r,t,p}\forall\left\lbrack \begin{aligned}
+>  & (p \in teg) \land \left( NTCHTEG_{r,p} > 0 \right) \land \\
+>  & \left( (r,t,p) \in rtp \right)
+> \end{aligned} \right\rbrack$$
 >
-> ![](media/image447.wmf)
+> $VAR\_ NCAP_{r,t,p}$
 >
-> ![](media/image444.wmf)
+> $\left\{ = \right\}$
 
-![](media/image448.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 ### EQ_COS(r,t,p)
 
@@ -932,13 +943,17 @@ limited usefulness, as discussed in Section 10.3 of PART I.
 
 **Equation**
 
-![](media/image449.wmf)
+$EQ\_ COS_{r,t,p}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \right) \right\rbrack$
 
-> ![](media/image450.wmf)
+> $VAR\_ CCOST_{r,t,p}$
 >
-> ![](media/image444.wmf)
+> $\left\{ = \right\}$
 
-![](media/image451.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 ### EQ_CUINV(r,t,p)
 
@@ -967,15 +982,15 @@ limited usefulness, as mentioned above.
 
 **Equation**
 
-![](media/image452.wmf)
+$$EQ\_ CUINV_{r,t,p}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \right) \right\rbrack$$
 
-> ![](media/image453.wmf)
+> $VAR\_ CCAP_{r,t,p}$
 >
-> ![](media/image444.wmf)
+> $\left\{ = \right\}$
 >
-> ![](media/image454.wmf)
+> $CCAP0_{r,p} +$
 >
-> ![](media/image455.wmf)
+> $\sum_{u \in rtp_{r,u,p} \land u \leq t}^{}{VAR\_ NCAP_{r,u,p}}$
 
 ### EQ_DEL(r,t,p)
 
@@ -1006,11 +1021,15 @@ limited usefulness, as already mentioned.
 
 **Equation**
 
-![](media/image456.wmf)
+$$EQ\_ DEL_{r,t,p}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \right) \right\rbrack$$
 
-> ![](media/image457.wmf)
+> ![{\"mathml\":\"\<math
+> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+> for Microsoft
+> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+> height="7.507655293088364e-3in"}
 >
-> ![](media/image458.wmf)
+> $\left\{ = \right\} 1$
 
 ### EQ_EXPE1(r,t,p,k)
 
@@ -1044,13 +1063,21 @@ limited usefulness, as already mentioned.
 
 **Equation**
 
-![](media/image459.wmf)
+$$EQ\_ EXPE1_{r,t,p,k}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \right) \land (t < TLAST) \right\rbrack$$
 
-> ![](media/image460.wmf)
+> ![{\"mathml\":\"\<math
+> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+> for Microsoft
+> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+> height="7.507655293088364e-3in"}
 >
-> ![](media/image461.wmf)
+> $\left\{ \geq \right\}$
 >
-> ![](media/image462.wmf)
+> ![{\"mathml\":\"\<math
+> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+> for Microsoft
+> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+> height="7.507655293088364e-3in"}
 
 ### EQ_EXPE2(r,t,p,k)
 
@@ -1086,13 +1113,21 @@ limited usefulness, as already mentioned.
 
 **Equation**
 
-![](media/image463.wmf)
+$$EQ\_ EXPE2_{r,t,p,k}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \right) \land (t < TLAST) \right\rbrack$$
 
-> ![](media/image464.wmf)
+> ![{\"mathml\":\"\<math
+> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+> for Microsoft
+> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+> height="7.507655293088364e-3in"}
 >
-> ![](media/image465.wmf)
+> $\left\{ \leq \right\}$
 >
-> ![](media/image466.wmf)
+> ![{\"mathml\":\"\<math
+> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+> for Microsoft
+> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+> height="7.507655293088364e-3in"}
 
 ### EQ_IC1(r,t,p)
 
@@ -1125,15 +1160,15 @@ limited usefulness, as already mentioned.
 
 **Equation**
 
-![](media/image467.wmf)
+$$EQ\_ IC1_{r,t,p}\forall(p \in teg) \land (t = MIYR\_ V1)$$
 
-> ![](media/image468.wmf)
+> $VAR\_ IC_{r,t,p}$
 >
-> ![](media/image444.wmf)
+> $\left\{ = \right\}$
 
-![](media/image469.wmf)
+$VAR\_ CCOST_{r,t,p} -$
 
-![](media/image470.wmf)
+$CCOST0_{}$
 
 ### EQ_IC2(r,t,p)
 
@@ -1166,15 +1201,15 @@ limited usefulness, as already mentioned.
 
 **Equation**
 
-![](media/image471.wmf)
+$$EQ\_ IC2_{r,t,p}\forall(p \in teg) \land (t > MIYR\_ V1)$$
 
-> ![](media/image472.wmf)
+> $$VAR\_ IC_{r,t,p}$$
 >
-> ![](media/image444.wmf)
+> $$\left\{ = \right\}$$
 
-![](media/image473.wmf)
+$$VAR\_ CCOST_{r,t,p} -$$
 
-![](media/image474.wmf)
+$$VAR\_ CCOST_{r,t - 1,p}$$
 
 ### EQ_LA1(r,t,p,k)
 
@@ -1212,13 +1247,13 @@ limited usefulness, as already mentioned.
 
 **Equation**
 
-![](media/image475.wmf)
+$$EQ\_ LA1_{r,t,p,k}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \right) \right\rbrack$$
 
-> ![](media/image476.wmf)
+> $$VAR\_ LAMBD_{r,t,p,k}$$
 >
-> ![](media/image477.wmf)
+> $\left\{ \geq \right\}$
 
-![](media/image478.wmf)
+$$CCAPK_{r,k - 1,p}*VAR\_ DELTA_{r,t,p,k}$$
 
 ### EQ_LA2(r,t,p,k)
 
@@ -1256,13 +1291,13 @@ MIP solution is of little interest.
 
 **Equation**
 
-![](media/image479.wmf)
+$$MR\_ LA2_{r,t,p,k}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \right) \right\rbrack$$
 
-> ![](media/image480.wmf)
+> $$VAR\_ LAMBD_{r,t,p,k}$$
 >
-> ![](media/image481.wmf)
+> $\left\{ \leq \right\}$
 
-![](media/image482.wmf)
+$$CCAPK_{r,k,p}*VAR\_ DELTA_{r,t,p,k}$$
 
 ### EQ_MRCLU(r,t,p)
 
@@ -1300,13 +1335,16 @@ parameter.
 
 **Equation**
 
-![](media/image483.wmf)
+$$EQ\_ MRCLU_{r,t,p}\forall\left\lbrack \begin{aligned}
+ & (p \in teg) \land \left( TL\_ RP\_ KC_{r,p} \right) \land \\
+ & \left( (r,t,p) \in rtp \right)
+\end{aligned} \right\rbrack$$
 
-> ![](media/image447.wmf)
+> $VAR\_ NCAP_{r,t,p}$
 >
-> ![](media/image444.wmf)
+> $\left\{ = \right\}$
 
-![](media/image484.wmf)
+$$\sum_{\left( reg,t,prc \in \mathbf{rtp} \right)}^{}\left( TL\_ MRCLUST_{reg,p,prc} \times VAR\_ NCAP_{reg,t,prc} \right)$$
 
 ### EQ_OBJSAL(r,cur)
 
@@ -1330,11 +1368,15 @@ which costs are tracked.
 
 **Equation**
 
-![](media/image485.wmf)
+$$EQ\_ OBJSAL_{r,cur}$$
 
 > **...**
 
-\+![](media/image486.wmf)
+\+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 ### EQ_OBJINV(r,cur) 
 
@@ -1356,8 +1398,13 @@ technology is available.
 
 **Equation**
 
-![](media/image487.wmf)
+$$EQ\_ OBJINV_{r,cur}$$
 
 > ...
 
-\+![](media/image488.wmf)
+\+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
+
