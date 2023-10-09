@@ -240,14 +240,8 @@ sensitivity analysis (chapter 6) to Stochastic Programming (chapter 8).
 
 ------------
 
-[^1]: MARKAL (MARket ALlocation model, Fishbone et al, 1981, 1983,
-    Berger et al. 1992) and EFOM (Van Voort et al, 1984) are two
-    bottom-up energy models that inspired the structure of TIMES.
+[^1]: MARKAL (MARket ALlocation model, Fishbone et al, 1981, 1983, Berger et al. 1992) and EFOM (Van Voort et al, 1984) are two bottom-up energy models that inspired the structure of TIMES.
 
-[^2]: European Commission, *The GEM-E3 Model*, *General Equilibrium
-    Model for Economy, Energy and Environment,*
-    <https://ec.europa.eu/jrc/en/gem-e3/model>.
+[^2]: European Commission, *The GEM-E3 Model*, *General Equilibrium Model for Economy, Energy and Environment*, <https://ec.europa.eu/jrc/en/gem-e3/model>.
 
-[^3]: This standard may also be imposed on the entire electricity
-    generation sector, in which case renewable electricity plants are
-    assumed to have zero energy input.
+[^3]: This standard may also be imposed on the entire electricity generation sector, in which case renewable electricity plants are assumed to have zero energy input.

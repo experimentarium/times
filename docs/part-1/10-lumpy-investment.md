@@ -125,11 +125,4 @@ extra computing time and the partial loss of dual information.
 
 ------------
 
-[^36]: A TIMES LP program of a given size tends to have fairly constant
-    solution time, even if the database is modified. In contrast, a
-    TIMES MIP may show some erratic solution times. One may observe
-    reasonable solution times (although significantly longer than LP
-    solution times) for most instances, with an occasional *very* long
-    solution time for some instances. This phenomenon is predicted by
-    the theory of complexity as applied to MIP, see Papadimitriou and
-    Stieglitz (1982).
+[^36]: A TIMES LP program of a given size tends to have fairly constant solution time, even if the database is modified. In contrast, a TIMES MIP may show some erratic solution times. One may observe reasonable solution times (although significantly longer than LP solution times) for most instances, with an occasional *very* long solution time for some instances. This phenomenon is predicted by the theory of complexity as applied to MIP, see Papadimitriou and Stieglitz (1982).

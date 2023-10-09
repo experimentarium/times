@@ -147,12 +147,12 @@ b\) The radiative forcing due to atmospheric CH4 is given by the
 following expression (IPCC 2007), where the subscript tot has been
 omitted
 
-$$\mathbf{\Delta}\mathbf{F}_{\mathbf{CH4}}\mathbf{(y) = 0.036}\mathbf{\cdot}\left( \sqrt{\mathbf{CH}\mathbf{4}_{\mathbf{y}}}\mathbf{-}\sqrt{\mathbf{CH}\mathbf{4}_{\mathbf{0}}} \right)\mathbf{-}\left\lbrack \mathbf{f(CH}\mathbf{4}_{\mathbf{y}}\mathbf{,N2}\mathbf{O}_{\mathbf{0}}\mathbf{)}\mathbf{-}\mathbf{f(CH}\mathbf{4}_{\mathbf{0}}\mathbf{,N2}\mathbf{O}_{\mathbf{0}}\mathbf{)} \right\rbrack\mathbf{(7}\mathbf{-}\mathbf{8)}$$
+$$\mathbf{\Delta}\mathbf{F}_{\mathbf{CH}\mathbf{4}}\mathbf{(y) = 0.036}\mathbf{\cdot}\left( \sqrt{\mathbf{CH}\mathbf{4}_{\mathbf{y}}}\mathbf{-}\sqrt{\mathbf{CH}\mathbf{4}_{\mathbf{0}}} \right)\mathbf{-}\left\lbrack \mathbf{f(CH}\mathbf{4}_{\mathbf{y}}\mathbf{,N}\mathbf{2}\mathbf{O}_{\mathbf{0}}\mathbf{)}\mathbf{-}\mathbf{f(CH}\mathbf{4}_{\mathbf{0}}\mathbf{,N}\mathbf{2}\mathbf{O}_{\mathbf{0}}\mathbf{)} \right\rbrack\mathbf{(7}\mathbf{-}\mathbf{8)}$$
 
 c\) The radiative forcing due to atmospheric N2O is given by the
 following expression (IPCC, 2007)
 
-$$\mathbf{\Delta}\mathbf{F}_{\mathbf{N2O}}\mathbf{(y) = 0.12}\mathbf{\cdot}\left( \sqrt{\mathbf{N2}\mathbf{O}_{\mathbf{y}}}\mathbf{-}\sqrt{\mathbf{N2}\mathbf{O}_{\mathbf{0}}} \right)\mathbf{-}\left\lbrack \mathbf{f(CH}\mathbf{4}_{\mathbf{0}}\mathbf{,N2}\mathbf{O}_{\mathbf{y}}\mathbf{)}\mathbf{-}\mathbf{f(CH}\mathbf{4}_{\mathbf{0}}\mathbf{,N2}\mathbf{O}_{\mathbf{0}}\mathbf{)} \right\rbrack\mathbf{(7}\mathbf{-}\mathbf{9)}$$
+$$\mathbf{\Delta}\mathbf{F}_{\mathbf{N}\mathbf{2}\mathbf{O}}\mathbf{(y) = 0.12}\mathbf{\cdot}\left( \sqrt{\mathbf{N}\mathbf{2}\mathbf{O}_{\mathbf{y}}}\mathbf{-}\sqrt{\mathbf{N}\mathbf{2}\mathbf{O}_{\mathbf{0}}} \right)\mathbf{-}\left\lbrack \mathbf{f(CH}\mathbf{4}_{\mathbf{0}}\mathbf{,N}\mathbf{2}\mathbf{O}_{\mathbf{y}}\mathbf{)}\mathbf{-}\mathbf{f(CH}\mathbf{4}_{\mathbf{0}}\mathbf{,N}\mathbf{2}\mathbf{O}_{\mathbf{0}}\mathbf{)} \right\rbrack\mathbf{(7}\mathbf{-}\mathbf{9)}$$
 
 where:
 
@@ -290,15 +290,8 @@ TIMES code, see Appendix A of Part II.
 
 ------------
 
-[^32]: Other important GHG's such as CH4 and N2O may either be expressed
-    in CO2-equivalent, or a special exogenous forcing term may be added
-    to CO2 forcing. The latter approach is not attractive as it keeps
-    two major GHG's fully exogenous.
+[^32]: Other important GHG's such as CH4 and N2O may either be expressed in CO2-equivalent, or a special exogenous forcing term may be added to CO2 forcing. The latter approach is not attractive as it keeps two major GHG's fully exogenous.
 
-[^33]: In keeping with the literature, we have expressed all
-    concentrations as masses in megatonnes.
+[^33]: In keeping with the literature, we have expressed all concentrations as masses in megatonnes.
 
-[^34]: Note that the subscripts *atm* and *up*, which for the CO2
-    equations referred to the atmosphere and upper reservoirs, have been
-    reused for the CH4 and N2O equations to stand for anthropogenic and
-    natural concentrations.
+[^34]: Note that the subscripts *atm* and *up*, which for the CO2 equations referred to the atmosphere and upper reservoirs, have been reused for the CH4 and N2O equations to stand for anthropogenic and natural concentrations.

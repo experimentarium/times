@@ -190,27 +190,15 @@ In a minimization problem (such as the usual formulation of TIMES), the
 difference *c~j~ - y\*A'~j\ ~*is called the *reduced cost* of technology
 *j.* The following holds:
 
--   If *x\* ~j~* is at its lower bound, its unit cost *c~j~* is *larger*
-    than the value created (i.e. its reduced cost is positive). The
-    technology is not competitive (and stays at its lower bound in the
-    equilibrium);
+- If *x\* ~j~* is at its lower bound, its unit cost *c~j~* is *larger* than the value created (i.e. its reduced cost is positive). The technology is not competitive (and stays at its lower bound in the equilibrium);
+- if *x\* ~j~* is at its upper bound, its cost *c~j~* is *less* than the value created (i.e. its reduced cost is negative). The technology is super competitive and produces a profit; and
+- if *x\* ~j\ ~*is basic, its reduced cost is equal to 0. The technology is competitive but does not produce a profit
 
--   if *x\* ~j~* is at its upper bound, its cost *c~j~* is *less* than
-    the value created (i.e. its reduced cost is negative). The
-    technology is super competitive and produces a profit; and
-
--   if *x\* ~j\ ~*is basic, its reduced cost is equal to 0. The
-    technology is competitive but does not produce a profit
-
-The reduced costs/surpluses may thus be used to rank all technologies,
-*including those that are not selected by the model.*
+The reduced costs/surpluses may thus be used to rank all technologies, *including those that are not selected by the model.*
 
 
 ------------
 
-[^48]: Their proofs may be found in the textbooks on Linear Programming
-    already referenced.
+[^48]: Their proofs may be found in the textbooks on Linear Programming already referenced.
 
-[^49]: Strictly speaking, the partial derivative may not exist for some
-    values of the RHS, and may then be replaced by a directional
-    derivative (see Rockafellar 1970).
+[^49]: Strictly speaking, the partial derivative may not exist for some values of the RHS, and may then be replaced by a directional derivative (see Rockafellar 1970).

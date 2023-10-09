@@ -624,32 +624,16 @@ are physically identical.
 
 ------------
 
-[^4]: However, there are TIMES variants -- discussed in chapters 8 to
-    12, that depart significantly from these assumptions
+[^4]: However, there are TIMES variants -- discussed in chapters 8 to 12, that depart significantly from these assumptions
 
-[^5]: There are exceptional cases when an investment must be repeated
-    more than once in a period, namely when the period is so long that
-    it exceeds the technical life of the investment. These cases are
-    described in detail in section 6.2.2 of PART II.
+[^5]: There are exceptional cases when an investment must be repeated more than once in a period, namely when the period is so long that it exceeds the technical life of the investment. These cases are described in detail in section 6.2.2 of PART II.
 
-[^6]: However, if the horizon has been lengthened beyond the years
-    already covered by the data, additional data for the new years at
-    the end of the horizon must of course be provided.
+[^6]: However, if the horizon has been lengthened beyond the years already covered by the data, additional data for the new years at the end of the horizon must of course be provided.
 
-[^7]: Data in this context refers to parameter assumptions, technology
-    characteristics, projections of energy service demands, etc. It does
-    not refer to historical data series.
+[^7]: Data in this context refers to parameter assumptions, technology characteristics, projections of energy service demands, etc. It does not refer to historical data series.
 
-[^8]: There are a variety of availability factors: annual or seasonal.
-    Each may be specified as a maximum factor (the most frequent case),
-    an exact factor, or even a minimum factor (in order to force some
-    minimum utilization of the capacity of some equipment, as in a
-    backup gas turbine for instance).
+[^8]: There are a variety of availability factors: annual or seasonal. Each may be specified as a maximum factor (the most frequent case), an exact factor, or even a minimum factor (in order to force some minimum utilization of the capacity of some equipment, as in a backup gas turbine for instance).
 
-[^9]: Vintaging could also be introduced by defining a new technology
-    for each vintage year, but this approach would be wasteful, as many
-    parameters remain the same across all vintages.
+[^9]: Vintaging could also be introduced by defining a new technology for each vintage year, but this approach would be wasteful, as many parameters remain the same across all vintages.
 
-[^10]: See Appendix A for the VEDA-FE, VEDA-BE, and ANSWER modeling and
-    analysis systems, used to maintain and manage TIMES databases,
-    conduct model runs, and organize results.
+[^10]: See Appendix A for the VEDA-FE, VEDA-BE, and ANSWER modeling and analysis systems, used to maintain and manage TIMES databases, conduct model runs, and organize results.
