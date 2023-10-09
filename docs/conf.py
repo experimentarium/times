@@ -11,6 +11,11 @@ copyright = '2023, IEA-ETSAP'
 author = 'IEA-ETSAP'
 release = '4.7.2'
 
+rst_prolog = """.. attention::
+    This is work in progress and may not be in a usable state yet.
+    Please refer to https://github.com/etsap-TIMES/TIMES_Documentation for the official docs.
+"""
+
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
