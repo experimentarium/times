@@ -63,17 +63,5 @@ This documentation is composed of four Parts.
 PART IV: VEDA2.0[^1] Model Management System - Getting Started with the
 VEDA-TIMES Demo Models
 
-[^1]: Veda \[Sanskrit,=knowledge, cognate with English wit, from a root
-    meaning know\], oldest scriptures of Hinduism and the most ancient
-    religious texts in an Indo-European language. The authority of the
-    Veda as stating the essential truths of Hinduism is still accepted
-    to some extent by all Hindus. The Veda is the literature of the
-    Aryans who invaded NW India c.1500 B.C. and pertains to the fire
-    sacrifice that constituted their religion. The Vedic hymns were
-    probably first compiled after a period of about 500 years during
-    which the invaders assimilated various native religious ideas. The
-    end of the Vedic period is about 500 B.C. Tradition ascribes the
-    authorship of the hymns to inspired seer-poets (rishis). \[The
-    Columbia Encyclopedia, 6th ed. New York: Columbia University Press,
-    2000. \]
+[^1]: Veda \[Sanskrit,=knowledge, cognate with English wit, from a root meaning know\], oldest scriptures of Hinduism and the most ancient religious texts in an Indo-European language. The authority of the Veda as stating the essential truths of Hinduism is still accepted to some extent by all Hindus. The Veda is the literature of the Aryans who invaded NW India c.1500 B.C. and pertains to the fire sacrifice that constituted their religion. The Vedic hymns were probably first compiled after a period of about 500 years during which the invaders assimilated various native religious ideas. The end of the Vedic period is about 500 B.C. Tradition ascribes the authorship of the hymns to inspired seer-poets (rishis). \[The Columbia Encyclopedia, 6th ed. New York: Columbia University Press, 2000. \]
 
