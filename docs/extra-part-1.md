@@ -21,8 +21,6 @@ July 2016
 
 Amit Kanudia
 
-Antti Lettila
-
 Uwe Remme
 
 **Reviewers:** Evelyn Wright
