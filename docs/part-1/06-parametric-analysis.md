@@ -101,7 +101,7 @@ deviation bound parameters.
 The objective function to be minimized in the second phase, and the
 addi­tional bounds on the LHS values of UCs, can be written as follows:
 
-$${	\min objz = 	LHS('OBJZ')
+$${\min objz = LHS('OBJZ')
 }{\left. \ \begin{matrix}
 LHS(uc) \leq (1 + maxdev(uc)) \bullet LHS^{*}(uc) \\
 LHS(uc) \geq (1 - maxdev(uc)) \bullet LHS^{*}(uc)

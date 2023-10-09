@@ -423,7 +423,7 @@ results for all SOWs even under the period-independent variant can later
 be added.
 
 Unlike the basic stochastic option STAGES, the SPINES option may be used
-also together with the time-stepped mode (see Section ).
+also together with the time-stepped mode (see Section 3.5.2).
 
 The SPINES control variable is available only in TIMES versions 3.3.0
 and above, and should currently be considered ***experimental*** only.
@@ -866,10 +866,10 @@ USEPA9r-TIMES model with and without reduction algorithm are given in
 Table 9 for CPLEX (GAMSv24.4.1), using a call to the solver for Barrier
 for initial solve and Primal Simplex crossover to finish up.
 
-  ----------------------------------------------------------------------------
+  ------------------------ --------------- ------------------ ----------------
   **Statistic**            **Reduce Not    **Reduce=NO**      **Reduce=YES**
                            Set**                              
-  ------------------------ --------------- ------------------ ----------------
+
   Block / Single Equations 92 / 1,652,677  92 / 1,796,525     92 / 870,814
 
   Block / Single Variables 14 / 2,429,348  14 / 2,564,039     14 / 1,645,631
@@ -888,7 +888,7 @@ for initial solve and Primal Simplex crossover to finish up.
 
   Resource Usage /         1323.824        2656.557           1320.111
   Solution Time                                               
-  ----------------------------------------------------------------------------
+  ------------------------ --------------- ------------------ ----------------
 
   : []{#_Ref425301618 .anchor}Table 9: Reduction Model Comparison
 
@@ -953,16 +953,15 @@ ways as described in if desired:
 
   : []{#_Ref425221807 .anchor}Table 10: Save/Load Restart Switches
 
-  -------------------------------------------------------------------------
-  **LPOINT**   
   ------------ ------------------------------------------------------------
+  **LPOINT**   
+
   LPOINT       Indicates that the model generator should load the solution
   filename     point from the file %LPOINT%\_p.gdx. If the control variable
                SPOINT has additionally been set to 2 or 3, a subsequent
                attempt to load from %RUN_NAME%\_p.gdx is also made if the
                loading from the file %LPOINT%\_p.gdx fails.
-
-  -------------------------------------------------------------------------
+  ------------ ------------------------------------------------------------
 
   : []{#_Ref425222296 .anchor}Table 11: Debug Switches
 

@@ -244,7 +244,7 @@ visualization pane.
 
 ![](media/image9.emf){width="6.5in" height="2.5416666666666665in"}
 
-[]{#_Toc456278267 .anchor}Figure 4. VEDA2.0 Navigator Layout
+[]{#_Ref335997296 .anchor}Figure 4. VEDA2.0 Navigator Layout
 
 You may also switch the panes around, as done in Figure 5, where the
 Regular Scenario \[RS\] pane has been moved to the left of the Demand
@@ -721,7 +721,7 @@ these are listed below.
 
 ![](media/image21.png){width="3.15625in" height="0.8645833333333334in"}
 
-[]{#_Ref336357060 .anchor}Figure 10. Example of \~TFM_INS Insert Table
+[]{#_Ref336357066 .anchor}Figure 10. Example of \~TFM_INS Insert Table
 
 **Transformation Update Tables (\~TFM_UPD)** are used to update
 pre-existing data in a rule-based manner. For example, in Figure 11 it
@@ -1158,7 +1158,7 @@ double-clicking on a cell.
 height="1.5479166666666666in"} ![](media/image27.png){width="6.5in"
 height="4.291666666666667in"}
 
-[]{#_Ref444525169 .anchor}Figure 13. Browser for the model database
+[]{#_Ref455754367 .anchor}Figure 13. Browser for the model database
 
 First, elements are selected manually, limited to those belonging to a
 particular Set via the pulldown menu above the Process/Commodity or via
@@ -3291,7 +3291,7 @@ TIMES.
 +-----------------------------------------------------------------------+
 | > ![](media/image120.png){width="6.5in" height="3.84375in"}           |
 +=======================================================================+
-| []{#_Ref444526814 .anchor}Figure 94. Solving Multiple Cases           |
+| []{#_Ref456277970 .anchor}Figure 94. Solving Multiple Cases           |
 +-----------------------------------------------------------------------+
 
 The impacts of the improvements made in the electricity sector on the
@@ -6436,8 +6436,6 @@ needed for that.
 \"REG1\",\"COTEOIL\",\"DEMO\",\"OUT\"
 
 
-[^2]: The meaning of all the attributes, along with their qualifier
-    indexes, as said above can be found in VEDA2.0, Information / TIMES
-    Attributes.
+[^2]: The meaning of all the attributes, along with their qualifier indexes, as said above can be found in VEDA2.0, Information / TIMES Attributes.
 
 [^3]: <http://www.iea-etsap.org/Energy_Technologies/Energy_Technology.asp>

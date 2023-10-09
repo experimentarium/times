@@ -70,11 +70,10 @@ In both approaches, a number of assumptions are made:
 In a given time period, and for a given pollutant, the damage cost is
 modeled as follows:
 
-  -----------------------------------------------------------------------
-  ![](media/image426.wmf)                                        \(1\)
   -------------------------------------------------------------- --------
+  $$DAM(EM) = \alpha \cdot EM^{\beta + 1}$$                      \(1\)
 
-  -----------------------------------------------------------------------
+  -------------------------------------------------------------- --------
 
 where:
 
@@ -93,28 +92,25 @@ where:
 If we denote the marginal cost at the reference level MC~0~, the
 following holds:
 
-  -----------------------------------------------------------------------
-  ![](media/image427.wmf)                                        \(2\)
   -------------------------------------------------------------- --------
+  $$MC_{0} = \alpha \cdot (\beta + 1) \cdot EM_{0}^{\beta}$$     \(2\)
 
-  -----------------------------------------------------------------------
+  -------------------------------------------------------------- --------
 
 where EM~0~ is the reference amount of emissions. Therefore expression
 (1) may be re-written as:
 
-  -----------------------------------------------------------------------
-  ![](media/image428.wmf)                                        \(3\)
-  -------------------------------------------------------------- --------
+  ------------------------------------------------------------------------------------ --------
+  $$DAM(EM) = MC_{0} \cdot \frac{EM^{\beta + 1}}{(\beta + 1) \cdot EM_{0}^{\beta}}$$   \(3\)
 
-  -----------------------------------------------------------------------
+  ------------------------------------------------------------------------------------ --------
 
 The marginal damage cost is therefore given by the following expression:
 
-  -----------------------------------------------------------------------
-  ![](media/image429.wmf)                                        \(4\)
   -------------------------------------------------------------- --------
+  $$MC(EM) = MC_{0} \cdot \frac{EM^{\beta}}{EM_{0}^{\beta}}$$    \(4\)
 
-  -----------------------------------------------------------------------
+  -------------------------------------------------------------- --------
 
 The approach to damage costs described in this section applies more
 particularly to local pollutants. Extension to global emissions such GHG
@@ -138,44 +134,42 @@ and *n* intervals above the reference level. We also assume a middle
 interval centered at the reference emission level. To each interval
 corresponds one step variable *S*. Thus, we have for emissions:
 
-  -----------------------------------------------------------------------
-  ![](media/image430.wmf)                                        \(5\)
-  -------------------------------------------------------------- --------
+  ---------------------------------------------------------------------------- --------
+  $$EM = \sum_{i = 1}^{m}S_{i}^{lo} + S^{mid} + \sum_{i = 1}^{n}S_{i}^{up}$$   \(5\)
 
-  -----------------------------------------------------------------------
+  ---------------------------------------------------------------------------- --------
 
 The damage cost can then be written as follows:
 
-  -----------------------------------------------------------------------
-  ![](media/image431.wmf)                                        \(6\)
-  -------------------------------------------------------------- --------
+  -------------------------------------------------------------------------------------------------------------------------------------- --------
+  $$DAM(EM) = \sum_{i = 1}^{m}{MC_{i}^{lo} \cdot S_{i}^{lo}} + MC_{0} \cdot S^{mid} + \sum_{i = 1}^{n}{MC_{i}^{up} \cdot S_{i}^{up}}$$   \(6\)
 
-  -----------------------------------------------------------------------
+  -------------------------------------------------------------------------------------------------------------------------------------- --------
 
 where:
 
--   ![](media/image432.wmf)are the approximate marginal costs at each
-    > step below and above the reference level as shown in (7) below;
-    > and
+-   $MC_{i}^{lo}\text{and}MC_{i}^{up}$are the approximate marginal costs
+    > at each step below and above the reference level as shown in (7)
+    > below; and
 
--   ![](media/image433.wmf)are the non-negative step variables for
-    emissions. Apart from the final step, each step variable has an
-    upper bound equal to the width of the interval. In this formulation
-    we choose intervals of uniform width on each side of the reference
-    level. However, the intervals below and above the reference level
-    can have different sizes. The width of the middle interval is always
-    the average of the widths below and above the reference level.
+-   $S_{i}^{lo},S^{mid}\text{and}S_{i}^{up}$are the non-negative step
+    variables for emissions. Apart from the final step, each step
+    variable has an upper bound equal to the width of the interval. In
+    this formulation we choose intervals of uniform width on each side
+    of the reference level. However, the intervals below and above the
+    reference level can have different sizes. The width of the middle
+    interval is always the average of the widths below and above the
+    reference level.
 
 The approximate marginal costs at each step can be assumed to be the
 marginal costs at the center of each step. If all the steps intervals
 are of equal size, the marginal costs for the steps below the reference
 level are obtained by the following formula:
 
-  -----------------------------------------------------------------------
-  ![](media/image434.wmf)                                        \(7\)
-  -------------------------------------------------------------- --------
+  ----------------------------------------------------------------------------------- --------
+  $$MC_{i}^{lo} = MC_{0} \cdot \left( \frac{(i - 0.5)}{(m + 0.5)} \right)^{\beta}$$   \(7\)
 
-  -----------------------------------------------------------------------
+  ----------------------------------------------------------------------------------- --------
 
 Formulas for the marginal costs of the other steps can be derived
 similarly.
@@ -288,7 +282,7 @@ discussed in more detail below:
     than or equal to the reference level of emissions. If the lower
     variation is smaller than **DAM_BQTY**, the damage costs.
 
-The input parameters are listed in Table .
+The input parameters are listed in Table B-1.
 
 +---------+--------+-----------+----------+--------------+-----------+
 | **Input | **R    | **Units / | **       | **D          | *         |
@@ -404,7 +398,7 @@ augmented objective function.
 | the TIMES       |                                                    |
 | Damage cost     |                                                    |
 | functions.      |                                                    |
-+=================+====================================================+
++-----------------+----------------------------------------------------+
 | **Parameter**   | **Description**                                    |
 +-----------------+----------------------------------------------------+
 | CST_DAM(r,t,c)  | Damage costs by region, period and emission        |
@@ -435,7 +429,7 @@ PARAMETER DAM_BQTY / REG.EM 80 /;
 
 PARAMETER DAM_ELAST / REG.EM.LO 1, REG.EM.UP 0.7 /;
 
-![](media/image435.wmf)
+![](media/image34.wmf){width="5.635416666666667in" height="3.8125in"}
 
 Figure
 
@@ -445,7 +439,7 @@ Figure
 As we did not specify the number of steps, but we did specify the
 elasticities in both directions, the number of steps is assumed to be 1
 in both directions. The resulting damage cost function is illustrated in
-Figure . Because the damage function has a very coarse representation,
+Figure 15. Because the damage function has a very coarse representation,
 the total costs have notable deviations from the accurate non-linear
 function. Note that the step size has been automatically determined to
 be **DAM_BQTY/(DAM_STEP+0.5)** = 80/1.5. However, the last step has no
@@ -473,13 +467,13 @@ PARAMETER DAM_STEP / REG.EM.LO 5, REG.EM.UP 3 /;
 
 PARAMETER DAM_VOC / REG.EM.LO 60, REG.EM.UP 100 /;
 
-The resulting damage cost function is illustrated in Figure . The cost
+The resulting damage cost function is illustrated in Figure 16. The cost
 function follows now very closely the accurate non-linear function. Note
 that the step sizes derived from the VOC specifications are 10 units for
 the lower steps, 20 for the middle step, and 30 units for the upper
 steps. However, the last step of course has no upper bound.
 
-![](media/image436.wmf)
+![](media/image35.wmf){width="5.90625in" height="4.010416666666667in"}
 
 Figure
 
@@ -489,15 +483,15 @@ Figure
 ## Variables
 
 There are only two sets of new variables in the damage cost formulation,
-VAR_DAM and VAR_OBJDAM, which are shown below in . The variables VAR_DAM
-represent the steps in the emissions in each period. In the linearized
-formulation, there are DAM_STEP(\...,\'LO\') number of step variables on
-the lower side and DAM_STEP(\...\'UP\') number of step variables on the
-higher side of emissions. In addition, one step variable of type \'FX\'
-corresponds to the middle step that includes the reference level of
-emissions, and an optional additional step variable of type \'FX\'
-corresponds to the zero-damage fraction of emissions, as defined by the
-difference between DAM_BQTY(..) and DAM_VOC(\...,\'LO\').
+VAR_DAM and VAR_OBJDAM, which are shown below in Table B-3. The
+variables VAR_DAM represent the steps in the emissions in each period.
+In the linearized formulation, there are DAM_STEP(\...,\'LO\') number of
+step variables on the lower side and DAM_STEP(\...\'UP\') number of step
+variables on the higher side of emissions. In addition, one step
+variable of type \'FX\' corresponds to the middle step that includes the
+reference level of emissions, and an optional additional step variable
+of type \'FX\' corresponds to the zero-damage fraction of emissions, as
+defined by the difference between DAM_BQTY(..) and DAM_VOC(\...,\'LO\').
 
 The variables VAR_OBJDAM represent the total discounted damage costs by
 region. The undiscounted costs in each period described in Section 2 are
@@ -554,9 +548,9 @@ cost functions are included in the objective function
 There are two blocks of equations generated for damage cost functions,
 whenever they are included in the objective function. The two equations
 related to the damage functions are listed and briefly described below
-in . The equations include the balance of stepped emissions, the
-objective component for damage costs, and the augmented total objective
-function.
+in Table B-4. The equations include the balance of stepped emissions,
+the objective component for damage costs, and the augmented total
+objective function.
 
 In addition, the standard TIMES objective function, **EQ_OBJ**, is
 augmented by the present value of the damage costs, as defined by the
@@ -606,9 +600,17 @@ functions in each period ***t***.
 
 **Equation:**
 
-![](media/image437.wmf)
+$$EQ\_ DAMAGE_{r,t,c} \ni \left( \mathbf{rt}\mathbf{c}_{r,t,c} \land \exists(cur):DAM\_ COST_{r,t,c,cur} \right)$$
 
-![](media/image438.wmf)
+$${\sum_{(jj,bd) \in \mathbf{dam}\_\mathbf{nu}\mathbf{m}_{r,c,jj,bd}}^{}{\sum_{j \leq jj}^{}{VAR\_ DAM_{r,t,c,bd,j}}}
+}{\left\{ = \right\}
+}{\sum_{\mathbf{com}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{ts}}}^{}\left( \begin{aligned}
+ & DAM\_ COEF_{r,t,c,ts} \times \\
+ & \left( \begin{aligned}
+ & VAR\_ COMNET_{r,t,c,ts}if\mspace{6mu} DAM\_ ELAST_{r,c,'N'}\mspace{6mu} not\mspace{6mu} given \\
+ & VAR\_ COMPRD_{r,t,c,ts}otherwise
+\end{aligned} \right)
+\end{aligned} \right)}$$
 
 ### EQ_OBJDAM(r,cur)
 
@@ -629,20 +631,62 @@ function.
 -   The internal parameter *DAM_SIZE~r,c,bd~* represents the sizes of
     cost steps of the dlinearized damage cost function, for both
     directions (bd=LO/UP) and for the middle step (bd=FX), as described
-    above in Section .
+    above in Section 2.
 
 **Equation:**
 
-![](media/image439.wmf)
+$$EQ\_ OBJDAM_{r,cur} \ni \left( \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}} \right)$$
 
 **Case A: Linearized functions**
 
-![](media/image440.wmf)
+$${\sum_{(t,c) \in \left\{ \mathbf{rt}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c}}|(DAM\_ COST_{r,t,} > 0) \right\}}^{}{DAM\_ COST_{r,t,c,cur} \times OBJ\_ PVT_{r,t,cur}} \times 
+}{\left\lbrack \begin{aligned}
+ & \sum_{\begin{matrix}
+jj \in \mathbf{dam}\_\mathbf{nu}\mathbf{m}_{r,c,jj,'LO'} \\
+j \leq jj
+\end{matrix}}^{}{\left( \begin{aligned}
+ & \frac{VAR\_ DAM_{r,t,c,'LO',j}}{DAM\_ BQT{Y_{r,c}}^{DAM\_ ELAST_{r,c,'LO'}}} \times \\
+ & \left( \begin{aligned}
+ & DAM\_ BQTY_{r,c} - DAM\_ VOC_{r,c,'LO'} + \\
+ & DAM\_ SIZE_{r,c,'LO'} \times (j - 0.5)
+\end{aligned} \right)^{DAM\_ ELAST_{r,c,'LO'}}
+\end{aligned} \right) +} \\
+ & VAR\_ DAM_{r,t,c,'FX',1} \\
+ & \sum_{\begin{matrix}
+jj \in \mathbf{dam}\_\mathbf{nu}\mathbf{m}_{r,c,jj,'UP'} \\
+j \leq ORD(jj)
+\end{matrix}}^{}\left( \begin{aligned}
+ & \frac{VAR\_ DAM_{r,t,c,'UP',j}}{DAM\_ BQT{Y_{r,c}}^{DAM\_ ELAST_{r,c,'UP'}}} \times \\
+ & \left( \begin{aligned}
+ & DAM\_ BQTY_{r,c} + \frac{DAM\_ SIZE_{r,c,'FX'}}{2} + \\
+ & DAM\_ SIZE_{r,c,'UP'} \times (j - 0.5)
+\end{aligned} \right)^{DAM\_ ELAST_{r,c,'UP'}}
+\end{aligned} \right)
+\end{aligned} \right\rbrack
+}{\left\{ = \right\}
+}{VAR\_ OBJ_{r,'OBJDAM',cur}}$$
 
 **\
 Case B: Non-linear functions**
 
-![](media/image441.wmf)
+$${\sum_{(t,c) \in \left\{ \mathbf{rt}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c}}|(DAM\_ COST_{r,t,} > 0) \right\}}^{}{DAM\_ COST_{r,t,c,cur} \times OBJ\_ PVT_{r,t,cur}} \times 
+}{\left\lbrack \begin{aligned}
+ & \\
+ & \frac{\left( \begin{aligned}
+ & \left( \begin{aligned}
+ & VAR\_ DAM_{r,t,,'LO',j} + \\
+ & DAM\_ BQTY_{r,c} - DAM\_ VOC_{r,c,'LO'}
+\end{aligned} \right)^{\left( DAM\_ ELAST_{r,c,'LO'} + 1 \right)} - \\
+ & \left( DAM\_ BQTY_{r,c} - DAM\_ VOC_{r,c,'LO'} \right)^{\left( DAM\_ ELAST_{r,c,'LO'} + 1 \right)}
+\end{aligned} \right)}{DAM\_ BQT{Y_{r,c}}^{DAM\_ ELAST_{r,c,'LO'}} \times \left( DAM\_ ELAST_{r,c,'LO'} + 1 \right)} + \\
+ & \\
+ & \frac{\left( \begin{aligned}
+ & \left( VAR\_ DAM_{r,t,c,'UP',j} + DAM\_ BQTY_{r,c} \right)^{\left( DAM\_ ELAST_{r,c,'UP'} + 1 \right)} - \\
+ & \left( DAM\_ BQTY_{r,c} \right)^{\left( DAM\_ ELAST_{r,c,'UP'} + 1 \right)}
+\end{aligned} \right)}{DAM\_ BQT{Y_{r,c}}^{DAM\_ ELAST_{r,c,'UP'}} \times \left( DAM\_ ELAST_{r,c,'UP'} + 1 \right)}
+\end{aligned} \right\rbrack
+}{\left\{ = \right\}
+}{VAR\_ OBJ_{r,'OBJDAM',cur}}$$
 
 ## References {#references-1 .unnumbered}
 

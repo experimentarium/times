@@ -541,7 +541,7 @@ to use the same process name in different regions with different
 numerical data (and description if desired), or even completely
 different commodities associated with the process.
 
-![](media/image1.emf)
+![](media/image1.emf){width="5.635416666666667in" height="3.4375in"}
 
 Figure 1: Example of internal and external regions in TIMES
 
@@ -613,7 +613,8 @@ commodity group, and **u** is the activity unit. The commodity group
 defining the activity of a process is also called **P**rimary
 **C**ommodity **G**roup (PCG).
 
-![](media/image2.emf)
+![](media/image2.emf){width="5.197916666666667in"
+height="2.7395833333333335in"}
 
 Figure 2: Example of the definition of a commodity group and the
 activity of a normal process.
@@ -645,7 +646,8 @@ energy unit embedded in the capacity unit to the activity unit. This is
 done by specifying the parameter **prc_capact(r,p)**. In the example
 **prc_capact** has the value 41.868.
 
-![](media/image3.emf)
+![](media/image3.emf){width="4.791666666666667in"
+height="2.7395833333333335in"}
 
 Figure 3: Example of the definition of the capacity unit
 
@@ -657,7 +659,7 @@ kilometres PKM. The activity of the process is, however, defined in
 vehicle kilometres VKM, while the capacity of the process CAR is defined
 as number of cars NOC.
 
-![](media/image4.emf)
+![](media/image4.emf){width="5.25in" height="3.4375in"}
 
 Figure 4: Example of different activity and commodity units
 
@@ -811,7 +813,7 @@ the periods, may be changed without having to adjust the input data to
 the new periods. The rules and options of the inter- and extrapolation
 routine are described in more detail in subection 3.1.1.
 
-![](media/image5.emf)
+![](media/image5.emf){width="5.739583333333333in" height="3.1875in"}
 
 Figure 5: Definition of the time horizon and the different year types
 
@@ -832,9 +834,9 @@ within the actual model horizon may also be useful for identifying
 already planned (although not yet constructed) capacity expansions in
 the near future[^11].
 
-  -----------------------------------------------------------------------
-  **Attribute name**    **Description**
   --------------------- -------------------------------------------------
+  **Attribute name**    **Description**
+
   G_DRATE               General discount rate for currency in a
                         particular year
 
@@ -871,7 +873,7 @@ the near future[^11].
   CM_MAXC               Maximum level of climate variable; included in
                         the climate module extension (see Appendix A for
                         a description of the climate module).
-  -----------------------------------------------------------------------
+  --------------------- -------------------------------------------------
 
   : Table 3: Parameters that can have values defined for any year,
   irrespective of datayear[^12]
@@ -922,7 +924,7 @@ considered well justified. However, an experimental \"light-weight\"
 implementation has been made in view of supporting also dynamic
 timeslice trees (see Appendix E).
 
-![](media/image6.wmf)
+![](media/image6.wmf){width="5.96875in" height="3.4791666666666665in"}
 
 Figure 6: Example of a timeslice tree
 
@@ -984,7 +986,8 @@ allocated to region A and the remaining 40 % to region B, the investment
 costs for the exchange process have to be set to 600 MU/MW in region A
 and to 400 MU/MW in region B.
 
-![](media/image7.wmf)
+![](media/image7.wmf){width="6.104166666666667in"
+height="1.7916666666666667in"}
 
 Figure 7: Bilateral trade in TIMES
 
@@ -1008,7 +1011,7 @@ TIMES. Assume that we want to set up a market-based trading where the
 commodity CRUD can be exported by regions A, B, C, and D, and that it
 can be imported by regions C, D, E and F (Figure 8).
 
-![](media/image8.wmf)
+![](media/image8.wmf){width="5.229166666666667in" height="2.875in"}
 
 Figure 8: Example of multi-lateral trade in TIMES
 
@@ -1095,7 +1098,7 @@ enumerated for all values of the third index (c=commodity) and of the
 last index (io=orientation), but summed over all processes (p) and
 regions (r), this will be mathematically denoted:
 
-![](media/image9.wmf)
+$$EXPRESSION1_{c,io} = \sum_{r,p,c,io \in top}^{}{A(r,p,c,io)}$$
 
 It is thus understood from the indexes listed in the name of the
 expression (c,io), that these two indexes are being enumerated, and
@@ -1109,7 +1112,7 @@ summation. Again here, the expression is made unambiguous by observing
 the positions of the different indexes (for instance, the outer
 summation is done on the r index)
 
-![](media/image10.wmf)
+$$EXPRESSION2_{c,io} = \sum_{r,p,c,io \in top}^{}{B(r)\sum_{p}^{}{A(r,p)}}$$
 
 +-------------+---------+---------------------------------------------+
 | **Set       | **Alias | **Description**                             |

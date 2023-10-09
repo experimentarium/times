@@ -37,13 +37,12 @@ We use the following mathematical symbols for the mathematical
 expressions and relations constituting the equations:
 
 The conditions that apply to each equation are mathematically expressed
-using the ![](media/image20.wmf)symbol (meaning "such that" or "only
-when"), followed by a logical expression involving the usual logic
-operators: ![](media/image21.wmf) (AND), ![](media/image22.wmf)(OR), and
-NOT.
+using the $\ni$symbol (meaning "such that" or "only when"), followed by
+a logical expression involving the usual logic operators: $\land$ (AND),
+$\vee$ (OR), and NOT.
 
 Within the mathematical expressions of the constraints, we use the usual
-symbols for the arithmetic operators (![](media/image23.wmf)etc).
+symbols for the arithmetic operators ($+ , - , \times ,/,\Sigma,$ etc).
 
 However, in order to improve the writing and legibility of all
 expressions, we use some simplifications of the usual mathematical
@@ -57,8 +56,8 @@ the range over which the indexes are allowed to run. Our notational
 conventions are as follows:
 
 When a single index j runs over a one-dimensional set A, the usual
-notation is used, as in: ![](media/image24.wmf) where *A* is a single
-dimensional set.
+notation is used, as in: $\sum_{j \in A}^{}{Expression_{j}}$ where *A*
+is a single dimensional set.
 
 When a summation must be done over a subset of a multi-dimensional set,
 we use a simplified notation where some of the running indexes are
@@ -70,15 +69,18 @@ a flow of commodity *c* with orientation *io* (see table 3 of chapter
 2). If is it desired to sum an expression *A~r,p,c,io~* over all
 commodities c, keeping the region (r), process (p) and orientation (io)
 fixed respectively at *r~1~*, *p~1~* and 'IN', we will write, by a
-slight abuse of notation: ![](media/image25.wmf) , or even more simply:
+slight abuse of notation:
+$\sum_{c \in top(r_{1},p_{1},'IN')}^{}{A(r_{1},p_{1},c,'IN')}$ , or even
+more simply:
 
-![](media/image26.wmf), if the context is unambiguous. Either of these
-notations clearly indicates that *r, p* and *io* are fixed and that the
-only active running index is *c*.
+$\sum_{c \in top}^{}{A(r_{1},p_{1},c,'IN')}$, if the context is
+unambiguous. Either of these notations clearly indicates that *r, p* and
+*io* are fixed and that the only active running index is *c*.
 
 (The traditional mathematical notation would have been:
-![](media/image27.wmf), but this may have hidden the fact that *c* is
-the only running index active in the sum).
+$\sum_{\{ r_{1},p_{1},c,'IN'\} \in top}^{}{A(r_{1},p,c_{1},'IN')}$, but
+this may have hidden the fact that *c* is the only running index active
+in the sum).
 
 ### Notation for logical conditions 
 
@@ -88,29 +90,31 @@ exists (i.e. has been given a value by the user), and/or that some
 indexes are restricted to certain subsets.
 
 A typical example of the former would be written as:
-![](media/image28.wmf)*ACTBND~r,t,p,s,bd~*, which reads: "the user has
-defined an activity bound for process *p* in region *r*, time-period
-*t*, timeslice *s* and sense *bd*". The indexes may sometimes be
-omitted, when they are the same as those attached to the equation name.
+$\ni$*ACTBND~r,t,p,s,bd~*, which reads: "the user has defined an
+activity bound for process *p* in region *r*, time-period *t*, timeslice
+*s* and sense *bd*". The indexes may sometimes be omitted, when they are
+the same as those attached to the equation name.
 
 A typical example of the latter is the first condition for equation
 *EQ_ACTFLO~r,v,t,p,s~* (see section 6.3.4), which we write simply as:
-![](media/image29.wmf), which is short for: ![](media/image30.wmf), with
-the meaning that "some capacity of process *p* in region *r*, created at
-period *v*, exists at period *t*". Again here, the indices have been
-omitted from the notation since they are already listed as indices of
-the equation name.
+$\mathbf{rtp}\_\mathbf{vintyr}$, which is short for:
+$\{ r,v,t,p\} \in \mathbf{rtp}\_\mathbf{vintyr}$, with the meaning that
+"some capacity of process *p* in region *r*, created at period *v*,
+exists at period *t*". Again here, the indices have been omitted from
+the notation since they are already listed as indices of the equation
+name.
 
 ### Using Indicator functions in arithmetic expressions
 
 There are situations where an expression A is either equal to B or to C,
 depending on whether a certain condition holds or not, i.e.:
 
-![](media/image31.wmf)
+$${A = BifCond
+}{A = CifNOTCond}$$
 
 This may also be written as:
 
-![](media/image32.wmf)
+$$A = B \times (Cond) + C \times (NOTCond)$$
 
 where it is understood that the notation (Cond) is the *indicator
 function* of the logical condition, i.e. (Cond)=1 if Cond holds, and 0
@@ -273,8 +277,8 @@ SALVAGE portion of the objective function.
 ***INDIC(x):*** ***1*** if logical expression ***x*** is true, ***0***
 if not
 
-![](media/image33.wmf) is the smallest integer larger than of equal to
-*E*
+$\left\langle \mathbf{E} \right\rangle$ is the smallest integer larger
+than of equal to *E*
 
 #### Reminder of some technology attribute names (each indexed by *t*)
 
@@ -316,10 +320,10 @@ The objective function is the sum of all regional objectives, all of
 them discounted to the same user-selected base year, as shown in
 equation (A) below
 
-*EQ_OBJ(z)* ![](media/image34.wmf)
+*EQ_OBJ(z)* $\ni z \in ALLYEARS$
 
   --------------------------------------------------------------------------
-  ![](media/image35.wmf)                                             *(A)*
+  $$VAR\_ OBJ(z) = \sum_{r \in REG}^{}{REG\_ OBJ(z,r)}$$             *(A)*
   ------------------------------------------------------------------ -------
 
   --------------------------------------------------------------------------
@@ -329,13 +333,19 @@ equation (A) below
 Each regional objective *OBJ(z,r)* is decomposed into the sum of nine
 components, to facilitate exposition, as per expression (B) below.
 
-*EQ_OBJ(z,r)* ![](media/image36.wmf)
+*EQ_OBJ(z,r)* $\ni z \in ALLYEARS,r \in REG$
 
-  --------------------------------------------------------------------------
-  ![](media/image37.wmf)                                             *(B)*
-  ------------------------------------------------------------------ -------
+  ------------------------------------------------------------------------------------------------------------
+  $${REG\_ OBJ(z,r) = \sum_{y \in ( - \infty, + \infty)}^{}{DISC(y,z) \times \left\{ \begin{aligned}   *(B)*
+   & INVCOST(y) + INVTAXSUB(y) + INVDECOM(y) + \\                                                      
+   & FIXCOST(y) + FIXTAXSUB(y) + SURVCOST(y) + \\                                                      
+   & VARCOST(y) + VARTAXSUB(y) + ELASTCOST(y) - \\                                                     
+   & LATEREVENUES(y)                                                                                   
+  \end{aligned} \right\}}                                                                              
+  }{- SALVAGE(z)}$$                                                                                    
+  ---------------------------------------------------------------------------------------------------- -------
 
-  --------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------------------------------
 
   : Table A-4. Model variables specific to the Climate Module.
 
@@ -449,7 +459,8 @@ mutually exclusive cases, each of which is treated separately. In what
 follows, we present the mathematical expression for the INVCOST
 component and one graphical example for each case.
 
-**Case 1.a** If ![](media/image38.wmf)
+**Case 1.a** If
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{   and   }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
 
 **(Small divisible projects, non-repetitive, progressive investment in
 period)**
@@ -465,11 +476,17 @@ at the end, since that would mean that during the whole period, the paid
 for capacity would actually not be sufficient to cover the capacity
 selected by the model for that period.
 
-![](media/image39.emf)
+![](media/image16.emf){width="5.75in" height="3.125in"}
 
 *EQ_INVCOST(y)*
 
-![](media/image40.wmf) **(I.1.a)**
+$INVCOST(y) = \sum_{t \in MILESTONE \cup PASTYRS}^{}{INDIC(1.a)} \times \sum_{v = Max\{ M(t) - D(t) + 1,y - ELIFE_{t} + 1\}}^{Min\{ M(t),y\}}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)
+$$$
+{\times CRF_{s} \times NCAP\_ COST_{v}
+}
+{UsefulRangefory:
+}{
+\left\{ M(t) - D(t) + 1,M(t) + ELIFE_{t} - 1 \right\}}$$ **(I.1.a)**
 
 *Comments*: The summand represents the payment effected in year *y,* due
 to the investment increment that occurred in year *v* (recall that
@@ -486,7 +503,8 @@ year *y*. Also, the lower summation bound ensures that an investment
 increment which occurred in year *v* has a payment in year *y* only if
 *y* and *v* are less than *ELIFE* years apart.
 
-**Case 1.b** if ![](media/image41.wmf)
+**Case 1.b** if
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
 
 **Small projects, repeated investments in period**
 
@@ -500,21 +518,30 @@ smooth, constant stream of small investments during the whole period
 would lead to an uneven stream of incremental investments). The number
 of re-investments in the period is called *C*, and is easily computed so
 as to cover the entire period. As a result of this discussion, the first
-investment cycle starts at year ![](media/image42.wmf) (meaning the
-smallest integer not less than the operand), and ends *TLIFE* years
-later, when the second cycle starts, etc, as many times as necessary to
-cover the entire period. The last cycle extends over the next period(s),
-and that is taken into account in the capacity transfer equations of the
-model. As before, each capacity increment results in a stream of *ELIFE*
+investment cycle starts at year
+$\left\langle B(t) - TLIFE_{t}/2 \right\rangle$ (meaning the smallest
+integer not less than the operand), and ends *TLIFE* years later, when
+the second cycle starts, etc, as many times as necessary to cover the
+entire period. The last cycle extends over the next period(s), and that
+is taken into account in the capacity transfer equations of the model.
+As before, each capacity increment results in a stream of *ELIFE*
 payments at years *v, v*+1, etc.
 
-![](media/image43.emf)
+![](media/image17.emf){width="5.614583333333333in" height="3.15625in"}
 
-![](media/image44.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 Relevant range for *y*:
 
-![](media/image45.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 **(I.1.b)**
 
@@ -522,7 +549,8 @@ Relevant range for *y*:
 that i) the investment is spread over the technical life rather than the
 period length, and ii) the investment cycle is repeated more than once.
 
-**Case 2.a:** ![](media/image46.wmf)
+**Case 2.a:**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
@@ -531,11 +559,19 @@ very realistic assumption for large projects), and capacity becomes
 available at the end of the lead time, **in a lump quantity** (see
 figure).
 
-![](media/image47.emf)
+![](media/image19.emf){width="5.75in" height="3.3229166666666665in"}
 
-![](media/image48.wmf)
+$${INVCOST(y) = 
+}{\sum_{\begin{aligned}
+ & t \in MILESTONEYEARS \\
+ & t \leq T(y)
+\end{aligned}}^{}{INDIC(2.a)} \times \sum_{k = Max\{ B(t) + Min(0,ILED_{t}),y - ELIFE_{t} + 1\}}^{Min(B(t) + Max( - \text{1,}Min(\text{0,}ILED_{t}),ILED_{t} - 1),y)}\left( \frac{VAR\_ NCAP_{t}}{ILED_{t}} \right) \times CRF_{s} \times NCAP\_ COST_{B(t) + Max(0,ILED_{t})} + 
+}$$$\sum_{v \in PASTYEARS}^{}{INDIC(2.a)} \times \sum_{k = Max\{ B(v) + Min(0,ILED_{v}),y - ELIFE_{v} + 1\}}^{Min(B(v) + Max( - 1,Min(0,ILED_{v}),ILED_{v} - 1),y)}{}\left( \frac{NCAP\_ PASTI_{v}}{ILED_{v}} \right) \times CRF_{s} \times NCAP\_ COST_{B(v) + Max(0,ILED_{v})}$
 
-![](media/image49.wmf) (**I.2.a**)
+$${UsefulRangefory:
+}{\{ B(t),B(t) + ILED_{t} + ELIFE_{t} - 2\}\quad forILED_{t} \geq 1
+}$$$\{ B(t) + ILED_{t},B(t) + ELIFE_{t} - 2\}\quad forILED_{t} \leq - 1$
+(**I.2.a**)
 
 *Comments:* The main difference with case I.1.a) is that the
 investment's construction starts at year *B(t)* and ends at year
@@ -544,11 +580,12 @@ construction spread over *ELIFE* years. Equation I.2.a also shows the
 impact of negative *ILED*s, which is simply a shift of the lead-time
 *ILED* years backwards.
 
-**Case 2.b:** ![](media/image50.wmf)
+**Case 2.b:**
+$\mathbf{ILE}\mathbf{D}_{}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
 
 **(Large, indivisible Projects, repeated investments in period)**
 
-![](media/image51.emf)
+![](media/image20.emf){width="5.59375in" height="3.5416666666666665in"}
 
 This case is similar to case I.2.a, but the investment is repeated more
 than once over the period, each cycle being *TLIFE* years long. As in
@@ -559,29 +596,53 @@ we have to use an algorithm instead of a closed form summation.
 **[ALGORITHM]{.underline}** (Output: the vector of payments *P~t~(y)* at
 each year y, due to *VAR_NCAP~t~*)
 
-![](media/image52.wmf)**[Step 0:]{.underline}** Initialization (*NI(u)*
-represents the amount of new investment made in year *u*)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}**[Step 0:]{.underline}** Initialization
+(*NI(u)* represents the amount of new investment made in year *u*)
 
 **[Step 1:]{.underline}** Compute number of repetitions of investment
 
-![](media/image53.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 **[Step 2:]{.underline}** for each year *u* in range:
 
-![](media/image54.wmf)![](media/image55.wmf)Compute:
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}Compute:
 
 **[Step 3:]{.underline}** Compute payments incurred in year *y*, and
 resulting from variable *VAR_NCAP~t~*
 
 For each *y* in range:
 
-> **(I.2.b)**![](media/image56.wmf)
+> **(I.2.b)**![{\"mathml\":\"\<math
+> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+> for Microsoft
+> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+> height="7.507655293088364e-3in"}
 
-![](media/image57.wmf)Compute:
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}Compute:
 
 **[END ALGORITHM]{.underline}**
 
-![](media/image58.wmf)
+$$INVCOST(y) = \sum_{t \in MILESTONES,t \leq T(y)}^{}{INDIC(2.b) \times P_{t}(y)}$$
 
 ### Taxes and subsidies on investments
 
@@ -617,9 +678,10 @@ c)  At decommissioning time, the recuperation of embedded materials is
 g)  Decommissioning activities may also receive taxes or subsidies which
     are proportional to the corresponding decommissioning cost.
 
-![](media/image59.wmf)
+$$EQ\_ COSTDECOM(y) \ni y \in ALLYEARS$$
 
-**Case 1.a)** If ![](media/image38.wmf)
+**Case 1.a)** If
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{   and   }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
 
 **(Small divisible projects, non-repetitive, progressive investment in
 period)**
@@ -633,15 +695,24 @@ ignored. This is a normal assumption for small projects. As shown in the
 example below, also payments made at year *y* come from investments made
 at period *T(y)* or earlier. Hence the summation stops at *T(y).*
 
-![](media/image60.wmf) **(III.1.a)**
+$${INVDECOM(y) = 
+}{\sum_{\begin{aligned}
+ & t \in MILESTONES \cup PASTYEARS \\
+ & t \leq T(y)
+\end{aligned}}^{}{INDIC(1.a) \times \left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right) \times NCAP\_ DCOST_{y - TLIFE_{t}}}
+}$$$\times \left\{ \begin{aligned}
+ & 1ifM(t) - D(t) + 1 + TLIFE_{t} + DLAG_{t} \leq y \leq M(t) + TLIFE_{t} + DLAG_{t} \\
+ & 0otherwise
+\end{aligned} \right.\ $ **(III.1.a)**
 
 *Comment:* Note that the cost attribute is indexed at the year when the
 investment started to operate. We have adopted this convention
 throughout the objective function.
 
-![](media/image61.emf)
+![](media/image21.emf){width="5.75in" height="3.3333333333333335in"}
 
-**Case 1.b)** if ![](media/image41.wmf)
+**Case 1.b)** if
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
 
 **(Small projects, repeated investments in period)**
 
@@ -651,13 +722,18 @@ because of the assumption that *DELIF=1*. Note also that past
 investments have no effect in this case, because this case does not
 arise *when D(t)=1,* which is always the case for past periods.
 
-![](media/image62.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 > **(III.1.b)**
 
-![](media/image63.emf)
+![](media/image22.emf){width="5.625in" height="3.625in"}
 
-**Case 2.a:** ![](media/image46.wmf)
+**Case 2.a:**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
@@ -668,15 +744,23 @@ needed e.g. for a reactor to "cool down" or for any other reason.
 Furthermore, the payments are now spread over *DELIF,* which may be
 larger than one year.
 
-![](media/image64.wmf)
+$${INVDECOM(y) = 
+}{\sum_{\begin{aligned}
+ & t \in MILESTONES \\
+ & t \leq T(y)
+\end{aligned}}^{}{INDIC(2.a)} \times \sum_{k = Max\left\{ B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t},y - DELIF_{t} + 1 \right\}}^{Min\{ y,B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} + DLIFE_{t} - 1\}}\left( \frac{VAR\_ NCAP_{t}}{DLIFE_{t}} \right) \times CRF_{s} \times NCAP\_ DCOST_{B(t) + ILED_{t}}
+}
+{+ \sum_{t \in PASTYEARS}^{}{INDIC(2.a)} \times \sum_{k = Max\left\{ t + TLIFE_{t} + DLAG_{t},y - DELIF_{t} + 1 \right\}}^{Min\{ y,t + TLIFE_{t} + DLAG_{t} + DLIFE_{t} - 1\}}\left( \frac{NCAP\_ PASTI_{t}}{DLIFE_{t}} \right) \times CRF_{s} \times NCAP\_ DCOST_{t}}$$
 
 > **(III.2.a)**
 
-![](media/image65.wmf)
+$${UsefulRangefory:
+}\left\{ B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} - 1,same + DELIF_{t} - 1 \right\}$$
 
-![](media/image66.emf)
+![](media/image23.emf){width="5.25in" height="3.8125in"}
 
-**Case 2.b:** ![](media/image67.wmf)
+**Case 2.b:**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
 
 **(Big projects, repeated investments in period)**
 
@@ -691,21 +775,29 @@ closed form summation. See also example below.
 
 [Step 0]{.underline}: Initialization
 
-![](media/image68.wmf)
+$$P_{t}(y): = 0\quad\forall B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} \leq y \leq same + (C - 1) \times TLIFE_{t} + DLIFE_{t} + DELIF_{t} - 2$$
 
 Where:
 
-![](media/image69.wmf)
+$$C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle$$
 
 [Step 1]{.underline}: Compute payment vector
 
-![](media/image70.wmf)
+$${ForI = 1toC
+}{ForJ ⥂ ⥂ = ⥂ 1toDLIFE_{t}
+}{ForL = 1toDELIF_{t}
+}{P_{t}\left( B(t) + ILED_{t} + I \times TLIFE_{t} + DLAG_{t} + J + L - 2 \right): = 
+}{same + \frac{NCAP\_ DCOST_{B(t) + ILED_{t} + (I - 1) \times TLIFE_{t}}}{DLIFE_{t}}
+}{NextL
+}{NextJ
+}{NextI}$$
 
 **[END ALGORITHM]{.underline}**
 
-![](media/image71.wmf) **III.2.b**
+$INVDECOM(y) = \sum_{t \in MILESTONES,t \leq T(y)}^{}{INDIC(III.2.b) \times P_{t}(y)} \times VAR\_ NCAP_{t} \times CRF$
+**III.2.b**
 
-![](media/image72.emf)
+![](media/image24.emf){width="5.875in" height="4.28125in"}
 
 ### Fixed annual costs: FIXCOST(y), SURVCOST(y) 
 
@@ -740,25 +832,38 @@ that the expressions for the fixed annual costs, taxes and subsidies
 could be easily adjusted for early retirements, consider the standard
 expressions for *FIXCOST(y)*, which can all be written as follows.
 
-![](media/image73.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 Here, *CF~r,v,p,y~* is the compound fixed cost coefficient for each
 capacity vintage in year *y*, as obtained from the original expressions
 for *FIXCOST(y)*. Recalling that fixed costs are accounted only within
 the model horizon, these expressions can be adjusted as follows:
 
-![](media/image74.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 As one can see, the expressions for *FIXCOST(r,y)* can be augmented in a
 straightforward manner, obtaining the expressions *FIXCOST°(r,y)* that
 take into account early capacity retirements of each vintage,
 represented by the *VAR_SCAP~r,v,t,p~* variables.
 
-**Case 1.a)** If ![](media/image38.wmf)
+**Case 1.a)** If
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{   and   }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
 
 **(Small projects, single investment in period)**
 
-*EQ\_*![](media/image75.wmf) , *y ≤ EOH*
+*EQ\_*![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"} , *y ≤ EOH*
 
 The figure of the example shows that payments made in year *y* may come
 from investments made at periods before *T(y),* at *T(y)* itself, or at
@@ -769,12 +874,21 @@ pure time at which the cost is paid (the notation below for *SHAPE* and
 *MULTI* is simplified: it should also specify that these two parameters
 are those pertaining to the *FOM* attribute).
 
-![](media/image76.wmf)
+$${FIXCOST(y) = 
+}{\sum_{t \in MILESTONYR \cup PASTYEARS}^{}{INDIC(1.a)} \times \sum_{v = Max\left\{ M(t) - D(t) + 1,y - TLIFE_{t} + 1 \right\}}^{Min(M(t),y)}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)
+}{\times NCAP\_ FOM_{v} \times SHAPE(v,y - v) \times MULTI(y)
+}
+{Theusefulrangeforyis:
+}{\{ M(t) - D(t) + 1,M(t) + TLIFE_{t} - 1\}
+}{and
+}$$$y \leq EOH\quad(\mathbf{IV}.\mathbf{1}.\mathbf{a})$
 
 Example:
 
-> ![](media/image77.emf) **\
-> Case 1.b,** if ![](media/image41.wmf)
+> ![](media/image25.emf){width="5.75in" height="3.3541666666666665in"}
+> **\
+> Case 1.b,** if
+> $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
 
 **(Small projects, repeated investments in period)**
 
@@ -784,15 +898,22 @@ expression takes into account the vintage and age of the *FOM* being
 paid, via the *SHAPE* parameter, and also the pure time via *MULTI*,
 both pertaining to the *FOM* attribute.
 
-![](media/image78.wmf) **(IV.1.b)**
+$${FIXCOST(y) = \sum_{t \in MILESTONYR}^{}{INDIC(1.b)} \times \sum_{v = Max\left\{ \left\langle B(t) - TLIFE_{t}/2 \right\rangle,y - TLIFE_{t} + 1 \right\}}^{Min(y,\left\langle B(t) - TLIFE_{t}/2 \right\rangle + C \times TLIFE_{t} - 1\}}\left( \frac{VAR\_ NCAP_{t}}{TLIFE_{t}} \right) \times NCAP\_ FOM_{v}
+}{
+ \times SHAPE(t,y - v) \times MULTI(y)}$$ **(IV.1.b)**
 
-![](media/image79.wmf)where
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}where
 
 Example:
 
-![](media/image80.emf)
+![](media/image26.emf){width="5.625in" height="3.125in"}
 
-**Case 2.a:** ![](media/image46.wmf)
+**Case 2.a:**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
@@ -804,28 +925,54 @@ here the *SHAPE* has the correct vintage year and age, as its two
 parameters, whereas *MULTI* has the current year as its parameter. Both
 pertain to *FOM*.
 
-![](media/image81.wmf)
+$${FIXCOST(y) = \sum_{t \in MILESTONYR,t \leq T(y)}^{}{INDIC(2.a)} \times \left( VAR\_ NCAP_{t} \right) \times NCAP\_ FOM_{B(t) + ILED_{t}}
+}{\times \begin{Bmatrix}
+1ifB(t) + ILED_{t} \leq y \leq B(t) + ILED_{t} + TLIFE_{t} - 1 \\
+0otherwise
+\end{Bmatrix} \times SHAPE(t,y - B(t) + ILED_{t}) \times MULTI(y)}$$
 
-![](media/image82.wmf)**(IV.2.a)**
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}**(IV.2.a)**
 
-![](media/image83.wmf)*Useful Range for y:*
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}*Useful Range for y:*
 
 *ii) SURVCOST (Surveillance cost for same case 2.a. See same example)*
 
-![](media/image84.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
-![](media/image85.wmf)
+$$
+{+ \sum_{t \in PASTYEARS}^{}{INDIC(2.a)} \times \left( NCAP\_ PASTI_{t} \right) \times NCAP\_ DLAGC_{t}
+}{\times \left\{ \begin{matrix}
+1ift + TLIFE_{t} \leq y \leq t + TLIFE_{t} + DLAG_{t} - 1 \\
+0otherwise
+\end{matrix} \right.\ }$$
 
-![](media/image86.wmf)**(IV.2.a')**
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}**(IV.2.a')**
 
-![](media/image87.emf)
+![](media/image27.emf){width="5.25in" height="3.8125in"}
 
 **Remark**: again here, the cost attribute is indexed by the year when
 investment started its life. Also, note that, by choice, we have not
 defined the *SHAPE* or *MULTI* parameters for surveillance costs.
 
 **\
-Case 2.b:** ![](media/image67.wmf)
+Case 2.b:**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
 
 **(Big projects, repeated investments in period)**
 
@@ -835,13 +982,26 @@ The cost expression takes into account the vintage and the age of the
 *FIXOM* being paid at any given year *y.* See note in formula and figure
 for an explanation.
 
-![](media/image88.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
-![](media/image89.wmf)
+$
+$$$
+{where:
+}{I = \left\lbrack \frac{y - B(t) - ILED_{t}}{TLIFE_{t}} \right\rbrack
+}{and
+}{C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle}$$
 
 *Range for y:*
 
-![](media/image90.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 **(IV.2.b)**
 
@@ -850,13 +1010,24 @@ for an explanation.
 *ii. SURVCOST(y) (surveillance cost for same case; the same example
 applies)*
 
-![](media/image91.wmf)
+$${SURVCOST(y) = \sum_{\begin{aligned}
+ & t \in MILESTONES \\
+ & t \leq T(y)
+\end{aligned}}^{}{INDIC(2.b)} \times \left( VAR\_ NCAP_{t} \right) \times NCAP\_ DLAGC_{B(t) + ILED_{t} + I \cdot TLIFE_{t}}
+}{\times \left\{ \begin{matrix}
+1ifB(t) + ILED_{t} + (I + 1) \times TLIFE_{t} \leq y \leq same + DLAG_{t} - 1and0 \leq I \leq C - 1 \\
+0otherwise
+\end{matrix} \right.\ }$$
 
-![](media/image92.wmf)
+$${where:
+}{I = \left\lbrack \frac{y - B(t) - ILED_{t} - TLIFE_{t}}{TLIFE_{t}} \right\rbrack
+}{and
+}{C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle
+}{NotethatymayexceedEOH}$$
 
 (**IV.2.b')**
 
-![](media/image93.emf)
+![](media/image28.emf){width="5.375in" height="4.104166666666667in"}
 
 *Remark*: same as precedently regarding the indexing of the cost
 attribute *NCAP_DLAGC*
@@ -891,7 +1062,9 @@ As stated in the introduction, the payment of variable costs is constant
 over each period. Therefore, the expressions below are particularly
 simple.
 
-![](media/image94.wmf) **(VI)**
+$${VARCOST(y) = VAR\_ XXX_{v,T(y)} \times XXX\_ COST_{y}
+}{VARTAXSUB(y) = VAR\_ XXX_{v,T(y)} \times (XXX\_ TAX_{y} - XXX\_ SUB_{y})
+}$$$y \leq EOH$ **(VI)**
 
 ### Cost of demand reductions ELASTCOST(y) 
 
@@ -901,9 +1074,11 @@ increase) of demands in a given run compared to the base run. See PART I
 for a theoretical justification, and Appendex D for formulations
 involving more generalized demand fuctions.
 
-![](media/image95.wmf)
+$${ELASTCOST(y) = 
+}{\quad\sum_{j = 1}^{COM\_ STEP_{lo}}{COM\_ BPRICE_{T(y)} \times \left\{ \left( 1 - \frac{(j - 1/2) \times COM\_ VOC_{lo,T(y)}}{COM\_ STEP_{lo}} \right)^{\frac{1}{COM\_ ELAST_{lo,T(y)}}} \right\}} \times VAR\_ ELAST_{lo,j,T(y)}}$$
 
-![](media/image96.wmf)
+$${- \sum_{j = 1}^{COM\_ STEP_{up}}{COM\_ BPRICE_{T(y)} \times \left\{ \left( 1 + \frac{(j - 1/2) \times COM\_ VOC_{up,T(y)}}{COM\_ STEP_{up}} \right)^{\frac{1}{COM\_ ELAST_{up, ⥂ T(y)}}} \right\}} \times VAR\_ ELAST_{up,j,T(y)}
+}{y \leq EOH}$$
 
 **(VII)**
 
@@ -938,7 +1113,7 @@ formulation below).
 
 Thus, *SALVAGE* is the sum of three salvage values
 
-![](media/image97.wmf)
+$$SALVAGE(EOH + 1) = SALVINV(EOH + 1) + SALVDECOM(EOH + 1) + SALVSURV(EOH + 1)$$
 
 We treat each component separately, starting with *SALVINV.*
 
@@ -965,7 +1140,9 @@ The salvage value (calculated at year *k*) of a unit investment made in
 year *k*,\
 and whose technical life is *TL*, is:
 
-![](media/image98.wmf)
+$${S(k,TL,FDR) = 0 if\overset{\underset{}{}}{k} + TL \leq EOH
+}{S(k,TL,FDR) = 1if\overset{\underset{}{}}{k} > EOH
+}{S(k,TL,FDR) = \frac{\left( (1 + d) \cdot \exp(FDR) \right)^{TL - EOH - 1 + k} - 1}{\left( (1 + d) \cdot \exp(FDR) \right)^{TL} - 1}\quad otherwise}$$
 
 where d is the general discount rate and FDR is the optional functional
 depreciation rate
@@ -976,7 +1153,7 @@ will occur even after *EOH.*
 Since we want to calculate all salvages at the single year *(EOH+1)*,
 the above expressions for *S(k,TL)* must be discounted (multiplied) by:
 
-> ![](media/image99.wmf)
+> $$(1 + d)^{EOH + 1 - k}$$
 
 Finally, another correction must be made to these expressions, whenever
 the user chooses to utilize a technology specific discount rate. The
@@ -984,7 +1161,10 @@ correction factor which must multiply every investment (and of course
 every salvage value) is:
 
 +-----------------------------------------------------------------------+
-| ![](media/image100.wmf)                                               |
+| $$\frac{CRF_{s}}{CRF}                                                 |
+|  = \frac{\left( 1 - \frac{1}{1 + i_{s}} \right) \times \left( 1 - \fr |
+| ac{1}{(1 + i)^{ELIFE}} \right)}{\left( 1 - \frac{1}{1 + i} \right) \t |
+| imes \left( 1 - \frac{1}{\left( 1 + i_{s} \right)^{ELIFE}} \right)}$$ |
 |                                                                       |
 | > where *i* is the general discount rate,\                            |
 | > *i~s~* is the technology specific discount rate\                    |
@@ -1005,7 +1185,9 @@ investments.
 
 *Result 2*
 
-![](media/image101.wmf)
+$${SAL(k,TL) = 0if\overset{\underset{}{}}{k} + TL \leq EOH
+}{SAL(k,TL) = \frac{CRF_{s}}{CRF}if\overset{\underset{}{}}{k} \geq EOH + 1
+}{SAL(k,TL) = \frac{1 - (1 + d)^{EOH + 1 - k - TL}}{1 - (1 + d)^{- TL}} \times \frac{CRF_{s}}{CRF} \times \frac{S(k,TL,FDR)}{S(k,TL,0)}\quad otherwise}$$
 
 where d is the general discount rate, *CRF~s~* is the
 technology-specific capital recovery factor and FDR is the functional
@@ -1016,13 +1198,17 @@ taxes/subsidies on investments). We enumerate these cases below. Note
 that to simplify the equations, we have omitted the second argument in
 *SAL* (it is always *TLIFE~t~* in the expressions).
 
-**Case 1.a** ![](media/image38.wmf)
+**Case 1.a**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{   and   }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
 
 **(Small divisible projects, non-repetitive, progressive investment in
 period)**
 
 +-----------------------------------------------------------------------+
-| ![](media/image102.wmf)                                               |
+| $${SALVINV(EOH + 1) =                                                 |
+| }{\sum_{t}^{}{INDIC(I.1.a) \tim                                       |
+| es \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_ NCAP_{t}}{D(t) |
+| } + NCAP\_ PASTI_{t} \right)} \times NCAP\_ COST_{v} \times SAL(v)}$$ |
 +=======================================================================+
 | Where *SAL*(*v*) is equal to *SAL*(*v,TLIFE~t~*) defined in *Result*  |
 | 2.                                                                    |
@@ -1034,32 +1220,41 @@ period)**
 
 **(VIII.1.a)**
 
-**Case 1.b** ![](media/image41.wmf)
+**Case 1.b**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
 
 **Small Projects, repeated investments in period**
 
-  -----------------------------------------------------------------------
-  ![](media/image103.wmf)
-  -----------------------------------------------------------------------
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  $$SALVINV(EOH + 1) = \sum_{t}^{}{INDIC(I.1.b) \times \sum_{v = B(t) - \left\langle TL/2 \right\rangle + (C - 1) \times TLIFE_{t}}^{B(t) - \left\langle TL/2 \right\rangle + C \times TLIFE_{t} - 1}\frac{VAR\_ NCAP_{t}}{TLIFE_{t}}} \times NCAP\_ COST_{v} \times SAL(v)$$
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Note again here that *SAL(v)* equals 0 if *v*+*TLIFE* ≤ *EOH*+1
 
-  -----------------------------------------------------------------------
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   : Table B-3. Model variables specific to the Damage Cost Functions.
 
 (**VIII.1.b)**
 
-**Case 2.a:** ![](media/image46.wmf)
+**Case 2.a:**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
-![](media/image104.wmf) (**VIII.2.a)**
+$${\mathbf{SALVINV(EOH + 1) =}\sum_{\mathbf{t}\mathbf{\in}\mathbf{MILESTONESYEARS}}^{}{\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}\mathbf{NCAP\_ COS}\mathbf{T}_{\mathbf{B(t) + ILE}\mathbf{D}_{\mathbf{t}}}\mathbf{\times}\mathbf{SAL(B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{)}}
+}{
+\mathbf{NotethatSAL(B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{) = 0}\mathbf{wheneverB(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\leq}\mathbf{EOH + 1}}$$
+(**VIII.2.a)**
 
-**Case 2.b:** ![](media/image50.wmf)
+**Case 2.b:**
+$\mathbf{ILE}\mathbf{D}_{}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
 
 **(Large, indivisible Projects, repeated investments in period)**
 
-![](media/image105.wmf) **(VIII.2.b)**
+$${\mathbf{SALVINV(EOH + 1) =}\sum_{\mathbf{t}}^{}{\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}\mathbf{NCAP\_ COS}\mathbf{T}_{\mathbf{B(t) + (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}}\mathbf{\times}\mathbf{SAL}}\left( \mathbf{B(t) + (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}} \right)
+}{
+\mathbf{NoteagainthatSAL}\left( \mathbf{B(t) + (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}} \right)\mathbf{= 0}\mathbf{wheneverB(t) + (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\leq}\mathbf{EOH + 1}}$$
+**(VIII.2.b)**
 
 **NOTE:** salvage cost of taxes/subsidies on investment costs are
 identical to the above, replacing NCAP_COST by {NCAP_ITAX --
@@ -1102,35 +1297,72 @@ understand these expressions.
 Finally, the equivalent of Result 2 is given as Result 3, for
 decommissioning.
 
-![](media/image106.wmf)
+$${\text{Result 3}
+}
+{\text{TheSalvage}\text{Value}\text{of}a\text{decommissioningcostoccuringatyear}l,\text{for}
+}{\text{aninvestmenttakingplaceatyear}k,\text{is}:
+}
+{SAL(k,l) = 0ifk + TL \leq EOH
+}
+{SAL(k,l) = \frac{CRF_{s}}{CRF} \times (1 + i)^{EOH + 1 - l}ifk \geq EOH + 1
+}
+{SAL(k,l) = \frac{(1 + d)^{TLIFE + k - l} - (1 + d)^{EOH + 1 - l}}{(1 + d)^{TLIFE} - 1} \times \frac{CRF_{s}}{CRF}otherwise
+}
+{\text{where }d\ \text{is the general discountrate}
+}{\text{and}d_{s}\text{isthetechnologyspecificdiscountrate}}$$
 
 We are now ready to write the salvage values of decommissioning cost in
 each case.
 
-**Case 1.a** ![](media/image38.wmf)
+**Case 1.a**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{   and   }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
 
 **(Small divisible projects, non-repetitive, progressive investment in
 period)**
 
-> ![](media/image107.wmf)
+> $${SALVDECOM(EOH + 1) = 
+> }{\sum_{t}^{}{INDIC(1.a) \times \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)} \times 
+> }{NCAP\_ DCOST_{v} \times SAL(v,v + TLIFE_{t})
+> }
+> {\text{where }SAL(k,l)\ \text{is}\ \text{defined in}\ \text{Result }3.
+> }
+> {\text{Note  that }SAL(v,x)\ \text{is always 0 whenever}\ v + TLIFE \leq EOH + 1(IX.1.a)}$$
 >
-> **Case 1.b** ![](media/image41.wmf)
+> **Case 1.b**
+> $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
 
 **(Small Projects, repeated investments in period)**
 
-![](media/image108.wmf) **(IX.1.b)**
+$${SALVDECOM(EOH + 1) = 
+}{\sum_{t}^{}{INDIC(1.b) \times \sum_{v = B(t) - \left\langle TL/2 \right\rangle + (C - 1) \times TLIFE_{t}}^{B(t) - \left\langle TL/2 \right\rangle + C \times TLIFE_{t} - 1}\frac{VAR\_ NCAP_{t}}{TLIFE_{t}}} \times NCAP\_ DCOST_{v} \times SAL(v,v + TLIFE_{t})
+}{
+Noteagain here thatSAL(k,l)equals0ifk + TLIFE \leq EOH + 1}$$
+**(IX.1.b)**
 
-**Case 2.a:** ![](media/image46.wmf)
+**Case 2.a:**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
-![](media/image109.wmf) (**IX.2.a)**
+$${\mathbf{SALVDECOM(EOH + 1) =}
+}{\sum_{\mathbf{t}\mathbf{\in}\mathbf{MILESTONESYEARS}}^{}{\mathbf{INDIC(2.a)}\mathbf{\times}\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}\mathbf{NCAP\_ COS}\mathbf{T}_{\mathbf{B(t) + ILE}\mathbf{D}_{\mathbf{t}}}\mathbf{\times}\sum_{\mathbf{l = B(t) + TLIFE + DLAG}}^{\mathbf{same + DLIFE}\mathbf{-}\mathbf{1}}{\mathbf{SAL(B(t) + ILE}\mathbf{D}_{\mathbf{t}}}\mathbf{,l)}}
+}{
+\mathbf{NotethatSALis}\mathbf{0}\mathbf{⥂ ⥂}\mathbf{wheneverB(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\leq}\mathbf{EOH + 1}}$$
+(**IX.2.a)**
 
-**Case 2.b:** ![](media/image110.wmf)
+**Case 2.b:**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
 
 **(Large, indivisible Projects, repeated investments in period)**
 
-![](media/image111.wmf) **(IX.2.b)**
+$${\mathbf{SALVDECOM(EOH + 1) =}\sum_{\mathbf{t}\mathbf{\in}\mathbf{MILESTONYEARS}}^{}\mathbf{INDIC(2.b)}\mathbf{\times}\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}\mathbf{NCAP\_ DCOS}\mathbf{T}_{\mathbf{B(t) + (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}}
+}{\mathbf{\times}\sum_{\mathbf{l = B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ C}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ DLA}\mathbf{G}_{\mathbf{t}}}^{\mathbf{same + DLIFE}\mathbf{-}\mathbf{1}}\mathbf{SAL}\left\lbrack \mathbf{B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{,l} \right\rbrack
+}
+{\mathbf{where}
+}{\mathbf{C =}\left\langle \frac{\mathbf{D(t)}\mathbf{-}\mathbf{ILE}\mathbf{D}_{\mathbf{t}}}{\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}} \right\rangle
+}{
+\mathbf{NoteagainthatSALis}\mathbf{0}\mathbf{wheneverB(t) + C}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{EOH + 1}}$$
+**(IX.2.b)**
 
 **C) Salvage Value of Surveillance Costs**
 
@@ -1143,17 +1375,31 @@ the costs do not represent capital costs. In addition, the discounting
 to *EOH+1* must be made separately for each surveillance year. Note that
 only Cases 2 have surveillance costs.
 
-**Case 2.a:** ![](media/image46.wmf)
+**Case 2.a:**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
-![](media/image112.wmf) (**X.2.a)**
+$${\mathbf{SALVSURV(EOH + 1) =}
+}{\sum_{\mathbf{t}\mathbf{\in}\mathbf{MILESTONESYEARS}}^{}{\mathbf{INDIC(2.a)}\mathbf{\times}\mathbf{S(B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{,TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{)}\mathbf{\times}}
+}{\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}\mathbf{NCAP\_ DLAG}\mathbf{C}_{\mathbf{B(t) + ILE}\mathbf{D}_{\mathbf{t}}}\mathbf{\times}\sum_{\mathbf{l = B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}}^{\mathbf{same + DLA}\mathbf{G}_{\mathbf{t}}\mathbf{-}\mathbf{1}}\mathbf{DISC(l,EOH + 1)}
+}{
+\text{Notethat}\mathbf{S}\mathbf{(}\mathbf{k}\mathbf{,}\mathbf{m}\mathbf{) = 0}\mathbf{⥂ ⥂}\text{whenever}\mathbf{k}\mathbf{+}\mathbf{m}\mathbf{\leq}\mathbf{EOH}\mathbf{+ 1.}}$$
+(**X.2.a)**
 
-**Case 2.b:** ![](media/image113.wmf)
+**Case 2.b:**
+$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
 
 **(Large, indivisible projects, repeated investments in period)**
 
-![](media/image114.wmf)
+$${\mathbf{SALVSURV(EOH + 1) =}
+}
+{\sum_{}^{}\mathbf{INDIC(2.b)}\mathbf{\times}\mathbf{S\lbrack B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{,TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\rbrack}\mathbf{\times}\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}
+}{\mathbf{NCAP\_ DLAG}\mathbf{C}_{\mathbf{B(t) + ILED + (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIFE}}\mathbf{\times}\sum_{\mathbf{l = B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ C}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}}^{\mathbf{same + DLA}\mathbf{G}_{\mathbf{t}}\mathbf{-}\mathbf{1}}\mathbf{DISC(l,EOH + 1)}
+}
+{\mathbf{where:C =}\left\langle \frac{\mathbf{D(t)}\mathbf{-}\mathbf{ILE}\mathbf{D}_{\mathbf{t}}}{\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}} \right\rangle
+}
+{\text{Noteagainthat}\mathbf{S}\mathbf{(}\mathbf{k}\mathbf{,}\mathbf{m}\mathbf{) = 0}\text{whenever}\mathbf{k}\mathbf{+}\mathbf{m}\mathbf{\leq}\mathbf{EOH}\mathbf{+ 1.}}$$
 
 **(X.2.b)**
 
@@ -1178,7 +1424,7 @@ materials and/or energy that were sunk at construction time. Therefore,
 the *LATEREVENUES* expressions are identical to the decommissioning cost
 expressions, with the NCAP_DCOST attribute replaced by
 
-![](media/image115.wmf)
+![](media/image29.wmf)
 
 where the summation extends over all commodities *c* for which an
 *NCAP_OCOM* attribute is defined (defaults to zero if undefined)
@@ -1362,15 +1608,16 @@ adjust­ments needed when taking into account the correction to the *CRF
 proper* are the following:
 
 +-------------------------------------------------------------+--------+
-| > ![](media/image116.wmf) =  *CRF~beg~* ×                   | (XI.1) |
-| > (1+*d~S~*(*T*(*y*)))^0.5^                                 |        |
-+=============================================================+========+
-| > *CRF~1,mid~* = ![](media/image116.wmf)×                   | (XI.2) |
-| > (1+*d*(*T*(*y*)))^0.5^ × (1+*d*(*T*(*y*)))^--0.5^ =\      |        |
+| > ![](media/image30.wmf){width="0.75in" height="0.3125in"}  | (XI.1) |
+| > =  *CRF~beg~* × (1+*d~S~*(*T*(*y*)))^0.5^                 |        |
++-------------------------------------------------------------+--------+
+| > *CRF~1,mid~* = ![](media/image30.wmf){width="0.75in"      | (XI.2) |
+| > height="0.3125in"}× (1+*d*(*T*(*y*)))^0.5^ ×              |        |
+| > (1+*d*(*T*(*y*)))^--0.5^ =\                               |        |
 | > *CRF~beg~* × (1+*d~S~*(*T*(*y*)))^0.5^                    |        |
 +-------------------------------------------------------------+--------+
-| > *CRF~2,mid~*  =  ![](media/image116.wmf)×                 | (XI.3) |
-| > (1+*d*(*T*(*y*)))^--0.5^ =  \                             |        |
+| > *CRF~2,mid~*  =  ![](media/image30.wmf){width="0.75in"    | (XI.3) |
+| > height="0.3125in"}× (1+*d*(*T*(*y*)))^--0.5^ =  \         |        |
 | > *CRF~beg~* × (1+*d*(*T*(*y*)))^--0.5^ ×                   |        |
 | > (1+*d~S~*(*T*(*y*)))^0.5^                                 |        |
 +-------------------------------------------------------------+--------+
@@ -1667,7 +1914,9 @@ demand when the elasticity is non-zero.
     user can still control elasticities in each time slice through
     COM_ELAST~s~.
 
-![](media/image117.wmf)
+$${BND\_ ELAST_{r,t,c,s,j,l} \ni COM\_ STEP_{r,c,l} \land (s \in \mathbf{com}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{s}})
+}
+{VAR\_ ELAST_{r,t,c,s,j,l} \leq \frac{COM\_ PROJ_{r,t,c} \times COM\_ FR_{r,t,c,s} \times COM\_ VOC_{r,t,c,l}}{COM\_ STEP_{r,c,l}}}$$
 
 **Bound:**
 
@@ -1677,14 +1926,11 @@ demand when the elasticity is non-zero.
 
 **Type**: Any type, as determined by the index **bd** of ACT_BND:
 
--   *l* = 'G' for **bd** = 'LO' (lower bound) yields
-    ![](media/image118.wmf).
+-   *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 
--   *l* = 'E' for **bd** = 'FX' (fixed bound) yields
-    ![](media/image119.wmf).
+-   *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 
--   *l* = 'L' for **bd** = 'UP' (upper bound) yields
-    ![](media/image120.wmf).
+-   *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
 **Related variables**: **VAR_ACT**
 
@@ -1726,7 +1972,11 @@ by one unit.
 
 **Equation:**
 
-![](media/image121.wmf)
+$EQ(l)\_ ACTBND_{r,t,p,s} \ni ACT\_ BND_{r,t,p,s,bd} \land \mathbf{rtp}\_\mathbf{var}\mathbf{a}_{\mathbf{r},\mathbf{t},\mathbf{p}} \land \mathbf{rps}\_\mathbf{prct}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}}
+$$${\land \left( p \in \mathbf{prc}\_\mathbf{vin}\mathbf{t}_{\mathbf{r},\mathbf{p}} \vee s \notin \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}} \right)
+}
+
+{\sum_{v \in \mathbf{rtp}\_\mathbf{vintyr}}^{}{\sum_{s2 \in \mathbf{prc}\_\mathbf{ts}}^{}{VAR\_ ACT_{r,v,t,p,s2}}}\left\{ = ; \leq ; \geq \right\} ACT\_ BND_{r,t,p,s,l}}$$
 
 ### Equation: EQE_ACTEFF
 
@@ -1796,9 +2046,43 @@ efficiency has been defined with the input attribute
 
 **Equation:**
 
-![](media/image122.wmf)
+$$\mathbf{EQE\_ ACTEF}\mathbf{F}_{\mathbf{r,v,t,p,cg,io,s}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{\neg}\mathbf{rp\_ inou}\mathbf{t}_{\mathbf{r,p,io}}\mathbf{\land}\mathbf{ACT\_ EF}\mathbf{F}_{\mathbf{r,v,p,cg,s}}\mathbf{)}$$
 
-![](media/image123.wmf)
+$${\sum_{\begin{aligned}
+ & \mathbf{com}\_\mathbf{gma}\mathbf{p}_{\mathbf{r},\mathbf{cg},\mathbf{c}} \\
+ & \mathbf{rtcp}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{s}}
+\end{aligned}}^{}\left( \begin{aligned}
+ & VAR\_ FLO_{r,v,t,c,ts} \times \\
+ & \left( \begin{aligned}
+ & ACT\_ EFF_{r,v,p,c,ts}\mspace{6mu} if\mspace{6mu} ACT\_ EFF_{r,v,p,c,ts}\mspace{6mu} given \\
+ & 1otherwise
+\end{aligned} \right) \\
+ & \times RTCS\_ TSFR_{r,t,c,s,ts}
+\end{aligned} \right)
+}{= 
+}{\sum_{\begin{aligned}
+ & \mathbf{rpc}\_\mathbf{p}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}} \\
+ & \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}
+\end{aligned}}^{}{\left( \begin{aligned}
+ & \left( \begin{aligned}
+ & VAR\_ ACT_{r,v,t,p,ts}if\mspace{6mu} RP\_ PGACT_{r,p} \\
+ & \frac{VAR\_ FLO_{r,v,t,p,c,ts}}{PRC\_ ACTFLO_{r,v,p,c}}otherwise
+\end{aligned} \right) \times \\
+ & \left( \begin{aligned}
+ & 1/ACT\_ EFF_{r,v,p,cg,ts}if\mspace{6mu} ACT\_ EFF_{r,v,p,cg,ts}\mspace{6mu} given \\
+ & 1otherwise
+\end{aligned} \right) \times \\
+ & \left( \begin{aligned}
+ & 1/ACT\_ EFF_{r,v,p,c,ts}if\mspace{6mu} ACT\_ EFF_{r,v,p,c,ts}\mspace{6mu} given \\
+ & 1otherwise
+\end{aligned} \right) \\
+ & \times RTCS\_ TSFR_{r,t,c,s,ts}
+\end{aligned} \right) +}
+}{\sum_{\mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{}\left( \begin{aligned}
+ & VAR\_ UPS_{r,v,t,p,ts,'FX'} \times \\
+ & ACT\_ LOSPL_{r,v,p,'FX'}if\mspace{6mu} ACT\_ LOSPL_{r,v,p,'FX'}\mspace{6mu} given \\
+ & \times RS\_ FR_{r,s,ts}
+\end{aligned} \right)}$$
 
 ### Equation: EQ_ACTFLO 
 
@@ -1839,7 +2123,13 @@ by the user through the **prc_actunt** set attribute.
 
 **Equation:**
 
-![](media/image124.wmf)
+$EQ\_ ACTFLO_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \land \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}} \land \mathbf{rtp}\_\mathbf{var}\mathbf{a}_{\mathbf{r},\mathbf{t},\mathbf{p}}
+$$$
+{IFNOT\mathbf{rpc}\_\mathbf{ire}
+}{VAR\_ ACT_{v,t} = \sum_{c \in \mathbf{prc}\_\mathbf{actunt}}^{}\frac{VAR\_ FLO_{r,v,t,p,c,s}}{PRC\_ ACTFLO_{r,v,p,c}}
+}
+{IF\mathbf{rpc}\_\mathbf{ire}
+}{VAR\_ ACT_{t,v} = \sum_{c \in \mathbf{prc}\_\mathbf{actunt}}^{}\frac{\sum_{ie \in \mathbf{rp}\_\mathbf{aire}}^{}{VAR\_ IRE_{r,v,t,p,c,s,ie}}}{PRC\_ ACTFLO_{r,v,p,c}}}$$
 
 ### Equation: EQ_ACTPL
 
@@ -1906,9 +2196,14 @@ under partial loads.
 
 **Equations:**
 
-![](media/image125.wmf)
+$$\mathbf{EQ\_ ACTP}\mathbf{L}_{\mathbf{r,v,t,p,s,}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ LOSP}\mathbf{L}_{\mathbf{r,v,p,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{> 0))}$$
 
-![](media/image126.wmf)
+$${VAR\_ UPS_{r,v,t,p,s,'FX'} \geq 
+}{\left( \begin{aligned}
+ & COEF\_ CPT_{r,v,t,p}\left( VAR\_ NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}} \right) \times \\
+ & PL\_ LDL_{r,v,p} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{s} - VAR\_ ACT_{r,v,t,p,s}
+\end{aligned} \right) \times 
+}$$$\quad\frac{AF\_ MIN_{r,v,p,ANNUAL}}{PL\_ LDL_{r,v,p} - AF\_ MIN_{r,v,p,ANNUAL}}$
 
 ### Equation: EQ_ACTRAMP
 
@@ -1942,13 +2237,17 @@ as fractions of the nominal on-line capacity per hour.
 
 **Equations:**
 
-![](media/image127.wmf)
+$$\mathbf{EQ\_ ACTRAM}\mathbf{P}_{\mathbf{r,v,t,p,s,}\mathbf{'}\mathbf{UP}\mathbf{'}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,}\mathbf{'}\mathbf{UP}\mathbf{'}}\mathbf{> 0))}$$
 
-![](media/image128.wmf)
+$${\left( \frac{VAR\_ ACT_{r,v,t,p,s}}{G\_ YRFR_{r,s}} - \frac{VAR\_ ACT_{r,v,t,p,s - 1}}{G\_ YRFR_{r,s - 1}} - \left( VAR\_ UPS_{r,v,t,p,s,'UP'} - VAR\_ UPS_{r,v,t,p,s,'LO'} \right) \cdot ACT\_ UPS_{r,v,p,s,'FX'} \right) \times 
+}{\frac{2 \cdot RS\_ STGPRD_{r,s}}{8760 \times \left( G\_ YRFR_{r,s} + G\_ YRFR_{r,s - 1} \right)} \leq \left( VAR\_ NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}} \right) \times 
+}{COEF\_ CPT_{r,v,t,p} \times PRC\_ CAPACT_{r,p} \times ACT\_ UPS_{r,v,p,s,'UP'}\mspace{6mu}}$$
 
-![](media/image129.wmf)
+$$\mathbf{EQ\_ ACTRAM}\mathbf{P}_{\mathbf{r,v,t,p,s,}\mathbf{'}\mathbf{LO}\mathbf{'}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,}\mathbf{'}\mathbf{LO}\mathbf{'}}\mathbf{> 0))}$$
 
-![](media/image130.wmf)
+$${\left( \frac{VAR\_ ACT_{r,v,t,p,s - 1}}{G\_ YRFR_{r,s - 1}} - \frac{VAR\_ ACT_{r,v,t,p,s}}{G\_ YRFR_{r,s}} - \left( VAR\_ UPS_{r,v,t,p,s,'LO'} - VAR\_ UPS_{r,v,t,p,s,'UP'} \right) \cdot ACT\_ UPS_{r,v,p,s,'FX'} \right) \times 
+}{\frac{2 \cdot RS\_ STGPRD_{r,s}}{8760 \times \left( G\_ YRFR_{r,s} + G\_ YRFR_{r,s - 1} \right)} \leq \left( VAR\_ NCAP_{r,v,p} - \sum_{ts \in SUP(s - 1) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}} \right) \times 
+}$$$COEF\_ CPT_{r,v,t,p} \times PRC\_ CAPACT_{r,p} \times ACT\_ UPS_{r,v,p,s,'LO'}$
 
 ### Equation: EQ_ACTRAMPC 
 
@@ -1978,17 +2277,16 @@ timeslices.
     > parameter *ACT_MINLD*.
 
 The following equation calculates the changes in the load
-![](media/image131.png)![](media/image131.png) during the dispatching
-phase:
+$var\text{\_}ldc_{r,v,t,p,s,bd}$ during the dispatching phase:
 
-![](media/image132.wmf)
+$${\left( \frac{var\_ act_{r,v,t,p,s - 1}}{G\_ YRFR_{r,s - 1}} - \frac{var\_ act_{r,v,t,p,s}}{G\_ YRFR_{r,s}} \right) \cdot \frac{1}{CAPACT_{r,p}}\mspace{6mu} = \mspace{6mu} var\_ ldc_{r,v,t,p,s,LO} - var\_ ldc_{r,v,t,p,s,UP} - 
+}{ACT\_ MINLD_{r,v,p} \times \left( var\_ off_{r,v,t,p,s - 1} - var\_ off_{r,v,t,p,s} \right),\mspace{6mu}\forall s \in PRC\_ TS_{r,p}}$$
 
 In the above equation the variable *var_ldc~r,v,t,p,s,LO~* holds load
 decreases, while the variable *var_ldc~r,v,t,p,s,UP~* holds load
 increases. The two variables appear together in the equation since at
-each time slice ![](media/image133.png)![](media/image133.png) only one
-of the two variables can be set (i.e. the load can either increase or
-decrease).
+each time slice $s$ only one of the two variables can be set (i.e. the
+load can either increase or decrease).
 
 Having calculated the changes in the dispatchable load, the associated
 ramping costs are entered into the objective function as the sum of the
@@ -1998,7 +2296,8 @@ load changes *var_ldc~r,v,t,p,s,LO~* multiplied by the cost attribute
 *ACT_CSTRMP~r,v,p,LO,cur~* for the ramping down costs. The costs are
 discounted to the base year:
 
-![](media/image134.wmf)
+$${obj_{RMPC} = 
+}{\sum_{r,t}^{}\left( NPV_{r,t} \cdot \sum_{p,v,bd \in \{ LO,UP\}}^{}{ACT\_ CSTRMP_{r,v,p,bd,cur} \cdot \sum_{s \in PRC\_ TS_{r,p}}^{}{var\_ ldc_{r,v,t,p,s,bd}}} \right)}$$
 
 ### Equation: EQL_ACTUPC
 
@@ -2045,20 +2344,27 @@ timeslice level (tsl), lim_type (l), time slice (s)**
 
 **Case A: Lower limit for consecutive on-line / off-line hours**
 
-![](media/image135.wmf)
+$${\mathbf{EQ\_ ACTUP}\mathbf{C}_{\mathbf{r,v,t,p,tsl,}\mathbf{'}\mathbf{UP}\mathbf{'}\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}}\mathbf{\land}
+}{\mathbf{(ACT\_ TIM}\mathbf{E}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{UP}\mathbf{'}}\mathbf{> 0))}}$$
 
-![](media/image136.wmf)
+$${\sum_{ts \in C(P(s))}^{}{VAR\_ UPS_{r,v,t,p,ts'UP'}} \times ({mod}(Hour(s) - Hour(ts),24) < ACT\_ TIME_{r,v,p,'UP'}) \leq 
+}\left( VAR\_ NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}} \right)$$
 
-![](media/image137.wmf)
+$${\mathbf{EQ\_ ACTUP}\mathbf{C}_{\mathbf{r,v,t,p,tsl,}\mathbf{'}\mathbf{LO}\mathbf{'}\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}}\mathbf{\land}
+}{\mathbf{(ACT\_ TIM}\mathbf{E}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{LO}\mathbf{'}}\mathbf{> 0))}}$$
 
-![](media/image138.wmf)
+$${\sum_{ts \in C(P(s))}^{}{VAR\_ UPS_{r,v,t,p,ts,'LO'}} \times ({mod}(Hour(s) - Hour(ts),24) < ACT\_ TIME_{r,v,p,'LO'}) \leq 
+}\left( VAR\_ UPS_{r,v,t,p,s,'N'} \right)$$
 
 **Case B: Maximum number of start-up cycles within parent timeslice
 cycle**
 
-![](media/image139.wmf)
+$${\mathbf{EQ\_ ACTUP}\mathbf{C}_{\mathbf{r,v,t,p,tsl,}\mathbf{'}\mathbf{N}\mathbf{'}\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\left( \mathbf{s}\mathbf{\in}\bigcup_{\mathbf{ts}}^{}\left\{ \mathbf{P(ts)|prc\_ t}\mathbf{s}_{\mathbf{r,p,ts}} \right\} \right)
+}{\mathbf{\land}\mathbf{ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,}\mathbf{'}\mathbf{ANNUAL}\mathbf{'}\mathbf{,}\mathbf{'}\mathbf{N}\mathbf{'}}\mathbf{> 0))}}$$
 
-![](media/image140.wmf)
+$${\sum_{ts \in C(s)}^{}{VAR\_ UPS_{r,v,t,p,ts,'UP'}} \leq 
+}{\left( VAR\_ NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}} \right) \times ACT\_ UPS_{r,v,p,'ANNUAL','N'}\mspace{6mu}
+}$$
 
 ### Equation: EQE_ACTUPS
 
@@ -2084,9 +2390,11 @@ have been defined for a standard process with *ACT_CSTUP*.
 
 **Equation:**
 
-![](media/image141.wmf)
+$$\mathbf{EQE\_ ACTUP}\mathbf{S}_{\mathbf{r,v,t,p,tsl,s}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{UP}\mathbf{S}_{\mathbf{r,p,tsl}}^{\mathbf{+}}\mathbf{\land}\mathbf{ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}}\mathbf{)}$$
 
-> ![](media/image142.wmf)
+> $${VAR\_ UPS_{r,v,t,p,s,'UP'} - VAR\_ UPS_{r,v,t,p,s,'LO'}
+> }{= 
+> }{VAR\_ UPS_{r,v,t,p,s - 1,'N'} - VAR\_ UPS_{r,v,t,p,s,'N'}}$$
 
 ### Equation: EQL_ACTUPS
 
@@ -2114,15 +2422,18 @@ timeslice levels.
 
 **Case A: lim_type=\'N\'**
 
-![](media/image143.wmf)
+$$\mathbf{EQL\_ ACTUP}\mathbf{S}_{\mathbf{r,v,t,p,tsl,}\mathbf{'}\mathbf{N}\mathbf{'}\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\left( \mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{UP}\mathbf{S}_{\mathbf{r,p,tsl}}^{\mathbf{+}}\mathbf{\land}\mathbf{ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}} \right)$$
 
-![](media/image144.wmf)
+$$VAR\_ UPS_{r,v,t,p,s,'N'}\quad \leq \quad VAR\_ UPS_{p,v,t,P(s),'FX'}$$
 
 **Case B: lim_type=\'FX\'**
 
-![](media/image145.wmf)
+$$\mathbf{EQL\_ ACTUP}\mathbf{S}_{\mathbf{r,v,t,p,tsl,}\mathbf{'}\mathbf{FX}\mathbf{'}\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\left( \begin{array}{r}
+\mathbf{\& rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{UP}\mathbf{S}_{\mathbf{r,p,tsl}}^{\mathbf{+}}\mathbf{\land} \\
+\mathbf{\& ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}}\mathbf{\land}\mathbf{s}\mathbf{\in}\left\{ \bigcup_{\mathbf{sl}}^{}{\mathbf{P(sl)|sl}\mathbf{\in}\mathbf{UP}\mathbf{S}^{\mathbf{+}}\mathbf{(p)}} \right\}
+\end{array} \right)$$
 
-![](media/image146.wmf)
+$$VAR\_ UPS_{r,v,t,p,s,'FX'}\quad \leq \quad\sum_{ts \in C(s)}^{}{VAR\_ UPS_{r,v,t,p,ts,'UP'}}$$
 
 ###  Equation: EQ(*l*)\_ASHAR
 
@@ -2181,15 +2492,40 @@ member of group **cg**, or such that **c**=**cg**.
     > by-pass operation. The **cg** is set automatically to the SPG when
     > the *FLO_SHAR* is converted into *FLO_ASHAR.*
 
-![](media/image147.wmf)
+$$\mathbf{EQ(l)\_ ASHA}\mathbf{R}_{\mathbf{r,v,t,p,c,cg,s}}\mathbf{\ni}\left( \begin{array}{r}
+\mathbf{\& rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\left( \mathbf{rpcs\_ va}\mathbf{r}_{\mathbf{r,p,c,s}}\mathbf{\vee}\left( \mathbf{(c =}\mathbf{'}\mathbf{ACT}\mathbf{'}\mathbf{)}\mathbf{\land}\mathbf{annua}\mathbf{l}_{\mathbf{s}} \right) \right) \\
+\mathbf{\&}\mathbf{\land}\sum_{\mathbf{ts\_ ma}\mathbf{p}_{\mathbf{r,s,ts}}}^{}{\mathbf{FLO\_ ASHA}\mathbf{R}_{\mathbf{r,v,p,c,cg,ts,bd}}}
+\end{array} \right)$$
 
 **Case A**: Standard processes:
 
-![](media/image148.wmf)
+$${\sum_{\mathbf{rps\_ s}\mathbf{2}_{\mathbf{r,p,sl}}}^{}{\mathbf{FLO\_ ASHA}\mathbf{R}_{\mathbf{r,v,p,c,cg,sl,bd}}\mathbf{\times}\mathbf{RS\_ F}\mathbf{R}_{\mathbf{r,s,sl}}\mathbf{\times}}
+}{\mathbf{\quad}\left( \begin{array}{r}
+\mathbf{\&}\sum_{\mathbf{com}\mathbf{\in}\mathbf{cg}}^{}{\sum_{\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,com,ts}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,com,sl,ts}}}}\mathbf{+} \\
+\mathbf{\&}\sum_{\mathbf{com}\mathbf{\in}\begin{Bmatrix}
+\mathbf{rpc\_ p}\mathbf{g}_{\mathbf{r,p,com}} \\
+\mathbf{|}\mathbf{\mspace{6mu}}\mathbf{cg =}\mathbf{'}\text{ACT}\mathbf{'}
+\end{Bmatrix}}^{}{\sum_{\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,ts}}}^{}{\frac{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}}{\mathbf{PRC\_ ACTFL}\mathbf{O}_{\mathbf{r,v,p,com}}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,com,sl,ts}}}}
+\end{array} \right)
+}{\overset{\underset{}{}}{\left\{ \mathbf{= ;}\mathbf{\leq}\mathbf{;}\mathbf{\geq} \right\}}
+}{\sum_{\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,ts}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,c,ts}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,c,s,ts}}}\mathbf{+}
+}{\sum_{\mathbf{com}\mathbf{\in}\begin{Bmatrix}
+\mathbf{rpc\_ p}\mathbf{g}_{\mathbf{r,p,com}} \\
+\mathbf{|}\mathbf{\mspace{6mu}}\mathbf{c =}\mathbf{'}\text{ACT}\mathbf{'}
+\end{Bmatrix}}^{}{\sum_{\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,ts}}}^{}{\frac{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}}{\mathbf{PRC\_ ACTFL}\mathbf{O}_{\mathbf{r,v,p,com}}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,com,s,ts}}}}}$$
 
 **Case B**: Storage processes:
 
-![](media/image149.wmf)
+$${\sum_{\mathbf{rps\_ s}\mathbf{2}_{\mathbf{r,p,sl}}}^{}{\mathbf{FLO\_ ASHA}\mathbf{R}_{\mathbf{r,v,p,c,}\mathbf{'}\mathbf{ACT}\mathbf{'}\mathbf{,sl,bd}}\mathbf{\times}\mathbf{RS\_ F}\mathbf{R}_{\mathbf{r,s,sl}}\mathbf{\times}}
+}{\mathbf{\quad}\left( \sum_{\mathbf{com}\mathbf{\in}\begin{Bmatrix}
+\mathbf{rpc\_ p}\mathbf{g}_{\mathbf{r,p,com}} \\
+\mathbf{|}\mathbf{\mspace{6mu}}\mathbf{cg =}\mathbf{'}\text{ACT}\mathbf{'}
+\end{Bmatrix}}^{}{\sum_{\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,ts}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,com,sl,ts}}}} \right)
+}{\overset{\underset{}{}}{\left\{ \mathbf{= ;}\mathbf{\leq}\mathbf{;}\mathbf{\geq} \right\}}
+}$$$\sum_{\begin{array}{r}
+\mathbf{\&}\mathbf{\mspace{6mu}}\mathbf{rpc\_ st}\mathbf{g}_{\mathbf{r,p,c}} \\
+\mathbf{\& rpcs\_ va}\mathbf{r}_{\mathbf{r,p,c,ts}}
+\end{array}}^{}{\frac{\mathbf{VAR\_ SOU}\mathbf{T}_{\mathbf{r,v,t,p,c,ts}}}{\mathbf{PRC\_ ACTFL}\mathbf{O}_{\mathbf{r,v,p,c}}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,c,s,ts}}}$
 
 ### Equation: EQ(*l*)\_BLND
 
@@ -2199,11 +2535,15 @@ specification (spe)**
 **Type**: Any type, as determined by the value of the input parameter
 BL_TYPE(r,ble,spe):
 
--   *l* = 'L' for a value of 1 yields ![](media/image120.wmf).
+-   *l* = 'L' for a value of 1 yields $\leq$.
 
--   *l* = 'G' for a value of 2 yields ![](media/image150.emf).
+-   *l* = 'G' for a value of 2 yields ![{\"mathml\":\"\<math
+    style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+    for Microsoft
+    Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+    height="7.507655293088364e-3in"}.
 
--   *l* = 'E' for a value of 3 yields ![](media/image119.wmf).
+-   *l* = 'E' for a value of 3 yields $=$.
 
 **Related variables**: **VAR_BLND**
 
@@ -2232,7 +2572,13 @@ lie within specified limits, if desired.
 
 **Equation:**
 
-![](media/image151.wmf)
+$${EQ(l)\_ BLND_{r,t,ble,spe} \ni bl\_ type_{r,ble,spe}
+}
+{\sum_{opr \in ble\_ opr_{r,ble,opr}}^{}{BL\_ COM_{r,ble,opr,spe} \cdot RU\_ CVT_{r,ble,spe,opr} \cdot VAR\_ BLND_{r,t,ble,opr}}
+}
+{\left\{ \leq ; = ; \geq \right\}
+}
+{\sum_{opr \in ble\_ opr_{r,ble,opr}}^{}{BL\_ SPEC_{r,ble,opr,spe} \cdot RU\_ CVT_{r,ble,spe,opr} \cdot VAR\_ BLND_{r,t,ble,opr}}}$$
 
 ### Equation: EQ_BNDCST
 
@@ -2356,7 +2702,17 @@ expressions for the (virtual) cost variables mentioned above.
 
 **Equation:**
 
-![](media/image152.wmf)![](media/image153.wmf)
+$${\mathbf{EQ\_ BNDCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,t,y}\mathbf{2,agg,cur}}\mathbf{\quad \ni}\left( \left( \sum_{\mathbf{bd}}^{}{\mathbf{REG\_ CUMCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,agg,cur,bd}}}\mathbf{< > 0} \right)\mathbf{\land}\left( \mathbf{t =}\underset{\left\{ \mathbf{tt|M(tt - 1) < y}\mathbf{2} \right\}}{\mathbf{argmax}}\mathbf{(M(tt))} \right) \right)\mathbf{VAR\_ CUMCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,agg,cur}}\mathbf{=}
+}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{INVCOST(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{INV}\mathbf{'}\mathbf{,type}} \right)
+}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{INVTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{INVTAX}\mathbf{'}} \right)
+}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{INVSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{INVSUB}\mathbf{'}} \right)
+}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FIXCOST(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FOM}\mathbf{'}} \right)
+}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FIXTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FOMTAX}\mathbf{'}} \right)
+}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FIXSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FOMSUB}\mathbf{'}} \right)
+}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{COMTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{COMTAX}\mathbf{'}} \right)
+}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{COMSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{COMSUB}\mathbf{'}} \right)
+}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FLOTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FLOTAX}\mathbf{'}} \right)
+}$$$\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FLOSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FLOSUB}\mathbf{'}} \right)$
 
 ### Equation: EQ(*l*)\_BNDNET/PRD
 
@@ -2365,14 +2721,11 @@ expressions for the (virtual) cost variables mentioned above.
 **Type**: Any type, as determined by the bound index **bd** of
 COM_BNDNET/PRD:
 
--   *l* = 'G' for **bd** = 'LO' (lower bound) yields
-    ![](media/image118.wmf).
+-   *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 
--   *l* = 'E' for **bd** = 'FX' (fixed bound) yields
-    ![](media/image119.wmf).
+-   *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 
--   *l* = 'L' for **bd** = 'UP' (upper bound) yields
-    ![](media/image120.wmf).
+-   *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
 **Purpose:** If the bound on the net or gross production of a commodity
 is specified for a timeslice being above the timeslice level of the
@@ -2404,7 +2757,14 @@ Dual: marginal cost of increasing the bound by one unit
 
 **Equation**
 
-![](media/image154.wmf)
+$EQ(l)\_ BND(NET/PRD)_{r,t,c,s}
+$$${\ni \left\{ \mathbf{rcs}\_\mathbf{comt}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{s}} \land (NOT\mspace{6mu}\mathbf{com}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{s}}) \land COM\_ BND(NET/PRD)_{r,t,c,s,bd} \right\}
+}
+{\sum_{\underset{ts \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{ts}} \cap \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}}}{}}^{}{VAR\_ COM(NET/PRD)_{r,t,c,ts}}
+}
+{( \leq / \geq / = )
+}
+{COM\_ BND(NET/PRD)_{r,t,c,s,bd}}$$
 
 ### Equation: EQ(*l*)\_CAFLAC
 
@@ -2414,9 +2774,9 @@ time slice (s)**
 **Type**: As determined by the bd index of the standard availability
 parameter:
 
--   *l* = 'L' for **bd** = 'UP' yields ![](media/image120.wmf),
+-   *l* = 'L' for **bd** = 'UP' yields $\leq$,
 
--   *l* = 'E' for **bd** = 'FX' yields ![](media/image119.wmf).
+-   *l* = 'E' for **bd** = 'FX' yields $=$.
 
 **Related variables**: **VAR_NCAP, VAR_FLO, VAR_IRE, VAR_SIN, VAR_SOUT**
 
@@ -2463,17 +2823,74 @@ availability factor dependent on the output mix.
 
 -   *SX~r,v,p,c,s~* denotes an adjustment coefficient for storage
     > inputs:\
-    > ![](media/image155.wmf)
+    > $$\mathbf{S}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r}
+    > \mathbf{\& 0}\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{to}\mathbf{p}_{\mathbf{OUT}}\mathbf{(c)}\mathbf{\land}\mathbf{to}\mathbf{p}_{\mathbf{IN}}\mathbf{(c)}\mathbf{\land}\mathbf{\neg}\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}} \\
+    > \mathbf{\&}\left( \frac{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}}{\sum_{\mathbf{rp\_ p}\mathbf{g}_{\mathbf{r,p,cg}}}^{}{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}}} \right)\mathbf{\quad}\begin{matrix}
+    > \mathbf{if}\mathbf{\mspace{6mu}}\mathbf{to}\mathbf{p}_{\mathbf{OUT}}\mathbf{(c)}\mathbf{\land}\mathbf{to}\mathbf{p}_{\mathbf{IN}}\mathbf{(c)}\mathbf{\land} \\
+    > \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}\mathbf{\land} \\
+    > \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}
+    > \end{matrix} \\
+    > \mathbf{\& 1}\mathbf{\quad}\mathbf{otherwise}
+    > \end{array} \right\}$$
 
 -   *IX~r,v,p,c,s~* denotes an adjustment coefficient for trade process
     > exports:\
-    > ![](media/image156.wmf)
+    > $$\mathbf{I}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r}
+    > \mathbf{\&}\left( \frac{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}}{\sum_{\mathbf{rp\_ p}\mathbf{g}_{\mathbf{r,p,cg}}}^{}{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}}} \right)\mathbf{\quad}\begin{matrix}
+    > \mathbf{if}\mathbf{\mspace{6mu}}\mathbf{imp(c)}\mathbf{\land}\mathbf{exp(c)}\mathbf{\land} \\
+    > \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}\mathbf{\land} \\
+    > \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}
+    > \end{matrix} \\
+    > \mathbf{\& 1}\mathbf{\quad}\mathbf{otherwise}
+    > \end{array} \right\}$$
 
 **Equation:**
 
-![](media/image157.wmf)
+$$\mathbf{EQ(l)\_ CAFLA}\mathbf{C}_{\mathbf{r,v,t,p,s}}\mathbf{\quad}\mathbf{\ni}\left( \begin{array}{r}
+\mathbf{\& rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,s}}\mathbf{\land} \\
+\mathbf{\&}\left( \mathbf{NCAP\_ A}\mathbf{F}_{\mathbf{r,v,p,s,bd}}\mathbf{\vee}\mathbf{NCAP\_ AF}\mathbf{S}_{\mathbf{r,v,p,s,bd}}\mathbf{\vee}\mathbf{NCAP\_ AF}\mathbf{A}_{\mathbf{r,t,p,bd}} \right)
+\end{array} \right)$$
 
-![](media/image158.wmf)
+$${\sum_{\begin{aligned}
+ & \mathbf{rpc}\_\mathbf{p}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}} \\
+ & \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}
+\end{aligned}}^{}{\left( \begin{aligned}
+ & \frac{1}{PRC\_ ACTFLO_{r,v,p,c}} \times \\
+ & \left( \begin{aligned}
+ & \quad 1/NCAP\_ AFCS_{r,v,p,c,s}if\mspace{6mu} NCAP\_ AFCS_{r,v,p,c,s}\mspace{6mu} given \\
+ & \sum_{\mathbf{rp}\_\mathbf{p}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{cg}}}^{}\frac{1}{NCAP\_ AFCS_{r,v,p,cg,s}}elseif\mspace{6mu} NCAP\_ AFCS_{r,v,p,cg,s}\mspace{6mu} given \\
+ & 1otherwise
+\end{aligned} \right) \times \\
+ & \left( \begin{aligned}
+ & VAR\_ FLO_{r,v,t,p,c,ts}if\mspace{6mu}\mathbf{rp}\_\mathbf{st}\mathbf{d}_{\mathbf{r},\mathbf{p}} \\
+ & \left( \begin{aligned}
+ & VAR\_ SOUT_{r,v,t,p,c,ts} + \\
+ & VAR\_ SIN_{r,v,t,p,c,ts} \times SX_{r,v,p,c,ts}
+\end{aligned} \right)if\mspace{6mu}\mathbf{rp}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p}} \\
+ & \left( \begin{aligned}
+ & VAR\_ IRE_{r,v,t,p,c,ts,'IMP} + \\
+ & VAR\_ IRE_{r,v,t,p,c,ts,'EXP'} \times IX_{r,v,p,c,ts}
+\end{aligned} \right)if\mspace{6mu}\mathbf{rp}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p}}
+\end{aligned} \right) \\
+ & \times RTCS\_ TSFR_{r,t,c,s,ts}
+\end{aligned} \right) +}
+}{\left\{ \leq , = \right\}
+}{\sum_{\left\{ v2|\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v2},\mathbf{t},\mathbf{p}} \right\}}^{}\left( \begin{aligned}
+ & COEF\_ AF_{r,v2,t,p,s} \times COEF\_ CPT_{r,v2,t,p} \times \\
+ & \left( \begin{aligned}
+ & VAR\_ NCAP_{r,v2,p} + NCAP\_ PASTI_{r,v2,p} - \\
+ & \left( VAR\_ SCAP_{r,v2,t,p}\quad if\mspace{6mu} PRC\_ RCAP_{r,p} \right)
+\end{aligned} \right) \\
+ & \times PRC\_ CAPACT_{r,p}
+\end{aligned} \right)\quad if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}
+}$$$\quad + \quad\quad\left( \begin{aligned}
+ & COEF\_ AF_{r,v,t,p,s} \times COEF\_ CPT_{r,v,t,p} \times \\
+ & \left( \begin{aligned}
+ & VAR\_ NCAP_{r,v,p} + NCAP\_ PASTI_{r,v,p} - \\
+ & \left( VAR\_ SCAP_{r,v,t,p}\quad if\mspace{6mu} PRC\_ RCAP_{r,p} \right)
+\end{aligned} \right) \\
+ & \times PRC\_ CAPACT_{r,p}
+\end{aligned} \right)\quad if\mspace{6mu}\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}$
 
 ### Equation: EQ(*l*)\_CAPACT
 
@@ -2483,8 +2900,7 @@ time slice (s)**
 **Type:** Determined by the bound index **bd** of NCAP_AF, NCAP_AFS or
 NCAP_AFA:
 
--   *l* = 'E' for **bd** = 'FX' (fixed bound) yields
-    ![](media/image119.wmf).
+-   *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 
 -   *l* = 'L' for **bd** = 'UP' (upper bound) yields ≤.
 
@@ -2652,12 +3068,69 @@ capacity from WD to another timeslice.
 
 **Equation:**
 
-![](media/image159.wmf)
+$${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \land \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}} \land \mathbf{rtp}\_\mathbf{var}\mathbf{a}_{\mathbf{r},\mathbf{t},\mathbf{p}} \land 
+}{\left( NCAP\_ AF_{r,t,p,s} \vee NCAP\_ AFS_{r,t,p,s} \vee NCAP\_ AFA_{r,t,p} \right)
+}
+{\left\{ \begin{aligned}
+ & \sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \cap \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}} \right)}^{}{VAR\_ ACT_{r,v,t,p,ts}}if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}'\mathbf{p}} \\
+ & \sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \right)}^{}{\frac{VAR\_ ACT_{r,v,t,p,ts}}{RS\_ STGPRD_{r,ts}} \times RS\_ FR_{r,ts,s}}if\mspace{6mu}\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}'\mathbf{p}}
+\end{aligned} \right\}
+}
+{\left\{ \leq ; = ; \geq \right\}
+}{\overset{}{\text{Case1:}\mspace{6mu}\text{Non-vintagedprocess}(v = t):}
+}{\sum_{\left\{ v2|\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v}\mathbf{2},\mathbf{t},\mathbf{p}} \right\}}^{}\left( \begin{aligned}
+ & COEF\_ AF_{r,v2,t,p,s,bd} \times COEF\_ CPT_{r,v2,t,p} \times \\
+ & \left( \begin{aligned}
+ & VAR\_ NCAP_{r,v2,p} + NCAP\_ PASTI_{r,v2,p} - \\
+ & \left( VAR\_ SCAP_{r,v2,t,p}\quad if\mspace{6mu} PRC\_ RCAP_{r,p} \right)
+\end{aligned} \right) \\
+ & \times PRC\_ CAPACT_{r,p}
+\end{aligned} \right)\quad if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}
+}{\overset{}{\text{Case2:}\mspace{6mu}\text{Vintagedprocess}(v = \text{vintage}):}
+}{\quad + \quad\quad\left( \begin{aligned}
+ & COEF\_ AF_{r,v,t,p,s,bd} \times COEF\_ CPT_{r,v,t,p} \times \\
+ & \left( \begin{aligned}
+ & VAR\_ NCAP_{r,v,p} + NCAP\_ PASTI_{r,v,p} - \\
+ & \left( VAR\_ SCAP_{r,v,t,p}\quad if\mspace{6mu} PRC\_ RCAP_{r,p} \right)
+\end{aligned} \right) \\
+ & \times PRC\_ CAPACT_{r,p}
+\end{aligned} \right)\quad if\mspace{6mu}\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}
+}
+{\times \left\lbrack G\_ YRFR_{r,s} \times (p \notin \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}',\mathbf{p}}) + 1 \times (p \in \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}',\mathbf{p}}) \right\rbrack}$$
 
 **\
-**![](media/image160.wmf)
+**$${COEF\_ CPT_{r,v,t,p}:
+}
+{ifv = t
+}{= Max\left( \begin{aligned}
+ & \frac{D(t) - NCAP\_ ILED}{D(t)} \\
+ & 0
+\end{aligned} \right)
+}
+{else
+}{ift \geq v \land D(v) > IL + TL \land B(t) < E(v) + TL
+}
+{= Max\left( \begin{aligned}
+ & \frac{Min\left( B(v) + IL + COEF\_ RPTI_{r,v,p} \times TL,E(t) + 1 \right) - B(t)}{D(t)} \\
+ & 0
+\end{aligned} \right)
+}{else
+}{= Max\left( \begin{aligned}
+ & \frac{Min\left( B(v) + IL + TL,E(t) + 1 \right) - Max\left( B(v) + IL,B(t) \right)}{D(t)} \\
+ & 0
+\end{aligned} \right)
+}{endif
+}{endif
+}
 
-![](media/image161.wmf)
+{Where,
+}{COEF\_ RPTI_{r,v,p} = \left\langle \frac{D(v) - IL}{TL} \right\rangle}$$
+
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 where:
 
@@ -2714,9 +3187,18 @@ specified by the user.
 
 **Equation (vintaged case only):**
 
-![](media/image162.wmf)
+$$\mathbf{EQ\_ CAPFL}\mathbf{O}_{\mathbf{r,v,t,p,c,s}}\mathbf{\quad}\mathbf{\ni}\left( \mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{NCAP\_ AF}\mathbf{C}_{\mathbf{r,v,p,c,s}}\mathbf{\land}\mathbf{\neg}\mathbf{rpc\_ p}\mathbf{g}_{\mathbf{r,p,c}} \right)$$
 
-![](media/image163.wmf)
+$${\left( \begin{aligned}
+ & \sum_{\mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{VAR\_ FLO_{r,v,t,p,c,s}}if\mspace{6mu} c \neq \text{'ACT'} \\
+ & \sum_{\mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{}\frac{VAR\_ ACT_{r,v,t,p,ts} \times RS\_ FR_{r,ts,s} \times G\_ YRFR_{r,s}}{G\_ YRFR_{r,P(ts)}}if\mspace{6mu} c = \text{'ACT'}
+\end{aligned} \right)
+}{\overset{\underset{}{}}{\leq}
+}{NCAP\_ AFC_{r,v,t,p,c,s} \times \left( \begin{aligned}
+ & VAR\_ NCAP_{r,v,p} + NCAP\_ PASTI_{r,v,p} - \\
+ & \sum_{\mathbf{prc}\_\mathbf{rca}\mathbf{p}_{\mathbf{r},\mathbf{p}}}^{}{VAR\_ SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}}
+\end{aligned} \right) \cdot 
+}$$$COEF\_ CPT_{r,v,p,t} \times PRC\_ CAPACT_{r,p} \times G\_ YRFR_{r,s}$
 
 ### Equation: EQ_CAPLOAD
 
@@ -2757,7 +3239,8 @@ timeslice, while EQ(l)\_CAPACT refers to the full available capacity.
     that level. If the start-up costs are assumed zero on some timeslice
     level, they must be zero also on any higher levels.
 
-![](media/image164.wmf)
+![](media/image31.wmf){width="6.395833333333333in"
+height="2.5520833333333335in"}
 
 **Notation:**
 
@@ -2780,13 +3263,23 @@ the differences in the non-vintaged case.
 
 **Equations:**
 
-![](media/image165.wmf)
+$$\mathbf{EQ\_ CAPLOA}\mathbf{D}_{\mathbf{r,v,t,p,s,UP}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,s,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{> 0))}$$
 
-![](media/image166.wmf)
+$${VAR\_ ACT_{r,v,t,p,s} \leq 
+}{AF\_ MAX_{r,v,t,p,s} \times \left( \begin{aligned}
+ & VAR\_ NCAP_{r,tt(v),p} + NCAP\_ PASTI_{r,v,p} - \\
+ & \sum_{\mathbf{prc}\_\mathbf{rca}\mathbf{p}_{\mathbf{r},\mathbf{p}}}^{}{VAR\_ SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}}
+\end{aligned} \right) \cdot 
+}{COEF\_ CPT_{r,v,p,t} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{r,s}}$$
 
-![](media/image167.wmf)
+$$\mathbf{EQ\_ CAPLOA}\mathbf{D}_{\mathbf{r,v,t,p,s,LO}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,s,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{> 0))}$$
 
-![](media/image168.wmf)
+$${VAR\_ ACT_{r,v,t,p,s} \geq 
+}{AF\_ MIN_{r,v,p,s} \times \left( \begin{aligned}
+ & VAR\_ NCAP_{r,tt(v),p} - NCAP\_ PASTI_{r,v,p} - \\
+ & \sum_{\mathbf{prc}\_\mathbf{rca}\mathbf{p}_{\mathbf{r},\mathbf{p}}}^{}{VAR\_ SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}}
+\end{aligned} \right) \cdot 
+}{COEF\_ CPT_{r,v,p,t} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{r,s}}$$
 
 ### Equation: EQ(*l*)\_CPT
 
@@ -2796,16 +3289,15 @@ the differences in the non-vintaged case.
 CAP_BND or the need to have a capacity variable (learning technology or
 capacity variable used in user constraint):
 
--   *l* = 'G' for **bd** = 'LO' (lower bound) yields
-    ![](media/image118.wmf), if no upper bound at the same time
+-   *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$, if no upper
+    bound at the same time
 
 -   *l* = 'E' for **bd** = 'FX' (fixed bound), or for lower and upper
     capacity bound at the same time, or for learning technology or for
-    capacity variable used in user constraint yields
-    ![](media/image119.wmf).
+    capacity variable used in user constraint yields $=$.
 
--   *l* = 'L' for **bd** = 'UP' (upper bound) yields
-    ![](media/image120.wmf), if no lower bound at the same time.
+-   *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$, if no lower
+    bound at the same time.
 
 **Related variables:** **VAR_NCAP, VAR_CAP**
 
@@ -2843,7 +3335,23 @@ VAR_CAP or applies directly lower or upper capacity bounds to it.
 
 **Equation:**
 
-![](media/image169.wmf)
+$${\mathbf{EQ(l)\_ CP}\mathbf{T}_{\mathbf{r,t,p}}\mathbf{\ni}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,bd}}\mathbf{\vee}\mathbf{te}\mathbf{g}_{\mathbf{p}}\mathbf{\vee}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}}
+}
+{\mathbf{VAR\_ CA}\mathbf{P}_{\mathbf{r,t,p}}\mathbf{\times}\left( \mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}}\mathbf{\vee}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{\vee}\mathbf{te}\mathbf{g}_{\mathbf{p}} \right)
+}{\mathbf{+ CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{LO}\mathbf{'}}\mathbf{\times}\left\lbrack \left( \mathbf{NOT}\mathbf{\mspace{6mu}}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}} \right)\mathbf{\land}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{LO}\mathbf{'}} \right\rbrack
+}{\mathbf{+ CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{UP}\mathbf{'}}\mathbf{\times}\left\lbrack \left( \mathbf{NOT}\mathbf{\mspace{6mu}}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}} \right)\mathbf{\land}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{UP}\mathbf{'}} \right\rbrack
+}
+{\left\{ \mathbf{\leq}\mathbf{; = ;}\mathbf{\geq} \right\}
+}
+{\sum_{\mathbf{v}\mathbf{\in}\mathbf{rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,t,p}}}^{}{\mathbf{COEF\_ CP}\mathbf{T}_{\mathbf{r,v,t,p}}}\mathbf{\times}\left( \begin{array}{r}
+\mathbf{\& VAR\_ NCA}\mathbf{P}_{\mathbf{r,v,p}}\mathbf{\times}\left( \mathbf{v}\mathbf{\in}\mathbf{MILESTONYR} \right) \\
+\mathbf{\& + NCAP\_ PAST}\mathbf{I}_{\mathbf{r,v,p}}\mathbf{\times}\left( \mathbf{v}\mathbf{\in}\mathbf{PASTYEAR} \right) \\
+\mathbf{\&}\mathbf{-}\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{\times}\left( \mathbf{(r,p)}\mathbf{\in}\mathbf{prc\_ rcap} \right)
+\end{array} \right)
+}
+{\mathbf{where}
+}
+{\mathbf{COEF\_ CP}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{asdefinedinequationEQ(l)\_ CAPACT}}$$
 
 ### Equation: EQ(*l*)\_COMBAL
 
@@ -2853,9 +3361,9 @@ VAR_CAP or applies directly lower or upper capacity bounds to it.
 
 -   *l* = 'G' (**lim** = 'LO' in **com_lim**) for energy carriers
     > (**com_tmap**(r,c,'NRG')), demands (**com_tmap**(r,c,'DEM')), and
-    > emissions (**com_tmap**(r,c,'ENV')); yields
-    > ![](media/image118.wmf) type of equation; production has to be
-    > greater or equal consumption if no upper bound at the same time
+    > emissions (**com_tmap**(r,c,'ENV')); yields $\geq$ type of
+    > equation; production has to be greater or equal consumption if no
+    > upper bound at the same time
 
 -   *l* = 'E' (**lim** = 'FX' in **com_lim**) for materials
     > (**com_tmap**(r,c,'MAT')) and financial commodities
@@ -2961,21 +3469,123 @@ the two shadow prices).
 
 **Equation:**
 
-![](media/image170.wmf)
+$
+$$${EQ(l)\_ COMBAL_{r,t,c,s} \ni \left\lbrack \mathbf{rcs}\_\mathbf{comba}\mathbf{l}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{s},\mathbf{bd}} \right\rbrack
+}
+{COM\_ IE_{r,t,c} \times \left( \begin{aligned}
+ & \sum_{p \in \mathbf{to}\mathbf{p}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{OUT}'}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ FLOFLO_{r,v,t,p,c,s,'OUT'}}} \\
+ & \\
+ & + \sum_{p \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{IMP}'}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ IRE_{r,v,t,p,c,s,'IMP'}}} + AUX\_ IRE_{r,t,c,s,'OUT'} \\
+ & \\
+ & + \sum_{\begin{matrix}
+p \in \mathbf{rpc}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}} \\
+(p,v) \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}
+\end{matrix}}^{}{\sum_{s1 \in \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{}\left( VAR\_ SOUT_{r,v,t,p,c,ts} \times \left( \overset{\underset{}{}}{RS\_ FR_{r,s,ts}} \right) \times STG\_ EFF_{r,v,p} \right)} \\
+ & \\
+ & + \sum_{opr \in \mathbf{ble}\_\mathbf{op}\mathbf{r}_{\mathbf{r},\mathbf{c},\mathbf{opr}}}^{}\left( BLE\_ BAL_{r,t,c,opr} \times VAR\_ BLND_{r,t,c,opr} \times RTCS\_ TSFR_{r,t,c,s,'ANNUAL'} \right) \\
+ & \\
+ & + \left\lbrack \sum_{\begin{aligned}
+ & (p,v) \in \mathbf{rpc}\_\mathbf{capfl}\mathbf{o}_{\mathbf{r},\mathbf{v},\mathbf{p},\mathbf{c}} \\
+ & if(\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \\
+ & \land \\
+ & NCAP\_ COM_{r,v,p,c,'OUT'})
+\end{aligned}}^{}\left( \begin{aligned}
+ & NCAP\_ COM_{r,v,p,c,'OUT'} \times COEF\_ CPT_{r,v,t,p} \times \\
+ & \left( \begin{aligned}
+ & VAR\_ NCAP_{r,tt(v),p} + NCAP\_ PASTI_{r,v,p} \\
+ & VAR\_ SCAP_{r,tt(v),t,p} \ni (r,p) \in \mathbf{prc}\_\mathbf{rcap}
+\end{aligned} \right)
+\end{aligned} \right) \right\rbrack \times G\_ YRFR_{r,s} \\
+ & \\
+ & + \left\lbrack \sum_{\begin{aligned}
+ & (p,v) \in \mathbf{rpc}\_\mathbf{capfl}\mathbf{o}_{\mathbf{r},\mathbf{v},\mathbf{p},\mathbf{c}} \\
+ & ifCOEF\_ OCOM_{r,v,t,p,c}
+\end{aligned}}^{}\left( \begin{aligned}
+ & COEF\_ OCOM_{r,v,t,p,c} \times \\
+ & \left( \begin{aligned}
+ & VAR\_ NCAP_{r,tt(v),p} + NCAP\_ PASTI_{r,v,p} \\
+ & VAR\_ SCAP_{r,tt(v),t,p} \ni (r,p) \in \mathbf{prc}\_\mathbf{rcap}
+\end{aligned} \right)
+\end{aligned} \right) \right\rbrack \times G\_ YRFR_{r,s} \\
+ & \\
+ & + \sum_{\begin{aligned}
+ & \mspace{6mu}(com,ts) \in \\
+ & \mathbf{com}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{com},\mathbf{ts}}
+\end{aligned}}^{}{COM\_ AGG_{r,t,com,c} \times \begin{pmatrix}
+\underset{\text{or, if }\mathbf{com}\_\mathbf{li}\mathbf{m}_{\mathbf{com}} = \text{FX/N:}}{VAR\_ COMNET_{r,t,com,ts}} \\
+VAR\_ COMPRD_{r,t,com,ts}
+\end{pmatrix} \times RTCS\_ TSFR_{r,t,com,s,ts}} \\
+ & 
+\end{aligned} \right)
+}
+{+ \sum_{j = 1}^{COM\_ STEP_{r,c,'LO'}}{VAR\_ ELAST_{r,t,c.s,j,'LO'}} - \sum_{j = 1}^{COM\_ STEP_{r,c,'UP'}}{VAR\_ ELAST_{r,t,c,s,j,'UP'}}
+}
+{(continued\mspace{6mu} on\mspace{6mu} next\mspace{6mu} page)}$$
 
-![](media/image171.wmf)
+$
+$$${- \left( \begin{aligned}
+ & \sum_{p \in \mathbf{to}\mathbf{p}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{OUT}'}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ FLOFLO_{r,v,t,p,c,s,'IN'}}} \\
+ & \\
+ & + \sum_{p \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c},'EX\mathbf{P}'}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ IRE_{r,v,t,p,c,s,'EXP'}}} + AUX\_ IRE_{r,t,c,s,'IN'} \\
+ & \\
+ & + \sum_{\begin{matrix}
+p \in \mathbf{rpc}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}} \\
+(p,v) \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}
+\end{matrix}}^{}{\sum_{ts \in \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{}\left( VAR\_ SIN_{r,v,t,p,c,ts} \times \left( \overset{\underset{}{}}{RS\_ FR_{r,s,ts}} \right) \right)} \\
+ & \\
+ & + \sum_{ble \in \mathbf{ble}\_\mathbf{op}\mathbf{r}_{\mathbf{r},\mathbf{ble},\mathbf{c}}}^{}\left( BLE\_ BAL_{r,t,ble,c} \times VAR\_ BLND_{r,t,ble,c} \times RTCS\_ TSFR_{r,t,c,s,'ANNUAL'} \right) \\
+ & \\
+ & + \left\lbrack \sum_{\begin{aligned}
+ & (p,v) \in \mathbf{rpc}\_\mathbf{capfl}\mathbf{o}_{\mathbf{r},\mathbf{v},\mathbf{p},\mathbf{c}} \\
+ & if(\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \\
+ & \land \\
+ & NCAP\_ COM_{r,v,p,c,'IN'})
+\end{aligned}}^{}\left( \begin{aligned}
+ & NCAP\_ COM_{r,v,p,c,'IN'} \times COEF\_ CPT_{r,v,t,p} \times \\
+ & \left( \begin{aligned}
+ & VAR\_ NCAP_{r,tt(v),p} + NCAP\_ PASTI_{r,v,p} \\
+ & VAR\_ SCAP_{r,v,t,p} \ni (r,p) \in \mathbf{prc}\_\mathbf{rcap}
+\end{aligned} \right)
+\end{aligned} \right) \right\rbrack \times G\_ YRFR_{r,s} \\
+ & \\
+ & + \left\lbrack \sum_{\begin{aligned}
+ & (p,v) \in \mathbf{rpc}\_\mathbf{capfl}\mathbf{o}_{\mathbf{r},\mathbf{v},\mathbf{p},\mathbf{c}} \\
+ & ifCOEF\_ ICOM_{r,v,t,p,c}
+\end{aligned}}^{}\left( \begin{aligned}
+ & COEF\_ ICOM_{r,v,t,p,c} \times \\
+ & \left( \begin{aligned}
+ & VAR\_ NCAP_{r,tt(v),p} + NCAP\_ PASTI_{r,v,p} \\
+ & VAR\_ SCAP_{r,v,t,p} \ni (r,p) \in \mathbf{prc}\_\mathbf{rcap}
+\end{aligned} \right)
+\end{aligned} \right) \right\rbrack \times G\_ YRFR_{r,s} \\
+ & 
+\end{aligned} \right)
+}
+{\left\{ \geq ; = \right\}\quad COEF\_ FBRHS}$$
 
 We now show the detailed calculation of the Right-hand-side
 
-![](media/image172.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 **Flow Coefficients related to process activity (VAR_FLO)**
 
-![](media/image173.wmf)
+$\mathbf{CAL\_ FLOFL}\mathbf{O}_{\mathbf{r,v,t,p,c,s,io}}\mathbf{\ni}\mathbf{rp\_ fl}\mathbf{o}_{\mathbf{r,p}}\mathbf{\land}\mathbf{NOTrpc\_ conl}\mathbf{y}_{\mathbf{r,t,p,c}}
+$$$
+{\mathbf{=}\sum_{\mathbf{s}\mathbf{1}\mathbf{\in}\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,s}\mathbf{1}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,c,s}\mathbf{1}}\mathbf{\times}}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,c,s,s}\mathbf{1}}
+}$$
 
 with RTCS_TSFR defined in the following way:
 
-![](media/image174.wmf)
+$${\mathbf{RTCS\_ TSFR(r,t,c,s,s}\mathbf{1)}
+}{\mathbf{IF}\mathbf{\mspace{6mu}}\mathbf{ts\_ ma}\mathbf{p}_{\mathbf{r,s,s}\mathbf{1}}
+}{\mathbf{= 1}
+}{\mathbf{ELSE}
+}{\mathbf{=}\frac{\mathbf{COM\_ F}\mathbf{R}_{\mathbf{r,t,c,s}}}{\mathbf{COM\_ F}\mathbf{R}_{\mathbf{r,t,c,s}\mathbf{1}}}\text{   if c is a demand commodity and }\mathbf{COM}\mathbf{\_}\mathbf{FR}\text{ is specified,}
+}{\mathbf{=}\frac{\mathbf{G\_ YRF}\mathbf{R}_{\mathbf{r,t,c,s}}}{\mathbf{G\_ YRF}\mathbf{R}_{\mathbf{r,t,c,s}\mathbf{1}}}\text{  otherwise.}}$$
 
 The parameter RTCS_TSFR is used to match the timeslice resolution of
 flow variables (VAR_FLO/VAR_IRE) and commodities. RTCS_TSFR is the
@@ -3003,31 +3613,67 @@ process follows the given load curve COM_FR.
 
 **Inter-regional Flow Coefficients**
 
-![](media/image175.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 **\
 ****Investment Related Flow Coefficients**
 
 **Intermediate Notation:**
 
-![](media/image176.wmf) Beginning year of commodity flow
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"} Beginning year of commodity flow
 
-![](media/image177.wmf) Ending year of commodity flow
+$ECF = B(v) + NCAP\_ ILED - 1$ Ending year of commodity flow
 
-![](media/image178.wmf)
+$${COEF\_ ICOM:
+}
+{if(v = t) \land (IL + TL < D(t))
+}{= COEF\_ RPTINV \times \frac{NCAP\_ ICOM_{v}}{D(t)}
+}{whereCOEF\_ RPTINV = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle
+}{else
+}{= Max\left( \frac{1 + Min\left( ECF,E(t) \right) - Max\left( BCF,B(t) \right)}{D(t)} \times \frac{NCAP\_ ICOM_{v}}{NCAP\_ CLED_{v}},0 \right)
+}{endif}$$
 
-![](media/image179.wmf)
+![](media/image32.wmf)
 
 **\
 ****Dismantling Related Flow Coefficients**
 
 **Intermediate Notation:**
 
-![](media/image180.wmf) Start year of commodity flow.
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"} Start year of commodity flow.
 
-![](media/image181.wmf) End year of commodity flow.
+$ECF = B(v) + NCAP\_ ILED + NCAP\_ TLIFE + NCAP\_ DLAG + NCAP\_ DLIFE - 1$
+End year of commodity flow.
 
-![](media/image182.wmf)
+$${COEF\_ OCOM:
+}
+{ift \geq v \land D(v) > IL + TL \land B(t) < E(v) + TL + DLAG + DLIFE
+}{= \sum_{i = 1}^{COEF\_ RPTINV}{\left( Max\left( \begin{aligned}
+ & \left( \begin{aligned}
+ & \frac{Min\left( B(v) + IL + (i \times TL) + DLAG + DLIFE - 1,E(t) \right)}{D(t)} \\
+ & - \frac{Max\left( B(v) + IL + (i \times TL) + DLAG,B(t) \right)}{D(t)}
+\end{aligned} \right) \\
+ & 0
+\end{aligned} \right) \right) \times \frac{NCAP\_ OCOM_{v}}{NCAP\_ DLIFE_{v}}}
+}{else
+}
+{= Max\left( \begin{aligned}
+ & \frac{1 + Min(ECF,E(t)) - Max(BCF,B(t))}{D(t)} \times \frac{NCAP\_ OCOM_{v}}{NCAP\_ DLIFE_{v}} \\
+ & 0
+\end{aligned} \right)
+}{endif}$$
 
 ### Equation: EQE_COMPRD
 
@@ -3055,7 +3701,10 @@ reduction (in the case of a demand commodity).
 
 **Equation:**
 
-![](media/image183.wmf)
+$${\mathbf{EQE\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}\mathbf{\ni}\mathbf{COM\_ BNDPRD}\mathbf{\vee}\mathbf{COM\_ CUMPRD}
+}{\mathbf{\vee}\mathbf{COM\_ CSTPRD}\mathbf{\vee}\mathbf{COM\_ SUBPRD}\mathbf{\vee}\mathbf{COM\_ TAXPRD}
+}
+{\mathbf{COMSUP = VAR\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}}$$
 
 ### Equation: EQ_CUMFLO
 
@@ -3085,9 +3734,18 @@ referred to in a user constraint.
 
 **Equation:**
 
-![](media/image184.wmf)
+$$\mathbf{EQ\_ CUMFL}\mathbf{O}_{\mathbf{r,p,c,y}\mathbf{1,t,y}\mathbf{2}}\mathbf{\quad}\mathbf{\ni}\left( \mathbf{rp}\mathbf{c}_{\mathbf{r,p,c}}\mathbf{\land}\mathbf{rpc\_ cumfl}\mathbf{o}_{\mathbf{r,p,c,y}\mathbf{1,y}\mathbf{2}} \right)$$
 
-![](media/image185.wmf)
+$${\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{c}\mathbf{\neq '}\text{ACT}\mathbf{'}\mathbf{:}
+}{\sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\begin{array}{r}
+\mathbf{\& s}\mathbf{\in}\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,s}} \\
+\mathbf{\& v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}
+\end{array}}^{}{\left\lbrack \mathbf{Min}\left\{ \mathbf{E(t),y}\mathbf{2} \right\}\mathbf{-}\mathbf{Max}\left\{ \mathbf{B(t),y}\mathbf{1} \right\}\mathbf{+ 1} \right\rbrack\mathbf{\times}\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,c,s}}}}\mathbf{= VAR\_ CUMFL}\mathbf{O}_{\mathbf{r,p,c,y}\mathbf{1,y}\mathbf{2}}
+}{\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{c =}\mathbf{'}\text{ACT}\mathbf{'}\mathbf{:}
+}$$$\sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\begin{array}{r}
+\mathbf{\&}\mathbf{\quad}\mathbf{s}\mathbf{\in}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}} \\
+\mathbf{\& v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}
+\end{array}}^{}{\left\lbrack \mathbf{Min}\left\{ \mathbf{E(t),y}\mathbf{2} \right\}\mathbf{-}\mathbf{Max}\left\{ \mathbf{B(t),y}\mathbf{1} \right\}\mathbf{+ 1} \right\rbrack\mathbf{\times}\mathbf{VAR\_ AC}\mathbf{T}_{\mathbf{r,v,t,p,s}}}}\mathbf{= VAR\_ CUMFL}\mathbf{O}_{\mathbf{r,p,c,y}\mathbf{1,y}\mathbf{2}}$
 
 **Bounds**: []{.mark}
 
@@ -3155,9 +3813,13 @@ tax/subsidy has to be adjusted by the discount rate).
 
 **Equation:**
 
-![](media/image186.wmf)
+$\mathbf{EQ(l)\_ CUMNE}\mathbf{T}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,c}}\mathbf{\ni}\mathbf{COM\_ CUMNE}\mathbf{T}_{\mathbf{r,y1,y}\mathbf{2,c,l}}
+$$$
+{\sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{rtcs\_ var}\mathbf{c}_{\mathbf{r,t,c,s}}}^{}{\left\lbrack \mathbf{Min}\left\{ \mathbf{E(t),y}\mathbf{2} \right\}\mathbf{-}\mathbf{Max}\left\{ \mathbf{B(t),y}\mathbf{1} \right\}\mathbf{+ 1} \right\rbrack\mathbf{\times}\mathbf{VAR\_ COMNE}\mathbf{T}_{\mathbf{r,t,c,s}}}}\mathbf{= VAR\_ CUMCO}\mathbf{M}_{\mathbf{r,c,}\mathbf{'}\mathbf{NET}\mathbf{'}\mathbf{,y}\mathbf{1,y}\mathbf{2}}}$$
 
-![](media/image187.wmf)
+$${\mathbf{EQ(l)\_ CUMPR}\mathbf{D}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,c,s}}\mathbf{\ni}\mathbf{COM\_ CUMPR}\mathbf{D}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,c,l}}
+}
+{\sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{rtcs\_ var}\mathbf{c}_{\mathbf{r,t,c,s}}}^{}{\left\lbrack \mathbf{Min}\left\{ \mathbf{E(t),y}\mathbf{2} \right\}\mathbf{-}\mathbf{Max}\left\{ \mathbf{B(t),y}\mathbf{1} \right\}\mathbf{+ 1} \right\rbrack\mathbf{\times}\mathbf{VAR\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}}}\mathbf{= VAR\_ CUMCO}\mathbf{M}_{\mathbf{r,c,}\mathbf{'}\mathbf{PRD}\mathbf{'}\mathbf{,y}\mathbf{1,y}\mathbf{2}}}$$
 
 **Bounds**: []{.mark}
 
@@ -3194,9 +3856,9 @@ able to bound them directly with the attribute RCAP_BND.
 
 **Equation:**
 
-![](media/image188.wmf)
+$$\mathbf{EQ\_ CUMRE}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ rca}\mathbf{p}_{\mathbf{r,p}}\mathbf{)}$$
 
-![](media/image189.wmf)
+$\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{= VAR\_ RCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{+}\sum_{\mathbf{t}\mathbf{-}\mathbf{1}\mathbf{\in}\left\{ \mathbf{tt|rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,tt,p}} \right\}}^{}{\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t}\mathbf{-}\mathbf{1,p}}}$
 
 ###  Equation EQ_DSCNCAP
 
@@ -3255,7 +3917,10 @@ VAR_SNCAP.
 
 **Equation:**
 
-![](media/image190.wmf)
+$${EQ\_ DSCNCAP_{r,t,p} \ni \left( \mathbf{rp}\_\mathbf{dscnca}\mathbf{p}_{\mathbf{r},\mathbf{p}} \land \mathbf{rt}\mathbf{p}_{\mathbf{r},\mathbf{t},\mathbf{p}} \right)
+}
+{VAR\_ NCAP_{r,t,p} = \sum_{u \in \mathbf{unit}}^{}\left( VAR\_ DNCAP_{r,t,p,u} \times NCAP\_ DSC_{r,t,p,u} \right) + 
+}\left( VAR\_ SNCAP_{r,t,p}\quad if\mspace{6mu} NCAP\_ SEMI_{r,t,p}\mspace{6mu} given \right)$$
 
 ###  Equation: EQ_DSCONE 
 
@@ -3273,7 +3938,11 @@ be added in period t.
 
 **Equation**
 
-![](media/image191.wmf)
+$${EQ\_ DSCONE_{r,t,p} \ni \left( \mathbf{rp}\_\mathbf{dscnca}\mathbf{p}_{\mathbf{r},\mathbf{p}} \land \mathbf{rt}\mathbf{p}_{\mathbf{r},\mathbf{t},\mathbf{p}} \right)
+}
+{\sum_{u \in \mathbf{unit}}^{}{VAR\_ DNCAP_{r,t,p,u}} = 1
+}
+{NotethatVAR\_ DNCAPmustbedeclaredasabinary{var}iable(takingvalues0or1only)}$$
 
 [\
 ]{.mark}
@@ -3308,7 +3977,10 @@ only take discrete values *n* × *RCAP_BLK, n=0,1,2,3,...*.
 
 **Equation:**
 
-![](media/image192.wmf)
+$${\mathbf{EQ\_ DSCRE}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{RCAP\_ BL}\mathbf{K}_{\mathbf{r,v,p}}\mathbf{)}
+}{\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{-}\mathbf{RTFOR}\mathbf{C}_{\mathbf{r,v,t,p}}\mathbf{=}
+}{\mathbf{RCAP\_ BL}\mathbf{K}_{\mathbf{r,v,p}}\mathbf{\times}\mathbf{VAR\_ DRCA}\mathbf{P}_{\mathbf{r,v,t,p,2}}\mathbf{+}
+}{\mathbf{(NCAP\_ PAST}\mathbf{I}_{\mathbf{r,v,p}}\mathbf{-}\mathbf{RTFOR}\mathbf{C}_{\mathbf{r,v,t,p}}\mathbf{)}\mathbf{\times}\mathbf{VAR\_ DRCA}\mathbf{P}_{\mathbf{r,v,t,p,1}}}$$
 
 ###  Equation: EQ(*l*)\_FLOBND
 
@@ -3317,14 +3989,11 @@ timeslice (s)**
 
 **Type**: Any type, as determined by the bound index **bd** of FLO_BND:
 
--   *l* = 'G' for **bd** = 'LO' (lower bound) yields
-    ![](media/image118.wmf).
+-   *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 
--   *l* = 'E' for **bd** = 'FX' (fixed bound) yields
-    ![](media/image119.wmf).
+-   *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 
--   *l* = 'L' for **bd** = 'UP' (upper bound) yields
-    ![](media/image120.wmf).
+-   *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
 **Purpose**: Bound on the sum of process flows in a given commodity
 group (**cg**) for a particular process (**p**) in period (**t**) and
@@ -3384,7 +4053,11 @@ the given bound value.
 
 **Equation:**
 
-![](media/image193.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}
 
 ###  Equation: EQ(*l*)\_FLOFR
 
@@ -3393,14 +4066,11 @@ the given bound value.
 
 **Type**: Any type, as determined by the bound index **bd** of FLO_FR:
 
--   *l* = 'G' for **bd** = 'LO' (lower bound) yields
-    ![](media/image118.wmf).
+-   *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 
--   *l* = 'E' for **bd** = 'FX' (fixed bound) yields
-    ![](media/image119.wmf).
+-   *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 
--   *l* = 'L' for **bd** = 'UP' (upper bound) yields
-    ![](media/image120.wmf).
+-   *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
 **Purpose: 1)** Relationship in period (**t**) between the total annual
 flow and the flow in a particular timeslice (**s**) for a specific
@@ -3426,12 +4096,30 @@ irrespectively of the vintage years of the process capacity.
 **Case A**: Standard EQ(*l*)\_FLOFR: fraction of flow in total ANNUAL
 flow
 
-![](media/image194.wmf)
+$EQ(l)\_ FLOFR_{r,t,p,c,s} \ni \left\{ \sum_{ts \in \mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}}} \land FLO\_ FR_{r,t,p,c,s,bd} \right\}
+$$$
+{\sum_{ts \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left( VAR\_ FLO_{r,v,t,p,c,ts} \times RTCS\_ TSFR_{r,t,c,s,ts} \right)}
+}
+{( \leq / \geq / = )
+}
+{\sum_{ts \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left\lbrack VAR\_ FLO_{r,v,t,p,c,ts} \times FLO\_ FR_{r,t,p,c,s,bd} \right\rbrack}
+}
+
+{\text{wheretheequationsignisindicatedbyequationindex}\mathbf{l}.}$$
 
 **Case B**: Levelized EQ(*l*)\_FLOFR: flow level in proportion to
 average level under parent
 
-![](media/image195.wmf)
+$${EQ(l)\_ FLOFR_{r,t,p,c,s} \ni \left\{ \mathbf{rtpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{s}} \land FLO\_ FR_{r,t,p,c,s,bd} \right\}
+}
+{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left( \frac{VAR\_ FLO_{r,v,t,p,c,s}}{G\_ YRFR_{r,s}} \right)
+}
+{( \leq / \geq / = )
+}
+{\sum_{ts \in \mathbf{rs}\_\mathbf{below}\mathbf{1}_{\mathbf{r},\mathbf{ts},\mathbf{s}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\left( \frac{\sum_{sl \in \mathbf{rs}\_\mathbf{below}\mathbf{1}_{\mathbf{r},\mathbf{ts},\mathbf{sl}}}^{}{VAR\_ FLO_{r,v,t,p,c,sl}}}{G\_ YRFR_{r,ts}} \right) \times FLO\_ FR_{r,t,p,c,s,bd}}}
+}
+
+{\text{wheretheequationsignisindicatedbyequationindex}\mathbf{l}.}$$
 
 ###  Equation: EQ(*l*)\_FLOMRK
 
@@ -3441,14 +4129,11 @@ time-slice (s)**
 **Type:** Any type, as determined by the bound index **bd** of
 FLO_MARK/PRC_MARK:
 
--   *l* = 'G' for **bd** = 'LO' (lower bound) yields
-    ![](media/image118.wmf).
+-   *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 
--   *l* = 'E' for **bd** = 'FX' (fixed bound) yields
-    ![](media/image119.wmf).
+-   *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 
--   *l* = 'L' for **bd** = 'UP' (upper bound) yields
-    ![](media/image120.wmf).
+-   *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
 **Related variables:** **VAR_FLO, VAR_IRE, VAR_SIN/SOUT, VAR_COMPRD**
 
@@ -3598,7 +4283,28 @@ equals the dual value of the constraint.
 
 **Equation:**
 
-![](media/image196.wmf)
+$${EQ(l)\_ FLMRK_{r,t,grp,c,s}\forall(r,t,grp,c,s) \in \left( \left\{ \mathbf{rtp}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c}}|PRC\_ MARK_{r,t,p,grp,c,s,l} \neq 0 \right\} \cap \mathbf{mrk}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{grp},\mathbf{c},\mathbf{s}} \right)
+}
+{\sum_{\underset{\cap RPCS\_ VAR_{p}}{\underset{\cap RTP\_ VINTYR_{p,t}}{\underset{RPC_{p} \cap COM\_ GMAP_{c}}{(com,v,ts) \in}}}}^{}\left\{ \left\lbrack VAR\_ FLO_{r,v,t,p,com,ts} \times \begin{bmatrix}
+COM\_ IE_{r,com,ts}ifoutput \\
+1ifinput
+\end{bmatrix} + \right.\  \right.\ 
+}{\begin{pmatrix}
+VAR\_ IRE_{r,v,t,p,com,ts,imp} \\
+VAR\_ SOUT_{r,v,t,p,com,ts} \times STG\_ EFF_{r,v,p}
+\end{pmatrix} \times \left\lbrack \begin{aligned}
+ & COM\_ IE_{r,com,ts}ifPRC\_ MARK_{r,t,p,grp,c,s,l} \geq 0 \\
+ & 0ifPRC\_ MARK_{r,t,p,grp,c,s,l} < 0
+\end{aligned} \right\rbrack - 
+}{\left. \ \begin{pmatrix}
+VAR\_ IRE_{r,v,t,p,com,ts,exp} \\
+VAR\_ SIN_{r,v,t,p,com,ts}
+\end{pmatrix} \times \begin{bmatrix}
+1ifPRC\_ MARK_{r,t,p,grp,c,s,l} \leq 0 \\
+0ifPRC\_ MARK_{r,t,p,grp,c,s,l} > 0
+\end{bmatrix} \right\rbrack \times \left. \ \left( \frac{RS\_ FR_{r,s,ts}}{PRC\_ MARK_{r,t,p,grp,c,s,l}} \right) \right\}
+}{\overset{\underset{}{}}{\left\{ = ; \leq ; \geq \right\}}
+}{\sum_{\underset{RPC \cap COM\_ GMAP_{c}}{com \in}}^{}{\sum_{\underset{RHS\_ COMPRD_{t,com}}{ts \in}}^{}\left\{ VAR\_ COMPRD_{r,t,com,ts} \times \left( \overset{\underset{}{}}{RS\_ FR_{r,s,ts}} \right) \right\}}}$$
 
 ###  Equations related to exchanges (EQ_IRE, EQ_IREBND, EQ_XBND)
 
@@ -3696,7 +4402,17 @@ kton for materials or emissions.
 
 **Equation:**
 
-![](media/image197.wmf)
+$EQ\_ IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (\mathbf{rt}\mathbf{p}_{\mathbf{r},\mathbf{t},\mathbf{p}} \land \mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{s}} \land \mathbf{rpc}\_\mathbf{eqir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c}}) \right\}:
+$$$
+{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{VAR\_ IRE_{r,v,t,p,c,s,'IMP'}} = 
+}{\sum_{(r2,c2) \in \mathbf{top}\_\mathbf{ir}\mathbf{e}_{\mathbf{r}\mathbf{2},\mathbf{c}\mathbf{2},\mathbf{r},\mathbf{c},\mathbf{p}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r}\mathbf{2},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\sum_{s2 \in IRE\_ TSCVT_{r2,s2,r,s}}^{}{\sum_{ts \in \left( \begin{aligned}
+ & \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r}\mathbf{2},\mathbf{t},\mathbf{p},\mathbf{c}\mathbf{2},\mathbf{ts}} \\
+ & \cap \mspace{6mu}\mathbf{rs}\_\mathbf{tre}\mathbf{e}_{\mathbf{r},\mathbf{s}\mathbf{2},\mathbf{ts}}
+\end{aligned} \right)}^{}\left( \begin{aligned}
+ & VAR\_ IRE_{r2,v,t,p,c2,ts,'EXP'} \times IRE\_ FLO_{r2,v,p,c2,r,c,s} \times \\
+ & IRE\_ TSCVT_{r2,s2,r,s} \times IRE\_ CCVT_{r2,c2,r,c} \times \\
+ & RTCS\_ TSFR_{´r2,t,c,s2,ts}
+\end{aligned} \right)}}}}$$
 
 **Remarks:**
 
@@ -3733,7 +4449,28 @@ kton for materials or emissions.
 
 **Equation:**
 
-![](media/image198.wmf)
+$${EQ\_ IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (\mathbf{rt}\mathbf{p}_{\mathbf{r},\mathbf{t},\mathbf{p}} \land \mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{s}} \land \mathbf{rpc}\_\mathbf{eqir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c}}) \right\}:
+}
+{\sum_{\underset{(\mathbf{top}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{c}\mathbf{1},\mathbf{r}\mathbf{2},\mathbf{c}\mathbf{2},\mathbf{p}} \cap \mathbf{top}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{c}\mathbf{1},\mathbf{r},\mathbf{c},\mathbf{p}} \cap \mathbf{rpc}\_\mathbf{marke}\mathbf{t}_{\mathbf{r},\mathbf{p},\mathbf{c}\mathbf{1}})}{(r2,c1,c2) \in}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r}\mathbf{2},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\sum_{s2 \in IRE\_ TSCVT_{r2,s2,r,s}}^{}{\sum_{ts \in \left( \begin{aligned}
+ & \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r}\mathbf{2},\mathbf{t},\mathbf{p},\mathbf{c}\mathbf{2},\mathbf{ts}} \\
+ & \cap \mspace{6mu}\mathbf{rs}\_\mathbf{tre}\mathbf{e}_{\mathbf{r},\mathbf{s}\mathbf{2},\mathbf{ts}}
+\end{aligned} \right)}^{}\left( \begin{aligned}
+ & VAR\_ IRE_{r2,v,t,p,c2,s2,'IMP'} \times IRE\_ CCVT_{r,c1,r,c} \\
+ & \times IRE\_ CCVT_{r2,c2,r,c1} \times IRE\_ TSCVT_{r2,s2,r,s} \\
+ & \times RTCS\_ TSFR_{´r2,t,c,s2,ts}
+\end{aligned} \right)}} \times}
+}
+
+{= 
+}
+{\sum_{(r2,c2) \in \mathbf{top}\_\mathbf{ir}\mathbf{e}_{\mathbf{r}\mathbf{2},\mathbf{c}\mathbf{2},\mathbf{r},\mathbf{c},\mathbf{p}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r}\mathbf{2},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\sum_{s2 \in IRE\_ TSCVT_{r2,s2,r,s}}^{}{\sum_{ts \in \left( \begin{aligned}
+ & \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r}\mathbf{2},\mathbf{t},\mathbf{p},\mathbf{c}\mathbf{2},\mathbf{ts}} \\
+ & \cap \mspace{6mu}\mathbf{rs}\_\mathbf{tre}\mathbf{e}_{\mathbf{r},\mathbf{s}\mathbf{2},\mathbf{ts}}
+\end{aligned} \right)}^{}\left( \begin{aligned}
+ & VAR\_ IRE_{r2,v,t,p,c2,ts,'EXP'} \times IRE\_ FLO_{r2,v,p,c2,r,c,s} \times \\
+ & IRE\_ TSCVT_{r2,s2,r,s} \times IRE\_ CCVT_{r2,c2,r,c} \times \\
+ & RTCS\_ TSFR_{´r2,t,c,s2,ts}
+\end{aligned} \right)}}}}$$
 
 **Remarks**:
 
@@ -3762,14 +4499,11 @@ kton for materials or emissions.
 
 **Type:** Any type, as determined by the bound index **bd** of IRE_BND:
 
--   l = 'G' for **bd** = 'LO' (lower bound) yields
-    ![](media/image118.wmf).
+-   l = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 
--   l = 'E' for **bd** = 'FX' (fixed bound) yields
-    ![](media/image119.wmf).
+-   l = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 
--   l = 'L' for **bd** = 'UP' (upper bound) yields
-    ![](media/image120.wmf).
+-   l = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
 **Related variables: VAR_IRE**
 
@@ -3808,20 +4542,68 @@ Equation:**
 
 **Case A. Imports from an external region or market region**
 
-![](media/image199.wmf)
+$${EQ(l)\_ IREBND_{r,t,c,s,all\_ r,ie}\forall\left\{ \begin{aligned}
+ & r,t,c,s,all\_ r,ie:(RCS\_ COMTS_{r,c,s} \land \\
+ & (\exists p:RPC\_ IE_{r,p,c,ie}) \land IRE\_ BND_{r,t,c,s,all\_ r,ie})
+\end{aligned} \right\}:
+}
+{\sum_{p:(\exists c2:TOP\_ IRE_{all\_ r,c2,r,c,p})}^{}{\sum_{v \in RTP\_ VINTYR_{r,v,t,p}}^{}{\sum_{s2}^{}{VAR\_ IRE_{r,v,t,p,c,s2,exp}}}} \times 
+}
+{\begin{pmatrix}
+1ifs2 \in TS\_ MAP(r,s,s2) \\
+\frac{FR(s)}{FR(s2)}ifs2 \in RS\_ BELOW(r,s2,s)
+\end{pmatrix}
+}
+{\left\{ \leq ; = ; \geq \right\} IRE\_ BND_{r,t,c,s,all\_ r,ie}}$$
 
 **Case B. Imports from an internal non-market region**
 
-![](media/image200.wmf)
+$${EQ(l)\_ IREBND_{r,t,c,s,all\_ r,ie}\forall\left\{ \begin{aligned}
+ & r,t,c,s,all\_ r,ie:(RCS\_ COMTS_{r,c,s} \land \\
+ & (\exists p \in RPC\_ IE_{r,p,c,ie}) \land IRE\_ BND_{r,t,c,s,all\_ r,ie})
+\end{aligned} \right\}:
+}
+{\sum_{\underset{s1 \in RPCS\_ VAR_{r,p,c,s1}}{(c2,p) \in TOP\_ IRE_{all\_ r,c2,r,c,p}}}^{}{\sum_{v \in RTP\_ VINTYR_{all\_ r,v,t,p}}^{}{\sum_{s2}^{}{VAR\_ IRE_{all\_ r,v,t,p,c2,s2,exp}}}} \times IRE\_ FLO_{all\_ r,v,p,c2,r,c,s1} \times 
+}
+{IRE\_ CCVT_{all\_ r,c2,r,c} \times IRE\_ TSCVT_{all\_ r,s2,r,s1} \times \begin{pmatrix}
+1ifs1 \in TS\_ MAP(r,s,s1) \\
+\frac{FR(s)}{FR(s1)}ifs1 \in RS\_ BELOW(r,s1,s)
+\end{pmatrix}
+}
+{\left\{ \leq ; = ; \geq \right\} IRE\_ BND_{r,t,c,s,all\_ r,ie}}$$
 
 **Case C. Exports from a non-market region to an internal or external
 region**
 
-![](media/image201.wmf)
+$${EQ(l)\_ IREBND_{r,t,c,s,all\_ r,ie}\forall\left\{ \begin{aligned}
+ & r,t,c,s,all\_ r,ie:(RCS\_ COMTS_{r,c,s} \land \\
+ & (\exists p:RPC\_ IE_{r,p,c,ie}) \land IRE\_ BND_{r,t,c,s,all\_ r,ie})
+\end{aligned} \right\}:
+}
+{\sum_{p:(\exists c2:TOP\_ IRE_{r,c,all\_ r,c2,p})}^{}{\sum_{v \in RTP\_ VINTYR_{r,v,t,p}}^{}{\sum_{s2}^{}{VAR\_ IRE_{r,v,t,p,c,s2,exp}}}} \times 
+}
+{\begin{pmatrix}
+1ifs2 \in TS\_ MAP(r,s,s2) \\
+\frac{FR(s)}{FR(s2)}ifs2 \in RS\_ BELOW(r,s2,s)
+\end{pmatrix}
+}
+{\left\{ \leq ; = ; \geq \right\} IRE\_ BND_{r,t,c,s,all\_ r,ie}}$$
 
 **Case D. Exports from a market region to an internal region**
 
-![](media/image202.wmf)
+$${EQ(l)\_ IREBND_{r,t,c,s,all\_ r,ie}\forall\left\{ \begin{aligned}
+ & r,t,c,s,all\_ r,ie:(RCS\_ COMTS_{r,c,s} \land \\
+ & (\exists p:RPC\_ IE_{r,p,c,ie}) \land IRE\_ BND_{r,t,c,s,all\_ r,ie})
+\end{aligned} \right\}:
+}
+{\sum_{(c2,p) \in TOP\_ IRE_{r,c,all\_ r,c2,p}}^{}{\sum_{v \in RTP\_ VINTYR_{all\_ r,v,t,p}}^{}{\sum_{s2}^{}{VAR\_ IRE_{all\_ r,v,t,p,c2,s2,exp}}}} \times 
+}
+{IRE\_ CCVT_{all\_ r,c2,r,c} \times IRE\_ TSCVT_{all\_ r,s2,r,s} \times \begin{pmatrix}
+1ifs2 \in TS\_ MAP(r,s,s2) \\
+\frac{FR(s)}{FR(s2)}ifs2 \in RS\_ BELOW(r,s2,s)
+\end{pmatrix}
+}
+{\left\{ \leq ; = ; \geq \right\} IRE\_ BND_{r,t,c,s,all\_ r,ie}}$$
 
 **Remarks:**
 
@@ -3842,14 +4624,11 @@ region**
 
 **Type:** Any type, as determined by the bound index **bd** of IRE_XBND:
 
--   *l* = 'G' for **bd** = 'LO' (lower bound) yields
-    ![](media/image118.wmf).
+-   *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 
--   *l* = 'E' for **bd** = 'FX' (fixed bound) yields
-    ![](media/image119.wmf).
+-   *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 
--   *l* = 'L' for **bd** = 'UP' (upper bound) yields
-    ![](media/image120.wmf).
+-   *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
 **Related variables: VAR_IRE**
 
@@ -3880,7 +4659,25 @@ the given bound value.
 
 **Equation:**
 
-![](media/image203.wmf)
+$EQ(l)\_ XBND_{all\_ r,t,c,s,ie} \ni IRE\_ XBND_{all\_ r,t,c,s,ie,bd}
+$$$
+
+{\sum_{p \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{all}\_\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ie}}}^{}{\sum_{s2 \in \left( \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{all}\_\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{s}\mathbf{2}} \cap \mathbf{rs}\_\mathbf{tre}\mathbf{e}_{\mathbf{all}\_\mathbf{r},\mathbf{s},\mathbf{s}\mathbf{2}} \right)}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{all}\_\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left\lbrack \begin{aligned}
+ & VAR\_ IRE_{all\_ r,v,t,p,c,s2,ie} \times \\
+ & 1ifs2 \in \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{all}\_\mathbf{r},\mathbf{s},\mathbf{s}\mathbf{2}} \\
+ & \frac{G\_ YRFR(s)}{G\_ YRFR(s2)}ifs2 \in \mathbf{rs}\_\mathbf{belo}\mathbf{w}_{\mathbf{all}\_\mathbf{r},\mathbf{s}\mathbf{2},\mathbf{s}}
+\end{aligned} \right\rbrack}}
+}{\left\{ = ; \leq ; \geq \right\} IRE\_ XBND_{all\_ r,t,c,s,ie,bd}
+}
+
+
+{\sum_{p \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{com},\mathbf{impex}}}^{\sum}{\sum_{(ts,s2) \in \left( \mathbf{rs}\_\mathbf{tre}\mathbf{e}_{\mathbf{r},\mathbf{ts},\mathbf{s}\mathbf{2}} \cap \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{com},\mathbf{s}\mathbf{2}} \cap IRE\_ TSCVT_{r,ts,all\_ r,s} \right)}^{\sum}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{\sum}\left\lbrack \begin{aligned}
+ & VAR\_ IR{Er,com,all\_ r,c}_{r,v,t,p,com,s2,impexp} \\
+ & \times IRE\_ TSCVT(r,ts,all\_ r,s)
+\end{aligned} \right\rbrack}}
+}
+
+{\left\{ = ; \leq ; \geq \right\} IRE\_ XBND_{all\_ r,t,c,s,ie,bd}}$$
 
 ###  Equations: EQ(*l*)\_INSHR, EQ(*l*)\_OUTSHR
 
@@ -3890,13 +4687,13 @@ group (cg), time-slice (s)**
 **Type:** Any type, as determined by the bound index **bd** of FLO_SHAR:
 
 -   *l* = **\'**G**\'** for **bd** = **\'**LO**\'** (lower bound) yields
-    ![](media/image118.wmf).
+    $\geq$.
 
 -   *l* = **\'**E**\'** for **bd** = **\'**FX**\'** (fixed bound) yields
-    ![](media/image119.wmf).
+    $=$.
 
 -   *l* = **\'**L**\'** for **bd** = **\'**UP**\'** (upper bound) yields
-    ![](media/image120.wmf).
+    $\leq$.
 
 **Related variables:** **VAR_FLO, VAR_ACT**
 
@@ -3911,7 +4708,11 @@ for a specified commodity group (**cg**).
 
 **Quality Control Checks**:
 
-![](media/image204.wmf)
+$${\sum_{c \in cg}^{}{FLO\_ SHAR_{r,v,p,c,cg,s,'LO'}}\forall(FLO\_ SHAR_{r,v,p,c,cg,s,'LO'} \ni l = " \geq ") \leq 1 - \sum_{c \in cg}^{}{FLO\_ SHAR_{r,v,p,c,cg,s,'FX'}}
+}
+{\sum_{c \in cg}^{}{FLO\_ SHAR_{r,v,p,c,cg,s,'UP'}}\forall(FLO\_ SHAR_{r,v,p,c,cg,s,'UP'} \ni l = " \leq ") \geq 1 - \sum_{c \in cg}^{}{FLO\_ SHAR_{r,t,p,c,cg,s,'FX'}}
+}
+{\forall FLO\_ SHAR > 0}$$
 
 **Remarks**:
 
@@ -3946,7 +4747,13 @@ be interpreted as a tax being added to the costs of a flow.
 
 **Equation:**
 
-![](media/image205.wmf)
+$\mathbf{EQ(l)\_ IN/OUTSH}\mathbf{R}_{\mathbf{r,v,t,p,c,cg,s}}\mathbf{\ni}\mathbf{(c}\mathbf{\in}\mathbf{cg)}\mathbf{\land}\left( \mathbf{t}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}} \right)\mathbf{\land}\mathbf{to}\mathbf{p}_{\mathbf{r,p,c,}\mathbf{'}\mathbf{IN}\mathbf{'}\mathbf{/}\mathbf{'}\mathbf{OUT}\mathbf{'}}\mathbf{\land}
+$$${\mathbf{(s}\mathbf{\in}\mathbf{rps\_ s}\mathbf{1}_{\mathbf{r,p,s}}\mathbf{)}\mathbf{\land}\mathbf{FLO\_ SHA}\mathbf{R}_{\mathbf{r,v,p,c,cg,s,bd}}
+}
+{\mathbf{FLO\_ SHA}\mathbf{R}_{\mathbf{r,v,p,c,cg,s,bd}}\mathbf{\times}\sum_{\mathbf{com}\mathbf{\in}\mathbf{cg}}^{}{\sum_{\mathbf{s}\mathbf{2}\mathbf{\in}\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,com,s}\mathbf{2}}}^{}\left\lbrack \mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,com,s}\mathbf{2}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,com,s,s}\mathbf{2}} \right\rbrack}
+}{\left\{ \mathbf{= ;}\mathbf{\leq}\mathbf{;}\mathbf{\geq} \right\}
+}
+{\sum_{\mathbf{s}\mathbf{2}\mathbf{\in}\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,s}\mathbf{2}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,c,s}\mathbf{2}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,c,s,s}\mathbf{2}}}}$$
 
 ###  Equation: EQ_PEAK
 
@@ -4034,9 +4841,80 @@ of EQ(l)\_COMBAL) during the peak timeslice. The premium equals
 
 **Equation:**
 
-![](media/image206.wmf)
+$${EQ\_ PEAK_{r,t,cg,s} \ni \mathbf{com}\_\mathbf{pea}\mathbf{k}_{\mathbf{r},\mathbf{cg}} \land s \in \mathbf{com}\_\mathbf{pkt}\mathbf{s}_{\mathbf{r},\mathbf{cg},\mathbf{s}}\ 
+}
 
-![](media/image207.wmf)
+{\left\{ \begin{aligned}
+ & \sum_{c \in cg}^{}{1/(1 + COM\_ PKRSV_{r,t,c}) \times COM\_ IE_{r,t,c} \times}\sum_{p \in \left( \mathbf{to}\mathbf{p}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{OUT}'} \cup \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{IMP}'} \right)}^{} \\
+ & \left\lbrack \begin{aligned}
+ & if\mspace{6mu}\left( \mathbf{rpc}\_\mathbf{pk}\mathbf{c}_{\mathbf{r},\mathbf{p},\mathbf{c}} \land \mathbf{prc}\_\mathbf{ca}\mathbf{p}_{\mathbf{r},\mathbf{p}} \right) \\
+ & \quad\left( G\_ YRFR_{r,s} \times \sum_{v \in \mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left\lbrack \begin{aligned}
+ & NCAP\_ PKCNT_{r,v,p,s} \times COEF\_ CPT_{r,v,t,p} \\
+ & \times \left( \begin{aligned}
+ & VAR\_ NCAP_{r,tt(v),p} + NCAP\_ PASTI_{r,v,p} - \\
+ & VAR\_ SCAP_{r,v,t,p} \times ( \ni \mathbf{prc}\_\mathbf{rca}\mathbf{p}_{\mathbf{r},\mathbf{p}})
+\end{aligned} \right) \\
+ & PRC\_ CAPACT_{r,p} \times PRC\_ ACTFLO_{r,v,p,c}
+\end{aligned} \right\rbrack\mspace{6mu} \right) \\
+ & else \\
+ & \quad\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ FLOFLO_{r,v,t,p,c,s,'OUT'} ⥂ \mspace{6mu} \times NCAP\_ PKCNT_{r,v,p,s}} \\
+ & \quad + \\
+ & \quad\sum_{\begin{aligned}
+ & \quad(p,c) \in \\
+ & \mathbf{rpc}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}}
+\end{aligned}}^{}{\sum_{\begin{matrix}
+\mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \\
+\mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ts}}
+\end{matrix}}^{}{VAR\_ SOUT_{r,v,t,p,c,ts} ⥂ \mspace{6mu} \times RS\_ FR_{r,s,ts} \times NCAP\_ PKCNT_{r,v,p,s}}} \\
+ & \quad + \\
+ & \quad\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ IRE_{r,v,t,p,c,s,'IMP'} \times NCAP\_ PKCNT_{r,v,p,s}} \\
+ & \quad - \\
+ & \quad\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ IRE_{r,v,t,p,c,s,'EXP'} \times NCAP\_ PKCNT_{r,v,p,s}if\mspace{6mu}\mathbf{prc}\_\mathbf{pkn}\mathbf{o}_{\mathbf{r},\mathbf{p}}}
+\end{aligned} \right\rbrack \\
+ & \mspace{6mu}
+\end{aligned} \right\}
+}$$
+
+$${\geq 
+}{\sum_{c \in cg}^{}{(1 + COM\_ PKFLX_{r,t,c,s}) \times}
+}\left\lbrack \begin{aligned}
+ & \\
+ & \sum_{p \in \left( \mathbf{to}\mathbf{p}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{IN}'} \cup \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{EXP}'} \right) \land \left( NOT\mathbf{prc}\_\mathbf{pkn}\mathbf{o}_{\mathbf{r},\mathbf{p}} \right)}^{}{\mspace{6mu}\left\{ \begin{aligned}
+ & \sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ FLOFLO_{r,v,t,p,c,s,'OUT'}\mspace{6mu} \times \mspace{6mu} FLO\_ PKCOI_{r,t,p,c,s}} \\
+ & + \\
+ & \sum_{p \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{EXP}'}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ IRE_{r,v,t,p,c,s,'EXP'} \times \mspace{6mu} FLO\_ PKCOI_{r,t,p,c,s}}} \\
+ & + \\
+ & + \left\lbrack \sum_{(p,v) \in \mathbf{rpc}\_\mathbf{capfl}\mathbf{o}_{\mathbf{r},\mathbf{v},\mathbf{p},\mathbf{c}}}^{}\left( \begin{aligned}
+ & NCAP\_ COM_{r,v,p,c,'IN'} \times COEF\_ CPT_{r,v,t,p} \times \\
+ & \left( \begin{aligned}
+ & VAR\_ NCAP_{r,tt(v),p} + NCAP\_ PASTI_{r,v,p} \\
+ & VAR\_ SCAP_{r,v,t,p} \ni (r,p) \in \mathbf{prc}\_\mathbf{rcap}
+\end{aligned} \right)
+\end{aligned} \right) \right\rbrack \times G\_ YRFR_{r,s} \\
+ & \\
+ & + \left\lbrack \sum_{(p,v) \in \mathbf{rpc}\_\mathbf{capfl}\mathbf{o}_{\mathbf{r},\mathbf{v},\mathbf{p},\mathbf{c}}}^{}\left( \begin{aligned}
+ & COEF\_ ICOM_{r,v,t,p,c} \times \\
+ & \left( \begin{aligned}
+ & VAR\_ NCAP_{r,tt(v),p} + NCAP\_ PASTI_{r,v,p} \\
+ & VAR\_ SCAP_{r,v,t,p} \ni (r,p) \in \mathbf{prc}\_\mathbf{rcap}
+\end{aligned} \right)
+\end{aligned} \right) \right\rbrack \times G\_ YRFR_{r,s} \\
+ & 
+\end{aligned} \right\} +} \\
+ & \sum_{\begin{aligned}
+ & \quad(p,c) \in \\
+ & \mathbf{rpc}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}}
+\end{aligned}}^{}{\sum_{\begin{matrix}
+\mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \\
+\mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ts}}
+\end{matrix}}^{}{VAR\_ SIN_{r,v,t,p,c,ts} \times RS\_ FR_{r,s,ts}}} + \\
+ & \\
+ & \sum_{c \in \mathbf{de}\mathbf{m}_{\mathbf{r},\mathbf{c}}}^{}\left( \begin{aligned}
+ & COM\_ PROJ_{r,t,c} \times COM\_ FR_{r,t,c,s} - \\
+ & \sum_{j = 1}^{COM\_ STEP_{r,c,'LO'}}{VAR\_ ELAST_{r,t,c,s,j,'LO'}} + \sum_{j = 1}^{COM\_ STEP_{r,c,'UP'}}{VAR\_ ELAST_{r,t,c,s,j,'UP'}}
+\end{aligned} \right) \\
+ & 
+\end{aligned} \right\rbrack$$
 
 ###  Equation: EQ_PTRANS
 
@@ -4115,32 +4993,57 @@ which is being defined as the cost change when the RHS is increased by
 one unit, can be interpreted as cost change when the efficiency of the
 process is increased by 1/VAR_FLO(r,v,t,p,c1,s):
 
-![](media/image208.wmf)**.**
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}**.**
 
 **Equation:**
 
-![](media/image209.wmf)
+$${EQ\_ PTRANS_{r,v,t,p,cg1,cg2,s1} \ni (r,v,t,p) \in \left( \mathbf{rp}\_\mathbf{fl}\mathbf{o}_{\mathbf{r},\mathbf{p}} \cap \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \right) \land s1 \in \mathbf{rps}\_\mathbf{s}\mathbf{1}_{\mathbf{r},\mathbf{p},\mathbf{s}\mathbf{1}}
+}{\land \left( s2 \in \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s}\mathbf{2},\mathbf{s}\mathbf{1}} \land \left( \begin{aligned}
+ & FLO\_ SUM_{r,t,p,cg1,c,cg2,s2} \vee \\
+ & FLO\_ FUNC_{r,t,p,cg1,cg2,s2} \land NOT\left( FLO\_ SUM_{r,t,p,cg1,c,cg2,s2} \vee FLO\_ SUM_{r,t,p,cg2,c,cg1,s2} \right)
+\end{aligned} \right) \right)
+}
 
-![](media/image210.wmf)
+{\sum_{c \in cg2}^{}{\sum_{s \in \left( \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{s}\mathbf{1}} \cap \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{s}} \right)}^{}{VAR\_ FLO_{r,v,t,p,c,s} \times RTCS\_ TSFR_{r,t,c,s1,s}}} = 
+}
+{\sum_{c \in cg1}^{}{\sum_{s \in \left( \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{s}\mathbf{1}} \cap \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{s}} \right)}^{}\left( COEF\_ PTRAN_{r,v,t,p,cg1,c,cg2,s} \times VAR\_ FLO_{r,v,t,p,c,s} \times RTCS\_ TSFR_{r,t,c,s1,s} \right)}
+}{\times \left( 1 + RTP\_ FFCX_{r,v,t,p,cg1,cg2} \times \left( if\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{\mathbf{r},\mathbf{p}} \right) \right)}$$
+
+$${COEF\_ PTRAN_{r,v,t,p,cg1,c,cg2,ts}\quad ts \in \mathbf{rpcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ts}}
+}{= 
+}{\sum_{s \in \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}}}^{}\left( 1 \times \left( if\mspace{6mu}\mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{ts},\mathbf{s}} \right) + \frac{G\_ YRFR_{r,ts}}{G\_ YRFR_{r,s}} \times \left( if\mspace{6mu}\mathbf{rs}\_\mathbf{belo}\mathbf{w}_{\mathbf{r},\mathbf{s},\mathbf{ts}} \right) \right)
+}{\frac{FLO\_ FUNC_{r,v,t,p,cg1,cg2,s}}{FLO\_ FUNC_{r,v,t,p,cg2,cg1,s} \times \left( ifFLO\_ SUM_{r,v,t,p,cg1,c,cg2,s} \right)} \times \left( \begin{aligned}
+ & ifFLO\_ FUNC_{r,v,t,p,cg1,cg2,s} \\
+ & \vee FLO\_ FUNC_{r,v,t,p,cg2,cg1,s}
+\end{aligned} \right) \times 
+}\overset{\underset{}{}}{\left( 1\mspace{6mu} \times \left( ifNOTFLO\_ SUM_{r,v,t,p,cg1,c,cg2,s} \right) + FLO\_ SUM_{r,v,t,p,cg1,c,cg2,s} \right)}$$
 
 **Calculation of SHAPE parameter RTP_FFCX**
 
 [Case A: Lifetime minus construction time is longer than the
 construction period]{.underline}
 
-![](media/image211.wmf)
+$$PRC\_ YMIN_{r,v,p} = B_{v} + NCAP\_ ILED_{r,v,p}$$
 
-![](media/image212.wmf)
+$$PRC\_ YMAX_{r,v,p} = PRC\_ YMIN_{r,v,p} + NCAP\_ TLIFE_{r,v,p} - 1$$
 
-![](media/image213.wmf)
+$${RTP\_ FFCX_{r,v,t,p,cg1,c,cg2}\quad \ni FLO\_ FUNCX_{r,v,p,cg1,cg2}
+}{= 
+}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\frac{\sum_{y \in \left( \mathbf{periody}\mathbf{r}_{\mathbf{t},\mathbf{y}} \land \left\lbrack y \leq MAX(B(t),PRC\_ YMAX_{r,v,p}) \right\rbrack \right)}^{}{SHAPE\left( FLO\_ FUNCX_{r,v,p,cg1,cg2},1 + MIN\left( y,PRC\_ YMAX_{r,v,p} \right) - PRC\_ YMIN_{r,v,p} \right)}}{MAX\left\lbrack 1,MIN(E(t),PRC\_ YMAX_{r,v,p}) - MAX(B(t),PRC\_ YMIN_{r,v,p}) + 1 \right\rbrack} - 1}$$
 
 [Case B: Lifetime minus construction time is shorter than the
 construction period =\> Investment is repeated in construction
 period]{.underline}
 
-![](media/image214.wmf)
+$$PRC\_ YMAX_{r,v,p} = NCAP\_ TLIFE_{r,v,p} - 1$$
 
-![](media/image215.wmf)
+$${RTP\_ FFCX_{r,v,t,p,cg1,c,cg2}\quad \ni FLO\_ FUNCX_{r,v,p,cg1,cg2}
+}{= 
+}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\frac{SHAPE\left( FLO\_ FUNCX_{r,v,p,cg1,cg2},PRC\_ YMAX_{r,v,p} \right)}{PRC\_ YMAX_{r,v,p}} - 1}$$
 
 ###  Equation: EQL_REFIT 
 
@@ -4184,7 +5087,11 @@ When retirements are enabled, the TIMES model generator will generate
 the following equations according to the user-defined PRC_REFIT
 parameters:
 
-![](media/image216.wmf)
+$${EQL\_ REFIT_{r,tt,t,prc} \ni \left\{ \exists p:\left( PRC\_ REFIT_{r,prc,p} < > 0 \land RTP\_ CPTYR_{r,tt,t,p} \right) \right\}
+}{\sum_{p \in RTP\_ CPTYR_{r,tt,t,p}}^{}{COEF\_ CPT_{r,tt,t,p} \times \left( VAR\_ NCAP_{r,tt,p} - VAR\_ SCAP_{r,tt,t,p} \right)} \times 
+}{\max\left( DIAG(tt,t), - SIGN(PRC\_ REFIT(r,prc,p)) \right)
+}{\leq / = 
+}{\sum_{v \in RTP\_ CPTYR_{r,v,tt,prc}}^{}{COEF\_ CPT_{r,v,t,prc} \times \left( VAR\_ SCAP_{r,v,tt,prc} - VAR\_ SCAP_{r,v,tt - 1,prc} \right)}}$$
 
 where
 
@@ -4226,9 +5133,20 @@ operating life is specified with *NCAP_OLIFE*.
 
 **Equation:**
 
-![](media/image217.wmf)
+$$\mathbf{EQL\_ SCA}\mathbf{P}_{\mathbf{r,v,p,ips}}\mathbf{\quad}\mathbf{\ni}\left( \mathbf{rt}\mathbf{p}_{\mathbf{r,v,p}}\mathbf{\land}\left( \begin{array}{r}
+\mathbf{\&}\left( \mathbf{prc\_ rca}\mathbf{p}_{\mathbf{r,p}}\mathbf{\land}\left( \mathbf{\neg}\mathbf{prc\_ vin}\mathbf{t}_{\mathbf{r,p}}\mathbf{\vee}\mathbf{obj\_ sum}\mathbf{s}_{\mathbf{r,v,p}} \right) \right) \\
+\mathbf{\&}\mathbf{\vee}\left( \mathbf{prc\_ vin}\mathbf{t}_{\mathbf{r,p}}\mathbf{\land}\mathbf{NCAP\_ OLIF}\mathbf{E}_{\mathbf{r,v,p}} \right)
+\end{array} \right) \right)$$
 
-![](media/image218.wmf)
+$${\left( \begin{aligned}
+ & \sum_{t = v + RVPRL_{r,v,p}}^{}{VAR\_ SCAP_{r,v,t,p}if\mspace{6mu} ips = \text{'N}'} \\
+ & \sum_{\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\sum_{\mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}}}^{}\frac{VAR\_ ACT_{r,v,t,p,s} \times D_{t}}{PRC\_ CAPACT_{r,p} \times NCAP\_ OLIFE_{r,v,p}}}otherwise
+\end{aligned} \right)
+}{\overset{\underset{}{}}{\leq}
+}{VAR\_ NCAP_{r,tt(v),p} + NCAP\_ PASTI_{r,v,p} - \sum_{\begin{aligned}
+ & \mathbf{obj}\_\mathbf{sum}\mathbf{s}_{\mathbf{r},\mathbf{v},\mathbf{p}} \\
+ & \mathbf{prc}\_\mathbf{rca}\mathbf{p}_{\mathbf{r},\mathbf{p}}
+\end{aligned}}^{}{VAR\_ SCAP_{r,v,'0',p}}\mspace{6mu}}$$
 
 ### Equations: EQ_SLSIFT
 
@@ -4248,8 +5166,8 @@ as described below.
 
 **Notation:**
 
--   *P(s)* -- Set of parent timeslice of timeslice
-    ![](media/image133.png)![](media/image133.png) in the timeslice tree
+-   *P(s)* -- Set of parent timeslice of timeslice $s$ in the timeslice
+    tree
 
 -   *C(s)* -- Set of child timeslices of timeslice s in the timeslice
     tree
@@ -4276,7 +5194,7 @@ commodity, i.e. *com*=*D*, but TIMES allows also the load-shifting
 process to convert an upstream commodity com into *D*, while shifting
 its load. The seasonal balances could then be written as follows:
 
-![](media/image219.wmf)
+$$\sum_{s \in S_{i}}^{}{VAR\_ SIN(r,t,p,com,s)} = \sum_{s \in S_{i}}^{}{VAR\_ SOUT(r,t,p,D,s)},\quad\forall(r,t),\mspace{6mu} i = 1,...,NS$$
 
 where the *Si*\'s are the subsets of time-slices in each season
 *i* = 1,...,*NS*. For example, *S~1~* could be for winter, *S~2~* for
@@ -4296,7 +5214,8 @@ As the model generator automatically aggregates the demand into
 for the maximum allowed deviations from the exogenous nominal demand
 levels can be formulated as follows:
 
-![](media/image220.wmf)
+$${VAR\_ SIN(r,t,p,com,s) + VAR\_ SOUT(r,t,p,D,s)\quad \leq \quad STG\_ SIFT(r,t,p,D,s)\mspace{6mu} \times 
+}{\sum_{ts \in RS\_ TREE_{r,s}}^{}\left( \frac{RTCS\_ TSFR_{r,t,D,s,ts}}{COM\_ IE_{r,t,D,ts}} \times VAR\_ COMPRD_{r,t,D,ts} \right)\quad\forall(r,t,s),\mspace{6mu} s \in \left\{ ts|PRC\_ TS_{r,p,ts} \right\}}$$
 
 In addition, the user can also define maximum fractions for the total
 load shifting within each season in proportion to the total demand in
@@ -4304,7 +5223,7 @@ that season, by specifying *STG_SIFT(r,y,p,\'ACT\',s)*. In this case,
 the constraints for the maximum allowed shifting in proportion to the
 seasonal total demand in season *i* can be formulated as follows:
 
-![](media/image221.wmf)
+$$\sum_{ts \in S_{i}}^{}{VAR\_ SOUT_{r,t,p,D,ts}} \leq STG\_ SIFT_{r,t,p,ACT,s} \cdot \sum_{\underset{RS\_ TREE_{S_{i}}}{ts \in}}^{}\frac{RTCS\_ TSFR_{r,t,D,s,ts} \cdot VAR\_ COMPRD_{r,t,D,ts}}{COM\_ IE_{r,t,D,ts}}$$
 
 C.  **Balance over user-defined time-window**
 
@@ -4317,7 +5236,10 @@ the original (unshifted) demand. This requirement can be specified by
 
 **Equation:**
 
-![](media/image222.wmf)
+$$\sum_{ts \in C\left( P(s) \right)}^{}\begin{bmatrix}
+\left( \sum_{v}^{}{VAR\_ SIN_{r,v,t,p,com,ts} - VAR\_ SOUT_{r,v,t,p,D,ts}} \right) \cdot \\
+\left( {mod}(Hour(s) - Hour(ts),24) < ACT\_ TIME_{r,t,p}^{N} \right)
+\end{bmatrix}\mspace{6mu}\mspace{6mu} \geq 0\quad\forall(r,t,s),s\mspace{6mu} \in \left\{ sl|PRC\_ TS_{r,p} \right\}$$
 
 D.  **Maximum advance or delay for meeting the shited loads**
 
@@ -4331,9 +5253,14 @@ are symmetric.
 
 **Equations (illustrated here for the symmetric case bd=FX only):**
 
-![](media/image223.wmf)
+$${VAR\_ DAC_{r,t,p,s,LO} - VAR\_ DAC_{r,t,p,s - 1,LO} + VAR\_ DAC_{r,t,p,s - 1,UP} - VAR\_ DAC_{r,t,p,s,UP}
+}{= \quad\sum_{v}^{}\left( VAR\_ SIN_{r,v,t,p,com,s} - \mspace{6mu} VAR\_ SOUT_{r,v,t,p,D,s} \right)\quad\forall(r,t,s),s \in \left\{ ts|PRC\_ TS_{r,p} \right\}\mspace{6mu}}$$
 
-![](media/image224.wmf)
+$${VAR\_ DAC_{r,t,p,s,UP} + VAR\_ DAC_{r,t,p,s,LO} - 
+}{\sum_{ts \in C\left( P(s) \right)}^{}\begin{bmatrix}
+\left( \sum_{v}^{}{VAR\_ SIN_{r,v,t,p,ts}} + VAR\_ DAC_{r,t,p,ts - 1,UP} - VAR\_ DAC_{r,t,p,ts,UP} \right) \cdot \\
+\left( {mod}(Hour(s) - Hour(ts),24) < ACT\_ TIME_{r,t,p}^{FX} \right)
+\end{bmatrix}\mspace{6mu} \leq 0\quad\forall(r,t,s)\mspace{6mu}}$$
 
 ### Equation: EQ_STGCCL
 
@@ -4372,7 +5299,9 @@ storage process (e.g. 15 years).
 
 **Equation formulation:**
 
-![](media/image225.wmf)
+$${\left( COEF\_ CPT_{r,v,t,p} \cdot VAR\_ NCAP_{r,v,p} + VAR\_ STGCC_{r,v,t,p} \right) \times \max_{s}\left( NCAP\_ AF_{r,v,p,s} \right) \times 
+}{PRC\_ CAPACT_{r,p} \geq 
+}{\left( \frac{ncap\_ tlife_{r,v,p}}{stg\_ maxcyc_{r,v,p}} \times \frac{\sum_{c,s}^{}{VAR\_ SOUT_{r,v,t,p,c,s}}}{prc\_ actflo_{r,v,p,c}} \right),\quad\forall(r,v,t,p) \in RTP\_ VINTYR\mspace{6mu}}$$
 
 ### Equations: EQ_STGAUX
 
@@ -4390,7 +5319,29 @@ activity and auxiliary storage flows.
 
 **Equation:**
 
-![](media/image226.wmf)
+$${EQ\_ STGAUX_{r,v,t,p,c,s}\mspace{6mu} \ni \left( \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \land \mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{s}} \land \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}',\mathbf{p}} \land \neg\mathbf{rpc}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}} \right)
+}{VAR\_ FLO_{r,v,t,p,c,s} = 
+}
+{⥂ ⥂ ⥂ ⥂ PRC\_ ACTFLO_{r,v,p,c} \times \left( \begin{aligned}
+ & \left( \begin{aligned}
+ & VAR\_ ACT_{r,v,t - 1,p,s} \times \frac{G\_ YRFR_{r,s}}{RS\_ STGPRD_{r,s}} - \\
+ & \left( \sum_{c \in \left\{ \begin{aligned}
+ & \mathbf{to}\mathbf{p}_{IN} \\
+ & \mathbf{prc}\_\mathbf{stgips}
+\end{aligned} \right\}}^{}\frac{VAR\_ SIN_{r,v,t,p,c,s}}{PRC\_ ACTFLO_{r,v,p,c}} - \sum_{c \in \left\{ \begin{aligned}
+ & \mathbf{to}\mathbf{p}_{OUT} \\
+ & \mathbf{prc}\_\mathbf{stgips}
+\end{aligned} \right\}}^{}\frac{VAR\_ SOUT_{r,v,t,p,c,s}}{PRC\_ ACTFLO_{r,v,p,c}} \right) \times \\
+ & \left( \sum_{y \in \left\{ \begin{aligned}
+ & \mathbf{periody}\mathbf{r}_{\mathbf{t},\mathbf{y}} \\
+ & y \geq M(t)
+\end{aligned} \right\}}^{}\left( 1 - STG\_ LOSS_{r,v,p,s} \right)^{(E(t) - y + 0.5)} \right)
+\end{aligned} \right) \\
+ & \times \left( \left( 1 - STG\_ LOSS_{r,v,p,s} \right)^{\left( M(t) - E(t) - Mod(D(t)/2,1) \right)} \right)^{\left( 1\mspace{6mu} if\mspace{6mu}\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STK}',\mathbf{p}} \right)}
+\end{aligned} \right)
+}
+{+ \mspace{6mu}\mspace{6mu}\sum_{com \in \mathbf{to}\mathbf{p}_{IN}}^{}{VAR\_ SIN_{r,v,t,p,com,s} \times \left( \overset{\underset{}{}}{COEF\_ PTRAN_{r,v,p,com,com,c,s}} \right)}
+}$$$+ \sum_{com \in \mathbf{to}\mathbf{p}_{OUT}}^{}{VAR\_ SOUT_{r,v,t,p,com,s} \times \left( \frac{1}{COEF\_ PTRAN_{r,v,p,c,c,com,s}}\mspace{6mu} if\mspace{6mu} COEF\_ PTRAN_{r,v,p,c,c,com,s} > 0 \right)}$
 
 ###  Equation: EQ_STGTSS/IPS
 
@@ -4477,13 +5428,51 @@ EQ(*l*)\_STGIN/OUT**
 
 **Equation:**
 
-![](media/image227.wmf)
+$${EQ\_ STGTSS_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left( \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \land \mathbf{rps}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{s}} \land \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}',\mathbf{p}} \right)
+}
+{VAR\_ ACT_{r,v,t,p,s} = 
+}{\left\lbrack \begin{aligned}
+ & VAR\_ ACT_{r,v,t,p,s - 1} + \\
+ & \sum_{c \in \mathbf{rpc}\_\mathbf{stg}}^{} \\
+ & \quad\left( \begin{aligned}
+ & \text{if p is a night-storage device:} \\
+ & \quad\frac{VAR\_ SIN_{r,v,t,p,c,s - 1}}{PRC\_ ACTFLO_{r,v,p,c}} \times \left( if\mspace{6mu} s - 1 \in \mathbf{prc}\_\mathbf{nstt}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s} - \mathbf{1}} \land \mathbf{to}\mathbf{p}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{IN}'} \right) - \\
+ & \quad\frac{VAR\_ SOUT_{r,v,t,p,c,s - 1}}{PRC\_ ACTFLO_{r,v,p,c}} \times \left( if\mspace{6mu} s - 1 \notin \mathbf{prc}\_\mathbf{nstt}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s} - \mathbf{1}} \land \mathbf{to}\mathbf{p}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{OUT}'} \right) \\
+ & \text{if p is not a night-storage device} \\
+ & \quad + \sum_{top_{r,p,c,'IN'}}^{}\frac{VAR\_ SIN_{r,v,t,p,c,s - 1}}{PRC\_ ACTFLO_{r,v,p,c}} - \sum_{top_{r,p,c,'OUT'}}^{}\frac{VAR\_ SOUT_{r,v,t,p,c,s - 1}}{PRC\_ ACTFLO_{r,v,p,c}}
+\end{aligned} \right) \\
+ & - \sum_{ts \in \{ sl|\mathbf{prc}\_\mathbf{t}\mathbf{s}_{r,p,sl} \cap \mathbf{rs}\_\mathbf{belo}\mathbf{w}_{r,sl,s}\}}^{}{VAR\_ SOUT_{r,v,p,'ACT',ts} \times RS\_ FR_{r,s - 1,ts}} \\
+ & - \left\lbrack \left( \frac{VAR\_ ACT_{r,v,t,p,s} + VAR\_ ACT_{r,v,t,p,s - 1}}{2} \right) \right\rbrack \times STG\_ LOSS_{r,v,p,s} \times \frac{G\_ YRFR_{r,s}}{RS\_ STGPRD_{r,s}}
+\end{aligned} \right\rbrack
+}
+{+ STG\_ CHRG_{r,t,p,s - 1}}$$
 
 #### EQ_STGIPS: Storage between periods
 
 **Equation:**
 
-![](media/image228.wmf)
+$${EQ\_ STGIPS_{r,v,t,p}\forall(r,v,t,p) \in \left( \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \cap \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STK}',\mathbf{p}} \right)
+}{VAR\_ ACT_{r,v,t,p,'ANNUAL'} = 
+}
+{⥂ ⥂ ⥂ ⥂ ⥂ \sum_{\begin{matrix}
+v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t} - \mathbf{1},\mathbf{p}} \\
+p \in \mathbf{prc}\_\mathbf{vint}
+\end{matrix}}^{}\left\lbrack \begin{aligned}
+ & VAR\_ ACT_{r,v,t - 1,p,'ANNUAL'} \\
+ & \times (1 - STG\_ LOSS_{r,v,p,'ANNUAL'})^{D(t)}
+\end{aligned} \right\rbrack + \sum_{p \notin \mathbf{prc}\_\mathbf{vint}}^{}\left\lbrack \begin{aligned}
+ & VAR\_ ACT_{r,t - 1,t - 1,p,'ANNUAL'} \\
+ & \times (1 - STG\_ LOSS_{r,v,p,'ANNUAL'})^{D(t)}
+\end{aligned} \right\rbrack
+}{+ \left\lbrack \sum_{\begin{matrix}
+y \in \mathbf{periody}\mathbf{r}_{\mathbf{t},\mathbf{y}} \\
+c \in \mathbf{rpc}\_\mathbf{st}\mathbf{g}_{r,p,c}
+\end{matrix}}^{}{\left( \begin{aligned}
+ & \sum_{c \in \mathbf{to}\mathbf{p}_{IN}}^{}\frac{VAR\_ SIN_{r,v,t,p,c,'ANNUAL'}}{PRC\_ ACTFLO_{r,v,p,c}} - \\
+ & \sum_{c \in \mathbf{to}\mathbf{p}_{OUT}}^{}\frac{VAR\_ SOUT_{r,v,t,p,c,'ANNUAL'}}{PRC\_ ACTFLO_{r,v,p,c}}
+\end{aligned} \right) \times (1 - STG\_ LOSS_{r,v,p,'ANNUAL'})^{(E(t) - y + 0.5)}} \right\rbrack
+}
+{+ STG\_ CHRG_{r,t,p,'ANNUAL'}(whenORD(t) = 1)}$$
 
 ###  Equations: EQ(*l*)\_STGIN / EQ(*l*)\_STGOUT
 
@@ -4493,14 +5482,11 @@ EQ(*l*)\_STGIN/OUT**
 **Type**: Any type, as determined by the bound index **bd** of
 STGIN/OUT_BND:
 
--   *l* = 'G' for **bd** = 'LO' (lower bound) yields
-    ![](media/image118.wmf).
+-   *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 
--   *l* = 'E' for **bd** = 'FX' (fixed bound) yields
-    ![](media/image119.wmf).
+-   *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 
--   *l* = 'L' for **bd** = 'UP' (upper bound) yields
-    ![](media/image120.wmf).
+-   *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
 **Related variables: VAR_SIN, VAR_SOUT**
 
@@ -4541,7 +5527,17 @@ the given bound value.
 
 **Equation:**
 
-![](media/image229.wmf)
+$
+$$${EQ(l)\_ STGIN/OUT_{r,t,p,c,s} \ni \left\{ \begin{aligned}
+ & (r,t,p,c) \in \mathbf{rtp}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c}} \land STGIN/OUT\_ BND_{r,t,p,c,s,bd} \land s \in \mathbf{rps}\_\mathbf{prct}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}} \land \\
+ & \left( \mathbf{prc}\_\mathbf{vin}\mathbf{t}_{\mathbf{r},\mathbf{p}} \vee \left( NOT\mspace{6mu}\mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}} \right) \right)
+\end{aligned} \right\}
+}
+{\sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \land \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}} \right)}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{VAR\_ SIN/SOUT_{r,v,t,p,c,ts}}}
+}
+{( \leq / \geq / = )STGIN/OUT\_ BND_{r,t,p,c,s,bd}
+}
+{\text{wheretheequationsignisindicatedbyequationindex}\mathbf{l}\text{ based on the bound type }\mathbf{bd}.}$$
 
 ###  Equations: EQ_STSBAL
 
@@ -4559,7 +5555,25 @@ general timeslice storage.
 
 **Equation:**
 
-![](media/image230.wmf)
+$${EQ\_ STSBAL_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left( \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \cap \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}} \cap \neg\mathbf{rps}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{s}} \right)
+}{\sum_{\mathbf{rs}\_\mathbf{belo}\mathbf{w}_{\mathbf{r},'\mathbf{ANNUAL}',\mathbf{s}}}^{}{VAR\_ ACT_{r,v,t,p,s}} = 
+}{\sum_{\mathbf{rs}\_\mathbf{belo}\mathbf{w}_{\mathbf{r},'\mathbf{ANNUAL}',\mathbf{s} - 1}}^{}\left( \begin{aligned}
+ & VAR\_ ACT_{r,v,t,p,s - 1} + VAR\_ SOUT_{r,v,t,p,'ACT',s - 1} - \\
+ & \sum_{ts \in \left\{ sl|\mathbf{prc}\_\mathbf{t}\mathbf{s}_{r,p,sl} \land \mathbf{rs}\_\mathbf{below}\mathbf{1}_{\mathbf{r},\mathbf{sl},\mathbf{s}} \right\}}^{}{VAR\_ SOUT_{r,v,t,p,'ACT',ts} \times RS\_ FR_{r,s - 1,ts} -} \\
+ & \left( \frac{VAR\_ ACT_{r,v,t,p,s} + VAR\_ ACT_{r,v,t,p,s - 1}}{} \right) \times STG\_ LOSS_{r,v,p,s} \times \frac{G\_ YRFR_{r,s}}{RS\_ STGPRD_{r,s}}
+\end{aligned} \right) + 
+}{⥂ ⥂ ⥂ ⥂ ⥂ 
+}{+ \sum_{s \in \left\{ sl|\mathbf{annual}(sl) \right\}}^{}\left\lbrack \begin{aligned}
+ & \sum_{c \in \left\{ \begin{aligned}
+ & \mathbf{stgips} \cap \\
+ & \mathbf{to}\mathbf{p}_{'\mathbf{IN}'}
+\end{aligned} \right\}}^{}\frac{VAR\_ SIN_{r,v,t,p,c,s}}{PRC\_ ACTFLO_{r,v,p,c}} - \sum_{c \in \left\{ \begin{aligned}
+ & \mathbf{stgips} \cap \\
+ & \mathbf{to}\mathbf{p}_{'\mathbf{OUT}'}
+\end{aligned} \right\}}^{}\frac{VAR\_ SOUT_{r,v,t,p,c,s}}{PRC\_ ACTFLO_{r,v,p,c}} - \\
+ & VAR\_ SOUT_{r,v,t,p,'ACT',s}
+\end{aligned} \right\rbrack
+}$$
 
 ###  Equations: EQ(*l*)\_UCRTP
 
@@ -4569,14 +5583,11 @@ general timeslice storage.
 **Type**: Any type, as determined by the bound index **bd** of
 **uc_dynbnd**:
 
--   *l* = \'N\' for **bd** = \'LO\' (lower bound) yields
-    ![](media/image118.wmf).
+-   *l* = \'N\' for **bd** = \'LO\' (lower bound) yields $\geq$.
 
--   *l* = \'N\' for **bd** = \'UP\' (upper bound) yields
-    ![](media/image120.wmf).
+-   *l* = \'N\' for **bd** = \'UP\' (upper bound) yields $\leq$.
 
--   *l* = \'E\' for **bd** = \'FX\' (fixed bound) yields
-    ![](media/image119.wmf).
+-   *l* = \'E\' for **bd** = \'FX\' (fixed bound) yields $=$.
 
 **Related variables: VAR_ACT, VAR_CAP, VAR_NCAP**
 
@@ -4618,15 +5629,25 @@ new capacity (NCAP) or activity level (ACT) of a particular process
 
 **Case A. For CAP:**
 
-![](media/image231.wmf)![](media/image232.wmf)
+$${\mathbf{EQ(l)\_ UCRT}\mathbf{P}_{\mathbf{uc\_ n,r,t,p,'CAP',bd}}\mathbf{\quad \ni}\left( \mathbf{rt}\mathbf{p}_{\mathbf{r,t,p}}\mathbf{\land uc\_ dynbn}\mathbf{d}_{\mathbf{uc\_ n,bd}}\mathbf{\land}\left( \sum_{\mathbf{side}}^{}{\left( \mathbf{UC\_ CA}\mathbf{P}_{\mathbf{uc\_ n,side,r,t,p}} \right)\mathbf{> 0}} \right) \right)\mathbf{VAR\_ CA}\mathbf{P}_{\mathbf{r,t,p}}
+}{\left\{ \mathbf{\leq}\mathbf{; = ;}\mathbf{\geq} \right\}
+}{\mathbf{VAR\_ CA}\mathbf{P}_{\mathbf{r,t}\mathbf{-}\mathbf{1,p}}\mathbf{\times}\left( \mathbf{UC\_ CA}\mathbf{P}_{\mathbf{uc\_ n,}\mathbf{'}\mathbf{LHS}\mathbf{'}\mathbf{,r,t,p}} \right)^{\mathbf{(M(t)}\mathbf{-}\mathbf{M(t}\mathbf{-}\mathbf{1))}}\mathbf{+ UC\_ CA}\mathbf{P}_{\mathbf{uc\_ n,}\mathbf{'}\mathbf{RHS}\mathbf{'}\mathbf{,r,t,p}}\mathbf{\times}\mathbf{(M(t)}\mathbf{-}\mathbf{M(t}\mathbf{-}\mathbf{1))}}$$
 
 **Case B. For NCAP:**
 
-![](media/image233.wmf)![](media/image234.wmf)
+$${\mathbf{EQ(l)\_ UCRT}\mathbf{P}_{\mathbf{uc\_ n,r,t,p,'NCAP',bd}}\mathbf{\quad \ni}\left( \mathbf{rt}\mathbf{p}_{\mathbf{r,t,p}}\mathbf{\land uc\_ dynbn}\mathbf{d}_{\mathbf{uc\_ n,bd}}\mathbf{\land}\left( \sum_{\mathbf{side}}^{}{\left( \mathbf{UC\_ NCA}\mathbf{P}_{\mathbf{uc\_ n,side,r,t,p}} \right)\mathbf{> 0}} \right) \right)\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{r,t,p}}
+}{\left\{ \mathbf{\leq}\mathbf{; = ;}\mathbf{\geq} \right\}
+}{\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{r,t}\mathbf{-}\mathbf{1,p}}\mathbf{\times}\left( \mathbf{UC\_ NCA}\mathbf{P}_{\mathbf{uc\_ n,}\mathbf{'}\mathbf{LHS}\mathbf{'}\mathbf{,r,t,p}} \right)^{\mathbf{(M(t)}\mathbf{-}\mathbf{M(t}\mathbf{-}\mathbf{1))}}\mathbf{+ UC\_ NCA}\mathbf{P}_{\mathbf{uc\_ n,}\mathbf{'}\mathbf{RHS}\mathbf{'}\mathbf{,r,t,p}}\mathbf{\times}\mathbf{(M(t)}\mathbf{-}\mathbf{M(t}\mathbf{-}\mathbf{1))}}$$
 
 **Case C. For ACT:**
 
-![](media/image235.wmf)![](media/image236.wmf)
+![{\"mathml\":\"\<math
+style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
+for Microsoft
+Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+height="7.507655293088364e-3in"}$\sum_{\mathbf{v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}}^{}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{prc\_ ts}}^{}{\mathbf{VAR\_ AC}\mathbf{T}_{\mathbf{r,t,p,s}}}}\mathbf{\quad}\left\{ \mathbf{\leq}\mathbf{; = ;}\mathbf{\geq} \right\}
+$$${\sum_{\mathbf{v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}}^{}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{prc\_ ts}}^{}{\mathbf{VAR\_ AC}\mathbf{T}_{\mathbf{r,t}\mathbf{-}\mathbf{1,p,s}}}\mathbf{\times}\left( \mathbf{UC\_ AC}\mathbf{T}_{\mathbf{uc\_ n,}\mathbf{'}\mathbf{LHS}\mathbf{'}\mathbf{,r,t,p,}\mathbf{'}\mathbf{ANNYAL}\mathbf{'}} \right)^{\mathbf{(M(t)}\mathbf{-}\mathbf{M(t}\mathbf{-}\mathbf{1))}}}
+}{\mathbf{+ UC\_ AC}\mathbf{T}_{\mathbf{uc\_ n,}\mathbf{'}\mathbf{RHS}\mathbf{'}\mathbf{,r,t,p,}\mathbf{'}\mathbf{ANNUAL}\mathbf{'}}\mathbf{\times}\mathbf{(M(t)}\mathbf{-}\mathbf{M(t}\mathbf{-}\mathbf{1))}}$$
 
 ##  User Constraints
 
@@ -4643,14 +5664,11 @@ having to bother with any GAMS programming.
 **Type:** Any type, as determined by the bound index **bd** of
 *UC_RHS*(*R*)(*T*)(*S*)~(*r*)*,uc_n,*(*t*)*,*(*s*)*,bd*~ :
 
--   *l* = \'G\' for **bd** = \'LO\' (lower bound) yields
-    ![](media/image118.wmf).
+-   *l* = \'G\' for **bd** = \'LO\' (lower bound) yields $\geq$.
 
--   *l* = \'E\' for **bd** = \'FX\' (fixed bound) yields
-    ![](media/image119.wmf).
+-   *l* = \'E\' for **bd** = \'FX\' (fixed bound) yields $=$.
 
--   *l* = \'L\' for **bd** = \'UP\' (upper bound) yields
-    ![](media/image120.wmf).
+-   *l* = \'L\' for **bd** = \'UP\' (upper bound) yields $\leq$.
 
 **Related variables:** VAR_ACT, VAR_CAP, VAR_FLO, VAR_IRE, VAR_NCAP,
 VAR_COMPRD, VAR_COMNET, VAR_CUMCOM, VAR_CUMFLO, VAR_UPS
@@ -4689,7 +5707,12 @@ then presented in a new section.
 
 The so-called LHS user constraints have the following main structure:
 
-![](media/image237.wmf)
+$${EQ(l)\_ UC(R)(T)(S)_{(r),uc\_ n,(t),(s)}\forall\left\{ \begin{aligned}
+ & UC\_ RHS(R)(T)(S)_{(r),uc\_ n,(t),(s),bd} \land \left( r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}} \right) \\
+ & \land \left( t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}} \right) \land \left( s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \right)
+\end{aligned} \right\}
+}
+{\left( \sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}}^{}{} \right)\left( \sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}^{}{} \right)\left( \sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}}}^{}{} \right)LHS_{r,t,s}\left\{ = / \geq / \leq \right\} UC\_ RHS(R)(T)(S)_{(r),uc\_ n,(t),(s),bd}}$$
 
 To identify the user constraint, the modeller has to give it a unique
 name **uc_n**. The LHS expression *LHS~r,t,s~* consists of the sum of
@@ -4734,21 +5757,21 @@ time periods at the same time, have been considered unrealistic, so that
 combination of elements, e.g. the periods specified in **uc_t_each/sum**
 do not have to be consecutive.
 
-![](media/image238.wmf)
+![](media/image33.wmf){width="5.895833333333333in"
+height="4.760416666666667in"}
 
 Figure 14: The allowed combinations of region, period and timeslice for
 user constraints.
 
 The RHS (right hand side) of this category of user constraint consists
-of a constant ![](media/image239.wmf) which is provided by the modeller.
-The RHS constant also defines the equation type of the user constraint.
-If the RHS constant has the index FX, the user constraint is generated
-as strict equality (=). If the RHS index is LO (respectively UP), the
-constraint has ![](media/image240.wmf) (respectively
-![](media/image241.wmf)) inequality sign. It should be noted that a RHS
-user constraint is only generated when a RHS constant is specified (this
-feature may be used to easily turn-on/off user constraints between
-different scenarios).
+of a constant $UC\_ RHS(R)(T)(S)_{(r),uc\_ n,(t),(s),bd}$ which is
+provided by the modeller. The RHS constant also defines the equation
+type of the user constraint. If the RHS constant has the index FX, the
+user constraint is generated as strict equality (=). If the RHS index is
+LO (respectively UP), the constraint has $\geq$ (respectively $\leq$)
+inequality sign. It should be noted that a RHS user constraint is only
+generated when a RHS constant is specified (this feature may be used to
+easily turn-on/off user constraints between different scenarios).
 
 In addition to the coefficients UC_ACT, UC_FLO, etc. also some model
 input attributes may be used as coefficient for the variables in a user
@@ -4761,12 +5784,22 @@ ONLINE, EFF, NET, CUMSUM, PERIOD, GROWTH, see Section for more
 information).
 
 Instead of defining different equality types of user constraints
-depending on the bound type of ![](media/image242.wmf) an alternative
-formulation can be used in TIMES. In this formulation a variable
-![](media/image243.wmf) is created that is set equal to the LHS
-expression. The RHS bounds are then applied to these variables.
+depending on the bound type of
+$UC\_ RHS(R)(T)(S)_{(r),uc\_ n,(t),(s),bd}$ an alternative formulation
+can be used in TIMES. In this formulation a variable
+$VAR\_ UC(R)(T)(S)_{(r),uc\_ n,(t),(s)}$ is created that is set equal to
+the LHS expression. The RHS bounds are then applied to these variables.
 
-![](media/image244.wmf)
+$${EQE\_ UC(R)(T)(S)_{(r),uc\_ n,(t),(s)}\forall\left\{ \begin{aligned}
+ & UC\_ RHS(R)(T)(S)_{(r),uc\_ n,(t),(s),bd} \land \left( r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}} \right) \\
+ & \land \left( t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}} \right) \land \left( s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \right)
+\end{aligned} \right\}
+}
+{\left( \sum_{r \in uc\_ r\_ sum_{r,uc\_ n}}^{}{} \right)\left( \sum_{t \in uc\_ t\_ sum_{r,uc\_ n,t}}^{}{} \right)\left( \sum_{s \in uc\_ ts\_ sum_{r,uc\_ n,s}}^{}{} \right)LHS_{r,t,s} = VAR\_ UC(R)(T)(S)_{(r),uc\_ n,(t),(s)}
+}
+{VAR\_ UC(R)(T)(S).LO_{(r),uc\_ n,(t),(s)} = UC\_ RHS(R)(T)(S)_{(r),uc\_ n,(t),(s),'LO'}
+}{VAR\_ UC(R)(T)(S).UP_{(r),uc\_ n,(t),(s)} = UC\_ RHS(R)(T)(S)_{(r),uc\_ n,(t),(s),'UP'}
+}{VAR\_ UC(R)(T)(S).FX_{(r),uc\_ n,(t),(s)} = UC\_ RHS(R)(T)(S)_{(r),uc\_ n,(t),(s),'FX'}}$$
 
 The alternative formulation is created when the dollar control parameter
 VAR_UC (see Part III for the use of dollar control parameters) is set to
@@ -4782,11 +5815,16 @@ expression *RHS~r,t,s--1~* is generated for the preceding timeslice
 **s--**RS_STG(r,s) under the same parent timeslice. Timeslice-dynamic
 user constraints of type can thus be written as follows:
 
-  -----------------------------------------------------------------------
-  ![](media/image245.wmf)
-  -----------------------------------------------------------------------
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  $${EQ(l)\_ UCRS_{r,uc\_ n,t,tsl,s} \ni \left\{ \begin{aligned}
+   & UC\_ RHSRTS_{r,uc\_ n,t,s,bd} \land \left( r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}} \right) \land \left( t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}} \right) \\
+   & \land (s \in \{ ts|\mathbf{ts}\_\mathbf{gr}\mathbf{p}_{r,tsl,s} \land \bigcup_{side}^{}{\mathbf{uc}\_\mathbf{ts}\mathbf{l}_{r,uc\_ n,side,tsl}}\})
+  \end{aligned} \right\}
+  }
+  {LHS_{r,t,s}\quad\left\{ = / \geq / \leq \right\}\sum_{\mathbf{uc}\_\mathbf{tsl}(r,ucn,'RHS',tsl)}^{}{RHS_{r,t,s - RS\_ STG(r,s)}} + \overset{}{UC\_ RHS(R)T(S)_{(r),uc\_ n,t,(s),bd}}}$$
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  -----------------------------------------------------------------------
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   : Table C-3*.* ETL-specific model variables
 
@@ -4814,12 +5852,24 @@ according to the dynamic type.
 Dynamic user constraints of type (**t,t+1**) can thus be written as
 follows:
 
-![](media/image246.wmf)
+$${EQ(l)\_ UC(R)SU(S)_{(r),uc\_ n,t,(s)} \ni \left\{ \begin{aligned}
+ & UC\_ RHS(R)T(S)_{(r),uc\_ n,t,(s),bd} \land \left( r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}} \right) \\
+ & \land \left( t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{suc}\mathbf{c}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}} \right) \land \left( s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \right)
+\end{aligned} \right\}
+}
+{\left( \sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}}^{}{} \right)\left( \sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}}}^{}{} \right)LHS_{r,t,s}\left\{ = / \geq / \leq \right\}\left( \sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}}^{}{} \right)\left( \sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}}}^{}{} \right)RHS_{r,t + 1,s} + 
+}{\quad\overset{}{UC\_ RHS(R)T(S)_{(r),uc\_ n,t,(s),bd}}}$$
 
 Similarly, dynamic user constraints of type (**t--1,t**) can be written
 as follows:
 
-![](media/image247.wmf)
+$${EQ(l)\_ UC(R)SU(S)_{(r),uc\_ n,t,(s)} \ni \left\{ \begin{aligned}
+ & UC\_ RHS(R)T(S)_{(r),uc\_ n,t,(s),bd} \land \left( r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}} \right) \\
+ & \land \left( t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{suc}\mathbf{c}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}} \right) \land \left( s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \right)
+\end{aligned} \right\}
+}
+{\left( \sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}}^{}{} \right)\left( \sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}}}^{}{} \right)LHS_{r,t,s}\left\{ = / \geq / \leq \right\}\left( \sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}}^{}{} \right)\left( \sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}}}^{}{} \right)RHS_{r,t - 1,s} + 
+}{\quad\overset{}{UC\_ RHS(R)T(S)_{(r),uc\_ n,t,(s),bd}}}$$
 
 To build a dynamic user constraint of type (**t,t+1**), between the
 periods **t** and **t+1**, the modeller identifies the desired set of
@@ -4895,7 +5945,7 @@ technology **p** will be interpreted as annual growth rate and the final
 coefficient of the variable VAR_CAP in the user constraint will be
 calculated in the following way:
 
-![](media/image248.wmf).
+$\left( UC\_ CAP_{'G\_ 1','LHS','REG1',t,p} \right)^{M(t + 1) - M(t)}$.
 
 With the help of the input set UC_ATTR, growth coefficients can be
 defined for the variables in LHS expression (as in the example) or for
@@ -4922,7 +5972,8 @@ The annual capacity increase of technology E01 between two periods
 should not exceed 2% for model covering the three ten-year periods 1990,
 2000 and 2010. So one wants to create user constraints expressing:
 
-![](media/image249.wmf)
+$${1.02^{10} \times VAR\_ CAP_{'REG1','1990','E01'} + 1 \geq VAR\_ CAP_{'REG1','2000','E01'}
+}{1.02^{10} \times VAR\_ CAP_{'REG1','2000','E01'} + 1 \geq VAR\_ CAP_{'REG1','2010','E01'}}$$
 
 The summand 1 on the LHS expresses an initial capacity value, so that
 capacity growth can start from this starting point, e.g. if
@@ -5080,17 +6131,17 @@ framework in TIMES.
 
 [Predefined internal sets:]{.underline}
 
--   ![](media/image250.wmf): set having the two elements *LHS* and *RHS*
+-   $\mathbf{side}$: set having the two elements *LHS* and *RHS*
     > (elements are fixed and not under user control),
 
--   ![](media/image251.wmf): set having the elements *ACT*, *FLO*,
-    > *IRE*, *COMCON*, *COMNET*, *COMPRD*, *NCAP*, *CAP, UCN*, and used
-    > in the multi-dimensional set *UC_ATTR* (elements are fixed and not
-    > under user control),
+-   $\mathbf{uc}\_\mathbf{grptype}$: set having the elements *ACT*,
+    > *FLO*, *IRE*, *COMCON*, *COMNET*, *COMPRD*, *NCAP*, *CAP, UCN*,
+    > and used in the multi-dimensional set *UC_ATTR* (elements are
+    > fixed and not under user control),
 
--   ![](media/image252.wmf): set having the following attribute names as
-    > elements: *COST, SUB, TAX, DELIV, INVCOST, INVSUB, INVTAX,
-    > BUILDUP, CAPACT, CAPFLO, NEWFLO, ONLINE, EFF, NET, CUMSUM,
+-   $\mathbf{uc}\_\mathbf{name}$: set having the following attribute
+    > names as elements: *COST, SUB, TAX, DELIV, INVCOST, INVSUB,
+    > INVTAX, BUILDUP, CAPACT, CAPFLO, NEWFLO, ONLINE, EFF, NET, CUMSUM,
     > PERDISC, PERIOD, GROWTH* and *SYNC*, used in the multi-dimensional
     > set *UC_ATTR* (elements are fixed and not under user control).
 
@@ -5219,23 +6270,100 @@ constraints the following placeholders are used for clarity reasons:
 *CUMFLO~r~*. For example the placeholder *ACT~r,t,p,s,\'LHS\'~* includes
 the part of the user constraint related to the activity variable.
 
-![](media/image253.wmf)
+$${ACT_{r,t,s,'LHS'}
+}{= 
+}{\sum_{(v,p) \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}\mspace{6mu}}^{}{\sum_{ts \in \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{}\left( \begin{aligned}
+ & VAR\_ ACT_{r,v,t,p,ts} \times UC\_ ACT_{uc\_ n,'LHS',r,t,p,ts} \times \left( RS\_ FR_{r,s,ts} \right) \\
+ & \times \\
+ & \left( \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ACOST_{r,t,p,cur}} \right)\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','ACT','COST'}\mspace{6mu} is\mspace{6mu} given \\
+ & 
+\end{aligned} \right)}}$$
 
-![](media/image254.wmf)
+$${FLO_{r,t,s,'LHS'}
+}{= 
+}{\sum_{(p,c,ts) \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}
+}\left\{ \begin{aligned}
+ & VAR\_ FLO_{r,v,t,p,c,ts} \times UC\_ FLO_{uc\_ n,'LHS',r,t,p,c,ts} \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \\
+ & \times \\
+ & \left\lbrack \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}\left( \begin{aligned}
+ & OBJ\_ FCOST_{r,t,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','COST'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & OBJ\_ FDELV_{r,t,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','DELIV'}\mspace{6mu} is\mspace{6mu} given \\
+ & - \\
+ & OBJ\_ FSUB_{r,t,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','SUB'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & OBJ\_ FTAX_{r,t,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','TAX'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right) \right\rbrack \\
+ & 
+\end{aligned} \right\}$$
 
-![](media/image255.wmf)
+$${IRE_{r,t,s,'LHS'}
+}{= \sum_{(p,c,ts) \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\sum_{ie \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ie}}}^{}}
+}\left\lbrack \begin{aligned}
+ & VAR\_ IRE_{r,v,t,p,c,ts,ie} \times UC\_ IRE_{uc\_ n,'LHS',r,t,p,c,ts,ie} \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \\
+ & \times \\
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{r,cur}}^{}\left( \begin{aligned}
+ & OBJ\_ FCOST_{r,t,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','IRE','COST'} \\
+ & + \\
+ & OBJ\_ FDELV_{r,t,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','IRE','DELIV'} \\
+ & - \\
+ & OBJ\_ FSUB_{r,t,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','IRE','SUB'} \\
+ & + \\
+ & OBJ\_ FTAX_{r,t,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','IRE','TAX'}
+\end{aligned} \right) \\
+ & 
+\end{aligned} \right\rbrack$$
 
-![](media/image256.wmf)
+$${COMPRD_{r,t,s,'LHS'}
+}{= \sum_{(c,ts) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\left( \begin{aligned}
+ & VAR\_ COMPRD_{r,t,c,ts} \times UC\_ COMPRD_{uc\_ n,'LHS',r,t,c,s} \\
+ & \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \times \\
+ & \sum_{\begin{matrix}
+cur \in \mathbf{rdcu}\mathbf{r}_{r,cur} \\
+uc\_ cost
+\end{matrix}}^{}\left( OBJ\_ COMPD_{r,t,c,ts,uc\_\cos t,cur}\quad if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','COMPRD',uc\_ cost} \right)
+\end{aligned} \right)}$$
 
-![](media/image257.wmf)
+$${COMNET_{r,t,s,'LHS'}
+}{= \sum_{(c,ts) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\left( \begin{aligned}
+ & VAR\_ COMNET_{r,t,c,ts} \times UC\_ COMNET_{uc\_ n,'LHS',r,t,c,s} \\
+ & \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \times \\
+ & \sum_{\begin{matrix}
+cur \in \mathbf{rdcu}\mathbf{r}_{r,cur} \\
+uc\_\cos t
+\end{matrix}}^{}\left( OBJ\_ COMNT_{r,t,c,ts,uc\_\cos t,cur}\quad if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','COMNET',uc\_\cos t} \right)
+\end{aligned} \right)}$$
 
-![](media/image258.wmf)
+$${NCAP_{r,t,'LHS'}
+}{= 
+}{\sum_{p}^{}\left\lbrack \begin{aligned}
+ & VAR\_ NCAP_{r,t,p} \times UC\_ NCAP_{uc\_ n,'LHS',r,t,p} \times \\
+ & \left( \begin{aligned}
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ICOST_{r,t,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','NCAP','COST'}\mspace{6mu} is\mspace{6mu} given \\
+ & - \\
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ISUB_{r,t,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','NCAP','SUB'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ITAX_{r,t,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','NCAP','TAX'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right) \\
+ & 
+\end{aligned} \right\rbrack}$$
 
-![](media/image259.wmf)
+$${CAP_{r,t,p,'LHS'}
+}{= 
+}{\sum_{p}^{}\left\lbrack \begin{aligned}
+ & VAR\_ CAP_{r,t,p} \times UC\_ CAP_{uc\_ n,'LHS',r,t,p} \\
+ & \times \\
+ & PRC\_ CAPACT_{r,p}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','CAP','CAPACT'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right\rbrack}$$
 
-![](media/image260.wmf)
+$${CUMCOM_{r}
+}{= 
+}{\sum_{\mathbf{rc}\_\mathbf{cumco}\mathbf{m}_{\mathbf{r},\mathbf{com}\_\mathbf{var},\mathbf{c}}}^{}{VAR\_ CUMCOM_{r,c,com\_{var},y1,y2}} \times UC\_ CUMCOM_{uc\_ n,r,com\_{var,}c,y1,y2}}$$
 
-![](media/image261.wmf)
+$${CUMFLO_{r}
+}{= 
+}{\sum_{\mathbf{rpc}\_\mathbf{cumfl}\mathbf{o}_{\mathbf{r},\mathbf{p},\mathbf{c}}}^{}\left( VAR\_ CUMFLO_{r,p,c,y1,y2} \times UC\_ CUMFLO_{uc\_ n,r,p,c,y1,y2} \right) + 
+}{\sum_{\mathbf{rpc}\_\mathbf{cumfl}\mathbf{o}_{\mathbf{r},\mathbf{p},'\mathbf{ACT}'}}^{}\left( VAR\_ CUMFLO_{r,p,'ACT',y1,y2} \times UC\_ CUMACT_{uc\_ n,r,p,y1,y2} \right)}$$
 
 #### Equation: EQ(*l*)\_UC / EQE_UC
 
@@ -5250,31 +6378,38 @@ which is summing over specified regions (**uc_r_sum**), periods
 
 **Equation:**
 
-![](media/image262.wmf)
+$${EQ(l)\_ UC_{uc\_ n} \ni UC\_ RHS_{uc\_ n,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image263.wmf)
+$${\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\mspace{6mu}\sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{sum}}^{}{\mspace{6mu}\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT_{r,t,s,'LHS'} + FLO_{r,t,s,'LHS'} + IRE_{r,t,s,'LHS'} \\
+ & + COMNET_{r,t,s,'LHS'} + COMPRD_{r,t,s,'LHS'}
+\end{aligned} \right)}}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\mspace{6mu}\left( \sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{sum}}^{}\left( NCAP_{r,t,'LHS'} + CAP_{r,t,'LHS'} \right) + \left( CUMCOM_{r} + CUMFLO_{r} \right) \right)}
+}$$
 
 when control parameter VAR_UC is set to NO by the user or is missing:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image265.wmf)
+$$UC\_ RHS_{uc\_ n,l} + \sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{sum}}^{}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{UC\_ TIME_{uc\_ n,r,t}} \times D_{t}}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the LHS is set equal to the variable VAR_UC. The
 bounds UC_RHS are then applied to the variable VAR_UC.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image267.wmf)
+$$VAR\_ UC_{uc\_ n} + \sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{sum}}^{}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{UC\_ TIME_{uc\_ n,r,t}} \times D_{t}}$$
 
 with
 
-![](media/image268.wmf)
+$$VAR\_ UC.LO_{uc\_ n} = UC\_ RHS_{uc\_ n,'LO'}$$
 
-![](media/image269.wmf)
+$$VAR\_ UC.UP_{uc\_ n} = UC\_ RHS_{uc\_ n,'UP'}$$
 
-![](media/image270.wmf)
+$$VAR\_ UC.FX_{uc\_ n} = UC\_ RHS_{uc\_ n,'FX'}$$
 
 #### Equation: EQ(*l*)\_UCR / EQE_UCR
 
@@ -5289,31 +6424,37 @@ periods (**uc_t_sum**) and timeslices (**uc_ts_sum**).
 
 **Equation:**
 
-![](media/image271.wmf)
+$${EQ(l)\_ UCR_{r,uc\_ n} \ni UC\_ RHSR_{r,uc\_ n,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image272.wmf)
+$${\sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{sum}}^{}{\mspace{6mu}\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT_{r,t,s,'LHS'} + FLO_{r,t,s,'LHS'} + IRE_{r,t,s,'LHS'} \\
+ & + COMNET_{r,t,s,'LHS'} + COMPRD_{r,t,s,'LHS'}
+\end{aligned} \right)}
+}{+ 
+}{\sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{sum}}^{}\left( NCAP_{r,t,'LHS'} + CAP_{r,t,'LHS'} \right)\mspace{6mu} + \quad\left( CUMCOM_{r} + CUMFLO_{r} \right)}$$
 
 when control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image273.wmf)
+$$UC\_ RHSR_{r,uc\_ n,l} + \sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{sum}}^{}{UC\_ TIME_{uc\_ n,r,t} \times D_{t}}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the LHS is set equal to the variable VAR_UCR. The
 bounds UC_RHSR are then applied to the variable VAR_UCR.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image274.wmf)
+$$VAR\_ UCR_{r,uc\_ n} + \sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{sum}}^{}{UC\_ TIME_{uc\_ n,r,t} \times D_{t}}$$
 
 with
 
-![](media/image275.wmf)
+$$VAR\_ UCR.LO_{r,uc\_ n} = UC\_ RHSR_{r,uc\_ n,'LO'}$$
 
-![](media/image276.wmf)
+$$VAR\_ UCR.UP_{r,uc\_ n} = UC\_ RHSR_{r,uc\_ n,'UP'}$$
 
-![](media/image277.wmf)
+$$VAR\_ UCR.FX_{r,uc\_ n} = UC\_ RHSR_{r,uc\_ n,'FX'}$$
 
 #### Equation: EQ(*l*)\_UCT / EQE_UCT
 
@@ -5328,31 +6469,37 @@ regions (**uc_r_sum**) and timeslices (**uc_ts_sum**).
 
 **Equation:**
 
-![](media/image278.wmf)
+$${EQ(l)\_ UCT_{uc\_ n,t} \ni UC\_ RHST_{uc\_ n,t,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image279.wmf)
+$${\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT_{r,t,s,'LHS'} + FLO_{r,t,s,'LHS'} + IRE_{r,t,s,'LHS'} \\
+ & + COMNET_{r,t,s,'LHS'} + COMPRD_{r,t,s,'LHS'}
+\end{aligned} \right)}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP_{r,t,'LHS'} + CAP_{r,t,'LHS'} \right)}$$
 
 when control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image280.wmf)
+$$UC\_ RHST_{uc\_ n,t,l} + \sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{UC\_ TIME_{uc\_ n,r,t}} \times D_{t}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the LHS is set equal to the variable VAR_UCT. The
 bounds UC_RHST are then applied to the variable VAR_UCT.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image281.wmf)
+$$VAR\_ UCT_{uc\_ n,t} + \sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{UC\_ TIME_{uc\_ n,r,t}} \times D_{t}$$
 
 with
 
-![](media/image282.wmf)
+$$VAR\_ UCT.LO_{uc\_ n,t} = UC\_ RHST_{uc\_ n,t,'LO'}$$
 
-![](media/image283.wmf)
+$$VAR\_ UCT.UP_{uc\_ n,t} = UC\_ RHST_{uc\_ n,t,'UP'}$$
 
-![](media/image284.wmf)
+$$VAR\_ UCT.FX_{uc\_ n,t} = UC\_ RHST_{uc\_ n,t,'FX'}$$
 
 #### Equation: EQ(*l*)\_UCRT / EQE_UCRT
 
@@ -5367,31 +6514,37 @@ which is created for each region of **uc_r_each** and each period of
 
 **Equation:**
 
-![](media/image285.wmf)
+$${EQ(l)\_ UCRT_{r,uc\_ n,t} \ni UC\_ RHSRT_{r,uc\_ n,t,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image286.wmf)
+$${\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT_{r,t,s,'LHS'} + FLO_{r,t,s,'LHS'} + IRE_{r,t,s,'LHS'} \\
+ & + COMNET_{r,t,s,'LHS'} + COMPRD_{r,t,s,'LHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP_{r,t,'LHS'} + CAP_{r,t,'LHS'} \right)$$
 
 when control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image287.wmf)
+$$UC\_ RHSRT_{r,uc\_ n,t,l} + UC\_ TIME_{uc\_ n,r,t} \times D_{t}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the LHS is set equal to the variable VAR_UCRT. The
 bounds UC_RHSRT are then applied to the variable VAR_UCRT.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image288.wmf)
+$$VAR\_ UCRT_{r,uc\_ n,t} + UC\_ TIME_{uc\_ n,r,t} \times D_{t}$$
 
 with
 
-![](media/image289.wmf)
+$$VAR\_ UCRT.LO_{r,uc\_ n,t} = UC\_ RHSRT_{r,uc\_ n,t,'LO'}$$
 
-![](media/image290.wmf)
+$$VAR\_ UCRT.UP_{r,uc\_ n,t} = UC\_ RHSRT_{r,uc\_ n,t,'UP'}$$
 
-![](media/image291.wmf)
+$$VAR\_ UCRT.FX_{r,uc\_ n,t} = UC\_ RHSRT_{r,uc\_ n,t,'FX'}$$
 
 #### Equation: EQ(*l*)\_UCRTS / EQE_UCRTS
 
@@ -5407,31 +6560,37 @@ period of **uc_t_each** and each timeslice of **uc_ts_each**.
 
 **Equation:**
 
-![](media/image292.wmf)
+$${EQ(l)\_ UCRTS_{r,uc\_ n,t,s} \ni UC\_ RHSRTS_{r,uc\_ n,t,s,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image293.wmf)
+$${\left( \begin{aligned}
+ & ACT_{r,t,s,'LHS'} + FLO_{r,t,s,'LHS'} + IRE_{r,t,s,'LHS'} \\
+ & + COMNET_{r,t,s,'LHS'} + COMPRD_{r,t,s,'LHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP_{r,t,'LHS'} + CAP_{r,t,'LHS'} \right)$$
 
 when control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image294.wmf)
+$$UC\_ RHSRTS_{r,uc\_ n,t,s,l} + UC\_ TIME_{uc\_ n,r,t} \times D_{t}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the LHS is set equal to the variable VAR_UCRTS. The
 bounds UC_RHSRTS are then applied to the variable VAR_UCRTS.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image295.wmf)
+$$VAR\_ UCRTS_{r,uc\_ n,t,s} + UC\_ TIME_{uc\_ n,r,t} \times D_{t}$$
 
 with
 
-![](media/image296.wmf)
+$$VAR\_ UCRTS.LO_{r,uc\_ n,t,s} = UC\_ RHSRTS_{r,uc\_ n,t,s,'LO'}$$
 
-![](media/image297.wmf)
+$$VAR\_ UCRTS.UP_{r,uc\_ n,t,s} = UC\_ RHSRTS_{r,uc\_ n,t,s,'UP'}$$
 
-![](media/image298.wmf)
+$$VAR\_ UCRTS.FX_{r,uc\_ n,t,s} = UC\_ RHSRTS_{r,uc\_ n,t,s,'FX'}$$
 
 #### Equation: EQ(*l*)\_UCTS / EQE_UCTS
 
@@ -5446,31 +6605,37 @@ which is created for each period of **uc_t_each** and each timeslice of
 
 **Equation:**
 
-![](media/image299.wmf)
+$${EQE\_ UCTS_{uc\_ n,t,s} \ni UC\_ RHSRTS_{uc\_ n,t,s,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image300.wmf)
+$${\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT_{r,t,s,'LHS'} + FLO_{r,t,s,'LHS'} + IRE_{r,t,s,'LHS'} \\
+ & + COMNET_{r,t,s,'LHS'} + COMPRD_{r,t,s,'LHS'}
+\end{aligned} \right)
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP_{r,t,'LHS'} + CAP_{r,t,'LHS'} \right)}$$
 
 when control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image301.wmf)
+$$UC\_ RHSTS_{uc\_ n,t,s,l} + \sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{UC\_ TIME_{uc\_ n,r,t}} \times D_{t}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the LHS is set equal to the variable VAR_UCTS. The
 bounds UC_RHSTS are then applied to the variable VAR_UCTS.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image302.wmf)
+$$VAR\_ UCTS_{uc\_ n,t,s} + \sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{UC\_ TIME_{uc\_ n,r,t}} \times D_{t}$$
 
 with
 
-![](media/image303.wmf)
+$$VAR\_ UCTS.LO_{uc\_ n,t,s} = UC\_ RHSTS_{uc\_ n,t,s,'LO'}$$
 
-![](media/image304.wmf)
+$$VAR\_ UCTS.UP_{uc\_ n,t,s} = UC\_ RHSTS_{uc\_ n,t,s,'UP'}$$
 
-![](media/image305.wmf)
+$$VAR\_ UCTS.FX_{uc\_ n,t,s} = UC\_ RHSTS_{uc\_ n,t,s,'FX'}$$
 
 ### Timeslice-dynamic user constraints
 
@@ -5513,32 +6678,56 @@ regions **r** in the set **uc_r_each**, all periods **t** in the set
 
 **Equation:**
 
-![](media/image306.wmf)
+$${EQ(l)\_ UCRS_{r,uc\_ n,t,tsl,s} \ni UC\_ RHSRTS_{r,uc\_ n,t,s,bd} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}} \land \mathbf{uc}\_\mathbf{t}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}
+}{\land (s \in \{ ts|\mathbf{ts}\_\mathbf{gr}\mathbf{p}_{r,tsl,ts} \land \bigcup_{side}^{}{\mathbf{uc}\_\mathbf{ts}\mathbf{l}_{r,uc\_ n,side,tsl}}\})}$$
 
-![](media/image307.wmf)
+$${\left( \begin{aligned}
+ & ACT_{r,t,s,'LHS'} + FLO_{r,t,s,'LHS'} + IRE_{r,t,s,'LHS'} \\
+ & + COMNET_{r,t,s,'LHS'} + COMPRD_{r,t,s,'LHS'}
+\end{aligned} \right) \times \frac{1}{G\_ YRFR_{r,s}}
+}{+ 
+}\left( NCAP_{r,t,'LHS'} + CAP_{r,t,'LHS'} \right)$$
 
 When control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image308.wmf)
+$${UC\_ RHSRTS_{r,uc\_ n,t,s,l} + UC\_ TIME_{uc\_ n,r,t} \times D_{t}
+}{+ 
+}{\left( \begin{aligned}
+ & \left( \begin{aligned}
+ & ACT_{r,t,d(s),'RHS'} + FLO_{r,t,d(s),'RHS'} + IRE_{r,t,d(s),'RHS'} \\
+ & + COMNET_{r,t,d(s),'RHS'} + COMPRD_{r,t,d(s),'RHS'}
+\end{aligned} \right) \times \frac{1}{G\_ YRFR_{r,d(s)}} \\
+ & + \\
+ & \left( NCAP_{r,t,'RHS'} + CAP_{r,t,'RHS'} \right)
+\end{aligned} \right)if\mathbf{uc}\_\mathbf{ts}\mathbf{l}_{r,uc\_ n,'RHS',s}}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the RHS constant UC_RHSRTS is replaced by the
 variable VAR_UCRTS. The bounds UC_RHSRTS are then applied to the
 variable VAR_UCRTS.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image309.wmf)
+$${VAR\_ UCRTS_{r,uc\_ n,t,s} + UC\_ TIME_{uc\_ n,r,t} \times D_{t}
+}{+ 
+}{\left( \begin{aligned}
+ & \left( \begin{aligned}
+ & ACT_{r,t,d(s),'RHS'} + FLO_{r,t,d(s),'RHS'} + IRE_{r,t,d(s),'RHS'} \\
+ & + COMNET_{r,t,d(s),'RHS'} + COMPRD_{r,t,d(s),'RHS'}
+\end{aligned} \right) \times \frac{1}{G\_ YRFR_{r,d(s)}} \\
+ & + \\
+ & \left( NCAP_{r,t,'RHS'} + CAP_{r,t,'RHS'} \right)
+\end{aligned} \right)if\mathbf{uc}\_\mathbf{ts}\mathbf{l}_{r,uc\_ n,'RHS',s}}$$
 
 with
 
-![](media/image310.wmf)
+$$VAR\_ UCRTS.LO_{r,uc\_ n,t,s} = UC\_ RHSRTS_{r,uc\_ n,t,s,'LO'}$$
 
-![](media/image311.wmf)
+$$VAR\_ UCRTS.UP_{r,uc\_ n,t,s} = UC\_ RHSRTS_{r,uc\_ n,t,s,'UP'}$$
 
-![](media/image312.wmf)
+$$VAR\_ UCRTS.FX_{r,uc\_ n,t,s} = UC\_ RHSRTS_{r,uc\_ n,t,s,'FX'}$$
 
 ### Dynamic user constraints of type (t,t+1)
 
@@ -5548,51 +6737,213 @@ constraints of type (t,t+1)**
 In the mathematical description of the dynamic user constraints and
 growth constraints of type (**t**, **t+1**), the following placeholders
 are used for variable terms on the LHS (period **t**):
-![](media/image313.wmf), ![](media/image314.wmf),
-![](media/image315.wmf), ![](media/image316.wmf),
-![](media/image317.wmf), ![](media/image318.wmf),
-![](media/image319.wmf)
+$ACT\_ GROW_{r,t,p,s,'LHS'}$, $FLO\_ GROW_{r,t,p,s,'LHS'}$,
+$IRE\_ GROW_{r,t,p,s,'LHS'}$, $COMPRD\_ GROW_{r,t,s,'LHS'}$,
+$COMNET\_ GROW_{r,t,s,'LHS'}$, $NCAP\_ GROW_{r,t,p,'LHS'}$,
+$CAP\_ GROW_{r,t,p,'LHS'}$
 
 and on the RHS (period **t+1**):
 
-![](media/image320.wmf), ![](media/image321.wmf),
-![](media/image322.wmf), ![](media/image323.wmf),
-![](media/image324.wmf), ![](media/image325.wmf),
-![](media/image326.wmf).
+$ACT\_ GROW_{r,t + 1,p,s,'RHS'}$, $FLO\_ GROW_{r,t + 1,p,s,'RHS'}$,
+$IRE\_ GROW_{r,t + 1,p,s,'RHS'}$, $COMPRD\_ GROW_{r,t + 1,s,'RHS'}$,
+$COMNET\_ GROW_{r,t + 1,s,'RHS'}$, $NCAP\_ GROW_{r,t + 1,p,'RHS'}$,
+$CAP\_ GROW_{r,t + 1,p,'RHS'}$.
 
 The expressions for the variable terms on the LHS can be written as
 follows:
 
-![](media/image327.wmf)
+$${ACT\_ GROW_{r,t,s,'LHS'}
+}{= 
+}{\sum_{(p,v) \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}\mspace{6mu}}^{}{\sum_{ts \in \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{}\left( \begin{aligned}
+ & VAR\_ ACT_{r,v,t,p,ts} \times UC\_ ACT_{uc\_ n,'LHS',r,t,p,ts} \times \left( RS\_ FR_{r,s,ts} \right) \\
+ & \times \\
+ & \left( \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ACOST_{r,t,p,cur}} \right)\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','ACT','COST'}\mspace{6mu} is\mspace{6mu} given \\
+ & \times \\
+ & \left( UC\_ ACT_{uc\_ n,'LHS',r,t,p,ts} \right)^{M(t + 1) - M(t) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','ACT','GROWTH'}\mspace{6mu} is\mspace{6mu} given \\
+ & 
+\end{aligned} \right)}}$$
 
-![](media/image328.wmf)
+$${FLO\_ GROW_{r,t,s,'LHS'}
+}{= 
+}{\sum_{(p,c,ts) \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}
+}\left\{ \begin{aligned}
+ & VAR\_ FLO_{r,v,t,p,c,ts} \times UC\_ FLO_{uc\_ n,'RHS',r,t,p,c,ts} \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \\
+ & \times \\
+ & \left\lbrack \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}\left( \begin{aligned}
+ & OBJ\_ FCOST_{r,t,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','COST'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & OBJ\_ FDELV_{r,t,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','DELIV'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & OBJ\_ FSUB_{r,t,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','SUB'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & OBJ\_ FTAX_{r,t,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','TAX'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right) \right\rbrack \\
+ & \times \\
+ & \left( UC\_ FLO_{uc\_ n,'LHS',r,t,p,c,ts} \right)^{M(t + 1) - M(t) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','GROWTH'}\mspace{6mu} is\mspace{6mu} given \\
+ & 
+\end{aligned} \right\}$$
 
-![](media/image329.wmf)
+$${IRE\_ GROW_{r,t,s,'LHS'}
+}{= \sum_{(p.c,ts) \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\sum_{ie \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ie}}}^{}}
+}\left\lbrack \begin{aligned}
+ & VAR\_ IRE_{r,v,t,p,c,ts,ie} \times UC\_ IRE_{uc\_ n,'LHS',r,t,p,c,ts,ie} \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \\
+ & \times \\
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{r,cur}}^{}\left( \begin{aligned}
+ & OBJ\_ FCOST_{r,t,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','IRE','COST'} \\
+ & + \\
+ & OBJ\_ FDELV_{r,t,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','IRE','DELIV'} \\
+ & - \\
+ & OBJ\_ FSUB_{r,t,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','IRE','SUB'} \\
+ & + \\
+ & OBJ\_ FTAX_{r,t,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','IRE','TAX'}
+\end{aligned} \right) \\
+ & \times \left( UC\_ IRE_{uc\_ n,'LHS',r,t,p,c,ts,ie} \right)^{M(t + 1) - M(t) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','IRE','GROWTH'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right\rbrack$$
 
-![](media/image330.wmf)
+$${COMPRD\_ GROW_{r,t,s,'LHS'}
+}{= \sum_{(c,ts) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\left( \begin{aligned}
+ & VAR\_ COMPRD_{r,t,c,ts} \times UC\_ COMPRD_{uc\_ n,'LHS',r,t,c,s} \\
+ & \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \times \\
+ & \sum_{\begin{matrix}
+cur \in \mathbf{rdcu}\mathbf{r}_{r,cur} \\
+uc\_ cost
+\end{matrix}}^{}\left( OBJ\_ COMPD_{r,t,c,ts,uc\_\cos t,cur}\quad if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','COMPRD',uc\_ cost} \right) \\
+ & \times \left( UC\_ COMPRD_{uc\_ n,'LHS',r,t,c,s} \right)^{M(t + 1) - M(t) - 1}\quad if\mspace{6mu}\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','COMPRD','GROWTH'}\mspace{6mu} given
+\end{aligned} \right)}$$
 
-![](media/image331.wmf)
+$${COMNET\_ GROW_{r,t,s,'LHS'}
+}{= \sum_{(c,ts) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\left( \begin{aligned}
+ & VAR\_ COMNET_{r,t,c,ts} \times UC\_ COMNET_{uc\_ n,'LHS',r,t,c,s} \\
+ & \times \left( \overset{\underset{}{}}{RTC\_ TSFR_{r,t,c,s,ts}} \right) \times \\
+ & \sum_{\begin{matrix}
+cur \in \mathbf{rdcu}\mathbf{r}_{r,cur} \\
+uc\_\cos t
+\end{matrix}}^{}\left( OBJ\_ COMNT_{r,t,c,ts,uc\_\cos t,cur}\quad if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','COMNET',uc\_\cos t} \right) \\
+ & \times \left( UC\_ COMNET_{uc\_ n,'LHS',r,t,c,s} \right)^{M(t + 1) - M(t) - 1}\quad if\mspace{6mu}\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','COMNET','GROWTH'}\mspace{6mu} given
+\end{aligned} \right)}$$
 
-![](media/image332.wmf)
+$${NCAP\_ GROW_{r,t,p,'LHS'}
+}{= 
+}{\sum_{p}^{}\left\lbrack \begin{aligned}
+ & VAR\_ NCAP_{r,t,p} \times UC\_ NCAP_{uc\_ n,'LHS',r,t,p} \times \\
+ & \left( \begin{aligned}
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ICOST_{r,t,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','NCAP','COST'}\mspace{6mu} is\mspace{6mu} given \\
+ & - \\
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ISUB_{r,t,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','NCAP','SUB'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ITAX_{r,t,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','NCAP','TAX'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right) \\
+ & \times \left( UC\_ NCAP_{uc\_ n,'LHS',r,t,p} \right)^{M(t + 1) - M(t) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','NCAP','GROWTH'}\mspace{6mu} given
+\end{aligned} \right\rbrack}$$
 
-![](media/image333.wmf)
+$${CAP\_ GROW_{r,t,'LHS'}
+}{= 
+}{\sum_{p}^{}\left( \begin{aligned}
+ & VAR\_ CAP_{r,t,p} \times UC\_ CAP_{uc\_ n,'LHS',r,t,p} \\
+ & \times \\
+ & PRC\_ ACTFLO_{r,p}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','CAP','CAPACT'}\mspace{6mu} is\mspace{6mu} given \\
+ & \times \\
+ & \left( UC\_ CAP_{uc\_ n,'LHS',r,t,p} \right)^{M(t + 1) - M(t) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','CAP','GROWTH'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right)}$$
 
 The expressions for the variable terms on the RHS can be written as
 follows:
 
-![](media/image334.wmf)
+$${ACT\_ GROW_{r,t + 1,s,'RHS'}
+}{= 
+}{\sum_{(p,v) \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t} + \mathbf{1},\mathbf{p}}\mspace{6mu}}^{}{\sum_{ts \in \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{}\left( \begin{aligned}
+ & VAR\_ ACT_{r,v,t + 1,p,ts} \times UC\_ ACT_{uc\_ n,'RHS',,t + 1,p,ts} \times \left( RS\_ FR_{r,s,ts} \right) \\
+ & \times \\
+ & \left( \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ACOST_{r,t + 1,p,cur}} \right)\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','ACT','COST'}\mspace{6mu} is\mspace{6mu} given \\
+ & \times \\
+ & \left( UC\_ ACT_{uc\_ n,'RHS',r,t + 1,p,ts} \right)^{M(t) - M(t + 1) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','ACT','GROWTH'}\mspace{6mu} is\mspace{6mu} given \\
+ & 
+\end{aligned} \right)}}$$
 
-![](media/image335.wmf)
+$${FLO\_ GROW_{r,t + 1,s,'RHS'}
+}{= 
+}{\sum_{(p,c,ts) \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t} + \mathbf{1},\mathbf{p},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t} + \mathbf{1},\mathbf{p}}}^{}
+}\left\{ \begin{aligned}
+ & VAR\_ FLO_{r,v,t + 1,p,c,ts} \times UC\_ FLO_{uc\_ n,'RHS',r,t + 1,p,c,ts} \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \\
+ & \times \\
+ & \left\lbrack \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}\left( \begin{aligned}
+ & OBJ\_ FCOST_{r,t + 1,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','FLO','COST'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & OBJ\_ FDELV_{r,t + 1,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','FLO','DELIV'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & OBJ\_ FSUB_{r,t + 1,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','FLO','SUB'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & OBJ\_ FTAX_{r,t + 1,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','FLO','TAX'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right) \right\rbrack \\
+ & \times \\
+ & \left( UC\_ FLO_{uc\_ n,'RHS',r,t + 1,p,c,ts} \right)^{M(t) - M(t + 1) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','FLO','GROWTH'}\mspace{6mu} is\mspace{6mu} given \\
+ & 
+\end{aligned} \right\}$$
 
-![](media/image336.wmf)
+$${IRE\_ GROW_{r,t + 1,s,'RHS'}
+}{= \sum_{(p,c,ts) \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t} + 1,\mathbf{p},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t} + 1,\mathbf{p}}}^{}\sum_{ie \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ie}}}^{}}
+}\left\lbrack \begin{aligned}
+ & VAR\_ IRE_{r,v,t + 1,p,c,ts,ie} \times UC\_ IRE_{uc\_ n,'RHS',r,t + 1,p,c,ts,ie} \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t + 1,c,s,ts}} \right) \\
+ & \times \\
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{r,cur}}^{}\left( \begin{aligned}
+ & OBJ\_ FCOST_{r,t + 1,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','IRE','COST'} \\
+ & + \\
+ & OBJ\_ FDELV_{r,t + 1,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','IRE','DELIV'} \\
+ & - \\
+ & OBJ\_ FSUB_{r,t + 1,p,c,s,cur}if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','IRE','SUB'} \\
+ & + \\
+ & OBJ\_ FTAX_{r,t + 1,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','IRE','TAX'}
+\end{aligned} \right) \\
+ & \times \left( UC\_ IRE_{uc\_ n,'RHS',r,t + 1,p,c,ts,ie} \right)^{M(t) - M(t + 1) - 1}\quad if\mspace{6mu}\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','IRE','GROWTH'}\mspace{6mu} given
+\end{aligned} \right\rbrack$$
 
-![](media/image337.wmf)
+$${COMPRD\_ GROW_{r,t + 1,s,'RHS'}
+}{= \sum_{(c,ts) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t}, + 1\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\left( \begin{aligned}
+ & VAR\_ COMPRD_{r,t + 1,c,ts} \times UC\_ COMPRD_{uc\_ n,'RHS',r,t + 1,c,s} \\
+ & \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t + 1,c,s,ts}} \right) \times \\
+ & \sum_{\begin{matrix}
+cur \in \mathbf{rdcu}\mathbf{r}_{r,cur} \\
+uc\_ cost
+\end{matrix}}^{}\left( OBJ\_ COMPD_{r,t + 1,c,ts,uc\_\cos t,cur}\quad if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','COMPRD',uc\_ cost} \right) \\
+ & \times \left( UC\_ COMPRD_{uc\_ n,'RHS',r,t + 1,c,s} \right)^{M(t) - M(t + 1) - 1}\quad if\mspace{6mu}\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','COMPRD','GROWTH'}\mspace{6mu} given
+\end{aligned} \right)}$$
 
-![](media/image338.wmf)
+$${COMNET\_ GROW_{r,t + 1,s,'RHS'}
+}{= \sum_{(c,ts) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t} + 1,\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\left( \begin{aligned}
+ & VAR\_ COMNET_{r,t + 1,c,ts} \times UC\_ COMNET_{uc\_ n,'RHS',r,t + 1,c,s} \\
+ & \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t + 1,c,s,ts}} \right) \times \\
+ & \sum_{\begin{matrix}
+cur \in \mathbf{rdcu}\mathbf{r}_{r,cur} \\
+uc\_\cos t
+\end{matrix}}^{}\left( OBJ\_ COMNT_{r,t + 1,c,ts,uc\_\cos t,cur}\quad if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','COMNET',uc\_\cos t} \right) \\
+ & \times \left( UC\_ COMNET_{uc\_ n,'RHS',r,t + 1,c,s} \right)^{M(t) - M(t + 1) - 1}\quad if\mspace{6mu}\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','COMNET','GROWTH'}\mspace{6mu} given
+\end{aligned} \right)}$$
 
-![](media/image339.wmf)
+$${NCAP\_ GROW_{r,t + 1,'RHS'}
+}{= 
+}{\sum_{p}^{}\left( \begin{aligned}
+ & VAR\_ NCAP_{r,t + 1,p} \times UC\_ NCAP_{uc\_ n,'RHS',r,t + 1,p} \\
+ & \times \\
+ & \left( \begin{aligned}
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ICOST_{r,t + 1,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','NCAP','COST'}\mspace{6mu} is\mspace{6mu} given \\
+ & - \\
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ISUB_{r,t + 1,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','NCAP','SUB'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ITAX_{r,t + 1,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','NCAP','TAX'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right) \\
+ & \times \\
+ & \left( UC\_ NCAP_{uc\_ n,'RHS',r,t + 1,p} \right)^{M(t) - M(t + 1) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','NCAP','GROWTH'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right)}$$
 
-![](media/image340.wmf)
+$${CAP\_ GROW_{r,t + 1,'RHS'}
+}{= 
+}{\sum_{p}^{}\left( \begin{aligned}
+ & VAR\_ CAP_{r,t + 1,p} \times UC\_ CAP_{uc\_ n,'RHS',r,t + 1,p} \\
+ & \times \\
+ & PRC\_ CAPACT_{r,p}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','CAP','CAPACT'}\mspace{6mu} is\mspace{6mu} given \\
+ & \times \\
+ & \left( UC\_ CAP_{uc\_ n,'RHS',r,t + 1,p} \right)^{M(t) - M(t + 1) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','CAP','GROWTH'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right)}$$
 
 #### Equation: EQ(*l*)\_UCSU / EQE_UCSU
 
@@ -5610,31 +6961,51 @@ over regions (**uc_r_sum**) and timeslices (**uc_ts_sum**).
 
 **Equation:**
 
-![](media/image341.wmf)
+$${EQ(l)\_ UCSU_{uc\_ n,t} \ni UC\_ RHST_{uc\_ n,t,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{suc}\mathbf{c}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image342.wmf)
+$${\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t,s,'LHS'} + FLO\_ GROW_{r,t,s,'LHS'} + IRE\_ GROW_{r,t,s,'LHS'} \\
+ & + COMNET\_ GROW_{r,t,s,'LHS'} + COMPRD\_ GROW_{r,t,s,'LHS'}
+\end{aligned} \right)}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t,'LHS'} + CAP\_ GROW_{r,t,'LHS'} \right)}$$
 
 When control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image343.wmf)
+$${UC\_ RHST_{uc\_ n,t,l}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
+\end{aligned} \right)}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t + 1,'RHS'} + CAP\_ GROW_{r,t + 1,'RHS'} \right)}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the RHS constant UC_RHST is replaced by the variable
 VAR_UCT. The bounds UC_RHST are then applied to the variable VAR_UCT.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image344.wmf)
+$${VAR\_ UCT_{uc\_ n,t}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
+\end{aligned} \right)}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t + 1,'RHS'} + CAP\_ GROW_{r,t + 1,'RHS'} \right)}$$
 
 with
 
-![](media/image282.wmf)
+$$VAR\_ UCT.LO_{uc\_ n,t} = UC\_ RHST_{uc\_ n,t,'LO'}$$
 
-![](media/image283.wmf)
+$$VAR\_ UCT.UP_{uc\_ n,t} = UC\_ RHST_{uc\_ n,t,'UP'}$$
 
-![](media/image284.wmf)
+$$VAR\_ UCT.FX_{uc\_ n,t} = UC\_ RHST_{uc\_ n,t,'FX'}$$
 
 #### Equation: EQ(*l*)\_UCRSU / EQE_UCRSU
 
@@ -5653,32 +7024,52 @@ for each region of the set **uc_r_each** and is summing over timeslices
 
 **Equation:**
 
-![](media/image345.wmf)
+$${EQ(l)\_ UCRSU_{r,uc\_ n,t} \ni UC\_ RHSRT_{r,uc\_ n,t,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{suc}\mathbf{c}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image346.wmf)
+$${\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t,s,'LHS'} + FLO\_ GROW_{r,t,s,'LHS'} + IRE\_ GROW_{r,t,s,'LHS'} \\
+ & + COMNET\_ GROW_{r,t,s,'LHS'} + COMPRD\_ GROW_{r,t,s,'LHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP\_ GROW_{r,t,'LHS'} + CAP\_ GROW_{r,t,'LHS'} \right)$$
 
 When control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image347.wmf)
+$${UC\_ RHSRT_{r,uc\_ n,t,l}
+}{+ 
+}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP\_ GROW_{r,t + 1,'RHS'} + CAP\_ GROW_{r,t + 1,'RHS'} \right)$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the RHS constant UC_RHSRT is replaced by the
 variable VAR_UCRT. The bounds UC_RHSRT are then applied to the variable
 VAR_UCRT.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image348.wmf)
+$${VAR\_ UCRT_{r,uc\_ n,t}
+}{+ 
+}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP\_ GROW_{r,t + 1,'RHS'} + CAP\_ GROW_{r,t + 1,'RHS'} \right)$$
 
 with
 
-![](media/image349.wmf)
+$$VAR\_ UCRT.LO_{r,uc\_ n,t} = UC\_ RHSRT_{r,uc\_ n,t,'LO'}$$
 
-![](media/image350.wmf)
+$$VAR\_ UCRT.UP_{r,uc\_ n,t} = UC\_ RHSRT_{r,uc\_ n,t,'UP'}$$
 
-![](media/image351.wmf)
+$$VAR\_ UCRT.FX_{r,uc\_ n,t} = UC\_ RHSRT_{r,uc\_ n,t,'FX'}$$
 
 #### Equation: EQ(*l*)\_UCRSUS / EQE_UCRSUS
 
@@ -5698,32 +7089,52 @@ for each region of the set **uc_r_each** and each timeslice of the set
 
 **Equation:**
 
-![](media/image352.wmf)
+$${EQ(l)\_ UCRSUS_{r,uc\_ n,t,s} \ni UC\_ RHSRTS_{r,uc\_ n,t,s,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{suc}\mathbf{c}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image353.wmf)
+$${\left( \begin{aligned}
+ & ACT\_ GROW_{r,t,s,'LHS'} + FLO\_ GROW_{r,t,s,'LHS'} + IRE\_ GROW_{r,t,s,'LHS'} \\
+ & + COMNET\_ GROW_{r,t,s,'LHS'} + COMPRD\_ GROW_{r,t,s,'LHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP\_ GROW_{r,t,'LHS'} + CAP\_ GROW_{r,t,'LHS'} \right)$$
 
 When control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image354.wmf)
+$${UC\_ RHSRTS_{r,uc\_ n,t,s,l}
+}{+ 
+}{\left( \begin{aligned}
+ & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP\_ GROW_{r,t + 1,'RHS'} + CAP\_ GROW_{r,t + 1,'RHS'} \right)$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the RHS constant UC_RHSRTS is replaced by the
 variable VAR_UCRTS. The bounds UC_RHSRTS are then applied to the
 variable VAR_UCRTS.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image355.wmf)
+$${VAR\_ UCRTS_{r,uc\_ n,t,s}
+}{+ 
+}{\left( \begin{aligned}
+ & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP\_ GROW_{r,t + 1,'RHS'} + CAP\_ GROW_{r,t + 1,'RHS'} \right)$$
 
 with
 
-![](media/image310.wmf)
+$$VAR\_ UCRTS.LO_{r,uc\_ n,t,s} = UC\_ RHSRTS_{r,uc\_ n,t,s,'LO'}$$
 
-![](media/image311.wmf)
+$$VAR\_ UCRTS.UP_{r,uc\_ n,t,s} = UC\_ RHSRTS_{r,uc\_ n,t,s,'UP'}$$
 
-![](media/image312.wmf)
+$$VAR\_ UCRTS.FX_{r,uc\_ n,t,s} = UC\_ RHSRTS_{r,uc\_ n,t,s,'FX'}$$
 
 #### Equation: EQ(*l*)\_UCSUS / EQE_UCSUS
 
@@ -5742,32 +7153,52 @@ each timeslice **uc_ts_each** and is summing over regions
 
 **Equation:**
 
-![](media/image356.wmf)
+$${EQ(l)\_ UCSUS_{uc\_ n,t,s} \ni UC\_ RHSTS_{uc\_ n,t,s,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{suc}\mathbf{c}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image357.wmf)
+$${\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t,s,'LHS'} + FLO\_ GROW_{r,t,s,'LHS'} + IRE\_ GROW_{r,t,s,'LHS'} \\
+ & + COMNET\_ GROW_{r,t,s,'LHS'} + COMPRD\_ GROW_{r,t,s,'LHS'}
+\end{aligned} \right)
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t,'LHS'} + CAP\_ GROW_{r,t,'LHS'} \right)}$$
 
 When control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image358.wmf)
+$${UC\_ RHSTS_{uc\_ n,t,s,l}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
+\end{aligned} \right)
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t + 1,'RHS'} + CAP\_ GROW_{r,t + 1,'RHS'} \right)}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the RHS constant UC_RHSTS is replaced by the
 variable VAR_UCTS. The bounds UC_RHSTS are then applied to the variable
 VAR_UCTS.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image359.wmf)
+$${VAR\_ UCTS_{uc\_ n,t,s}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
+ & + COMNET\_ GOW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
+\end{aligned} \right)
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t + 1,'RHS'} + CAP\_ GROW_{r,t + 1,'RHS'} \right)}$$
 
 with
 
-![](media/image360.wmf)
+$$VAR\_ UCTS.LO_{uc\_ n,t,s} = UC\_ RHSTS_{uc\_ n,t,s,'LO'}$$
 
-![](media/image361.wmf)
+$$VAR\_ UCTS.UP_{uc\_ n,t,s} = UC\_ RHSTS_{uc\_ n,t,s,'UP'}$$
 
-![](media/image362.wmf)
+$$VAR\_ UCTS.FX_{uc\_ n,t,s} = UC\_ RHSTS_{uc\_ n,t,s,'FX'}$$
 
 ### Dynamic user constraints of type (t--1,t)
 
@@ -5777,10 +7208,10 @@ constraints of type (t-1, t)**
 In the mathematical description of the dynamic user constraints and
 growth constraints of type (**t--1, t**), the following placeholders are
 used for variable terms on the RHS (period **t--1**):
-![](media/image363.wmf), ![](media/image364.wmf),
-![](media/image365.wmf), ![](media/image366.wmf),
-![](media/image367.wmf), ![](media/image368.wmf),
-![](media/image369.wmf).
+$ACT\_ GROW_{r,t - 1,p,s,'RHS'}$, $FLO\_ GROW_{r,t - 1,p,s,'RHS'}$,
+$IRE\_ GROW_{r,t - 1,p,s,'RHS'}$, $COMPRD\_ GROW_{r,t - 1,s,'RHS'}$,
+$COMNET\_ GROW_{r,t - 1,s,'RHS'}$, $NCAP\_ GROW_{r,t - 1,p,'RHS'}$,
+$CAP\_ GROW_{r,t - 1,p,'RHS'}$.
 
 For the LHS terms (period **t**), the placeholders are the same ones as
 defined for the LHS user constraints.
@@ -5788,19 +7219,101 @@ defined for the LHS user constraints.
 The expressions for the variable terms on the RHS can be written as
 follows:
 
-![](media/image370.wmf)
+$${ACT\_ GROW_{r,t - 1,s,'RHS'}
+}{= 
+}{\sum_{(p,v) \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t} - \mathbf{1},\mathbf{p}}\mspace{6mu}}^{}{\sum_{ts \in \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{}\left( \begin{aligned}
+ & VAR\_ ACT_{r,v,t - 1,p,ts} \times UC\_ ACT_{uc\_ n,'RHS',r,t - 1,p,ts} \times \left( RS\_ FR_{r,s,ts} \right) \\
+ & \times \\
+ & \left( \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ACOST_{r,t - 1,p,cur}} \right)\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','ACT','COST'}\mspace{6mu} is\mspace{6mu} given \\
+ & \times \\
+ & \left( UC\_ ACT_{uc\_ n,'RHS',r,t - 1,p,ts} \right)^{M(t) - M(t - 1) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','ACT','GROWTH'}\mspace{6mu} is\mspace{6mu} given \\
+ & 
+\end{aligned} \right)}}$$
 
-![](media/image371.wmf)
+$${FLO\_ GROW_{r,t - 1,s,'RHS'}
+}{= 
+}{\sum_{(p,c,ts) \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t} - \mathbf{1},\mathbf{p},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t} - \mathbf{1},\mathbf{p}}}^{}
+}\left\{ \begin{aligned}
+ & VAR\_ FLO_{r,v,t - 1,p,c,ts} \times UC\_ FLO_{uc\_ n,'RHS',r,t - 1,p,c,ts} \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t - 1,c,s,ts}} \right) \\
+ & \times \\
+ & \left\lbrack \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}\left( \begin{aligned}
+ & OBJ\_ FCOST_{r,t - 1,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','FLO','COST'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & OBJ\_ FDELV_{r,t - 1,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','FLO','DELIV'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & OBJ\_ FSUB_{r,t - 1,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','FLO','SUB'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & OBJ\_ FTAX_{r,t - 1,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','FLO','TAX'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right) \right\rbrack \\
+ & \times \\
+ & \left( UC\_ FLO_{uc\_ n,'RHS',r,t - 1,p,c,ts} \right)^{M(t) - M(t - 1) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','FLO','GROWTH'}\mspace{6mu} is\mspace{6mu} given \\
+ & 
+\end{aligned} \right\}$$
 
-![](media/image372.wmf)
+$${IRE\_ GROW_{r,t - 1,s,'RHS'}
+}{= \sum_{(p,c,ts) \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t} - 1,\mathbf{p},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t} - 1,\mathbf{p}}}^{}\sum_{ie \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ie}}}^{}}
+}\left\lbrack \begin{aligned}
+ & VAR\_ RE_{r,v,t - 1,p,c,ts,ie} \times UC\_ IRE_{uc\_ n,'RHS',r,t - 1,p,c,ts,ie} \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t - 1,c,s,ts}} \right) \\
+ & \times \\
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{r,cur}}^{}\left( \begin{aligned}
+ & OBJ\_ FCOST_{r,t - 1,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','IRE','COST'} \\
+ & + \\
+ & OBJ\_ FDELV_{r,t - 1,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','IRE','DELIV'} \\
+ & - \\
+ & OBJ\_ FSUB_{r,t - 1,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','IRE','SUB'} \\
+ & + \\
+ & OBJ\_ FTAX_{r,t - 1,p,c,s,cur}\mspace{6mu} if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','IRE','TAX'}
+\end{aligned} \right) \\
+ & \times \left( UC\_ IRE_{uc\_ n,'RHS',r,t - 1,p,c,ts,ie} \right)^{M(t) - M(t - 1) - 1}\quad if\mspace{6mu}\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','IRE','GROWTH'}\mspace{6mu} given
+\end{aligned} \right\rbrack$$
 
-![](media/image373.wmf)
+$${COMPRD\_ GROW_{r,t - 1,s,'RHS'}
+}{= \sum_{(c,ts) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t}, - 1\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\left( \begin{aligned}
+ & VAR\_ COMPRD_{r,t - 1,c,ts} \times UC\_ COMPRD_{uc\_ n,'RHS',r,t - 1,c,s} \\
+ & \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t - 1,c,s,ts}} \right) \times \\
+ & \sum_{\begin{matrix}
+cur \in \mathbf{rdcu}\mathbf{r}_{r,cur} \\
+uc\_ cost
+\end{matrix}}^{}\left( OBJ\_ COMPD_{r,t - 1,c,ts,uc\_\cos t,cur}\quad if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','COMPRD',uc\_ cost} \right) \\
+ & \times \left( UC\_ COMPRD_{uc\_ n,'RHS',r,t - 1,c,s} \right)^{M(t) - M(t - 1) - 1}\quad if\mspace{6mu}\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','COMPRD','GROWTH'}\mspace{6mu} given
+\end{aligned} \right)}$$
 
-![](media/image374.wmf)
+$${COMNET\_ GROW_{r,t - 1,s,'RHS'}
+}{= \sum_{(c,ts) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t} - 1,\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\left( \begin{aligned}
+ & VAR\_ COMNET_{r,t - 1,c,ts} \times UC\_ COMNET_{uc\_ n,'RHS',r,t - 1,c,s} \\
+ & \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t - 1,c,s,ts}} \right) \times \\
+ & \sum_{\begin{matrix}
+cur \in \mathbf{rdcu}\mathbf{r}_{r,cur} \\
+uc\_\cos t
+\end{matrix}}^{}\left( OBJ\_ COMNT_{r,t - 1,c,ts,uc\_\cos t,cur}\quad if\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','COMNET',uc\_\cos t} \right) \\
+ & \times \left( UC\_ COMNET_{uc\_ n,'RHS',r,t - 1,c,s} \right)^{M(t) - M(t - 1) - 1}\quad if\mspace{6mu}\mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'RHS','COMNET','GROWTH'}\mspace{6mu} given
+\end{aligned} \right)}$$
 
-![](media/image375.wmf)
+$${NCAP\_ GROW_{r,t - 1,'RHS'}
+}{= 
+}{\sum_{p}^{}\left( \begin{aligned}
+ & VAR\_ NCAP_{r,t - 1,p} \times UC\_ NCAP_{uc\_ n,'RHS',r,t - 1,p} \\
+ & \times \\
+ & \left( \begin{aligned}
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ICOST_{r,t - 1,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','NCAP','COST'}\mspace{6mu} is\mspace{6mu} given \\
+ & - \\
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ISUB_{r,t - 1,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','NCAP','SUB'}\mspace{6mu} is\mspace{6mu} given \\
+ & + \\
+ & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ITAX_{r,t - 1,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','NCAP','TAX'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right) \\
+ & \times \\
+ & \left( UC\_ NCAP_{uc\_ n,'RHS',r,t - 1,p} \right)^{M(t) - M(t - 1) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','NCAP','GROWTH'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right)}$$
 
-![](media/image376.wmf)
+$${CAP\_ GROW_{r,t - 1,'RHS'}
+}{= 
+}{\sum_{p}^{}\left( \begin{aligned}
+ & VAR\_ CAP_{r,t - 1,p} \times UC\_ CAP_{uc\_ n,'RHS',r,t - 1,p} \\
+ & \times \\
+ & PRC\_ CAPACT_{r,p}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','CAP','CAPACT'}\mspace{6mu} is\mspace{6mu} given \\
+ & \times \\
+ & \left( UC\_ CAP_{uc\_ n,'RHS',r,t - 1,p} \right)^{M(t + 1) - M(t) - 1}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','CAP','GROWTH'}\mspace{6mu} is\mspace{6mu} given
+\end{aligned} \right)}$$
 
 #### Equation: EQ(*l*)\_UCSU / EQE_UCSU
 
@@ -5817,31 +7330,51 @@ summing over regions (**uc_r_sum**) and timeslices (**uc_ts_sum**).
 
 **Equation:**
 
-![](media/image377.wmf)
+$${EQ(l)\_ UCSU_{uc\_ n,t} \ni UC\_ RHST_{uc\_ n,t,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{suc}\mathbf{c}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image378.wmf)
+$${\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t,s,'LHS'} + FLO\_ GROW_{r,t,s,'LHS'} + IRE\_ GROW_{r,t,s,'LHS'} \\
+ & + COMNET\_ GROW_{r,t,s,'LHS'} + COMPRD\_ GROW_{r,t,s,'LHS'}
+\end{aligned} \right)}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t,'LHS'} + CAP\_ GROW_{r,t,'LHS'} \right)}$$
 
 When control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image379.wmf)
+$${UC\_ RHST_{uc\_ n,t,l}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t - 1,s,'RHS'} + FLO\_ GROW_{r,t - 1,s,'RHS'} + IRE\_ GROW_{r,t - 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t - 1,s,'RHS'} + COMPRD\_ GROW_{r,t - 1,s,'RHS'}
+\end{aligned} \right)}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t - 1,'RHS'} + CAP\_ GROW_{r,t - 1,'RHS'} \right)}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the RHS constant UC_RHST is replaced by the variable
 VAR_UCT. The bounds UC_RHST are then applied to the variable VAR_UCT.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image380.wmf)
+$${VAR\_ UCT_{uc\_ n,t}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t - 1,s,'RHS'} + FLO\_ GROW_{r,t - 1,s,'RHS'} + IRE\_ GROW_{r,t - 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t - 1,s,'RHS'} + COMPRD\_ GROW_{r,t - 1,s,'RHS'}
+\end{aligned} \right)}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t - 1,'RHS'} + CAP\_ GROW_{r,t - 1,'RHS'} \right)}$$
 
 with
 
-![](media/image282.wmf)
+$$VAR\_ UCT.LO_{uc\_ n,t} = UC\_ RHST_{uc\_ n,t,'LO'}$$
 
-![](media/image283.wmf)
+$$VAR\_ UCT.UP_{uc\_ n,t} = UC\_ RHST_{uc\_ n,t,'UP'}$$
 
-![](media/image284.wmf)
+$$VAR\_ UCT.FX_{uc\_ n,t} = UC\_ RHST_{uc\_ n,t,'FX'}$$
 
 #### Equation: EQ(*l*)\_UCRSU / EQE_UCRSU
 
@@ -5859,32 +7392,52 @@ timeslices (**uc_ts_sum**).
 
 **Equation:**
 
-![](media/image381.wmf)
+$${EQ(l)\_ UCRSU_{r,uc\_ n,t} \ni UC\_ RHSRT_{r,uc\_ n,t,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{suc}\mathbf{c}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image382.wmf)
+$${\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t,s,'LHS'} + FLO\_ GROW_{r,t,s,'LHS'} + IRE\_ GROW_{r,t,s,'LHS'} \\
+ & + COMNET\_ GROW_{r,t,s,'LHS'} + COMPRD\_ GROW_{r,t,s,'LHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP\_ GROW_{r,t,'LHS'} + CAP\_ GROW_{r,t,'LHS'} \right)$$
 
 When control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image383.wmf)
+$${UC\_ RHSRT_{r,uc\_ n,t,l}
+}{+ 
+}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t - 1,s,'RHS'} + FLO\_ GROW_{r,t - 1,s,'RHS'} + IRE\_ GROW_{r,t - 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t - 1,s,'RHS'} + COMPRD\_ GROW_{r,t - 1,s,'RHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP\_ GROW_{r,t - 1,'RHS'} + CAP\_ GROW_{r,t - 1,'RHS'} \right)$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the RHS constant UC_RHSRT is replaced by the
 variable VAR_UCRT. The bounds UC_RHSRT are then applied to the variable
 VAR_UCRT.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image384.wmf)
+$${VAR\_ UCRT_{r,uc\_ n,t}
+}{+ 
+}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t - 1,s,'RHS'} + FLO\_ GROW_{r,t - 1,s,'RHS'} + IRE\_ GROW_{r,t - 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t - 1,s,'RHS'} + COMPRD\_ GROW_{r,t - 1,s,'RHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP\_ GROW_{r,t - 1,'RHS'} + CAP\_ GROW_{r,t - 1,'RHS'} \right)$$
 
 with
 
-![](media/image349.wmf)
+$$VAR\_ UCRT.LO_{r,uc\_ n,t} = UC\_ RHSRT_{r,uc\_ n,t,'LO'}$$
 
-![](media/image350.wmf)
+$$VAR\_ UCRT.UP_{r,uc\_ n,t} = UC\_ RHSRT_{r,uc\_ n,t,'UP'}$$
 
-![](media/image351.wmf)
+$$VAR\_ UCRT.FX_{r,uc\_ n,t} = UC\_ RHSRT_{r,uc\_ n,t,'FX'}$$
 
 #### Equation: EQ(*l*)\_UCRSUS / EQE_UCRSUS
 
@@ -5903,32 +7456,52 @@ of the set **uc_ts_each**.
 
 **Equation:**
 
-![](media/image385.wmf)
+$${EQ(l)\_ UCRSUS_{r,uc\_ n,t,s} \ni UC\_ RHSRTS_{r,uc\_ n,t,s,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{suc}\mathbf{c}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image386.wmf)
+$${\left( \begin{aligned}
+ & ACT\_ GROW_{r,t,s,'LHS'} + FLO\_ GROW_{r,t,s,'LHS'} + IRE\_ GROW_{r,t,s,'LHS'} \\
+ & + COMNET\_ GROW_{r,t,s,'LHS'} + COMPRD\_ GROW_{r,t,s,'LHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP\_ GROW_{r,t,'LHS'} + CAP\_ GROW_{r,t,'LHS'} \right)$$
 
 When control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image387.wmf)
+$${UC\_ RHSRTS_{r,uc\_ n,t,s,l}
+}{+ 
+}{\left( \begin{aligned}
+ & ACT\_ GROW_{r,t - 1,s,'RHS'} + FLO\_ GROW_{r,t - 1,s,'RHS'} + IRE\_ GROW_{r,t - 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t - 1,s,'RHS'} + COMPRD\_ GROW_{r,t - 1,s,'RHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP\_ GROW_{r,t - 1,'RHS'} + CAP\_ GROW_{r,t - 1,'RHS'} \right)$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the RHS constant UC_RHSRTS is replaced by the
 variable VAR_UCRTS. The bounds UC_RHSRTS are then applied to the
 variable VAR_UCRTS.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image388.wmf)
+$${VAR\_ UCRTS_{r,uc\_ n,t,s}
+}{+ 
+}{\left( \begin{aligned}
+ & ACT\_ GROW_{r,t - 1,s,'RHS'} + FLO\_ GROW_{r,t - 1,s,'RHS'} + IRE\_ GROW_{r,t - 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t - 1,s,'RHS'} + COMPRD\_ GROW_{r,t - 1,s,'RHS'}
+\end{aligned} \right)
+}{+ 
+}\left( NCAP\_ GROW_{r,t - 1,'RHS'} + CAP\_ GROW_{r,t - 1,'RHS'} \right)$$
 
 with
 
-![](media/image310.wmf)
+$$VAR\_ UCRTS.LO_{r,uc\_ n,t,s} = UC\_ RHSRTS_{r,uc\_ n,t,s,'LO'}$$
 
-![](media/image311.wmf)
+$$VAR\_ UCRTS.UP_{r,uc\_ n,t,s} = UC\_ RHSRTS_{r,uc\_ n,t,s,'UP'}$$
 
-![](media/image312.wmf)
+$$VAR\_ UCRTS.FX_{r,uc\_ n,t,s} = UC\_ RHSRTS_{r,uc\_ n,t,s,'FX'}$$
 
 #### Equation: EQ(*l*)\_UCSUS / EQE_UCSUS
 
@@ -5946,32 +7519,52 @@ generated for each timeslice **uc_ts_each** and is summing over regions
 
 **Equation:**
 
-![](media/image389.wmf)
+$${EQ(l)\_ UCSUS_{uc\_ n,t,s} \ni UC\_ RHSTS_{uc\_ n,t,s,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
+}{\land ú\mathbf{c}\_\mathbf{t}\_\mathbf{suc}\mathbf{c}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
 
-![](media/image390.wmf)
+$${\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t,s,'LHS'} + FLO\_ GROW_{r,t,s,'LHS'} + IRE\_ GROW_{r,t,s,'LHS'} \\
+ & + COMNET\_ GROW_{r,t,s,'LHS'} + COMPRD\_ GROW_{r,t,s,'LHS'}
+\end{aligned} \right)
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t,'LHS'} + CAP\_ GROW_{r,t,'LHS'} \right)}$$
 
 When control parameter VAR_UC=NO:
 
-![](media/image264.wmf)
+$$\left\{ \leq ; = ; \geq \right\}$$
 
-![](media/image391.wmf)
+$${UC\_ RHSTS_{uc\_ n,t,s,l}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t - 1,s,'RHS'} + FLO\_ GROW_{r,t - 1,s,'RHS'} + IRE\_ GROW_{r,t - 1,s,'RHS'} \\
+ & + COMNET\_ GROW_{r,t - 1,s,'RHS'} + COMPRD\_ GROW_{r,t - 1,s,'RHS'}
+\end{aligned} \right)
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t - 1,'RHS'} + CAP\_ GROW_{r,t - 1,'RHS'} \right)}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as
 strict equality and the RHS constant UC_RHSTS is replaced by the
 variable VAR_UCTS. The bounds UC_RHSTS are then applied to the variable
 VAR_UCTS.
 
-![](media/image266.wmf)
+$$=$$
 
-![](media/image392.wmf)
+$${VAR\_ UCTS_{uc\_ n,t,s}
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( \begin{aligned}
+ & ACT\_ GROW_{r,t - 1,s,'RHS'} + FLO\_ GROW_{r,t - 1,s,'RHS'} + IRE\_ GROW_{r,t - 1,s,'RHS'} \\
+ & + COMNET\_ GOW_{r,t - 1,s,'RHS'} + COMPRD\_ GROW_{r,t - 1,s,'RHS'}
+\end{aligned} \right)
+}{+ 
+}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t - 1,'RHS'} + CAP\_ GROW_{r,t - 1,'RHS'} \right)}$$
 
 with
 
-![](media/image360.wmf)
+$$VAR\_ UCTS.LO_{uc\_ n,t,s} = UC\_ RHSTS_{uc\_ n,t,s,'LO'}$$
 
-![](media/image361.wmf)
+$$VAR\_ UCTS.UP_{uc\_ n,t,s} = UC\_ RHSTS_{uc\_ n,t,s,'UP'}$$
 
-![](media/image362.wmf)
+$$VAR\_ UCTS.FX_{uc\_ n,t,s} = UC\_ RHSTS_{uc\_ n,t,s,'FX'}$$
 
 ### User constraint modifiers
 
@@ -6030,10 +7623,10 @@ payments, the INVTAX modifier the tax payments, and the INVSUB modifier
 the subsidy payments (taken as negative values). By combining several of
 these modifiers, the payments are summed together.
 
-  ------------------------------------------------------------------------------
+  --------------- ---------------------------------------------- ---------------
   **Attribute**   **Description**                                **Applicable UC
                                                                  components**
-  --------------- ---------------------------------------------- ---------------
+
   COST            Multiple by primary cost attribute (summing    NCAP,ACT,\
                   together with other cost attributes requested) FLO,COMPRD,\
                                                                  COMCON
@@ -6101,7 +7694,7 @@ these modifiers, the payments are summed together.
 
   YES             Declares the constraint to be dynamic, of type All\
                   (t--1, t)                                      (RHS only)
-  ------------------------------------------------------------------------------
+  --------------- ---------------------------------------------- ---------------
 
   : Table C-4. ETL-specific model constraints
 

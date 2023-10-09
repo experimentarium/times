@@ -129,9 +129,9 @@ corresponding to collections of files handling each aspect of the code
 (e.g., set bounds, prepare coefficients, specify equations), as
 summarized in Table 2.
 
-  -----------------------------------------------------------------------------
+  ----------------------------------------------------------------------------
   **Type**        **Nature of the Routine**
-  --------------- -------------------------------------------------------------
+  --------------- ------------------------------------------------------------
   **Prefix**      
 
   **ans**         ANSWER TIMES specific pre-processor code
@@ -158,24 +158,17 @@ summarized in Table 2.
   **main**        Top level routines according to the model variant to be
                   solved
 
-  **mod**         the declaration of the equations and variables for each model
-                  variant
+  **mod**         the declaration of the equations and variables for each model variant
 
-  **pp**          preprocess routines responsible for preparing the TIMES
-                  internal parameters by assembling, interpolating, levelizing,
-                  normalizing, and processing the input data to prepare the
-                  data structures needed to produce the model coefficients
+  **pp**          preprocess routines responsible for preparing the TIMES internal parameters by assembling, interpolating, levelizing, normalizing, and processing the input data to prepare the data structures needed to produce the model coefficients
 
   **qa**          Quality assurance checking and reporting
 
-  **rpt**         main reporting components performing the calculations needed
-                  and assembling the relevant parameters from the model results
+  **rpt**         main reporting components performing the calculations needed and assembling the relevant parameters from the model results
 
-  **sol**         components of the results report writer that prepares the
-                  solution for outputting
+  **sol**         components of the results report writer that prepares the solution for outputting
 
-  **solve**       manage the actual call to solve the model (that is the call
-                  to invoke the optimizer)
+  **solve**       manage the actual call to solve the model (that is the call to invoke the optimizer)
 
   **uc**          handles the user constraints
 
@@ -187,8 +180,7 @@ summarized in Table 2.
 
   **CLI**         climate module routines
 
-  **CMD**         Windows command scripts to invoke GAMS/GDX2VEDA in order to
-                  solve and afterwards dump the model results
+  **CMD**         Windows command scripts to invoke GAMS/GDX2VEDA in order to solve and afterwards dump the model results
 
   **DEF**         setting of defaults
 
@@ -196,17 +188,11 @@ summarized in Table 2.
 
   **ETL**         endogenous technology learning routines
 
-  **GMS**         lower level GAMS routines to perform interpolation, apply
-                  shaping of input parameters, etc.
+  **GMS**         lower level GAMS routines to perform interpolation, apply shaping of input parameters, etc.
 
-  **RUN/GEN**     VEDA-FE/ANSWER specific GAMS TIMES command templates for
-                  dynamic substitution of the switches and parameters needed at
-                  run submission to identify the model variant and other
-                  options that will guide the current model run
+  **RUN/GEN**     VEDA-FE/ANSWER specific GAMS TIMES command templates for dynamic substitution of the switches and parameters needed at run submission to identify the model variant and other options that will guide the current model run
 
-  **IER**         routines and extensions prepared by the University of
-                  Stuttgart (Institute for the Rational Use of Energy, IER)
-                  (e.g., for more advanced modeling of CHPs)
+  **IER**         routines and extensions prepared by the University of Stuttgart (Institute for the Rational Use of Energy, IER) (e.g., for more advanced modeling of CHPs)
 
   **LIN**         routines related to the alternative objective formulations
 
@@ -214,25 +200,21 @@ summarized in Table 2.
 
   **MLF**         code related to the MLF implementation of TIMES-MACRO
 
-  **MSA**         code related to the MSA implementation of decomposed
-                  TIMES-MACRO
+  **MSA**         code related to the MSA implementation of decomposed TIMES-MACRO
 
   **RED**         reduction algorithm routines
 
   **RPT**         report writer routines
 
   **STC**         code related to stochastics
-
-  **STP**         code related to time-stepped or partially fixed-horizon
-                  solution
+  **STP**         code related to time-stepped or partially fixed-horizon solution
 
   **TM**          the core TIMES MACRO code
 
-  **VDA**         routines related to new TIMES features implemented under the
-                  VDA extension
+  **VDA**         routines related to new TIMES features implemented under the VDA extension
 
   **VDD**         directives for the VEDA-BE result analysis software
-  -----------------------------------------------------------------------------
+  ----------------------------------------------------------------------------
 
   : []{#_Ref425138160 .anchor}Table 2: TIMES Routines Naming Conventions
 
@@ -449,27 +431,34 @@ the definition of the timeslices, the files INITSYS.COM and INITMTY.MOD,
 which are responsible for the declaration and initialization of all sets
 and parameters of the model generator, are included.
 
+![](media/image5.png){width="5.4853083989501314in"
+height="7.114316491688539in"}
+
+![](media/image6.png){width="5.909908136482939in"
+height="4.98759842519685in"}
+
 []{#_Ref425136344 .anchor}Figure 5: Example of a VEDA-FE TIMES
 \<case\>.RUN file[^16]
 
 The line containing the include command for the file initmty.mod can be
 supplemented by calls for additional user extensions that trigger the
 use of additional special equations or report routines. The use of these
-extension options are described in more detail in Section .
+extension options are described in more detail in Section 0.
 
 Afterwards the data dictionary file(s) (BASE.DD, ..., CO2_TAX_HIGH.DD in
-) containing the user input sets and parameters are included, inserted
-automatically by VEDA-FE/ANSWER according to the list of scenarios in
-the Case Manager/Run forms by means of the \$INCLUDE statements. It is
-normally advisable to segregate user data into "packets" as scenarios,
-where there may be a single Base scenario containing the core
-descriptions of the energy system being studied and a series of
-alternate scenario depicting other aspects of the system. For example,
-one \<scenario\>.DD file may contain the description of the energy
-system for a reference scenario, and additional \<alt_scenario\>.DD
-files (.DDS for ANSWER) may be included containing additions or changes
-relative to the reference file, for example CO~2~ mitigation targets for
-a reduction scenario, or alternative technology specifications.
+Figure 5) containing the user input sets and parameters are included,
+inserted automatically by VEDA-FE/ANSWER according to the list of
+scenarios in the Case Manager/Run forms by means of the \$INCLUDE
+statements. It is normally advisable to segregate user data into
+"packets" as scenarios, where there may be a single Base scenario
+containing the core descriptions of the energy system being studied and
+a series of alternate scenario depicting other aspects of the system.
+For example, one \<scenario\>.DD file may contain the description of the
+energy system for a reference scenario, and additional
+\<alt_scenario\>.DD files (.DDS for ANSWER) may be included containing
+additions or changes relative to the reference file, for example CO~2~
+mitigation targets for a reduction scenario, or alternative technology
+specifications.
 
 The SET MILESTONYR declaration identifies years for this model run based
 upon those years identified in in VEDA via the Period Defs selected on
@@ -1145,3 +1134,4 @@ As a last resort, the model can be run with the equation listing turned
 on by setting LIMROW/LIMCOL to, say, 1000 in the \<case\>.RUN (via the
 Case Manager) / GEN (via Edit the GEN from the Run form) file, although
 the equations in this form can be challenging to interpret.
+

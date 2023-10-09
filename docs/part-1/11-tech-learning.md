@@ -403,13 +403,6 @@ computationally intractable).
 
 ------------
 
-[^37]: The notation in this chapter is sometimes different from the
-    standard notation for parameters and variables, in order to conform
-    to the more detailed technical note on the subject.
+[^37]: The notation in this chapter is sometimes different from the standard notation for parameters and variables, in order to conform to the more detailed technical note on the subject.
 
-[^38]: It is usual to define, instead of ***b***, another parameter,
-    ***pr*** called the *progress ratio*, which is related to ***b***
-    via the following relationship:![](media/image25.wmf). Hence,
-    ***1-pr*** is the cost reduction incurred when cumulative investment
-    is doubled. Typical observed ***pr*** values are in a range of .75
-    to .95.
+[^38]: It is usual to define, instead of ***b***, another parameter, ***pr*** called the *progress ratio*, which is related to ***b*** via the following relationship:![](media/image25.wmf). Hence, ***1-pr*** is the cost reduction incurred when cumulative investment is doubled. Typical observed ***pr*** values are in a range of .75 to .95.

@@ -193,7 +193,7 @@ was only one variable X(2000,1) in the previous formulation).
 
 Of course, in this approach we need to add equality constraints to
 express the fact that some scenarios are identical at some periods. In
-the example of Figure 8.1, we would have:
+the example of Figure 8., we would have:
 
 X(2000,1)=X(2000,2)=X(2000,3)=X(2000,4),
 
@@ -341,6 +341,4 @@ theory of Linear Programming, as follows:
 
 ------------
 
-[^35]: The expected prices become deterministic prices if the stage is
-    the last one, so that there is no uncertainty remaining at or after
-    the current period.
+[^35]: The expected prices become deterministic prices if the stage is the last one, so that there is no uncertainty remaining at or after the current period.

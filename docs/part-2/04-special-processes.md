@@ -48,17 +48,19 @@ by *η~B~* , the total efficiency in the full CHP mode (point F) by
 and the slope of the iso-fuel line (B--F) by *S*, we can easily write
 the relations between these as follows:
 
-![](media/image14.wmf)
+$${\eta_{B} = \frac{\eta_{F} \times (1 + R \times S)}{(1 + R)}
+}{\eta_{F} = \frac{\eta_{B} \times (1 + R)}{1 + R \times S}
+}{S = \frac{\eta_{B} \times (1 + R) - \eta_{F}}{\eta_{F} \times R}}$$
 
 The core TIMES parameters for modeling the CHP attributes are listed in
 Table 17.
 
 ### Defining CHP attributes in TIMES
 
-  -----------------------------------------------------------------------
+  ---------------- ------------------------------------------------------
   **Attribute      **Description**
   name**           
-  ---------------- ------------------------------------------------------
+
   ACT_EFF          Efficiency: amount of activity produced by 1 unit of
                    input flow
 
@@ -82,12 +84,13 @@ Table 17.
   type CHP with    
   the set          
   **prc_map**.     
-  -----------------------------------------------------------------------
+  ---------------- ------------------------------------------------------
 
   : Table 18: Alternative ways of modelling efficiencies of CHP
   processes.
 
-![](media/image15.wmf)
+![](media/image11.wmf){width="5.260416666666667in"
+height="3.8229166666666665in"}
 
 Figure 10: Illustration of basic CHP characteristics supported in TIMES.
 
@@ -298,7 +301,7 @@ process in both regions. It has to be defined only once, but one can add
 parameters to it in both regions (e.g. costs, bounds, etc.). Nearly
 every piece of data in TIMES has to be assigned to a region.
 
-![](media/image16.wmf)
+![](media/image12.wmf){width="5.645833333333333in" height="3.46875in"}
 
 Figure
 
@@ -337,7 +340,8 @@ detail:
 
 -   Case 4: General multi-lateral trading structure
 
-![](media/image17.wmf)
+![](media/image13.wmf){width="4.833333333333333in"
+height="1.7916666666666667in"}
 
 Figure
 
@@ -402,7 +406,7 @@ in the market. Never­theless, the user can of course provide different
 data for the different regions, for example investment costs or
 efficiencies for the exchange process can be differentiated by region.
 
-![](media/image18.wmf)
+![](media/image14.wmf){width="6.0in" height="2.9895833333333335in"}
 
 Figure
 
@@ -575,10 +579,10 @@ processes.
 Input parameters specific to inter-regional exchange processes are
 listed in Table 19.
 
-  ------------------------------------------------------------------------------
+  ----------------------- ------------------------------------------------------
   **Attribute name\       **Description**
   (indexes)**             
-  ----------------------- ------------------------------------------------------
+
   IRE_FLO\                Coefficient that represents the efficiency of exchange
   (r1,y,p,c1,r2,c2,s2)    from r1 to r2, inside an inter-regional process where
                           both regions are internal. Note that separate IRE_FLOs
@@ -617,7 +621,7 @@ listed in Table 19.
   (r1,s1,r2,s2)           to region **r2** as part of inter-regional exchanges,
                           including both internal and external. Default
                           value = 1 when exchange permitted. Units: none.
-  ------------------------------------------------------------------------------
+  ----------------------- ------------------------------------------------------
 
   : Table 20: Limitations of using standard process parameters for IRE
   processes.
@@ -695,10 +699,10 @@ parameters, storage parameters (STG\_\*), or dispatching parameters
 (ACT_MINLD, ACT_UPS, ACT_CSTUP, ACT_LOSPL, ACT_CSTPL, ACT_TIME), can be
 used for IRE processes, and are ignored if used.
 
-  ------------------------------------------------------------------------
+  ------------- ------------------------------- --------------------------
   **Attribute   **Description**                 **Limitations**
   name**                                        
-  ------------- ------------------------------- --------------------------
+
   ACT_EFF       Activity efficiency             Can not be used
 
   FLO_BND       Bound on a process flow         The bound will apply to
@@ -738,7 +742,7 @@ used for IRE processes, and are ignored if used.
 
   PRC_MARK      Process group-wise market share Same as for FLO_MARK.
                 bound                           
-  ------------------------------------------------------------------------
+  ------------- ------------------------------- --------------------------
 
   : Table 21: Specific TIMES parameters related to the modelling of
   storage processes.
@@ -1013,10 +1017,10 @@ The TIMES input parameters that are specific to storage processes or
 have a specific functionality for storage processes are summarized in
 Table 21.
 
-  --------------------------------------------------------------------------
+  ------------------ -------------------------------------------------------
   **Attribute name\  **Description**
   (indexes)**        
-  ------------------ -------------------------------------------------------
+
   STG_CHRG\          Exogenous amount assumed to be charged into storage
   (r,y,p,s)          **p**, in timeslice **s** and year **y**. For timeslice
                      storage this parameter can be specified for each
@@ -1079,7 +1083,7 @@ Table 21.
   NCAP_AFCS\         As NCAP_AFC above, but can be specified for individual
   (r,y,p,cg,s)       timeslices. NCAP_AFCs values override NCAP_AFC values
                      defined at the same level.
-  --------------------------------------------------------------------------
+  ------------------ -------------------------------------------------------
 
   : Table 22: Limitations of using standard process parameters for
   storage processes.
@@ -1146,9 +1150,9 @@ parameters (IRE\_\*), or dispatching parameters (ACT_MINLD, ACT_UPS,
 ACT_CSTUP, ACT_LOSPL, ACT_CSTPL, ACT_TIME), can be used for storage
 processes, and are ignored if used.
 
-  ------------------------------------------------------------------------------
-  **Attribute name**  **Description**                 **Limitations**
   ------------------- ------------------------------- --------------------------
+  **Attribute name**  **Description**                 **Limitations**
+
   ACT_EFF             Activity efficiency             Can not be used
 
   FLO_BND             Bound on a process flow         Can only be used for
@@ -1201,7 +1205,7 @@ processes, and are ignored if used.
 
   PRC_MARK            Process group-wise market share Same limitations as for
                       bound                           FLO_MARK.
-  ------------------------------------------------------------------------------
+  ------------------- ------------------------------- --------------------------
 
   : Table 25. User constraint modifier attributes available in TIMES.
 

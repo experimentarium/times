@@ -392,21 +392,10 @@ accumulation here. This new feature is described in Chapter 7.
 
 [^43]: With the kind permission of Professor Stephen Hawking
 
-[^44]: A product of Haverly Systems Incorporated,
-    http://www.haverly.com/.
+[^44]: A product of Haverly Systems Incorporated, http://www.haverly.com/.
 
-[^45]: But recall that some extensions depart from the classical
-    equilibrium properties, see chapters 8-12.
+[^45]: But recall that some extensions depart from the classical equilibrium properties, see chapters 8-12.
 
-[^46]: In the end the two models use equivalent mathematical expressions
-    to represent a flexible process. However, TIMES reduces the user's
-    effort to a minimum, while MARKAL requires the user to manually
-    define the multiple processes, dummy fuels and user constraints.
+[^46]: In the end the two models use equivalent mathematical expressions to represent a flexible process. However, TIMES reduces the user's effort to a minimum, while MARKAL requires the user to manually define the multiple processes, dummy fuels and user constraints.
 
-[^47]: The representation of vintage as a separate index helps eliminate
-    a common confusion that existed in MARKAL, namely the confusion of
-    *vintage* with the *age* of a process. For instance, if the user
-    defines in MARKAL an annual O&M cost for a car, equal to 10 in 2005
-    and only 8 in 2010, the decrease would not only apply to cars
-    purchased in 2010, but also to cars purchased in 2005 and earlier
-    when they reach the 2010 period.
+[^47]: The representation of vintage as a separate index helps eliminate a common confusion that existed in MARKAL, namely the confusion of *vintage* with the *age* of a process. For instance, if the user defines in MARKAL an annual O&M cost for a car, equal to 10 in 2005 and only 8 in 2010, the decrease would not only apply to cars purchased in 2010, but also to cars purchased in 2005 and earlier when they reach the 2010 period.
