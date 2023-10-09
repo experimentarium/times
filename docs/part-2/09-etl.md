@@ -1,6 +1,6 @@
-######  Endogenous Technological Learning (ETL)
+#  Endogenous Technological Learning (ETL)
 
-####### Introduction
+## Introduction
 
 As discussed in Chapter 11 of Part I, there are situations in which the
 rate at which a technology's unit investment cost changes over time is a
@@ -32,7 +32,7 @@ special clustered learning ETL option where a component common to
 several technologies learns, thereby benefiting all the related
 (clustered) technologies.
 
-####### Sets, Switches and Parameters
+## Sets, Switches and Parameters
 
 Like all other aspects of TIMES the user describes the ETL components of
 the energy system by means of a Set and the Parameters and Switches
@@ -464,7 +464,7 @@ solve without having to remove the ETL data.
 |         |   | interval is twice as wide as the preceding one.        |
 +---------+---+--------------------------------------------------------+
 
-####### Variables
+## Variables
 
 The variables that are used to model the Endogenous Technological
 Learning option in TIMES are presented in below. As is the case with the
@@ -528,7 +528,7 @@ there are no clusters.
 |            | that VAR_LAMBD is positive for exactly one interval k.  |
 +------------+---------------------------------------------------------+
 
-######## VAR_CCAP(r,t,p)
+### VAR_CCAP(r,t,p)
 
 **Description:** The cumulative investment in capacity for an ETL
 technology.
@@ -558,7 +558,7 @@ to represent technology capacity.
 bounded by specifying a bound (NCAP_BND) on the level of investment in
 new capacity (VAR_NCAP).
 
-######## VAR_CCOST(r,t,p)
+### VAR_CCOST(r,t,p)
 
 **Description:** The cumulative cost of investment in capacity for an
 ETL technology.
@@ -584,7 +584,7 @@ tracked.
 
 **Bounds:** None.
 
-######## VAR_DELTA(r,t,p,k)
+### VAR_DELTA(r,t,p,k)
 
 **Description:** *Binary* variable (takes the value 0 or 1) used for an
 ETL technology to indicate in which interval of the piecewise linear
@@ -622,7 +622,7 @@ Program (MIP).
 
 **Bounds:** This binary variable is not directly bounded.
 
-########  VAR_IC(r,t,p)
+###  VAR_IC(r,t,p)
 
 **Description:** The portion of the cumulative cost of investment in
 capacity for an ETL technology (VAR_CCOST) that is incurred in period t.
@@ -651,7 +651,7 @@ tracked.
 
 **Bounds:** None.
 
-######## VAR_LAMBD(r,t,p,k)
+### VAR_LAMBD(r,t,p,k)
 
 **Description:** *Continuous* variable used for an ETL technology to
 represent the portion of cumulative investment in capacity (VAR_CCAP)
@@ -694,7 +694,7 @@ to represent technology capacity.
 above have the effect of either bounding VAR_LAMBD between CCAPK(k-1,p)
 and CCAP(k,p), or forcing VAR_LAMBD to be zero.
 
-####### Equations
+## Equations
 
 The equations that are used to model the Endogenous Technological
 Learning option in TIMES are presented in Table C-4 below. Since the
@@ -813,7 +813,7 @@ are no clusters. IN BOX BELOW, ADD ANSWER or CHANGE TO \"system\"
 |            | calculation using variable VAR_NCAP.        |           |
 +------------+---------------------------------------------+-----------+
 
-######## EQ_CC(r,t,p)
+### EQ_CC(r,t,p)
 
 **Description:** The Cumulative Capacity Interpolation constraint for an
 ETL technology.
@@ -855,7 +855,7 @@ limited usefulness, as discussed in Section 10.3 of PART I.
 >
 > ![](media/image445.wmf)
 
-######## EQ_CLU(r,t,p)
+### EQ_CLU(r,t,p)
 
 **Description:** For a [key]{.underline} learning ETL technology it
 defines investment in new capacity (VAR_NCAP) as the weighted sum of
@@ -898,7 +898,7 @@ parameter.
 
 ![](media/image448.wmf)
 
-######## EQ_COS(r,t,p)
+### EQ_COS(r,t,p)
 
 **Description:** The Cumulative Cost Interpolation constraint for an ETL
 technology.
@@ -940,7 +940,7 @@ limited usefulness, as discussed in Section 10.3 of PART I.
 
 ![](media/image451.wmf)
 
-######## EQ_CUINV(r,t,p)
+### EQ_CUINV(r,t,p)
 
 **Description:** The Cumulative Capacity Definition constraint for an
 ETL technology.
@@ -977,7 +977,7 @@ limited usefulness, as mentioned above.
 >
 > ![](media/image455.wmf)
 
-######## EQ_DEL(r,t,p)
+### EQ_DEL(r,t,p)
 
 **Description:** The constraint for an ETL technology that ensures that
 in each time period there is exactly one interval k for which the
@@ -1012,7 +1012,7 @@ limited usefulness, as already mentioned.
 >
 > ![](media/image458.wmf)
 
-######## EQ_EXPE1(r,t,p,k)
+### EQ_EXPE1(r,t,p,k)
 
 **Description:** One of two constraints for an ETL technology to improve
 MIP solution time by reducing the domain of feasibility of the binary
@@ -1052,7 +1052,7 @@ limited usefulness, as already mentioned.
 >
 > ![](media/image462.wmf)
 
-######## EQ_EXPE2(r,t,p,k)
+### EQ_EXPE2(r,t,p,k)
 
 **Description:** Second of two constraints for an ETL technology to
 improve MIP solution time by reducing the domain of feasibility of the
@@ -1094,7 +1094,7 @@ limited usefulness, as already mentioned.
 >
 > ![](media/image466.wmf)
 
-######## EQ_IC1(r,t,p)
+### EQ_IC1(r,t,p)
 
 **Description:** The constraint for an ETL technology that defines the
 portion of the cumulative cost of investment in capacity (VAR_IC) that
@@ -1135,7 +1135,7 @@ limited usefulness, as already mentioned.
 
 ![](media/image470.wmf)
 
-######## EQ_IC2(r,t,p)
+### EQ_IC2(r,t,p)
 
 **Description:** The constraint for an ETL technology that defines the
 portion of the cumulative cost of investment in capacity that is
@@ -1176,7 +1176,7 @@ limited usefulness, as already mentioned.
 
 ![](media/image474.wmf)
 
-######## EQ_LA1(r,t,p,k)
+### EQ_LA1(r,t,p,k)
 
 **Description:** The constraint for an ETL technology that sets a lower
 bound on the continuous variable VAR_LAMBD(r,t,p,k).
@@ -1220,7 +1220,7 @@ limited usefulness, as already mentioned.
 
 ![](media/image478.wmf)
 
-######## EQ_LA2(r,t,p,k)
+### EQ_LA2(r,t,p,k)
 
 **Description:** The constraint for an ETL technology that sets an upper
 bound on the continuous variable VAR_LAMBD(r,t,p,k).
@@ -1264,7 +1264,7 @@ MIP solution is of little interest.
 
 ![](media/image482.wmf)
 
-######## EQ_MRCLU(r,t,p)
+### EQ_MRCLU(r,t,p)
 
 **Description:** For a [key]{.underline} learning ETL technology it
 defines investment in new capacity (VAR_NCAP) as the weighted sum of
@@ -1308,7 +1308,7 @@ parameter.
 
 ![](media/image484.wmf)
 
-######## EQ_OBJSAL(r,cur)
+### EQ_OBJSAL(r,cur)
 
 **Description:** Regional salvage value part of objective function
 adjusted to include the salvage value of endogenously determined
@@ -1336,7 +1336,7 @@ which costs are tracked.
 
 \+![](media/image486.wmf)
 
-######## EQ_OBJINV(r,cur) 
+### EQ_OBJINV(r,cur) 
 
 *- see EQ_OBJINV in section 5.2.2 for a general description without ETL*
 
@@ -1361,5 +1361,3 @@ technology is available.
 > ...
 
 \+![](media/image488.wmf)
-
-#  {#section-10 .unnumbered}

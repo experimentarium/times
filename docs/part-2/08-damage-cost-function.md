@@ -1,6 +1,6 @@
-######  Damage Cost Functions
+# Damage Cost Functions
 
-####### Introduction
+## Introduction
 
 This Appendix contains the documentation on the Damage Cost Function
 extensions for the TIMES model. The chapter contains 6 sections: section
@@ -38,7 +38,7 @@ damage function option discussed in this document extends the concept of
 an emission tax by modeling more accurately the assumed cost of damages
 due to emissions of a pollutant.
 
-####### Mathematical formulation
+## Mathematical formulation
 
 We now describe the mathematical formulation used for the damage cost
 functions.
@@ -194,9 +194,9 @@ In addition, the implementation supports different elasticities and step
 sizes to be used below and above the reference level. See Section 3 for
 more details.
 
-####### Switches and Parameters
+## Switches and Parameters
 
-######## Activating the Damage Cost Functions
+### Activating the Damage Cost Functions
 
 Like all other aspects of TIMES, the user describes the Damage Cost
 Functions by means of a Set and the Parameters and Switches described in
@@ -247,7 +247,7 @@ augmented objective function cannot be currently activated with the
 non-linear TIMES-MACRO model variant. However, the linear option LP can
 be used together with the decomposed MACRO_MSA option.
 
-######## Input parameters
+### Input parameters
 
 All the parameters for describing damage functions are available in the
 VEDA-FE shell, where they may be specified. All parameters have a prefix
@@ -367,7 +367,7 @@ The input parameters are listed in Table .
 |         |        |           |          | bd=\'LO\'.   |           |
 +---------+--------+-----------+----------+--------------+-----------+
 
-######## Reporting parameters
+### Reporting parameters
 
 There is only one reporting parameter specifically related to the Damage
 Cost functions. The parameter represents the undiscounted damage costs
@@ -414,7 +414,7 @@ augmented objective function.
 | (w,r,t,c)       | (stochastic TIMES)                                 |
 +-----------------+----------------------------------------------------+
 
-####### Examples
+## Examples
 
 Assume that we wish to define linearized damage costs for the emission
 commodity \'EM\' so that the cost function has the following properties:
@@ -486,7 +486,7 @@ Figure
  B-16. Example of a linearized damage function with 1+5+1+3 steps\
 (one zero cost step, 5 lower steps, one middle step, 3 upper steps).
 
-####### Variables
+## Variables
 
 There are only two sets of new variables in the damage cost formulation,
 VAR_DAM and VAR_OBJDAM, which are shown below in . The variables VAR_DAM
@@ -517,7 +517,7 @@ costs are likewise assumed to be constant within each period.
   (r,\'OBJDAM\',cur)   damage costs in each region **r** with currency **cur**.
   -----------------------------------------------------------------------------
 
-######## VAR_DAMAGE(r,t,c,bd,j)
+### VAR_DAMAGE(r,t,c,bd,j)
 
 **Description:** The amount of emission indicator **c** at cost step
 **j** in direction **bd**, in period **t**.
@@ -534,7 +534,7 @@ included in the objective function.
 
 **Bounds:** This variable cannot be directly bounded by the user.
 
-######## VAR_OBJ(r,\'OBJDAM\',cur)
+### VAR_OBJ(r,\'OBJDAM\',cur)
 
 **Description:** The total present value of damage costs by region.
 
@@ -549,7 +549,7 @@ cost functions are included in the objective function
 
 **Bounds:** This variable cannot be directly bounded by the user.
 
-####### Equations
+## Equations
 
 There are two blocks of equations generated for damage cost functions,
 whenever they are included in the objective function. The two equations
@@ -575,7 +575,7 @@ We now give the formulations of these constraints.
   (r,cur)         be added as a component to the objective function.
   -------------------------------------------------------------------------
 
-######## EQ_DAMAGE(r,t,c)
+### EQ_DAMAGE(r,t,c)
 
 **Description:** Allocates the total amount of emission indicator in
 period **t** to cost steps.
@@ -610,7 +610,7 @@ functions in each period ***t***.
 
 ![](media/image438.wmf)
 
-######## EQ_OBJDAM(r,cur)
+### EQ_OBJDAM(r,cur)
 
 **Description:** Computes the present value of all damage costs by
 region and currency.
@@ -644,7 +644,7 @@ Case B: Non-linear functions**
 
 ![](media/image441.wmf)
 
-####### References {#references-1 .unnumbered}
+## References {#references-1 .unnumbered}
 
 Goldstein, G., Noble, K. & Van Regemorter, D. 2001. *Adaptation to
 MARKAL for including environmental damages*. MARKAL User Information

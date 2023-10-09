@@ -6960,8 +6960,6 @@ naming conventions apply to the prefixes of the report parameters:
 
 : Table 15: Report parameters in TIMES
 
-#  {#section .unnumbered}
-
 ### Acronyms used in cost reporting parameters
 
 The acronyms used in the reporting parameters for referring to certain

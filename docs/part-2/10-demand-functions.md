@@ -1,6 +1,6 @@
-###### TIMES Demand Functions
+# TIMES Demand Functions
 
-####### Introduction
+## Introduction
 
 As discussed in Chapters 3 and 4 of Part I, in TIMES the standard Demand
 Function formulation includes only sensitive of the demands to their own
@@ -50,7 +50,7 @@ where the aggre­gate volume of the components of the combined demand
 remains equal to the (optionally weighted) sum of the component demands
 also under any substitution taking place.
 
-####### Mathematical formulation
+## Mathematical formulation
 
 For the own-price elasticities, we have the following relations (see
 Part I, Chapter 4), where *U~i~* is the term in the objective function
@@ -159,9 +159,9 @@ scenarios is a far more useful exercise. That difference is of course,
 the negative of the difference between the net total surpluses of the
 two scenario runs.
 
-####### Sets, Switches and Parameters
+## Sets, Switches and Parameters
 
-######## Switches
+### Switches
 
 Besides the basic data parameters described in Table D-2 below, the user
 controls whether the linear or non-linear formulation is activated by
@@ -185,7 +185,7 @@ be included in a run.
 |                    | formulations depending on input data)           |
 +--------------------+-------------------------------------------------+
 
-######## Sets and Parameters
+### Sets and Parameters
 
 Like all other aspects of TIMES the user describes the demand functions
 for the energy system model by means of a Set and the Parameters and
@@ -329,7 +329,7 @@ Input Parameters associated with defining the TIMES demand functions.
     non-linear formulation it is handled by setting *σ~k~* very close to
     unity.
 
-####### Examples
+## Examples
 
 Assume that we wish to define a non-linear CES demand function for the
 aggregate demand TLPKM (passenger land travel), having the following
@@ -440,7 +440,7 @@ Note that using \'FX\' as a shortcut for bd={\'LO\',\'UP\'} in
 *COM_STEP* is only supported in TIMES v4.4.0 and above, and that
 *COM_VOC* does not have any such shortcut.
 
-####### Variables
+## Variables
 
 The variables that are used to model the Demand Functions in TIMES are
 presented in Table D-5 below. The primary role of the variables and
@@ -472,7 +472,7 @@ variable and the associated dynamic cost of these.
 |  (r,bd,cur) | through the demand variations of all elastic demands.  |
 +-------------+--------------------------------------------------------+
 
-######## VAR_COMPRD(r,t,c,s)
+### VAR_COMPRD(r,t,c,s)
 
 **Description:** The amount of demand commodity **c** procured at time
 period **t**, timeslice **s**.
@@ -495,7 +495,7 @@ otherwise directly bounded. It can be directly bounded by the COM_BNDPRD
 attribute. It may be indirectly bounded by specifying a user constraint
 referring to it by UC_COMPRD.
 
-######## VAR_DEM
+### VAR_DEM
 
 **Description:** The total amount of demand for commodity **c** in time
 period **t**.
@@ -515,7 +515,7 @@ non-linear CES demand function.
 
 **Bounds:** This variable is non-negative and is not bounded upwards.
 
-######## VAR_ELAST (r,t,c,s,j,bd)
+### VAR_ELAST (r,t,c,s,j,bd)
 
 **Description:** Variables used to linearize elastic demand curves by
 step-wise variations.
@@ -546,7 +546,7 @@ is tracked.
 bounded upward via virtual equation EQ_BNDELAS, of in the case of a CES
 function, via the equation EQL_COMCES.
 
-######## VAR_OBJELS (r,bd,cur)
+### VAR_OBJELS (r,bd,cur)
 
 **Description:** Variables used to linearize elastic demand curves by
 step-wise variations.
@@ -569,7 +569,7 @@ is tracked.
 
 **Bounds:** This variable is non-negative.
 
-####### Equations
+## Equations
 
 The equations that are used to model the demand functions in TIMES are
 presented in Table D-6 below. The primary role of the variables and
