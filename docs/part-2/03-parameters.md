@@ -528,7 +528,7 @@ bounds that are either inherited or aggregated to the target timeslice
 level will always override any upper and lower bounds simultaneously
 specified.
 
-![](media/image9.wmf){width="6.447916666666667in"
+![](media/image9.png){width="6.447916666666667in"
 height="5.385416666666667in"}
 
 Figure 9: Inheritance and aggregation rules for timeslice specific

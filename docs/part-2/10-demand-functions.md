@@ -761,7 +761,7 @@ function (EQ_OBJELS).
     inter-regional exchange processes is illustrated in the figure
     below.
 
-    ![](media/image10.emf){width="4.760416666666667in"
+    ![](media/image10.png){width="4.760416666666667in"
     height="1.40625in"}
 
 [^31]: The first row contains the parameter name, the second row
@@ -793,7 +793,7 @@ function (EQ_OBJELS).
     inter-regional exchange processes is illustrated in the figure
     below.
 
-    ![](media/image10.emf){width="4.760416666666667in"
+    ![](media/image10.png){width="4.760416666666667in"
     height="1.40625in"}
 
 [^37]: The equation EQ(l)\_XBND may have an external regional as region

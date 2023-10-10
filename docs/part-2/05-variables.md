@@ -503,7 +503,7 @@ specific variables only and are defined in their context.
 > are made in every equation involving VAR_NCAP by the internal
 > parameter COEF_CPT.
 >
-> ![](media/image15.emf){width="5.1875in" height="3.46875in"}
+> ![](media/image15.png){width="5.1875in" height="3.46875in"}
 >
 > **Figure 1: Example of a repeated investment in same period**
 >

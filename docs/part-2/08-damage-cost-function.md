@@ -429,7 +429,7 @@ PARAMETER DAM_BQTY / REG.EM 80 /;
 
 PARAMETER DAM_ELAST / REG.EM.LO 1, REG.EM.UP 0.7 /;
 
-![](media/image34.wmf){width="5.635416666666667in" height="3.8125in"}
+![](media/image34.png){width="5.635416666666667in" height="3.8125in"}
 
 Figure
 
@@ -473,7 +473,7 @@ that the step sizes derived from the VOC specifications are 10 units for
 the lower steps, 20 for the middle step, and 30 units for the upper
 steps. However, the last step of course has no upper bound.
 
-![](media/image35.wmf){width="5.90625in" height="4.010416666666667in"}
+![](media/image35.png){width="5.90625in" height="4.010416666666667in"}
 
 Figure
 
