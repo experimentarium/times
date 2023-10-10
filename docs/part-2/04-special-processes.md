@@ -89,7 +89,7 @@ Table 17.
   : Table 18: Alternative ways of modelling efficiencies of CHP
   processes.
 
-![](media/image11.wmf){width="5.260416666666667in"
+![](media/image11.png){width="5.260416666666667in"
 height="3.8229166666666665in"}
 
 Figure 10: Illustration of basic CHP characteristics supported in TIMES.
@@ -301,7 +301,7 @@ process in both regions. It has to be defined only once, but one can add
 parameters to it in both regions (e.g. costs, bounds, etc.). Nearly
 every piece of data in TIMES has to be assigned to a region.
 
-![](media/image12.wmf){width="5.645833333333333in" height="3.46875in"}
+![](media/image12.png){width="5.645833333333333in" height="3.46875in"}
 
 Figure
 
@@ -340,7 +340,7 @@ detail:
 
 -   Case 4: General multi-lateral trading structure
 
-![](media/image13.wmf){width="4.833333333333333in"
+![](media/image13.png){width="4.833333333333333in"
 height="1.7916666666666667in"}
 
 Figure
@@ -406,7 +406,7 @@ in the market. Never­theless, the user can of course provide different
 data for the different regions, for example investment costs or
 efficiencies for the exchange process can be differentiated by region.
 
-![](media/image14.wmf){width="6.0in" height="2.9895833333333335in"}
+![](media/image14.png){width="6.0in" height="2.9895833333333335in"}
 
 Figure
 

@@ -98,14 +98,14 @@ however, states that the equilibrium is reached as the solution of the
 following mathematical program, where the objective is to maximize the
 net total surplus:
 
-![](media/image10.emf)
+![](assets/image10.png)
 
 where ***X*** is the vector of all TIMES variables, (4-5) expresses the
 total net surplus, and ***DM(t )***is now a vector of *variables* in
 (4-6), rather than fixed demands. The integral in (4-5) is easily
 computed, yielding the following maximization program:
 
-![](media/image11.emf)
+![](assets/image11.png)
 
 We are almost there, but not quite, since the
 ***\[DM~i~(t)\]^-1/Ei\ ^***are non linear expressions and thus not
@@ -146,11 +146,11 @@ c)  For each demand segment ***DM~i~(t)*** define *n* step-variables
     each non-linear term in the objective function by a weighted sum of
     the *n* step-variables, as follows:
 
-> ![](media/image12.emf)
+> ![](assets/image12.png)
 >
 > and
 
-![](media/image13.emf)
+![](assets/image13.png)
 
 The ***A~j,i,t~*** term is equal to the value of the inverse demand
 function of the ***j^th\ ^***demand at the mid-point of the ***i^th^***
@@ -167,7 +167,7 @@ minimizes its negative, which then has the dimension of a cost. The
 portion of that cost representing the negative of the consumer surplus
 is akin to a *welfare loss.*
 
-![](media/image14.wmf)*Figure 4.1. Step-wise constant approximation of
+![](assets/image14.png)*Figure 4.1. Step-wise constant approximation of
 the non-linear terms in the objective function*
 
 ### Calibration of the demand functions

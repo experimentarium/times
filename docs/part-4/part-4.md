@@ -33,11 +33,11 @@ Activation screen where one proceeds by:
 -   Paste it into the Activation form, and request **Activation** -- as
     seen below.
 
-![](media/image1.png){width="4.84375in" height="3.4791666666666665in"}
+![](assets/image1.png){width="4.84375in" height="3.4791666666666665in"}
 
-![](media/image2.png){width="4.40625in" height="3.03125in"}
+![](assets/image2.png){width="4.40625in" height="3.03125in"}
 
-![](media/image3.png){width="4.4375in" height="2.5833333333333335in"}
+![](assets/image3.png){width="4.4375in" height="2.5833333333333335in"}
 
 This will then bring you to the VEDA2.0 Start Page discussed in Section
 2.
@@ -89,7 +89,7 @@ StartPage select DemoS_001 from the list of available models, see
 Figure 1. The current model and version of VEDA2.0 is shown on the top
 row for the form.
 
-![](media/image4.png){width="6.510416666666667in"
+![](assets/image4.png){width="6.510416666666667in"
 height="2.8854166666666665in"}
 
 []{#_Ref54873777 .anchor}Figure 1. StartPage Model Selection & News
@@ -97,7 +97,7 @@ height="2.8854166666666665in"}
 Note that once a model has been selected the StartPage will have the
 Module buttons displayed at the top of the form, see Figure 3.
 
-![](media/image5.png){width="6.5in" height="0.34375in"}
+![](assets/image5.png){width="6.5in" height="0.34375in"}
 
 # Introduction to VEDA2.0 
 
@@ -170,7 +170,7 @@ is identical for each individual model (Figure 2, left side) and
 includes the kind of templates shown in the table below, as found with
 the DemoS_012 model.
 
-![](media/image6.emf){width="6.5in" height="3.5208333333333335in"}
+![](assets/image6.png){width="6.5in" height="3.5208333333333335in"}
 
 []{#_Ref444525057 .anchor}Figure 2. Sub-folders Structure for each
 VEDA2.0 Model (showing the DemoS_012 files)
@@ -212,7 +212,7 @@ components most often used are readily accessible via the StartPage:
 The current model (DemoS_001) and version of VEDA2.0 are shown on the
 top line of the form.
 
-![](media/image7.png){width="6.489583333333333in"
+![](assets/image7.png){width="6.489583333333333in"
 height="4.270833333333333in"}
 
 []{#_Ref54877190 .anchor}Figure 3. Model StartPage
@@ -229,7 +229,7 @@ ask if you want to open a New Window, where "Yes" will start another
 instance of VEDA2.0 and "No" will replace the currently viewed model
 with the one requested, which also happens if you reselect the current
 model folder. You may reopen previously opened models via
-![](media/image8.png){width="0.5625in" height="0.19791666666666666in"},
+![](assets/image8.png){width="0.5625in" height="0.19791666666666666in"},
 which will again ask if you want to open a new instance or replace the
 only currently open.
 
@@ -242,7 +242,7 @@ size has also been adjusted. Note that when Unpinned the pane header
 appears to the right so that when clicked on it returns to the
 visualization pane.
 
-![](media/image9.emf){width="6.5in" height="2.5416666666666665in"}
+![](assets/image9.png){width="6.5in" height="2.5416666666666665in"}
 
 []{#_Ref335997296 .anchor}Figure 4. VEDA2.0 Navigator Layout
 
@@ -250,19 +250,19 @@ You may also switch the panes around, as done in Figure 5, where the
 Regular Scenario \[RS\] pane has been moved to the left of the Demand
 Scenario \[DS\] and Trade Scenario \[TS\] panes. This is accomplished by
 grabbing the pane at the top then using
-the![](media/image10.png){width="0.3229166666666667in"
+the![](assets/image10.png){width="0.3229166666666667in"
 height="0.2708333333333333in"}positioning tool to place the pane where
 you wish in the form. Note that when closing and reopening the Navigator
 (or VEDA2.0) the panes will appear as organized the last time.
 
-![](media/image11.png){width="5.21875in" height="4.385416666666667in"}
+![](assets/image11.png){width="5.21875in" height="4.385416666666667in"}
 
 []{#_Ref47578864 .anchor}Figure 5. VEDA2.0 Navigator -- Tailored View
 
 The specific folder associated with the active model can be opened by
 clicking on the model name at the both of the VEDA2.0 form (in Figure 4,
 MODEL: C:\\VEDA\\VEDA_Models\\ DemoS_012) or the
-![](media/image12.png){width="0.23958333333333334in" height="0.1875in"}
+![](assets/image12.png){width="0.23958333333333334in" height="0.1875in"}
 icon in the Base Scenario quadrants. Said icon can be found in each of
 the panes of the Navigator and will similarly open Explore to the
 associated sub-folder of the current model. One may also make a new
@@ -272,7 +272,7 @@ each pane.
 The VEDA-Navigator is the main vehicle for accessing, importing, and
 coordinating the various files that make up a model. Any template may be
 opened from the Navigator by double-clicking on its name, or in the case
-of SysSettings/BaseTrans using the ![](media/image13.png){width="0.25in"
+of SysSettings/BaseTrans using the ![](assets/image13.png){width="0.25in"
 height="0.25in"} icon alongside the file name. The Navigator form is
 divided into sub-windows/panes/quadrants according to the various types
 of files managed by VEDA2.0:
@@ -367,15 +367,15 @@ ToImport) or red (Inconsistent). The status of individual templates is
 indicated by their colors in the template lists, according to the legend
 at the bottom of the form. A file is shown as Inconsistent when it has a
 newer date/time stamp than in the database. [Note]{.underline}: you may
-need to do a refresh via ![](media/image14.png){width="0.1875in"
+need to do a refresh via ![](assets/image14.png){width="0.1875in"
 height="0.15625in"} to update the current status of the files after a
 recent change(s).
 
-Hitting ![](media/image15.png){width="1.4270833333333333in"
+Hitting ![](assets/image15.png){width="1.4270833333333333in"
 height="0.3125in"} will import all Templates In the application folder
 marked as inconsistent. You may force synchronization of other files by
 checking the checkbox next to their names before hitting
-![](media/image16.png){width="1.0729166666666667in"
+![](assets/image16.png){width="1.0729166666666667in"
 height="0.20833333333333334in"}. The synchronize operation and resulting
 log is discussed in Section 2.5.1. When opening the DemoS_001 model the
 single model input template (PRE_PRI_V01) will be tagged as ToImport.
@@ -398,7 +398,7 @@ this section come out of the DemoS_001 model, unless otherwise noted.
 The VEDA2.0 Information/VEDA Tags feature, shown in Figure 6, provides a
 summary of what is required for each "\~"tag VEDA handles.
 
-![](media/image17.png){width="6.302083333333333in"
+![](assets/image17.png){width="6.302083333333333in"
 height="7.489583333333333in"}
 
 []{#_Ref58394022 .anchor}Figure 6. VEDA Tags Overview
@@ -462,7 +462,7 @@ large complex models, therefore, a best practice would be to declare
 them in a single template location only, such as the SysSettings
 template.
 
-![](media/image18.png){width="6.0in" height="0.65625in"}
+![](assets/image18.png){width="6.0in" height="0.65625in"}
 
 []{#_Ref455666090 .anchor}Figure 7. How to Use \~FI_COMM
 
@@ -522,7 +522,7 @@ described in the table below and their order can be changed. Each
 process needs to be declared (only) once in such a table as shown in
 Figure 8. They are supported in B-Y Templates and SubRES files.
 
-![](media/image19.png){width="5.78125in" height="1.25in"}
+![](assets/image19.png){width="5.78125in" height="1.25in"}
 
 []{#_Ref455666174 .anchor}Figure 8. How to use \~FI_PROCESS
 
@@ -609,7 +609,7 @@ column containing values. This placement allows any number of columns to
 be designated for row identifiers, rather than data, as shown in Figure
 9 and defined in Table 3.
 
-![](media/image20.png){width="5.511805555555555in"
+![](assets/image20.png){width="5.511805555555555in"
 height="2.361111111111111in"}
 
 []{#_Ref455657085 .anchor}Figure 9. How to Use the \~FI_T Table
@@ -719,7 +719,7 @@ these are listed below.
 > from DemoS_001, it is used to declare three new attributes (G_DYEAR,
 > Discount, and YRFR) by row as shown in .
 
-![](media/image21.png){width="3.15625in" height="0.8645833333333334in"}
+![](assets/image21.png){width="3.15625in" height="0.8645833333333334in"}
 
 []{#_Ref336357066 .anchor}Figure 10. Example of \~TFM_INS Insert Table
 
@@ -734,7 +734,7 @@ data specification field may also contain operators (+, \*, -, /) there
 the resulting value is applied to the existing value for the qualifying
 processes.
 
-![](media/image22.png){width="6.395833333333333in"
+![](assets/image22.png){width="6.395833333333333in"
 height="0.4895833333333333in"}
 
 []{#_Ref455668699 .anchor}Figure 11. Example of \~TFM_UPD Update Table
@@ -930,7 +930,7 @@ interpolation between 2010-2020 and the extending constant for the
 remainder of the modelling horizon (owing to interpolation rule (5)
 specified in the UC_RHSRTS\~0 column).
 
-![](media/image23.png){width="6.239583333333333in"
+![](assets/image23.png){width="6.239583333333333in"
 height="0.7395833333333334in"}
 
 []{#_Ref336865683 .anchor}Figure 12. Defining a User Constraint in
@@ -1109,7 +1109,7 @@ explain the important role the Navigator plays below.
     > integrated database managed by VEDA-FE according to colour legend
     > at the bottom of form:
 
-![](media/image24.png){width="6.5in" height="0.28125in"}
+![](assets/image24.png){width="6.5in" height="0.28125in"}
 
 -   Not imported -- not yet brought into VEDA-FE
 
@@ -1137,7 +1137,7 @@ explain the important role the Navigator plays below.
 
 To ensure that VEDA2.0 is working in the model directory intended the
 user is encouraged to access templates via the Navigator by opening the
-Explore Folder via ![](media/image25.png){width="0.22916666666666666in"
+Explore Folder via ![](assets/image25.png){width="0.22916666666666666in"
 height="0.19791666666666666in"} or directly by double-clicking on the
 file name.
 
@@ -1154,8 +1154,8 @@ and/or the attribute(s) of interest; the new nuclear power plants
 facilitates direct access to the data in the templates by
 double-clicking on a cell.
 
-![](media/image26.png){width="2.4895833333333335in"
-height="1.5479166666666666in"} ![](media/image27.png){width="6.5in"
+![](assets/image26.png){width="2.4895833333333335in"
+height="1.5479166666666666in"} ![](assets/image27.png){width="6.5in"
 height="4.291666666666667in"}
 
 []{#_Ref455754367 .anchor}Figure 13. Browser for the model database
@@ -1177,7 +1177,7 @@ Any dimension not positioned as part of the row/column table layout
 definition appears at the top of the page. These dimensions have their
 values summed in the cube. Note that for any dimension where only a
 single value exists, said dimension is automatically moved up top. Using
-the ![](media/image28.png){width="0.14583333333333334in"
+the ![](assets/image28.png){width="0.14583333333333334in"
 height="0.1875in"} associated with each header, individual entries may
 temporarily be removed by unselecting them from the list of elements.
 
@@ -1192,7 +1192,7 @@ time-slice level, and whether a process is vintage or now, as seen in
 Figure 14 for the Electric Power Processes in the DemoS_0012 model (by
 applying the Set Filter = ELE).
 
-![](media/image29.png){width="6.5in" height="4.3125in"}
+![](assets/image29.png){width="6.5in" height="4.3125in"}
 
 []{#_Ref48954564 .anchor}Figure 14. Process Items List
 
@@ -1216,13 +1216,13 @@ shown in Figure 16 after clicking on ELC. A Browse window with the data
 associated with the focus component is presented below the RES, and may
 be rearranged by means of drag-and-drop, as was discussed earlier.
 
-![](media/image30.png){width="5.947916666666667in"
+![](assets/image30.png){width="5.947916666666667in"
 height="5.333333333333333in"}
 
 []{#_Ref462306843 .anchor}Figure 15. Master Schematic Representation of
 the RES -- Process View
 
-![](media/image31.png){width="5.927083333333333in"
+![](assets/image31.png){width="5.927083333333333in"
 height="5.302083333333333in"}
 
 []{#_Ref450061205 .anchor}Figure 16. Master Schematic Representation of
@@ -1236,7 +1236,7 @@ There is also a facility for examining the Commodity Groups, not shown
 here as DemoS only employs the standard single commodity input/output
 groups created by VEDA2.0.
 
-![](media/image32.png){width="6.510416666666667in"
+![](assets/image32.png){width="6.510416666666667in"
 height="4.302083333333333in"}
 
 []{#_Toc58401157 .anchor}Figure 17. Master Schematic Representation of
@@ -1250,8 +1250,8 @@ runs.
 
 Figure 18 illustrates the main components of the Run Manager.
 
-![](media/image33.png){width="6.5in"
-height="3.4479166666666665in"}![](media/image34.emf){width="1.2034722222222223in"
+![](assets/image33.png){width="6.5in"
+height="3.4479166666666665in"}![](assets/image34.png){width="1.2034722222222223in"
 height="0.4270833333333333in"}[]{#_Ref450062276 .anchor}
 
 Figure 18. Run Manager
@@ -1318,13 +1318,13 @@ case definition (or start from an existing Case):
 Double-clicking on a existing Case opens its Definition form. It can
 then be copied or modified and resaved as desired.
 
-> ![](media/image35.png){width="4.697916666666667in" height="5.28125in"}
+> ![](assets/image35.png){width="4.697916666666667in" height="5.28125in"}
 
 []{#_Ref48953394 .anchor}Figure 19. Case Designation Form
 
 Once a case has been fully specified a model run can be submitted by
 selecting the Case(s) desired and hitting the
-![](media/image36.png){width="0.6041666666666666in"
+![](assets/image36.png){width="0.6041666666666666in"
 height="0.21875in"}button. This results in VEDA extrating the data from
 the intermal database and placing the data dictionary (DD) files that
 contain the input for the TIMES GAMS model generator into the designated
@@ -1334,8 +1334,8 @@ actions, as seen below. \[A series of other VEDA work windows may open /
 close along the way as well.\] As many jobs will be submitted in
 parallel as set on the RunManager Settings panel.
 
-![](media/image37.png){width="2.21875in"
-height="2.75in"}![](media/image38.png){width="4.260416666666667in"
+![](assets/image37.png){width="2.21875in"
+height="2.75in"}![](assets/image38.png){width="4.260416666666667in"
 height="3.3333333333333335in"}
 
 []{#_Toc58401160 .anchor}Figure 20. Model Run
@@ -1369,7 +1369,7 @@ The core facilities of the Results component of VEDA2.0 are:
 -   **Batch export**: to export results in Excel and CSV.
 
 An overview of the in Results component is shown in
-![](media/image39.png){width="6.5in" height="3.90625in"}
+![](assets/image39.png){width="6.5in" height="3.90625in"}
 
 Figure 21. Note that users of original VEDA can migrate their Sets and
 Tables (SnT) definitions by means of the *Veda_SnT to Excel migration*
@@ -1377,7 +1377,7 @@ utility found in the VEDA\\VEDA (new) root folder, and just requires the
 user identify to original SnT and VEDA2.0 model folder. See Appendix A
 and B for the TIMES Results attributes and VD\* files .
 
-![](media/image39.png){width="6.5in" height="3.90625in"}
+![](assets/image39.png){width="6.5in" height="3.90625in"}
 
 []{#_Toc58401161 .anchor}Figure 21. Components of the VEDA2.0 Result
 Facility
@@ -1398,9 +1398,9 @@ in the initial layout of the Resutls form in Figure 22. The columns
 identify the indexes corresponding to the dimensions of the various
 TIMES results attributes.
 
-![](media/image40.png){width="1.175in"
-height="1.1666666666666667in"}![](media/image41.png){width="0.9888888888888889in"
-height="0.8770833333333333in"}![](media/image42.png){width="6.5in"
+![](assets/image40.png){width="1.175in"
+height="1.1666666666666667in"}![](assets/image41.png){width="0.9888888888888889in"
+height="0.8770833333333333in"}![](assets/image42.png){width="6.5in"
 height="4.895833333333333in"}
 
 Figure 22. Results Form Components
@@ -1414,18 +1414,18 @@ once the table is retrieved, as seen in Figure 23 for power plant
 capacity. Once the table is presented it can be rearranged as desired,
 for example moving the scenario to the right of the row definition area
 to facility comparing scenarios. Note that
-![](media/image43.png){width="0.19791666666666666in"
+![](assets/image43.png){width="0.19791666666666666in"
 height="0.19791666666666666in"}may be used to refresh the information
-presented and ![](media/image44.png){width="0.21875in"
+presented and ![](assets/image44.png){width="0.21875in"
 height="0.20833333333333334in"} to save the current layout, giving it a
 name. The list of previously saved layouts and data tables may be
 retrieved by means of
-![](media/image45.png){width="0.19791666666666666in"
+![](assets/image45.png){width="0.19791666666666666in"
 height="0.22916666666666666in"}. Note that the Global Filter, most often
 used for Scenarios and/or periods, is activated by Ctrl double-clicking
 in the checkbox for the elements constituting the filter.
 
-![](media/image46.png){width="6.5in" height="3.6666666666666665in"}
+![](assets/image46.png){width="6.5in" height="3.6666666666666665in"}
 
 []{#_Ref54965616 .anchor}Figure 23. Results Electric Power Plant
 Capacity Table
@@ -1433,14 +1433,14 @@ Capacity Table
 Another powerful facility in VEDA2.0 is the quick charting facility
 available in the Results module. The user simply highlights the desired
 tables rows to be graphed and press the
-![](media/image47.png){width="0.23958333333333334in"
+![](assets/image47.png){width="0.23958333333333334in"
 height="0.17708333333333334in"} button. Then by using the layout tool in
 VEDA2.0 one can position the cart alongside the data, as seen in
 
 Figure 24, and the chart then tailored by means of the Settings form.
 
-![](media/image48.png){width="1.2402777777777778in"
-height="0.7756944444444445in"}![](media/image49.png){width="5.729166666666667in"
+![](assets/image48.png){width="1.2402777777777778in"
+height="0.7756944444444445in"}![](assets/image49.png){width="5.729166666666667in"
 height="3.2395833333333335in"}[]{#_Ref54966076 .anchor}
 
 Figure 24. Results Data and Chart
@@ -1451,7 +1451,7 @@ Figure 24. Results Data and Chart
 > mouse Select Data/ExRES option that component of the RES will be
 > presented in a new window, along the lines shown in
 >
-> ![](media/image50.png){width="6.5in" height="4.40625in"}
+> ![](assets/image50.png){width="6.5in" height="4.40625in"}
 
 []{#_Toc58401164 .anchor}Figure 25. Results ExRES Facility Component
 Detail
@@ -1462,7 +1462,7 @@ The Attribute Master may be accessed from the StartPage or via the
 Modules menu. The Attribute Master table (Figure 26) shows all the TIMES
 attributes/parameters supported by VEDA2.0.
 
-![](media/image51.png){width="6.5in" height="3.6770833333333335in"}
+![](assets/image51.png){width="6.5in" height="3.6770833333333335in"}
 
 []{#_Ref455670879 .anchor}Figure 26. Attribute Master Table
 
@@ -1514,19 +1514,19 @@ field in the upper right part of the pane.
 > upon how a component is defined to TIMES. There are separate sheets
 > for Commodities and Processes, the latter shown in Figure 27.
 >
-> ![](media/image52.png){width="6.5in" height="4.020833333333333in"}
+> ![](assets/image52.png){width="6.5in" height="4.020833333333333in"}
 
 []{#_Ref55986292 .anchor}Figure 27. Sets-\<model\> Rules Workbook
 
 > The Sets rule workbook is accessible via Navigator
-> ![](media/image53.png){width="0.84375in" height="0.3125in"} or better
+> ![](assets/image53.png){width="0.84375in" height="0.3125in"} or better
 > yet the Tools/SetBrowser which presents the Set definition information
 > via a VEDA2.0 cube (Figure 28, TIMES Commodity on the left /
 > User-defined Process on the right) for viewing using all the
 > filtering/tailoring of the information available throughout VEDA2.0.
 
-![](media/image54.png){width="3.0208333333333335in"
-height="2.7291666666666665in"}![](media/image55.png){width="3.4791666666666665in"
+![](assets/image54.png){width="3.0208333333333335in"
+height="2.7291666666666665in"}![](assets/image55.png){width="3.4791666666666665in"
 height="2.7083333333333335in"}
 
 []{#_Ref55985407 .anchor}Figure 28. Set Brower
@@ -1734,7 +1734,7 @@ it, or switch to it from another model to the DemoS_001. Note that the
 1^st^ time you'll also need to Synchronize the model before proceeding
 to seed the VEDA2.0 database.
 
-![](media/image56.png){width="1.875in" height="2.6041666666666665in"}
+![](assets/image56.png){width="1.875in" height="2.6041666666666665in"}
 
 []{#_Ref450311222 .anchor}Figure 29. Templates Included in DemoS_001
 
@@ -1750,7 +1750,7 @@ process the RES will cascade to it, then that procedure can be continued
 by double-clicking on the input/output commodities associated with the
 process.
 
-![](media/image57.png){width="6.5in" height="3.4270833333333335in"}
+![](assets/image57.png){width="6.5in" height="3.4270833333333335in"}
 
 []{#_Ref456101262 .anchor}Figure 30. Commodity RES (COA) and Item
 Details
@@ -1782,7 +1782,7 @@ The key SysSettings Options are shown in Figure 31, and discussed in the
 sections that follow according to the sheet in the template they are
 found.
 
-![](media/image58.emf){width="6.5in" height="1.3958333333333333in"}
+![](assets/image58.png){width="6.5in" height="1.3958333333333333in"}
 
 []{#_Ref55039125 .anchor}Figure 31. Key SysSettings Options (DemoS_001)
 
@@ -1809,7 +1809,7 @@ This sheet contains two tables (see Figure 32):
     > by the user for the seasonal level and called ANNUAL.
 
 +-----------------------------+----------------------------------------+
-| > ![](media/image59.png)    | > ![](media/image60.png)               |
+| > ![](assets/image59.png)    | > ![](assets/image60.png)               |
 +=============================+========================================+
 +-----------------------------+----------------------------------------+
 
@@ -1836,7 +1836,7 @@ This sheet contains three tables (Figure 33):
 -   \~DefaultYear is used to define the default year of the first
     period. It default to the StartYear.
 
-![](media/image61.emf){width="2.0416666666666665in" height="1.25in"}
+![](assets/image61.png){width="2.0416666666666665in" height="1.25in"}
 
 []{#_Ref455752192 .anchor}Figure 33. Start Year and Time Period
 Definition in SysSettings
@@ -1859,7 +1859,7 @@ is only the first table in the current version (Figure 34).
     order to ensure that these processes only become active when real
     fuel supplies are insufficient or unavailable.
 
-![](media/image62.emf){width="2.9791666666666665in"
+![](assets/image62.png){width="2.9791666666666665in"
 height="0.7708333333333334in"}
 
 []{#_Ref455752400 .anchor}Figure 34. Dummy Import Prices in SysSettings
@@ -1884,7 +1884,7 @@ This sheet contains one table (Figure 35):
         input and in this example is 100% for the single ANNUAL time
         slice.
 
-![](media/image21.png){width="4.479166666666667in"
+![](assets/image21.png){width="4.479166666666667in"
 height="0.8645833333333334in"}
 
 []{#_Ref455754877 .anchor}Figure 35. Global Constants Declarations in
@@ -1911,7 +1911,7 @@ This sheet contains two tables shown in Figure 36:
     Use a common unit in **to_unit** to declare new conversions. For
     example, for a new energy unit, use PJ in **to_unit**.
 
-![](media/image63.emf){width="5.145833333333333in" height="0.90625in"}
+![](assets/image63.png){width="5.145833333333333in" height="0.90625in"}
 
 []{#_Ref455752918 .anchor}Figure 36. Default Currency and Units
 Declarations in SysSettings
@@ -1943,7 +1943,7 @@ The key SysSettings Options are shown in Figure 37, and discussed in the
 sections that follow according to the sheet in the template they are
 found.
 
-![](media/image64.emf){width="6.5in" height="1.3854166666666667in"}
+![](assets/image64.png){width="6.5in" height="1.3854166666666667in"}
 
 []{#_Ref58338460 .anchor}Figure 37. Key SysSettings Options (DemoS_012)
 
@@ -1970,7 +1970,7 @@ This sheet contains two tables (see Figure 38):
     > by the user for the seasonal level and called ANNUAL.
 
 +-----------------------------+----------------------------------------+
-| > ![](media/image59.png)    | > ![](media/image60.png)               |
+| > ![](assets/image59.png)    | > ![](assets/image60.png)               |
 +=============================+========================================+
 +-----------------------------+----------------------------------------+
 
@@ -1992,7 +1992,7 @@ This sheet contains three tables (Figure 33):
     period definition has been created (Pdef-1), which contains 1 year
     for the first period (start year) and 2 years for the second period.
 
-![](media/image65.png)
+![](assets/image65.png)
 
 []{#_Toc58401178 .anchor}Figure 39. Start Year and Time Period
 Definition in SysSettings
@@ -2015,7 +2015,7 @@ is only the first table in the current version (Figure 34).
     order to ensure that these processes only become active when real
     fuel supplies are insufficient or unavailable.
 
-![](media/image62.emf){width="2.9791666666666665in"
+![](assets/image62.png){width="2.9791666666666665in"
 height="0.7708333333333334in"}
 
 []{#_Toc58401179 .anchor}Figure 40. Dummy Import Prices in SysSettings
@@ -2040,7 +2040,7 @@ This sheet contains one table (Figure 41):
         input and in this example is 100% for the single ANNUAL time
         slice.
 
-![](media/image21.png){width="4.479166666666667in"
+![](assets/image21.png){width="4.479166666666667in"
 height="0.8645833333333334in"}
 
 []{#_Ref58338334 .anchor}Figure 41. Global Constants Declarations in
@@ -2063,7 +2063,7 @@ This sheet contains two tables shown in Figure 42:
     possible to use any units, but it is important to be coherent across
     the model.\].
 
-![](media/image66.png){width="2.4375in" height="0.9479166666666666in"}
+![](assets/image66.png){width="2.4375in" height="0.9479166666666666in"}
 
 []{#_Ref58338260 .anchor}Figure 42. Default Currency and Units
 Declarations in SysSettings
@@ -2079,7 +2079,7 @@ commodity set description so in this example all the commodities that
 start with any character, SOLID in the middle of the description, and
 end with any character (\* is used as a wildcard).
 
-![](media/image67.emf){width="3.8958333333333335in"
+![](assets/image67.png){width="3.8958333333333335in"
 height="0.6354166666666666in"}
 
 ### B-Y Template
@@ -2128,7 +2128,7 @@ A typical energy balance comprises two dimensions:
     that are used to designate the various sectors and then used as part
     of naming energy processes in a uniform manner in the model.
 
-![](media/image68.png){width="5.989583333333333in"
+![](assets/image68.png){width="5.989583333333333in"
 height="3.5833333333333335in"}
 
 []{#_Ref444526230 .anchor}Figure 43. Initial Energy Balance at Start
@@ -2158,12 +2158,12 @@ process tables (identified with \~FI\_ Process) with a structure as
 explained in Sections 2.4.2 and 2.4.3 and shown in Figure 44 and Figure
 45.
 
-![](media/image18.png){width="6.0in" height="0.65625in"}
+![](assets/image18.png){width="6.0in" height="0.65625in"}
 
 []{#_Ref444526251 .anchor}Figure 44. A Typical Commodity Declaration
 Table
 
-![](media/image19.png){width="5.78125in" height="1.25in"}
+![](assets/image19.png){width="5.78125in" height="1.25in"}
 
 []{#_Ref444526259 .anchor}Figure 45. A Typical Process Declaration Table
 
@@ -2193,7 +2193,7 @@ primary supply options for COA (Figure 46):
 -   Import and export options are characterized with the COST and
     ACT_BND attributes.
 
-![](media/image69.png){width="5.135416666666667in"
+![](assets/image69.png){width="5.135416666666667in"
 height="1.8333333333333333in"}
 
 > \*Blue cells are linked to the energy balance.
@@ -2213,7 +2213,7 @@ new DMD process (DTPSCOA -- Demand technology Total Primary Supply --
 COA) are declared in the commodity and process tables (Figure 47), as
 described in the previous section.
 
-![](media/image70.png){width="6.489583333333333in" height="1.75in"}
+![](assets/image70.png){width="6.489583333333333in" height="1.75in"}
 
 []{#_Ref444526286 .anchor}Figure 47. Declaration of Demand Commodity and
 Process
@@ -2228,7 +2228,7 @@ option for total solid fuels (Figure 48).
     default this technical lifetime is also used as the economic
     lifetime, unless a specific economic lifetime (ELIFE) is defined.
 
-![](media/image71.png){width="5.71875in" height="0.9166666666666666in"}
+![](assets/image71.png){width="5.71875in" height="0.9166666666666666in"}
 
 []{#_Ref336348252 .anchor}Figure 48. Description of a simple demand
 processes
@@ -2243,7 +2243,7 @@ horizon of the analysis due to the default interpolation/extrapolation
 applied to the attribute Demand. The future values can be changed by
 specifying new inputs for the future years/periods.
 
-![](media/image72.png){width="3.4479166666666665in" height="0.96875in"}
+![](assets/image72.png){width="3.4479166666666665in" height="0.96875in"}
 
 > \*Blue cells are linked to the energy balance. Here, the demand value
 > is equivalent to the sum of Total Conversion plus Total Final
@@ -2273,7 +2273,7 @@ TIMES source code indicated under **GAMS Source Code** **folder** and
 the results files stored in the folder indicated below **GAMS Work
 folder**.
 
-![](media/image73.png){width="6.5in" height="3.5625in"}
+![](assets/image73.png){width="6.5in" height="3.5625in"}
 
 []{#_Ref455757151 .anchor}Figure 50. VEDA2.0 Run Manager to Submit Model
 Runs
@@ -2283,11 +2283,11 @@ Runs
 The results of a model run in VEDA2.0 can be imported into the Results
 manager upon activating it from the StartPage, Modules menus or {f10\]
 key. If the Results form is already open, and new runs submitted, then
-the ![](media/image43.png){width="0.1875in" height="0.1875in"}refresh in
+the ![](assets/image43.png){width="0.1875in" height="0.1875in"}refresh in
 the upper right can be used to reload the data.
 
 The list of pre-defined tables can be seen by pressing
-![](media/image45.png){width="0.22916666666666666in"
+![](assets/image45.png){width="0.22916666666666666in"
 height="0.2604166666666667in"} at the top right of the form. To view a
 particular table(s), scroll down/up the list and select it (them), then
 click the **Load** button. The table will open with a pre-defined layout
@@ -2299,14 +2299,14 @@ empty you will get a pop up message saying that table is empty.
 The Results tables that can be checked for the first DemoS are listed in
 Figure 51, and then each described below.
 
-![](media/image74.png){width="4.083333333333333in"
+![](assets/image74.png){width="4.083333333333333in"
 height="2.8020833333333335in"}
 
 []{#_Ref55040586 .anchor}Figure 51. List of DemoS_001 Results Tables
 
 -   \_\_Check Dummy Imports (Figure 52)
 
-![](media/image75.png){width="3.1041666666666665in"
+![](assets/image75.png){width="3.1041666666666665in"
 height="1.0833333333333333in"}
 
 []{#_Ref456106094 .anchor}Figure 52. \_\_Check Dummy Imports
@@ -2330,11 +2330,11 @@ height="1.0833333333333333in"}
         total system cost in million euros for the model run to 2006,
         based on two periods (2005 and 2006) for a total of three years.
 
-![](media/image76.png){width="2.8020833333333335in" height="0.75in"}
+![](assets/image76.png){width="2.8020833333333335in" height="0.75in"}
 
 []{#_Ref456106115 .anchor}Figure 53. \_SysCost Results Table Definition
 
-![](media/image77.png){width="3.34375in" height="1.9895833333333333in"}
+![](assets/image77.png){width="3.34375in" height="1.9895833333333333in"}
 
 []{#_Ref456106233 .anchor}Figure 54. Total System Cost in DemoS_001
 
@@ -2358,7 +2358,7 @@ height="1.0833333333333333in"}
     -   This table can be used to show the undiscounted cost elements of
         the model solution (Figure 55).
 
-![](media/image78.png){width="3.09375in" height="1.2395833333333333in"}
+![](assets/image78.png){width="3.09375in" height="1.2395833333333333in"}
 
 []{#_Ref456105963 .anchor}Figure 55. All Costs Results Table Definition
 
@@ -2375,11 +2375,11 @@ height="1.0833333333333333in"}
 -   The undiscounted cost elements (in million euros) that are part of
     the solution for this first step for REG1 are shown below (Figure
     56). \[Note that the "fit" button
-    (![](media/image79.png){width="0.21875in"
+    (![](assets/image79.png){width="0.21875in"
     height="0.17708333333333334in"}) was applied once the table was
     loaded.\]
 
-> ![](media/image80.png){width="5.46875in"
+> ![](assets/image80.png){width="5.46875in"
 > height="2.3958333333333335in"}
 >
 > []{#_Ref456106647 .anchor}Figure 56. All System Costs Results by
@@ -2399,7 +2399,7 @@ height="1.0833333333333333in"}
         demand(s). In this case there is only the single demand called
         TPSCOA, which is in PJ (Figure 58).
 
-![](media/image81.png){width="3.1354166666666665in"
+![](assets/image81.png){width="3.1354166666666665in"
 height="1.0833333333333333in"}
 
 []{#_Ref456106893 .anchor}Figure 57. Demands Table Definition
@@ -2410,7 +2410,7 @@ height="1.0833333333333333in"}
     commodity Demand Total Primary Supply -- COA (TPSCOA), the values
     for the periods 2005 and 2006.
 
-> ![](media/image82.png){width="5.53125in" height="1.78125in"}
+> ![](assets/image82.png){width="5.53125in" height="1.78125in"}
 
 []{#_Ref456107018 .anchor}Figure 58. TPSCOA Demand Results Table
 
@@ -2432,7 +2432,7 @@ height="1.0833333333333333in"}
         60.) The demand and supply balance of COA is constant between
         2005 and 2006, as described above in Section 3.1.4.5.
 
-![](media/image83.png){width="5.78125in" height="2.4479166666666665in"}
+![](assets/image83.png){width="5.78125in" height="2.4479166666666665in"}
 
 []{#_Ref456107947 .anchor}Figure 59. Fuel Supply Results Table
 
@@ -2442,7 +2442,7 @@ height="1.0833333333333333in"}
     commodity marginal price for COA, which will be equal to the
     production cost of the COA commodity from the marginal technology.
 
-![](media/image84.png){width="5.833333333333333in"
+![](assets/image84.png){width="5.833333333333333in"
 height="2.4895833333333335in"}
 
 []{#_Ref456108122 .anchor}Figure 60. Fuel Supply results by process and
@@ -2454,7 +2454,7 @@ period
         EQ_CombalM, can be used for showing commodities' marginal prices
         in the run.
 
-![](media/image85.png){width="2.8020833333333335in"
+![](assets/image85.png){width="2.8020833333333335in"
 height="0.6979166666666666in"}
 
 []{#_Ref456108491 .anchor}Figure 61. Marginal prices Results Table
@@ -2471,7 +2471,7 @@ height="0.6979166666666666in"}
     cost. In 2006 there isn't any new investment, so the marginal price
     will be only a function of the fuel cost.
 
-![](media/image86.png){width="4.854166666666667in"
+![](assets/image86.png){width="4.854166666666667in"
 height="2.2708333333333335in"}
 
 []{#_Ref456108695 .anchor}Figure 62. Marginal Prices for DemoS_001
@@ -2529,9 +2529,9 @@ use in the residential sector (space heating, appliances, and other).
 GAS is allocated at 100% to the Other end use in the residential sector
 and OIL at 100% to the single end use D1 in the transportation sector.
 
-![](media/image87.png){width="6.0in" height="3.75in"}
+![](assets/image87.png){width="6.0in" height="3.75in"}
 
-![](media/image88.png){width="6.0in" height="1.2708333333333333in"}
+![](assets/image88.png){width="6.0in" height="1.2708333333333333in"}
 
 []{#_Ref444526391 .anchor}Figure 63. Energy balance at start year 2005
 for REG1 -- Covered in DemoS_002
@@ -2567,7 +2567,7 @@ simulate a sectoral tariff for GAS or an investment cost to simulate new
 investments in infrastructure and so on. The same approach is used to
 declare the new commodities and processes in their respective tables.
 
-![](media/image89.png){width="3.9791666666666665in" height="1.15625in"}
+![](assets/image89.png){width="3.9791666666666665in" height="1.15625in"}
 
 []{#_Ref444526408 .anchor}Figure 64. Introduction of Sector Fuel
 Processes
@@ -2613,7 +2613,7 @@ TOTEOIL) and new processes (ROTNGAS and TOTNOIL).
     based on the technology output. It is also possible to define
     emissions coefficients based on fuel input (see Section ).
 
-![](media/image90.png){width="5.40625in" height="2.4166666666666665in"}
+![](assets/image90.png){width="5.40625in" height="2.4166666666666665in"}
 
 []{#_Ref456189801 .anchor}Figure 65. End-use Demand Processes
 
@@ -2647,13 +2647,13 @@ The main findings from the results analysis are:
     emissions (TRACO2), although no coefficient was provided for solid
     fuels combustion emissions.
 
-![](media/image91.png){width="6.166666666666667in"
+![](assets/image91.png){width="6.166666666666667in"
 height="3.2395833333333335in"}
 
 []{#_Ref456190416 .anchor}Figure 66. Results - Demands Results Table for
 DemoS_002
 
-![](media/image92.png){width="6.5in" height="3.6666666666666665in"}
+![](assets/image92.png){width="6.5in" height="3.6666666666666665in"}
 
 []{#_Ref444526439 .anchor}Figure 67. Results -- Fuel Supply Results
 Table for DemoS_002
@@ -2678,7 +2678,7 @@ Table for DemoS_002
     more oil is produced domestically to meet the domestic demand for
     transportation oil.
 
-![](media/image93.png){width="5.927083333333333in"
+![](assets/image93.png){width="5.927083333333333in"
 height="2.1979166666666665in"}
 
 []{#_Ref444526444 .anchor}Figure 68. Results -- Emissions by Sector
@@ -2710,12 +2710,12 @@ commodity. The examination of shadow prices is just as important as the
 analysis of the quantities produced and consumed of each commodity and
 of the technological investments.
 
-![](media/image94.png){width="4.78125in" height="3.25in"}
+![](assets/image94.png){width="4.78125in" height="3.25in"}
 
 []{#_Ref444526454 .anchor}Figure 69. Results -- Prices_Energy Results
 Table for DemoS_002
 
-![](media/image95.png){width="6.5in" height="5.291666666666667in"}
+![](assets/image95.png){width="6.5in" height="5.291666666666667in"}
 
 []{#_Ref444526472 .anchor}Figure 70. Marginal Price of Process Activity
 Table in DemoS_002
@@ -2762,7 +2762,7 @@ specifications are saved as a new time period definition (Pdef-5). The
 time horizon is extended to 2020, with the milestones years being 2005,
 2006, 2010, 2015 and 2020.
 
-![](media/image96.png){width="1.5in" height="1.3125in"}
+![](assets/image96.png){width="1.5in" height="1.3125in"}
 
 []{#_Ref444526503 .anchor}Figure 71. New time periods definition in the
 SysSettings file
@@ -2777,7 +2777,7 @@ The transformation table is also used to insert a new constant in the
 model: the transmission efficiency (COM_IE) for the electricity (ELC)
 commodity in REG1 (Figure 72).
 
-![](media/image97.png){width="4.395833333333333in"
+![](assets/image97.png){width="4.395833333333333in"
 height="1.0104166666666667in"}
 
 []{#_Ref444526515 .anchor}Figure 72. New constant declarations in the
@@ -2792,7 +2792,7 @@ portion of it is covered in this third step model (Figure 73). The
 energy used for conversion into electricity and the total electricity
 generation are now included.
 
-![](media/image98.png){width="5.96875in" height="3.75in"}
+![](assets/image98.png){width="5.96875in" height="3.75in"}
 
 []{#_Ref444526521 .anchor}Figure 73. Energy Balance at Start Year (2005)
 for REG1 -- Covered in DemoS_003
@@ -2827,7 +2827,7 @@ TIMES documentation). It is also useful to check the Attribute Master
 table in VEDA2.0 (see Section 2.5.7) for more information about which
 attributes are interpolated/extrapolated by default and which are not.
 
-![](media/image99.png){width="5.177083333333333in"
+![](assets/image99.png){width="5.177083333333333in"
 height="1.9583333333333333in"}
 
 []{#_Ref456191818 .anchor}Figure 74. PRI_COA Sheet with
@@ -2883,7 +2883,7 @@ As with supply curves for fossil fuels, mining processes are created for
 the uranium resources and the renewable potential (Figure 75). They are
 considered unlimited and at no cost in this simple example.
 
-![](media/image100.png){width="5.59375in" height="1.9895833333333333in"}
+![](assets/image100.png){width="5.59375in" height="1.9895833333333333in"}
 
 []{#_Ref444526540 .anchor}Figure 75. Description of New Supply Options
 
@@ -2937,11 +2937,11 @@ in their respective tables (Figure 77) including the declaration of
 existing and new power plants as ELE processes. The process names follow
 a convention where T=thermal, C=CHP, R=Renewable, N=Nuclear.
 
-![](media/image101.png){width="6.322916666666667in" height="2.25in"}
+![](assets/image101.png){width="6.322916666666667in" height="2.25in"}
 
 []{#_Ref444526548 .anchor}Figure 76. Existing and New Power Plants
 
-![](media/image102.png){width="5.875in" height="2.4270833333333335in"}
+![](assets/image102.png){width="5.875in" height="2.4270833333333335in"}
 
 []{#_Ref444526554 .anchor}Figure 77. Declaration of Electricity
 Commodities and Processes
@@ -2957,7 +2957,7 @@ the demand device for electricity (Figure 78):
     investment cost (INVCOST) a fixed operation and maintenance cost
     (FIXOM), and a life time (LIFE).
 
-![](media/image103.png){width="5.166666666666667in"
+![](assets/image103.png){width="5.166666666666667in"
 height="0.9166666666666666in"}
 
 []{#_Ref444526562 .anchor}Figure 78. Description of a simple electricity
@@ -2972,7 +2972,7 @@ will be kept constant over time (extrapolated at a constant level by
 default), the demand for electricity is set up to increase by an annual
 growth rate of 1% through 2020.
 
-![](media/image104.png){width="4.760416666666667in"
+![](assets/image104.png){width="4.760416666666667in"
 height="1.3854166666666667in"}
 
 []{#_Ref444526568 .anchor}Figure 79. Definition of base year and future
@@ -3006,21 +3006,21 @@ plants are working only in the base year, as calibrated to the energy
 balance, because the fuel is too expensive compared to the other
 available options.
 
-![](media/image105.png){width="6.5in" height="3.3645833333333335in"}
+![](assets/image105.png){width="6.5in" height="3.3645833333333335in"}
 
 []{#_Ref444526575 .anchor}Figure 80. Demand Results Table in DemoS_003
 
-![](media/image106.png){width="5.6875in" height="3.0520833333333335in"}
+![](assets/image106.png){width="5.6875in" height="3.0520833333333335in"}
 
 []{#_Toc58401220 .anchor}Figure 81. Fuel Supply Results Table in
 DemoS_003
 
-![](media/image107.png){width="5.71875in" height="2.8541666666666665in"}
+![](assets/image107.png){width="5.71875in" height="2.8541666666666665in"}
 
 []{#_Ref444526630 .anchor}Figure 82. Electricity Plants Capacity Results
 Table in DemoS_003
 
-![](media/image108.png){width="5.760416666666667in" height="2.71875in"}
+![](assets/image108.png){width="5.760416666666667in" height="2.71875in"}
 
 []{#_Ref444526636 .anchor}Figure 83. Electricity Plants Activity Results
 Table in DemoS_003
@@ -3075,7 +3075,7 @@ attribute in the model using a single declaration.
 -   by creating scenario files to illustrate the peak reserve capacity
     requirement (Figure 84).
 
-![](media/image109.png){width="3.1770833333333335in" height="3.28125in"}
+![](assets/image109.png){width="3.1770833333333335in" height="3.28125in"}
 
 []{#_Ref444526655 .anchor}Figure 84. Templates In DemoS_004
 
@@ -3088,7 +3088,7 @@ and replace the previous single ANNUAL time slice. There are four time
 slices combining two seasons (W- Winter and S- Summer) and two intraday
 periods or day-night periods (D- Day and N- Night).
 
-![](media/image110.png){width="1.8333333333333333in"
+![](assets/image110.png){width="1.8333333333333333in"
 height="0.6666666666666666in"}
 
 []{#_Ref444526662 .anchor}Figure 85. New Time Slices Definition in
@@ -3109,7 +3109,7 @@ interpolation/extrapolation rule used for each of the supply processes
 SysSettings file and applied to the activity bound (ACT_BND) of all
 processes at once.
 
-![](media/image111.emf){width="3.8333333333333335in"
+![](assets/image111.png){width="3.8333333333333335in"
 height="0.5520833333333334in"}
 
 []{#_Ref456276610 .anchor}
@@ -3129,7 +3129,7 @@ model. The fraction values, as with any other input in the model, are
 the user's responsibility. In this case, it is important that they sum
 to 100%.
 
-![](media/image112.png){width="4.041666666666667in"
+![](assets/image112.png){width="4.041666666666667in"
 height="1.3541666666666667in"}
 
 []{#_Ref444526710 .anchor}Figure 87. New Time Slice Declarations in
@@ -3162,7 +3162,7 @@ Another important change to mention is the start year of one new process
 additional capacity needed for the reserve equation (5%), as defined in
 the scenario files.
 
-![](media/image113.png){width="6.0in" height="2.4270833333333335in"}
+![](assets/image113.png){width="6.0in" height="2.4270833333333335in"}
 
 []{#_Ref444526715 .anchor}Figure 88. Peak Contribution for Different
 Types of Power Plants
@@ -3191,12 +3191,12 @@ vary across DAYNITE time slices. (When not specified, the default is
 based on the Sets declaration: DAYNITE (for ELE), SEASON (for CHP and
 HPL) ANNUAL (for all others).)
 
-![](media/image114.png){width="6.0in" height="0.7604166666666666in"}
+![](assets/image114.png){width="6.0in" height="0.7604166666666666in"}
 
 []{#_Ref444526724 .anchor}Figure 89. Declaration of Time Slice Level for
 Electricity Commodity
 
-![](media/image115.png){width="5.989583333333333in"
+![](assets/image115.png){width="5.989583333333333in"
 height="1.7708333333333333in"}
 
 []{#_Ref456277068 .anchor}Figure 90. Declaration of Time Slice
@@ -3216,7 +3216,7 @@ A table is added to define the load curve of the demand for electricity
 (Figure 91). The attribute (COM_FR) is introduced to declare the
 fraction of the electricity demand occurring in each time slice.
 
-![](media/image116.png){width="2.5625in" height="1.2291666666666667in"}
+![](assets/image116.png){width="2.5625in" height="1.2291666666666667in"}
 
 []{#_Ref444526730 .anchor}Figure 91. Definition of Load Curve for
 Electricity Demand
@@ -3227,7 +3227,7 @@ in the sheet DemTechs_ELC. This technology takes as input the ELC
 commodity that will be consumed by timeslice as defined by the COM_FR
 attribute for TPSELC.
 
-![](media/image117.png){width="6.0in" height="1.15625in"}
+![](assets/image117.png){width="6.0in" height="1.15625in"}
 
 []{#_Ref456277555 .anchor}Figure 92. Demand Technology Producing TPSELC
 
@@ -3268,9 +3268,9 @@ system peak demand is greater than the average demand in the model's
 peak slice, allowing COM_PKRSV to represent a more typical utility
 reserve margin.
 
-![](media/image118.png){width="6.0in" height="0.59375in"}
+![](assets/image118.png){width="6.0in" height="0.59375in"}
 
-![](media/image119.png){width="5.989583333333333in"
+![](assets/image119.png){width="5.989583333333333in"
 height="0.6979166666666666in"}
 
 []{#_Ref444526803 .anchor}Figure 93. Declaration of the Peak Reserve in
@@ -3289,7 +3289,7 @@ cases will be launched automatically by VEDA2.0 one after the other) to
 TIMES.
 
 +-----------------------------------------------------------------------+
-| > ![](media/image120.png){width="6.5in" height="3.84375in"}           |
+| > ![](assets/image120.png){width="6.5in" height="3.84375in"}           |
 +=======================================================================+
 | []{#_Ref456277970 .anchor}Figure 94. Solving Multiple Cases           |
 +-----------------------------------------------------------------------+
@@ -3317,13 +3317,13 @@ electricity generating capacity are shown in Figure 95, namely.
 
 The electricity price varies across years and time slices (Figure 96).
 
-![](media/image121.png){width="4.666666666666667in"
+![](assets/image121.png){width="4.666666666666667in"
 height="5.145833333333333in"}
 
 []{#_Ref444526874 .anchor}Figure 95. Electricity Plant Capacity Results
 Table in DemoS_004
 
-![](media/image122.png){width="6.5in" height="2.34375in"}
+![](assets/image122.png){width="6.5in" height="2.34375in"}
 
 []{#_Ref444526911 .anchor}Figure 96. Electricity Price by Time Slice in
 DemoS_004
@@ -3338,7 +3338,7 @@ case) to ensure adequate system capacity. The peak marginal is similar,
 though not identical, when using COM_PKRSV and COM_PKFLX, owing to the
 differences in how they are applied in the TIMES equations.
 
-![](media/image123.png){width="6.5in" height="3.1354166666666665in"}
+![](assets/image123.png){width="6.5in" height="3.1354166666666665in"}
 
 []{#_Ref456278131 .anchor}Figure 97. Slack and Dual Values of the Peak
 Equations in DemoS_004
@@ -3398,7 +3398,7 @@ emissions from the transport and electricity sectors.
 
 4.  by creating more scenario files to limit GHG emissions (Figure 98).
 
-![](media/image124.png){width="5.635416666666667in"
+![](assets/image124.png){width="5.635416666666667in"
 height="4.052083333333333in"}
 
 []{#_Ref444526929 .anchor}Figure 98. Templates In DemoS_005
@@ -3410,7 +3410,7 @@ height="4.052083333333333in"}
 The \~BookRegions_Map table is used to create one additional region:
 REG2 (Figure 99) in the same workbook (REG).
 
-![](media/image125.png){width="2.21875in" height="0.625in"}
+![](assets/image125.png){width="2.21875in" height="0.625in"}
 
 []{#_Ref444526936 .anchor}Figure 99. New Region Definition in
 SysSettings for DemoS_005
@@ -3427,9 +3427,9 @@ becomes producer and consumer of natural gas (100%), crude oil (70%),
 and nuclear energy (100%). The same portion of the energy balance as in
 the fourth step is used in this fifth step model.
 
-![](media/image126.png){width="6.0in" height="3.4479166666666665in"}
+![](assets/image126.png){width="6.0in" height="3.4479166666666665in"}
 
-![](media/image127.png){width="6.0in" height="3.5in"}
+![](assets/image127.png){width="6.0in" height="3.5in"}
 
 []{#_Ref444526942 .anchor}Figure 100. Energy balance at start year 2005
 for REG1 & REG 2--Covered in DemoS_005
@@ -3455,13 +3455,13 @@ default, when the **Region** column is empty, it applies to all
 regions). Comma-separated entries are also allowed, for instance, when a
 process exists in more than one region but not in all regions.
 
-![](media/image128.png){width="4.479166666666667in"
+![](assets/image128.png){width="4.479166666666667in"
 height="1.7291666666666667in"}
 
 []{#_Ref444526949 .anchor}Figure 101. Regionalization of Process
 Attributes using Additional Rows
 
-![](media/image129.png){width="5.989583333333333in" height="1.25in"}
+![](assets/image129.png){width="5.989583333333333in" height="1.25in"}
 
 []{#_Ref444526957 .anchor}Figure 102. Region Specification in the
 Default Process Table
@@ -3485,7 +3485,7 @@ and DemTechs_TRA. The row approach is used in the Demand sheet.
 Two trade files are created to model the energy trade movements between
 the two regions.
 
-![](media/image130.png){width="4.739583333333333in"
+![](assets/image130.png){width="4.739583333333333in"
 height="2.4895833333333335in"}
 
 []{#_Ref444526974 .anchor}Figure 103. Regionalization of process
@@ -3510,7 +3510,7 @@ for IRE processes is:
     region\>\_\<01\> (e.g. TU_GAS_REG2_REG1_01)
 
   -----------------------------------------------------------------------
-  ![](media/image131.png)             ![](media/image132.png)
+  ![](assets/image131.png)             ![](assets/image132.png)
   ----------------------------------- -----------------------------------
 
   -----------------------------------------------------------------------
@@ -3526,7 +3526,7 @@ cost (INVCOST) for all unilateral trade processes (TU\_\*). Trade
 processes are created automatically after the user declares unilateral
 or bilateral links between regions in the **\_Trade_Links** file.
 
-![](media/image133.png){width="6.0in" height="0.3645833333333333in"}
+![](assets/image133.png){width="6.0in" height="0.3645833333333333in"}
 
 []{#_Ref444526990 .anchor}Figure 105. Declaration of attributes for IRE
 processes
@@ -3555,7 +3555,7 @@ in the Year column and the interpolation/extrapolation option in the
 region column where the bounds are declared. The code 5 means full
 interpolation and forward extrapolation.
 
-![](media/image134.png){width="6.072916666666667in"
+![](assets/image134.png){width="6.072916666666667in"
 height="0.7083333333333334in"}
 
 []{#_Ref444526997 .anchor}Figure 106. Declaration of emission bounds for
@@ -3577,7 +3577,7 @@ emissions first to get the reference emission trajectory (run DemoS_005)
 and to calculate the bounds as a reduction target from the reference
 emissions.
 
-![](media/image23.png){width="6.239583333333333in"
+![](assets/image23.png){width="6.239583333333333in"
 height="0.7395833333333334in"}
 
 []{#_Ref444527014 .anchor}Figure 107. Declaration of emission bounds
@@ -3621,7 +3621,7 @@ REG1 is also getting electricity from REG2. REG2 becomes the main
 provider of natural gas, nuclear energy and some crude oil (from both
 domestic production and imports).
 
-![](media/image135.png){width="6.5in" height="2.9270833333333335in"}
+![](assets/image135.png){width="6.5in" height="2.9270833333333335in"}
 
 []{#_Ref456280618 .anchor}Figure 108. Fuel Supply (by Region) in
 DemoS_005
@@ -3650,7 +3650,7 @@ different sectors of the two regions (Figure 109):
     > electricity from REG1, which in turn imports natural gas from REG2
     > (Figure 110).
 
-![](media/image136.png){width="6.5in" height="4.510416666666667in"}
+![](assets/image136.png){width="6.5in" height="4.510416666666667in"}
 
 []{#_Ref456280722 .anchor}Figure 109. Emissions by Sector (and Region)
 in DemoS_005
@@ -3662,13 +3662,13 @@ represents the level of tax that would be necessary to achieve the
 reduction targets that are prescribed in the scenario files (Figure
 111).
 
-![](media/image137.png){width="6.072916666666667in"
-height="2.8645833333333335in"} ![](media/image138.png){width="5.9375in"
+![](assets/image137.png){width="6.072916666666667in"
+height="2.8645833333333335in"} ![](assets/image138.png){width="5.9375in"
 height="2.0in"}
 
 []{#_Ref444527045 .anchor}Figure 110. Endogenous Trades in DemoS_005
 
-![](media/image139.png){width="5.75in" height="3.03125in"}
+![](assets/image139.png){width="5.75in" height="3.03125in"}
 
 []{#_Ref456280878 .anchor}Figure 111. Emissions Price by Sector and
 Region in DemoS_005
@@ -3681,7 +3681,7 @@ the power and the transportation sectors (3,250,281 M euros). More
 details about the impacts of the emission limits on the different cost
 components of the system in each region are shown below (Figure 112).
 
-![](media/image140.png){width="6.5in" height="7.5in"}
+![](assets/image140.png){width="6.5in" height="7.5in"}
 
 []{#_Ref444527183 .anchor}Figure 112. Costs by Sector and Region in
 DemoS_005
@@ -3740,7 +3740,7 @@ files, and 3) by creating a SubRES file to add new processes to the
 model (Figure 113). Note that for the rest of this manual the region
 templates will be stated as REG1/2, rather than listing each separately.
 
-![](media/image141.png){width="6.489583333333333in"
+![](assets/image141.png){width="6.489583333333333in"
 height="4.520833333333333in"}
 
 []{#_Ref456281207 .anchor}Figure 113. Templates Included in DemoS_006
@@ -3752,7 +3752,7 @@ height="4.520833333333333in"}
 The \~BookRegions_Map table is used to create one additional workbook:
 one for each region REG1 and REG2 (Figure 114).
 
-![](media/image142.png){width="2.0416666666666665in"
+![](assets/image142.png){width="2.0416666666666665in"
 height="0.6145833333333334in"}
 
 []{#_Ref444527206 .anchor}Figure 114. New workbook name definitions in
@@ -3797,12 +3797,12 @@ new capacity is built., In this example, the new gas-fired power plant
 between 2006 and 2020. The process ELCTNGAS00 is vintaged (Vintage=Yes)
 in the \~FI_Process table (Figure 116).
 
-![](media/image143.png){width="5.989583333333333in" height="1.5in"}
+![](assets/image143.png){width="5.989583333333333in" height="1.5in"}
 
 []{#_Ref444527282 .anchor}Figure 115. Example of new processes in the
 SubRES file
 
-![](media/image144.png){width="5.989583333333333in" height="0.71875in"}
+![](assets/image144.png){width="5.989583333333333in" height="0.71875in"}
 
 []{#_Ref444527291 .anchor}Figure 116. Example of a new process with
 vintage tracking in the SubRES file
@@ -3825,7 +3825,7 @@ structured in different files rather than in the energy system itself.
 However, the impact of the vintage feature for the new gas-fired power
 plants is illustrated (Figure 117).
 
-![](media/image145.png){width="6.072916666666667in"
+![](assets/image145.png){width="6.072916666666667in"
 height="3.7291666666666665in"}[]{#_Ref456281460 .anchor}
 
 Figure 117. Fuel Supply by Region in DemoS_005
@@ -3917,7 +3917,7 @@ Several more techniques are also introduced in this step:
 -   by creating a scenario file with a user constraint on growth rates
     of new cars (Figure 118).
 
-![](media/image146.png){width="6.5in" height="4.53125in"}
+![](assets/image146.png){width="6.5in" height="4.53125in"}
 
 []{#_Ref444527374 .anchor}Figure 118. Templates Included in DemoS_007
 
@@ -3931,7 +3931,7 @@ is also used for the maximum input shares (Share-I) and the maximum
 output shares (Share-O) of all processes at once. These new attributes
 are defined in the next section.
 
-![](media/image147.emf){width="3.6041666666666665in" height="0.90625in"}
+![](assets/image147.png){width="3.6041666666666665in" height="0.90625in"}
 
 []{#_Ref444527384 .anchor}Figure 119. Updated
 Interpolation/Extrapolation Rules
@@ -3948,7 +3948,7 @@ portion of the energy balance is covered in terms of the number of
 commodities and also of the number of transformation steps in the whole
 supply-demand chain, with the addition of the refining step.
 
-![](media/image148.png){width="6.197916666666667in"
+![](assets/image148.png){width="6.197916666666667in"
 height="2.5729166666666665in"}
 
 []{#_Ref444527391 .anchor}Figure 120. Disaggregated Initial Energy
@@ -3988,7 +3988,7 @@ between the installed capacity of a process and the maximum possible
 commodity flows entering or leaving the process during a year or a
 subdivision of a year.
 
-![](media/image149.png){width="3.46875in" height="1.6979166666666667in"}
+![](assets/image149.png){width="3.46875in" height="1.6979166666666667in"}
 
 []{#_Ref444527398 .anchor}Figure 121. Refinery
 
@@ -4027,7 +4027,7 @@ inputs (NRGI) as for the refinery in this example. Indeed, the activity
 of a refinery is usually characterized based on the barrels of crude oil
 consumed.
 
-![](media/image150.png){width="6.0in" height="0.96875in"}
+![](assets/image150.png){width="6.0in" height="0.96875in"}
 
 []{#_Ref444527405 .anchor}Figure 122. Set PCG for the Refinery
 
@@ -4054,12 +4054,12 @@ fuel are used to create one sector fuel, the shares of input fuels
 shares may sum to greater than 100%, if desired, to provide some process
 flexibility.
 
-![](media/image151.png){width="4.28125in" height="2.3645833333333335in"}
+![](assets/image151.png){width="4.28125in" height="2.3645833333333335in"}
 
 []{#_Ref456281936 .anchor}Figure 123. Imports and Exports of Refined
 Petroleum Products
 
-![](media/image152.png){width="4.416666666666667in" height="2.8125in"}
+![](assets/image152.png){width="4.416666666666667in" height="2.8125in"}
 
 []{#_Ref444527423 .anchor}Figure 124. Additional Sector Fuel Processes
 with Multiple Input Commodities
@@ -4108,12 +4108,12 @@ in thousands of units (000_units) rather than PJa.
     in thousand kilometres per vehicle. The CAP2ACT is translating mvkm
     into bvkm.
 
-> ![](media/image153.png){width="6.5in" height="1.0416666666666667in"}
+> ![](assets/image153.png){width="6.5in" height="1.0416666666666667in"}
 
 []{#_Ref444527431 .anchor}Figure 125. More Complex Transportation
 Processes
 
-![](media/image154.png){width="6.5in" height="0.9583333333333334in"}
+![](assets/image154.png){width="6.5in" height="0.9583333333333334in"}
 
 []{#_Ref444527463 .anchor}Figure 126. Declaration of More Processes in
 the Transportation Sector
@@ -4127,7 +4127,7 @@ right units and correspond to the sum of billion passengers-kilometres
 -   Demand (Bpass\*km) = STOCK (000_units) \* AFA (000_vehiclekm/unit)
     \* ACTFLO\~DEMO (Passengers/vehicle)\* CAP2ACT(0.001bvkm/mvkm)
 
-> ![](media/image155.png){width="5.947916666666667in"
+> ![](assets/image155.png){width="5.947916666666667in"
 > height="1.4791666666666667in"}
 
 []{#_Ref444527472 .anchor}Figure 127. Demand for Transportation by Car
@@ -4155,7 +4155,7 @@ coefficient (kt/PJ) is provided. These coefficients are applied to all
 the fuel consumption by all the individual processes in the
 transportation sector.
 
-![](media/image156.png){width="4.229166666666667in"
+![](assets/image156.png){width="4.229166666666667in"
 height="0.6770833333333334in"}
 
 []{#_Ref444527478 .anchor}Figure 128. Combustion Emissions from the
@@ -4184,7 +4184,7 @@ transportation demand (Attribute=Demand) by cars (commodity = DTCAR).
 VEDA2.0 fills in the REG1 and REG2 values in the blue highlighted cells
 each time the template is SYNCed.
 
-![](media/image157.png){width="6.0in" height="0.5in"}
+![](assets/image157.png){width="6.0in" height="0.5in"}
 
 []{#_Ref444527490 .anchor}Figure 129. Grab Base Year Demand Values from
 B-Y Templates - Transportation
@@ -4193,7 +4193,7 @@ The DTCAR demand is then projected to 2020 in the **\~TFM_INS** table
 using the base year values and some multipliers (2% for REG1 and 3% for
 REG2) defined by the user (Figure 130).
 
-![](media/image158.png){width="5.28125in" height="1.1145833333333333in"}
+![](assets/image158.png){width="5.28125in" height="1.1145833333333333in"}
 
 []{#_Ref444527495 .anchor}Figure 130. Using Base Year Values to Project
 End-use Demands - Transportation
@@ -4206,7 +4206,7 @@ this example, the table is collecting the base year values (YEAR=2005)
 from the B-Y templates (Scenario = BASE) for the activity production
 bound (Attribute=ACT_BND) of the refinery (process = REFEOIL00).
 
-![](media/image159.png){width="4.989583333333333in" height="0.59375in"}
+![](assets/image159.png){width="4.989583333333333in" height="0.59375in"}
 
 []{#_Ref444527500 .anchor}Figure 131. Grab Base Year Activity Level from
 B-Y Templates - Refinery
@@ -4218,7 +4218,7 @@ using the base year values and some relaxation factors (25% for REG1 and
 to 50%, creating flexibility for the model to optimize the mix of
 refined products (DSL, KER, LPG, etc.).
 
-![](media/image160.png){width="6.125in" height="1.15625in"}
+![](assets/image160.png){width="6.125in" height="1.15625in"}
 
 []{#_Ref444527510 .anchor}Figure 132. Using Base Year Values to Update
 Refinery Attributes
@@ -4240,7 +4240,7 @@ in the Year column and the interpolation/extrapolation option in the
 region column where the bounds are declared; the code 5 means full
 interpolation and forward extrapolation.
 
-![](media/image161.png){width="5.989583333333333in"
+![](assets/image161.png){width="5.989583333333333in"
 height="0.6145833333333334in"}
 
 []{#_Ref444527534 .anchor}Figure 133. Set Emission Bounds for
@@ -4260,7 +4260,7 @@ PSET_CO and PSET_CI). This constraint also provides a seed value of 1
 (column UC_RHSRTS) to enable the capacity growth to start in case the
 existing capacity of diesel cars is zero.
 
-![](media/image162.png){width="6.0in" height="0.625in"}
+![](assets/image162.png){width="6.0in" height="0.625in"}
 
 []{#_Ref444527542 .anchor}Figure 134. Specifying Growth Rates with a
 User Constraint
@@ -4286,7 +4286,7 @@ demand by cars (DTCAR). Three attributes need to be declared:
 -   COM_STEP: Number of steps for the linear approximation of the demand
     curve (10 steps in this example).
 
-![](media/image163.png){width="3.0520833333333335in"
+![](assets/image163.png){width="3.0520833333333335in"
 height="1.4583333333333333in"}
 
 []{#_Ref444527550 .anchor}Figure 135. Declare Price-elasticities for
@@ -4300,7 +4300,7 @@ follow:
     make sure the option "Write B Price for Elast Dem\" is selected
     (Figure 136). This option is already selected in the DemoS_007.
 
-![](media/image164.png){width="5.854166666666667in"
+![](assets/image164.png){width="5.854166666666667in"
 height="4.072916666666667in"}
 
 []{#_Ref444527558 .anchor}Figure 136. Write Base Prices for Elastic
@@ -4313,7 +4313,7 @@ Demands
     without elastic demands, while Case DemoS_007b B prices and
     emissions constraint scenario, see Figure 137.
 
-![](media/image165.png){width="6.5in" height="4.510416666666667in"}
+![](assets/image165.png){width="6.5in" height="4.510416666666667in"}
 
 []{#_Ref444527600 .anchor}Figure 137. Include the B Elastic Demand and
 Emission Constraint
@@ -4332,12 +4332,12 @@ The impacts of the emissions constraints and the growth rate constraint
 on the optimal process mix selected to meet the car transportation
 demand (kpass\*km) is shown (Figure 139) for both regions together:
 
-![](media/image166.png){width="6.5in" height="4.40625in"}
+![](assets/image166.png){width="6.5in" height="4.40625in"}
 
 []{#_Ref456284123 .anchor}Figure 138. Results - Effect of Price
 Elasticities on Car Transportation Demand in DemoS_007
 
-![](media/image167.png){width="5.270833333333333in"
+![](assets/image167.png){width="5.270833333333333in"
 height="8.489583333333334in"}
 
 []{#_Ref444527645 .anchor}Figure 139. Results -- Car Transport Vehicle
@@ -4358,7 +4358,7 @@ Type Mix in DemoS_007
 -   The addition of a growth rate constraint on diesel cars (DemoS_007c)
     leads to a switch toward natural gas cars.
 
-![](media/image168.png){width="5.270833333333333in"
+![](assets/image168.png){width="5.270833333333333in"
 height="4.708333333333333in"}
 
 []{#_Ref456284175 .anchor}Figure 140. Flexible Refinery Operation in
@@ -4457,7 +4457,7 @@ electricity generation mix.
 -   by creating a scenario file with a user constraint on the maximum
     nuclear power capacity (Figure 141).
 
-![](media/image169.png){width="6.5in" height="4.895833333333333in"}
+![](assets/image169.png){width="6.5in" height="4.895833333333333in"}
 
 []{#_Ref456284689 .anchor}Figure 141. Templates Included in DemoS_008
 
@@ -4473,7 +4473,7 @@ The time horizon is extended to 2050 with the milestones years being
 This can be seen in VEDA2.0, Advanced Functions menu, MileStone Years
 tab.
 
-![](media/image170.png){width="1.78125in" height="2.0208333333333335in"}
+![](assets/image170.png){width="1.78125in" height="2.0208333333333335in"}
 
 []{#_Ref444527689 .anchor}Figure 142. New Time Periods Definition in
 SysSettings
@@ -4483,7 +4483,7 @@ SysSettings
 The \~DefUnits table is used to specify the different default activity,
 capacity and commodity units for each sector in the model (Figure 143).
 
-![](media/image171.png){width="2.6354166666666665in" height="0.78125in"}
+![](assets/image171.png){width="2.6354166666666665in" height="0.78125in"}
 
 []{#_Ref444527695 .anchor}Figure 143. Default Declarations in
 SysSettings
@@ -4499,7 +4499,7 @@ sources independently: biomass as well as hydro, wind, and solar energy
 moved into a separate file (called EnergyBalance) and all B-Y Templates
 are linked to this file to grab the relevant sector data.
 
-![](media/image172.png){width="5.989583333333333in"
+![](assets/image172.png){width="5.989583333333333in"
 height="2.5104166666666665in"}
 
 > \* For purposes of clarity the energy balance is not presented totally
@@ -4519,9 +4519,9 @@ energy balance.
 Mining processes for the uranium resources and the new renewable
 potentials are characterized with a cost (Figure 145).
 
-![](media/image173.png){width="3.6041666666666665in" height="0.875in"}
+![](assets/image173.png){width="3.6041666666666665in" height="0.875in"}
 
-![](media/image174.png){width="3.6145833333333335in"
+![](assets/image174.png){width="3.6145833333333335in"
 height="1.2604166666666667in"}
 
 []{#_Ref444527708 .anchor}Figure 145. New Renewables Supply Options
@@ -4536,7 +4536,7 @@ it is already declared in the ELC B-Y Templates. Commodities need to be
 declared only once and then are available for all files (not only B-Y
 Templates).
 
-![](media/image175.png){width="3.7291666666666665in"
+![](assets/image175.png){width="3.7291666666666665in"
 height="1.0416666666666667in"}
 
 []{#_Ref444527716 .anchor}Figure 146. Electricity Imports and Exports
@@ -4553,7 +4553,7 @@ for solar. However, there is no emission coefficient associated with
 process anymore (in \~FI_T tables). All combustion emissions are tracked
 in a uniform manner at the sector level in a \~COMEMI table.
 
-![](media/image176.png){width="5.989583333333333in" height="1.5625in"}
+![](assets/image176.png){width="5.989583333333333in" height="1.5625in"}
 
 []{#_Ref444527723 .anchor}Figure 147. New Renewable Electric Generation
 Power Plants
@@ -4564,7 +4564,7 @@ A similar sheet is added in all sectors with a \~COMEMI table used to
 define fuel-based emission coefficients associated with fuel consumption
 in each sector (Figure 148).
 
-![](media/image177.png){width="2.59375in" height="0.6770833333333334in"}
+![](assets/image177.png){width="2.59375in" height="0.6770833333333334in"}
 
 []{#_Ref444527728 .anchor}Figure 148. Combustion Emissions from the
 Electricity Sector
@@ -4581,7 +4581,7 @@ fuels as given in the energy balance and producing one end-use demand
 fuel mix. However, the value of the relaxation factor should remain
 realistic since most fuel switches involve process switches as well.
 
-![](media/image178.png){width="6.0in" height="1.8958333333333333in"}
+![](assets/image178.png){width="6.0in" height="1.8958333333333333in"}
 
 []{#_Ref444527735 .anchor}Figure 149. Flexible Multiple Input Process in
 the Industrial Sector
@@ -4592,7 +4592,7 @@ An emission commodity is created (Figure 150) and a \~COMEMI table is
 added in the Emi sheet to track all fuel-based emissions from the
 sector.
 
-![](media/image179.png){width="5.65625in" height="0.8020833333333334in"}
+![](assets/image179.png){width="5.65625in" height="0.8020833333333334in"}
 
 []{#_Ref444527743 .anchor}Figure 150. New Environmental Commodity for
 Industrial Emissions
@@ -4627,7 +4627,7 @@ factors (AFA) and are converted into GW using a capacity to activity
 factor (PRC_CAPACT equivalent to CAP2ACT). They also have an efficiency
 (EFF) and a life time (LIFE).
 
-![](media/image180.png){width="5.40625in" height="2.3020833333333335in"}
+![](assets/image180.png){width="5.40625in" height="2.3020833333333335in"}
 
 []{#_Ref444527756 .anchor}Figure 151. Existing Residential Sector
 Processes
@@ -4644,12 +4644,12 @@ consumption levels and prices, the only commodity tracked at the time
 slice level. In this example, the annual variations are significant for
 those end-use demands affected by seasonal changes (e.g. space heating).
 
-![](media/image181.png){width="3.0625in" height="1.8125in"}
+![](assets/image181.png){width="3.0625in" height="1.8125in"}
 
 []{#_Ref444527783 .anchor}Figure 152. Demand for Energy Services in the
 RCA Sectors
 
-![](media/image182.png){width="2.2604166666666665in"
+![](assets/image182.png){width="2.2604166666666665in"
 height="4.052083333333333in"}
 
 []{#_Ref456285613 .anchor}Figure 153. Fractional Shares for RCA Energy
@@ -4671,7 +4671,7 @@ Consequently, more existing processes are included to satisfy the demand
 for the new public transport demand, and they are modelled using the
 same approach as for cars (Figure 154).
 
-![](media/image183.png){width="6.0in" height="2.1458333333333335in"}
+![](assets/image183.png){width="6.0in" height="2.1458333333333335in"}
 
 []{#_Ref444527809 .anchor}Figure 154. Existing Transportation Sector
 Vehicle Types
@@ -4708,7 +4708,7 @@ energy demand technologies. They provide relevant data on the most
 important technical and economic attributes of numerous types of
 technologies.[^3]
 
-![](media/image184.png){width="4.625in" height="3.7291666666666665in"}
+![](assets/image184.png){width="4.625in" height="3.7291666666666665in"}
 
 []{#_Ref444527846 .anchor}Figure 155. New Residential and Commercial
 Devices
@@ -4740,12 +4740,12 @@ capacity is kept constant for REG1 (using the interpolation rule
 is limited to an additional 10% of the 2005 base year capacity in 2030
 and an additional 50% in 2050.
 
-![](media/image185.png){width="6.0in" height="0.4479166666666667in"}
+![](assets/image185.png){width="6.0in" height="0.4479166666666667in"}
 
 []{#_Ref444527869 .anchor}Figure 156. Grab Base Information on Nuclear
 Plant Capacity
 
-![](media/image186.png){width="6.0in" height="0.75in"}
+![](assets/image186.png){width="6.0in" height="0.75in"}
 
 []{#_Ref444527876 .anchor}Figure 157. User Constraint to Impose a
 Maximum Capacity for Nuclear Power Plants
@@ -4759,7 +4759,7 @@ constraint on nuclear capacity. Nuclear capacity remains constant for
 REG1 while it grows in REG2 up to the maximum bound in 2030, but not in
 2050.
 
-![](media/image187.png){width="6.5in" height="5.520833333333333in"}
+![](assets/image187.png){width="6.5in" height="5.520833333333333in"}
 
 []{#_Ref444527882 .anchor}Figure 158. Results - Power Plant Capacity by
 Fuel Type in DemoS_008
@@ -4772,7 +4772,7 @@ sector (replacing coal-fired with gas-fired power plants), as well as
 from the residential and the commercial sectors (replacing solid fuels
 with renewable energies).
 
-![](media/image188.png){width="6.447916666666667in"
+![](assets/image188.png){width="6.447916666666667in"
 height="3.7708333333333335in"}
 
 []{#_Ref58340896 .anchor}Figure 159. Emissions by Sector in DemoS_008
@@ -4864,7 +4864,7 @@ exchanger + district heating network. Additional objectives include:
     penetration of district heating in the residential sector (Figure
     160).
 
-![](media/image189.png){width="6.5in" height="4.895833333333333in"}
+![](assets/image189.png){width="6.5in" height="4.895833333333333in"}
 
 []{#_Ref456285815 .anchor}Figure 160. Templates Included in DemoS_009
 
@@ -4887,7 +4887,7 @@ single step. This allows a vintage-based retirement profile for the
 existing stock to be introduced into the model without the need to
 calculate and specify a STOCK in each future year.
 
-![](media/image190.png){width="4.739583333333333in"
+![](assets/image190.png){width="4.739583333333333in"
 height="1.6354166666666667in"}
 
 []{#_Ref456285906 .anchor}Figure 161. Past Investments That Occurred
@@ -4902,7 +4902,7 @@ commodities already existing in the B-Y templates. In this example
 availability factor (AF) by time slice (SD, SN, etc.) for existing wind
 and solar plants (ELCREWIN00 and ELCRESOL00).
 
-![](media/image191.png){width="6.0in" height="1.5729166666666667in"}
+![](assets/image191.png){width="6.0in" height="1.5729166666666667in"}
 
 []{#_Ref444527927 .anchor}Figure 162. Transformation File to Insert New
 Attributes for Existing Processes
@@ -4916,7 +4916,7 @@ creates this entry by default for all technologies for which STOCK is
 declared. Since we have switched to using PASTI we need to declare it
 manually (Figure 163).
 
-![](media/image192.png){width="6.0in" height="0.59375in"}
+![](assets/image192.png){width="6.0in" height="0.59375in"}
 
 []{#_Ref444527932 .anchor}Figure 163. Transformation File to Insert a
 New Interpolation Rule
@@ -4937,7 +4937,7 @@ table is created (Figure 164). The first line says that all processes
 to say that the new hydro power plant is not available in REG1
 (1=available; 0=non-available).
 
-![](media/image193.png){width="2.8229166666666665in"
+![](assets/image193.png){width="2.8229166666666665in"
 height="0.6979166666666666in"}
 
 []{#_Ref444527938 .anchor}Figure 164. SubRES Transformation File to Set
@@ -4950,7 +4950,7 @@ added to the model (Figure 165). This file includes two sheets (IND and
 PRI); sheet names need to start with the name of one of the model
 sectors.
 
-![](media/image194.png){width="3.8958333333333335in"
+![](assets/image194.png){width="3.8958333333333335in"
 height="2.2708333333333335in"}
 
 []{#_Ref444527971 .anchor}Figure 165. Iron & Steel Sector Processes
@@ -4974,7 +4974,7 @@ These processes use a mix of energy inputs and material inputs. These
 materials are declared as MAT commodities and tracked in Mt (Figure
 166).
 
-![](media/image195.png){width="6.0in" height="1.3020833333333333in"}
+![](assets/image195.png){width="6.0in" height="1.3020833333333333in"}
 
 []{#_Ref444527986 .anchor}Figure 166. Energy and Material Input
 Commodities for the Iron & Steel Sector
@@ -5062,7 +5062,7 @@ declaration table with a time slice level of activity (DAYNITE). The
 heat (HET) is also declared as a new energy commodity in the commodity
 declaration table.
 
-![](media/image196.png){width="5.989583333333333in"
+![](assets/image196.png){width="5.989583333333333in"
 height="1.1145833333333333in"}
 
 []{#_Ref444527993 .anchor}Figure 167. Combined Heat and Power Processes
@@ -5078,7 +5078,7 @@ sector heat (RSDHET) from primary heat (HET).
     investment cost (INVCOST), as well as the year in which they become
     available (START).
 
-![](media/image197.png){width="5.166666666666667in"
+![](assets/image197.png){width="5.166666666666667in"
 height="1.1145833333333333in"}
 
 []{#_Ref444528073 .anchor}Figure 168. Demand for Heat and District
@@ -5103,9 +5103,9 @@ the iron and steel processes (STOCK in 2050). (In this case the STOCK
 has been introduced in a SubRES template so VEDA2.0 will not create any
 interpolation rule to prohibit new investments.)
 
-![](media/image198.png){width="6.0in" height="0.3958333333333333in"}
+![](assets/image198.png){width="6.0in" height="0.3958333333333333in"}
 
-![](media/image199.png){width="6.0in" height="0.4895833333333333in"}
+![](assets/image199.png){width="6.0in" height="0.4895833333333333in"}
 
 []{#_Ref444528081 .anchor}Figure 169. Update Existing Information and
 Insert New Information in the Industrial Sector
@@ -5121,7 +5121,7 @@ consume **RSDHET** (Pset_CI) must be the minimum (LimType=**LO**)
 percentage specified in each region/year combination of *all* production
 (table level declaration **UC_COMPRD**) of DRSH.
 
-![](media/image200.png){width="6.0in" height="0.5520833333333334in"}
+![](assets/image200.png){width="6.0in" height="0.5520833333333334in"}
 
 []{#_Ref444528088 .anchor}Figure 170. Minimum District Heating
 Penetration Using a User Constraint
@@ -5137,12 +5137,12 @@ The model variant DemoS_009e is solved with the new district heating
 option. Figure 172 shows the contribution of district heat in meeting
 the demand for residential space heating in both regions together.
 
-![](media/image201.png){width="6.5in" height="2.6458333333333335in"}
+![](assets/image201.png){width="6.5in" height="2.6458333333333335in"}
 
 []{#_Ref444528105 .anchor}Figure 171. Results -- Finished steel
 production in DemoS_009
 
-![](media/image202.png){width="6.489583333333333in"
+![](assets/image202.png){width="6.489583333333333in"
 height="3.7604166666666665in"}
 
 []{#_Ref444528116 .anchor}Figure 172. Residential Space Heating Fuel Use
@@ -5188,7 +5188,7 @@ using demand drivers along with sensitivity and calibration series.
 -   by modifying the elastic demand scenarios to cover all end-use
     demands for energy services (Figure 173).
 
-![](media/image203.png){width="6.5in" height="4.885416666666667in"}
+![](assets/image203.png){width="6.5in" height="4.885416666666667in"}
 
 []{#_Ref444528138 .anchor}Figure 173. Templates Included in DemoS_010
 
@@ -5210,7 +5210,7 @@ transportation sector, for instance. It is possible to build multiple
 files called ScenDem\_\<file name\> with different drivers to generate,
 for example, a reference case along with low and high growth cases.
 
-![](media/image204.png){width="5.239583333333333in" height="1.5625in"}
+![](assets/image204.png){width="5.239583333333333in" height="1.5625in"}
 
 []{#_Ref444528146 .anchor}Figure 174. Drivers for End-use Demand
 Projections
@@ -5226,7 +5226,7 @@ demand levels.
 The growth rates of the various drivers are applied to the 2005 base
 year demands using the following formula:
 
-![](media/image205.png){width="4.180555555555555in"
+![](assets/image205.png){width="4.180555555555555in"
 height="0.4131944444444444in"}
 
 The \~DRVR_Allocation table is used to allocate a particular driver to
@@ -5243,12 +5243,12 @@ the demand DAOT will be projected using the driver GDP, adjusted with
 calibration and sensitivity series (Constant; =1 over the whole model
 horizon).
 
-![](media/image206.png){width="5.322916666666667in" height="0.5625in"}
+![](assets/image206.png){width="5.322916666666667in" height="0.5625in"}
 
 []{#_Ref444528157 .anchor}Figure 175. Sensitivity and Calibration Series
 for End-use Demand Projections
 
-![](media/image207.png){width="3.4791666666666665in"
+![](assets/image207.png){width="3.4791666666666665in"
 height="3.2291666666666665in"}
 
 []{#_Ref444528162 .anchor}Figure 176. Allocation of Demand Drivers and
@@ -5266,7 +5266,7 @@ The resulting demand projections in the reference case (DemoS_010) using
 the driver and series allocation presented above are shown in Figure
 177.
 
-![](media/image208.png){width="6.489583333333333in" height="5.375in"}
+![](assets/image208.png){width="6.489583333333333in" height="5.375in"}
 
 []{#_Ref58342080 .anchor}Figure 177. Demand Projection Results in
 DemoS_010
@@ -5312,9 +5312,9 @@ processes sets definition.
 The commodity set rules are included in the model using the \~TFM_Csets,
 while the process sets throught \~TFM_Psets.
 
-![](media/image209.emf){width="6.489583333333333in" height="0.96875in"}
+![](assets/image209.png){width="6.489583333333333in" height="0.96875in"}
 
-![](media/image210.emf){width="6.5in" height="3.0520833333333335in"}
+![](assets/image210.png){width="6.5in" height="3.0520833333333335in"}
 
 []{#_Toc58401317 .anchor}Figure 178. SETS Template in DemoS_010
 
@@ -5333,7 +5333,7 @@ a minimum renewable penetration share of 10% in 2020 and 15%-20% in
 2050, depending on the region, along with an interpolation/extrapolation
 rule (Figure 179).
 
-![](media/image211.png){width="6.34375in" height="0.6354166666666666in"}
+![](assets/image211.png){width="6.34375in" height="0.6354166666666666in"}
 
 []{#_Ref444528227 .anchor}Figure 179. User constraint on renewable power
 using a VEDA-BE set
@@ -5348,7 +5348,7 @@ reference case (DemoS_011), and 20% when including all additional
 constraints (limits on emissions, growth rates of cars, minimum
 penetration of district heating, etc.).
 
-![](media/image212.png){width="5.989583333333333in"
+![](assets/image212.png){width="5.989583333333333in"
 height="3.0833333333333335in"}
 
 []{#_Ref444528241 .anchor}Figure 180. Generation in DemoS_010/011
@@ -5418,7 +5418,7 @@ are different types of GHG emissions (CH4, N2O, etc.), an aggregated
 commodity can be created in CO2-equivalent to account for their
 respective global warming potential (CH4=36; N2O=298).
 
-![](media/image213.png){width="5.072916666666667in"
+![](assets/image213.png){width="5.072916666666667in"
 height="1.5729166666666667in"}
 
 []{#_Ref456286922 .anchor}Figure 181. Aggregation of Emission
@@ -5431,7 +5431,7 @@ discrete investment options in the default process table, for new
 nuclear power plants in this example (ELCNNUC01), by changing the
 process set from ELC to ELC, DSCINV (Figure 182).
 
-![](media/image214.png){width="6.0in" height="1.46875in"}
+![](assets/image214.png){width="6.0in" height="1.46875in"}
 
 []{#_Ref444528262 .anchor}Figure 182. Discrete Investment Option for
 Nuclear Power Plants
@@ -5446,7 +5446,7 @@ for new nuclear power plants (ELCNNUC01). In this example (Figure 183)
 the capacity installed for this process can be a module of 1 GW in 2015,
 while in 2033 the model can install 2 GW or 3 or 4 or 5 GW.
 
-![](media/image215.png){width="3.9375in" height="1.7916666666666667in"}
+![](assets/image215.png){width="3.9375in" height="1.7916666666666667in"}
 
 []{#_Ref444528269 .anchor}Figure 183. Discrete Capacity at Specific
 Years for Nuclear PowerPplants
@@ -5478,7 +5478,7 @@ four steps:
     flip-flopping between model runs (even when using exactly the same
     scenario data).
 
-![](media/image216.png){width="6.5in" height="3.0416666666666665in"}
+![](assets/image216.png){width="6.5in" height="3.0416666666666665in"}
 
 []{#_Ref444528278 .anchor}Figure 184. Enable the Variant Discrete
 Investment in VEDA2.0
@@ -5493,7 +5493,7 @@ Here it is used to impose a flow tax on all the transportation processes
 (T\*) consuming the diesel commodity (TRADSL) at specific years in each
 region.
 
-![](media/image217.png){width="4.65625in" height="0.8020833333333334in"}
+![](assets/image217.png){width="4.65625in" height="0.8020833333333334in"}
 
 []{#_Ref444528286 .anchor}Figure 185. Flow Tax on Diesel
 
@@ -5504,7 +5504,7 @@ This file is used to introduce a tax on a net quantity of commodity
 commodity (TOTCO2) created in B-Y Templates (VT_REG\*\_PRI_V12) at
 specific years (Figure 186).
 
-![](media/image218.png){width="3.90625in" height="0.78125in"}
+![](assets/image218.png){width="3.90625in" height="0.78125in"}
 
 []{#_Ref444528292 .anchor}Figure 186. Tax on Net CO2 Emissions
 
@@ -5518,7 +5518,7 @@ commodity produced or consumed). Here a flow subsidy on the electricity
 commodity (ELCSOL) is created with various values at specific years in
 each region.
 
-![](media/image219.png){width="4.385416666666667in"
+![](assets/image219.png){width="4.385416666666667in"
 height="0.8229166666666666in"}
 
 []{#_Ref444528297 .anchor}Figure 187. Subsidy on Electricity
@@ -5538,7 +5538,7 @@ Comparing this scenario with Scen_UC_BND, the differences are the
 \~UC_Sets (using R_S: AllRegions rather than R_E: AllRegions) and the
 declaration (UC_RHSTS rather than UC_RHSRTS).
 
-![](media/image220.png){width="6.0in" height="0.7708333333333334in"}
+![](assets/image220.png){width="6.0in" height="0.7708333333333334in"}
 
 []{#_Ref444528303 .anchor}Figure 188. Cap Total CO2 Emission via User
 Constraint
@@ -5550,7 +5550,7 @@ of the lumpy investment feature of TIMES through the discrete capacity
 requirement for the new nuclear power plants are shown in **Error!
 Reference source not found.** and Figure 190.
 
-![](media/image221.png){width="6.5in" height="4.229166666666667in"}
+![](assets/image221.png){width="6.5in" height="4.229166666666667in"}
 
 []{#_Ref58343691 .anchor}Figure 189. Final Energy Fuel Consumption in
 Transport
@@ -5572,7 +5572,7 @@ below.
     whole energy system. The tax puts much higher pressure on the energy
     system than the limit.
 
-![](media/image222.png){width="6.5in" height="7.854166666666667in"}
+![](assets/image222.png){width="6.5in" height="7.854166666666667in"}
 
 []{#_Ref456287478 .anchor}Figure 190. Electricity Power Plant Capacity
 in DemoS_012
@@ -5596,7 +5596,7 @@ the reference case (
     differences between the two scenarios the scenario was moved to the
     right of the power plant types.
 
-![](media/image223.png){width="6.03125in"
+![](assets/image223.png){width="6.03125in"
 height="3.6875in"}[]{#_Ref444528353 .anchor}
 
 Figure 191. New Electric Plant Capacity Investments - DemoS_011/012

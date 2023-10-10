@@ -96,7 +96,7 @@ paper industries), Billion vehicle-kilometers per year (B-vkm/year) or
 million cars for road vehicles, and GW for electricity equipment
 (1GW=31.536 PJ/year), etc.
 
-![](media/image15.wmf){width="6.0in" height="4.498988407699038in"}
+![](assets/image15.png){width="6.0in" height="4.498988407699038in"}
 
 *Figure 5.1.Process activity in the original TIMES formulation (top) and
 Linear variant (bottom)*
@@ -352,7 +352,7 @@ dismantling of the technology, and the technical life of the technology
 does not exceed the period length. There are 4 distinct such instances,
 discussed in detail in section 6.2 of Part II.
 
-![](media/image16.emf){width="5.973185695538057in"
+![](assets/image16.png){width="5.973185695538057in"
 height="3.891053149606299in"}
 
 *Figure 5.2. Illustration of yearly investments and payments for one of
@@ -1147,7 +1147,7 @@ The traditional way to represent the nodes and arcs of a grid is shown
 in figure 5.3, where each node is shown as a horizontal segment, and the
 nodes are connected via bi-directional arcs.
 
-![](media/image17.png){width="3.875in" height="2.220883639545057in"}
+![](assets/image17.png){width="3.875in" height="2.220883639545057in"}
 
 *Figure 5.3. Connection of a grid node with other nodes*
 

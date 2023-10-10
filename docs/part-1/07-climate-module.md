@@ -113,7 +113,7 @@ c\) N2O accumulation is also represented by a single-box model in a
 manner entirely similar to CH4, although with different parameter
 values. The corresponding equations are as follows:
 
-![](media/image19.emf)
+![](assets/image19.png)
 
 ## Radiative forcing
 
@@ -121,7 +121,7 @@ We assume, as is routinely done in atmospheric science, that the
 atmospheric radiative forcings caused by the various gases are additive
 (IPCC, 2007). Thus:
 
-![](media/image20.emf)
+![](assets/image20.png)
 
 We now explain these four terms.
 
@@ -130,7 +130,7 @@ forcing, *∆F~CO2~(y)*, is derived from empirical measurements and
 climate models (IPCC 2001 and 2007).
 
   -----------------------------------------------------------------------
-  ∆F~CO2~(y) = γ \* ![](media/image21.emf)
+  ∆F~CO2~(y) = γ \* ![](assets/image21.png)
   -----------------------------------------------------------------------
 
   -----------------------------------------------------------------------
@@ -259,7 +259,7 @@ with
 -   ΔT~up~ = globally averaged surface temperature increase above
     > pre-industrial level,
 
-![](media/image22.emf){width="5.25in" height="4.4847222222222225in"}
+![](assets/image22.png){width="5.25in" height="4.4847222222222225in"}
 
 *Figure 7.1. Illustration of the linearization of the CO2 radiative
 forcing function*

@@ -61,7 +61,7 @@ frozen at the values indicated in the solution of step 1, and period 3
 is free to be optimized. At step 3, period 3 variables are frozen and
 period 4 is optimized, etc.
 
-![](media/image24.wmf){width="5.674305555555556in"
+![](assets/image24.png){width="5.674305555555556in"
 height="2.765277777777778in"}
 
 *Figure 9.1. Sequence of optimized periods in the stepped TIMES solution

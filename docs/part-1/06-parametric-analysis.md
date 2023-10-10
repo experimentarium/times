@@ -176,7 +176,7 @@ to explore an entire trade-off curve such as illustrated in figure 6.1,
 where the vertical axis represents the values of the cost objective
 function, and the horizontal axis the risk measure.
 
-![](media/image18.emf)
+![](assets/image18.png)
 
 *Figure 6.1. Trade-off between Risk and Cost*
 

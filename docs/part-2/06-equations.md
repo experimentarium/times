@@ -476,7 +476,7 @@ at the end, since that would mean that during the whole period, the paid
 for capacity would actually not be sufficient to cover the capacity
 selected by the model for that period.
 
-![](media/image16.emf){width="5.75in" height="3.125in"}
+![](media/image16.png){width="5.75in" height="3.125in"}
 
 *EQ_INVCOST(y)*
 
@@ -527,7 +527,7 @@ is taken into account in the capacity transfer equations of the model.
 As before, each capacity increment results in a stream of *ELIFE*
 payments at years *v, v*+1, etc.
 
-![](media/image17.emf){width="5.614583333333333in" height="3.15625in"}
+![](media/image17.png){width="5.614583333333333in" height="3.15625in"}
 
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
@@ -559,7 +559,7 @@ very realistic assumption for large projects), and capacity becomes
 available at the end of the lead time, **in a lump quantity** (see
 figure).
 
-![](media/image19.emf){width="5.75in" height="3.3229166666666665in"}
+![](media/image19.png){width="5.75in" height="3.3229166666666665in"}
 
 $${INVCOST(y) = 
 }{\sum_{\begin{aligned}
@@ -585,7 +585,7 @@ $\mathbf{ILE}\mathbf{D}_{}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     an
 
 **(Large, indivisible Projects, repeated investments in period)**
 
-![](media/image20.emf){width="5.59375in" height="3.5416666666666665in"}
+![](media/image20.png){width="5.59375in" height="3.5416666666666665in"}
 
 This case is similar to case I.2.a, but the investment is repeated more
 than once over the period, each cycle being *TLIFE* years long. As in
@@ -709,7 +709,7 @@ $${INVDECOM(y) =
 investment started to operate. We have adopted this convention
 throughout the objective function.
 
-![](media/image21.emf){width="5.75in" height="3.3333333333333335in"}
+![](media/image21.png){width="5.75in" height="3.3333333333333335in"}
 
 **Case 1.b)** if
 $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
@@ -730,7 +730,7 @@ height="7.507655293088364e-3in"}
 
 > **(III.1.b)**
 
-![](media/image22.emf){width="5.625in" height="3.625in"}
+![](media/image22.png){width="5.625in" height="3.625in"}
 
 **Case 2.a:**
 $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
@@ -757,7 +757,7 @@ $${INVDECOM(y) =
 $${UsefulRangefory:
 }\left\{ B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} - 1,same + DELIF_{t} - 1 \right\}$$
 
-![](media/image23.emf){width="5.25in" height="3.8125in"}
+![](media/image23.png){width="5.25in" height="3.8125in"}
 
 **Case 2.b:**
 $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
@@ -797,7 +797,7 @@ $${ForI = 1toC
 $INVDECOM(y) = \sum_{t \in MILESTONES,t \leq T(y)}^{}{INDIC(III.2.b) \times P_{t}(y)} \times VAR\_ NCAP_{t} \times CRF$
 **III.2.b**
 
-![](media/image24.emf){width="5.875in" height="4.28125in"}
+![](media/image24.png){width="5.875in" height="4.28125in"}
 
 ### Fixed annual costs: FIXCOST(y), SURVCOST(y) 
 
@@ -885,7 +885,7 @@ $${FIXCOST(y) =
 
 Example:
 
-> ![](media/image25.emf){width="5.75in" height="3.3541666666666665in"}
+> ![](media/image25.png){width="5.75in" height="3.3541666666666665in"}
 > **\
 > Case 1.b,** if
 > $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
@@ -910,7 +910,7 @@ height="7.507655293088364e-3in"}where
 
 Example:
 
-![](media/image26.emf){width="5.625in" height="3.125in"}
+![](media/image26.png){width="5.625in" height="3.125in"}
 
 **Case 2.a:**
 $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
@@ -964,7 +964,7 @@ for Microsoft
 Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}**(IV.2.a')**
 
-![](media/image27.emf){width="5.25in" height="3.8125in"}
+![](media/image27.png){width="5.25in" height="3.8125in"}
 
 **Remark**: again here, the cost attribute is indexed by the year when
 investment started its life. Also, note that, by choice, we have not
@@ -1027,7 +1027,7 @@ $${where:
 
 (**IV.2.b')**
 
-![](media/image28.emf){width="5.375in" height="4.104166666666667in"}
+![](media/image28.png){width="5.375in" height="4.104166666666667in"}
 
 *Remark*: same as precedently regarding the indexing of the cost
 attribute *NCAP_DLAGC*
@@ -1424,7 +1424,7 @@ materials and/or energy that were sunk at construction time. Therefore,
 the *LATEREVENUES* expressions are identical to the decommissioning cost
 expressions, with the NCAP_DCOST attribute replaced by
 
-![](media/image29.wmf)
+![](media/image29.png)
 
 where the summation extends over all commodities *c* for which an
 *NCAP_OCOM* attribute is defined (defaults to zero if undefined)
@@ -1608,15 +1608,15 @@ adjust­ments needed when taking into account the correction to the *CRF
 proper* are the following:
 
 +-------------------------------------------------------------+--------+
-| > ![](media/image30.wmf){width="0.75in" height="0.3125in"}  | (XI.1) |
+| > ![](media/image30.png){width="0.75in" height="0.3125in"}  | (XI.1) |
 | > =  *CRF~beg~* × (1+*d~S~*(*T*(*y*)))^0.5^                 |        |
 +-------------------------------------------------------------+--------+
-| > *CRF~1,mid~* = ![](media/image30.wmf){width="0.75in"      | (XI.2) |
+| > *CRF~1,mid~* = ![](media/image30.png){width="0.75in"      | (XI.2) |
 | > height="0.3125in"}× (1+*d*(*T*(*y*)))^0.5^ ×              |        |
 | > (1+*d*(*T*(*y*)))^--0.5^ =\                               |        |
 | > *CRF~beg~* × (1+*d~S~*(*T*(*y*)))^0.5^                    |        |
 +-------------------------------------------------------------+--------+
-| > *CRF~2,mid~*  =  ![](media/image30.wmf){width="0.75in"    | (XI.3) |
+| > *CRF~2,mid~*  =  ![](media/image30.png){width="0.75in"    | (XI.3) |
 | > height="0.3125in"}× (1+*d*(*T*(*y*)))^--0.5^ =  \         |        |
 | > *CRF~beg~* × (1+*d*(*T*(*y*)))^--0.5^ ×                   |        |
 | > (1+*d~S~*(*T*(*y*)))^0.5^                                 |        |
@@ -3239,7 +3239,7 @@ timeslice, while EQ(l)\_CAPACT refers to the full available capacity.
     that level. If the start-up costs are assumed zero on some timeslice
     level, they must be zero also on any higher levels.
 
-![](media/image31.wmf){width="6.395833333333333in"
+![](media/image31.png){width="6.395833333333333in"
 height="2.5520833333333335in"}
 
 **Notation:**
@@ -3641,7 +3641,7 @@ $${COEF\_ ICOM:
 }{= Max\left( \frac{1 + Min\left( ECF,E(t) \right) - Max\left( BCF,B(t) \right)}{D(t)} \times \frac{NCAP\_ ICOM_{v}}{NCAP\_ CLED_{v}},0 \right)
 }{endif}$$
 
-![](media/image32.wmf)
+![](media/image32.png)
 
 **\
 ****Dismantling Related Flow Coefficients**
@@ -5757,7 +5757,7 @@ time periods at the same time, have been considered unrealistic, so that
 combination of elements, e.g. the periods specified in **uc_t_each/sum**
 do not have to be consecutive.
 
-![](media/image33.wmf){width="5.895833333333333in"
+![](media/image33.png){width="5.895833333333333in"
 height="4.760416666666667in"}
 
 Figure 14: The allowed combinations of region, period and timeslice for

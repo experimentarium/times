@@ -95,7 +95,7 @@ decisions, contingent on which of the mitigation outcomes (High or Low)
 has occurred, and in 2030, 2040, 2050 and 2060, there will be four sets
 of contingent decisions.
 
-![](media/image23.emf){width="5.825694444444444in"
+![](assets/image23.png){width="5.825694444444444in"
 height="4.302777777777778in"}
 
 *Figure*
