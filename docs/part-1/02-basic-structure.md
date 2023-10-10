@@ -92,7 +92,7 @@ various production technologies may be very different in different time
 slices, and furthermore that specific investment decisions will be taken
 to insure adequate reserve capacity at peak.
 
-![timeslice_tree](media/image1.wmf){width="5.483665791776028in"
+![timeslice_tree](assets/image1.png){width="5.483665791776028in"
 height="3.2058344269466317in"}
 
 *Figure 2.1: Example of a time-slice tree*
@@ -165,7 +165,7 @@ energy carriers in turn are produced by other technologies, represented
 in the diagram by one gas plant, three electricity-generating plants
 (gas fired, coal fired, oil fired), and one oil refinery.
 
-![](media/image2.wmf){width="5.996527777777778in"
+![](assets/image2.png){width="5.996527777777778in"
 height="4.4215277777777775in"}
 
 *Figure 2.2. Partial view of a Reference Energy System (links are

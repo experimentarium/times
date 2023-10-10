@@ -364,7 +364,7 @@ higher than the preceding step. The width of any particular step depends
 upon the technological potential and/or resource availability associated
 with the set of technologies represented by that step.
 
-![](media/image3.wmf)*Figure 3.1. Equilibrium in the case of an energy
+![](assets/image3.png)*Figure 3.1. Equilibrium in the case of an energy
 form: the model implicitly constructs both the supply and the demand
 curves (note that the equilibrium is multiple in this configuration)*
 
@@ -456,7 +456,7 @@ concept has long been a mainstay of social welfare economics because it
 takes into account both the surpluses of consumers and of
 producers.[^22]
 
-![](media/image7.wmf)*Figure 3.2. Equilibrium in the case of an energy
+![](assets/image7.png)*Figure 3.2. Equilibrium in the case of an energy
 service: the user explicitly provides the demand curve, usually using a
 simple functional form (see text for details)*
 
@@ -468,7 +468,7 @@ demand curve" is a vertical line. The objective of such models was
 simply the minimization of the total cost of meeting exogenously
 specified levels of energy service.
 
-![](media/image8.wmf)*Figure 3.3. Equilibrium when an energy service
+![](assets/image8.png)*Figure 3.3. Equilibrium when an energy service
 demand is fixed*
 
 #### Competitive energy markets with perfect foresight
@@ -556,7 +556,7 @@ seems much too small or too large compared to the anticipated market
 prices), this indicates that the model's database may contain some
 errors. The examination of shadow prices is just as important as the
 analysis of the quantities produced and consumed of each commodity and
-of the technological investments. ![](media/image9.wmf)
+of the technological investments. ![](assets/image9.png)
 
 *Figure 3.4. Case where the equilibrium price is not equal to any
 marginal supply cost.*
@@ -640,10 +640,10 @@ market.
     the shadow price of a balance constraint (see section 5.4.4), and
     may thus be (loosely) expressed as the derivative of the objective
     function ***F*** with respect to the right-hand-side of a balance
-    constraint, i.e. ![](media/image4.wmf). When that price is further
+    constraint, i.e. ![](assets/image4.png). When that price is further
     differentiated with respect to another quantity ***Q~j~***, one gets
-    ![](media/image5.wmf), which, under mild conditions is always equal
-    to ![](media/image6.wmf), as desired.
+    ![](assets/image5.png), which, under mild conditions is always equal
+    to ![](assets/image6.png), as desired.
 
 [^22]: See e.g. Samuelson and Nordhaus (1977)
 

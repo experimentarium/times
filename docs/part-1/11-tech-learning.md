@@ -91,7 +91,7 @@ $$TC_{t} = \int_{0}^{C_{t}}{a \cdot y^{- b}*dy} = \frac{a}{1 - b} \cdot {C_{t}}^
 ***TC~t~*** is a concave function of ***C~t~***, with a shape as shown
 in figure 11.1
 
-![](media/image26.wmf)
+![](assets/image26.png)
 
 *Figure 11.1. Example of a cumulative learning curve*
 
@@ -133,7 +133,7 @@ region, and technology indexes for notational clarity):
     coefficients for each learning technology. The detailed formulae are
     shown and briefly commented on below.
 
-![](media/image27.wmf)
+![](assets/image27.png)
 
 *Figure 11.2. Example of a 4-segment approximation of the cumulative
 cost curve*
@@ -166,14 +166,14 @@ First, we define *N* continuous variables ***x~i~***, *i= 1,...,N*. Each
 ***x~i~*** represents the portion of cumulative investments lying in the
 ***i^th^*** interval. Therefore, the following holds:
 
-![](media/image28.emf)
+![](assets/image28.png)
 
 We now define ***N*** integer (0-1) variables ***z~i~*** that serve as
 indicators of whether or not the value of ***C*** lies in the
 ***i^th\ ^***interval. We may now write the expression for ***TC***, as
 follows:
 
-![](media/image29.emf)
+![](assets/image29.png)
 
 where ***b~i~*** is the slope of the ***i^th^*** line segment, and
 ***a~i~*** is the value of the intercept of that segment with the
@@ -183,7 +183,7 @@ vertical axis, as shown in figure 11.3. The precise expressions for
 $${b_{i} = \frac{TC_{i} - TC_{i - 1}}{C_{i} - C_{i - 1}}i = 1,2,...,N
 }{11 - 5
 }$$$a_{i} = TC_{i - 1} - b_{i} \cdot C_{i - 1}i = 1,2,...,N$
-![](media/image30.wmf)*Figure 11.3. The i^th^ segment of the step-wise
+![](assets/image30.png)*Figure 11.3. The i^th^ segment of the step-wise
 approximation*
 
 ### New constraints
@@ -219,7 +219,7 @@ certain that it will not lie in segments *i-1, i-2, .., 1* in time
 period *t+1*. This leads to two new constraints (re-establishing the
 period index ***t*** for the ***z*** variables):
 
-![](media/image31.emf)
+![](assets/image31.png)
 
 Summarizing the above formulation, we observe that each learning
 technology requires the introduction of ***N\*T*** integer (0-1)
@@ -405,4 +405,4 @@ computationally intractable).
 
 [^37]: The notation in this chapter is sometimes different from the standard notation for parameters and variables, in order to conform to the more detailed technical note on the subject.
 
-[^38]: It is usual to define, instead of ***b***, another parameter, ***pr*** called the *progress ratio*, which is related to ***b*** via the following relationship:![](media/image25.wmf). Hence, ***1-pr*** is the cost reduction incurred when cumulative investment is doubled. Typical observed ***pr*** values are in a range of .75 to .95.
+[^38]: It is usual to define, instead of ***b***, another parameter, ***pr*** called the *progress ratio*, which is related to ***b*** via the following relationship:![](assets/image25.png). Hence, ***1-pr*** is the cost reduction incurred when cumulative investment is doubled. Typical observed ***pr*** values are in a range of .75 to .95.
