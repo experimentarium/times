@@ -79,7 +79,7 @@ for matrix intersection, that is the multiplier for the individual
 variables comprising each equation. With the matrix assembled GAMS then
 turns over the problem to the solver.
 
-![](media/image4.png){width="3.8583333333333334in"
+![](assets/image4.png){width="3.8583333333333334in"
 height="4.28456583552056in"}
 
 []{#_Ref321326034 .anchor}Figure 4: VEDA-FE Case Manager Control Form
@@ -431,10 +431,10 @@ the definition of the timeslices, the files INITSYS.COM and INITMTY.MOD,
 which are responsible for the declaration and initialization of all sets
 and parameters of the model generator, are included.
 
-![](media/image5.png){width="5.4853083989501314in"
+![](assets/image5.png){width="5.4853083989501314in"
 height="7.114316491688539in"}
 
-![](media/image6.png){width="5.909908136482939in"
+![](assets/image6.png){width="5.909908136482939in"
 height="4.98759842519685in"}
 
 []{#_Ref425136344 .anchor}Figure 5: Example of a VEDA-FE TIMES
@@ -485,7 +485,7 @@ file).
 
 ### GAMS listing file (.LST)
 
-![](media/image7.png){width="3.7402777777777776in"
+![](assets/image7.png){width="3.7402777777777776in"
 height="1.3479166666666667in"}The GAMS listing file echoes the model
 run. In this file GAMS reports the compile and execution steps, presents
 a summary of the model statistics and objective function results, and
@@ -495,7 +495,7 @@ the equation listing be turned on by specifying the LIMROW/LIMCOL
 dumped (via SOLPRINT) by means of the VEDA-FE CaseManager settings, as
 shown here.
 
-![](media/image8.png){width="2.4965277777777777in" height="0.9625in"}
+![](assets/image8.png){width="2.4965277777777777in" height="0.9625in"}
 
 []{#_Toc449540203 .anchor}Figure 6: Requesting Equation Listing and
 Solution Print
@@ -513,7 +513,7 @@ A small snippet from the LST file compilation trace from an ANSWER-TIMES
 model run of is shown in , where the \"\...\" shows the nesting as one
 GAMS routine calls another with the appropriate parameters needed.
 
-![](media/image9.png){width="5.037095363079615in"
+![](assets/image9.png){width="5.037095363079615in"
 height="3.3319641294838145in"}
 
 []{#_Ref424779247 .anchor}Figure 7: GAMS Compilation of the TIMES Source
@@ -527,7 +527,7 @@ the proper order and data was attempted to be assigned to a process
 before it was declared. Further discussion of errors encountered at this
 and other stages of the run process is found in Section .
 
-![](media/image10.png){width="5.331776027996501in"
+![](assets/image10.png){width="5.331776027996501in"
 height="3.330650699912511in"}
 
 []{#_Ref321394441 .anchor}Figure 8: GAMS Compilation Error
@@ -542,7 +542,7 @@ execution error is reported in the \<Case\>.LST file in a manner similar
 to a compilation error, tagged by "Error" at the point that the problem
 was encountered.
 
-![](media/image11.png){width="4.640065616797901in" height="3.375in"}
+![](assets/image11.png){width="4.640065616797901in" height="3.375in"}
 
 []{#_Ref425137029 .anchor}Figure 9: GAMS Execution of the TIMES Source
 Code
@@ -550,7 +550,7 @@ Code
 Once execution of the matrix generator has completed GAMS reports the
 model run statistics (), and automatically invokes the solver.
 
-![](media/image12.png){width="5.903778433945757in"
+![](assets/image12.png){width="5.903778433945757in"
 height="2.925551181102362in"}
 
 []{#_Ref419731791 .anchor}Figure 10: CPLEX Solver Statistics
@@ -559,11 +559,11 @@ If the OPTION LIMROW/LIMCOL is set to non-0 the equation mathematics are
 displayed in the list file, by equation block and/or column
 intersection, as shown in and Figure 12 respectively.
 
-![](media/image13.png){width="6.5in" height="2.4652777777777777in"}
+![](assets/image13.png){width="6.5in" height="2.4652777777777777in"}
 
 []{#_Ref447876202 .anchor}Figure 11: Equation Listing Example
 
-![](media/image14.png){width="4.1763899825021875in"
+![](assets/image14.png){width="4.1763899825021875in"
 height="3.800586176727909in"}
 
 []{#_Ref447876098 .anchor}Figure 12: Variable Listing Example
@@ -571,7 +571,7 @@ height="3.800586176727909in"}
 And if the SOLPRINT=ON option is activated then the level and marginals
 are reported as shown in .
 
-![](media/image15.png){width="6.5in" height="3.3in"}
+![](assets/image15.png){width="6.5in" height="3.3in"}
 
 []{#_Ref447876120 .anchor}Figure 13: Solution Dump Example
 
@@ -584,7 +584,7 @@ LST file for the string \"INFES\" for an indication of which equations
 are preventing model solution. Again, further information on the
 possible causes and resolution of such errors is found in Section .
 
-![](media/image16.png){width="6.052069116360455in"
+![](assets/image16.png){width="6.052069116360455in"
 height="2.9810378390201224in"}
 
 []{#_Ref419732903 .anchor}Figure 14: Solver Solution Summary
@@ -623,7 +623,7 @@ GDX has been created, it is viewed in the GAMSIDE. By sorting by Type
 and scanning down one Symbol at a time, one can determine exactly what
 input data being sent to GAMS for the two runs is different.
 
-![](media/image17.png){width="3.4162489063867016in"
+![](assets/image17.png){width="3.4162489063867016in"
 height="4.446232502187226in"}
 
 []{#_Ref321818210 .anchor}Figure 15: GAMSIDE View of the GDXDIFF Run
@@ -644,9 +644,9 @@ familiar with the GAMS GDX file for TIMES and the basics of the GDX2VEDA
 utility. See Part V, Appendix B, for further information on the GDX2VEDA
 utility and VDD directives file.
 
-![](media/image18.png){width="3.561347331583552in"
+![](assets/image18.png){width="3.561347331583552in"
 height="2.8687029746281714in"}
-![](media/image19.png){width="1.6375404636920385in"
+![](assets/image19.png){width="1.6375404636920385in"
 height="2.8806977252843393in"}
 
 []{#_Ref447875229 .anchor}Figure 16: VEDA Setup for Data Only GDX
@@ -1118,7 +1118,7 @@ ANSWER). The CPLEX Infeasibility Finder will identify the explicit
 row/columns corresponding to the first infeasibility encountered and
 list the conflict involved in the \<Case\>.LST file, such as shown here
 where the electricity balance equation can't be satisfied
-![](media/image20.png){width="6.506944444444445in" height="0.2in"}(due
+![](assets/image20.png){width="6.506944444444445in" height="0.2in"}(due
 to a limit being imposed on the first year electric grid capacity that
 is too small).
 

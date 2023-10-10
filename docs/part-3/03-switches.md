@@ -497,7 +497,7 @@ advanced further in the future, and all periods before them are fixed to
 the solution of the previous step. Figure 17 illustrates the step-wise
 solution approach.
 
-![](media/image21.wmf){width="5.675in" height="2.7666666666666666in"}
+![](assets/image21.png){width="5.675in" height="2.7666666666666666in"}
 
 []{#_Ref425220561 .anchor}Figure 17: Sequence of Optimized Periods in
 Time-stepped Solution
@@ -965,8 +965,8 @@ ways as described in if desired:
 
   : []{#_Ref425222296 .anchor}Table 11: Debug Switches
 
-![](media/image22.png){width="3.0520833333333335in"
-height="0.3388888888888889in"}![](media/image23.png){width="1.1125in"
+![](assets/image22.png){width="3.0520833333333335in"
+height="0.3388888888888889in"}![](assets/image23.png){width="1.1125in"
 height="0.6090277777777777in"}In VEDA-FE the LPOINT can be set from the
 Case Manager by requesting the loading of a previously GDX, and in
 ANSWER by means of Run Model Restart files specifications, as shown in
