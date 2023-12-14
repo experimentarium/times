@@ -6420,27 +6420,12 @@ naming conventions apply to the prefixes of the report parameters:
 
 -   REG\_: regional total cost indicators.
 
-+--------+-------+-----------------------------------------------------+
-| **R    | **VED | **Description**                                     |
-| eport\ | A-BE\ |                                                     |
-| p      | attri |                                                     |
-| aramet | bute\ |                                                     |
-| er**[^ | n     |                                                     |
-| 34]**\ | ame** |                                                     |
-| (Inde  |       |                                                     |
-| xes)** |       |                                                     |
-+========+=======+=====================================================+
-| AG     | VAR   | Commodity production by an aggregation process:     |
-| G_OUT\ | _FOut |                                                     |
-| (r,    |       | Production of commodity (c) in period (t) and       |
-| t,c,s) |       | timeslice (s) from other commodities aggregated     |
-|        |       | into c.                                             |
-+--------+-------+-----------------------------------------------------+
-| CA     | Ca    | Newly installed capacity and lumpsum investment by  |
-| P_NEW\ | p_New | vintage and commissioning period:                   |
-| (r     |       |                                                     |
-| ,v,p,t |       | New capacity and lumpsum investment of process (p)  |
-| ,uc_n) |       | of vintage (v) commissioned in period (t).          |
+
+| Report parameter<sup>[^34]</sup> (Indexes) | VEDA-BE attribute name | Description |
+| --- | --- | --- |
+| AGG_OUT <br> (r,t,c,s) </br>    | VAR_FOut   | Commodity production by an aggregation process: <br> Production of commodity (c) in period (t) and timeslice (s) from other commodities aggregated into c. </br>|
+| CAP_NEW <br> (r,v,p,t,uc_n) </br>  | Cap_New  | Newly installed capacity and lumpsum investment by vintage and commissioning period: <br> New capacity and lumpsum investment of process (p) of vintage (v) commissioned in period (t). </br>|
+
 +--------+-------+-----------------------------------------------------+
 | CM_R   | V     | Climate module results for the levels of climate    |
 | ESULT\ | AR_Cl | variable (c) in period (t).                         |
