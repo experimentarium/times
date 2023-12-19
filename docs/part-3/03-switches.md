@@ -12,9 +12,9 @@ The use of the RUN_NAME control variable is practically mandatory when running T
 
 Here the ***runname*** identifier (corresponding to the run \<case\> name) is a string of letters, numbers and other characters (excluding spaces), such that the name complies with the rules for the base name of files. It will be used to construct names for the various files comprising a model run, as listed in [](#run_name-times-files).
 
-:::{table} RUN_NAME TIMES Files
-:label: run_name-times-files
-:align: center
+```{table} RUN_NAME TIMES Files
+:name: run_name-times-files
+:align: left
 
 | Extension* | Description |
 | ---------- |--------------|
@@ -29,7 +29,7 @@ Here the ***runname*** identifier (corresponding to the run \<case\> name) is a 
 | \*\_TS.DD  | Timeslices declaration for the associated model run |
 | VD\*       | Suite of results/Set definition(S)/Element description(E)/topology(T) for VEDA-BE |
 
-:::
+```
 
 ## Controls affecting equilibrium mode
 
@@ -43,8 +43,8 @@ The TIMESED control variable is one of the most important TIMES control variable
 
 This setting indicates that the user plans to use the resulting price levels from the current run as reference prices in subsequent runs with elastic demands. The setting causes the model generator to create the following (identical) two files from the Baseline run (the second file is a backup copy):
 
--   Com_Bprice.gdx
--   %RUN_NAME%\_DP.gdx
+- Com_Bprice.gdx
+- \%RUN\_NAME\%\_DP.gdx
 
 For running any policy scenarios with elastic demands, using price levels from a previous run as reference prices, one must use the following setting:
 
@@ -59,7 +59,9 @@ The VEDA-FE Case Manager (BasePrice) and ANSWER Run (ModelVariant) buttons allow
 The general equilibrium mode of TIMES can be activated in two different ways, using the following MACRO control switch settings:
 
 > \$SET MACRO YES -- activate the standard MACRO formulation
+ 
 > \$SET MACRO MSA -- activate the MACRO decomposition formulation
+ 
 > \$SET MACRO MLF -- activate the linearized MACRO-MLF formulation
 
 For further information about the standard MACRO formulation, see the TIMES-MACRO documentation available at the ETSAP site: <http://www.iea-etsap.org/web/documentation.asp>
@@ -163,6 +165,7 @@ The purpose of the FIXBOH option is to bind the first years of a model run to th
 according to the solution values from the reference case up to the last Milestone year less than or equal to the year specified by the FIXBOH control variable. The FIXBOH control has to be used together with the LPOINT control variable, in the following way:
 
 > \$SET FIXBOH 2050
+
 > \$SET LPOINT \<run_name\>
 
 Here, the value of FIXBOH (2050) specifies the year, up to which the model solution will be fixed to the previous solution, and the value of LPOINT (run_name) specifies the name of the previous run, from which the previous solution is to be retrieved. Consequently, either a full GDX file or a GAMS "point file" (see section 3.8) from the previous run should be available. If no such GDX file is found, a compiler error is issued. The Milestone years of the previous run must match those in the current run.
@@ -174,15 +177,18 @@ As a generalization to the basic scheme described above, the user can also reque
 In the RUN file you should specify the control switches described above:
 
 > \$SET FIXBOH 2030
+
 > \$SET LPOINT \<run_name\>
 
 In a model DD file you should include the values for the REG_FIXT parameter:
 
-> PARAMETER REG_FIXT
-> /
-> AUS 2200, CAN 2200, CHI 2200, IND 2200
-> JPN 2200, MEX 2200, ODA 2200, SKO 2200
-> /;
+```
+PARAMETER REG_FIXT
+/
+AUS 2200, CAN 2200, CHI 2200, IND 2200
+JPN 2200, MEX 2200, ODA 2200, SKO 2200
+/;
+```
 
 ### Limit foresight stepwise solving \[TIMESTEP\]
 
@@ -195,6 +201,7 @@ The purpose of the TIMESTEP option is to run the model in a stepwise manner with
 The amount of overlapping years between successive steps is by default half of the active step length (the value of TIMESTEP), but it can be controlled by the user by using the TIMES G_OVERLAP parameter. Consequently, the specifi­cations that can be used to control a stepped TIMES solution are the following:
 
 > \$SET TIMESTEP 20 (specified in the run file)
+
 > PARAMETER G_OVERLAP / 10 /; (specified in a DD file)
 
 In this example, the TIMESTEP control variable specifies the active step length of each successive solution step (20 years), and the G_OVERLAP parameter specifies the amount of years, by which the successive steps should overlap (10 years). They may be set in the VEDA-FE Control Panel, like almost all control switches, or in ANSWER by manually adding the parameter to the Run GEN Template.
@@ -329,7 +336,7 @@ The GAMS control variables that can be used for the savepoint and loadpoint feat
 
 | Option | Description |
 | --- | ---|
-| SPOINT | --- |   
+| SPOINT | |   
 | Not provided  (default) | Does not save or load a restart point. |
 | 1 (or YES) | The final solution point from the model run should be saved in the file %RUN_NAME%\_p.gdx, where %RUN_NAME% is the GAMS control variable that should always be set to contain the name of the current TIMES model run in the run file for the model.
 | 2 | The model generator should make an attempt to load the solution point from the file %RUN_NAME%\_p.gdx, where %RUN_NAME% is the GAMS control variable that should always be set to contain the name of the current TIMES model run in the run file for the model. If the control variable LPOINT has additionally been set as well, this attempt will be made only if the loading from the file %LPOINT%\_p.gdx fails.
@@ -413,6 +420,7 @@ The various \$\<switch\> \<value\> switches controlling reporting of the model r
 For the BENCOST report, all of the absolute indicators are expressed in terms of undiscounted investment costs (like those specified by NCAP_COST). For example, the competitiveness gap represents the amount of change in investment costs that would bring the technology competitive (the VAR_NCAP variable would enter the solution basis). Ranging information can only be reported when the CPLEX ranging option has been used. The ranging option can be activated by adding the following two lines into the CPLEX options file (CPLEX.OPT):
 
 > objrng VAR_NCAP
+
 > rngrestart timesrng.inc
 
 When available, the LO ranging information is also used for calculating the competitiveness gap indicators, because the VAR_NCAP variables can occasionally be basic at zero, making the reduced cost information useless. In such cases the LO ranging value can be used to derive the amount of change required in the VAR_NACP cost coefficient to cause a change in the basis.
