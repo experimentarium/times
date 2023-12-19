@@ -10,7 +10,7 @@ The use of the RUN_NAME control variable is practically mandatory when running T
 
 > \$SET RUN_NAME runname
 
-Here the ***runname*** identifier (corresponding to the run \<case\> name) is a string of letters, numbers and other characters (excluding spaces), such that the name complies with the rules for the base name of files. It will be used to construct names for the various files comprising a model run, as listed in [](#run_name-times-files).
+Here the ***runname*** identifier (corresponding to the run \<case\> name) is a string of letters, numbers and other characters (excluding spaces), such that the name complies with the rules for the base name of files. It will be used to construct names for the various files comprising a model run, as listed in {numref}`run_name-times-files`.
 
 ```{table} RUN_NAME TIMES Files
 :name: run_name-times-files
@@ -18,16 +18,16 @@ Here the ***runname*** identifier (corresponding to the run \<case\> name) is a 
 
 | Extension* | Description |
 | ---------- |--------------|
-| ANT        | ANSWER results dump |
-| GDX        | GAMS data exchange file (for GAMS2VEDA processing)
+| ANT | ANSWER results dump |
+| GDX | GAMS data exchange file (for GAMS2VEDA processing)
 | \*\_DP.GDX | Base demand prices to seed a TIMES elastic demand policy run |
-| LOG        | Optional GAMS file producing a trace of the model resource usage (activated by lo=1 on the GAMS call line in ANS_GAMS / VT_GAMS.CMD, which needs to be added by the user manually if needed) |
-| LST        | GAMS output file with the compile/execute/solve trace, and optional solution dump (via SOLPRINT=YES on the OPTIONS line at the top of the RUN command script)
-| \*\_P.GDX  | Save/Load point GAMS restart files |
-| RUN        | Top level routine calling GAMS (and for VEDA-FE the GDX2VEDA routine) |
+| LOG | Optional GAMS file producing a trace of the model resource usage (activated by lo=1 on the GAMS call line in ANS_GAMS / VT_GAMS.CMD, which needs to be added by the user manually if needed) |
+| LST | GAMS output file with the compile/execute/solve trace, and optional solution dump (via SOLPRINT=YES on the OPTIONS line at the top of the RUN command script)
+| \*\_P.GDX | Save/Load point GAMS restart files |
+| RUN | Top level routine calling GAMS (and for VEDA-FE the GDX2VEDA routine) |
 | \*\_RunSummary.log | Run summary for the associated model run |
-| \*\_TS.DD  | Timeslices declaration for the associated model run |
-| VD\*       | Suite of results/Set definition(S)/Element description(E)/topology(T) for VEDA-BE |
+| \*\_TS.DD | Timeslices declaration for the associated model run |
+| VD\* | Suite of results/Set definition(S)/Element description(E)/topology(T) for VEDA-BE |
 
 ```
 
@@ -88,32 +88,40 @@ When using the MACRO decomposition formulation (with `MACRO=MSA` or `MACRO=CSA`)
 
 ### Objective function cost accounting \[OBJ\]
 
-The user can choose to use several alternative objective function formulations instead of the standard objective function. See Part I, Section 5.3.4 and the documentation for the Objective Function Variants for details. The alternative objective formulations can be activated using the \$SET OBJ \<option\> as described in Table 6.
+The user can choose to use several alternative objective function formulations instead of the standard objective function. See Part I, Section 5.3.4 and the documentation for the Objective Function Variants for details. The alternative objective formulations can be activated using the \$SET OBJ \<option\> as described in {numref}`obj-func-formulation-opt`.
+
+```{table} Objective Function Formulation Options
+:name: obj-func-formulation-opt
+:align: left
 
 | OBJ Option | Description |
 | ---------- | ------------|
-| ALT        | Uses modified capacity transfer coefficients that improve the independency of investment costs on period definitions. |
+| ALT | Uses modified capacity transfer coefficients that improve the independency of investment costs on period definitions. |
 | AUTO (default) | TIMES auto­matically selects the objective function among the standard formulation or the 'MOD' alternative formulation according to the B(t) and E(t) parameters speci­fied by the user. If those parameters comply with the assumptions used in the standard formulation, then the standard formulation is used, but if not then the alternative formulation 'MOD' is used. |
-| LIN  | Assumes linear evolution of flows and activities between Milestone years, but is otherwise similar to the ALT formulation. |
-| MOD  | Period boundaries B(t) and E(t) are internally set to be halfway between Milestone years, giving flexibility to set Milestone years to be other than the middle of each period. Investments in Cases I.1.a and I.1.b only of the objective function investment decision are spread somewhat differently across years. |
-| STD  | To ensure that the standard formulation is unconditionally used, even if the B(t) and E(t) parameters do not comply with the standard assumptions. |
+| LIN | Assumes linear evolution of flows and activities between Milestone years, but is otherwise similar to the ALT formulation. |
+| MOD | Period boundaries B(t) and E(t) are internally set to be halfway between Milestone years, giving flexibility to set Milestone years to be other than the middle of each period. Investments in Cases I.1.a and I.1.b only of the objective function investment decision are spread somewhat differently across years. |
+| STD | To ensure that the standard formulation is unconditionally used, even if the B(t) and E(t) parameters do not comply with the standard assumptions. |
 
-: []{#_Ref425219504 .anchor}Table 6: Objective Function Formulation Options
+```
 
 ### Objective function components
 
-In addition to controlling how the objective function is assembled, as described in the previous section, the user has control of the handling of specific components of the objective functions, as described in Table 7.
+In addition to controlling how the objective function is assembled, as described in the previous section, the user has control of the handling of specific components of the objective functions, as described in {numref}`obj-func-component-opt`.
+
+```{table} Objective Function Component Options
+:name: obj-func-component-opt
+:align: left
 
 | Option \<value\> | Description |
 | ---------------| ------------|
 | DAMAGE \<LP(default)/NLP/NO\> | The TIMES model generator supports the inclusion of so-called damage costs in the objective function. By default, if such damage costs have been defined in the model input data, they are also automatically included in the objective function in linearized form (LP). However, if the user wishes the damage costs to be included in the solution reporting only, the DAMAGE control variable can be set to \'NO\'. Non-linear damage functions can be requested by setting the control variable to \'NLP\'. See Part II, Appendix B, for more on the damage cost function extension. |
 | OBJANN \<YES\> | Used for requesting a period-wise objective formulation, which can be used e.g. together with the MACRO decomposition method for enabling the iterative update of the period-wise discount factors (See the documentation titled *Macro MSA,* on the MACRO Decomposition Algorithm, for details). |
-| OBLONG \<YES/NO\> | <br> In the STD (standard) and MOD (alternative) objective function formulations discussed in Table 6 the capacity-related costs are not completely synchronized with the corresponding activities, which may cause distortions in the accounting of costs. This switch causes all capacity-related cost to be synchronized with the process activities (which are assumed to have oblong shapes), thereby eliminating also the small problems in salvaging that exist in the STD and MOD formulations.</br> <br> Due to the obvious advantages of using this setting, the OBLONG setting is activated by default whenever the MOD formulation is used. However, for backwards compatibility, one can disable it by adding the explicit setting \$SET OBLONG NO in the run file. Using the OBLONG setting can be recommended also with the STD and AUTO settings. It can even be used with the ALT and LIN settings, but that is not recommended. </br> |
+| OBLONG \<YES/NO\> | <br> In the STD (standard) and MOD (alternative) objective function formulations discussed in {numref}`obj-func-formulation-opt` the capacity-related costs are not completely synchronized with the corresponding activities, which may cause distortions in the accounting of costs. This switch causes all capacity-related cost to be synchronized with the process activities (which are assumed to have oblong shapes), thereby eliminating also the small problems in salvaging that exist in the STD and MOD formulations.</br> <br> Due to the obvious advantages of using this setting, the OBLONG setting is activated by default whenever the MOD formulation is used. However, for backwards compatibility, one can disable it by adding the explicit setting \$SET OBLONG NO in the run file. Using the OBLONG setting can be recommended also with the STD and AUTO settings. It can even be used with the ALT and LIN settings, but that is not recommended. </br> |
 | MIDYEAR \<YES\> | <br> In the standard objective formulation, both the investment payments and the operating cost payments are assumed to occur at the beginning of each year within the economic/technical lifetime of technologies. This also means that the so-called annuities of investment costs are calculated using the following formula, where r is the discount rate (see Part II, Section 6.2 for more on the objective function):</br> <br> CRF = (1--(1+r)^--1^)/(1--(1+r)^--L^) </br><br> According to this formula, the interest costs are zero if the lifetime L of the technology is only one year, because the payments are assumed to occur at the beginning of each year. This approach is often called as *beginning-of-year* discounting. However, it leads to an underestimation of the costs, because in reality the investments can be paid back only after getting some income from the investment. To avoid such underestimation, the following formula for annuities is perhaps more commonly used: </br><br> CRF = r/(1--(1+r)^--L^) </br><br> This second formula effectively assumes that the annual investment payments occur at the end of each year. This approach is often called as *end-of-year* discounting. As a good compromise between these two approaches, and highly recommended by many guidelines on good practices in cost evaluations[^19], so-called *mid-year discounting* can additionally be used. </br><br> See Section 6.2.12 of Part II for more information about mid-year discounting. </br> |
 | DISCSHIFT | <br> As a generalization to the MID_YEAR setting, alternate time-of-year discounting, including the end-of-year discounting mentioned above, can be achieved by using the DISCSHIFT control variable. The control variable should be set to correspond to the amount of time (in years) by which the discounting of continuous streams of payments should be shifted forward in time, with respect to the beginning of operation. Setting it to the value of 0.5 would be equal to the setting \$SET MID_YEAR YES, and setting it to the value of 1.0 would be equal to end-of-year discounting, as follows: </br><br> \$SET DISCSHIFT 1 </br> |
 | VARCOST \<LIN\> | <br> The standard dense interpolation and extrapolation of all cost parameters in TIMES may consume considerable amounts of memory resources in very large models. In particular, the variable costs, which may also be to a large extent levelized onto a number of timeslices, usually account for the largest amount of cost data in the GAMS working memory.</br><br> If desired, TIMES can be advised to interpolate and extrapolate the variable cost parameters only sparsely for the Milestone years. The values at the intermediate years will then be derived "*on the fly"*, by piecewise linear interpolation, and will not be stored in the GAMS memory. This option may thus be useful when running very large models on computers with limited memory. </br> |
 
-: []{#_Ref425295753 .anchor}Table 7: Objective Function Component Options
+```
 
 ## Stochastic and sensitivity analysis controls
 
@@ -212,24 +220,27 @@ Because the time periods used in the model may be variable and may not always ex
 
 ### Major formulation extensions 
 
-There are several powerful extensions to the core TIMES code that introduce advanced modeling features. The extension options allow the user to link in additional equations or reporting routines to the standard TIMES code, e.g. the DSC extension for using lumpy investments. The entire information relevant to the extensions is isolated in separate files from the standard TIMES code. These files are identified by their extensions, e.g. **\*.DSC** for lumpy investments or **\*.CLI** for the climate module. The extension mechanism allows the TIMES programmer to add new features to the model generator, and test them, with only minimal hooks provided in the standard TIMES code. It is also possible to have different variants of an equation type, for example of the market share equation, or to choose between different reporting routines, for example adding detailed cost reporting. The extension options currently available in TIMES are summarized in Table 8.
+There are several powerful extensions to the core TIMES code that introduce advanced modeling features. The extension options allow the user to link in additional equations or reporting routines to the standard TIMES code, e.g. the DSC extension for using lumpy investments. The entire information relevant to the extensions is isolated in separate files from the standard TIMES code. These files are identified by their extensions, e.g. **\*.DSC** for lumpy investments or **\*.CLI** for the climate module. The extension mechanism allows the TIMES programmer to add new features to the model generator, and test them, with only minimal hooks provided in the standard TIMES code. It is also possible to have different variants of an equation type, for example of the market share equation, or to choose between different reporting routines, for example adding detailed cost reporting. The extension options currently available in TIMES are summarized in {numref}`times-extension-opt`.
 
-VEDA-FE Case Manager and ANSWER Run Model Options form along with the GEN template will both set the appropriate switches and augment the initialization calls, as described in Table 8 (unless noted otherwise), with the user being fully responsible to provide the necessary data for each extension option employed in a run.
+VEDA-FE Case Manager and ANSWER Run Model Options form along with the GEN template will both set the appropriate switches and augment the initialization calls, as described in {numref}`times-extension-opt` (unless noted otherwise), with the user being fully responsible to provide the necessary data for each extension option employed in a run.
 
+```{table} TIMES Extension Options
+:name: times-extension-opt
+:align: left
 
-| Extension  | Description |
+| Extension | Description |
 | ---------- | ----------- |
-| ABS      | <br>Option to use the Ancillary Balancing Services extension. It is activated with the following setting in the \<case\>.run file:</br><br>\$SET ABS YES</br><br>See the separate documentation on the ABS extension for more information.</br>   |
-| CLI      | <br>The climate module estimates change in CO<sub>2</sub> concentrations in the atmosphere, the upper ocean including the biosphere and the lower ocean, and calculates the change in radiative forcing and the induced change in global mean surface temperature. It is activated with the following setting in the \<case\>.run file:</br><br> \$SET CLI YES </br> <br>See Parts I--II for more information on the use of the Climate Module and this switch.</br> |
-| DSC      | <br>Option to use lumpy investment formulation. Since the usage of the discrete investment options leads to a Mixed-Integer Programming (MIP) problem, the solve statement in the file solve.mod is automatically altered by the user shell. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file:</br> <br>\$SET DSC YES</br> <br>See Part I, Chapter 10 for more information on the use of Lumpy Investment.</br> |
-| DUC      | <br>Option to use the discrete unit commitment formulation. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file:</br> <br>\$SET DUC YES</br> <br>See separate documentation on Dispatching and unit commitment features in TIMES for more information on the use of the discrete unit commitment option.</br>  |
-| ETL      | <br>Option to use endogenous technology learning formulation. Since the usage of this option leads to a Mixed-Integer Programming (MIP) problem, the solve statement in the file solve.mod is automatically altered by TIMES. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file, as follows:</br> <br>\$SET ETL YES</br> <br>See Parts I--II for more information on the use of Endogenous Technology Learning.</br>     |
-| MACRO    | <br>Option to use the MACRO formulation. Since the usage of the MACRO options leads to a Non-linear Programming (NLP) problem, the solve statement in the file solve.mod has to be altered. To activate this extension manually, the \$SET MACRO \<value\> control switch needs to be provided in the \<Case\>.run file, with the following valid values:</br> <br>YES -- activate the integrated MACRO algorithm</br> <br>MSA -- activate Macro decomposition algorithm (MSA)</br> <br>CSA -- activate the calibration algorithm for MSA</br> <br>MLF -- activate the integrated Macro-MLF formulation</br> <br>See the separate MACRO documentation for more on using these options.</br>  |
-| MICRO    | <br>Option to use the non-linear elastic demand formulation. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file:</br> <br>\$SET MICRO YES</br> <br>See Part II for more information on demand function formulations.</br> |
-| RETIRE   | <br>The RETIRE control variable can be used for enabling early and lumpy retire­ments of process capacities. The valid switch values for this control variable are:</br> <br>NO -- Disables all early and lumpy retirements;</br> <br>LP -- Enables continuous early retirements for all those processes that are included in the set PRC_RCAP(r,p);</br> <br>MIP -- Enables early retirements for the processes that are included in the set PRC_RCAP(r,p), and additionally enables the retirements to be lumpy for those of these processes that also have RCAP_BLK (the lumpy block size) defined, and</br> <br>YES -- Enables early retirements for any processes that have at least one instance of the parameter RCAP_BND defined. In this variant, activating lumpy retirements for those processes that have also RCAP_BLK defined requires that the setting \$SET DSC YES is used as well. Consequently, when using the \$SET RETIRE YES switch, using the set PRC_RCAP is not needed at all (and it will have no effect).</br> <br>See Part II for more information on the use of the Early Retirement feature.</br> |
-| VDA      | <br>The VDA control variable can be used to enable the VDA pre-processor extension of TIMES, which implements new features and handles advanced parameters specified by VEDA-FE/ANSWER that are transformed into their equivalent TIMES core parameters to make specification easier (e.g., VDA_FLOP becomes FLO_FUNC/FLO_SUM), with the following setting:</br> <br>\$SET VDA YES</br> <br>The VDA extension is always automatically enabled by both VEDA-FE and ANSWER. The attributes implemented are documented in Part II.</br> |
+| ABS | <br>Option to use the Ancillary Balancing Services extension. It is activated with the following setting in the \<case\>.run file:</br><br>\$SET ABS YES</br><br>See the separate documentation on the ABS extension for more information.</br> |
+| CLI | <br>The climate module estimates change in CO<sub>2</sub> concentrations in the atmosphere, the upper ocean including the biosphere and the lower ocean, and calculates the change in radiative forcing and the induced change in global mean surface temperature. It is activated with the following setting in the \<case\>.run file:</br><br> \$SET CLI YES </br> <br>See Parts I--II for more information on the use of the Climate Module and this switch.</br> |
+| DSC | <br>Option to use lumpy investment formulation. Since the usage of the discrete investment options leads to a Mixed-Integer Programming (MIP) problem, the solve statement in the file solve.mod is automatically altered by the user shell. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file:</br> <br>\$SET DSC YES</br> <br>See Part I, Chapter 10 for more information on the use of Lumpy Investment.</br> |
+| DUC | <br>Option to use the discrete unit commitment formulation. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file:</br> <br>\$SET DUC YES</br> <br>See separate documentation on Dispatching and unit commitment features in TIMES for more information on the use of the discrete unit commitment option.</br> |
+| ETL | <br>Option to use endogenous technology learning formulation. Since the usage of this option leads to a Mixed-Integer Programming (MIP) problem, the solve statement in the file solve.mod is automatically altered by TIMES. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file, as follows:</br> <br>\$SET ETL YES</br> <br>See Parts I--II for more information on the use of Endogenous Technology Learning.</br> |
+| MACRO | <br>Option to use the MACRO formulation. Since the usage of the MACRO options leads to a Non-linear Programming (NLP) problem, the solve statement in the file solve.mod has to be altered. To activate this extension manually, the \$SET MACRO \<value\> control switch needs to be provided in the \<Case\>.run file, with the following valid values:</br> <br>YES -- activate the integrated MACRO algorithm</br> <br>MSA -- activate Macro decomposition algorithm (MSA)</br> <br>CSA -- activate the calibration algorithm for MSA</br> <br>MLF -- activate the integrated Macro-MLF formulation</br> <br>See the separate MACRO documentation for more on using these options.</br> |
+| MICRO | <br>Option to use the non-linear elastic demand formulation. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file:</br> <br>\$SET MICRO YES</br> <br>See Part II for more information on demand function formulations.</br> |
+| RETIRE | <br>The RETIRE control variable can be used for enabling early and lumpy retire­ments of process capacities. The valid switch values for this control variable are:</br> <br>NO -- Disables all early and lumpy retirements;</br> <br>LP -- Enables continuous early retirements for all those processes that are included in the set PRC_RCAP(r,p);</br> <br>MIP -- Enables early retirements for the processes that are included in the set PRC_RCAP(r,p), and additionally enables the retirements to be lumpy for those of these processes that also have RCAP_BLK (the lumpy block size) defined, and</br> <br>YES -- Enables early retirements for any processes that have at least one instance of the parameter RCAP_BND defined. In this variant, activating lumpy retirements for those processes that have also RCAP_BLK defined requires that the setting \$SET DSC YES is used as well. Consequently, when using the \$SET RETIRE YES switch, using the set PRC_RCAP is not needed at all (and it will have no effect).</br> <br>See Part II for more information on the use of the Early Retirement feature.</br> |
+| VDA | <br>The VDA control variable can be used to enable the VDA pre-processor extension of TIMES, which implements new features and handles advanced parameters specified by VEDA-FE/ANSWER that are transformed into their equivalent TIMES core parameters to make specification easier (e.g., VDA_FLOP becomes FLO_FUNC/FLO_SUM), with the following setting:</br> <br>\$SET VDA YES</br> <br>The VDA extension is always automatically enabled by both VEDA-FE and ANSWER. The attributes implemented are documented in Part II.</br> |
 
-: []{#_Ref90434641 .anchor}Table 8: TIMES Extension Options
+```
 
 ### User extensions 
 
@@ -304,21 +315,25 @@ To recover the solution values of the substituted variables, corresponding param
 
 ### Results
 
-The main solution and solver statistics for model runs of a USEPA9r-TIMES model with and without reduction algorithm are given in Table 9 for CPLEX (GAMSv24.4.1), using a call to the solver for Barrier for initial solve and Primal Simplex crossover to finish up.
+The main solution and solver statistics for model runs of a USEPA9r-TIMES model with and without reduction algorithm are given in {numref}`reduction-model-comparison` for CPLEX (GAMSv24.4.1), using a call to the solver for Barrier for initial solve and Primal Simplex crossover to finish up.
+
+```{table} Reduction Model Comparison
+:name: reduction-model-comparison
+:align: left
 
 | Statistic | Reduce Not Set | Reduce=NO | Reduce=YES |
 | --------- | ---------------| --------- | ---------- |
 | Block / Single Equations | 92 / 1,652,677 | 92 / 1,796,525 | 92 / 870,814 |
 | Block / Single Variables | 14 / 2,429,348 | 14 / 2,564,039 | 14 / 1,645,631 | 
-| Total Non-Zeros          | 7,432,490      | 8,048,546      | 5,853,371 |
-| Generation               | 49.499 SECONDS | 62.681 SECONDS | 45.802 SECONDS |
-| Execution                | 102.462 SECONDS | 115.394 SECONDS | 95.972 SECONDS |
-| Memory                   | 2,075 MB       | 2,180 MB | 1,957 MB |
-| Iteration Count          | 126            | 116 | 110 |
-| Objective Value          | 88503425.2162  | 88151566.0679 | 88503425.2162 |
-| Resource Usage / Solution | Time        | 1323.824 | 2656.557 | 1320.111 |
+| Total Non-Zeros | 7,432,490 | 8,048,546 | 5,853,371 |
+| Generation | 49.499 SECONDS | 62.681 SECONDS | 45.802 SECONDS |
+| Execution | 102.462 SECONDS | 115.394 SECONDS | 95.972 SECONDS |
+| Memory | 2,075 MB | 2,180 MB | 1,957 MB |
+| Iteration Count | 126 | 116 | 110 |
+| Objective Value | 88503425.2162 | 88151566.0679 | 88503425.2162 |
+| Resource Usage / Solution | Time | 1323.824 | 2656.557 | 1320.111 |
 
-  : []{#_Ref425301618 .anchor}Table 9: Reduction Model Comparison
+```
 
 Comparing the non-setting of REDUCE vs. REDUCE=YES the number of equations and variables in the reduction is around 47% lower than in the non-reduced case. Since the smaller number of equations and variables require less memory, the memory usage in the reduction run decreases by
 6.4%. The solution time is only reduced slightly compared to the non-reduced model run.
@@ -332,20 +347,23 @@ Comparing the non-setting of REDUCE vs. REDUCE=YES the number of equations and v
 
 TIMES includes GAMS control variables that can be used to utilize the GAMS savepoint and loadpoint facilities. The savepoint facility makes it possible to save the basis information (levels and dual values of variables and equations) into a GDX file after model solution. The loadpoint facility makes it possible to load previously saved basis information from a GDX file and utilize it for a so-called warm start to speed up model solution.
 
-The GAMS control variables that can be used for the savepoint and loadpoint features in TIMES models are SPOINT and LPOINT. These control variables are ***completely optional***, but can be set in the following ways as described in if desired:
+The GAMS control variables that can be used for the savepoint and loadpoint features in TIMES models are SPOINT and LPOINT. These control variables are ***completely optional***, but can be set in the following ways as described in {numref}`save-load-restart-switches` if desired:
+
+```{table} Save/Load Restart Switches
+:name: save-load-restart-switches
+:align: left
 
 | Option | Description |
 | --- | ---|
-| SPOINT | |   
-| Not provided  (default) | Does not save or load a restart point. |
+| SPOINT | | 
+| Not provided (default) | Does not save or load a restart point. |
 | 1 (or YES) | The final solution point from the model run should be saved in the file %RUN_NAME%\_p.gdx, where %RUN_NAME% is the GAMS control variable that should always be set to contain the name of the current TIMES model run in the run file for the model.
 | 2 | The model generator should make an attempt to load the solution point from the file %RUN_NAME%\_p.gdx, where %RUN_NAME% is the GAMS control variable that should always be set to contain the name of the current TIMES model run in the run file for the model. If the control variable LPOINT has additionally been set as well, this attempt will be made only if the loading from the file %LPOINT%\_p.gdx fails.
 | 3 | Combines both of the functionalities of the settings 1 and 2. |
-| LPOINT | |   
+| LPOINT | | 
 | LPOINT filename | Indicates that the model generator should load the solution point from the file %LPOINT%\_p.gdx. If the control variable SPOINT has additionally been set to 2 or 3, a subsequent attempt to load from %RUN_NAME%\_p.gdx is also made if the loading from the file %LPOINT%\_p.gdx fails. |
 
-: []{#_Ref425221807 .anchor}Table 10: Save/Load Restart Switches
-
+```
 
 ![](assets/image22.png){width="3.0520833333333335in" 
 height="0.3388888888888889in"}
@@ -362,7 +380,11 @@ By using the DEBUG control, the user can request dumping out all user/system dat
 
 > \$SET DEBUG YES
 
-with actions performed according to the settings described in Table 11.
+with actions performed according to the settings described in {numref}`debug-switches`.
+
+```{table} Debug Switches
+:name: debug-switches
+:align: left
 
 | Switch \<value\> | Description |
 | --- | --- |
@@ -370,53 +392,65 @@ with actions performed according to the settings described in Table 11.
 | SOLVE_NOW NO | Only check the input data and compile the source code, but do not solve the model. |
 | XTQA YES | Turn on extended quality assurance checks \[this setting is automatically enabled whenever \$SET DEBUG YES is used\]. |
 
-: []{#_Ref425222296 .anchor}Table 11: Debug Switches
+```
 
 ## Controls affecting solution reporting
 
-The various \$\<switch\> \<value\> switches controlling reporting of the model results are summarized in Table 12.
+The various \$\<switch\> \<value\> switches controlling reporting of the model results are summarized in {numref}`sol-rpt-switches`.
+
+```{table} Solution Reporting Switches
+:name: sol-rpt-switches
+:align: left
 
 | Switch \<value\> | Description |
 | --- | --- |
-| ANNCOST LEV | Until TIMES v3.4.9, the values reported for each of these cost components have been calculated strictly for the associated Milestone year of a period. However this can result in investments made in other years within a periodnot being reflected, and for longer periods may not properly reflect changes in the other annual expendituresover that timeframe. A consequence of this is that it hasnot been possible to reconstruct the objective function value from the annualized costs reported. Additionally, these reported costs cannot be thought of as "representative" of the entire period, but only of the Milestone year. To redress this, from TIMES v3.5.0 the annual costs based upon the levelized costs over process lifetimes or periods can be requested. The various annualized cost report parameters are found in Table 13. In this way all expenditures during the period are captured and the total objective function can be reconstructed from the levelized annual costs with a veryhigh accuracy (when using \$SET OBLONG YES). There is also a new attribute Time_NPV, which gives the period-wise discount factors, and a UC tag = LEVCOST/COSTindicating whether the annual costs reported for each scenario are levelized or not. That is, when said Attribute = LEVCOST for a scenario, then the annualized costs for said scenario represent the levelized average annual values. |
-| BENCOST YES | TIMES includes also a basic benefit-cost reporting for new technologies. When the benefit-cost reporting is requested, the TIMES reporting attribute VAR_NCAPR includes the benefit-cost indicators listed in Table 14. |
+| ANNCOST LEV | Until TIMES v3.4.9, the values reported for each of these cost components have been calculated strictly for the associated Milestone year of a period. However this can result in investments made in other years within a periodnot being reflected, and for longer periods may not properly reflect changes in the other annual expendituresover that timeframe. A consequence of this is that it hasnot been possible to reconstruct the objective function value from the annualized costs reported. Additionally, these reported costs cannot be thought of as "representative" of the entire period, but only of the Milestone year. To redress this, from TIMES v3.5.0 the annual costs based upon the levelized costs over process lifetimes or periods can be requested. The various annualized cost report parameters are found in {numref}`sol-cost-rpt-attributes`. In this way all expenditures during the period are captured and the total objective function can be reconstructed from the levelized annual costs with a veryhigh accuracy (when using \$SET OBLONG YES). There is also a new attribute Time_NPV, which gives the period-wise discount factors, and a UC tag = LEVCOST/COSTindicating whether the annual costs reported for each scenario are levelized or not. That is, when said Attribute = LEVCOST for a scenario, then the annualized costs for said scenario represent the levelized average annual values. |
+| BENCOST YES | TIMES includes also a basic benefit-cost reporting for new technologies. When the benefit-cost reporting is requested, the TIMES reporting attribute VAR_NCAPR includes the benefit-cost indicators listed in {numref}`bencost-rpt-attributes`. |
 | RPT_FLOTS COM / ANNUAL | Used for controlling the timeslices that will be used for reporting the levels of the TIMES flow variables. By default, the timeslices of the original TIMES flow variables are used also for reporting. However, in many cases it may be more desirable to have all the flow levels reported at the commodity timeslices (COM), or, for very large models, at the ANNUAL timeslice only. The RPT_FLOTS setting has no effect on the reporting of marginal costs for flows. |
 | SOLANS YES | Produce the solution reports that can be imported into the ANSWER. |
 | SOLVEDA YES / 1 | Prepare the solution reporting values that are to be imported into the VEDA-BE. The standard setting is \$SET SOLVEDA YES, which works with all TIMES extensions. Sometimes it may be useful to request that TIMES reports also the results from non-stochastic runs with an extra dummy SOW index '1', such that the results can be imported into a database that contains results from both deterministic and stochastic runs. The inclusion of the extra index can be activated by the setting \$SET SOLVEDA 1. |
 | XTQA YES | Turn on extended quality assurance checks \[this setting is automatically enabled whenever \$SET DEBUG YES is used\]. |
 
-: []{#_Ref425223083 .anchor}Table 12: Solution Reporting Switches
+```
+
+```{table} Solution Cost Reporting Attributes
+:name: sol-cost-rpt-attributes
+:align: left
 
 | Attribute | Description |
 | --- | ---|
-| Cost_Act  | Annual activity costs, plus start-up, shut-down and ramping costs when defined |
+| Cost_Act | Annual activity costs, plus start-up, shut-down and ramping costs when defined |
 | Cost_Comx | Annual commodity taxes/subsides |
-| Cost_Els  | Annual loss of consumer surplus (for elastic demand) |
-| Cost_Flo  | Annual flow costs (including import/export prices) |
+| Cost_Els | Annual loss of consumer surplus (for elastic demand) |
+| Cost_Flo | Annual flow costs (including import/export prices) |
 | Cost_Flox | Annual flow taxes/subsidies |
 | Cost_Fixx | Annual fixed operating and maintenance taxes/subsidies |
-| Cost_Fom  | Annual fixed operating and maintenance costs |
-| Cost_Inv  | Annual investment costs |
+| Cost_Fom | Annual fixed operating and maintenance costs |
+| Cost_Inv | Annual investment costs |
 | Cost_Invx | Annual investment taxes/subsidies |
-| Cost_ire  | Annual implied costs of endogenous trade |
+| Cost_ire | Annual implied costs of endogenous trade |
 | Cost_Salv | Salvage values of capacities at EOH+1 |
 | Reg_ACost | Regional annual costs by component |
 
-: []{#_Ref425223827 .anchor}Table 13: Solution Cost Reporting Attributes
+```
+
+```{table} BENCOST Reporting Attributes
+:name: bencost-rpt-attributes
+:align: left
 
 | Attribute | Description |
 | --- | --- |
-| COST   | the total unit costs of VAR_NCAP (in terms of investment costs) |
-| COST   | the total unit costs of VAR_NCAP (in terms of investment costs) |
-| CGAP   | competitiveness gap (in terms of investment costs), obtained directly from the VAR_NCAP marginals (and optional ranging information) |
-| GGAP   | competitiveness gap (in terms of investment costs), obtained by checking also the VAR_ACT, VAR_FLO and VAR_CAP marginals, in case VAR_NCAP happens to be basic at zero |
-| RATIO  | benefit / cost ratio, based on CGAP |
+| COST | the total unit costs of VAR_NCAP (in terms of investment costs) |
+| COST | the total unit costs of VAR_NCAP (in terms of investment costs) |
+| CGAP | competitiveness gap (in terms of investment costs), obtained directly from the VAR_NCAP marginals (and optional ranging information) |
+| GGAP | competitiveness gap (in terms of investment costs), obtained by checking also the VAR_ACT, VAR_FLO and VAR_CAP marginals, in case VAR_NCAP happens to be basic at zero |
+| RATIO | benefit / cost ratio, based on CGAP |
 | GRATIO | benefit / cost ratio, based on GGAP |
-| RNGLO  | ranging information (LO) for VAR_NCAP (when CPLEX ranging is activated; in terms of investment costs) |
-| RNGUP  | ranging information (UP) for VAR_NCAP (when CPLEX ranging is activated; in terms of investment costs |
+| RNGLO | ranging information (LO) for VAR_NCAP (when CPLEX ranging is activated; in terms of investment costs) |
+| RNGUP | ranging information (UP) for VAR_NCAP (when CPLEX ranging is activated; in terms of investment costs |
 
-: []{#_Ref425224117 .anchor}Table 14: BENCOST Reporting Attributes
-  
+```
+ 
 For the BENCOST report, all of the absolute indicators are expressed in terms of undiscounted investment costs (like those specified by NCAP_COST). For example, the competitiveness gap represents the amount of change in investment costs that would bring the technology competitive (the VAR_NCAP variable would enter the solution basis). Ranging information can only be reported when the CPLEX ranging option has been used. The ranging option can be activated by adding the following two lines into the CPLEX options file (CPLEX.OPT):
 
 > objrng VAR_NCAP
@@ -433,50 +467,57 @@ Various reporting options can also be set by specifying values for the RPT_OPT p
 - PARAMETER RPT_OPT / KEY1.N1 \<value1\>, KEY2.N2 \<value2\>, .... /;
 - RPT_OPT('KEY1','N1') = \<value1\>; RPT_OPT('KEY2','N2') =\<value2\>; ...
 
-Here, KEY1, KEY2, ... refer to the main option group and N1, N2, ... refer to sub-groups within that group, as indicated in .
+Here, KEY1, KEY2, ... refer to the main option group and N1, N2, ... refer to sub-groups within that group, as indicated in {numref}`rpt_opt-opt-settings`.
+
+```{table} RPT_OPT Options Settings
+:name: rpt_opt-opt-settings
+:align: left
 
 | Option group | Sub-group | Value | Description |
 |--- | --- | --- | --- |
-| ACT      | 2 |  \<0   |  Suppress reporting of activity marginals |
-| ACT      | 9 |  \>0   |  Filter out process activities less in value than the RPT_OPT value |
-| CAP      | 9 |  \>0   |  Filter out process capacities less in value than the RPT_OPT value |
-| FLO      | 1 |  \>0   |  Report process flows at commodity TS level |
-| FLO      | 3 |  \>0   |  Report value flows by process (implies (FLO,1)=1) |
-| FLO      | 5 |  \>0   |  Report electricity supply by energy source |
-| FLO      | 7 |  \>0   |  Report process topology indicators
-| FLO      | 9 |  \>0   |  Filter out process flows less in value than the RPT_OPT value (in absolute terms) |
-| COMPRD   | 1 |  \>0   |  Report VAR_COMPRD for all commodities |
-| COMPRD   | 4 |  \>0   |  Report PRC_MARK constraint marginals in PAR_UCMRK (User_conFXM in VBE) |
-| NCAP     | 1 |  \<\>0 |  Activate levelised cost calculation (see Part II for details) |
-| NCAP     | 9 |  \>0   |  Filter out process new capacities less in value than the RPT_OPT value |
-| OBJ      | 1 |  \<\>0 |  Split investment costs according to hurdle rate, and report present values of costs by process and commodity (CST_PVP / CST_PVC) |
-| OBJ      | 2 |  \>0   |  Report annualized investment costs in terms of costs levelized over the technical life (as with \$SET ANNCOST LEV) |
-| COM_TYPE | 3 |  \< 0  |  Report process flows of type COM_TYPE at the ANNUAL level |
-| NRG_TYPE | 1 |  \>0   |  Report the power levels of process flows of NRG subtype NRG_TYPE at COM_TSL level in the P_Out attribute (Var_Pout in VEDA-BE). The value is taken as the conversion factor from the capacity to the flow unit (e.g. 31.536 for PJ/GW). |
-| NRG_TYPE | 3 |  \<\>0 |  Report process flows of NRG subtype NRG_TYPE at the ANNUAL level (\<0) or at COM_TSL level (\> 0, overriding option). With Value=2 one can enable reporting of input flow levels in conjunction with using also sub-group 1. |
+| ACT | 2 | \<0 | Suppress reporting of activity marginals |
+| ACT | 9 | \>0 | Filter out process activities less in value than the RPT_OPT value |
+| CAP | 9 | \>0 | Filter out process capacities less in value than the RPT_OPT value |
+| FLO | 1 | \>0 | Report process flows at commodity TS level |
+| FLO | 3 | \>0 | Report value flows by process (implies (FLO,1)=1) |
+| FLO | 5 | \>0 | Report electricity supply by energy source |
+| FLO | 7 | \>0 | Report process topology indicators
+| FLO | 9 | \>0 | Filter out process flows less in value than the RPT_OPT value (in absolute terms) |
+| COMPRD | 1 | \>0 | Report VAR_COMPRD for all commodities |
+| COMPRD | 4 | \>0 | Report PRC_MARK constraint marginals in PAR_UCMRK (User_conFXM in VBE) |
+| NCAP | 1 | \<\>0 | Activate levelised cost calculation (see Part II for details) |
+| NCAP | 9 | \>0 | Filter out process new capacities less in value than the RPT_OPT value |
+| OBJ | 1 | \<\>0 | Split investment costs according to hurdle rate, and report present values of costs by process and commodity (CST_PVP / CST_PVC) |
+| OBJ | 2 | \>0 | Report annualized investment costs in terms of costs levelized over the technical life (as with \$SET ANNCOST LEV) |
+| COM_TYPE | 3 | \< 0 | Report process flows of type COM_TYPE at the ANNUAL level |
+| NRG_TYPE | 1 | \>0 | Report the power levels of process flows of NRG subtype NRG_TYPE at COM_TSL level in the P_Out attribute (Var_Pout in VEDA-BE). The value is taken as the conversion factor from the capacity to the flow unit (e.g. 31.536 for PJ/GW). |
+| NRG_TYPE | 3 | \<\>0 | Report process flows of NRG subtype NRG_TYPE at the ANNUAL level (\<0) or at COM_TSL level (\> 0, overriding option). With Value=2 one can enable reporting of input flow levels in conjunction with using also sub-group 1. |
 
-: []{#_Ref425224470 .anchor}Table 15: RPT_OPT Options Settings
-  
+```
+ 
 ## Miscellaneous controls
 
-Various other \$\<option\> switches control miscellaneous aspects of a TIMES model run, as described Table 16.
+Various other \$\<option\> switches control miscellaneous aspects of a TIMES model run, as described in {numref}`misc-ctrl-opt-settings`.
+
+```{table} Miscellaneous Control Options Settings
+:name: misc-ctrl-opt-settings
+:align: left
 
 | Option \<value\> | Description |
 | --- | --- |
-| BOTIME / EOTIME \<year\> | These controls can be used for adjusting the total available time span of years available in the model. All years related to the data and model must lie     between BOTIME and EOTIME, inclusive. The default    for BOTIME ('Beginning of Time') is 1850 and the     default for EOTIME ('End of Time') is 2200. \[A      large model may see slightly faster runtimes if the  BO/EOTIME horizon is narrowed to that actually       needed for the model run.\] |
-| DATAGDX \<YES\> | This control can be used for requesting all the model input data to be dumped into a GDX file named  \<RUN_NAME\~Data_yymmdd\>.GDX, which is saved        immediately after all data has been read in, at the  beginning of executing the main driver               (maindrv.mod). If domain violation warnings have     been issued, the GDX file is subsequently used for   re-reading the input data with the domain violations filtered. It can also be used for reading all the    input data from an existing GDX file in the work     folder, which must be then named \<RUN_NAME\~Data\>. In that way, the model data saved from an earlier    run can also be used in a new TIMES run, either      completely instead of using \*.DD data files, or     with some new \*.DD files merged with the data read  from the GDX file. Only the timeslice definition     must still be read from a \*.DD file. |
+| BOTIME / EOTIME \<year\> | These controls can be used for adjusting the total available time span of years available in the model. All years related to the data and model must lie between BOTIME and EOTIME, inclusive. The default for BOTIME ('Beginning of Time') is 1850 and the default for EOTIME ('End of Time') is 2200. \[A large model may see slightly faster runtimes if the BO/EOTIME horizon is narrowed to that actually needed for the model run.\] |
+| DATAGDX \<YES\> | This control can be used for requesting all the model input data to be dumped into a GDX file named \<RUN_NAME\~Data_yymmdd\>.GDX, which is saved immediately after all data has been read in, at the beginning of executing the main driver (maindrv.mod). If domain violation warnings have been issued, the GDX file is subsequently used for re-reading the input data with the domain violations filtered. It can also be used for reading all the input data from an existing GDX file in the work folder, which must be then named \<RUN_NAME\~Data\>. In that way, the model data saved from an earlier run can also be used in a new TIMES run, either completely instead of using \*.DD data files, or with some new \*.DD files merged with the data read from the GDX file. Only the timeslice definition must still be read from a \*.DD file. |
 | DYNTS \<YES\> | This control can be used for enabling dynamic timeslice configurations. Dynamic timeslices means that the timeslice tree can be varied according to model period. See the related user note for more information on the use of dynamic timeslice configurations. |
-| GDX_IREBND / GDX_IPRIC \<file\> | These control flags can be used to import bounds and rices on exogenous imports/exports from a previous run, and thereby override any user-defined bounds/prices. Only bounds and prices for such imports and exports flows are imported that were endogenous in the previous run but are exogenous for the current run. The first setting tells TIMES to import the flow-levels of imports and exports from the file     'boundfile.gdx', and use these levels as fixed       bounds on the imports and exports in the current run (if they are exogenous in the current run and were   endogenous in the earlier run). The second setting   tells TIMES to import the marginal prices of imports and exports from the file 'pricefile.gdx', and       define these prices on the imports and exports in    the current run (if they are exogenous in the        current run and were endogenous in the earlier run). The earlier run may have different Milestone years   than the current run. |
-| RELAX_PRC_CG \<YES\> | Used to relax the requirement that all genuine      commodity groups that are used in process-related    attributes have to be explicitly associated with the processes, using the set PRC_CG. All PRC_CG          definitions can be omitted in the model when the     setting is enabled.   |
-| RPOINT \<YES\>       | Used for reproducing the solution of a previous run, without actually solving the model at all. It should be used together with the LPOINT control, which      specifies the GDX file where the previous solution   is retrieved. The model generator then only loads    the solution and generates the reports.      |
-| SHELL  \<ANSWER\>       | Indicates the ANSWER-TIMES user shell is being used  for running this TIMES models.                       |
-| VALIDATE \<YES\>     | A greatly simplified formulation of the objective    function and capacity constraints, emulating the     MARKAL model generator, may be requested -- however, use of the VALIDATE control switch is discouraged.   |
-| VAR_UC \<YES\>       | Used to enable or disable the explicit use of slack  variables in user constraints. By default, no        explicit slack variables are used and all the user   constraints are either equalities or inequalities,   depending on the bound type specified. However, if   the slack variables are enabled, all the user        constraints are defined as equality constraints,     using bounds on the slack variables to define the    actual type of the constraint. This can be useful    for e.g. more efficient specification of ranges, and is required when using the stochastic or sensitivity modes.    |
-| VINTOPT \<1 / 2\> | Any technology characteristics defined for a        vintaged process describe the characteristics of new capacity installed in the year specified. However,   in TIMES the characteristics at the Milestone year   are by default used for all the capacity installed   in the corresponding period, which can lead to       accelerated technology development, depending on the lengths of periods. To avoid such distortions caused merely by period length definitions setting VINTOPT  1 is used, all vintaged characteristics of           technologies are automatically adjusted so that the  average characteristics of new capacity installed    for each period correspond to the original data.     When the setting VINTOPT 2 is used, all vintaged     processes are modeled using a different approach,    which preserves the average characteristics of new   capacity installed for each period, as originally    defined by the TIMES attributes. The VINTOPT control variable is currently for experimental use only.   |
-| WAVER \<YES\> | Usually the TIMES model generator interpolates the   user-defined time-series data only for the Milestone years, and then uses the value at the Milestone year as a representative value for the whole period. An   important exception to this common rule are the cost parameters, which are all interpolated densely, and  are thus always fully taken into account.                                                                 However, in some cases it might be desirable to have some other parameters densely interpolated, such     that the calculated weighted average over each       projection period would be used as the               representative value for the period, instead of the  value at the Milestone year. Perhaps the most        suitable candidates for applying this kind of an     interpolation method are parameters representing     projected absolute values, such as demands or        remaining residual capacities. There is a switch for activating the Weighted Average Interpolation method described above, to be applied for the demand        projections (COM_PROJ) and residual capacities       (PRC_RESID), as well as the NCAP_PASTI parameters    reflecting the available capacity of the             installation period.              |
+| GDX_IREBND / GDX_IPRIC \<file\> | These control flags can be used to import bounds and rices on exogenous imports/exports from a previous run, and thereby override any user-defined bounds/prices. Only bounds and prices for such imports and exports flows are imported that were endogenous in the previous run but are exogenous for the current run. The first setting tells TIMES to import the flow-levels of imports and exports from the file 'boundfile.gdx', and use these levels as fixed bounds on the imports and exports in the current run (if they are exogenous in the current run and were endogenous in the earlier run). The second setting tells TIMES to import the marginal prices of imports and exports from the file 'pricefile.gdx', and define these prices on the imports and exports in the current run (if they are exogenous in the current run and were endogenous in the earlier run). The earlier run may have different Milestone years than the current run. |
+| RELAX_PRC_CG \<YES\> | Used to relax the requirement that all genuine commodity groups that are used in process-related attributes have to be explicitly associated with the processes, using the set PRC_CG. All PRC_CG definitions can be omitted in the model when the setting is enabled. |
+| RPOINT \<YES\> | Used for reproducing the solution of a previous run, without actually solving the model at all. It should be used together with the LPOINT control, which specifies the GDX file where the previous solution is retrieved. The model generator then only loads the solution and generates the reports. |
+| SHELL \<ANSWER\> | Indicates the ANSWER-TIMES user shell is being used for running this TIMES models. |
+| VALIDATE \<YES\> | A greatly simplified formulation of the objective function and capacity constraints, emulating the MARKAL model generator, may be requested -- however, use of the VALIDATE control switch is discouraged. |
+| VAR_UC \<YES\> | Used to enable or disable the explicit use of slack variables in user constraints. By default, no explicit slack variables are used and all the user constraints are either equalities or inequalities, depending on the bound type specified. However, if the slack variables are enabled, all the user constraints are defined as equality constraints, using bounds on the slack variables to define the actual type of the constraint. This can be useful for e.g. more efficient specification of ranges, and is required when using the stochastic or sensitivity modes. |
+| VINTOPT \<1 / 2\> | Any technology characteristics defined for a vintaged process describe the characteristics of new capacity installed in the year specified. However, in TIMES the characteristics at the Milestone year are by default used for all the capacity installed in the corresponding period, which can lead to accelerated technology development, depending on the lengths of periods. To avoid such distortions caused merely by period length definitions setting VINTOPT 1 is used, all vintaged characteristics of technologies are automatically adjusted so that the average characteristics of new capacity installed for each period correspond to the original data. When the setting VINTOPT 2 is used, all vintaged processes are modeled using a different approach, which preserves the average characteristics of new capacity installed for each period, as originally defined by the TIMES attributes. The VINTOPT control variable is currently for experimental use only. |
+| WAVER \<YES\> | Usually the TIMES model generator interpolates the user-defined time-series data only for the Milestone years, and then uses the value at the Milestone year as a representative value for the whole period. An important exception to this common rule are the cost parameters, which are all interpolated densely, and are thus always fully taken into account. However, in some cases it might be desirable to have some other parameters densely interpolated, such that the calculated weighted average over each projection period would be used as the representative value for the period, instead of the value at the Milestone year. Perhaps the most suitable candidates for applying this kind of an interpolation method are parameters representing projected absolute values, such as demands or remaining residual capacities. There is a switch for activating the Weighted Average Interpolation method described above, to be applied for the demand projections (COM_PROJ) and residual capacities (PRC_RESID), as well as the NCAP_PASTI parameters reflecting the available capacity of the installation period. |
 
-: []{#_Ref425225268 .anchor}Table 16: Miscellaneous Control Options Settings
-
+```
 
 [^1]: MARKAL is the legacy ETSAP model generator superseded by its advanced TIMES successor.
 
