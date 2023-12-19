@@ -180,7 +180,7 @@ Here, the value of FIXBOH (2050) specifies the year, up to which the model solut
 
 As a generalization to the basic scheme described above, the user can also request fixing to the previous solution different amounts of first years accor­ding to region. The region-specific years up to which the model solution will be fixed can be specified by using the TIMES REG_FIXT(reg) parameter. The FIXBOH control variable is in this case treated as a default value for REG_FIXT.
 
-```{admonition} Example
+:::{admonition} Example
 
 Assume that you would like to analyze the 15-region ETSAP TIAM model with some shocks after the year 2030, and you are interested in differences in the model solution only in regions that have notable gas or LNG trade with the EU. Therefore, you would like to fix the regions AUS, CAN, CHI, IND, JPN, MEX, ODA and SKO completely to the previous solution, and all other regions to the previous solution up to 2030.
 
@@ -191,13 +191,15 @@ In the RUN file you should specify the control switches described above:
 > \$SET LPOINT \<run_name\>
 
 In a model DD file you should include the values for the REG_FIXT parameter:
-
+```
 PARAMETER REG_FIXT
 /
 AUS 2200, CAN 2200, CHI 2200, IND 2200
 JPN 2200, MEX 2200, ODA 2200, SKO 2200
 /;
+
 ```
+:::
 
 ### Limit foresight stepwise solving \[TIMESTEP\]
 
