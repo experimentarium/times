@@ -20,6 +20,7 @@ rst_prolog = """.. attention::
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ["myst_parser"]
+numfig = True
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
@@ -36,4 +37,4 @@ html_static_path = ['_static']
 # -- Options for MyST-Parser -------------------------------------------------
 # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
 
-myst_enable_extensions = ["dollarmath"]
+myst_enable_extensions = ["dollarmath", "colon_fence"]
