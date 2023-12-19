@@ -12,7 +12,7 @@ The use of the RUN_NAME control variable is practically mandatory when running T
 
 Here the ***runname*** identifier (corresponding to the run \<case\> name) is a string of letters, numbers and other characters (excluding spaces), such that the name complies with the rules for the base name of files. It will be used to construct names for the various files comprising a model run, as listed in {numref}`run_name-times-files`.
 
-```{table} RUN_NAME TIMES Files
+:::{table} RUN_NAME TIMES Files
 :name: run_name-times-files
 :align: left
 
@@ -29,7 +29,7 @@ Here the ***runname*** identifier (corresponding to the run \<case\> name) is a 
 | \*\_TS.DD | Timeslices declaration for the associated model run |
 | VD\* | Suite of results/Set definition(S)/Element description(E)/topology(T) for VEDA-BE |
 
-```
+:::
 
 ## Controls affecting equilibrium mode
 
@@ -90,7 +90,7 @@ When using the MACRO decomposition formulation (with `MACRO=MSA` or `MACRO=CSA`)
 
 The user can choose to use several alternative objective function formulations instead of the standard objective function. See Part I, Section 5.3.4 and the documentation for the Objective Function Variants for details. The alternative objective formulations can be activated using the \$SET OBJ \<option\> as described in {numref}`obj-func-formulation-opt`.
 
-```{table} Objective Function Formulation Options
+:::{table} Objective Function Formulation Options
 :name: obj-func-formulation-opt
 :align: left
 
@@ -102,13 +102,13 @@ The user can choose to use several alternative objective function formulations i
 | MOD | Period boundaries B(t) and E(t) are internally set to be halfway between Milestone years, giving flexibility to set Milestone years to be other than the middle of each period. Investments in Cases I.1.a and I.1.b only of the objective function investment decision are spread somewhat differently across years. |
 | STD | To ensure that the standard formulation is unconditionally used, even if the B(t) and E(t) parameters do not comply with the standard assumptions. |
 
-```
+:::
 
 ### Objective function components
 
 In addition to controlling how the objective function is assembled, as described in the previous section, the user has control of the handling of specific components of the objective functions, as described in {numref}`obj-func-component-opt`.
 
-```{table} Objective Function Component Options
+:::{table} Objective Function Component Options
 :name: obj-func-component-opt
 :align: left
 
@@ -121,7 +121,7 @@ In addition to controlling how the objective function is assembled, as described
 | DISCSHIFT | <br> As a generalization to the MID_YEAR setting, alternate time-of-year discounting, including the end-of-year discounting mentioned above, can be achieved by using the DISCSHIFT control variable. The control variable should be set to correspond to the amount of time (in years) by which the discounting of continuous streams of payments should be shifted forward in time, with respect to the beginning of operation. Setting it to the value of 0.5 would be equal to the setting \$SET MID_YEAR YES, and setting it to the value of 1.0 would be equal to end-of-year discounting, as follows: </br><br> \$SET DISCSHIFT 1 </br> |
 | VARCOST \<LIN\> | <br> The standard dense interpolation and extrapolation of all cost parameters in TIMES may consume considerable amounts of memory resources in very large models. In particular, the variable costs, which may also be to a large extent levelized onto a number of timeslices, usually account for the largest amount of cost data in the GAMS working memory.</br><br> If desired, TIMES can be advised to interpolate and extrapolate the variable cost parameters only sparsely for the Milestone years. The values at the intermediate years will then be derived "*on the fly"*, by piecewise linear interpolation, and will not be stored in the GAMS memory. This option may thus be useful when running very large models on computers with limited memory. </br> |
 
-```
+:::
 
 ## Stochastic and sensitivity analysis controls
 
@@ -230,7 +230,7 @@ There are several powerful extensions to the core TIMES code that introduce adva
 
 VEDA-FE Case Manager and ANSWER Run Model Options form along with the GEN template will both set the appropriate switches and augment the initialization calls, as described in {numref}`times-extension-opt` (unless noted otherwise), with the user being fully responsible to provide the necessary data for each extension option employed in a run.
 
-```{table} TIMES Extension Options
+:::{table} TIMES Extension Options
 :name: times-extension-opt
 :align: left
 
@@ -246,7 +246,7 @@ VEDA-FE Case Manager and ANSWER Run Model Options form along with the GEN templa
 | RETIRE | <br>The RETIRE control variable can be used for enabling early and lumpy retire­ments of process capacities. The valid switch values for this control variable are:</br> <br>NO -- Disables all early and lumpy retirements;</br> <br>LP -- Enables continuous early retirements for all those processes that are included in the set PRC_RCAP(r,p);</br> <br>MIP -- Enables early retirements for the processes that are included in the set PRC_RCAP(r,p), and additionally enables the retirements to be lumpy for those of these processes that also have RCAP_BLK (the lumpy block size) defined, and</br> <br>YES -- Enables early retirements for any processes that have at least one instance of the parameter RCAP_BND defined. In this variant, activating lumpy retirements for those processes that have also RCAP_BLK defined requires that the setting \$SET DSC YES is used as well. Consequently, when using the \$SET RETIRE YES switch, using the set PRC_RCAP is not needed at all (and it will have no effect).</br> <br>See Part II for more information on the use of the Early Retirement feature.</br> |
 | VDA | <br>The VDA control variable can be used to enable the VDA pre-processor extension of TIMES, which implements new features and handles advanced parameters specified by VEDA-FE/ANSWER that are transformed into their equivalent TIMES core parameters to make specification easier (e.g., VDA_FLOP becomes FLO_FUNC/FLO_SUM), with the following setting:</br> <br>\$SET VDA YES</br> <br>The VDA extension is always automatically enabled by both VEDA-FE and ANSWER. The attributes implemented are documented in Part II.</br> |
 
-```
+:::
 
 ### User extensions 
 
@@ -323,7 +323,7 @@ To recover the solution values of the substituted variables, corresponding param
 
 The main solution and solver statistics for model runs of a USEPA9r-TIMES model with and without reduction algorithm are given in {numref}`reduction-model-comparison` for CPLEX (GAMSv24.4.1), using a call to the solver for Barrier for initial solve and Primal Simplex crossover to finish up.
 
-```{table} Reduction Model Comparison
+:::{table} Reduction Model Comparison
 :name: reduction-model-comparison
 :align: left
 
@@ -339,17 +339,17 @@ The main solution and solver statistics for model runs of a USEPA9r-TIMES model 
 | Objective Value | 88503425.2162 | 88151566.0679 | 88503425.2162 |
 | Resource Usage / Solution | Time | 1323.824 | 2656.557 | 1320.111 |
 
-```
+:::
 
 Comparing the non-setting of REDUCE vs. REDUCE=YES the number of equations and variables in the reduction is around 47% lower than in the non-reduced case. Since the smaller number of equations and variables require less memory, the memory usage in the reduction run decreases by
 6.4%. The solution time is only reduced slightly compared to the non-reduced model run.
 
-```{admonition} Issues Using the Reduction Algorithm
+:::{admonition} Issues Using the Reduction Algorithm
 
 - In some cases the reduced problem may produce an "optimal solution with unscaled infeasibilities".
 - Shadow price of non-generated EQ_PTRANS equations are lost.
 - Reduced cost of upper/fixed ACT_BND of zero are lost. If one needs this information, one should use a very small number instead, e.g. 1.e-5, as value for the activity bound.
-```
+:::
 
 ## GAMS savepoint / loadpoint controls 
 
@@ -357,7 +357,7 @@ TIMES includes GAMS control variables that can be used to utilize the GAMS savep
 
 The GAMS control variables that can be used for the savepoint and loadpoint features in TIMES models are SPOINT and LPOINT. These control variables are ***completely optional***, but can be set in the following ways as described in {numref}`save-load-restart-switches` if desired:
 
-```{table} Save/Load Restart Switches
+:::{table} Save/Load Restart Switches
 :name: save-load-restart-switches
 :align: left
 
@@ -371,7 +371,7 @@ The GAMS control variables that can be used for the savepoint and loadpoint feat
 | LPOINT | | 
 | LPOINT filename | Indicates that the model generator should load the solution point from the file %LPOINT%\_p.gdx. If the control variable SPOINT has additionally been set to 2 or 3, a subsequent attempt to load from %RUN_NAME%\_p.gdx is also made if the loading from the file %LPOINT%\_p.gdx fails. |
 
-```
+:::
 
 ![](assets/image22.png){width="3.0520833333333335in" 
 height="0.3388888888888889in"}
@@ -390,7 +390,7 @@ By using the DEBUG control, the user can request dumping out all user/system dat
 
 with actions performed according to the settings described in {numref}`debug-switches`.
 
-```{table} Debug Switches
+:::{table} Debug Switches
 :name: debug-switches
 :align: left
 
@@ -400,13 +400,13 @@ with actions performed according to the settings described in {numref}`debug-swi
 | SOLVE_NOW NO | Only check the input data and compile the source code, but do not solve the model. |
 | XTQA YES | Turn on extended quality assurance checks \[this setting is automatically enabled whenever \$SET DEBUG YES is used\]. |
 
-```
+:::
 
 ## Controls affecting solution reporting
 
 The various \$\<switch\> \<value\> switches controlling reporting of the model results are summarized in {numref}`sol-rpt-switches`.
 
-```{table} Solution Reporting Switches
+:::{table} Solution Reporting Switches
 :name: sol-rpt-switches
 :align: left
 
@@ -419,9 +419,9 @@ The various \$\<switch\> \<value\> switches controlling reporting of the model r
 | SOLVEDA YES / 1 | Prepare the solution reporting values that are to be imported into the VEDA-BE. The standard setting is \$SET SOLVEDA YES, which works with all TIMES extensions. Sometimes it may be useful to request that TIMES reports also the results from non-stochastic runs with an extra dummy SOW index '1', such that the results can be imported into a database that contains results from both deterministic and stochastic runs. The inclusion of the extra index can be activated by the setting \$SET SOLVEDA 1. |
 | XTQA YES | Turn on extended quality assurance checks \[this setting is automatically enabled whenever \$SET DEBUG YES is used\]. |
 
-```
+:::
 
-```{table} Solution Cost Reporting Attributes
+:::{table} Solution Cost Reporting Attributes
 :name: sol-cost-rpt-attributes
 :align: left
 
@@ -440,9 +440,9 @@ The various \$\<switch\> \<value\> switches controlling reporting of the model r
 | Cost_Salv | Salvage values of capacities at EOH+1 |
 | Reg_ACost | Regional annual costs by component |
 
-```
+:::
 
-```{table} BENCOST Reporting Attributes
+:::{table} BENCOST Reporting Attributes
 :name: bencost-rpt-attributes
 :align: left
 
@@ -457,7 +457,7 @@ The various \$\<switch\> \<value\> switches controlling reporting of the model r
 | RNGLO | ranging information (LO) for VAR_NCAP (when CPLEX ranging is activated; in terms of investment costs) |
 | RNGUP | ranging information (UP) for VAR_NCAP (when CPLEX ranging is activated; in terms of investment costs |
 
-```
+:::
  
 For the BENCOST report, all of the absolute indicators are expressed in terms of undiscounted investment costs (like those specified by NCAP_COST). For example, the competitiveness gap represents the amount of change in investment costs that would bring the technology competitive (the VAR_NCAP variable would enter the solution basis). Ranging information can only be reported when the CPLEX ranging option has been used. The ranging option can be activated by adding the following two lines into the CPLEX options file (CPLEX.OPT):
 
@@ -477,7 +477,7 @@ Various reporting options can also be set by specifying values for the RPT_OPT p
 
 Here, KEY1, KEY2, ... refer to the main option group and N1, N2, ... refer to sub-groups within that group, as indicated in {numref}`rpt_opt-opt-settings`.
 
-```{table} RPT_OPT Options Settings
+:::{table} RPT_OPT Options Settings
 :name: rpt_opt-opt-settings
 :align: left
 
@@ -501,13 +501,13 @@ Here, KEY1, KEY2, ... refer to the main option group and N1, N2, ... refer to su
 | NRG_TYPE | 1 | \>0 | Report the power levels of process flows of NRG subtype NRG_TYPE at COM_TSL level in the P_Out attribute (Var_Pout in VEDA-BE). The value is taken as the conversion factor from the capacity to the flow unit (e.g. 31.536 for PJ/GW). |
 | NRG_TYPE | 3 | \<\>0 | Report process flows of NRG subtype NRG_TYPE at the ANNUAL level (\<0) or at COM_TSL level (\> 0, overriding option). With Value=2 one can enable reporting of input flow levels in conjunction with using also sub-group 1. |
 
-```
+:::
  
 ## Miscellaneous controls
 
 Various other \$\<option\> switches control miscellaneous aspects of a TIMES model run, as described in {numref}`misc-ctrl-opt-settings`.
 
-```{table} Miscellaneous Control Options Settings
+:::{table} Miscellaneous Control Options Settings
 :name: misc-ctrl-opt-settings
 :align: left
 
@@ -525,7 +525,7 @@ Various other \$\<option\> switches control miscellaneous aspects of a TIMES mod
 | VINTOPT \<1 / 2\> | Any technology characteristics defined for a vintaged process describe the characteristics of new capacity installed in the year specified. However, in TIMES the characteristics at the Milestone year are by default used for all the capacity installed in the corresponding period, which can lead to accelerated technology development, depending on the lengths of periods. To avoid such distortions caused merely by period length definitions setting VINTOPT 1 is used, all vintaged characteristics of technologies are automatically adjusted so that the average characteristics of new capacity installed for each period correspond to the original data. When the setting VINTOPT 2 is used, all vintaged processes are modeled using a different approach, which preserves the average characteristics of new capacity installed for each period, as originally defined by the TIMES attributes. The VINTOPT control variable is currently for experimental use only. |
 | WAVER \<YES\> | Usually the TIMES model generator interpolates the user-defined time-series data only for the Milestone years, and then uses the value at the Milestone year as a representative value for the whole period. An important exception to this common rule are the cost parameters, which are all interpolated densely, and are thus always fully taken into account. However, in some cases it might be desirable to have some other parameters densely interpolated, such that the calculated weighted average over each projection period would be used as the representative value for the period, instead of the value at the Milestone year. Perhaps the most suitable candidates for applying this kind of an interpolation method are parameters representing projected absolute values, such as demands or remaining residual capacities. There is a switch for activating the Weighted Average Interpolation method described above, to be applied for the demand projections (COM_PROJ) and residual capacities (PRC_RESID), as well as the NCAP_PASTI parameters reflecting the available capacity of the installation period. |
 
-```
+:::
 
 [^1]: MARKAL is the legacy ETSAP model generator superseded by its advanced TIMES successor.
 
