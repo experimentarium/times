@@ -200,11 +200,14 @@ JPN 2200, MEX 2200, ODA 2200, SKO 2200
 
 ### Limit foresight stepwise solving \[TIMESTEP\]
 
-The purpose of the TIMESTEP option is to run the model in a stepwise manner with increasing model horizon and limited foresight. The TIMESTEP control variable specifies the number of years that should be optimized in each solution step. The total model horizon will be solved by successive steps, so that in each step the periods to be optimized are advanced further in the future, and all periods before them are fixed to the solution of the previous step. Figure 17 illustrates the step-wise solution approach.
+The purpose of the TIMESTEP option is to run the model in a stepwise manner with increasing model horizon and limited foresight. The TIMESTEP control variable specifies the number of years that should be optimized in each solution step. The total model horizon will be solved by successive steps, so that in each step the periods to be optimized are advanced further in the future, and all periods before them are fixed to the solution of the previous step. {numref}`periods-in-time-stepped-sol` illustrates the step-wise solution approach.
 
-![](assets/image21.png){width="5.675in" height="2.7666666666666666in"}
+```{figure} assets/image21.png
+:name: periods-in-time-stepped-sol
+:align: center
 
-[]{#_Ref425220561 .anchor}Figure 17: Sequence of Optimized Periods in Time-stepped Solution
+Sequence of Optimized Periods in Time-stepped Solution.
+```
 
 The amount of overlapping years between successive steps is by default half of the active step length (the value of TIMESTEP), but it can be controlled by the user by using the TIMES G_OVERLAP parameter. Consequently, the specifi­cations that can be used to control a stepped TIMES solution are the following:
 
