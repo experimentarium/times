@@ -180,7 +180,9 @@ Here, the value of FIXBOH (2050) specifies the year, up to which the model solut
 
 As a generalization to the basic scheme described above, the user can also request fixing to the previous solution different amounts of first years accor­ding to region. The region-specific years up to which the model solution will be fixed can be specified by using the TIMES REG_FIXT(reg) parameter. The FIXBOH control variable is in this case treated as a default value for REG_FIXT.
 
-**[Example:]{.underline}** Assume that you would like to analyze the 15-region ETSAP TIAM model with some shocks after the year 2030, and you are interested in differences in the model solution only in regions that have notable gas or LNG trade with the EU. Therefore, you would like to fix the regions AUS, CAN, CHI, IND, JPN, MEX, ODA and SKO completely to the previous solution, and all other regions to the previous solution up to 2030.
+```{admonition} Example
+
+Assume that you would like to analyze the 15-region ETSAP TIAM model with some shocks after the year 2030, and you are interested in differences in the model solution only in regions that have notable gas or LNG trade with the EU. Therefore, you would like to fix the regions AUS, CAN, CHI, IND, JPN, MEX, ODA and SKO completely to the previous solution, and all other regions to the previous solution up to 2030.
 
 In the RUN file you should specify the control switches described above:
 
@@ -190,7 +192,6 @@ In the RUN file you should specify the control switches described above:
 
 In a model DD file you should include the values for the REG_FIXT parameter:
 
-```
 PARAMETER REG_FIXT
 /
 AUS 2200, CAN 2200, CHI 2200, IND 2200
@@ -341,10 +342,12 @@ The main solution and solver statistics for model runs of a USEPA9r-TIMES model 
 Comparing the non-setting of REDUCE vs. REDUCE=YES the number of equations and variables in the reduction is around 47% lower than in the non-reduced case. Since the smaller number of equations and variables require less memory, the memory usage in the reduction run decreases by
 6.4%. The solution time is only reduced slightly compared to the non-reduced model run.
 
-[Issues Using the Reduction Algorithm]{.underline}
+```{admonition} Issues Using the Reduction Algorithm
+
 - In some cases the reduced problem may produce an "optimal solution with unscaled infeasibilities".
 - Shadow price of non-generated EQ_PTRANS equations are lost.
 - Reduced cost of upper/fixed ACT_BND of zero are lost. If one needs this information, one should use a very small number instead, e.g. 1.e-5, as value for the activity bound.
+```
 
 ## GAMS savepoint / loadpoint controls 
 
