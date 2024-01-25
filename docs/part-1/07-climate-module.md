@@ -218,8 +218,8 @@ expressions, which respectively underestimate and overestimate the exact
 forcing value. The underestimate consists of the chord of the
 logarithmic curve, whereas the overestimate consists of the tangent to
 the logarithmic curve that is parallel to the chord. These two estimates
-are illustrated in Figure 7.1, where the interval (M~1~,M~2~) is from
-375 ppm to 550 ppm.
+are illustrated in {numref}`linearization_CO2_radiation_function`, 
+where the interval (M~1~,M~2~) is from 375 ppm to 550 ppm.
 
 By denoting the pre-industrial concentration level as *M~0~*, the
 general formulas for the two estimates are as follows:
@@ -259,10 +259,11 @@ with
 -   ΔT~up~ = globally averaged surface temperature increase above
     > pre-industrial level,
 
-![](assets/image22.png)
-
-*Figure 7.1. Illustration of the linearization of the CO2 radiative
-forcing function*
+```{figure} assets/image22.png
+:name: linearization_CO2_radiation_function
+:align: center
+ Illustration of the linearization of the CO2 radiative forcing function.
+```
 
 -   ΔT~low~= deep-ocean temperature increase above pre-industrial level,
 
