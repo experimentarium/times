@@ -510,7 +510,7 @@ of the different inheritance and aggregation rules are summarised in
 Table 10. The specific rules applied to each individual parameter are
 listed in the detailed reference further below.
 
-The different aggregation rules are illustrated by examples in Figure 9.
+The different aggregation rules are illustrated by examples in {numref}`inheritance_aggregation_rules_parameters`.
 It should be noted that if input data are specified on two timeslice
 levels different from the target level, then especially the weighted
 inheritance/aggregation method may lead to incorrect results. Therefore,
@@ -528,11 +528,11 @@ bounds that are either inherited or aggregated to the target timeslice
 level will always override any upper and lower bounds simultaneously
 specified.
 
-![](media/image9.png){width="6.447916666666667in"
-height="5.385416666666667in"}
-
-Figure 9: Inheritance and aggregation rules for timeslice specific
-parameters in TIMES
+```{figure} assets/image9.png
+:name: inheritance_aggregation_rules_parameters
+:align: center
+Inheritance and aggregation rules for timeslice specific parameters in TIMES.
+```
 
 ### Overview of user input parameters
 
