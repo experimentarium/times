@@ -42,7 +42,7 @@ from one or more assumptions above, as follows:
     the objective function are non-linear and non-convex, and requires
     the use of MIP.
 
-[Remark]{.underline}: None of these four extensions departs from the
+<ins>Remark:</ins> None of these four extensions departs from the
 competitive market assumption. It is *also* possible to simulate certain
 types of non-competitive behavior using TIMES. For instance, it has been
 possible to simulate the behavior of the OPEC oil cartel by assuming
@@ -95,12 +95,9 @@ decisions, contingent on which of the mitigation outcomes (High or Low)
 has occurred, and in 2030, 2040, 2050 and 2060, there will be four sets
 of contingent decisions.
 
-![](assets/image23.png){width="5.825694444444444in"
-height="4.302777777777778in"}
+![](assets/image23.png)
 
-*Figure*
-
-* 8.**1. Event Tree for a three-stage stochastic TIMES Example.*
+*Figure 8.1. Event Tree for a three-stage stochastic TIMES Example.*
 
 This remark leads directly to the following general multi-period,
 multi-stage stochastic program in Equations 8-1 to 8-3 below. The
