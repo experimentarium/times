@@ -96,7 +96,7 @@ paper industries), Billion vehicle-kilometers per year (B-vkm/year) or
 million cars for road vehicles, and GW for electricity equipment
 (1GW=31.536 PJ/year), etc.
 
-![](assets/image15.png){width="6.0in" height="4.498988407699038in"}
+![](assets/image15.png)
 
 *Figure 5.1.Process activity in the original TIMES formulation (top) and
 Linear variant (bottom)*
@@ -141,7 +141,7 @@ region ***r*** andperiod ***t***, all vintages together. The
 user-constraints are specified for them. They do not enter any other
 equation.
 
-[Remark]{.underline}: The lumpy investment option. There is a TIMES
+<ins>Remark:</ins>The lumpy investment option. There is a TIMES
 feature that allows the user to impose that new additions to capacity
 may only be done in predefined blocks. This feature may be useful for
 technologies that are implementable only in discrete sizes such as a
@@ -212,7 +212,7 @@ and/or for applying certain bounds to them. Examples of such variables
 are: the total amount produced of a commodity (***VAR_COMPRD***), or the
 total amount consumed of a commodity (***VAR_COMCON***).
 
-**[Important remark]{.underline}**: It is useful to know that many
+**<ins>Important remark:</ins>**: It is useful to know that many
 variables (for instance the above two accounting variables, but also the
 flow variables described earlier) add only a moderate computational
 burden to the optimization process, thanks to the use of a *reduction
@@ -352,8 +352,7 @@ dismantling of the technology, and the technical life of the technology
 does not exceed the period length. There are 4 distinct such instances,
 discussed in detail in section 6.2 of Part II.
 
-![](assets/image16.png){width="5.973185695538057in"
-height="3.891053149606299in"}
+![](assets/image16.png)
 
 *Figure 5.2. Illustration of yearly investments and payments for one of
 four investment tracking cases*
@@ -468,26 +467,17 @@ The three options are as follows:
 -   The modified objective function (**MOD**). The **MOD** formulation
     adds only a few modifications to the standard formulation:
 
-```{=html}
-<!-- -->
-```
 -   The model periods are defined in a different way; and
 
 -   The investment spreads in the investment Cases 1a and 1b (see
     section 6.2 of Part II for a list of all cases) are defined slightly
     differently.
 
-```{=html}
-<!-- -->
-```
 -   The **ALT** formulation includes all the modifications made in the
     MOD formulation. In addition, it includes the following further
     modifications that eliminate basically all of the remaining problems
     in the standard formulation:
 
-```{=html}
-<!-- -->
-```
 -   The investment spreads in the investment Case 1b are defined
     slightly differently;
 
@@ -506,7 +496,7 @@ need no longer be at the middle of a period.
 Additional details and comments are provided on all three options in
 technical note \"TIMES Objective Variants\"\
 \
-[Conclusion on the variants]{.underline}: The multiplicity of options
+<ins>Conclusion on the variants:</ins> The multiplicity of options
 may confuse the modeler. Extensive experience with their use has shown
 that the distortions discussed above remain quite small. In practice,
 old TIMES users seem to stick to the classical OBJ with the OBLONG
@@ -633,7 +623,9 @@ Instead it is replaced in (5-3) by a fraction (less than or equal to 1)
 of the investment variable ***VAR_NCAP(r,v,p)***[^31] sum of past
 investments that are still operating, as in equation (5-1).
 
-***[Example]{.underline}*:** *a coal fired power plant's activity in any
+
+***<ins>Example</ins>***: 
+*a coal fired power plant's activity in any
 time-slice is bounded above by 80% of its capacity, i.e. **VAR**\_**ACT
 (r,v,t,p,s) ≤**0.8\*31.536 **\* CAP(r,v,t,p),** where PRC_CAPACT(r,p) =
 31.536 is the conversion factor between the units of the capacity
@@ -733,7 +725,8 @@ plus imports.
 > *FR(s)* is the fraction of the year covered by time-slice ***s***
 > (equal to 1 for non- time-sliced commodities)*.*
 
-*[**Example**:]{.underline} Gasoline consumed by vehicles plus gasoline
+***<ins>Example</ins>***: 
+*Gasoline consumed by vehicles plus gasoline
 exported to other regions must not exceed gasoline produced from
 refineries plus gasoline imported from other regions.*
 
@@ -813,7 +806,7 @@ process. Furthermore, commodity ***c*** appearing in left-hand-side of
 the constraint may even be a flow that is not part of the ***cg***
 group.
 
-[Warning]{.underline}: It is quite possible (and regrettable) to over
+<ins>Warning:</ins> It is quite possible (and regrettable) to over
 specify flow related equations such as (5-6), especially when the
 constraint is an equality. Such an over specification leads to an
 infeasible LP. A new feature of TIMES consists in deleting some of the
