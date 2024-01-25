@@ -61,8 +61,7 @@ frozen at the values indicated in the solution of step 1, and period 3
 is free to be optimized. At step 3, period 3 variables are frozen and
 period 4 is optimized, etc.
 
-![](assets/image24.png){width="5.674305555555556in"
-height="2.765277777777778in"}
+![](assets/image24.png)
 
 *Figure 9.1. Sequence of optimized periods in the stepped TIMES solution
 approach.*
@@ -73,7 +72,7 @@ The amount of overlapping years between successive steps is by default
 half of the active step length (the value of TIMESTEP), but it can be
 controlled by the user.
 
-[Important remark]{.underline}: as mentioned above, the user chooses the
+<ins>Important remark:</ins> as mentioned above, the user chooses the
 lengths of the sub-horizons and the length of the overlaps, *both
 expressed in years*. Because the time periods used in the model may be
 variable and may not always exactly match with the step-length and
