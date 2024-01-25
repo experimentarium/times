@@ -230,7 +230,7 @@ variable.
 
 > \* DT = Default Type of variable: either ≥0 or free
 
-**[Notation for indexes]{.underline}**: The following indexes are used
+**<ins>Notation for indexes:</ins>** The following indexes are used
 in the remainder of this chapter:
 
 **r, r'** = region; **v** = vintage; **t, t'** = time period; **y** =
@@ -492,7 +492,7 @@ specific variables only and are defined in their context.
 > assumes that the investment is repeated as many times as necessary
 > within the period so that the life of the last repetition is beyond
 > the end of period **v**. In this case VAR_NCAP represents the capacity
-> level of the single investments. Figure 1 illustrates a case where the
+> level of the single investments. {numref}`repeated_investment_same_period` illustrates a case where the
 > investment is made twice in period **v** (and some capacity still
 > remains after period **v**). The average capacity in period **v**
 > resulting from the investment VAR_NCAP(v) is less than VAR_NCAP(v),
@@ -502,11 +502,14 @@ specific variables only and are defined in their context.
 > investment occurs before the end of period **v+1**. These adjustments
 > are made in every equation involving VAR_NCAP by the internal
 > parameter COEF_CPT.
->
-> ![](media/image15.png){width="5.1875in" height="3.46875in"}
->
-> **Figure 1: Example of a repeated investment in same period**
->
+
+
+ ```{figure} assets/image15.png
+:name: repeated_investment_same_period
+:align: center
+Example of a repeated investment in same period.
+```
+
 > **Role:** The new capacity (i.e. investment) variables are fundamental
 > in defining the investment decisions, and many other quantities
 > derived from it (for instance process capacities). They play a key
