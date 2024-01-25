@@ -280,9 +280,6 @@ hold:
 -   The market price of each commodity is equal to its marginal value in
     the overall system (3.2.4); and
 
-```{=html}
-<!-- -->
-```
 -   Each economic agent maximizes its own profit or utility (3.2.5).
 
 #### Linearity
@@ -570,10 +567,10 @@ in TIMES maximizes its own surplus. This property is akin to the famous
 'invisible hand' property of competitive markets, and may be established
 rigorously by the following theorem that we state in an informal manner:
 
-> *[Theorem]{.underline}: Let (p\*,q\*) be a pair of equilibrium vectors
+> *<ins>Theorem:</ins> Let (p\*,q\*) be a pair of equilibrium vectors
 > that maximize total surplus. If we now replace the original TIMES
 > linear program by one where all commodity prices are
-> [fixed]{.underline} at value p\*, and we let each agent maximize its
+> <ins>fixed</ins> at value p\*, and we let each agent maximize its
 > own surplus, the vector of optimal quantities produced or purchased by
 > the agents also maximizes the total surplus*[^24]*.*
 
