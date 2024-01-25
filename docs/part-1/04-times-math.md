@@ -38,7 +38,8 @@ in chapter 3, which we restate here:
 *\"A supply/demand economic equilibrium is reached when the sum of the
 producers and the consumers surpluses is maximized\"*
 
-Figure 3.2 of Chapter 3 provides a graphical illustration of this
+
+{numref}`eq_demand_curve` of Chapter 3 provides a graphical illustration of this
 theorem in a case where only one commodity is considered.
 
 ## Mathematics of the TIMES equilibrium
@@ -119,7 +120,7 @@ does not include cross terms) and concave in the *DM~i\ ~*variables,
 each of its terms is easily linearized by piece-wise linear functions
 which approximate the integrals in (4-5). This is the same as saying
 that the inverse demand curves are approximated by staircase functions,
-as illustrated in figure 4.1. By so doing, the resulting optimization
+as illustrated in {numref}`approx_non_linear_obj_function`. By so doing, the resulting optimization
 problem becomes linear again. The linearization proceeds as follows.
 
 a)  For each demand category ***i***, and each time period ***t***, the
@@ -132,7 +133,7 @@ a)  For each demand category ***i***, and each time period ***t***, the
 
 b)  Select a grid that divides each range into a number *n* of equal
     width intervals. Let ß~i~(t) be the resulting common width of the
-    grid*, **ß~i~(t)= R~i~(t)/n*****.** See Figure 4.1 for a sketch of
+    grid*, **ß~i~(t)= R~i~(t)/n*****.** See {numref}`approx_non_linear_obj_function` for a sketch of
     the non-linear expression and of its step-wise constant
     approximation. The number of steps, *n*, should be chosen so that
     the step-wise constant approximation remains close to the exact
@@ -167,8 +168,11 @@ minimizes its negative, which then has the dimension of a cost. The
 portion of that cost representing the negative of the consumer surplus
 is akin to a *welfare loss.*
 
-![](assets/image14.png)*Figure 4.1. Step-wise constant approximation of
-the non-linear terms in the objective function*
+```{figure} assets/image14.png
+:name: approx_non_linear_obj_function
+:align: center
+Step-wise constant approximation of the non-linear terms in the objective function.
+```
 
 ### Calibration of the demand functions
 
