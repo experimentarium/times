@@ -66,7 +66,7 @@ capacity in several years within the modeling horizon proper.
 
 In addition to time-periods (which may be of variable length), there are
 time divisions within a year, also called *time-slices,* which may be
-defined at will by the user (see Figure 2.1). For instance, the user may
+defined at will by the user (see {numref}`timeslice_tree`). For instance, the user may
 want to define seasons, portions of the day/night, and/or
 weekdays/weekends. Time-slices are especially important whenever the
 mode and cost of production of an energy carrier at different times of
@@ -92,9 +92,11 @@ various production technologies may be very different in different time
 slices, and furthermore that specific investment decisions will be taken
 to insure adequate reserve capacity at peak.
 
-![timeslice_tree](assets/image1.png)
-
-*Figure 2.1: Example of a time-slice tree*
+```{figure} assets/image1.png
+:name: timeslice_tree
+:align: center
+Example of a time-slice tree.
+```
 
 ## Decoupling of data and model horizon
 
@@ -156,7 +158,7 @@ using a network diagram, referred to as a *Reference Energy System*
 commodities as vertical lines. Commodity flows are represented as links
 between process boxes and commodity lines.
 
-Figure 2.2 depicts a small portion of a hypothetical RES containing a
+{numref}`partial_view_ref_energy_syst` depicts a small portion of a hypothetical RES containing a
 single energy service demand, namely residential space heating. There
 are three end-use space heating technologies using the gas, electricity,
 and heating oil energy carriers (commodities), respectively. These
@@ -164,10 +166,11 @@ energy carriers in turn are produced by other technologies, represented
 in the diagram by one gas plant, three electricity-generating plants
 (gas fired, coal fired, oil fired), and one oil refinery.
 
-![](assets/image2.png)
-
-*Figure 2.2. Partial view of a Reference Energy System (links are
-oriented left to right)*
+```{figure} assets/image2.png
+:name: partial_view_ref_energy_syst
+:align: center
+Partial view of a Reference Energy System (links are oriented left to right).
+```
 
 To complete the production chain on the primary energy side, the diagram
 also represents an extraction source for natural gas, an extraction
