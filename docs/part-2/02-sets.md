@@ -533,7 +533,7 @@ least one internal region, the number of external regions is arbitrary.
 The main building blocks of the RES are processes (**p**) and
 commodities (**c)**, which are connected by commodity flows to form a
 network. An example of a RES with one internal region (UTOPIA) and two
-external regions (IMPEXP, MINRNW) is given in Figure 1.
+external regions (IMPEXP, MINRNW) is given in {numref}`inter_external_regions_TIMES`.
 
 All components of the energy system, as well as nearly the entire input
 information, are identified by a region index. It is therefore possible
@@ -541,9 +541,11 @@ to use the same process name in different regions with different
 numerical data (and description if desired), or even completely
 different commodities associated with the process.
 
-![](assets/image1.png){width="5.635416666666667in" height="3.4375in"}
-
-Figure 1: Example of internal and external regions in TIMES
+```{figure} assets/image1.png
+:name: inter_external_regions_TIMES
+:align: center
+Example of internal and external regions in TIMES.
+```
 
 #### Processes
 
@@ -613,11 +615,11 @@ commodity group, and **u** is the activity unit. The commodity group
 defining the activity of a process is also called **P**rimary
 **C**ommodity **G**roup (PCG).
 
-![](assets/image2.png){width="5.197916666666667in"
-height="2.7395833333333335in"}
-
-Figure 2: Example of the definition of a commodity group and the
-activity of a normal process.
+```{figure} assets/image2.png
+:name: commodity_group_activity
+:align: center
+Example of the definition of a commodity group and the activity of a normal process.
+```
 
 User-defined commodity groups are specified by means of the set
 **com_gmap(r,cg,c)**, which indicates the commodities (c) belonging to
@@ -629,7 +631,7 @@ EQ_PTRANS), as long as the members of the group are valid for the
 particular process and the process characteristic to be defined.
 
 An example for the definition of the activity of a process is shown in
-Figure 2. In order to define the activity of the process SRE as the sum
+{numref}`commodity_group_activity`. In order to define the activity of the process SRE as the sum
 of the two output flows of gasoline (GSL) and diesel (DSL), one has to
 define a commodity group called CG_SRE containing these two commodities.
 The name of the commodity group can be arbitrarily chosen by the
@@ -638,7 +640,7 @@ modeller.
 In addition to the activity of a process, one has to define the capacity
 unit of the process. This is done by means of the set
 **prc_capunt(r,p,cg,u)**, where the index **cg** denotes the primary
-commodity group. In the example in Figure 3 the capacity of the refinery
+commodity group. In the example in {numref}`capacity_unit_def` the capacity of the refinery
 process is defined in mtoe/a (megatonne oil equivalent). Since the
 capacity and activity units are different (mtoe for the capacity and PJ
 for the activity), the user has to supply the conversion factor from the
@@ -646,22 +648,25 @@ energy unit embedded in the capacity unit to the activity unit. This is
 done by specifying the parameter **prc_capact(r,p)**. In the example
 **prc_capact** has the value 41.868.
 
-![](assets/image3.png){width="4.791666666666667in"
-height="2.7395833333333335in"}
-
-Figure 3: Example of the definition of the capacity unit
+```{figure} assets/image3.png
+:name: capacity_unit_def
+:align: center
+Example of the definition of the capacity unit.
+```
 
 It might occur that the unit in which the commodity(ies) of the primary
 commodity group are measured, is different from the activity unit. An
-example is shown in Figure 4. The activity of the transport technology
+example is shown in {numref}`different_capacity_unit_def`. The activity of the transport technology
 CAR is defined by commodity TX1, which is measured in passenger
 kilometres PKM. The activity of the process is, however, defined in
 vehicle kilometres VKM, while the capacity of the process CAR is defined
 as number of cars NOC.
 
-![](assets/image4.png){width="5.25in" height="3.4375in"}
-
-Figure 4: Example of different activity and commodity units
+```{figure} assets/image4.png
+:name: different_capacity_unit_def
+:align: center
+Example of different activity and commodity units.
+```
 
 The conversion factor from capacity to activity unit **prc_capact**
 describes the average mileage of a car per year. The process parameter
@@ -772,7 +777,7 @@ responsibility of the user (or the user interface).
 The time horizon for which the energy system is analysed may range from
 one year to many decades. The time horizon is usually split into several
 *periods* which are represented by so-called *milestone years*
-(**t(allyear)** or **milestonyr(allyear)**, see Figure 5). Each
+(**t(allyear)** or **milestonyr(allyear)**, see {numref}`time_horizon_year_type`). Each
 milestone year represents a point in time where decisions may be taken
 by the model, e.g. installation of new capacity or changes in the energy
 flows. The activity and flow variables used in TIMES may therefore be
@@ -813,9 +818,11 @@ the periods, may be changed without having to adjust the input data to
 the new periods. The rules and options of the inter- and extrapolation
 routine are described in more detail in subection 3.1.1.
 
-![](assets/image5.png){width="5.739583333333333in" height="3.1875in"}
-
-Figure 5: Definition of the time horizon and the different year types
+```{figure} assets/image5.png
+:name: time_horizon_year_type
+:align: center
+Definition of the time horizon and the different year types.
+```
 
 One should note that it is possible to define past investments
 (**NCAP_PASTI**) not only for pastyears but also for any years within
@@ -893,7 +900,7 @@ activated by the user providing entries in set **ts_group(r,tslvl,s)**,
 where also the individual user-provided timeslices (**s)** are assigned
 to each level. An additional user input set **ts_map(r,s1,s2)** is
 needed to determine the structure of a timeslice tree, where timeslice
-**s1** is defined as the parent node of **s2**. Figure 6 illustrates a
+**s1** is defined as the parent node of **s2**. {numref}`timeslice_tree` illustrates a
 timeslice tree, in which a year is divided into four seasons consisting
 of working days and weekends, and each day is further divided into day
 and night timeslices. The name of each timeslice has to be unique in
@@ -924,9 +931,11 @@ considered well justified. However, an experimental \"light-weight\"
 implementation has been made in view of supporting also dynamic
 timeslice trees (see Appendix E).
 
-![](assets/image6.png){width="5.96875in" height="3.4791666666666665in"}
-
-Figure 6: Example of a timeslice tree
+```{figure} assets/image6.png
+:name: timeslice_tree
+:align: center
+Example of a timeslice tree.
+```
 
 Commodities may be tracked and process operation controlled at a
 particular timeslice level by using the sets **com_tsl(r,c,tslvl)** and
@@ -970,7 +979,7 @@ commodity flow are first identified, where the model ensures that trade
 through the exchange process is balanced between these two regions
 (whatever amount is exported from region A to region B must be imported
 by region B from region A, possibly adjusted for trans­portation losses).
-The basic structure is shown in Figure 7. Bi-lateral trading may be
+The basic structure is shown in {numref}`bilateral_trade`. Bi-lateral trading may be
 fully described in TIMES by defining an inter-regional exchange process
 and by specifying the two pair-wise connections by indicating the
 regions and commodities be traded via the set
@@ -986,10 +995,11 @@ allocated to region A and the remaining 40 % to region B, the investment
 costs for the exchange process have to be set to 600 MU/MW in region A
 and to 400 MU/MW in region B.
 
-![](assets/image7.png){width="6.104166666666667in"
-height="1.7916666666666667in"}
-
-Figure 7: Bilateral trade in TIMES
+```{figure} assets/image7.png
+:name: bilateral_trade
+:align: center
+Bilateral trade in TIMES.
+```
 
 Bi-lateral trade is the most detailed way to specify trade between
 regions. However, there are cases when it is not important to fully
@@ -1009,11 +1019,13 @@ the supply and demand regions with the marketplace region using the set
 The following example illustrates the modelling of a marketplace in
 TIMES. Assume that we want to set up a market-based trading where the
 commodity CRUD can be exported by regions A, B, C, and D, and that it
-can be imported by regions C, D, E and F (Figure 8).
+can be imported by regions C, D, E and F ({numref}`multilateral_trade`).
 
-![](assets/image8.png){width="5.229166666666667in" height="2.875in"}
-
-Figure 8: Example of multi-lateral trade in TIMES
+```{figure} assets/image8.png
+:name: multilateral_trade
+:align: center
+Example of multi-lateral trade in TIMES.
+```
 
 First, the exchange process and marketplace should be defined. For
 example, we could choose the region C as the marketplace region. The
