@@ -89,17 +89,19 @@ period ***t***is obtained by integrating expression (11-1):
 $$TC_{t} = \int_{0}^{C_{t}}{a \cdot y^{- b}*dy} = \frac{a}{1 - b} \cdot {C_{t}}^{- b + 1}(11 - 2)$$
 
 ***TC~t~*** is a concave function of ***C~t~***, with a shape as shown
-in figure 11.1
+in {numref}`cumulative_learning_curve`.
 
-![](assets/image26.png)
-
-*Figure 11.1. Example of a cumulative learning curve*
+```{figure} assets/image26.png
+:name: cumulative_learning_curve
+:align: center
+Example of a cumulative learning curve.
+```
 
 With the Mixed Integer Programming approach implemented in TIMES, the
 cumulative learning curve is approximated by linear segments, and binary
-variables are used to represent some logical conditions. Figure 11.2
-shows a possible piecewise linear approximation of the curve of Figure
-11.1. The choice of the number of steps and of their respective lengths
+variables are used to represent some logical conditions. {numref}`approx_cumulative_learning_curve`
+shows a possible piecewise linear approximation of the curve of {numref}`cumulative_learning_curve`. 
+The choice of the number of steps and of their respective lengths
 is carefully made so as to provide a good approximation of the smooth
 cumulative learning curve. In particular, the steps must be smaller for
 small values than for larger values, since the curvature of the curve
@@ -133,10 +135,11 @@ region, and technology indexes for notational clarity):
     coefficients for each learning technology. The detailed formulae are
     shown and briefly commented on below.
 
-![](assets/image27.png)
-
-*Figure 11.2. Example of a 4-segment approximation of the cumulative
-cost curve*
+```{figure} assets/image27.png
+:name: approx_cumulative_learning_curve
+:align: center
+Example of a 4-segment approximation of the cumulative cost curve.
+```
 
 ### Calculation of break points and segment lengths
 
@@ -177,14 +180,17 @@ follows:
 
 where ***b~i~*** is the slope of the ***i^th^*** line segment, and
 ***a~i~*** is the value of the intercept of that segment with the
-vertical axis, as shown in figure 11.3. The precise expressions for
+vertical axis, as shown in {numref}`i_approx_learning_curve`. The precise expressions for
 ***a~i~*** and ***b~i~*** are:
 
-$${b_{i} = \frac{TC_{i} - TC_{i - 1}}{C_{i} - C_{i - 1}}i = 1,2,...,N
-}{11 - 5
-}$$$a_{i} = TC_{i - 1} - b_{i} \cdot C_{i - 1}i = 1,2,...,N$
-![](assets/image30.png)*Figure 11.3. The i^th^ segment of the step-wise
-approximation*
+$${b_{i} = \frac{TC_{i} - TC_{i - 1}}{C_{i} - C_{i - 1}}i = 1,2,...,N}{11 - 5}$$
+$a_{i} = TC_{i - 1} - b_{i} \cdot C_{i - 1}i = 1,2,...,N$
+
+```{figure} assets/image30.png
+:name: i_approx_learning_curve
+:align: center
+The i^th^ segment of the step-wise approximation.
+```
 
 ### New constraints
 
