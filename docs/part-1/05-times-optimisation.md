@@ -70,7 +70,7 @@ letters VAR followed by an underscore.
 represent yearly flows or process activities. In the original TIMES
 formulation, the activity of a process during some period ***t*** is
 considered to be constant in all years constituting the period. This is
-illustrated in panel M.a of Figure 5.1).In the alternative option the
+illustrated in panel M.a of {numref}`process_act_original_TIMES_LinearVariant`).In the alternative option the
 activity variable is considered to represent the value *in a milestone
 year* of each period, and the values at all other years is linearly
 interpolated between the consecutive milestone year values, as
@@ -96,10 +96,11 @@ paper industries), Billion vehicle-kilometers per year (B-vkm/year) or
 million cars for road vehicles, and GW for electricity equipment
 (1GW=31.536 PJ/year), etc.
 
-![](assets/image15.png)
-
-*Figure 5.1.Process activity in the original TIMES formulation (top) and
-Linear variant (bottom)*
+```{figure} assets/image15.png
+:name: process_act_original_TIMES_LinearVariant
+:align: center
+Process activity in the original TIMES formulation (top) and Linear variant (bottom)
+```
 
 ***VAR_RCAP(r,v,t,p):*** Amount of capacity that is newly retired at
 period ***t***. The new retirements will reduce the available capacity
@@ -352,10 +353,11 @@ dismantling of the technology, and the technical life of the technology
 does not exceed the period length. There are 4 distinct such instances,
 discussed in detail in section 6.2 of Part II.
 
-![](assets/image16.png)
-
-*Figure 5.2. Illustration of yearly investments and payments for one of
-four investment tracking cases*
+```{figure} assets/image16.png
+:name: year_inv_tracking_case
+:align: center
+Illustration of yearly investments and payments for one of four investment tracking cases.
+```
 
 ### Aggregating the various costs
 
@@ -1137,13 +1139,14 @@ mathematical equations.
 #### A much simplified sketch of the grid constraints
 
 The traditional way to represent the nodes and arcs of a grid is shown
-in figure 5.3, where each node is shown as a horizontal segment, and the
+in {numref}`grid_connection_nodes`, where each node is shown as a horizontal segment, and the
 nodes are connected via bi-directional arcs.
 
-![](assets/image17.png){width="3.875in" height="2.220883639545057in"}
-
-*Figure 5.3. Connection of a grid node with other nodes*
-
+```{figure} assets/image17.png
+:name: grid_connection_nodes
+:align: center
+Connection of a grid node with other nodes.
+```
 The basic energy conservation equation of a grid is as follows:
 
 $G_{i} - L_{i} = \sum_{j = 1}^{M}P_{i,j}$*for each i=1,2,\...,M*
