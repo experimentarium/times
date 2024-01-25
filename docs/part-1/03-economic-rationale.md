@@ -347,7 +347,7 @@ optimization models, the supply curve of a commodity, with the exception
 of end-use demands, is entirely determined endogenously by the model. It
 is a standard result of Linear Programming theory that the inverse
 supply function is step-wise constant and increasing in each factor (see
-Figures 3.1 and 3.3 for the case of a single commodity[^18]). Each
+{numref}`eq_supply_demand_endogenous` and {numref}`eq_fixed_energy_service` for the case of a single commodity[^18]). Each
 horizontal step of the inverse supply function indicates that the
 commodity is produced by a certain technology or set of technologies in
 a strictly linear fashion. As the quantity produced increases, one or
@@ -361,9 +361,11 @@ higher than the preceding step. The width of any particular step depends
 upon the technological potential and/or resource availability associated
 with the set of technologies represented by that step.
 
-![](assets/image3.png)*Figure 3.1. Equilibrium in the case of an energy
-form: the model implicitly constructs both the supply and the demand
-curves (note that the equilibrium is multiple in this configuration)*
+```{figure} assets/image3.png
+:name: eq_supply_demand_endogenous
+:align: center
+Equilibrium in the case of an energy form: the model implicitly constructs both the supply and the demand curves (note that the equilibrium is multiple in this configuration).
+```
 
 In a similar manner, each TIMES model instance defines a series of
 inverse demand functions. In the case of demands, two cases are
@@ -371,11 +373,11 @@ distinguished. First, if the commodity in question is an energy carrier
 whose production and consumption are endogenous to the model, then its
 demand function is *implicitly* constructed within TIMES, and is a
 step-wise constant, decreasing function of the quantity demanded, as
-illustrated in Figure 3.1 for a single commodity. If on the other hand
+illustrated in {numref}`eq_supply_demand_endogenous` for a single commodity. If on the other hand
 the commodity is a demand for an energy service, then its demand curve
 is *defined by the user* via the specification of the own-price
 elasticity of that demand, and the curve is in this instance a smoothly
-decreasing curve as illustrated in Figure 3.2[^19]. In both cases, the
+decreasing curve as illustrated in {numref}`eq_demand_curve`[^19]. In both cases, the
 supply-demand equilibrium is at the intersection of the supply function
 and the demand function, and corresponds to an equilibrium quantity Q~E~
 and an equilibrium price P~E~[^20]. At price P~E~, suppliers are willing
@@ -391,7 +393,7 @@ endogenously as an integral part of the solution of the LP. For each
 commodity that is an energy service, the user *explicitly* defines the
 demand *function* by specifying its own price elasticity. In TIMES, each
 energy service demand is assumed to have a constant own price elasticity
-function of the form (see Figure 3.2):
+function of the form (see {numref}`eq_demand_curve`):
 
 DM/DM~0~ = (P/P~0~)^E^ (3-2)
 
@@ -408,10 +410,10 @@ service demand in the dual solution of the reference case scenario. The
 precise manner in which the demand functions are discretized and
 incorporated in the TIMES objective function is explained in chapter 4.
 
-Using Figure 3.1 as an example, the definition of the suppliers' surplus
+Using {numref}`eq_supply_demand_endogenous` as an example, the definition of the suppliers' surplus
 corresponding to a certain point S on the inverse supply curve is the
 difference between the total revenue and the total cost of supplying a
-commodity, i.e. the gross profit. In Figure 3.1, the surplus is thus the
+commodity, i.e. the gross profit. In {numref}`eq_supply_demand_endogenous`, the surplus is thus the
 area between the horizontal segment SS' and the inverse supply curve.
 Similarly, the consumers' surplus for a point C on the inverse demand
 curve, is defined as the area between line segment CC' and the inverse
@@ -420,8 +422,8 @@ more precisely it is the cumulative opportunity gain of all consumers
 who purchase the commodity at a price lower than the price they would
 have been willing to pay. Thus, for a given quantity Q, the total
 surplus (suppliers' plus consumers') is simply the area between the two
-inverse curves situated at the left of Q. It should be clear from Figure
-3.1 that the total surplus is maximized when Q is exactly equal to the
+inverse curves situated at the left of Q. It should be clear from {numref}`eq_supply_demand_endogenous`
+that the total surplus is maximized when Q is exactly equal to the
 equilibrium quantity Q~E~. Therefore, we may state (in the single
 commodity case) the following Equivalence Principle:
 
@@ -453,20 +455,25 @@ concept has long been a mainstay of social welfare economics because it
 takes into account both the surpluses of consumers and of
 producers.[^22]
 
-![](assets/image7.png)*Figure 3.2. Equilibrium in the case of an energy
-service: the user explicitly provides the demand curve, usually using a
-simple functional form (see text for details)*
+```{figure} assets/image7.png
+:name: eq_demand_curve
+:align: center
+Equilibrium in the case of an energy service: the user explicitly provides the demand curve, usually using a simple functional form (see text for details).
+```
 
 *Remark:* In older versions of MARKAL, and in several other least-cost
 bottom-up models, energy service demands are exogenously specified by
 the modeler, and only the cost of supplying these energy services is
-minimized. Such a case is illustrated in Figure 3.3 where the "inverse
+minimized. Such a case is illustrated in {numref}`eq_demand_curve` where the "inverse
 demand curve" is a vertical line. The objective of such models was
 simply the minimization of the total cost of meeting exogenously
 specified levels of energy service.
 
-![](assets/image8.png)*Figure 3.3. Equilibrium when an energy service
-demand is fixed*
+```{figure} assets/image7.png
+:name: eq_fixed_energy_service
+:align: center
+Equilibrium in the case of an energy service: the user explicitly provides the demand curve, usually using a simple functional form (see text for details).
+```
 
 #### Competitive energy markets with perfect foresight
 
@@ -533,7 +540,7 @@ The fact that the price of a commodity is equal to its marginal value is
 an important feature of competitive markets. Duality theory does not
 necessarily indicate that the marginal value of a commodity is equal to
 the marginal cost of *producing* that commodity. For instance, in the
-equilibrium shown in Figure 3.4 the price does not correspond to *any*
+equilibrium shown in {numref}`eq_price_different_marginal_cost` the price does not correspond to *any*
 marginal supply cost, since it is situated at a discontinuity of the
 inverse supply curve. In this case, the price is precisely determined by
 demand rather than by supply, and the term *marginal cost pricing* (so
@@ -553,10 +560,13 @@ seems much too small or too large compared to the anticipated market
 prices), this indicates that the model's database may contain some
 errors. The examination of shadow prices is just as important as the
 analysis of the quantities produced and consumed of each commodity and
-of the technological investments. ![](assets/image9.png)
+of the technological investments. 
 
-*Figure 3.4. Case where the equilibrium price is not equal to any
-marginal supply cost.*
+```{figure} assets/image9.png
+:name: eq_price_different_marginal_cost
+:align: center
+Case where the equilibrium price is not equal to any marginal supply cost.
+```
 
 ### Profit maximization: the Invisible Hand
 
@@ -627,7 +637,7 @@ market.
     purposes, and thus become a staircase function, as described in
     section 4.2
 
-[^20]: As may be seen in figure 3.1, the equilibrium is not necessarily
+[^20]: As may be seen in {numref}`eq_supply_demand_endogenous`, the equilibrium is not necessarily
     unique. In the case shown, any point on the vertical segment
     containing the equilibrium is also an equilibrium, with the same
     quantity Q~E~ but a different price. In other situations, the
