@@ -163,7 +163,7 @@ The procedure was presented in a very general form, in order to let the
 user exert her ingenuity at will. Typical simple examples of using the
 feature may be useful.
 
-[Example 1]{.underline}: trade-off between cost and risk.
+<ins>Example 1:</ins> trade-off between cost and risk.
 
 First, a special UC (call it RISK) is defined that expresses a **global
 risk** measure. The successive phases consist in minimizing the
@@ -194,7 +194,7 @@ measure was developed to evaluate the risk for a large number of
 alternative channels of energy imports into the EU, and the trade-off
 between risk and overall cost was explored.
 
-[Example 2]{.underline}: exploring the opportunity cost of the nuclear
+<ins>Example 2:</ins> exploring the opportunity cost of the nuclear
 option
 
 At phase 1, the original *OBJZ* is minimized with the habitual TIMES
