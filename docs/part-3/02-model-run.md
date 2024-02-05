@@ -40,7 +40,7 @@ membership specified) and then assigned data.
 In the model management shells, the user can also adjust the TIMES model
 variant, run control switches, and solver options. For VEDA-FE this is
 done through the Case Manager, via the Control Panel, RUNFile template,
-and solver settings. Figure 4 shows an example of the VEDA-FE Control
+and solver settings.  4 shows an example of the VEDA-FE Control
 Panel. See Part IV for more on the use of the Case Manager in VEDA-FE.
 
 In ANSWER, the Run Model button brings up the Run Model Form, from which
@@ -79,10 +79,11 @@ for matrix intersection, that is the multiplier for the individual
 variables comprising each equation. With the matrix assembled GAMS then
 turns over the problem to the solver.
 
-![](assets/image4.png){width="3.8583333333333334in"
-height="4.28456583552056in"}
-
-[]{#_Ref321326034 .anchor}Figure 4: VEDA-FE Case Manager Control Form
+```{figure} assets/image4.png
+:name: case_manager_control_form
+:align: center
+VEDA-FE Case Manager Control Form.
+```
 
 As a result of a model run a listing file (\<Case\>.LST), and a
 \<case\>.GDX file (GAMS dynamic data exchange file with all the model
@@ -431,14 +432,16 @@ the definition of the timeslices, the files INITSYS.COM and INITMTY.MOD,
 which are responsible for the declaration and initialization of all sets
 and parameters of the model generator, are included.
 
-![](assets/image5.png){width="5.4853083989501314in"
-height="7.114316491688539in"}
+```{figure} assets/image5.png
+:name: case_manager_control_form
+:align: center
+```
 
-![](assets/image6.png){width="5.909908136482939in"
-height="4.98759842519685in"}
-
-[]{#_Ref425136344 .anchor}Figure 5: Example of a VEDA-FE TIMES
-\<case\>.RUN file[^16]
+```{figure} assets/image6.png
+:name: example_VEDA_FE_TIMES
+:align: center
+ Example of a VEDA-FE TIMES \<case\>.RUN file[^16]
+```
 
 The line containing the include command for the file initmty.mod can be
 supplemented by calls for additional user extensions that trigger the
@@ -446,7 +449,7 @@ use of additional special equations or report routines. The use of these
 extension options are described in more detail in Section 0.
 
 Afterwards the data dictionary file(s) (BASE.DD, ..., CO2_TAX_HIGH.DD in
-Figure 5) containing the user input sets and parameters are included,
+{numref}`example_VEDA_FE_TIMES`) containing the user input sets and parameters are included,
 inserted automatically by VEDA-FE/ANSWER according to the list of
 scenarios in the Case Manager/Run forms by means of the \$INCLUDE
 statements. It is normally advisable to segregate user data into
@@ -485,8 +488,12 @@ file).
 
 ### GAMS listing file (.LST)
 
-![](assets/image7.png){width="3.7402777777777776in"
-height="1.3479166666666667in"}The GAMS listing file echoes the model
+```{figure} assets/image7.png
+:name: example_VEDA_FE_TIMES
+:align: center
+```
+
+The GAMS listing file echoes the model
 run. In this file GAMS reports the compile and execution steps, presents
 a summary of the model statistics and objective function results, and
 reports any errors, if incurred. Optionally the user can request that
@@ -495,10 +502,11 @@ the equation listing be turned on by specifying the LIMROW/LIMCOL
 dumped (via SOLPRINT) by means of the VEDA-FE CaseManager settings, as
 shown here.
 
-![](assets/image8.png){width="2.4965277777777777in" height="0.9625in"}
-
-[]{#_Toc449540203 .anchor}Figure 6: Requesting Equation Listing and
-Solution Print
+```{figure} assets/image8.png
+:name: request_equation_list_solution_print
+:align: center
+Requesting Equation Listing and Solution Print.
+```
 
 For ANSWER these are handled by manually editing these entries in the
 GEN file either at runtime, or via the Run menu if the change is to be
@@ -513,11 +521,11 @@ A small snippet from the LST file compilation trace from an ANSWER-TIMES
 model run of is shown in , where the \"\...\" shows the nesting as one
 GAMS routine calls another with the appropriate parameters needed.
 
-![](assets/image9.png){width="5.037095363079615in"
-height="3.3319641294838145in"}
-
-[]{#_Ref424779247 .anchor}Figure 7: GAMS Compilation of the TIMES Source
-Code
+```{figure} assets/image9.png
+:name: GAMS_compilation_source_code
+:align: center
+GAMS Compilation of the TIMES Source Code.
+```
 
 If an error is encountered during the compilation operation GAMS will
 tag where the error occurred and report an error code. Most common in
@@ -527,10 +535,11 @@ the proper order and data was attempted to be assigned to a process
 before it was declared. Further discussion of errors encountered at this
 and other stages of the run process is found in Section .
 
-![](assets/image10.png){width="5.331776027996501in"
-height="3.330650699912511in"}
-
-[]{#_Ref321394441 .anchor}Figure 8: GAMS Compilation Error
+```{figure} assets/image10.png
+:name: GAMS_compilation_error
+:align: center
+GAMS Compilation Error.
+```
 
 Once the data and code have been successfully complied, execution takes
 place, with GAMS calling each TIMES routine needed according to the
@@ -542,38 +551,45 @@ execution error is reported in the \<Case\>.LST file in a manner similar
 to a compilation error, tagged by "Error" at the point that the problem
 was encountered.
 
-![](assets/image11.png){width="4.640065616797901in" height="3.375in"}
-
-[]{#_Ref425137029 .anchor}Figure 9: GAMS Execution of the TIMES Source
-Code
+```{figure} assets/image11.png
+:name: GAMS_execution_source_code
+:align: center
+GAMS Execution of the TIMES Source Code.
+```
 
 Once execution of the matrix generator has completed GAMS reports the
 model run statistics (), and automatically invokes the solver.
 
-![](assets/image12.png){width="5.903778433945757in"
-height="2.925551181102362in"}
-
-[]{#_Ref419731791 .anchor}Figure 10: CPLEX Solver Statistics
+```{figure} assets/image12.png
+:name: CPLEX_solver_stats
+:align: center
+CPLEX Solver Statistics.
+```
 
 If the OPTION LIMROW/LIMCOL is set to non-0 the equation mathematics are
 displayed in the list file, by equation block and/or column
-intersection, as shown in and Figure 12 respectively.
+intersection, as shown in and  12 respectively.
 
-![](assets/image13.png){width="6.5in" height="2.4652777777777777in"}
+```{figure} assets/image13.png
+:name: eq_list
+:align: center
+Equation Listing Example.
+```
 
-[]{#_Ref447876202 .anchor}Figure 11: Equation Listing Example
-
-![](assets/image14.png){width="4.1763899825021875in"
-height="3.800586176727909in"}
-
-[]{#_Ref447876098 .anchor}Figure 12: Variable Listing Example
+ ```{figure} assets/image14.png
+:name: var_list
+:align: center
+Variable Listing Example.
+```
 
 And if the SOLPRINT=ON option is activated then the level and marginals
 are reported as shown in .
 
-![](assets/image15.png){width="6.5in" height="3.3in"}
-
-[]{#_Ref447876120 .anchor}Figure 13: Solution Dump Example
+ ```{figure} assets/image15.png
+:name: solution_dump
+:align: center
+Solution Dump Example.
+```
 
 Upon successful solving the model the solution statistics are reported
 (), where in this case CPLEX was used to solve a MIP model variant (in
@@ -584,10 +600,11 @@ LST file for the string \"INFES\" for an indication of which equations
 are preventing model solution. Again, further information on the
 possible causes and resolution of such errors is found in Section .
 
-![](assets/image16.png){width="6.052069116360455in"
-height="2.9810378390201224in"}
-
-[]{#_Ref419732903 .anchor}Figure 14: Solver Solution Summary
+ ```{figure} assets/image16.png
+:name: solver_solution_summary
+:align: center
+Solver Solution Summary.
+```
 
 The actual production of the dump of the model results is performed by
 the report writer for ANSWER resulting in a \<Case\>.ANT file which is
@@ -612,7 +629,7 @@ calculations, the model solution and the reporting parameters
 calculated).
 
 A more powerful feature within the GAMSIDE is a GDXDIFF facility under
-Utilities. As seen in Figure 15, the utility shows the differences
+Utilities. As seen in  15, the utility shows the differences
 between all components, comparing two model runs. Within the GDXDIFF
 utility, the user identifies the GDX files from the two runs and
 requests the resulting comparison GDX be prepared. The display then
@@ -623,11 +640,11 @@ GDX has been created, it is viewed in the GAMSIDE. By sorting by Type
 and scanning down one Symbol at a time, one can determine exactly what
 input data being sent to GAMS for the two runs is different.
 
-![](assets/image17.png){width="3.4162489063867016in"
-height="4.446232502187226in"}
-
-[]{#_Ref321818210 .anchor}Figure 15: GAMSIDE View of the GDXDIFF Run
-Comparison
+ ```{figure} assets/image17.png
+:name: GAMSIDE_view_gdxdiff
+:align: center
+GAMSIDE View of the GDXDIFF Run Comparison.
+```
 
 However, the most common use of the GDX is its further processing to
 generate files for the result analysis software VEDA-BE[^17]. ETSAP
@@ -644,13 +661,16 @@ familiar with the GAMS GDX file for TIMES and the basics of the GDX2VEDA
 utility. See Part V, Appendix B, for further information on the GDX2VEDA
 utility and VDD directives file.
 
-![](assets/image18.png){width="3.561347331583552in"
-height="2.8687029746281714in"}
-![](assets/image19.png){width="1.6375404636920385in"
-height="2.8806977252843393in"}
+ ```{figure} assets/image18.png
+:name: image18
+:align: center
+```
 
-[]{#_Ref447875229 .anchor}Figure 16: VEDA Setup for Data Only GDX
-Request
+ ```{figure} assets/image19.png
+:name: VEDA_setup_data_only_gdx
+:align: center
+VEDA Setup for Data Only GDX Request.
+```
 
 The call to the GDX2VEDA routine is embedded in the VTRUN/ANSRUN.CMD
 command routines. There are three files produced for VEDA-BE by the
@@ -1102,7 +1122,7 @@ Most commonly errors are encountered during the solve process, resulting
 in an infeasibility. Some causes of the model not being able to solve
 might be:
 
--   due to bounds, the energy system cannot be configured in such a way
+-   due to bounds, the energy system cannot be cond in such a way
     as to meet the limit;
 
 -   owing to mis-specifying the demand serviced by a device, there is no
@@ -1123,7 +1143,7 @@ to a limit being imposed on the first year electric grid capacity that
 is too small).
 
 This helps with tracking down the culprit, but the user still needs to
-figure out why the problem occurred. When using a solver other than
+ out why the problem occurred. When using a solver other than
 CPLEX, or if the Infeasibility Finder is not activated, then the
 solution dump will be tagged for all the potentially interrelated model
 variables/equations that were not in equilibrium at the time the solve
