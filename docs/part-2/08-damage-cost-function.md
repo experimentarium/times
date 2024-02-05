@@ -429,17 +429,17 @@ PARAMETER DAM_BQTY / REG.EM 80 /;
 
 PARAMETER DAM_ELAST / REG.EM.LO 1, REG.EM.UP 0.7 /;
 
-![](media/image34.png){width="5.635416666666667in" height="3.8125in"}
-
-Figure
-
- 15. Example of a linearized damage function with 1+1+1 steps\
+ ```{figure} assets/image34.png
+:name: example_linearized_function_1+1+1
+:align: center
+Example of a linearized damage function with 1+1+1 steps\
 (1 lower step, 1 middle step, 1 upper step).
+```
 
 As we did not specify the number of steps, but we did specify the
 elasticities in both directions, the number of steps is assumed to be 1
 in both directions. The resulting damage cost function is illustrated in
-Figure 15. Because the damage function has a very coarse representation,
+{numref}`example_linearized_function_1+1+1`. Because the damage function has a very coarse representation,
 the total costs have notable deviations from the accurate non-linear
 function. Note that the step size has been automatically determined to
 be **DAM_BQTY/(DAM_STEP+0.5)** = 80/1.5. However, the last step has no
@@ -467,18 +467,18 @@ PARAMETER DAM_STEP / REG.EM.LO 5, REG.EM.UP 3 /;
 
 PARAMETER DAM_VOC / REG.EM.LO 60, REG.EM.UP 100 /;
 
-The resulting damage cost function is illustrated in Figure 16. The cost
+The resulting damage cost function is illustrated in {numref}`example_linearized_function_1+5+1+3`. The cost
 function follows now very closely the accurate non-linear function. Note
 that the step sizes derived from the VOC specifications are 10 units for
 the lower steps, 20 for the middle step, and 30 units for the upper
 steps. However, the last step of course has no upper bound.
 
-![](media/image35.png){width="5.90625in" height="4.010416666666667in"}
-
-Figure
-
- B-16. Example of a linearized damage function with 1+5+1+3 steps\
+ ```{figure} assets/image35.png
+:name: example_linearized_function_1+5+1+3
+:align: center
+Example of a linearized damage function with 1+5+1+3 steps\
 (one zero cost step, 5 lower steps, one middle step, 3 upper steps).
+```
 
 ## Variables
 
