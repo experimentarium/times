@@ -63,24 +63,24 @@ is allowed to vary according to user-selected elasticities of
 substitution. Sectoral production functions most typically have the
 following general form:
 
-$X_{s} = A_{0}\left( B_{K} \cdot K_{s}^{\rho} + B_{L} \cdot L_{S}^{\rho} + B_{E} \cdot E_{S}^{\rho} \right)^{1/\rho}$
 (3-1)
+$$X_{s} = A_{0}\left( B_{K} \cdot K_{s}^{\rho} + B_{L} \cdot L_{S}^{\rho} + B_{E} \cdot E_{S}^{\rho} \right)^{1/\rho}$$ 
 
-where ***X~S\ ~***is the output of sector *S,*
+where 
 
-> ***K~S~**, **L~S~**, and **E~S~*** are the inputs of capital, labor
-> and energy needed to
+> $X_{S}$ is the output of sector $S$,
+> 
+> $K_{S}$, $L_{S}$, and $E_{S}$ are the inputs of capital, labor
+> and energy needed to produce one unit of output in sector $S$,
+> 
+> $\rho$ is the elasticity of substitution parameter,
 >
-> produce one unit of output in sector *S,*
->
-> ***ρ*** is the elasticity of substitution parameter,
->
-> ***A~0~*** and the ***B***'s are scaling coefficients.
+> $A_{0}$ and the $B$'s are scaling coefficients.
 
 The choice of *ρ* determines the ease or difficulty with which one
-production factor may be substituted for another: the smaller *ρ* is
+production factor may be substituted for another: the smaller $\rho$ is
 (but still greater than or equal to 1), the easier it is to substitute
-the factors to produce the same amount of output from sector *S*. Also
+the factors to produce the same amount of output from sector $S$. Also
 note that the degree of factor substitutability does not vary among the
 factors of production --- the ease with which capital can be substituted
 for labor is equal to the ease with which capital can be substituted for
@@ -394,18 +394,18 @@ commodity that is an energy service, the user *explicitly* defines the
 demand *function* by specifying its own price elasticity. In TIMES, each
 energy service demand is assumed to have a constant own price elasticity
 function of the form (see {numref}`eq_demand_curve`):
+(3-2)
+$$DM/DM_{0} = (P/P_{0})^{E}$$ 
 
-DM/DM~0~ = (P/P~0~)^E^ (3-2)
-
-Where {*DM~0~ ,P~0~*} is a reference pair of demand and price values for
-that energy service over the forecast horizon, and *E* is the (negative)
+Where $\{DM_0,P_0\}$ is a reference pair of demand and price values for
+that energy service over the forecast horizon, and $E$ is the (negative)
 own price elasticity of that energy service demand, as specified by the
 user (note that although not obvious from the notation, this price
-elasticity may vary over time). The pair {*DM~0~, P~0~*} is obtained by
-solving TIMES for a reference scenario. More precisely, *DM~0~*is the
+elasticity may vary over time). The pair $\{DM_0,P_0\}$ is obtained by
+solving TIMES for a reference scenario. More precisely, $DM_0$ is the
 demand projection estimated by the user in the reference scenario
 (usually based upon explicitly defined relationships to economic and
-demographic drivers), and P~0~ is the shadow price of that energy
+demographic drivers), and $P_0$ is the shadow price of that energy
 service demand in the dual solution of the reference case scenario. The
 precise manner in which the demand functions are discretized and
 incorporated in the TIMES objective function is explained in chapter 4.
@@ -420,11 +420,11 @@ curve, is defined as the area between line segment CC' and the inverse
 demand curve. This area is a consumer's analog to a producer's profit;
 more precisely it is the cumulative opportunity gain of all consumers
 who purchase the commodity at a price lower than the price they would
-have been willing to pay. Thus, for a given quantity Q, the total
+have been willing to pay. Thus, for a given quantity $Q$, the total
 surplus (suppliers' plus consumers') is simply the area between the two
-inverse curves situated at the left of Q. It should be clear from {numref}`eq_supply_demand_endogenous`
-that the total surplus is maximized when Q is exactly equal to the
-equilibrium quantity Q~E~. Therefore, we may state (in the single
+inverse curves situated at the left of $Q$. It should be clear from {numref}`eq_supply_demand_endogenous`
+that the total surplus is maximized when $Q$ is exactly equal to the
+equilibrium quantity $Q_E$~. Therefore, we may state (in the single
 commodity case) the following Equivalence Principle:
 
 > *"The supply-demand equilibrium is reached when the total surplus is
@@ -640,17 +640,17 @@ market.
 [^20]: As may be seen in {numref}`eq_supply_demand_endogenous`, the equilibrium is not necessarily
     unique. In the case shown, any point on the vertical segment
     containing the equilibrium is also an equilibrium, with the same
-    quantity Q~E~ but a different price. In other situations, the
+    quantity $Q_E$ but a different price. In other situations, the
     multiple equilibria may have a single price but multiple quantities.
 
-[^21]: This results from the fact that in TIMES each price ***P~i~***is
+[^21]: This results from the fact that in TIMES each price $P_i$ is
     the shadow price of a balance constraint (see section 5.4.4), and
     may thus be (loosely) expressed as the derivative of the objective
-    function ***F*** with respect to the right-hand-side of a balance
-    constraint, i.e. ![](assets/image4.png). When that price is further
-    differentiated with respect to another quantity ***Q~j~***, one gets
-    ![](assets/image5.png), which, under mild conditions is always equal
-    to ![](assets/image6.png), as desired.
+    function $F$ with respect to the right-hand-side of a balance
+    constraint, i.e. $\partial F/\partial Q_i$ ![](assets/image4.png). When that price is further
+    differentiated with respect to another quantity $Q_j$, one gets
+    $\partial^2 F/(\partial Q_i . /\partial Q_j)$![](assets/image5.png), which, under mild conditions is always equal
+    to $\partial^2 F/(\partial Q_j . /\partial Q_i)$ ![](assets/image6.png), as desired.
 
 [^22]: See e.g. Samuelson and Nordhaus (1977)
 
