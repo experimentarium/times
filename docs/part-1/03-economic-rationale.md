@@ -63,8 +63,7 @@ is allowed to vary according to user-selected elasticities of
 substitution. Sectoral production functions most typically have the
 following general form:
 
-(3-1)
-$$X_{s} = A_{0}\left( B_{K} \cdot K_{s}^{\rho} + B_{L} \cdot L_{S}^{\rho} + B_{E} \cdot E_{S}^{\rho} \right)^{1/\rho}$$ 
+$X_{s} = A_{0}\left( B_{K} \cdot K_{s}^{\rho} + B_{L} \cdot L_{S}^{\rho} + B_{E} \cdot E_{S}^{\rho} \right)^{1/\rho}$ (3-1)
 
 where 
 
@@ -379,12 +378,12 @@ is *defined by the user* via the specification of the own-price
 elasticity of that demand, and the curve is in this instance a smoothly
 decreasing curve as illustrated in {numref}`eq_demand_curve`[^19]. In both cases, the
 supply-demand equilibrium is at the intersection of the supply function
-and the demand function, and corresponds to an equilibrium quantity Q~E~
-and an equilibrium price P~E~[^20]. At price P~E~, suppliers are willing
-to supply the quantity Q~E~ and consumers are willing to buy exactly
-that same quantity Q~E.~ Of course, the TIMES equilibrium concerns a
+and the demand function, and corresponds to an equilibrium quantity $Q_E$
+and an equilibrium price $P_E$[^20]. At price $P_E$, suppliers are willing
+to supply the quantity $Q_E$ and consumers are willing to buy exactly
+that same quantity $Q_E$. Of course, the TIMES equilibrium concerns a
 large number of commodities simultaneously, and thus the equilibrium is
-a multi-dimensional analog of the above, where Q~E~ and P~E~ are now
+a multi-dimensional analog of the above, where $Q_E$ and $P_E$ are now
 vectors rather than scalars.
 
 As already mentioned, the demand curves of most TIMES commodities (i.e.
@@ -394,8 +393,8 @@ commodity that is an energy service, the user *explicitly* defines the
 demand *function* by specifying its own price elasticity. In TIMES, each
 energy service demand is assumed to have a constant own price elasticity
 function of the form (see {numref}`eq_demand_curve`):
-(3-2)
-$$DM/DM_{0} = (P/P_{0})^{E}$$ 
+
+$DM/DM_{0} = (P/P_{0})^{E}$ (3-2)
 
 Where $\{DM_0,P_0\}$ is a reference pair of demand and price values for
 that energy service over the forecast horizon, and $E$ is the (negative)
@@ -424,7 +423,7 @@ have been willing to pay. Thus, for a given quantity $Q$, the total
 surplus (suppliers' plus consumers') is simply the area between the two
 inverse curves situated at the left of $Q$. It should be clear from {numref}`eq_supply_demand_endogenous`
 that the total surplus is maximized when $Q$ is exactly equal to the
-equilibrium quantity $Q_E$~. Therefore, we may state (in the single
+equilibrium quantity $Q_E$. Therefore, we may state (in the single
 commodity case) the following Equivalence Principle:
 
 > *"The supply-demand equilibrium is reached when the total surplus is
@@ -647,10 +646,10 @@ market.
     the shadow price of a balance constraint (see section 5.4.4), and
     may thus be (loosely) expressed as the derivative of the objective
     function $F$ with respect to the right-hand-side of a balance
-    constraint, i.e. $\partial F/\partial Q_i$ ![](assets/image4.png). When that price is further
+    constraint, i.e. $\partial F/\partial Q_i$. When that price is further
     differentiated with respect to another quantity $Q_j$, one gets
-    $\partial^2 F/(\partial Q_i . /\partial Q_j)$![](assets/image5.png), which, under mild conditions is always equal
-    to $\partial^2 F/(\partial Q_j . /\partial Q_i)$ ![](assets/image6.png), as desired.
+    $\partial^2 F/(\partial Q_i . \partial Q_j)$, which, under mild conditions is always equal
+    to $\partial^2 F/(\partial Q_j . \partial Q_i)$, as desired.
 
 [^22]: See e.g. Samuelson and Nordhaus (1977)
 
