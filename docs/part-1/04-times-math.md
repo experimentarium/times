@@ -108,7 +108,7 @@ computed, yielding the following maximization program:
 ![](assets/image11.png)
 
 We are almost there, but not quite, since the
-$\[DM_i(t)]^{-1/E_i}$ are non linear expressions and thus not
+$[DM_i(t)]^{-1/E_i}$ are non linear expressions and thus not
 directly usable in an L.P.
 
 ### Linearization of the Mathematical Program
@@ -123,8 +123,8 @@ as illustrated in {numref}`approx_non_linear_obj_function`. By so doing, the res
 problem becomes linear again. The linearization proceeds as follows.
 
 a)  For each demand category $i$ and each time period $t$, the
-    user selects a range $R(t)_i$, i.e. the distance between some
-    values $DM_i(t)_{min}$ and $DM_i(t)_{max}$. ***The user
+    user selects a range $R_i(t)$, i.e. the distance between some
+    values $DM_i(t)_{min}$ and $DM_i(t)_{max}$. The user
     estimates that the demand value $DM_i(t)$ will always remain
     within such a range, even after adjustment for price effects (for
     instance the range could be equal to the reference demand
@@ -132,7 +132,7 @@ a)  For each demand category $i$ and each time period $t$, the
 
 b)  Select a grid that divides each range into a number $n$ of equal
     width intervals. Let $\beta_i(t)$ be the resulting common width of the
-    grid*, $\beta_i(t) = R_i(t)/n$. See {numref}`approx_non_linear_obj_function` for a sketch of
+    grid, $\beta_i(t) = R_i(t)/n$. See {numref}`approx_non_linear_obj_function` for a sketch of
     the non-linear expression and of its step-wise constant
     approximation. The number of steps, $n$, should be chosen so that
     the step-wise constant approximation remains close to the exact
@@ -146,8 +146,8 @@ c)  For each demand segment $DM_i(t)$ define $n$ step-variables
     each non-linear term in the objective function by a weighted sum of
     the $n$-step-variables, as follows:
 
-> ![](assets/image12.png)
->
+![](assets/image12.png)
+
 > and
 
 ![](assets/image13.png)
