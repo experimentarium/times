@@ -49,15 +49,14 @@ theorem in a case where only one commodity is considered.
 From chapter 3, we have the following demand function for each demand
 category ***i***
 
-$$
-{DM_{i}/D{M_{i}}^{0} = (p_{i}/p_{i}^{0})^{E_{i}}(4 - 1)}$$
+$${DM_{i}/D{M_{i}}^{0} = (p_{i}/p_{i}^{0})^{E_{i}}(4 - 1)}$$
 
 Or its inverse:
 
 $$p_{i} = p_{i}^{0} \cdot (DM_{i}/D{M_{i}}^{0})^{1/E_{i}}$$
 
 where the superscript '0' indicates the reference case, and the
-elasticity ***E~i\ ~***is negative. Note also that the elasticity may
+elasticity $E_i$ is negative. Note also that the elasticity may
 have two different values, one for upward changes in demand, the other
 for downward changes.
 
@@ -73,16 +72,16 @@ $s.t\ \sum_{k}^{}{{VAR_{ACT}}_{k,j}(t) \geq {DM}_{i}(t)\ \ \ \ \ i = 1,2,\ldots.
 
 $and\ \ \ B\  \bullet X\  \geq b$ (4 -- 4)
 
-where ***X*** is the vector of all TIMES variables and ***I*** is the
+where $X$ is the vector of all TIMES variables and $I$ is the
 number of demand categories. In words:
 
 -   (4-2) expresses the total discounted cost to be minimized. See
-    chapter 5 for details on the list of TIMES variables ***X***, and on
-    the cost vector ***c.***
+    chapter 5 for details on the list of TIMES variables $X$, and on
+    the cost vector $c$.
 
 -   (4-3) is the set of demand satisfaction constraints (where the
-    ***VAR_ACT*** variables are the activity levels of end-use
-    technologies, and the ***DM*** right-hand-sides are the exogenous
+    $VAR_{ACT}$ variables are the activity levels of end-use
+    technologies, and the $DM$ right-hand-sides are the exogenous
     demands to satisfy).
 
 -   (4-4) is the set of all other TIMES constraints, which need not be
@@ -91,8 +90,8 @@ number of demand categories. In words:
 When demand are elastic, TIMES must compute a supply/demand equilibrium
 of the optimization problem (4-2) through (4-4), where the demand side
 adjusts to changes in prices, and the prevailing demand prices are the
-marginal costs of the demand categories (i.e. *p~i~* is the marginal
-cost of producing demand *DM~i~*). *A priori* this seems to be a
+marginal costs of the demand categories (i.e. $p_i$ is the marginal
+cost of producing demand $DM_i$). *A priori* this seems to be a
 difficult task, because the demand prices are computed as part of the
 dual solution to that optimization problem. The Equivalence Theorem,
 however, states that the equilibrium is reached as the solution of the
@@ -101,51 +100,51 @@ net total surplus:
 
 ![](assets/image10.png)
 
-where ***X*** is the vector of all TIMES variables, (4-5) expresses the
-total net surplus, and ***DM(t )***is now a vector of *variables* in
+where $X$ is the vector of all TIMES variables, (4-5) expresses the
+total net surplus, and $DM(t $ is now a vector of *variables* in
 (4-6), rather than fixed demands. The integral in (4-5) is easily
 computed, yielding the following maximization program:
 
 ![](assets/image11.png)
 
 We are almost there, but not quite, since the
-***\[DM~i~(t)\]^-1/Ei\ ^***are non linear expressions and thus not
+$\[DM_i(t)]^{-1/E_i}$ are non linear expressions and thus not
 directly usable in an L.P.
 
 ### Linearization of the Mathematical Program
 
 The Mathematical Program embodied in (4-5)', (4-6)' and (4-7)' has a
 non-linear objective function. Because the latter is separable (i.e.
-does not include cross terms) and concave in the *DM~i\ ~*variables,
+does not include cross terms) and concave in the $DM_i$ variables,
 each of its terms is easily linearized by piece-wise linear functions
 which approximate the integrals in (4-5). This is the same as saying
 that the inverse demand curves are approximated by staircase functions,
 as illustrated in {numref}`approx_non_linear_obj_function`. By so doing, the resulting optimization
 problem becomes linear again. The linearization proceeds as follows.
 
-a)  For each demand category ***i***, and each time period ***t***, the
-    user selects a range ***R(t)~i~***, i.e. the distance between some
-    values ***DM~i~(t)*~min~** and ***DM~i~(t)*~max~*. ***The user
-    estimates that the demand value ***DM~i~(t)*** will always remain
+a)  For each demand category $i$ and each time period $t$, the
+    user selects a range $R(t)_i$, i.e. the distance between some
+    values $DM_i(t)_{min}$ and $DM_i(t)_{max}$. ***The user
+    estimates that the demand value $DM_i(t)$ will always remain
     within such a range, even after adjustment for price effects (for
     instance the range could be equal to the reference demand
-    ***DM^o^~i~(t)*** plus or minus 50%).
+    $DM^0_i(t)$ plus or minus 50%).
 
-b)  Select a grid that divides each range into a number *n* of equal
-    width intervals. Let ß~i~(t) be the resulting common width of the
-    grid*, **ß~i~(t)= R~i~(t)/n*****.** See {numref}`approx_non_linear_obj_function` for a sketch of
+b)  Select a grid that divides each range into a number $n$ of equal
+    width intervals. Let $\beta_i(t)$ be the resulting common width of the
+    grid*, $\beta_i(t) = R_i(t)/n$. See {numref}`approx_non_linear_obj_function` for a sketch of
     the non-linear expression and of its step-wise constant
-    approximation. The number of steps, *n*, should be chosen so that
+    approximation. The number of steps, $n$, should be chosen so that
     the step-wise constant approximation remains close to the exact
     value of the function.
 
-c)  For each demand segment ***DM~i~(t)*** define *n* step-variables
-    (one per grid interval), denoted *s~1,i~(t), s~2,i~ (t), ...,
-    s~n,i~(t)*. Each *s* variable is bounded below by 0 and above by
-    *ß~i~(t)*. One may now replace in equations (4-5)' and (4-6)' each
-    ***DM~i~(t)*** variable by the sum of the *n*-step variables, and
+c)  For each demand segment $DM_i(t)$ define $n$ step-variables
+    (one per grid interval), denoted $s_{1,i}(t)$, $s_{2,i}(t)$, ...,$s_{n,i}(t)$. 
+    Each $s$ variable is bounded below by 0 and above by
+    $\beta_i(t)$. One may now replace in equations (4-5)' and (4-6)' each
+    $DM_i(t)$ variable by the sum of the $n$-step variables, and
     each non-linear term in the objective function by a weighted sum of
-    the *n* step-variables, as follows:
+    the $n$-step-variables, as follows:
 
 > ![](assets/image12.png)
 >
@@ -153,13 +152,13 @@ c)  For each demand segment ***DM~i~(t)*** define *n* step-variables
 
 ![](assets/image13.png)
 
-The ***A~j,i,t~*** term is equal to the value of the inverse demand
-function of the ***j^th\ ^***demand at the mid-point of the ***i^th^***
+The $A_{j,i,t}$ term is equal to the value of the inverse demand
+function of the $j^{th}$ demand at the mid-point of the $i^{th}$
 interval. The resulting Mathematical Program is now fully linearized.
 
-Since the ***A~j,i,t~*** terms have decreasing values (due to the
+Since the $A_{j,i,t}$ terms have decreasing values (due to the
 concavity of the curve), the optimization will always make sure that the
-***s~j,I\ ~***variables are increased consecutively and in the correct
+$s_{j,I}$ variables are increased consecutively and in the correct
 order, thus respecting the step-wise constant approximation described
 above.
 
@@ -177,12 +176,12 @@ Step-wise constant approximation of the non-linear terms in the objective functi
 ### Calibration of the demand functions
 
 Besides selecting elasticities for the various demand categories, the
-user must evaluate each constant *K~i~(t)*. To do so, we have seen that
+user must evaluate each constant $K_i(t)$. To do so, we have seen that
 one needs to know one point on each demand function in each time
-period,*{ p^0^~i~(t),DM^0^~i~(t) }*. To determine such a point, we
+period,$\{p^0_i(t),DM^0_i(t)\}$. To determine such a point, we
 perform a single preliminary run of the inelastic TIMES model (with
-exogenous *DM^0^~i~(t)*), and use the resulting shadow prices
-*p^0^~i~(t)* for all demand constraints, in all time periods for each
+exogenous $DM^0_i(t)$), and use the resulting shadow prices
+$p^0_i(t)$ for all demand constraints, in all time periods for each
 region.
 
 ### Computational considerations
