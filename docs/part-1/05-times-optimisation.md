@@ -190,14 +190,14 @@ considered endogenous.
 $VAR\_DEM(r,t,d)$: demand for end-use energy service $d$ in
 region $r$ and period $t$. It is a true variable, even though in
 the reference scenario, this variable is fixed by the user. In alternate
-scenarios however, $VAR_DEM(r,t,d)$ may differ from the reference
+scenarios however, $VAR\_DEM(r,t,d)$ may differ from the reference
 case demand due to the responsiveness of demands to their own prices
 (based on each service demand's own-price elasticity). Note that in this
 simplified formulation, we do not show the variables used to decompose
 $DEM(r,t,d)$ into a sum of step-wise quantities, as was presented in
 chapter 4.
 
-$Other variables$: Several options that have been added to TIMES
+*Other variables:* Several options that have been added to TIMES
 over the successive versions require the definition of additional
 variables. They are alluded to in the sections describing the new
 options, and described more precisely in Part II, and in additional
@@ -323,7 +323,7 @@ year of the horizon. Such tracking is made complex by several factors:
 -   Second, TIMES also recognizes that for some other processes (e.g.
     new cars), the investment in new capacity occurs *progressivel*y
     over the years constituting the time period (whose length is denoted
-    by D(t)), rather than in one lumped amount.
+    by $D(t)$), rather than in one lumped amount.
 
 -   Third, there is the possibility that a certain investment decision
     made at period $t$ will have to be repeated more than once
@@ -548,7 +548,7 @@ section 6.3.18 of Part II.
 
 > $VAR\_CAPT(r,t,p) = \sum_{t' \in \{t-t'< LIFE(r,t',p)\}} VAR\_NCAP(r,t',p) + RESID(r,t,p)$ (5-1)
 >
-> where $RESID(r,t,p)$ is the (exogenously provided) capacity of
+> where ***RESID(r,t,p)*** is the (exogenously provided) capacity of
 > technology $p$ due to investments that were made prior to the initial
 > model period and still exist in region $r$ at time $t$.
 
@@ -577,7 +577,7 @@ Conceptually, this leads to the following relationship:
 
 > $VAR\_ACT(r,v,t,p,s)= \sum_{c \in pcg} VAR\_FLO(r,v,t,p,c,s) / ACTFLO(r,v p,c)$ (5-2)
 > 
-> where $ACTFLO(r,v,p,c)$ is a conversion factor (often equal to 1) from
+> where ***ACTFLO(r,v,p,c)*** is a conversion factor (often equal to 1) from
 > the activity of the process to the flow of a particular commodity.
 
 ### Use of capacity
@@ -597,26 +597,26 @@ available capacity, as specified by a user defined availability factor.
 #### **EQ_CAPACT (r,v,t,p,s)** -- Use of capacity
 > $VAR\_ACT(r,v,t,p,s) ≤/= AF(r,v,t,p,s).PRC\_CAPACT(r,p)).FR(r,s).VAR\_CAP(r,v,t,p)$ (5-3)
 > 
-> Here $PRC\_CAPACT(r,p)$ is the conversion factor between units of
+> Here ***PRC_CAPACT(r,p)*** is the conversion factor between units of
 > capacity and activity (often equal to 1, except for power plants). The
 > $FR(r,s)$ parameter is equal to the (fractional) duration of time-slice
-> s. The availability factor $AF$ also serves to indicate the nature of
+> s. The availability factor ***AF*** also serves to indicate the nature of
 > the constraint as an inequality or an equality. In the latter case the
 > capacity is forced to be fully utilized. Note that the
-> $CAP(r,v,t,p)$ "variable" is not explicitly defined in TIMES.
+> ***CAP(r,v,t,p)*** "variable" is not explicitly defined in TIMES.
 > Instead it is replaced in (5-3) by a fraction (less than or equal to 1)
-> of the investment variable $VAR\_NCAP(r,v,p)$[^31] sum of past
+> of the investment variable ***VAR_NCAP(r,v,p)***[^31] sum of past
 > investments that are still operating, as in equation (5-1).
 
 ***<ins>Example</ins>***: a coal fired power plant's activity in any
-time-slice is bounded above by 80% of its capacity, i.e. $VAR\_ACT
-(r,v,t,p,s) ≤ 0.8*31.536*CAP(r,v,t,p)$, where $PRC\_CAPACT(r,p) =
-31.536$ is the conversion factor between the units of the capacity
+time-slice is bounded above by 80% of its capacity, i.e. ***VAR_ACT
+(r,v,t,p,s)*** ≤ 0.8*31.536****CAP(r,v,t,p)***, where ***PRC_CAPACT(r,p)*** =
+31.536 is the conversion factor between the units of the capacity
 variable (GW) and the activity-based capacity unit (PJ/a) The
 activity-based capacity unit is obtained from the activity unit(PJ) by
 division by a denominator of one year.
 
-The $s$ index of the $AF$ coefficient in equation (5-3) indicates that
+The $s$ index of the ***AF*** coefficient in equation (5-3) indicates that
 the user may specify time-sliced dependency on the availability of the
 installed capacity of some technologies, if desirable. This is
 especially needed when the operation of the equipment depends on the
@@ -626,10 +626,10 @@ other cases, the user may provide an $AF$ factor that does not depend on
 $s$, which is then applied to the entire year. The operation profile of
 a technology within a year, if the technology has a sub-annual process
 resolution, is determined by the optimization routine. The number of
-$EQ\_CAPACT$ constraints is at least equal to the number of
+***EQ_CAPACT*** constraints is at least equal to the number of
 time-slices in which the equipment operates. For technologies with only
 an annual characterization the number of constraints is reduced to one
-per period (where $s="ANNUAL"$).
+per period (where $s$="ANNUAL").
 
 ### Commodity balance equation
 
@@ -649,8 +649,8 @@ The balance constraint is very complex, due to the many terms involving
 production or consumption of a commodity. We present a much simplified
 version below, to simply indicate the basic meaning of this equation.
 
-For each commodity ***c,*** time period ***t (***vintage ***v)***,
-region ***r***, and time-slice ***s*** (if necessary or "ANNUAL" if
+For each commodity $c$, time period $t$ (vintage $v$),
+region $r$, and time-slice $s$ (if necessary or "ANNUAL" if
 not), this constraint requires that the disposition of each commodity
 balances its procurement. The disposition includes consumption in the
 region plus exports; the procurement includes production in the region
@@ -658,12 +658,12 @@ plus imports.
 
 #### EQ_COMBAL(r,t,c,s) -- Commodity balance
 
-> $\sum_{p,c \in TOP(r,p,c,"out")} VAR\_FLO(r,v,t,p,c,s) + VAR\_SOUT(r,v,t,p,c,s).STG\_EFF(r,v,p) + 
-> \sum_{p,c \in RPC_IRE(r,p,c,"imp")} VAR\_IRE(r,t,p,c,s,"imp") + 
+> $\sum_{p,c \in TOP(r,p,c,out)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SOUT(r,v,t,p,c,s).STG\_EFF(r,v,p) + 
+> \sum_{p,c \in RPC_IRE(r,p,c,imp)} VAR\_IRE(r,t,p,c,s,imp) + 
 > \sum_{p} Release(r,t,p,c).VAR\_NCAP(r,t,p,c)
 > ≥ or = 
-> \sum_{p,c \in TOP(r,p,c,"in")} VAR\_FLO(r,v,t,p,c,s) + VAR\_SIN(r,v,t,p,c,s) + 
-> \sum_{p,c \in RPC_IRE(r,p,c,"exp")} VAR\_IRE(r,t,p,c,s,"exp") + 
+> \sum_{p,c \in TOP(r,p,c,in)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SIN(r,v,t,p,c,s) + 
+> \sum_{p,c \in RPC_IRE(r,p,c,exp)} VAR\_IRE(r,t,p,c,s,exp) + 
 > \sum_{p} Sink(r,t,p,c).VAR\_NCAP(r,t,p,c) + FR(c,s)*VAR\_DEM(c,t)$
 > (5-4)
 > 
@@ -672,26 +672,26 @@ plus imports.
 > The constraint is ≥ for energy forms and = for materials and emissions
 > (unless these defaults are overridden by the user, see Part II).
 >
-> $TOP(r,p,c,"in/out")$ identifies that there is an input/output flow of
+> ***TOP(r,p,c,in/out)*** identifies that there is an input/output flow of
 > commodity $c$ into/from process $p$ in region $r$;
 >
-> $RPC\_IRE(r,p,c,"imp/exp")$ identifies that there is an import/export
+> ***RPC_IRE(r,p,c,imp/exp)*** identifies that there is an import/export
 > flow into/from region $r$ of commodity $c$ via process $p$;
 >
-> $STG\_EFF(r,v,p)$ is the efficiency of storage process $p$;
+> ***STG_EFF(r,v,p)*** is the efficiency of storage process $p$;
 >
-> $COM\_IE(r,t,c)$ is the infrastructure efficiency of commodity $c$;
+> ***COM_IE(r,t,c)*** is the infrastructure efficiency of commodity $c$;
 >
-> $Release(r,t,p,c)$ is the amount of commodity $c$ recuperated per
+> ***Release(r,t,p,c)*** is the amount of commodity $c$ recuperated per
 > unit of capacity of process $p$ dismantled (useful to represent
 > some materials or fuels that are recuperated while dismantling a
 > facility);
 >
-> $Sink(r,t,p,c)$ is the quantity of commodity $c$ required per unit
+> ***Sink(r,t,p,c)*** is the quantity of commodity $c$ required per unit
 > of new capacity of process $p$ (useful to represent some materials
 > or fuels consumed for the construction of a facility);
 >
-> $FR(s)$ is the fraction of the year covered by time-slice $s$
+> ***FR(s)*** is the fraction of the year covered by time-slice $s$
 > (equal to 1 for non- time-sliced commodities).
 
 ***<ins>Example</ins>***: 
@@ -724,7 +724,7 @@ embodies this:
 
 > $\sum_{c \in cg2} VAR\_FLO(r,v,t,p,c,s) = FLO\_FUNC(r,v,cg1,cg2,s)*\sum_{c \in cg1} COEFF(r,v,p,cg1,c,cg2,s)*VAR_FLO(r,v,t,p,c,s)$ (5-5)
 >
-> where $COEFF(r,v,p,cg1,c,cg2,s)$ takes into account the harmonization
+> where ***COEFF(r,v,p,cg1,c,cg2,s)*** takes into account the harmonization
 > of different time-slice resolution of the flow variables, which have
 > been omitted here for simplicity, as well as commodity-dependent
 > transformation efficiencies.
@@ -738,9 +738,9 @@ constraint is intended to limit the flexibility, by constraining the
 share of each flow within its own group. For instance, a refinery output
 might consist of three refined products: $c1$=light, $c2$=medium, and
 $c3$=heavy distillate. If losses are 9% of the input, then the user must
-specify $FLO\_FUNC$ = 0.91 to define the overall efficiency. The user may
+specify ***FLO_FUNC*** = 0.91 to define the overall efficiency. The user may
 then want to limit the flexibility of the slate of outputs by means of
-three $FLO\_SHAR(ci)$ coefficients, say 0.4, 0.5, 0.6, resulting in three
+three ***FLO_SHAR(ci)*** coefficients, say 0.4, 0.5, 0.6, resulting in three
 flow share constraints as follows (ignoring some indices for clarity):
 
 > *VAR_FLO(c1) ≤ 0.4\*\[VAR_FLO(c1) + VAR_FLO(c2) + VAR_FLO(c3)\],* so
@@ -754,7 +754,7 @@ flow share constraints as follows (ignoring some indices for clarity):
 
 The general form of this constraint is:
 
-*EQ_INSHR(c,cg,p,r,t,s)* and *EQ_OUTSHR(c,cg,p,r,t,s)*
+***EQ_INSHR(c,cg,p,r,t,s)*** and ***EQ_OUTSHR(c,cg,p,r,t,s)***
 
 > $VAR\_FLO(c) ≤,≥,= FLO\_SHAR(c)*\sum_{c' \in cg} VAR\_FLO(c')$ (5-6)
 > 
@@ -765,8 +765,8 @@ allowing the use of the ***VAR_ACT*** variable instead of the sum of
 ***VAR_FLO*** variables in equation (5-6) or in similar ones. This
 simplification is triggered when the user defines the new attribute
 ACT_FLO, which is a coefficient linking a flow to the activity of a
-process. Furthermore, commodity ***c*** appearing in left-hand-side of
-the constraint may even be a flow that is not part of the ***cg***
+process. Furthermore, commodity $c$ appearing in left-hand-side of
+the constraint may even be a flow that is not part of the $cg$
 group.
 
 <ins>Warning:</ins> It is quite possible (and regrettable) to over
@@ -782,7 +782,7 @@ This constraint imposes that the total capacity of all processes
 producing a commodity at each time period and in each region must exceed
 the average demand in the time-slice where peaking occurs by a certain
 percentage. This percentage is the Peak Reserve Factor,
-*COM_PKRSV(r,t,c,s)*, and is chosen to insure against several
+***COM_PKRSV(r,t,c,s)***, and is chosen to insure against several
 contingencies, such as: possible commodity shortfall due to uncertainty
 regarding its supply (e.g. water availability in a reservoir); unplanned
 equipment down time; and random peak demand that exceeds the average
@@ -796,9 +796,9 @@ warm country the peaking time-slice may be Summer-Day for electricity
 (due to heavy air conditioning demand). The user keeps full control
 regarding which time-slices have a peaking equation.
 
-For each time period ***t*** and for region ***r***, there must be
+For each time period $t$ and for region $r$, there must be
 enough installed capacity to exceed the required capacity in the season
-with largest demand for commodity ***c*** by a safety factor *E* called
+with largest demand for commodity $c$ by a safety factor $E$ called
 the *peak reserve factor*.
 
 #### **EQ_PEAK(r,t,c,s)** -- Commodity peak requirement
@@ -810,12 +810,12 @@ the *peak reserve factor*.
 >
 > where:
 >
-> $COM\_PKRSV(r,t,c,s)$ is the region-specific reserve coefficient for
+> ***COM_PKRSV(r,t,c,s)*** is the region-specific reserve coefficient for
 > commodity $c$ in time-slice $s$, which allows for unexpected down time
 > of equipment, for demand at peak, and for uncertain resource
 > availability, and
 >
-> $NCAP\_PKCNT(r,v,p,c,s)$ specifies the fraction of technology $p$'s
+> ***NCAP_PKCNT(r,v,p,c,s)*** specifies the fraction of technology $p$'s
 > capacity in a region $r$ for a period $t$ and commodity $c$
 > (electricity or heat only) that is allowed to contribute to the peak
 > load in slice $s$; many types of supply processes are predictably
@@ -834,10 +834,10 @@ the *peak reserve factor*.
 > are necessary to match different time-slice levels.
 >
 > *Remark*: to establish the peak capacity, two cases must be
-> distinguished in constraint *EQ_PEAK*.
+> distinguished in constraint ***EQ_PEAK***.
 >
 >   -- For production processes where the peaking commodity is the only
-> commodity in the primary commodity group (denoted c=pcg), the capacity
+> commodity in the primary commodity group (denoted $c=pcg$), the capacity
 > of the process may be assumed to contribute to the peak.\
 >   -- For processes where the peaking commodity is not the only member
 > of the pcg, there are several commodities included in the pcg.
@@ -924,15 +924,14 @@ technological change, the risk being to restrict it too much and thus
 Typically, a growth constraint is of the following generic form
 (ignoring several indices for clarity:
 
-$\mathbf{VAR}\_\mathbf{CAP}(\mathbf{t} + \mathbf{1}) \leq \left( \mathbf{1} + \mathbf{GROWTH}^{\mathbf{M}\left( \mathbf{t} + \mathbf{1} \right) - \mathbf{M}\left( \mathbf{t} \right)} \right) \times \mathbf{VAR}\_\mathbf{CAP}(\mathbf{t}) + \mathbf{K}$
-(5-8)
+$VAR\_CAP(t+1) \leq (1+ GROWTH^{M(t+1)- M(t)}).VAR\_CAP(t) + K$ (5-8)
 
-The GROWTH coefficient is defined as a new attribute of the technology,
+The $GROWTH$ coefficient is defined as a new attribute of the technology,
 and represents the maximum annual growth allowed for the capacity. The
-quantity M(t+1)-M(t) is the number of years between the milestones of
-periods t and t+1. The constant K is useful whenever the technology has
+quantity $M(t+1)-M(t)$ is the number of years between the milestones of
+periods $t$ and $t+1$. The constant $K$ is useful whenever the technology has
 no capacity initially, in order to allow capacity to build over time (if
-K were absent and initial capacity is zero, the technology would never
+$K$ were absent and initial capacity is zero, the technology would never
 acquire any capacity)
 
 Note that the sign of the constraint may also be of the \"larger than or
