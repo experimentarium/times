@@ -55,14 +55,11 @@ the deep ocean. CO2 flows in both directions between adjacent
 reservoirs. The 3-reservoir model is represented by the following 3
 equations when the step of the recursion is equal to one year:
 
-$M_{atm}(y) = E(y) + (1 -- \phi_{atm-up})M_{atm}(y-1) + \phi_{up-atm}M_{up}(y-1)$
-(7-1)
+$M_{atm}(y) = E(y) + (1 - \phi_{atm-up})M_{atm}(y-1) + \phi_{up-atm}M_{up}(y-1)$ (7-1)
 
-$M_{up}(y) = (1 -- \phi_{up-atm} -- \phi_{up-lo})M_{up}(y-1) +\phi_{atm-up}M_{atm}(y-1) + \phi_{lo-up}M_{lo}(y-1)$
-(7-2)
+$M_{up}(y) = (1 - \phi_{up-atm} - \phi_{up-lo})M_{up}(y-1) +\phi_{atm-up}M_{atm}(y-1) + \phi_{lo-up}M_{lo}(y-1)$ (7-2)
 
-$M_{lo} = (1 -- \phi_{lo-ip})M_{lo}(y-1) + \phi_{up-lo}M_{up}(y-1)
-(7-3)
+$M_{lo} = (1 - \phi_{lo-ip})M_{lo}(y-1) + \phi_{up-lo}M_{up}(y-1)$ (7-3)
 
 with
 
@@ -78,11 +75,11 @@ equations assuming a constant annual decay rate of the anthropogenic
 concentrations $\Phi_{CH4}$ (whereas the natural concentration is
 assumed in equilibrium):
 
-$$CH4_{atm}(y) = (1 - \Phi_{CH4}) \cdot CH4_{atm}(y - 1) + EA_{CH4}(y)(7 - 4)$$
+$CH4_{atm}(y) = (1 - \Phi_{CH4}) \cdot CH4_{atm}(y - 1) + EA_{CH4}(y)$ (7-4)
 
-$$CH4_{up}(y) = CH4_{up}(y - 1)(7 - 5)$$
+$CH4_{up}(y) = CH4_{up}(y - 1)$ (7-5)
 
-$${CH4}_{tot}(y) = {CH4}_{atm}(y) + {CH4}_{up}(y)$$ (7 - 6)
+${CH4}_{tot}(y) = {CH4}_{atm}(y) + {CH4}_{up}(y)$ (7-6)
 
 where
 
@@ -99,7 +96,7 @@ where
 -   $CH4_{tot}$ is then reported and used in the forcing equations. All
     quantities are indexed by year.
 
--   $1 -- \phi_{CH4}$ is the one-year retention rate of $CH4$ in the
+-   $1 -- \Phi_{CH4}$ is the one-year retention rate of $CH4$ in the
     atmosphere.
 
 -   $d_{CH4} =2.84$ (the density of $CH4$, expressed in $Mt/ppbv$) is
@@ -140,19 +137,16 @@ b\) The radiative forcing due to atmospheric CH4 is given by the
 following expression (IPCC 2007), where the subscript tot has been
 omitted
 
-$\Delta F_{CH4}(y) = 0.036.(\sqrt{CH4_y}-\sqrt{CH4_0}) -- (f(CH4_y,N2O_0) - f(CH4_0,N2O_0))$
-(7-8)
+$\Delta F_{CH4}(y) = 0.036.(\sqrt{CH4_y}-\sqrt{CH4_0}) -- (f(CH4_y,N2O_0) - f(CH4_0,N2O_0))$ (7-8)
 
 c\) The radiative forcing due to atmospheric N2O is given by the
 following expression (IPCC, 2007)
 
-$\Delta F_{N2O}(y) = 0.12.(\sqrt{N2O_y}-\sqrt{N2O_0}) -- (f(CH4_0,N2O_y) - f(CH4_0,N2O_0))$
-(7-9)
+$\Delta F_{N2O}(y) = 0.12.(\sqrt{N2O_y}-\sqrt{N2O_0}) -- (f(CH4_0,N2O_y) - f(CH4_0,N2O_0))$ (7-9)
 
 where:
 
-$f(x,y) =0.47.ln(1 + 2.01.10^{-5}.(xy)^{0.75} + 5.31.10^{-15}.x(xy)^{1.52}
-(7-10)
+$f(x,y) =0.47.ln(1 + 2.01.10^{-5}.(xy)^{0.75} + 5.31.10^{-15}.x(xy)^{1.52}$ (7-10)
 
 Note that the $f(x,y)$ function, which quantifies the cross-effects on
 forcing of the presence in the atmosphere of both gases (CH4 and N2O),
@@ -207,7 +201,7 @@ forcings):
 First, an interval of interest for the concentration M must be selected
 by the user. The interval should be wide enough to accommodate the
 anticipated values of the concentrations, but not so wide as to make the
-approximation inaccurate. We denote the interval (M~1~,M~2~).
+approximation inaccurate. We denote the interval ($M_1$,$M_2$).
 
 Next, the linear forcing equation is taken as the half sum of two linear
 expressions, which respectively underestimate and overestimate the exact
@@ -215,17 +209,23 @@ forcing value. The underestimate consists of the chord of the
 logarithmic curve, whereas the overestimate consists of the tangent to
 the logarithmic curve that is parallel to the chord. These two estimates
 are illustrated in {numref}`linearization_CO2_radiation_function`, 
-where the interval (M~1~,M~2~) is from 375 ppm to 550 ppm.
+where the interval ($M_1$,$M_2$) is from 375 ppm to 550 ppm.
 
 By denoting the pre-industrial concentration level as *M~0~*, the
 general formulas for the two estimates are as follows:
 
-  *Overestimate:*     $$F_{1}(M) = \frac{\gamma}{\ln 2} \cdot \left\lbrack \ln(\frac{\gamma}{slope \cdot \ln(2) \cdot M_{0}}) - 1 \right\rbrack + slope \cdot M$$   
+  *Overestimate:*     
+  
+  $$F_{1}(M) = \frac{\gamma}{\ln 2} \cdot \left\lbrack \ln(\frac{\gamma}{slope \cdot \ln(2) \cdot M_{0}}) - 1 \right\rbrack + slope \cdot M$$   
 
-  *Underestimate:*    $$F_{2}(M) = \gamma \cdot \ln(M_{1}/M_{0})/\ln 2 + slope \cdot (M - M_{1})$$                                                                                                                                                         
+  *Underestimate:*    
+  
+  $$F_{2}(M) = \gamma \cdot \ln(M_{1}/M_{0})/\ln 2 + slope \cdot (M - M_{1})$$                                                                                                                           
   where: $slope = \gamma \cdot \frac{\ln(M_{2}/M_{1})/\ln 2}{(M_{2} - M_{1})}$                                                                      
 
-  *Final approximation*: $F_{3}(M) = \frac{F_{1}(M) + F_{2}(M)}{2}$
+  *Final approximation*: 
+  
+  $$F_{3}(M) = \frac{F_{1}(M) + F_{2}(M)}{2}$$
 
 ## Temperature increase
 
@@ -236,11 +236,9 @@ the atmospheric layer, which then quickly warms the upper ocean. In this
 model, the atmosphere and upper ocean form a single layer, which slowly
 warms the second layer consisting of the deep ocean.
 
-$ΔT_{up}(y) = ΔT_{up}(y-1) +σ_1(F(y) -- λΔT_{up}(y-1) -- σ~2(ΔT_{up}(y-1) -- ΔT_{low}(y-1)))$
-(7-11)
+$ΔT_{up}(y) = ΔT_{up}(y-1) +σ_1(F(y) -- λΔT_{up}(y-1) -- σ~2(ΔT_{up}(y-1) -- ΔT_{low}(y-1)))$ (7-11)
 
-$ΔT_{low}(y) = ΔT_{low}(y-1) + σ_3(ΔT_{up}(y-1) -- ΔT_{low}(y-1))$
-(7-12)
+$ΔT_{low}(y) = ΔT_{low}(y-1) + σ_3(ΔT_{up}(y-1) -- ΔT_{low}(y-1))$ (7-12)
 
 with
 
