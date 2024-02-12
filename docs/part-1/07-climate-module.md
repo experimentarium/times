@@ -96,7 +96,7 @@ where
 -   $CH4_{tot}$ is then reported and used in the forcing equations. All
     quantities are indexed by year.
 
--   $1 -- \Phi_{CH4}$ is the one-year retention rate of $CH4$ in the
+-   $1 - \Phi_{CH4}$ is the one-year retention rate of $CH4$ in the
     atmosphere.
 
 -   $d_{CH4} =2.84$ (the density of $CH4$, expressed in $Mt/ppbv$) is
@@ -236,9 +236,9 @@ the atmospheric layer, which then quickly warms the upper ocean. In this
 model, the atmosphere and upper ocean form a single layer, which slowly
 warms the second layer consisting of the deep ocean.
 
-$ΔT_{up}(y) = ΔT_{up}(y-1) +σ_1(F(y) -- λΔT_{up}(y-1) -- σ~2(ΔT_{up}(y-1) -- ΔT_{low}(y-1)))$ (7-11)
+$ΔT_{up}(y) = ΔT_{up}(y-1) +σ_1(F(y) - λΔT_{up}(y-1) - σ~2(ΔT_{up}(y-1) - ΔT_{low}(y-1)))$ (7-11)
 
-$ΔT_{low}(y) = ΔT_{low}(y-1) + σ_3(ΔT_{up}(y-1) -- ΔT_{low}(y-1))$ (7-12)
+$ΔT_{low}(y) = ΔT_{low}(y-1) + σ_3(ΔT_{up}(y-1) - ΔT_{low}(y-1))$ (7-12)
 
 with
 
