@@ -55,25 +55,22 @@ the deep ocean. CO2 flows in both directions between adjacent
 reservoirs. The 3-reservoir model is represented by the following 3
 equations when the step of the recursion is equal to one year:
 
-M~atm~ (y) = E(y) + (1 -- φ~atm-up~) M~atm~ (y-1) +φ~up-atm~ M~up~ (y-1)
+$M_{atm}(y) = E(y) + (1 -- \phi_{atm-up})M_{atm}(y-1) + \phi_{up-atm}M_{up}(y-1)$
 (7-1)
 
-M~up~ (y) = (1 --φ~up-atm~ -- φ~up-lo~) M~up~ (y-1) + φ~atm-up~ M~atm~
-(y-1) + φ~lo-up~ M~lo~ (y-1) (7-2)
+$M_{up}(y) = (1 -- \phi_{up-atm} -- \phi_{up-lo})M_{up}(y-1) +\phi_{atm-up}M_{atm}(y-1) + \phi_{lo-up}M_{lo}(y-1)$
+(7-2)
 
-M~lo~ (y) = (1-- φ~lo-up~) M~lo~ (y-1) + φ~up-lo~ M~up~ (y-1) (7-3)
+$M_{lo} = (1 -- \phi_{lo-ip})M_{lo}(y-1) + \phi_{up-lo}M_{up}(y-1)
+(7-3)
 
 with
 
--   M~atm~(y), M~up~(y), M~lo~(y): Concentration (expressed in mass
-    > units) of CO~2~ in atmosphere, in a quickly mixing reservoir
-    > representing the upper level of the ocean and the biosphere, and
-    > in deep oceans (GtC), respectively, in year y (GtC)
+-   $M_{atm}(y)$, $M_{up}(y)$, $M_{lo}(y)$: Concentration (expressed in mass units) of $CO_2$ in atmosphere, in a quickly mixing reservoir representing the upper level of the ocean and the biosphere, and in deep oceans (GtC), respectively, in year y (GtC)
 
--   E(y) = CO~2~ emissions in year y (GtC)
+-   $E(y) = CO_2$ emissions in year $y$ (GtC)
 
--   φ~ij~, transport rate from reservoir i to reservoir j (i, j = atm,
-    > up, lo) from year y-1 to y
+-   $\phi_{i,j}$, transport rate from reservoir $i$ to reservoir $j$ ($i$, $j$ = $atm$, $up$, $lo$) from year $y-1$ to $y$
 
 b\) CH4 accumulation is represented by a so-called single-box model in
 which the atmospheric methane concentration obeys the following
@@ -85,27 +82,27 @@ $$CH4_{atm}(y) = (1 - \Phi_{CH4}) \cdot CH4_{atm}(y - 1) + EA_{CH4}(y)(7 - 4)$$
 
 $$CH4_{up}(y) = CH4_{up}(y - 1)(7 - 5)$$
 
-${CH4}_{tot}(y) = {CH4}_{atm}(y) + {CH4}_{up}(y)$ (7 - 6)
+$${CH4}_{tot}(y) = {CH4}_{atm}(y) + {CH4}_{up}(y)$$ (7 - 6)
 
 where
 
--   *CH4~atm~ ,, CH4~up~ ,CH4~tot~, ,* and *EA~CH4~* are respectively:
+-   $CH4_{atm}$, $CH4_{up}$, $CH4_{tot}$, and $EA_{CH4}$ are respectively:
     the anthropogenic atmospheric concentration, the natural atmospheric
     concentration[^34], the total atmospheric concentration (all three
     expressed in Mt), and the anthropogenic emission of CH4 (expressed
-    in Mt/yr). The anthropogenic emissions *EA~CH4~* are generated
+    in Mt/yr). The anthropogenic emissions $EA_{CH4}$ are generated
     within the model and enter the dynamic equation (7-4) in order to
     derive the anthropogenic concentration. Note that the natural
-    concentration *CH4~up~*is constant at all times. (See initial values
+    concentration $CH4_{up}$ is constant at all times. (See initial values
     for these and other parameters in Part II, Appendix A.)
 
--   *CH4~tot\ ~*is then reported and used in the forcing equations. All
+-   $CH4_{tot}$ is then reported and used in the forcing equations. All
     quantities are indexed by year.
 
--   $1 - \Phi_{CH4}$is the one-year retention rate of CH4 in the
+-   $1 -- \phi_{CH4}$ is the one-year retention rate of $CH4$ in the
     atmosphere.
 
--   *d~CH4~ =2.84* (the density of *CH4,* expressed in *Mt/ppbv*) is
+-   $d_{CH4} =2.84$ (the density of $CH4$, expressed in $Mt/ppbv$) is
     then used to convert concentration in Mt into ppbv for reporting
     purposes.
 
@@ -126,48 +123,47 @@ atmospheric radiative forcings caused by the various gases are additive
 We now explain these four terms.
 
 a\) The relationship between CO2 accumulation and increased radiative
-forcing, *∆F~CO2~(y)*, is derived from empirical measurements and
+forcing, $∆F_{CO2}(y)$, is derived from empirical measurements and
 climate models (IPCC 2001 and 2007).
 
-  -----------------------------------------------------------------------
-  ∆F~CO2~(y) = γ \* ![](assets/image21.png)
-  -----------------------------------------------------------------------
-
-  -----------------------------------------------------------------------
+$$ \Delta F_{CO2}(y) = \gamma.\frac{ln(M_{atm}(y)/M_0)}{ln 2}$$
 
 where:
 
--   M~0~ (i.e.CO2ATM_PRE_IND) is the pre-industrial (circa 1750)
-    reference atmospheric concentration of CO2 = 596.4 GtC
+-   $M_0$ (i.e., CO2ATM_PRE_IND) is the pre-industrial (circa 1750)
+    reference atmospheric concentration of $CO_2$ = 596.4 GtC
 
--   γ is the radiative forcing sensitivity to atmospheric CO~2~
+-   $\gamma$ is the radiative forcing sensitivity to atmospheric $CO_2$
     concentration doubling = 3.7 W/m^2^
 
 b\) The radiative forcing due to atmospheric CH4 is given by the
 following expression (IPCC 2007), where the subscript tot has been
 omitted
 
-$$\mathbf{\Delta}\mathbf{F}_{\mathbf{CH}\mathbf{4}}\mathbf{(y) = 0.036}\mathbf{\cdot}\left( \sqrt{\mathbf{CH}\mathbf{4}_{\mathbf{y}}}\mathbf{-}\sqrt{\mathbf{CH}\mathbf{4}_{\mathbf{0}}} \right)\mathbf{-}\left\lbrack \mathbf{f(CH}\mathbf{4}_{\mathbf{y}}\mathbf{,N}\mathbf{2}\mathbf{O}_{\mathbf{0}}\mathbf{)}\mathbf{-}\mathbf{f(CH}\mathbf{4}_{\mathbf{0}}\mathbf{,N}\mathbf{2}\mathbf{O}_{\mathbf{0}}\mathbf{)} \right\rbrack\mathbf{(7}\mathbf{-}\mathbf{8)}$$
+$\Delta F_{CH4}(y) = 0.036.(\sqrt{CH4_y}-\sqrt{CH4_0}) -- (f(CH4_y,N2O_0) - f(CH4_0,N2O_0))$
+(7-8)
 
 c\) The radiative forcing due to atmospheric N2O is given by the
 following expression (IPCC, 2007)
 
-$$\mathbf{\Delta}\mathbf{F}_{\mathbf{N}\mathbf{2}\mathbf{O}}\mathbf{(y) = 0.12}\mathbf{\cdot}\left( \sqrt{\mathbf{N}\mathbf{2}\mathbf{O}_{\mathbf{y}}}\mathbf{-}\sqrt{\mathbf{N}\mathbf{2}\mathbf{O}_{\mathbf{0}}} \right)\mathbf{-}\left\lbrack \mathbf{f(CH}\mathbf{4}_{\mathbf{0}}\mathbf{,N}\mathbf{2}\mathbf{O}_{\mathbf{y}}\mathbf{)}\mathbf{-}\mathbf{f(CH}\mathbf{4}_{\mathbf{0}}\mathbf{,N}\mathbf{2}\mathbf{O}_{\mathbf{0}}\mathbf{)} \right\rbrack\mathbf{(7}\mathbf{-}\mathbf{9)}$$
+$\Delta F_{N2O}(y) = 0.12.(\sqrt{N2O_y}-\sqrt{N2O_0}) -- (f(CH4_0,N2O_y) - f(CH4_0,N2O_0))$
+(7-9)
 
 where:
 
-$$\mathbf{f(x,y) = 0.47}\mathbf{\cdot}\mathbf{\ln}\left\lbrack \mathbf{1 + 2.01}\mathbf{\cdot}\mathbf{1}\mathbf{0}^{\mathbf{-}\mathbf{5}}\mathbf{\cdot}\mathbf{(xy}\mathbf{)}^{\mathbf{0.75}}\mathbf{+ 5.31}\mathbf{\cdot}\mathbf{1}\mathbf{0}^{\mathbf{-}\mathbf{15}}\mathbf{\cdot}\mathbf{x(xy}\mathbf{)}^{\mathbf{1.52}} \right\rbrack\mathbf{(7}\mathbf{-}\mathbf{10)}$$
+$f(x,y) =0.47.ln(1 + 2.01.10^{-5}.(xy)^{0.75} + 5.31.10^{-15}.x(xy)^{1.52}
+(7-10)
 
-Note that the f(x,y) function, which quantifies the cross-effects on
+Note that the $f(x,y)$ function, which quantifies the cross-effects on
 forcing of the presence in the atmosphere of both gases (CH4 and N2O),
 is not quite symmetrical in the two gases. As usual, the 0 subscript
 indicates the pre-industrial times (1750).
 
-d\) EXOFOR(y) is the increase in total radiative forcing at period t
+d\) $EXOFOR(y)$ is the increase in total radiative forcing at period t
 relative to pre-industrial level due to GHG's that are not represented
-explicitly in the model. Units = W/m^2^. In Nordhaus and Boyer (1999),
+explicitly in the model. Units = $W/m^2$. In Nordhaus and Boyer (1999),
 only emissions of CO2 were explicitly modeled, and therefore EXOFOR(y)
-accounted for all other GHG's. In TIMES, N~2~O and CH~4~ are fully
+accounted for all other GHG's. In TIMES, N2O and CH4 are fully
 accounted for, but some other substances are not (e.g. CFC's, aerosols,
 ozone, volcanic activity, etc.). Therefore, the values for EXOFOR(y)
 will differ from those in Nordhaus and Boyer (1999). It is the modeler's
@@ -182,7 +178,7 @@ The parameterization of the three forcing equations (7-8, 7-9, and 7-10)
 is not controversial and relies on the results reported by Working Group
 I of the IPCC. IPCC (2001, Table 6.2, p.358) provides a value of 3.7 for
 γ, smaller than the one used by Nordhaus and Boyer (γ = 4.1). We have
-adopted this lower value of 3.7 W/m^2^ as default in TIMES. Users are
+adopted this lower value of 3.7 $W/m^2$ as default in TIMES. Users are
 free to experiment with other values of the γ parameter. The same
 reference provides the entire expressions for all three forcing
 equations.
@@ -224,21 +220,12 @@ where the interval (M~1~,M~2~) is from 375 ppm to 550 ppm.
 By denoting the pre-industrial concentration level as *M~0~*, the
 general formulas for the two estimates are as follows:
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
   *Overestimate:*     $$F_{1}(M) = \frac{\gamma}{\ln 2} \cdot \left\lbrack \ln(\frac{\gamma}{slope \cdot \ln(2) \cdot M_{0}}) - 1 \right\rbrack + slope \cdot M$$   
-  ------------------- --------------------------------------------------------------------------------------------------------------------------------------------- ----
-  *Underestimate:*    $$F_{2}(M) = \gamma \cdot \ln(M_{1}/M_{0})/\ln 2 + slope \cdot (M - M_{1})$$                                                                  
 
-                                                                                                                                                                    
+  *Underestimate:*    $$F_{2}(M) = \gamma \cdot \ln(M_{1}/M_{0})/\ln 2 + slope \cdot (M - M_{1})$$                                                                                                                                                         
+  where: $slope = \gamma \cdot \frac{\ln(M_{2}/M_{1})/\ln 2}{(M_{2} - M_{1})}$                                                                      
 
-  where:              $$slope = \gamma \cdot \frac{\ln(M_{2}/M_{1})/\ln 2}{(M_{2} - M_{1})}$$                                                                       
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-*Final approximation*: $F_{3}(M) = \frac{F_{1}(M) + F_{2}(M)}{2}$
-
-  -----------------------------------------------------------------------
-
-  -----------------------------------------------------------------------
+  *Final approximation*: $F_{3}(M) = \frac{F_{1}(M) + F_{2}(M)}{2}$
 
 ## Temperature increase
 
@@ -249,15 +236,15 @@ the atmospheric layer, which then quickly warms the upper ocean. In this
 model, the atmosphere and upper ocean form a single layer, which slowly
 warms the second layer consisting of the deep ocean.
 
-ΔT~up~(y) = ΔT~up~(y-1) +σ~1~{F(y) --λΔT~up~(y-1) -- σ~2~ \[ΔT~up~(y-1)
--- ΔT~low~(y-1)\]} (7-11)
+$ΔT_{up}(y) = ΔT_{up}(y-1) +σ_1(F(y) -- λΔT_{up}(y-1) -- σ~2(ΔT_{up}(y-1) -- ΔT_{low}(y-1)))$
+(7-11)
 
-ΔT~low~(y) = ΔT~low~(y-1) + σ~3~\[ΔT~up~(y-1) -- ΔT~low~ (y-1)\] (7-12)
+$ΔT_{low}(y) = ΔT_{low}(y-1) + σ_3(ΔT_{up}(y-1) -- ΔT_{low}(y-1))$
+(7-12)
 
 with
 
--   ΔT~up~ = globally averaged surface temperature increase above
-    > pre-industrial level,
+-   $ΔT_{up}$ globally averaged surface temperature increase above pre-industrial level,
 
 ```{figure} assets/image22.png
 :name: linearization_CO2_radiation_function
@@ -265,24 +252,16 @@ with
  Illustration of the linearization of the CO2 radiative forcing function.
 ```
 
--   ΔT~low~= deep-ocean temperature increase above pre-industrial level,
+-   $ΔT_{low}$ deep-ocean temperature increase above pre-industrial level,
 
--   σ~1~= 1-year speed of adjustment parameter for atmospheric
+-   $σ_1$ 1-year speed of adjustment parameter for atmospheric
     > temperature (also known as the lag parameter),
 
--   σ~2~= coefficient of heat loss from atmosphere to deep oceans,
+-   $σ_2$ coefficient of heat loss from atmosphere to deep oceans,
 
--   σ~3~ = 1-year coefficient of heat gain by deep oceans,
+-   $σ_3$ 1-year coefficient of heat gain by deep oceans,
 
--   λ= feedback parameter (climatic retroaction). It is customary to
-    > write λ as λ =γ/C~s~, C~s~ being the climate sensitivity
-    > parameter, defined as the change in equilibrium atmospheric
-    > temperature induced by a doubling of CO~2~ concentration. In
-    > contrast with most other parameters, the value of C~s~ is highly
-    > uncertain, with a possible range of values from 1^o^C to 10^o^C.
-    > This parameter is therefore a prime candidate for sensitivity
-    > analysis, or for treatment by probabilistic methods such as
-    > stochastic programming.
+-   $λ$ feedback parameter (climatic retroaction). It is customary to write $λ$ as $λ =γ/C_s$, $C_s$ being the climate sensitivity parameter, defined as the change in equilibrium atmospheric temperature induced by a doubling of CO~2~ concentration. In contrast with most other parameters, the value of $C_s$ is highly uncertain, with a possible range of values from $1^oC$ to $10^oC$. This parameter is therefore a prime candidate for sensitivity analysis, or for treatment by probabilistic methods such as stochastic programming.
 
 For more details on the implementation of the Climate Module in TIMES,
 including parameters, variables, and equations, as represented in the
