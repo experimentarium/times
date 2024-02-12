@@ -173,21 +173,21 @@ period. For instance, in this alternate formulation of the example,
 there would be four variables *X(t,s)* at every period t, (whereas there
 was only one variable X(2000,1) in the previous formulation).
 
-+------------------------------------------------------------------+---+
-| **Minimize**                                                     |   |
-|                                                                  |   |
-| $$Z = \sum_{t \in T}^{}{}\s                                      |   |
-| um_{s \in S(t)}^{}{}C(t,s) \times X(t,s) \times p(t,s)(8 - 1)'$$ |   |
-+------------------------------------------------------------------+---+
+
+**Minimize**
+
+  -------------------------------------------------------------------------------------------- -------------
+  $$Z = \sum_{t \in T}^{}{}\sum_{s \in S(t)}^{}{}C(t,s) \times X(t,s) \times p(t,s)$$ (8-1)
+
+  -------------------------------------------------------------------------------------------- -------------
 
 **Subject to:**
 
-  ----------------------------------------------------------------- -----
-  $A(t,s) \times X(t,s) \geq b(t,s)$ *all t, all* s (8---2)'        
+  ----------------------------------------------------------------------------------- -----------
+  $$A(t,s) \times X(t,s) \geq b(t,s) \forall t, forall s$$ (8-2)        
 
-  $\sum_{t \in T}^{}{D(t,s) \times X(t,s)} \geq e(s)$ *all t, all*  
-  s (8---3)'                                                        
-  ----------------------------------------------------------------- -----
+  $$\sum_{t \in T}^{}{D(t,s) \times X(t,s)} \geq e(s) \forall t, \forall s$$ (8-3)                                          
+  ----------------------------------------------------------------------------------- -----------
 
 Of course, in this approach we need to add equality constraints to
 express the fact that some scenarios are identical at some periods. In
@@ -256,9 +256,9 @@ following utility function to minimize:
 
 $$U = EC + \lambda \cdot \sqrt{Var(C)}$$
 
-where λ\>0 is a measure of the risk aversion of the decision maker. For
-λ=0, the usual expected cost criterion is obtained. Larger values of
-**λ** indicate increasing risk aversion.
+where $λ>0$ is a measure of the risk aversion of the decision maker. For
+$λ=0$, the usual expected cost criterion is obtained. Larger values of
+$λ$ indicate increasing risk aversion.
 
 Taking risk aversion into account by this formulation would lead to a
 non-linear, non-convex model, with all its ensuing computational
@@ -271,8 +271,8 @@ the upper-absolute-deviation, defined by:
 
 $$UpAbsDev(Cost_{k}) = \sum_{j}^{}{p_{j} \bullet \left\{ Cost_{j\left| k \right.\ } - EC_{k} \right\}^{+}}$$
 
-where ***y= {x}^+^*** is defined by the following two *linear*
-constraints: ***y ≥ x*** , and ***y ≥ 0,*** and the utility is now
+where $y= {x}^+$ is defined by the following two *linear*
+constraints: $y ≥ x$ , and $y ≥ 0$, and the utility is now
 written via the following *linear* expression:
 
 $$U = EC + \lambda \cdot UpsAbsDev(C)$$
