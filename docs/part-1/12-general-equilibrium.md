@@ -216,7 +216,7 @@ $Min\ \sum_{t}^{}{dfact}_{t} \bullet {COST\_ T_{t}}_{}(x)$
 
 s.t. $E \bullet x = DEM\_ T_{dm,t}$ (A)
 
-$$A \bullet x = b$ (B)
+$A \bullet x = b$ (B)
 
 where
 
