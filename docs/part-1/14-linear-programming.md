@@ -21,19 +21,19 @@ represents the transpose of that vector or matrix. A Linear Program may
 always be represented as the following *Primal Problem* in canonical
 form:
 
-> *Max c^t^x* (14-1)
+> $Max c^tx$ (14-1)
 
-s.t. Ax ≤ b (14-2)
+s.t. $Ax ≤ b$ (14-2)
 
-> *x ≥ 0* (14-3)
+> $x ≥ 0$ (14-3)
 
-where *x* is a vector of *decision variables*, *c^t^x* is a linear
-function representing the *objective* to maximize, and *Ax ≤ b* is a set
+where $x$ is a vector of *decision variables*, $c^tx$ is a linear
+function representing the *objective* to maximize, and $Ax ≤ b$ is a set
 of inequality *constraints*. Assume that the LP has a finite optimal
-solution, *x\*.*
+solution, $x$.
 
-Then each decision variable, *x\* ~j~* falls into one of three
-categories. *x^\*^ ~j~* may be:
+Then each decision variable, $x_j^*$ falls into one of three
+categories. $x_j^*$ may be:
 
 -   equal to its lower bound (as defined in a constraint), or
 
@@ -41,22 +41,22 @@ categories. *x^\*^ ~j~* may be:
 
 -   strictly between the two bounds.
 
-In the last case, the variable *x\* ~j\ ~*is called *basic*. Otherwise
+In the last case, the variable $x_j^*$ is called *basic*. Otherwise
 it is *non-basic*.
 
 For each primal problem, there corresponds a *Dual problem* derived as
 follows:
 
-*Min b^t^ y* (14-4)
+> $Min b^ty$ (14-4)
 
-s.t. A^t^y ≥ c (14-5)
+s.t. $A^ty ≥ c$ (14-5)
 
-y ≥ 0 (14-6)
+> $y ≥ 0$ (14-6)
 
 Note that the number of dual variables equals the number of constraints
-in the primal problem. In fact, each dual variable *y~i~* may be
+in the primal problem. In fact, each dual variable $y_i$ may be
 assigned to its corresponding primal constraint, which we represent as:
-*A~i~x ≤ b~i~*, where *A~i\ ~*is the *i^th\ ^*row of matrix A*.*
+$A_ix ≤ b_i$, where $A_i$ is the $i^{th}$ *row of matrix A*.
 
 ### Duality Theory
 
@@ -65,23 +65,23 @@ strong duality, and complementary slackness.
 
 *Weak Duality Theorem*
 
-If *x* is any feasible solution to the primal problem and *y* is any
+If $x$ is any feasible solution to the primal problem and $y$ is any
 feasible solution to the dual, then the following inequality holds:
 
-> *c^t^x≤ b^t^y* (14-7)
+> $c^tx≤ b^ty$ (14-7)
 
 The weak duality theorem states that the value of a feasible dual
 objective is never smaller than the value of a feasible primal
 objective. The difference between the two is called the *duality gap*
-for the pair of feasible primal and dual solutions *(x,y).*
+for the pair of feasible primal and dual solutions $(x,y)$.
 
 *Strong duality theorem*
 
-If the primal problem has a *finite, optimal* solution *x\**, then so
-does the dual problem (*y\**), and both problems have the same optimal
+If the primal problem has a *finite, optimal* solution $x^*$, then so
+does the dual problem ($y^*$), and both problems have the same optimal
 objective value (their duality gap is zero):
 
-c^t^x\* = b^t^y\* (14-8)
+$c^tx^* = b^t^y^*$ (14-8)
 
 Note that the optimal values of the dual variables are also called the
 *shadow prices* of the primal constraints.
@@ -90,16 +90,16 @@ Note that the optimal values of the dual variables are also called the
 
 At an optimal solution to an LP problem:
 
--   If *y\*~i~* is *\> 0* then the corresponding primal constraint is
-    satisfied at equality (i.e. *A~i~x\*=b~i\ ~*and the *i^th^* primal
-    constraint is called *tight*. Conversely, if the *i^th^* primal
-    constraint is *slack* (not tight), then *y\*~i~* = *0,*
+-   If $y_i^*$ is $> 0$ then the corresponding primal constraint is
+    satisfied at equality (i.e. $A_ix^* = b_i$ and the $i^{th}$ primal
+    constraint is called *tight*. Conversely, if the $i^{th}$ primal
+    constraint is *slack* (not tight), then $y_i^* = 0$,
 
--   If *x\*~j~* is basic, then the corresponding dual constraint is
-    satisfied at equality, (i.e. *A^t^~j~\*y =c~j~*, where *A^t^~j~* is
-    the *j^th^* row of *A^t^*, i.e. the *j^th^* column of *A*.
-    Conversely, if the *j^th^* dual constraint is slack, then
-    *x\*~j\ ~*is equal to one of its bounds.
+-   If $x_j^*$ is basic, then the corresponding dual constraint is
+    satisfied at equality, (i.e. $A_j^ty^* = c_j$, where $A_j^ty^*$ is
+    the $j^{th}$ row of $A^t$, i.e. the $j^{th}$ column of $A$.
+    Conversely, if the $j^{th}$ dual constraint is slack, then
+    $x_j^*$ is equal to one of its bounds.
 
 *Remark*: Note however that a primal constraint may have zero slack and
 yet have a dual equal to 0. And, a primal variable may be non basic
@@ -111,11 +111,11 @@ in the LP)
 
 ## Sensitivity analysis and the economic interpretation of dual variables
 
-It may be shown that if the *j^th^* RHS *b~j~* of the primal is changed
-by an infinitesimal amount *d*, and if the primal LP is solved again,
+It may be shown that if the $j^{th}$ RHS $b_j$ of the primal is changed
+by an infinitesimal amount $d$, and if the primal LP is solved again,
 then its new optimal objective value is equal to the old optimal value
-plus the quantity *y~j~\**•*d*, where *y~j~\** is the optimal dual
-variable value*.*
+plus the quantity $y_j^*.d$, where $y_j^*$ is the *optimal dual
+variable value*.
 
 Loosely speaking[^49], one may say that the partial derivative of the
 optimal primal objective function's value with respect to the RHS of the
@@ -125,74 +125,74 @@ constraint.
 ### Economic interpretation of the dual variables
 
 If the primal problem consists of maximizing the surplus (objective
-function *c^t^x*), by choosing an activity vector *x*, subject to upper
-limits on several resources (the *b* vector) then:
+function $c^tx^*$), by choosing an activity vector $x*$, subject to upper
+limits on several resources (the $b$ vector) then:
 
--   Each *a~ij\ ~*coefficient of the dual problem matrix, *A,* then
-    represents the consumption of resource *b~j~* by activity *x~i~*;
+-   Each $a_{ij}$ coefficient of the dual problem matrix, $A$, then
+    represents the consumption of resource $b_j$ by activity $x_i$;
 
--   The optimal dual variable value *y\*~j\ ~*is the unit price of
-    resource *j,* and
+-   The optimal dual variable value $y_j$ is the unit price of
+    resource $j$, and
 
 -   The total optimal surplus derived from the optimal activity vector,
-    *x\*,* is equal to the total value of all resources, *b,* priced at
-    the optimal dual values *y\** (strong duality theorem).
+    $x^*$, is equal to the total value of all resources, $b$, priced at
+    the optimal dual values $y^*$ (strong duality theorem).
 
-Furthermore, each dual constraint *A^t^~j~\*y≥ c~j\ ~*has an important
+Furthermore, each dual constraint $A^t_jy^* ≥ c_j$  has an important
 economic interpretation. Based on the Complementary Slackness theorem,
-if an LP solution *x\** is optimal, then for each *x\* ~j~* that is not
-equal to its upper or lower bound (i.e. each basic variable *x\* ~j~*),
-there corresponds a *tight* dual constraint *y\*A'~j~ = c~j~*, which
-means that the revenue coefficient *c~j~* must be exactly equal to the
-cost of purchasing the resources needed to produce one unit of *x
-~j.\ ~*In economists' terms, *marginal cost equals marginal revenue, and
-both are equal to the market price of **x\* ~j~***. If a variable is not
+if an LP solution $x^*$ is optimal, then for each $x^*_j$ that is not
+equal to its upper or lower bound (i.e. each basic variable $x^*_j$),
+there corresponds a *tight* dual constraint $y^*A'_j = c_j$, which
+means that the revenue coefficient $c_j$ must be exactly equal to the
+cost of purchasing the resources needed to produce one unit of $x_j$.
+*In economists' terms, *marginal cost equals marginal revenue, and
+both are equal to the market price of $x^*_j$. If a variable is not
 basic, then by definition it is equal to its lower bound or to its upper
-bound. In both cases, the unit revenue *c~j~* need not be equal to the
+bound. In both cases, the unit revenue $c_j$ need not be equal to the
 cost of the required resources. The technology is then either
 non-competitive (if it is at its lower bound) or it is super competitive
 and makes a surplus (if it is at its upper bound).
 
 *Example*: The optimal dual value attached to the balance constraint of
-commodity *c* represents the change in objective function value
+commodity $c$ represents the change in objective function value
 resulting from one additional unit of the commodity. This is precisely
 the internal unit price of that commodity.
 
 ### Reduced surplus and reduced cost
 
-In a maximization problem, the difference *y\*A'~j~ - c~j~* is called
-the *reduced surplus* of technology *j*, and is available from the
+In a maximization problem, the difference $y*A'_j - c_j$ is called
+the *reduced surplus* of technology $j$, and is available from the
 solution of a TIMES problem. It is a useful indicator of the
 competitiveness of a technology, as follows:
 
--   If *x\* ~j~* is at its lower bound, its unit revenue *c~j~* is
+-   If $x^*_j$ is at its lower bound, its unit revenue $c_j$ is
     *less* than the resource cost (i.e. its reduced surplus is
     positive). The technology is not competitive (and stays at its lower
     bound in the equilibrium);
 
--   If *x\* ~j~* is at its upper bound, revenue *c~j~* is *larger* than
+-   If $x^*_j$ is at its upper bound, revenue $c_j$ is *larger* than
     the cost of resources (i.e. its reduced surplus is negative). The
     technology is super competitive and produces a surplus; and
 
--   If *x\* ~j\ ~*is basic, its reduced surplus is equal to 0. The
+-   If $x^*_j$ is basic, its reduced surplus is equal to 0. The
     technology is competitive but does not produce a surplus.
 
 We now restate the above summary in the case of a Linear Program that
 minimizes cost subject to constraints:
 
-*Min c^t^x*
+> $Min c^tx^*$
 
-s.t. Ax ≥ b
+s.t. $Ax ≥ b$
 
-x ≥ 0
+> $x ≥ 0$
 
 In a minimization problem (such as the usual formulation of TIMES), the
-difference *c~j~ - y\*A'~j\ ~*is called the *reduced cost* of technology
-*j.* The following holds:
+difference $c_j - y^*A'_j$ is called the *reduced cost* of technology
+$j$. The following holds:
 
-- If *x\* ~j~* is at its lower bound, its unit cost *c~j~* is *larger* than the value created (i.e. its reduced cost is positive). The technology is not competitive (and stays at its lower bound in the equilibrium);
-- if *x\* ~j~* is at its upper bound, its cost *c~j~* is *less* than the value created (i.e. its reduced cost is negative). The technology is super competitive and produces a profit; and
-- if *x\* ~j\ ~*is basic, its reduced cost is equal to 0. The technology is competitive but does not produce a profit
+- If $x^*_j$ is at its lower bound, its unit cost $c_j$ is *larger* than the value created (i.e. its reduced cost is positive). The technology is not competitive (and stays at its lower bound in the equilibrium);
+- if $x^*_j$ is at its upper bound, its cost $c_j$ is *less* than the value created (i.e. its reduced cost is negative). The technology is super competitive and produces a profit; and
+- if $x^*_j$ is basic, its reduced cost is equal to 0. The technology is competitive but does not produce a profit
 
 The reduced costs/surpluses may thus be used to rank all technologies, *including those that are not selected by the model.*
 
