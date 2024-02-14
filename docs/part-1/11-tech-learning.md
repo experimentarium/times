@@ -36,7 +36,7 @@ this time.
 Empirical studies of unit investment costs of several technologies have
 been undertaken in several countries. Many of these studies find an
 empirical relationship between the unit investment cost of a technology
-at time ***t***, ***INVCOST~t~***, and the cumulative investment in that
+at time $t$ $INVCOST_{t}$, and the cumulative investment in that
 technology up to time ***t***,
 $C_{t} = \sum_{j = - 1}^{t}{VAR\_ NCAP_{j}}$.
 
@@ -47,14 +47,14 @@ $$INVCOST_{t} = a \cdot C_{t}^{- b}(11 - 1)$$
 
 where
 
--   *INVCOST*[^37] is the unit cost of creating one unit of the
+-   $INVCOST$ [^37] is the unit cost of creating one unit of the
     technology, which is no longer a constant, but evolves as more units
     of the technology are produced;
 
--   ***a*** is the value of I*NVCOST* for the first unit of the
-    technology (when ***C~t~*** is equal to 1) and;
+-   $a$ is the value of $INVCOST$ for the first unit of the
+    technology (when $C_{t}$ is equal to 1) and;
 
--   ***b*** is the learning index, representing the speed of
+-   $b$ is the learning index, representing the speed of
     learning[^38].
 
 As experience builds up, the unit investment cost decreases, potentially
@@ -69,7 +69,7 @@ initially non-profitable investments in order to later benefit from the
 investment cost reduction.
 
 With regard to actual implementation, simply using (11-1) as the
-objective function coefficient of ***VAR_NCAP~t~*** will yield a
+objective function coefficient of $VAR\_NCAP_t$ will yield a
 non-linear, non-convex expression. Therefore, the resulting mathematical
 optimization is no longer linear, and requires special techniques for
 its solution. In TIMES, a Mixed Integer Programming (MIP) formulation is
@@ -83,12 +83,12 @@ We follow the basic approach described in Barreto, 2001.
 
 The first step of the formulation is to express the total investment
 cost, i.e. the quantity that should appear in the objective function.
-The cumulative investment cost ***TC~t~*** of a learning technology in
-period ***t***is obtained by integrating expression (11-1):
+The cumulative investment cost $TC_t$ of a learning technology in
+period $t$ is obtained by integrating expression (11-1):
 
 $$TC_{t} = \int_{0}^{C_{t}}{a \cdot y^{- b}*dy} = \frac{a}{1 - b} \cdot {C_{t}}^{- b + 1}(11 - 2)$$
 
-***TC~t~*** is a concave function of ***C~t~***, with a shape as shown
+$TC_t$ is a concave function of $C_t$, with a shape as shown
 in {numref}`cumulative_learning_curve`.
 
 ```{figure} assets/image26.png
@@ -113,23 +113,22 @@ region, and technology indexes for notational clarity):
 
 2.  For each learning technology, the user provides:
 
-    a.  The progress ratio ***pr*** (from which the learning index
-        ***b*** may be inferred)
+    a.  The progress ratio $pr$ (from which the learning index
+        $b$ may be inferred)
 
-    b.  One initial point on the learning curve, denoted ***(C~0~ ,
-        TC~0~ )***
+    b.  One initial point on the learning curve, denoted $(C_0,TC_0)$
 
-    c.  The maximum allowed cumulative investment ***C~max\ ~***(from
-        which the maximum total investment cost ***TC~max~*** may be
+c.  The maximum allowed cumulative investment $C_{max}$(from
+        which the maximum total investment cost $TC_{max}$ may be
         inferred)
 
-    d.  The number ***N*** of segments for approximating the cumulative
-        learning curve over the ***(C~0~***, ***C~max~)*** interval.
+    d.  The number $N$ of segments for approximating the cumulative
+        learning curve over the $(C_0,C_{max})$ interval.
 
-> Note that each of these parameters, including ***N,*** may be
+> Note that each of these parameters, including $N$, may be
 > different for different technologies.
 
-3.  The model automatically selects appropriate values for the ***N***
+3.  The model automatically selects appropriate values for the $N$
     step lengths, and then proceeds to generate the required new
     variables and constraints, and the new objective function
     coefficients for each learning technology. The detailed formulae are
@@ -147,15 +146,15 @@ The successive interval lengths on the vertical axis are chosen to be in
 geometric progression, each interval being twice as wide as the
 preceding one. In this fashion, the intervals near the low values of the
 curve are smaller so as to better approximate the curve in its high
-curvature zone. Let ***{TC~i-1~ , TC~i~}*** be the ***i^th^*** interval
-on the vertical axis, for ***i = 1, ..., N-1***. Then:
+curvature zone. Let $\[TC_{i-1}, TC_{i}\]$ be the $i^{th}$ interval
+on the vertical axis, for $i = 1, ..., N-1$. Then:
 
 $$TC_{i} = TC_{i - 1} + 2^{i - N - 1}(T{Co^{N}}_{\max}$$
 
-Note that ***TC~max\ ~*** is equal to ***TC~N~***.
+Note that $TC_{max}$ is equal to $TC_N$.
 
 The break points on the horizontal axis are obtained by plugging the
-***TC~i~*** 's into expression (11-2), yielding:
+$TC_i$'s into expression (11-2), yielding:
 
 $$C_{i} = \left( \frac{(1 - b)}{a}\left( TC_{i} \right) \right)^{\frac{1}{1 - b}},i = 1,2,...,N$$
 
@@ -165,23 +164,23 @@ Once intervals are chosen, standard approaches are available to
 represent a concave function by means of integer (0-1) variables. We
 describe the approach used in TIMES.
 
-First, we define *N* continuous variables ***x~i~***, *i= 1,...,N*. Each
-***x~i~*** represents the portion of cumulative investments lying in the
-***i^th^*** interval. Therefore, the following holds:
+First, we define $N$ continuous variables $x_i$, $i= 1,...,N$. Each
+$x_i$ represents the portion of cumulative investments lying in the
+$i^{th}$ interval. Therefore, the following holds:
 
 ![](assets/image28.png)
 
-We now define ***N*** integer (0-1) variables ***z~i~*** that serve as
-indicators of whether or not the value of ***C*** lies in the
-***i^th\ ^***interval. We may now write the expression for ***TC***, as
+We now define $N$ integer (0-1) variables $z_i$ that serve as
+indicators of whether or not the value of $C$ lies in the
+$i^{th}$ interval. We may now write the expression for $TC$, as
 follows:
 
 ![](assets/image29.png)
 
-where ***b~i~*** is the slope of the ***i^th^*** line segment, and
-***a~i~*** is the value of the intercept of that segment with the
+where $b_i$ is the slope of the $i^{th}$ line segment, and
+$a_i$ is the value of the intercept of that segment with the
 vertical axis, as shown in {numref}`i_approx_learning_curve`. The precise expressions for
-***a~i~*** and ***b~i~*** are:
+$a_i$ and $b_i$ are:
 
 $${b_{i} = \frac{TC_{i} - TC_{i - 1}}{C_{i} - C_{i - 1}}i = 1,2,...,N}{11 - 5}$$
 $a_{i} = TC_{i - 1} - b_{i} \cdot C_{i - 1}i = 1,2,...,N$
@@ -196,12 +195,12 @@ The i^th^ segment of the step-wise approximation.
 
 For (11-4) to be valid we must make sure that exactly one ***z~i\ ~***is
 equal to 1, and the others equal to 0. This is done (recalling that the
-***z~i~*** variables are 0-1) via:
+$z_i$ variables are 0-1) via:
 
-$$\sum_{i = 1}^{N}{z_{i} ⥂ ⥂ = ⥂ ⥂ ⥂ ⥂ 1}$$
+$$\sum_{i = 1}^{N}{z_{i} = 1}$$
 
-We also need to make sure that each ***x~i\ ~***lies within the *i^th^*
-interval whenever ***z~i~*** is equal to 1 and is equal to 0 otherwise.
+We also need to make sure that each $x_i$ lies within the $i^{th}$
+interval whenever $z_i$ is equal to 1 and is equal to 0 otherwise.
 This is done via two constraints:
 
 $$C_{i - 1} \cdot z_{i} \leq x_{i} \leq C_{i} \cdot z_{i}$$
@@ -209,8 +208,8 @@ $$C_{i - 1} \cdot z_{i} \leq x_{i} \leq C_{i} \cdot z_{i}$$
 ### Objective function terms
 
 Re-establishing the period index, we see that the objective function
-term at period ***t***, for a learning technology is thus equal to
-***TC~t\ ~***- ***TC~t-1~***, which needs to be discounted like all
+term at period $t$, for a learning technology is thus equal to
+$TC_t - TC_{t-1}$, which needs to be discounted like all
 other investment costs.
 
 ### Additional (optional) constraints
@@ -221,14 +220,14 @@ additional constraints that are not strictly needed but that are
 guaranteed to hold. In our application we know that experience (i.e.
 cumulative investment) is always increasing as time goes on. Therefore,
 if the cumulative investment in period t lies in segment i, it is
-certain that it will not lie in segments *i-1, i-2, .., 1* in time
-period *t+1*. This leads to two new constraints (re-establishing the
-period index ***t*** for the ***z*** variables):
+certain that it will not lie in segments $i-1, i-2, .., 1$ in time
+period $t+1$. This leads to two new constraints (re-establishing the
+period index $t$ for the $z$ variables):
 
 ![](assets/image31.png)
 
 Summarizing the above formulation, we observe that each learning
-technology requires the introduction of ***N\*T*** integer (0-1)
+technology requires the introduction of $N*T$ integer (0-1)
 variables. For example, if the model has 10 periods and a 5-segment
 approximation is selected, 50 integer (0-1) variables are created for
 that learning technology, assuming that the technology is available in
@@ -248,19 +247,19 @@ cluster benefits. The phenomenon of clustered learning is modeled in
 TIMES via the following modification of the formulation of the previous
 section.
 
-Let ***k*** designate the key technology and let ***l* = 1, 2, ...,*L***
-designate the set of clustered technologies attached to ***k***. The
+Let $k$ designate the key technology and let $l = 1, 2, ...,L$
+designate the set of clustered technologies attached to $k$. The
 approach consists of three steps:
 
-i)  Step 1: designate ***k*** as a learning technology, and write for it
+i)  Step 1: designate $k$ as a learning technology, and write for it
     the formulation of the previous section;
 
-ii) Step 2: subtract from each *INVCOST**~l\ ~***the initial investment
-    cost of technology ***k*** (this will avoid double counting the
-    investment cost of ***k***);
+ii) Step 2: subtract from each $INVCOST_l$ the initial investment
+    cost of technology $k$ (this will avoid double counting the
+    investment cost of $k$);
 
 iii) Step 3: add the following constraint to the model, in each time
-     period. This ensures that learning on ***k*** spreads to all
+     period. This ensures that learning on $k$ spreads to all
      members of its cluster:
 
 $$VAR\_ NCAP_{k} - \sum_{l = 1}^{L}{VAR\_ NCAP_{l} = 0}$$
@@ -383,7 +382,7 @@ technologies.
 
 In view of the preceding discussion, a fundamental question arises: is
 it worthwhile for the modeler to go to the trouble of modeling
-e*ndogenous* learning (with all the attendant computational burdens)
+*endogenous* learning (with all the attendant computational burdens)
 when the results are to a large extent conditioned by *exogenous* upper
 bounds? We do not have a clear and unambiguous answer to this question;
 that is left for each modeler to evaluate.
@@ -411,4 +410,4 @@ computationally intractable).
 
 [^37]: The notation in this chapter is sometimes different from the standard notation for parameters and variables, in order to conform to the more detailed technical note on the subject.
 
-[^38]: It is usual to define, instead of ***b***, another parameter, ***pr*** called the *progress ratio*, which is related to ***b*** via the following relationship:![](assets/image25.png). Hence, ***1-pr*** is the cost reduction incurred when cumulative investment is doubled. Typical observed ***pr*** values are in a range of .75 to .95.
+[^38]: It is usual to define, instead of $b$, another parameter, $pr$ called the *progress ratio*, which is related to $b$ via the following relationship:![](assets/image25.png). Hence, $1-pr$ is the cost reduction incurred when cumulative investment is doubled. Typical observed $pr$ values are in a range of 0.75 to 0.95.
