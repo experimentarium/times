@@ -21,7 +21,7 @@ represents the transpose of that vector or matrix. A Linear Program may
 always be represented as the following *Primal Problem* in canonical
 form:
 
-> $Max c^tx$ (14-1)
+> $Max // c^tx$ (14-1)
 
 s.t. $Ax ≤ b$ (14-2)
 
@@ -47,7 +47,7 @@ it is *non-basic*.
 For each primal problem, there corresponds a *Dual problem* derived as
 follows:
 
-> $Min b^ty$ (14-4)
+> $Min // b^ty$ (14-4)
 
 s.t. $A^ty ≥ c$ (14-5)
 
@@ -81,7 +81,7 @@ If the primal problem has a *finite, optimal* solution $x^*$, then so
 does the dual problem ($y^*$), and both problems have the same optimal
 objective value (their duality gap is zero):
 
-$c^tx^* = b^t^y^*$ (14-8)
+$c^tx^* = b^ty^*$ (14-8)
 
 Note that the optimal values of the dual variables are also called the
 *shadow prices* of the primal constraints.
@@ -180,7 +180,7 @@ competitiveness of a technology, as follows:
 We now restate the above summary in the case of a Linear Program that
 minimizes cost subject to constraints:
 
-> $Min c^tx^*$
+> $Min // c^tx^*$
 
 s.t. $Ax ≥ b$
 
