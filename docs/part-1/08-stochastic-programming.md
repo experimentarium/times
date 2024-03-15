@@ -42,7 +42,7 @@ from one or more assumptions above, as follows:
     the objective function are non-linear and non-convex, and requires
     the use of MIP.
 
-[Remark]{.underline}: None of these four extensions departs from the
+<ins>Remark:</ins> None of these four extensions departs from the
 competitive market assumption. It is *also* possible to simulate certain
 types of non-competitive behavior using TIMES. For instance, it has been
 possible to simulate the behavior of the OPEC oil cartel by assuming
@@ -70,8 +70,8 @@ partially, at the *resolution time*, i.e. the time at which the actual
 value of the parameter is revealed. Different parameters may have
 different times of resolution. Both the resolution times and the
 probability distributions of the parameters may be represented on an
-event tree, such as the one of figure 8.1, depicting a typical
-energy/environmental situation. In figure 8.1, two parameters are
+event tree, such as the one of {numref}`stochastic_TIMES_tree`, depicting a typical
+energy/environmental situation. In {numref}`stochastic_TIMES_tree`, two parameters are
 uncertain: mitigation level, and demand growth rate. The first may have
 only two values (High and Low), and becomes known in 2010. The second
 also may have two values (High and Low) and becomes known in 2020. The
@@ -89,19 +89,17 @@ after resolution, the decision maker knows with certainty the outcome of
 some event(s) and his subsequent decisions will be different depending
 on which outcome has occurred.
 
-For the example shown in figure 8.1, in 2000 and 2010 there can be only
+For the example shown in {numref}`stochastic_TIMES_tree`, in 2000 and 2010 there can be only
 one set of decisions, whereas in 2020 there will be two sets of
 decisions, contingent on which of the mitigation outcomes (High or Low)
 has occurred, and in 2030, 2040, 2050 and 2060, there will be four sets
 of contingent decisions.
 
-![](assets/image23.png){width="5.825694444444444in"
-height="4.302777777777778in"}
-
-*Figure*
-
-* 8.**1. Event Tree for a three-stage stochastic TIMES Example.*
-
+```{figure} assets/image23.png
+:name: stochastic_TIMES_tree
+:align: center
+Event Tree for a three-stage stochastic TIMES Example.
+```
 This remark leads directly to the following general multi-period,
 multi-stage stochastic program in Equations 8-1 to 8-3 below. The
 formulation described here is based on Dantzig (1963, Wets (1989), or
@@ -134,7 +132,7 @@ where
 >
 > *S(t) =* set of state indices for time period t;
 
-For Figure 8.1, we have: S(2000) = 1; S(2010) = 1; S(2020) = 1,2;
+For {numref}`stochastic_TIMES_tree`, we have: S(2000) = 1; S(2010) = 1; S(2020) = 1,2;
 S(2030) = 1,2,3,4;\
 S(2040) = 1,2,3,4; S(2050) = 1,2,3,4; S(2060) = 1,2,3,4;
 
@@ -175,25 +173,25 @@ period. For instance, in this alternate formulation of the example,
 there would be four variables *X(t,s)* at every period t, (whereas there
 was only one variable X(2000,1) in the previous formulation).
 
-+------------------------------------------------------------------+---+
-| **Minimize**                                                     |   |
-|                                                                  |   |
-| $$Z = \sum_{t \in T}^{}{}\s                                      |   |
-| um_{s \in S(t)}^{}{}C(t,s) \times X(t,s) \times p(t,s)(8 - 1)'$$ |   |
-+------------------------------------------------------------------+---+
+
+**Minimize**
+
+  -------------------------------------------------------------------------------------------- -------------
+  $$Z = \sum_{t \in T}^{}{}\sum_{s \in S(t)}^{}{}C(t,s) \times X(t,s) \times p(t,s)$$ (8-1)
+
+  -------------------------------------------------------------------------------------------- -------------
 
 **Subject to:**
 
-  ----------------------------------------------------------------- -----
-  $A(t,s) \times X(t,s) \geq b(t,s)$ *all t, all* s (8---2)'        
+  ----------------------------------------------------------------------------------- -----------
+  $$A(t,s) \times X(t,s) \geq b(t,s) \forall t, forall s$$ (8-2)        
 
-  $\sum_{t \in T}^{}{D(t,s) \times X(t,s)} \geq e(s)$ *all t, all*  
-  s (8---3)'                                                        
-  ----------------------------------------------------------------- -----
+  $$\sum_{t \in T}^{}{D(t,s) \times X(t,s)} \geq e(s) \forall t, \forall s$$ (8-3)                                          
+  ----------------------------------------------------------------------------------- -----------
 
 Of course, in this approach we need to add equality constraints to
 express the fact that some scenarios are identical at some periods. In
-the example of Figure 8., we would have:
+the example of {numref}`stochastic_TIMES_tree`, we would have:
 
 X(2000,1)=X(2000,2)=X(2000,3)=X(2000,4),
 
@@ -258,9 +256,9 @@ following utility function to minimize:
 
 $$U = EC + \lambda \cdot \sqrt{Var(C)}$$
 
-where λ\>0 is a measure of the risk aversion of the decision maker. For
-λ=0, the usual expected cost criterion is obtained. Larger values of
-**λ** indicate increasing risk aversion.
+where $λ>0$ is a measure of the risk aversion of the decision maker. For
+$λ=0$, the usual expected cost criterion is obtained. Larger values of
+$λ$ indicate increasing risk aversion.
 
 Taking risk aversion into account by this formulation would lead to a
 non-linear, non-convex model, with all its ensuing computational
@@ -273,8 +271,8 @@ the upper-absolute-deviation, defined by:
 
 $$UpAbsDev(Cost_{k}) = \sum_{j}^{}{p_{j} \bullet \left\{ Cost_{j\left| k \right.\ } - EC_{k} \right\}^{+}}$$
 
-where ***y= {x}^+^*** is defined by the following two *linear*
-constraints: ***y ≥ x*** , and ***y ≥ 0,*** and the utility is now
+where $y= {x}^+$ is defined by the following two *linear*
+constraints: $y ≥ x$ , and $y ≥ 0$, and the utility is now
 written via the following *linear* expression:
 
 $$U = EC + \lambda \cdot UpsAbsDev(C)$$

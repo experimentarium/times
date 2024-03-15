@@ -510,7 +510,7 @@ of the different inheritance and aggregation rules are summarised in
 Table 10. The specific rules applied to each individual parameter are
 listed in the detailed reference further below.
 
-The different aggregation rules are illustrated by examples in Figure 9.
+The different aggregation rules are illustrated by examples in {numref}`inheritance_aggregation_rules_parameters`.
 It should be noted that if input data are specified on two timeslice
 levels different from the target level, then especially the weighted
 inheritance/aggregation method may lead to incorrect results. Therefore,
@@ -528,11 +528,11 @@ bounds that are either inherited or aggregated to the target timeslice
 level will always override any upper and lower bounds simultaneously
 specified.
 
-![](media/image9.png){width="6.447916666666667in"
-height="5.385416666666667in"}
-
-Figure 9: Inheritance and aggregation rules for timeslice specific
-parameters in TIMES
+```{figure} assets/image9.png
+:name: inheritance_aggregation_rules_parameters
+:align: center
+Inheritance and aggregation rules for timeslice specific parameters in TIMES.
+```
 
 ### Overview of user input parameters
 
@@ -7114,8 +7114,7 @@ main output, and heat is considered as a by-product.
 
 **Options for variants of levelized cost reporting:**
 
-1.  [Do not include emission prices or by-product revenues in the
-    calculation]{.underline} (RPT_OPT('NCAP','1') = --1):
+1.  <ins>Do not include emission prices or by-product revenues in the calculation</ins> (RPT_OPT('NCAP','1') = --1):
 
 > In this option emission prices are omitted from the calculation, in
 > accordance with the most commonly used convention for LEC calculation.
@@ -7128,8 +7127,7 @@ main output, and heat is considered as a by-product.
 > in the calculation to the fraction of the main output in the total
 > amount of energy produced.
 
-2.  [Include both emission prices and by-product revenues in the
-    calculation]{.underline} (RPT_OPT('NCAP','1') = 1):
+2.  <ins>Include both emission prices and by-product revenues in the calculation</ins> (RPT_OPT('NCAP','1') = 1):
 
 > In this option both emission prices and by-product revenues are
 > included in the calculation. The levelized cost thus represents the
@@ -7138,9 +7136,7 @@ main output, and heat is considered as a by-product.
 > for by-products in the LEC calculation has been utilized, for example,
 > in the IEA *Projected Costs of Generating Electricity* studies.
 
-3.  [Include not only emission prices and by-product revenues, but also
-    the revenues from the main product in the calculation]{.underline}
-    (RPT_OPT('NCAP','1') = 2):
+3.  <ins>Include not only emission prices and by-product revenues, but also the revenues from the main product in the calculation</ins> (RPT_OPT('NCAP','1') = 2):
 
 > This option is similar to option (2) above, but in this case all
 > product revenues are included in the calculation, including also the

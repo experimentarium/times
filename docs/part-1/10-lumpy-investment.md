@@ -38,7 +38,7 @@ computational time and on the interpretation of duality results.
 The lumpy investment option available in TIMES is slightly more general
 than the one described above. It insures that investment in technology
 ***k*** is equal to one of a finite number ***N*** of pre-determined
-sizes: ***0, S~1~(t), S~2~(t), ...,S~N~(t).*** This is useful when
+sizes: $0, S_1(t), S_2(t), ...,S_N(t)$. This is useful when
 several typical plant sizes are feasible in the real world. As implied
 by the notation, these discrete sizes may be different at different time
 periods. Note that by choosing the ***N*** sizes as the successive
@@ -57,14 +57,13 @@ Typically, the modeling of a lumpy investment involves Integer
 Variables, i.e. variables whose values may only be non-negative integers
 (0, 1, 2, ...). The mathematical formulation is as follows:
 
-$${VAR\_ NCAP(p,t) = \sum_{i = 1}^{N}{S_{i}(p,t) \times}Z_{i}(p,t)each ⥂ t = 1,..,T
-}{with
-}
-{Z_{i}(p,t) = 0or1
-}
-{and
-}
-{\sum_{i = 1}^{N}Z_{i}(p,t) \leq 1}$$
+$VAR\_ NCAP(p,t) = \sum_{i = 1}^{N}{S_{i}(p,t) \times}Z_{i}(p,t)$ for each $⥂ t = 1,..,T$
+
+with:
+$Z_{i}(p,t) = 0$ or $Z_{i}(p,t) = 1$
+
+and:
+$\sum_{i = 1}^{N}Z_{i}(p,t) \leq 1$
 
 The second and third constraints taken together imply that at most one
 of the ***Z*** variables is equal to 1 and all others are equal to zero.
@@ -76,7 +75,7 @@ profound effect on the resulting optimization program. Indeed, MIP
 problems are notoriously more difficult to solve than LPs, and in fact
 many of the properties of linear programs discussed in the preceding
 chapters do not hold for MIPs, including duality theory, complementary
-slackness, etc. Note that the constraint that *Z(p,t)* should be 0 or 1
+slackness, etc. Note that the constraint that $Z(p,t)$ should be 0 or 1
 departs from the *divisibility* property of linear programs. This means
 that the *feasibility domain* of integer variables (and therefore of
 some investment variables) is no longer contiguous, thus making it

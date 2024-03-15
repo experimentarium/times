@@ -63,24 +63,23 @@ is allowed to vary according to user-selected elasticities of
 substitution. Sectoral production functions most typically have the
 following general form:
 
-$X_{s} = A_{0}\left( B_{K} \cdot K_{s}^{\rho} + B_{L} \cdot L_{S}^{\rho} + B_{E} \cdot E_{S}^{\rho} \right)^{1/\rho}$
-(3-1)
+$X_{s} = A_{0}\left( B_{K} \cdot K_{s}^{\rho} + B_{L} \cdot L_{S}^{\rho} + B_{E} \cdot E_{S}^{\rho} \right)^{1/\rho}$ (3-1)
 
-where ***X~S\ ~***is the output of sector *S,*
+where 
 
-> ***K~S~**, **L~S~**, and **E~S~*** are the inputs of capital, labor
-> and energy needed to
+> $X_{S}$ is the output of sector $S$,
+> 
+> $K_{S}$, $L_{S}$, and $E_{S}$ are the inputs of capital, labor
+> and energy needed to produce one unit of output in sector $S$,
+> 
+> $\rho$ is the elasticity of substitution parameter,
 >
-> produce one unit of output in sector *S,*
->
-> ***ρ*** is the elasticity of substitution parameter,
->
-> ***A~0~*** and the ***B***'s are scaling coefficients.
+> $A_{0}$ and the $B$'s are scaling coefficients.
 
 The choice of *ρ* determines the ease or difficulty with which one
-production factor may be substituted for another: the smaller *ρ* is
+production factor may be substituted for another: the smaller $\rho$ is
 (but still greater than or equal to 1), the easier it is to substitute
-the factors to produce the same amount of output from sector *S*. Also
+the factors to produce the same amount of output from sector $S$. Also
 note that the degree of factor substitutability does not vary among the
 factors of production --- the ease with which capital can be substituted
 for labor is equal to the ease with which capital can be substituted for
@@ -280,9 +279,6 @@ hold:
 -   The market price of each commodity is equal to its marginal value in
     the overall system (3.2.4); and
 
-```{=html}
-<!-- -->
-```
 -   Each economic agent maximizes its own profit or utility (3.2.5).
 
 #### Linearity
@@ -350,7 +346,7 @@ optimization models, the supply curve of a commodity, with the exception
 of end-use demands, is entirely determined endogenously by the model. It
 is a standard result of Linear Programming theory that the inverse
 supply function is step-wise constant and increasing in each factor (see
-Figures 3.1 and 3.3 for the case of a single commodity[^18]). Each
+{numref}`eq_supply_demand_endogenous` and {numref}`eq_fixed_energy_service` for the case of a single commodity[^18]). Each
 horizontal step of the inverse supply function indicates that the
 commodity is produced by a certain technology or set of technologies in
 a strictly linear fashion. As the quantity produced increases, one or
@@ -364,9 +360,11 @@ higher than the preceding step. The width of any particular step depends
 upon the technological potential and/or resource availability associated
 with the set of technologies represented by that step.
 
-![](assets/image3.png)*Figure 3.1. Equilibrium in the case of an energy
-form: the model implicitly constructs both the supply and the demand
-curves (note that the equilibrium is multiple in this configuration)*
+```{figure} assets/image3.png
+:name: eq_supply_demand_endogenous
+:align: center
+Equilibrium in the case of an energy form: the model implicitly constructs both the supply and the demand curves (note that the equilibrium is multiple in this configuration).
+```
 
 In a similar manner, each TIMES model instance defines a series of
 inverse demand functions. In the case of demands, two cases are
@@ -374,18 +372,18 @@ distinguished. First, if the commodity in question is an energy carrier
 whose production and consumption are endogenous to the model, then its
 demand function is *implicitly* constructed within TIMES, and is a
 step-wise constant, decreasing function of the quantity demanded, as
-illustrated in Figure 3.1 for a single commodity. If on the other hand
+illustrated in {numref}`eq_supply_demand_endogenous` for a single commodity. If on the other hand
 the commodity is a demand for an energy service, then its demand curve
 is *defined by the user* via the specification of the own-price
 elasticity of that demand, and the curve is in this instance a smoothly
-decreasing curve as illustrated in Figure 3.2[^19]. In both cases, the
+decreasing curve as illustrated in {numref}`eq_demand_curve`[^19]. In both cases, the
 supply-demand equilibrium is at the intersection of the supply function
-and the demand function, and corresponds to an equilibrium quantity Q~E~
-and an equilibrium price P~E~[^20]. At price P~E~, suppliers are willing
-to supply the quantity Q~E~ and consumers are willing to buy exactly
-that same quantity Q~E.~ Of course, the TIMES equilibrium concerns a
+and the demand function, and corresponds to an equilibrium quantity $Q_E$
+and an equilibrium price $P_E$[^20]. At price $P_E$, suppliers are willing
+to supply the quantity $Q_E$ and consumers are willing to buy exactly
+that same quantity $Q_E$. Of course, the TIMES equilibrium concerns a
 large number of commodities simultaneously, and thus the equilibrium is
-a multi-dimensional analog of the above, where Q~E~ and P~E~ are now
+a multi-dimensional analog of the above, where $Q_E$ and $P_E$ are now
 vectors rather than scalars.
 
 As already mentioned, the demand curves of most TIMES commodities (i.e.
@@ -394,38 +392,38 @@ endogenously as an integral part of the solution of the LP. For each
 commodity that is an energy service, the user *explicitly* defines the
 demand *function* by specifying its own price elasticity. In TIMES, each
 energy service demand is assumed to have a constant own price elasticity
-function of the form (see Figure 3.2):
+function of the form (see {numref}`eq_demand_curve`):
 
-DM/DM~0~ = (P/P~0~)^E^ (3-2)
+$DM/DM_{0} = (P/P_{0})^{E}$ (3-2)
 
-Where {*DM~0~ ,P~0~*} is a reference pair of demand and price values for
-that energy service over the forecast horizon, and *E* is the (negative)
+Where $\{DM_0,P_0\}$ is a reference pair of demand and price values for
+that energy service over the forecast horizon, and $E$ is the (negative)
 own price elasticity of that energy service demand, as specified by the
 user (note that although not obvious from the notation, this price
-elasticity may vary over time). The pair {*DM~0~, P~0~*} is obtained by
-solving TIMES for a reference scenario. More precisely, *DM~0~*is the
+elasticity may vary over time). The pair $\{DM_0,P_0\}$ is obtained by
+solving TIMES for a reference scenario. More precisely, $DM_0$ is the
 demand projection estimated by the user in the reference scenario
 (usually based upon explicitly defined relationships to economic and
-demographic drivers), and P~0~ is the shadow price of that energy
+demographic drivers), and $P_0$ is the shadow price of that energy
 service demand in the dual solution of the reference case scenario. The
 precise manner in which the demand functions are discretized and
 incorporated in the TIMES objective function is explained in chapter 4.
 
-Using Figure 3.1 as an example, the definition of the suppliers' surplus
+Using {numref}`eq_supply_demand_endogenous` as an example, the definition of the suppliers' surplus
 corresponding to a certain point S on the inverse supply curve is the
 difference between the total revenue and the total cost of supplying a
-commodity, i.e. the gross profit. In Figure 3.1, the surplus is thus the
+commodity, i.e. the gross profit. In {numref}`eq_supply_demand_endogenous`, the surplus is thus the
 area between the horizontal segment SS' and the inverse supply curve.
 Similarly, the consumers' surplus for a point C on the inverse demand
 curve, is defined as the area between line segment CC' and the inverse
 demand curve. This area is a consumer's analog to a producer's profit;
 more precisely it is the cumulative opportunity gain of all consumers
 who purchase the commodity at a price lower than the price they would
-have been willing to pay. Thus, for a given quantity Q, the total
+have been willing to pay. Thus, for a given quantity $Q$, the total
 surplus (suppliers' plus consumers') is simply the area between the two
-inverse curves situated at the left of Q. It should be clear from Figure
-3.1 that the total surplus is maximized when Q is exactly equal to the
-equilibrium quantity Q~E~. Therefore, we may state (in the single
+inverse curves situated at the left of $Q$. It should be clear from {numref}`eq_supply_demand_endogenous`
+that the total surplus is maximized when $Q$ is exactly equal to the
+equilibrium quantity $Q_E$. Therefore, we may state (in the single
 commodity case) the following Equivalence Principle:
 
 > *"The supply-demand equilibrium is reached when the total surplus is
@@ -456,20 +454,25 @@ concept has long been a mainstay of social welfare economics because it
 takes into account both the surpluses of consumers and of
 producers.[^22]
 
-![](assets/image7.png)*Figure 3.2. Equilibrium in the case of an energy
-service: the user explicitly provides the demand curve, usually using a
-simple functional form (see text for details)*
+```{figure} assets/image7.png
+:name: eq_demand_curve
+:align: center
+Equilibrium in the case of an energy service: the user explicitly provides the demand curve, usually using a simple functional form (see text for details).
+```
 
 *Remark:* In older versions of MARKAL, and in several other least-cost
 bottom-up models, energy service demands are exogenously specified by
 the modeler, and only the cost of supplying these energy services is
-minimized. Such a case is illustrated in Figure 3.3 where the "inverse
+minimized. Such a case is illustrated in {numref}`eq_demand_curve` where the "inverse
 demand curve" is a vertical line. The objective of such models was
 simply the minimization of the total cost of meeting exogenously
 specified levels of energy service.
 
-![](assets/image8.png)*Figure 3.3. Equilibrium when an energy service
-demand is fixed*
+```{figure} assets/image7.png
+:name: eq_fixed_energy_service
+:align: center
+Equilibrium in the case of an energy service: the user explicitly provides the demand curve, usually using a simple functional form (see text for details).
+```
 
 #### Competitive energy markets with perfect foresight
 
@@ -536,7 +539,7 @@ The fact that the price of a commodity is equal to its marginal value is
 an important feature of competitive markets. Duality theory does not
 necessarily indicate that the marginal value of a commodity is equal to
 the marginal cost of *producing* that commodity. For instance, in the
-equilibrium shown in Figure 3.4 the price does not correspond to *any*
+equilibrium shown in {numref}`eq_price_different_marginal_cost` the price does not correspond to *any*
 marginal supply cost, since it is situated at a discontinuity of the
 inverse supply curve. In this case, the price is precisely determined by
 demand rather than by supply, and the term *marginal cost pricing* (so
@@ -556,10 +559,13 @@ seems much too small or too large compared to the anticipated market
 prices), this indicates that the model's database may contain some
 errors. The examination of shadow prices is just as important as the
 analysis of the quantities produced and consumed of each commodity and
-of the technological investments. ![](assets/image9.png)
+of the technological investments. 
 
-*Figure 3.4. Case where the equilibrium price is not equal to any
-marginal supply cost.*
+```{figure} assets/image9.png
+:name: eq_price_different_marginal_cost
+:align: center
+Case where the equilibrium price is not equal to any marginal supply cost.
+```
 
 ### Profit maximization: the Invisible Hand
 
@@ -570,10 +576,10 @@ in TIMES maximizes its own surplus. This property is akin to the famous
 'invisible hand' property of competitive markets, and may be established
 rigorously by the following theorem that we state in an informal manner:
 
-> *[Theorem]{.underline}: Let (p\*,q\*) be a pair of equilibrium vectors
+> *<ins>Theorem:</ins> Let (p\*,q\*) be a pair of equilibrium vectors
 > that maximize total surplus. If we now replace the original TIMES
 > linear program by one where all commodity prices are
-> [fixed]{.underline} at value p\*, and we let each agent maximize its
+> <ins>fixed</ins> at value p\*, and we let each agent maximize its
 > own surplus, the vector of optimal quantities produced or purchased by
 > the agents also maximizes the total surplus*[^24]*.*
 
@@ -630,20 +636,20 @@ market.
     purposes, and thus become a staircase function, as described in
     section 4.2
 
-[^20]: As may be seen in figure 3.1, the equilibrium is not necessarily
+[^20]: As may be seen in {numref}`eq_supply_demand_endogenous`, the equilibrium is not necessarily
     unique. In the case shown, any point on the vertical segment
     containing the equilibrium is also an equilibrium, with the same
-    quantity Q~E~ but a different price. In other situations, the
+    quantity $Q_E$ but a different price. In other situations, the
     multiple equilibria may have a single price but multiple quantities.
 
-[^21]: This results from the fact that in TIMES each price ***P~i~***is
+[^21]: This results from the fact that in TIMES each price $P_i$ is
     the shadow price of a balance constraint (see section 5.4.4), and
     may thus be (loosely) expressed as the derivative of the objective
-    function ***F*** with respect to the right-hand-side of a balance
-    constraint, i.e. ![](assets/image4.png). When that price is further
-    differentiated with respect to another quantity ***Q~j~***, one gets
-    ![](assets/image5.png), which, under mild conditions is always equal
-    to ![](assets/image6.png), as desired.
+    function $F$ with respect to the right-hand-side of a balance
+    constraint, i.e. $\partial F/\partial Q_i$. When that price is further
+    differentiated with respect to another quantity $Q_j$, one gets
+    $\partial^2 F/(\partial Q_i . \partial Q_j)$, which, under mild conditions is always equal
+    to $\partial^2 F/(\partial Q_j . \partial Q_i)$, as desired.
 
 [^22]: See e.g. Samuelson and Nordhaus (1977)
 

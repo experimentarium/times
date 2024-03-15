@@ -2,9 +2,9 @@
 
 ## A brief history of TIMES[^43] and MARKAL
 
-The TIMES ([T]{.underline}he [I]{.underline}ntegrated
-[M]{.underline}arkal-[E]{.underline}fom[S]{.underline}ystem) and the
-MARKAL ([MAR]{.underline}ket [AL]{.underline}location) models have a
+The TIMES (<ins>[T]</ins>he <ins>[I]</ins>ntegrated
+<ins>[M]</ins>arkal-<ins>[E]</ins>fom <ins>[S]</ins>ystem) and the
+MARKAL (<ins>[Mar]</ins>ket <ins>[Al]</ins>location) models have a
 common history beginning in the 1970\'s when a formal decision of the
 International Energy Agency (IEA) led to the creation of a common tool
 for analyzing energy systems, to be shared by the participating OECD

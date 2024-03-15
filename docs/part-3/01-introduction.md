@@ -2,7 +2,7 @@
 
 ## Summary of components
 
-The TIMES model environment under VEDA is depicted in Figure 1. For ANSWER the underlying model management flow is very similar, with the addition of a \<Case\>.ANT file being dumped by the TIMES GAMS report writer for importing of the model results into ANSWER, if desired, though model TIMES users tend to rely on the extra power brought to bear by VEDA-BE.
+The TIMES model environment under VEDA is depicted in {numref}`components_TIMES_VEDA`. For ANSWER the underlying model management flow is very similar, with the addition of a \<Case\>.ANT file being dumped by the TIMES GAMS report writer for importing of the model results into ANSWER, if desired, though model TIMES users tend to rely on the extra power brought to bear by VEDA-BE.
 
 It is composed of five distinct components described below.
 
@@ -16,9 +16,12 @@ It is composed of five distinct components described below.
 
 - **A solver** is a software package integrated with GAMS which solves the mathematical programming problem produced by the Model Generator for a particular instance of the TIMES model. Solvers are discussed further in Section 1.4. More information on solvers may be found at [www.gams.com](http://www.gams.com/).
 
-![](assets/image1.png){width="6.5in" height="3.304621609798775in"}
 
-[]{#_Ref403203713 .anchor}Figure 1: Components of the TIMES Modeling Platform Under VEDA
+```{figure} assets/image1.png
+:name: components_TIMES_VEDA
+:align: center
+Components of the TIMES Modeling Platform Under VEDA.
+```
 
 The rest of this Part describes in more detail how the computer environment is organized and operates to make working with TIMES viable and effective.
 
@@ -36,12 +39,21 @@ Each of the components mentioned above -- GAMS, VEDA, and ANSWER -- reside in th
 
 The various components discussed above \"talk\" with each other primarily by means of ASCII text files deposited in common locations (folders) and passed between said components. The specific folder layout for each component is discussed below and later in the Section a look at the specific files involved with the inter-component communication is provided. This handshaking is virtually seamless from the users\' perspective, as long as all the component paths are properly identified for each component.
 
-![](assets/image2.png){width="3.1333333333333333in" height="3.0458333333333334in"}**For GAMS**, the system is self-contained in a \\GAMS\\\<os\>\\\<version\> system folder (if installed in the default location, as recommended) and is connected to VEDA-FE and ANSWER through the Windows Path Environment Variable. This GAMS path is either set during installation automatically (by requesting Advanced Installation Mode and requesting Add GAMS Directory to Path Environment Variable) or manually via the Windows Control Panel. Full (simple) instructions are provided for installing and properly configuring GAMS for use with TIMES with the software distribution notification email and are summarized in Section 1.4 below.
+```{figure} assets/image2.png
+:name: image2
+:align: center
+```
+
+**For GAMS**, the system is self-contained in a \\GAMS\\\<os\>\\\<version\> system folder (if installed in the default location, as recommended) and is connected to VEDA-FE and ANSWER through the Windows Path Environment Variable. This GAMS path is either set during installation automatically (by requesting Advanced Installation Mode and requesting Add GAMS Directory to Path Environment Variable) or manually via the Windows Control Panel. Full (simple) instructions are provided for installing and properly configuring GAMS for use with TIMES with the software distribution notification email and are summarized in Section 1.4 below.
 
 **For ANSWER**, the core of the system must reside in a single folder \\AnswerTIMESv6 (encouraged to be right off the root). A full description of the folder structure that ANSWER employs may be found in the separate ANSWER documentation, with the basic layout shown in Figure 2 below. From the perspective of connecting ANSWER with GAMS and VEDA-BE (if used) the key subfolders the user needs to be aware of are the GAMS_SrcTI and GAMS_WrkTI default TIMES source code and model run folders respectively. Upon initiating a model run, ANSWER needs to inform GAMS where the TIMES model source code is, that being GAMS_SrcTI (or any variant the user chooses to setup). For the model results to find their way to VEDA-BE, it must be informed of the model run folder, that being GAMS_WrkTI (or any variant the user chooses to set up, say for different projects), through the VEDA-BE Import Results/Manage Input File Location operation. The location of these folders for each model is set within ANSWER, through the Tools/File Locations option. (In the example shown in Figure 2, several GAMS_Wrk\<model\> folders have been created so that different models (or projects) are run in distinct folders.)The other folder the user will interact with is the Answer_Databases where by default the user\'s ANSWER TIMES database (MDB) and usually Excel input templates would reside. In this regard the user is encouraged to make subfolders under Answer_Databases (or any other location they wish) for each of their models or project, as shown in .
 
-![](assets/image3.png){width="1.3979166666666667in"
-height="3.2159722222222222in"} **For VEDA**, the core of the system must reside in a single folder \\VEDA (encouraged to be right off the root), with the basic required folder structure shown in . From the perspective of connecting VEDA-FE with GAMS, the key subfolders the user needs to be particularly aware of are the GAMS_SrcTIMESv### and GAMS_WrkTIMES (or other run folders for each project if desired), the default TIMES source code and model run folders respectively. Both reside in the \\VEDA\\VEDA_FE folder. Upon initiating a model run, VEDA-FE needs to inform GAMS where the TIMES model source code is, that being GAMS_SrcTIMES### (or any variant the user chooses to setup). For the model results to find their way to VEDA-BE it must be informed of the model run folder, that being GAMS_WrkTIMES (or any variant the user chooses to set up, say for different projects or model instances), through the VEDA-BE Import Results/Manage Input File Location operation. The location of these folders for each model is set within VEDA-FE, through Tools/User Options settings.
+```{figure} assets/image3.png
+:name: image3
+:align: center
+```
+
+**For VEDA**, the core of the system must reside in a single folder \\VEDA (encouraged to be right off the root), with the basic required folder structure shown in . From the perspective of connecting VEDA-FE with GAMS, the key subfolders the user needs to be particularly aware of are the GAMS_SrcTIMESv### and GAMS_WrkTIMES (or other run folders for each project if desired), the default TIMES source code and model run folders respectively. Both reside in the \\VEDA\\VEDA_FE folder. Upon initiating a model run, VEDA-FE needs to inform GAMS where the TIMES model source code is, that being GAMS_SrcTIMES### (or any variant the user chooses to setup). For the model results to find their way to VEDA-BE it must be informed of the model run folder, that being GAMS_WrkTIMES (or any variant the user chooses to set up, say for different projects or model instances), through the VEDA-BE Import Results/Manage Input File Location operation. The location of these folders for each model is set within VEDA-FE, through Tools/User Options settings.
 
 To complete the inter-connection picture between components of VEDA, VEDA-FE maintains each model instance in the VEDA_Models folder where the user assembles the model input Excel templates. The other folder the user will need to be aware of is the VEDA_BE\\Databases\\\<project\> where the user\'s the VEDA-BE results databases reside. In order for VEDA-FE to use Sets defined in VEDA-BE for user constraint and/or scenario specifications, the former must be pointed to the latter -- by means of clicking on the VEDA-BE database reference up at the top of the VEDA-FE application window.
 

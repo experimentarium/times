@@ -30,7 +30,7 @@ As a generalization to the basic scheme described above, the user can
 also request fixing to the previous solution different sets of fixed
 years accor­ding to region.
 
-**[Example:]{.underline}** Assume that you would like to analyze the
+**<ins>Example:</ins>** Assume that you would like to analyze the
 15-region ETSAP TIAM model with some shocks after the year 2030, and you
 are interested in differences in the model solution only in regions that
 have notable gas or LNG trade with the EU. Therefore, you would like to
@@ -53,7 +53,7 @@ absence of the overlap, decisions taken at step ***n*** would have no
 initial conditions and would be totally disconnected from step ***n-1***
 decisions.)
 
-Figure 9.1 illustrates the step-wise solution approach with a horizon of
+{numref}`periods-in-time-stepped-sol` illustrates the step-wise solution approach with a horizon of
 8 periods and 6 successive optimization steps. Each step has a 2 period
 sub-horizon, and there is also an overlap of one period between a step
 and the next. More explicitly: at step 2, all period 2 variables are
@@ -61,11 +61,12 @@ frozen at the values indicated in the solution of step 1, and period 3
 is free to be optimized. At step 3, period 3 variables are frozen and
 period 4 is optimized, etc.
 
-![](assets/image24.png){width="5.674305555555556in"
-height="2.765277777777778in"}
+```{figure} assets/image24.png
+:name: periods-in-time-stepped-sol
+:align: center
 
-*Figure 9.1. Sequence of optimized periods in the stepped TIMES solution
-approach.*
+Sequence of optimized periods in the stepped TIMES solution approach.
+```
 
 *Each run includes also the fixed solution of all earlier periods.*
 
@@ -73,7 +74,7 @@ The amount of overlapping years between successive steps is by default
 half of the active step length (the value of TIMESTEP), but it can be
 controlled by the user.
 
-[Important remark]{.underline}: as mentioned above, the user chooses the
+<ins>Important remark:</ins> as mentioned above, the user chooses the
 lengths of the sub-horizons and the length of the overlaps, *both
 expressed in years*. Because the time periods used in the model may be
 variable and may not always exactly match with the step-length and

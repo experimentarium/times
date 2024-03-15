@@ -26,7 +26,7 @@ electricity production may in such systems vary from the fixed value to
 infinity, and in a pass-out turbine system it may vary from zero to
 infinity.
 
-All these different cases are illustrated in Figure 10 below, which
+All these different cases are illustrated in {numref}`CHP_characteristics_TIMES` below, which
 shows the relations between heat and electricity production in different
 modes of a flexible CHP system, of which the back-pressure turbine
 system is a special case. Taking into account that thermal power plants
@@ -89,10 +89,11 @@ Table 17.
   : Table 18: Alternative ways of modelling efficiencies of CHP
   processes.
 
-![](media/image11.png){width="5.260416666666667in"
-height="3.8229166666666665in"}
-
-Figure 10: Illustration of basic CHP characteristics supported in TIMES.
+```{figure} assets/image11.png
+:name: CHP_characteristics_TIMES
+:align: center
+Illustration of basic CHP characteristics supported in TIMES.
+```
 
 #### Back-pressure turbine systems
 
@@ -152,7 +153,7 @@ approach is recommended (but see additional remarks below):
     parameter PRC_CAPACT). [^35]
 
 -   Define the process electrical efficiency according to the maximum
-    electrical efficiency (at point D in Figure 10), by using the
+    electrical efficiency (at point D in {numref}`CHP_characteristics_TIMES`), by using the
     parameter ACT_EFF;
 
 -   Define the process cost parameters accordingly, for example, specify
@@ -162,8 +163,8 @@ approach is recommended (but see additional remarks below):
     operation), and optionally also the minimum heat-to-power ratio
     (using the parameter NCAP_CHPR);
 
--   Define the slope S of the iso-fuel line (the line B--F in Figure 10)
-    by specifying NCAP_CEH=S (where --1 \< S \< 0, as in Figure 10);
+-   Define the slope S of the iso-fuel line (the line B--F in {numref}`CHP_characteristics_TIMES`)
+    by specifying NCAP_CEH=S (where --1 \< S \< 0, as in {numref}`CHP_characteristics_TIMES`);
 
 -   Optionally, define also a maximum annual utilization factor
     considering the typical optimal sizing of CHP plants in the heat
@@ -174,7 +175,7 @@ approach is recommended (but see additional remarks below):
 
 Again, the specifications should be quite straightforward. The slope S
 of the iso-fuel line represents the amount of electricity lost per heat
-gained. In the example of Figure 10, the inverse of the slope has the
+gained. In the example of {numref}`CHP_characteristics_TIMES`, the inverse of the slope has the
 value 7 and so one would define NCAP_CEH = --1/7.
 
 Alternatively, if it would seem more convenient to define both the
@@ -288,10 +289,10 @@ processes), each of which defines a portion of the trading network for
 the com­modity. The individual sub-networks can be linked together
 through common inter­mediating regions. As an example, electricity trade
 can be conveniently described by bi-lateral exchange processes (see
-Figure 12). But bi-lateral trading between all pairs of regions may
+{numref}`bilateral_trade`). But bi-lateral trading between all pairs of regions may
 become onerous in terms of data and model size. It is therefore useful
 to consider the other trade structure of TIMES, called multi-lateral
-trade, where regions trade with a common market (Figure 11). For either
+trade, where regions trade with a common market ({numref}`trading_subnetwork_exchange`). For either
 structure, the topology of the trading possibilities are all defined via
 the set **top_ire** of quintuples {r1,c1,r2,c2,p}, where **r1**, **r2**
 are the exporting and importing regions respectively, **c1**, **c2** are
@@ -301,28 +302,27 @@ process in both regions. It has to be defined only once, but one can add
 parameters to it in both regions (e.g. costs, bounds, etc.). Nearly
 every piece of data in TIMES has to be assigned to a region.
 
-![](media/image12.png){width="5.645833333333333in" height="3.46875in"}
-
-Figure
-
- 11. General structure of the pair-wise specification of the trading
-sub-network allowed in TIMES for a single exchange process.
+```{figure} assets/image12.png
+:name: trading_subnetwork_exchange
+:align: center
+General structure of the pair-wise specification of the trading sub-network allowed in TIMES for a single exchange process.
+```
 
 TIMES provides considerable flexibility in the definition of trading
 structures. Each sub-network defined for a single exchange process can
-have the general structure shown in Figure 11. A trading structure that
+have the general structure shown in {numref}`trading_subnetwork_exchange`. A trading structure that
 involves both several supply (export) regions and several demand
 (import) regions cannot be defined without introducing an inter­mediating
 \'market\' region (R~M~). Whenever such an intermediate region is
 defined between (at least) two different regions, the model generator
 will assume that the structure is actually meant to ignore the
-intermediate node-region shown in Figure 11, by generating a single
+intermediate node-region shown in {numref}`trading_subnetwork_exchange`, by generating a single
 trade balance equation directly between all the export and all the
 import flows. If the intermediate step should nonetheless be included,
 for example, to reflect a physical market hub in the region R~M~, this
 can be accomp­lished by dividing the sub-network into two parts, by using
 two exchange pro­cesses. Con­sequently, depending on the user\'s choice,
-the trading relationships shown in Figure 11 can be modeled both with
+the trading relationships shown in {numref}`trading_subnetwork_exchange` can be modeled both with
 and without the intermediate transportation step through the market
 region.
 
@@ -340,14 +340,13 @@ detail:
 
 -   Case 4: General multi-lateral trading structure
 
-![](media/image13.png){width="4.833333333333333in"
-height="1.7916666666666667in"}
+```{figure} assets/image13.png
+:name: bilateral_trade
+:align: center
+Case 1: Bi-lateral trade (both R~1~ and R~2~ qualify as R~M~).
+```
 
-Figure
-
- 12. Case 1: Bi-lateral trade (both R~1~ and R~2~ qualify as R~M~).
-
-*[Trading without need for explicit marketplace definition]{.underline}*
+<ins>Trading without need for explicit marketplace definition:</ins>
 
 Cases 1, 2 and 3 fall in this category. Bi-lateral trade takes place
 between pairs of regions. An ordered pair of regions together with an
@@ -355,18 +354,18 @@ exchange process is first identified, and the trade through the exchange
 process is balanced between these two regions. Whatever amount is
 exported from region *i* to region *j* is imported by region *j* from
 region *i* (possibly with an adjustment for trans­portation losses). The
-basic structure is shown in Figure 12. Bi-lateral trading can be fully
+basic structure is shown in {numref}`bilateral_trade`. Bi-lateral trading can be fully
 described in TIMES by specifying the two pair-wise connections in
 **top_ire**. The capacity and investment costs of the exchange process
 can be described individually for both regions. For Cases 2 and 3, the
-general structure of the trade relationships is shown in Figure 13. Also
+general structure of the trade relationships is shown in {numref}`case2_case3_trade`. Also
 in these cases the definition of the trading structure is easy, because
 the relation­ships can be unambiguously described by pair-wise
 **top_ire** specifications between two regions.
 
-*[Trading based on marketplace]{.underline}*
+<ins>Trading based on marketplace:</ins>
 
-Case 4 is covered by the generic structure shown in Figure 11. Trading
+Case 4 is covered by the generic structure shown in {numref}`trading_subnetwork_exchange`. Trading
 occurs in this case between at least three regions, and involves both
 several exporting regions and several importing regions. In this type of
 trade, the commodity is 'put on the market' by each region participating
@@ -382,7 +381,7 @@ In general, there are many different possibilities for defining the
 multi-lateral structure by using the pair-wise **top_ire**
 specifications. In order to comply with the structure allowed in TIMES,
 the user has to decide which of the regions represents the
-\'marketplace\', i.e. is chosen to be the R~M~ shown in Figure 11. Note
+\'marketplace\', i.e. is chosen to be the R~M~ shown in {numref}`trading_subnetwork_exchange`. Note
 that the market region will participate both in the supply and demand
 side of the market. The TIMES model generator automatically identi­fies
 this general type of trading on the basis of the **top_ire** topology
@@ -393,7 +392,7 @@ total num­ber of entries needed in **top_ire** for defining all the trade
 possibilities is ***n+m--2*** (coun­ting the market region to be included
 in both the supply and demand regions. Although the market region has to
 be defined to be an intermediate node in the structure, the model
-gene­rator will actually [not]{.underline} introduce any intermediate
+gene­rator will actually <ins>not</ins> introduce any intermediate
 step between the export and import regions.
 
 The timeslice levels of the traded commodity may be different in each
@@ -406,13 +405,13 @@ in the market. Never­theless, the user can of course provide different
 data for the different regions, for example investment costs or
 efficiencies for the exchange process can be differentiated by region.
 
-![](media/image14.png){width="6.0in" height="2.9895833333333335in"}
-
-Figure
-
- 13. General structure of unidirectional trade into a single import
+```{figure} assets/image14.png
+:name: case2_case3_trade
+:align: center
+General structure of unidirectional trade into a single import
 region (Case 2, left) and multidirectional trade from a single export
-region (Case 3, right).
+region (Case 3, right)
+```
 
 If the sets of supply and demand regions participating in the market
 should actually be disjoint, even in that case the user has to choose
@@ -420,7 +419,7 @@ one of the regions to be used as the intermediate market region. The
 imports to or exports from the market region can then be switched off by
 using an IRE_XBND parameter, if that is considered necessary.
 
-*[Remarks on flexibility]{.underline}*
+<ins>Remarks on flexibility</ins>
 
 1.  Any number of exchange processes can be defined for describing the
     total trade relationships of a single commodity (but see warning 1
@@ -438,7 +437,7 @@ using an IRE_XBND parameter, if that is considered necessary.
     exported from a region through the same process (but see warning 2
     below).
 
-*[Warnings]{.underline}*
+<ins>Warnings</ins>
 
 1.  For each exchange process of any traded commodity, the total
     structure of the trading sub-network, as defined in **top_ire**,
@@ -460,7 +459,7 @@ using an IRE_XBND parameter, if that is considered necessary.
     trading sub-network should be divided between two different exchange
     processes.
 
-*[Example]{.underline}*
+<ins>Example</ins>
 
 Assume that we want to set up a market-based trading where the commodity
 CRUD can be exported by regions A, B, C, and D, and that it can be
@@ -548,7 +547,7 @@ All the **top_ire** specifications are handled for the user by the user
 shell (VEDA/ANSWER) according to the characterization of the trade
 processes.
 
-> *[Additional remarks]{.underline}:*
+*<ins>Additional remarks:</ins>*
 
 1.  Commodity type can be used as the primary group of IRE processes.
     > All com­modi­ties of that type, traded through the process, will
@@ -574,7 +573,7 @@ processes.
     > (**r**) can be switched off by using an IRE_XBND parameter, if
     > necessary.
 
-**[Input parameters]{.underline}**
+**<ins>Input parameters</ins>**
 
 Input parameters specific to inter-regional exchange processes are
 listed in Table 19.
@@ -626,7 +625,7 @@ listed in Table 19.
   : Table 20: Limitations of using standard process parameters for IRE
   processes.
 
-> [*Remarks*:]{.underline}
+*<ins>Remarks:</ins>*
 
 1.  In market-based trading the IRE_FLO parameter is taken into account
     > on the export side only (representing the efficiency from the
@@ -679,7 +678,7 @@ summarized as follows:
     > the import flow while NCAP_AFC(\'NRG\') applies to the export
     > flow.
 
-*[Remarks:]{.underline}*
+*<ins>Remarks:</ins>*
 
 1.  As any process has only a single capacity variable, the
     > availabilities specified for the import/export flows are always
@@ -941,7 +940,7 @@ management model:
 
 ### Input sets and parameters specifically related to storage processes
 
-**[Input sets]{.underline}**
+**<ins>Input sets</ins>**
 
 There is only one TIMES input SETs specifically related to storage:
 prc_nstts. However, there are important storage-specific aspects related
@@ -981,7 +980,7 @@ to each of the following input sets:
     region **r**, defines the timeslices **s** to be the charging
     timeslices, at which discharging cannot occur.
 
-*[Remarks]{.underline}*
+*<ins>Remarks</ins>*
 
 In TIMES, the input (charge) and output (discharge) commodity of a
 storage process is usually the same commodity (input=output). When so,
@@ -1011,7 +1010,7 @@ arbitrary flows. The desired side can be chosen by the user by defining
 the commodity only as an output (production side) or as an input
 (consumption side).
 
-**[Input parameters]{.underline}**
+**<ins>Input parameters</ins>**
 
 The TIMES input parameters that are specific to storage processes or
 have a specific functionality for storage processes are summarized in
@@ -1129,7 +1128,7 @@ be summarized as follows:
     > storage capacity is, say 8 GWh / GW, the maximum availability
     > factor should be 0.333 / STG_EFF, on the DAYNITE level.
 
-*[Remarks:]{.underline}*
+*<ins>Remarks:</ins>*
 
 1.  As any storage process has only a single capacity variable, the
     > assumption is that the availabilities specified for the
@@ -1209,7 +1208,7 @@ processes, and are ignored if used.
 
   : Table 25. User constraint modifier attributes available in TIMES.
 
-*[Additional remark on peaking equations]{.underline}:*
+*<ins>Additional remark on peaking equations</ins>*
 
 -   In peaking equations, storage processes producing the peaking
     commodity are by default taken into account by their capacity on the

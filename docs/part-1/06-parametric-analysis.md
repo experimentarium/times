@@ -163,7 +163,7 @@ The procedure was presented in a very general form, in order to let the
 user exert her ingenuity at will. Typical simple examples of using the
 feature may be useful.
 
-[Example 1]{.underline}: trade-off between cost and risk.
+<ins>Example 1:</ins> trade-off between cost and risk.
 
 First, a special UC (call it RISK) is defined that expresses a **global
 risk** measure. The successive phases consist in minimizing the
@@ -172,13 +172,15 @@ following parameterized objective:
 $$Min\ OBJZ + \ \alpha \bullet RISK$$
 
 where α is a user chosen coefficient that may be varied within a range
-to explore an entire trade-off curve such as illustrated in figure 6.1,
+to explore an entire trade-off curve such as illustrated in {numref}`trade_off_risk_cost`,
 where the vertical axis represents the values of the cost objective
 function, and the horizontal axis the risk measure.
 
-![](assets/image18.png)
-
-*Figure 6.1. Trade-off between Risk and Cost*
+```{figure} assets/image18.png
+:name: trade_off_risk_cost
+:align: center
+Trade-off between Risk and Cost.
+```
 
 OBJZ\* is the lowest value for OBJZ, corresponding to a relatively large
 value R~0~ for RISK, i.e. when α = 0. As α increases, RISK decreases and
@@ -194,7 +196,7 @@ measure was developed to evaluate the risk for a large number of
 alternative channels of energy imports into the EU, and the trade-off
 between risk and overall cost was explored.
 
-[Example 2]{.underline}: exploring the opportunity cost of the nuclear
+<ins>Example 2:</ins> exploring the opportunity cost of the nuclear
 option
 
 At phase 1, the original *OBJZ* is minimized with the habitual TIMES
