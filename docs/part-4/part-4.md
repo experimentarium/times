@@ -909,26 +909,10 @@ regions.
 
 ### User constraints and their tables
 
-User constraints provide the modeller with a flexible framework to add
-case-study specific constraints to the standard equation set embodied in
-TIMES model generator. With the help of user constraints, virtually any
-possible linear relationship between core components of the RES (as
-represented by variables in TIMES) can be formulated, and some input
-attributes can also be brought in as coefficients. User constraints can
-also be written to link variables across consecutive time slices or
-periods. Section 6.4 of Part II of the TIMES documentation contains an
-extensive discussion of the user constraint types available and their
-mathematics.
+User constraints provide the modeller with a flexible framework to add case-study specific constraints to the standard equation set embodied in TIMES model generator. With the help of user constraints, virtually any possible linear relationship between core components of the RES (as
+represented by variables in TIMES) can be formulated, and some input attributes can also be brought in as coefficients. User constraints can also be written to link variables across consecutive time slices or periods. Section 6.4 of Part II of the TIMES documentation contains an extensive discussion of the user constraint types available and their mathematics.
 
-Defining user constraints in VEDA2.0 templates is a two-step process.
-They are first declared with one or more **\~UC_SETS:** tags, which
-indicate their type and domain of coverage. Then their data is specified
-using a table with similar structure to that of a **\~FI_T** table, as
-shown in Figure 12. This example puts an upper limit on the CO2 arising
-from the Transportation plus Power sectors of the model from 2010 on,
-interpolation between 2010-2020 and the extending constant for the
-remainder of the modelling horizon (owing to interpolation rule (5)
-specified in the UC_RHSRTS\~0 column).
+Defining user constraints in VEDA2.0 templates is a two-step process. They are first declared with one or more **\~UC_SETS:** tags, which indicate their type and domain of coverage. Then their data is specified using a table with similar structure to that of a **\~FI_T** table, as shown in Figure 12. This example puts an upper limit on the CO2 arising from the Transportation plus Power sectors of the model from 2010 on, interpolation between 2010-2020 and the extending constant for the remainder of the modelling horizon (owing to interpolation rule (5) specified in the C_RHSRTS\~0 column).
 
 ![](assets/image23.png){width="6.239583333333333in"
 height="0.7395833333333334in"}
@@ -936,117 +920,38 @@ height="0.7395833333333334in"}
 []{#_Ref336865683 .anchor}Figure 12. Defining a User Constraint in
 VEDA2.0
 
-Available UC sets are described in Table 5. Each set definition holds
-for the entire sheet, unless redefined. All the existing set definitions
-are applied to all user constraints in a table.
+Available UC sets are described in Table 5. Each set definition holds for the entire sheet, unless redefined. All the existing set definitions are applied to all user constraints in a table.
 
-+----------+-------------+--------------------------------------------+
-| **\~UC   | **Sign      | **Application**                            |
-| _SETS:** | ification** |                                            |
-+==========+=============+============================================+
-| R_E      | Region_Each | REG1: apply to one particular region       |
-|          |             |                                            |
-|          |             | REG1,REG2: apply to more than one region   |
-|          |             | (comma separated)                          |
-|          |             |                                            |
-|          |             | AllRegions: will apply to all regions      |
-+----------+-------------+--------------------------------------------+
-| R_S      | Region_Sum  |                                            |
-+----------+-------------+--------------------------------------------+
-| T_E      | Time        |                                            |
-|          | period_Each |                                            |
-+----------+-------------+--------------------------------------------+
-| T_S      | Time        |                                            |
-|          | period_Sum  |                                            |
-+----------+-------------+--------------------------------------------+
-| TS_E     | Time        |                                            |
-|          | slice_Each  |                                            |
-+----------+-------------+--------------------------------------------+
-| TS_S     | Time        |                                            |
-|          | slice_Sum   |                                            |
-+----------+-------------+--------------------------------------------+
-| T_SUC    | Time period |                                            |
-|          | successive  |                                            |
-+----------+-------------+--------------------------------------------+
+| \~UC_SETS: | Signification          | Application                                                                                                                                  |
+| ---------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| R_E        | Region_Each            | REG1: apply to one particular region <br>REG1,REG2: apply to more than one region (comma separated)<br>AllRegions: will apply to all regions |
+| R_S        | Region_Sum             | (same as above)                                                                                                                              |
+| T_E        | Time period_Each       |                                                                                                                                              |
+| T_S        | Time period_Sum        |                                                                                                                                              |
+| TS_E       | Time slice_Each        |                                                                                                                                              |
+| TS_S       | Time slice_Sum         |                                                                                                                                              |
+| T_SUC      | Time period successive |                                                                                                                                              |
 
 : []{#_Ref336866034 .anchor}Table 5. UC sets available in VEDA2.0
 
-A UC table is then structured similarly to a Flexible Import table, with
-the **\~UC_T** tag separating the column headings into row identifiers
-(UC_INDEXES) and data column headers. Valid row ID (UC_INDEX) column
-headers are listed in Table 6.
+A UC table is then structured similarly to a Flexible Import table, with the **\~UC_T** tag separating the column headings into row identifiers (UC_INDEXES) and data column headers. Valid row ID (UC_INDEX) column headers are listed in Table 6.
 
-+--------+-------------------------------------------------------------+
-| **     | **Description**                                             |
-| Column |                                                             |
-| He     |                                                             |
-| ader** |                                                             |
-+========+=============================================================+
-| UC_N   | Short Name of the UC                                        |
-+--------+-------------------------------------------------------------+
-| Region | Name of the region(s)                                       |
-+--------+-------------------------------------------------------------+
-| PSe    | Process names                                               |
-| t_PN\* |                                                             |
-+--------+-------------------------------------------------------------+
-| PSe    | Process description                                         |
-| t_PD\* |                                                             |
-+--------+-------------------------------------------------------------+
-| Pse    | Input commodities to define a set of processes              |
-| t_CI\* |                                                             |
-+--------+-------------------------------------------------------------+
-| Pse    | Output commodities to define a set of processes             |
-| t_CO\* |                                                             |
-+--------+-------------------------------------------------------------+
-| Cse    | Commodity names                                             |
-| t_CN\* |                                                             |
-+--------+-------------------------------------------------------------+
-| Cse    | Commodity description                                       |
-| t_CD\* |                                                             |
-+--------+-------------------------------------------------------------+
-| Side   | LHS/RHS; RHS is applicable only in the case of dynamic      |
-|        | (across periods) constraints.                               |
-+--------+-------------------------------------------------------------+
-| Att    | Any of the UC attributes available in the current TIMES     |
-| ribute | code (refer to Part II of the TIMES system documentation.\] |
-+--------+-------------------------------------------------------------+
-| U      | -   Allows modifiers to be applied to the variables used in |
-| C_ATTR |     the UC. These include the GROWTH modifier, to create a  |
-|        |     constraint that limits the percentage growth in a       |
-|        |     variable over periods; modifiers to pull input data,    |
-|        |     such as COST and EFF, into the UC\'s coefficients; and  |
-|        |     the NEWFLO modifier that applies the UC coefficient to  |
-|        |     the flows of the new vintage of a process only. More    |
-|        |     details are found in Section 6.4.6 of Part II.          |
-|        |                                                             |
-|        | -   The contents of this column are comma separated values  |
-|        |     of UC_Name and UC_GrpType. Several pairs can be         |
-|        |     separated by ";".                                       |
-|        |                                                             |
-|        | ```{=html}                                                  |
-|        | <!-- -->                                                    |
-|        | ```                                                         |
-|        | -   A pair can have UC_Name/GrpType in any order; any       |
-|        |     element in the list ACT, CAP, NCAP, FLO, IRE, COMCON,   |
-|        |     COMPRD, COMNET is taken as GrpType and the other one is |
-|        |     designated as the UC_Name. Valid UC_Names are provided  |
-|        |     and described in Section 6.4.6 of Part II.              |
-|        |                                                             |
-|        | -   UC_ATTR can have a \~ appended to it; the default is    |
-|        |     LHS.                                                    |
-+--------+-------------------------------------------------------------+
-| Year   | Years, comma separated list allowed                         |
-+--------+-------------------------------------------------------------+
-| L      | UP/LO/FX/N                                                  |
-| imType |                                                             |
-+--------+-------------------------------------------------------------+
-| Top    | To control the process-commodity combinations via topology  |
-| _Check | when both indexes exist for the attribute in question.      |
-|        | Valid entries: **I/O/A. "I"** will retain those             |
-|        | combinations where commodities are input to                 |
-|        | processes. **"O"** =\> Output; . Default = either input or  |
-|        | output**.**                                                 |
-+--------+-------------------------------------------------------------+
+| Column Header | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| UC_N          | Short Name of the UC                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Region        | Name of the region(s)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| PSet_PN\*     | Process names                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| PSet_PD\*     | Process description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Pset_CI\*     | Input commodities to define a set of processes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Pset_CO\*     | Output commodities to define a set of processes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Cset_CN\*     | Commodity names                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Cset_CD\*     | Commodity description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Side          | LHS/RHS; RHS is applicable only in the case of dynamic (across periods) constraints.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Attribute     | Any of the UC attributes available in the current TIMES code (refer to Part II of the TIMES system documentation).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| UC_ATTR       | <ul><li>Allows modifiers to be applied to the variables used in the UC. These include the GROWTH modifier, to create a constraint that limits the percentage growth in a variable over periods; modifiers to pull input data, such as COST and EFF, into the UC's coefficients; and the NEWFLO modifier that applies the UC coefficient to the flows of the new vintage of a process only. More details are found in Section 6.4.6 of Part II.</li> <li>The contents of this column are comma separated values of UC_Name and UC_GrpType. Several pairs can be separated by ";".</li><br><li>A pair can have UC_Name/GrpType in any order; any element in the list ACT, CAP, NCAP, FLO, IRE, COMCON, COMPRD, COMNET is taken as GrpType and the other one is designated as the UC_Name. Valid UC_Names are provided and described in Section 6.4.6 of Part II.</li><br><li>UC_ATTR can have a \~ appended to it; the default is LHS</li></ul> |
+| Year          | Years, comma separated list allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| LimType       | UP/LO/FX/N                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Top_Check     | To control the process-commodity combinations via topology when both indexes exist for the attribute in question.  Valid entries: I/O/A. "I" will retain those  combinations where commodities are input to  processes. "O" =\> Output; . Default = either input or  output.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 : []{#_Ref47658844 .anchor}Table 6. UC_INDEXES for user constraint
 tables
@@ -1056,23 +961,14 @@ tables
 Valid data column headers are:
 
 -   Any of the UC attributes available in the current TIMES code;
-
 -   Years (including 0 for interpolation setting);
-
 -   Region;
-
 -   UP/LO, and
-
 -   LHS/RHS.
 
-Multiple values can be separated by "\~". Any specification without a
-region identifier in the column is applied to the region in the row
-identifier area. If there is no region, it applies to all regions in the
-active R_E/R_S specification.
+Multiple values can be separated by "\~". Any specification without a region identifier in the column is applied to the region in the row identifier area. If there is no region, it applies to all regions in the active R_E/R_S specification.
 
-A user constraint definition can span multiple rows of the table (to
-attach numbers/attributes and other indexes to different sets of
-processes/commodities).
+A user constraint definition can span multiple rows of the table (to attach numbers/attributes and other indexes to different sets of processes/commodities).
 
 ## VEDA2.0 Data Management, Model Visualization and Run Submission Tools
 
