@@ -42,7 +42,7 @@ from one or more assumptions above, as follows:
     the objective function are non-linear and non-convex, and requires
     the use of MIP.
 
-<ins>Remark:</ins> None of these four extensions departs from the
+<ins>Remark</ins>: None of these four extensions departs from the
 competitive market assumption. It is *also* possible to simulate certain
 types of non-competitive behavior using TIMES. For instance, it has been
 possible to simulate the behavior of the OPEC oil cartel by assuming
@@ -70,8 +70,8 @@ partially, at the *resolution time*, i.e. the time at which the actual
 value of the parameter is revealed. Different parameters may have
 different times of resolution. Both the resolution times and the
 probability distributions of the parameters may be represented on an
-event tree, such as the one of {numref}`stochastic_TIMES_tree`, depicting a typical
-energy/environmental situation. In {numref}`stochastic_TIMES_tree`, two parameters are
+event tree, such as the one of {numref}`stochastic-TIMES-tree`, depicting a typical
+energy/environmental situation. In {numref}`stochastic-TIMES-tree`, two parameters are
 uncertain: mitigation level, and demand growth rate. The first may have
 only two values (High and Low), and becomes known in 2010. The second
 also may have two values (High and Low) and becomes known in 2020. The
@@ -89,14 +89,14 @@ after resolution, the decision maker knows with certainty the outcome of
 some event(s) and his subsequent decisions will be different depending
 on which outcome has occurred.
 
-For the example shown in {numref}`stochastic_TIMES_tree`, in 2000 and 2010 there can be only
+For the example shown in {numref}`stochastic-TIMES-tree`, in 2000 and 2010 there can be only
 one set of decisions, whereas in 2020 there will be two sets of
 decisions, contingent on which of the mitigation outcomes (High or Low)
 has occurred, and in 2030, 2040, 2050 and 2060, there will be four sets
 of contingent decisions.
 
 ```{figure} assets/image23.png
-:name: stochastic_TIMES_tree
+:name: stochastic-TIMES-tree
 :align: center
 Event Tree for a three-stage stochastic TIMES Example.
 ```
@@ -132,7 +132,7 @@ where
 >
 > *S(t) =* set of state indices for time period t;
 
-For {numref}`stochastic_TIMES_tree`, we have: S(2000) = 1; S(2010) = 1; S(2020) = 1,2;
+For {numref}`stochastic-TIMES-tree`, we have: S(2000) = 1; S(2010) = 1; S(2020) = 1,2;
 S(2030) = 1,2,3,4;\
 S(2040) = 1,2,3,4; S(2050) = 1,2,3,4; S(2060) = 1,2,3,4;
 
@@ -191,7 +191,7 @@ was only one variable X(2000,1) in the previous formulation).
 
 Of course, in this approach we need to add equality constraints to
 express the fact that some scenarios are identical at some periods. In
-the example of {numref}`stochastic_TIMES_tree`, we would have:
+the example of {numref}`stochastic-TIMES-tree`, we would have:
 
 X(2000,1)=X(2000,2)=X(2000,3)=X(2000,4),
 
@@ -256,9 +256,7 @@ following utility function to minimize:
 
 $$U = EC + \lambda \cdot \sqrt{Var(C)}$$
 
-where $λ>0$ is a measure of the risk aversion of the decision maker. For
-$λ=0$, the usual expected cost criterion is obtained. Larger values of
-$λ$ indicate increasing risk aversion.
+where $λ>0$ is a measure of the risk aversion of the decision maker. For $λ=0$, the usual expected cost criterion is obtained. Larger values of $λ$ indicate increasing risk aversion.
 
 Taking risk aversion into account by this formulation would lead to a
 non-linear, non-convex model, with all its ensuing computational
@@ -271,9 +269,7 @@ the upper-absolute-deviation, defined by:
 
 $$UpAbsDev(Cost_{k}) = \sum_{j}^{}{p_{j} \bullet \left\{ Cost_{j\left| k \right.\ } - EC_{k} \right\}^{+}}$$
 
-where $y= {x}^+$ is defined by the following two *linear*
-constraints: $y ≥ x$ , and $y ≥ 0$, and the utility is now
-written via the following *linear* expression:
+where $y= {x}^+$ is defined by the following two *linear* constraints: $y ≥ x$ , and $y ≥ 0$, and the utility is now written via the following *linear* expression:
 
 $$U = EC + \lambda \cdot UpsAbsDev(C)$$
 
@@ -320,21 +316,8 @@ characterization of a DSPE is beyond the scope of this documentation,
 but it is useful to note some of its properties, which derive from the
 theory of Linear Programming, as follows:
 
--   During the first stage (i.e. before resolution of any
-    uncertainties), the meaning of the primal solution is identical to
-    that of a deterministic TIMES run, i.e. of a set of optimal
-    decisions, whereas the meaning of the shadow prices is that of
-    *expected prices*(resp. expected marginal utility changes) of the
-    various commodities. This is so because the shadow price is the
-    marginal change in objective function when a commodity\'s balance is
-    marginally altered, and the objective function is an expected cost
-    (resp. an expected utility function).
-
--   During subsequent stages, the primal values of any given branch of
-    the event tree represent the optimal decisions *conditional on the
-    corresponding outcome being true*, and the shadow prices are the
-    *expected*[^35] *prices* of the commodities also conditional on the
-    corresponding outcome being true.
+- During the first stage (i.e. before resolution of any uncertainties), the meaning of the primal solution is identical to that of a deterministic TIMES run, i.e. of a set of optimal decisions, whereas the meaning of the shadow prices is that of *expected prices*(resp. expected marginal utility changes) of the various commodities. This is so because the shadow price is the marginal change in objective function when a commodity\'s balance is marginally altered, and the objective function is an expected cost (resp. an expected utility function).
+- During subsequent stages, the primal values of any given branch of the event tree represent the optimal decisions *conditional on the corresponding outcome being true*, and the shadow prices are the *expected*[^35] *prices* of the commodities also conditional on the corresponding outcome being true.
 
 
 ------------

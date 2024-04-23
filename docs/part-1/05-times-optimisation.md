@@ -38,20 +38,15 @@ entities:
 The model data structures (sets and parameters), variables and equations
 use the following indices:
 
-***r:*** indicates the region
+$r$: indicates the region
 
-***t or v:*** time period; ***t*** corresponds to the current period,
-and ***v*** is used to indicate the vintage year of an investment. 
-When a process is not vintaged then ***v*** = ***t***.
+$t$ or $v$: time period; $t$ corresponds to the current period, and $v$ is used to indicate the vintage year of an investment. When a process is not vintaged then $v = t$.
 
-***p:*** process (technology)
+$p$: process (technology)
 
-***s:*** time-slice; this index is relevant only for user-designated
-commodities and processes that are tracked at finer than annual level (e.g. electricity, low-
-temperature heat, and perhaps natural gas, etc.). Time-slice defaults
-to "ANNUAL", indicating that a commodity is tracked only annually.
+$s$: time-slice; this index is relevant only for user-designated commodities and processes that are tracked at finer than annual level (e.g. electricity, low-temperature heat, and perhaps natural gas, etc.). Time-slice defaults to "ANNUAL", indicating that a commodity is tracked only annually.
 
-***c:*** commodity (energy, material, emission, demand).
+$c$: commodity (energy, material, emission, demand).
 
 ## Decision variables
 
@@ -64,7 +59,7 @@ letters VAR followed by an underscore.
 represent yearly flows or process activities. In the original TIMES
 formulation, the activity of a process during some period $t$ is
 considered to be constant in all years constituting the period. This is
-illustrated in panel M.a of {numref}`process_act_original_TIMES_LinearVariant`).In the alternative option the
+illustrated in panel M.a of {numref}`process-act-original-TIMES-linear-variant`).In the alternative option the
 activity variable is considered to represent the value *in a milestone
 year* of each period, and the values at all other years is linearly
 interpolated between the consecutive milestone year values, as
@@ -91,7 +86,7 @@ million cars for road vehicles, and GW for electricity equipment
 (1GW=31.536 PJ/year), etc.
 
 ```{figure} assets/image15.png
-:name: process_act_original_TIMES_LinearVariant
+:name: process-act-original-TIMES-linear-variant
 :align: center
 Process activity in the original TIMES formulation (top) and Linear variant (bottom)
 ```
@@ -108,11 +103,7 @@ equal to the entire remaining capacity or equal to a multiple of some
 user defined block. Consult the separate technical note *TIMES Early
 Retirement of Capacity* for details.
 
-$VAR\_DRCAP(r,v,t,p,j)$: Binary variables used in formulating the
-special early retirement equations. Two variables may be defined, one
-when retirement must be for the entire remaining capacity (j=1),
-another when retirement must be a multiple of some block defined by the
-user via parameter RCAP_BLK (j=2).
+$VAR\_DRCAP(r,v,t,p,j)$: Binary variables used in formulating the special early retirement equations. Two variables may be defined, one when retirement must be for the entire remaining capacity ($j=1$), another when retirement must be a multiple of some block defined by the user via parameter RCAP_BLK ($j=2$).
 
 $VAR\_SCAP(r,v,t,p)$: Total amount of capacity that has been retired
 at period $t$ and periods preceding $t$ (see above
@@ -136,7 +127,7 @@ $VAR\_CAP$ variables are only defined when some bounds or
 user-constraints are specified for them. They do not enter any other
 equation.
 
-<ins>Remark:</ins> The lumpy investment option. There is a TIMES
+<ins>Remark</ins>: The lumpy investment option. There is a TIMES
 feature that allows the user to impose that new additions to capacity
 may only be done in predefined blocks. This feature may be useful for
 technologies that are implementable only in discrete sizes such as a
@@ -207,7 +198,7 @@ and/or for applying certain bounds to them. Examples of such variables
 are: the total amount produced of a commodity ($VAR\_COMPRD$), or the
 total amount consumed of a commodity ($VAR\_COMCON$).
 
-**<ins>Important remark:</ins>** It is useful to know that many
+*<ins>Important remark</ins>*: It is useful to know that many
 variables (for instance the above two accounting variables, but also the
 flow variables described earlier) add only a moderate computational
 burden to the optimization process, thanks to the use of a *reduction
@@ -236,73 +227,21 @@ This choice is meant to provide a smoother, more realistic rendition of
 the stream of cost payments in the energy system, as discussed below.
 Each year, the total cost includes the following elements:
 
--   *Capital Costs* incurred for *investing* into and/or *dismantling*
-    processes.
-
--   Fixed and variable annual *Operation and Maintenance (O&M) Costs,*
-    and other annual costs occurring during the dismantling of
-    technologies.
-
--   Costs incurred for *exogenous imports* and for domestic resource
-    *extraction* and *production*. An exogenous import is one that
-    imported from a non-specified entity, i.e. not from another modeled
-    region. Exogenous imports are not relevant in global TIMES
-    instances.
-
--   Revenues from exogenous *export.* An exogenous export is one that is
-    exported to a non-specified entity, i.e. not to another modeled
-    region. Exogenous exports are irrelevant in global TIMES instances.
-    Exogenous export earnings are revenues and appear with a negative
-    sign in the cost expressions.
-
--   *Delivery* costs for commodities consumed by the processes. These
-    costs are attached to commodity flows.
-
--   *Taxes* and *subsidies* associated with commodity flows and process
-    activities or investments. A tax is not a cost *per se*. However,
-    since the tax is intended to influence the optimization, it is
-    considered as an integral part of the objective function. It is
-    however reported separately from regular costs. Similarly for
-    subsidies.
-
--   *Revenues from recuperation of embedded commodities,* accrued when a
-    process's dismantling releases some valuable commodities.
-
--   *Damage costs* (if defined) due to emissions of certain pollutants.
-    Several assumptions are made: the damage costs in region ***r***
-    result from emissions in ***r*** and possibly in other regions;
-    damage cost is imputed to the emitting region (polluter pays);
-    emissions in period ***t*** entail damages in period ***t*** only;
-    the damage cost from several types of emission is assumed to be the
-    sum of the costs from each emission type (no cross-effect); and the
-    damage function linking cost DAM to emissions EM is a power function
-    of the form:
+- *Capital Costs* incurred for *investing* into and/or *dismantling* processes.
+- Fixed and variable annual *Operation and Maintenance (O&M) Costs, and other annual costs occurring during the dismantling of technologies.
+- Costs incurred for *exogenous imports* and for domestic resource *extraction* and *production*. An exogenous import is one that imported from a non-specified entity, i.e. not from another modeled region. Exogenous imports are not relevant in global TIMES instances.
+- Revenues from exogenous *export.* An exogenous export is one that is exported to a non-specified entity, i.e. not to another modeled region. Exogenous exports are irrelevant in global TIMES instances. Exogenous export earnings are revenues and appear with a negative sign in the cost expressions.
+- *Delivery* costs for commodities consumed by the processes. These costs are attached to commodity flows.
+- *Taxes* and *subsidies* associated with commodity flows and process activities or investments. A tax is not a cost *per se*. However, since the tax is intended to influence the optimization, it is considered as an integral part of the objective function. It is however reported separately from regular costs. Similarly for subsidies.
+- *Revenues from recuperation of embedded commodities,* accrued when a process's dismantling releases some valuable commodities.
+- *Damage costs* (if defined) due to emissions of certain pollutants. Several assumptions are made: the damage costs in region $r$ result from emissions in $r$ and possibly in other regions; damage cost is imputed to the emitting region (polluter pays); emissions in period $t$ entail damages in period $t$ only; the damage cost from several types of emission is assumed to be the sum of the costs from each emission type (no cross-effect); and the damage function linking cost DAM to emissions EM is a power function of the form:
 
 $$DAM(EM) = MC_{0} \cdot \frac{EM^{\beta + 1}}{(\beta + 1) \cdot EM_{0}^{\beta}}$$
 
-> Where β is non-negative (i.e. marginal damage costs are non
-> decreasing). Hence, the damage cost function is linear ($\beta = 0$) or non
-> linear but convex ($\beta > 0$). Therefore, the same linearization procedure
-> that was used for the surplus may be applied here in order to
-> linearize the damage cost[^29]. Appendix B of Part II and Technical
-> note \"TIMES Damage\", explain how to declare the various parameters
-> required to define the damage functions, to specify the linearization
-> parameters, and to define the switches used to control the
-> optimization. It should be noted that global emissions such as GHG\'s
-> should not be treated via this feature but rather should make use of
-> the Climate Module option described in chapter 7.
+> Where $\beta$ is non-negative (i.e. marginal damage costs are non decreasing). Hence, the damage cost function is linear ($\beta = 0$) or non linear but convex ($\beta > 0$). Therefore, the same linearization procedure that was used for the surplus may be applied here in order to linearize the damage cost[^29]. Appendix B of Part II and Technical note \"TIMES Damage\", explain how to declare the various parameters required to define the damage functions, to specify the linearization parameters, and to define the switches used to control the optimization. It should be noted that global emissions such as GHG\'s should not be treated via this feature but rather should make use of the Climate Module option described in chapter 7.
 
--   ***Salvage value*** of processes and embedded commodities at the end
-    of the planning horizon. This revenue appears with a negative sign
-    in the cost expressions. It should also be stressed that the
-    calculation of the salvage value at the end of the planning horizon
-    is very complex and that the original TIMES expressions accounting
-    for it contained some biases (over- or under-estimations of the
-    salvage values in some cases). These biases have been corrected in
-    the present version of TIMES as explained in sections 5.3.4 and 5.5.
-
--   *Welfare loss* resulting from reduced end-use demands. Chapter 4has
-    presented the mathematical derivation of this quantity.
+- *Salvage value* of processes and embedded commodities at the end of the planning horizon. This revenue appears with a negative sign in the cost expressions. It should also be stressed that the calculation of the salvage value at the end of the planning horizon is very complex and that the original TIMES expressions accounting for it contained some biases (over- or under-estimations of the salvage values in some cases). These biases have been corrected in the present version of TIMES as explained in sections 5.3.4 and 5.5.
+- *Welfare loss* resulting from reduced end-use demands. Chapter 4 has presented the mathematical derivation of this quantity.
 
 ### Cash flow tracking
 
@@ -310,35 +249,11 @@ As already mentioned, in TIMES, special care is taken to precisely track
 the cash flows related to process investments and dismantling in each
 year of the horizon. Such tracking is made complex by several factors:
 
--   First, TIMES recognizes that there may be a lead-time (ILED) between
-    the beginning and the end of the construction of some large
-    processes, thus spreading the investment installments over several
-    years. A recent TIMES feature allows the definition of a negative
-    lead-time, with the meaning that the construction of the technology
-    starts before the year the investment decision is made (this is
-    useful for properly accounting for interest during construction, and
-    is especially needed when using the time-stepped version of TIMES
-    described in chapter 9.)
-
--   Second, TIMES also recognizes that for some other processes (e.g.
-    new cars), the investment in new capacity occurs *progressivel*y
-    over the years constituting the time period (whose length is denoted
-    by $D(t)$), rather than in one lumped amount.
-
--   Third, there is the possibility that a certain investment decision
-    made at period $t$ will have to be repeated more than once
-    during that same period. (This will occur if the period is long
-    compared to the process technical life.)
-
--   Fourth, TIMES recognizes that there may be dismantling capital costs
-    at the end-of-life of some processes (e.g. a nuclear plant), and
-    that these costs, while attached to the investment variable indexed
-    by period $t$, are actually incurred much later.
-
--   Finally, TIMES permits the payment of any capital cost to be spread
-    over an *economic life (ELIFE)* that is different from the
-    *technical life (TLIFE)* of the process. Furthermore it may be
-    annualized at a different rate than the overall discount rate.
+- First, TIMES recognizes that there may be a lead-time (ILED) between the beginning and the end of the construction of some large processes, thus spreading the investment installments over several years. A recent TIMES feature allows the definition of a negative lead-time, with the meaning that the construction of the technology starts before the year the investment decision is made (this is useful for properly accounting for interest during construction, and is especially needed when using the time-stepped version of TIMES described in chapter 9.)
+- Second, TIMES also recognizes that for some other processes (e.g. new cars), the investment in new capacity occurs *progressively* over the years constituting the time period (whose length is denoted by $D(t)$), rather than in one lumped amount.
+- Third, there is the possibility that a certain investment decision made at period $t$ will have to be repeated more than once during that same period. (This will occur if the period is long compared to the process technical life.)
+- Fourth, TIMES recognizes that there may be dismantling capital costs at the end-of-life of some processes (e.g. a nuclear plant), and that these costs, while attached to the investment variable indexed by period $t$, are actually incurred much later.
+- Finally, TIMES permits the payment of any capital cost to be spread over an *economic life (ELIFE)* that is different from the *technical life (TLIFE)* of the process. Furthermore it may be annualized at a different rate than the overall discount rate.
 
 To illustrate the above complexities, we present a diagram taken from
 Part II that pictures the yearly investments and yearly outlays of
@@ -348,7 +263,7 @@ does not exceed the period length. There are 4 distinct such instances,
 discussed in detail in section 6.2 of Part II.
 
 ```{figure} assets/image16.png
-:name: year_inv_tracking_case
+:name: year-inv-tracking-case
 :align: center
 Illustration of yearly investments and payments for one of four investment tracking cases.
 ```
@@ -363,20 +278,9 @@ section 6.2 of Part II. We limit our description to giving general
 indications on the cost elements comprising the objective function, as
 follows:
 
--   The capital costs (investment and dismantling) are first transformed
-    into streams of annual payments, computed for each year of the
-    horizon (and beyond, in the case of dismantling costs and recycling
-    revenues), along the lines presented above.
-
--   A *salvage value* of all investments still active at the end of the
-    horizon (EOH) is calculated as a lump sum revenue which is
-    subtracted from the other costs and assumed to be accrued in the
-    (single) year following the EOH.[^30]It is then discounted to the
-    user selected reference year.
-
--   The other costs listed above, which are all annual costs, are added
-    to the annualized capital cost payments, to form the $ANNCOST$
-    quantity below.
+- The capital costs (investment and dismantling) are first transformed into streams of annual payments, computed for each year of the horizon (and beyond, in the case of dismantling costs and recycling revenues), along the lines presented above.
+- A *salvage value* of all investments still active at the end of the horizon (EOH) is calculated as a lump sum revenue which is subtracted from the other costs and assumed to be accrued in the (single) year following the EOH.[^30]It is then discounted to the user selected reference year.
+- The other costs listed above, which are all annual costs, are added to the annualized capital cost payments, to form the $ANNCOST$ quantity below.
 
 TIMES then computes for each region a total net present value of the
 stream of annual costs, discounted to a user selected reference year.
@@ -425,8 +329,8 @@ amounting to $1/D_t$ of the total capacity to be invested in the period.
 Recall that the full capacity must be in place by the milestone year, in
 order to allow activity to be constant over the period. For example, if
 the period length $D_t$ is 20 years, the investments start already 19
-years before the milestone year, and can thus start *even before theprevious milestone year*. 
-*If the investment costs are changing over
+years before the milestone year, and can thus start *even before the previous milestone year.
+If the investment costs are changing over
 time, it is clear that in such cases the costs will not be accounted in
 a realistic way, because the investment cost data is taken from the
 start year of each investment step.*
@@ -455,43 +359,20 @@ the alternate definition of TIMES variables. The fourth option (named
 only the objective function but also several constraints.
 
 The three options are as follows:
+- The original OBJ with minor changes made to it, activated via the **OBLONG** switch.
+- The modified objective function (**MOD**). The **MOD** formulation adds only a few modifications to the standard formulation:
+	- The model periods are defined in a different way; and
+	- The investment spreads in the investment Cases 1a and 1b (see section 6.2 of Part II for a list of all cases) are defined slightly differently.
+- The **ALT** formulation includes all the modifications made in the MOD formulation. In addition, it includes the following further modifications that eliminate basically all of the remaining problems in the standard formulation:
+	- The investment spreads in the investment Case 1b are defined slightly differently;
+	- The capacity transfer coefficients for newly installed capacities are defined slightly differently, so that the effective lifetime of technologies is calculated taking into account discounting;
+	- Variable costs are adjusted to be in sync with the available capacity.
 
--   The original OBJ with minor changes made to it, activated via the
-    **OBLONG** switch.
+It has been observed that these three options yield results that have practically the same degree of accuracy and reliability. There is however an advantage to the MOD and ALT options, as the milestone years need no longer be at the middle of a period.
 
--   The modified objective function (**MOD**). The **MOD** formulation
-    adds only a few modifications to the standard formulation:
+Additional details and comments are provided on all three options in technical note "TIMES Objective Variants".
 
--   The model periods are defined in a different way; and
-
--   The investment spreads in the investment Cases 1a and 1b (see
-    section 6.2 of Part II for a list of all cases) are defined slightly
-    differently.
-
--   The **ALT** formulation includes all the modifications made in the
-    MOD formulation. In addition, it includes the following further
-    modifications that eliminate basically all of the remaining problems
-    in the standard formulation:
-
--   The investment spreads in the investment Case 1b are defined
-    slightly differently;
-
--   The capacity transfer coefficients for newly installed capacities
-    are defined slightly differently, so that the effective lifetime of
-    technologies is calculated taking into account discounting;
-
--   Variable costs are adjusted to be in sync with the available
-    capacity.
-
-It has been observed that these three options yield results that have
-practically the same degree of accuracy and reliability. There is
-however an advantage to the MOD and ALT options, as the milestone years
-need no longer be at the middle of a period.
-
-Additional details and comments are provided on all three options in
-technical note \"TIMES Objective Variants\"\
-\
-<ins>Conclusion on the variants:</ins> The multiplicity of options
+<ins>Conclusion on the variants</ins>: The multiplicity of options
 may confuse the modeler. Extensive experience with their use has shown
 that the distortions discussed above remain quite small. In practice,
 old TIMES users seem to stick to the classical OBJ with the OBLONG
@@ -548,9 +429,7 @@ section 6.3.18 of Part II.
 
 > $VAR\_CAPT(r,t,p) = \sum_{t' \in \{t-t'< LIFE(r,t',p)\}} VAR\_NCAP(r,t',p) + RESID(r,t,p)$ (5-1)
 >
-> where ***RESID(r,t,p)*** is the (exogenously provided) capacity of
-> technology $p$ due to investments that were made prior to the initial
-> model period and still exist in region $r$ at time $t$.
+> where $RESID(r,t,p)$ is the (exogenously provided) capacity of technology $p$ due to investments that were made prior to the initial model period and still exist in region $r$ at time $t$.
 
 ### Definition of process activity variables
 
@@ -577,8 +456,7 @@ Conceptually, this leads to the following relationship:
 
 > $VAR\_ACT(r,v,t,p,s)= \sum_{c \in pcg} VAR\_FLO(r,v,t,p,c,s) / ACTFLO(r,v p,c)$ (5-2)
 > 
-> where ***ACTFLO(r,v,p,c)*** is a conversion factor (often equal to 1) from
-> the activity of the process to the flow of a particular commodity.
+> where $ACTFLO(r,v,p,c)$ is a conversion factor (often equal to 1) from the activity of the process to the flow of a particular commodity.
 
 ### Use of capacity
 
@@ -595,28 +473,14 @@ time-slice $s$, the activity of the technology may not exceed its
 available capacity, as specified by a user defined availability factor.
 
 #### **EQ_CAPACT (r,v,t,p,s)** -- Use of capacity
+
 > $VAR\_ACT(r,v,t,p,s) ≤/= AF(r,v,t,p,s).PRC\_CAPACT(r,p)).FR(r,s).VAR\_CAP(r,v,t,p)$ (5-3)
 > 
-> Here ***PRC_CAPACT(r,p)*** is the conversion factor between units of
-> capacity and activity (often equal to 1, except for power plants). The
-> $FR(r,s)$ parameter is equal to the (fractional) duration of time-slice
-> s. The availability factor ***AF*** also serves to indicate the nature of
-> the constraint as an inequality or an equality. In the latter case the
-> capacity is forced to be fully utilized. Note that the
-> ***CAP(r,v,t,p)*** "variable" is not explicitly defined in TIMES.
-> Instead it is replaced in (5-3) by a fraction (less than or equal to 1)
-> of the investment variable ***VAR_NCAP(r,v,p)***[^31] sum of past
-> investments that are still operating, as in equation (5-1).
+> Here $PRC_CAPACT(r,p)$ is the conversion factor between units of capacity and activity (often equal to 1, except for power plants). The $FR(r,s)$ parameter is equal to the (fractional) duration of time-slices. The availability factor ***AF*** also serves to indicate the nature of the constraint as an inequality or an equality. In the latter case the capacity is forced to be fully utilized. Note that the ***CAP(r,v,t,p)*** "variable" is not explicitly defined in TIMES. Instead it is replaced in (5-3) by a fraction (less than or equal to 1) of the investment variable $VAR_NCAP(r,v,p)$[^31] sum of past investments that are still operating, as in equation (5-1).
 
-***<ins>Example</ins>***: a coal fired power plant's activity in any
-time-slice is bounded above by 80% of its capacity, i.e. ***VAR_ACT
-(r,v,t,p,s)*** ≤ 0.8*31.536****CAP(r,v,t,p)***, where ***PRC_CAPACT(r,p)*** =
-31.536 is the conversion factor between the units of the capacity
-variable (GW) and the activity-based capacity unit (PJ/a) The
-activity-based capacity unit is obtained from the activity unit(PJ) by
-division by a denominator of one year.
+**<ins>Example</ins>**: a coal fired power plant's activity in any time-slice is bounded above by 80% of its capacity, i.e. $VAR_ACT(r,v,t,p,s) ≤ 0.8*31.536*CAP(r,v,t,p)$, where $PRC_CAPACT(r,p) = 31.536$ is the conversion factor between the units of the capacity variable (GW) and the activity-based capacity unit (PJ/a) The activity-based capacity unit is obtained from the activity unit(PJ) by division by a denominator of one year.
 
-The $s$ index of the ***AF*** coefficient in equation (5-3) indicates that
+The $s$ index of the $AF$ coefficient in equation (5-3) indicates that
 the user may specify time-sliced dependency on the availability of the
 installed capacity of some technologies, if desirable. This is
 especially needed when the operation of the equipment depends on the
@@ -669,35 +533,16 @@ plus imports.
 > 
 > where:
 >
-> The constraint is ≥ for energy forms and = for materials and emissions
-> (unless these defaults are overridden by the user, see Part II).
->
-> ***TOP(r,p,c,in/out)*** identifies that there is an input/output flow of
-> commodity $c$ into/from process $p$ in region $r$;
->
-> ***RPC_IRE(r,p,c,imp/exp)*** identifies that there is an import/export
-> flow into/from region $r$ of commodity $c$ via process $p$;
->
-> ***STG_EFF(r,v,p)*** is the efficiency of storage process $p$;
->
-> ***COM_IE(r,t,c)*** is the infrastructure efficiency of commodity $c$;
->
-> ***Release(r,t,p,c)*** is the amount of commodity $c$ recuperated per
-> unit of capacity of process $p$ dismantled (useful to represent
-> some materials or fuels that are recuperated while dismantling a
-> facility);
->
-> ***Sink(r,t,p,c)*** is the quantity of commodity $c$ required per unit
-> of new capacity of process $p$ (useful to represent some materials
-> or fuels consumed for the construction of a facility);
->
-> ***FR(s)*** is the fraction of the year covered by time-slice $s$
-> (equal to 1 for non- time-sliced commodities).
+> The constraint is ≥ for energy forms and = for materials and emissions (unless these defaults are overridden by the user, see Part II).
+> $TOP(r,p,c,in/out)$ identifies that there is an input/output flow of commodity $c$ into/from process $p$ in region $r$;
+> $RPC_IRE(r,p,c,imp/exp)$ identifies that there is an import/export flow into/from region $r$ of commodity $c$ via process $p$;
+> $STG_EFF(r,v,p)$ is the efficiency of storage process $p$;
+> $COM_IE(r,t,c)$ is the infrastructure efficiency of commodity $c$;
+> $Release(r,t,p,c)$ is the amount of commodity $c$ recuperated per unit of capacity of process $p$ dismantled (useful to represent some materials or fuels that are recuperated while dismantling a facility);
+> $Sink(r,t,p,c)$ is the quantity of commodity $c$ required per unit of new capacity of process $p$ (useful to represent some materials or fuels consumed for the construction of a facility);
+> $FR(s)$ is the fraction of the year covered by time-slice $s$ (equal to 1 for non- time-sliced commodities).
 
-***<ins>Example</ins>***: 
-*Gasoline consumed by vehicles plus gasoline
-exported to other regions must not exceed gasoline produced from
-refineries plus gasoline imported from other regions.*
+**<ins>Example</ins>**: Gasoline consumed by vehicles plus gasoline exported to other regions must not exceed gasoline produced from refineries plus gasoline imported from other regions.
 
 ### Defining flow relationships in a process
 
@@ -723,11 +568,8 @@ embodies this:
 #### **EQ_PTRANS(r,v,t,p,cg1,cg2,s)** -- Efficiency definition
 
 > $\sum_{c \in cg2} VAR\_FLO(r,v,t,p,c,s) = FLO\_FUNC(r,v,cg1,cg2,s)*\sum_{c \in cg1} COEFF(r,v,p,cg1,c,cg2,s)*VAR_FLO(r,v,t,p,c,s)$ (5-5)
->
-> where ***COEFF(r,v,p,cg1,c,cg2,s)*** takes into account the harmonization
-> of different time-slice resolution of the flow variables, which have
-> been omitted here for simplicity, as well as commodity-dependent
-> transformation efficiencies.
+
+> where $COEFF(r,v,p,cg1,c,cg2,s)$ takes into account the harmonization of different time-slice resolution of the flow variables, which have been omitted here for simplicity, as well as commodity-dependent transformation efficiencies.
 
 ### Limiting flow shares in flexible processes
 
@@ -736,11 +578,11 @@ element, the previous constraint allows a lot of freedom on the values
 of flows. The process is therefore quite flexible. The flow share
 constraint is intended to limit the flexibility, by constraining the
 share of each flow within its own group. For instance, a refinery output
-might consist of three refined products: $c1$=light, $c2$=medium, and
-$c3$=heavy distillate. If losses are 9% of the input, then the user must
-specify ***FLO_FUNC*** = 0.91 to define the overall efficiency. The user may
+might consist of three refined products: $c1$ is light, $c2$ is medium, and
+$c3$ is heavy distillate. If losses are 9% of the input, then the user must
+specify $FLO_FUNC = 0.91$ to define the overall efficiency. The user may
 then want to limit the flexibility of the slate of outputs by means of
-three ***FLO_SHAR(ci)*** coefficients, say 0.4, 0.5, 0.6, resulting in three
+three $FLO_SHAR(ci)$ coefficients, say 0.4, 0.5, 0.6, resulting in three
 flow share constraints as follows (ignoring some indices for clarity):
 
 > *VAR_FLO(c1) ≤ 0.4\*\[VAR_FLO(c1) + VAR_FLO(c2) + VAR_FLO(c3)\],* so
@@ -769,7 +611,7 @@ process. Furthermore, commodity $c$ appearing in left-hand-side of
 the constraint may even be a flow that is not part of the $cg$
 group.
 
-<ins>Warning:</ins> It is quite possible (and regrettable) to over
+<ins>Warning</ins>: It is quite possible (and regrettable) to over
 specify flow related equations such as (5-6), especially when the
 constraint is an equality. Such an over specification leads to an
 infeasible LP. A new feature of TIMES consists in deleting some of the
@@ -782,7 +624,7 @@ This constraint imposes that the total capacity of all processes
 producing a commodity at each time period and in each region must exceed
 the average demand in the time-slice where peaking occurs by a certain
 percentage. This percentage is the Peak Reserve Factor,
-***COM_PKRSV(r,t,c,s)***, and is chosen to insure against several
+$COM_PKRSV(r,t,c,s)$, and is chosen to insure against several
 contingencies, such as: possible commodity shortfall due to uncertainty
 regarding its supply (e.g. water availability in a reservoir); unplanned
 equipment down time; and random peak demand that exceeds the average
@@ -810,50 +652,16 @@ the *peak reserve factor*.
 >
 > where:
 >
-> ***COM_PKRSV(r,t,c,s)*** is the region-specific reserve coefficient for
-> commodity $c$ in time-slice $s$, which allows for unexpected down time
-> of equipment, for demand at peak, and for uncertain resource
-> availability, and
+> $COM_PKRSV(r,t,c,s)$ is the region-specific reserve coefficient for commodity $c$ in time-slice $s$, which allows for unexpected down time of equipment, for demand at peak, and for uncertain resource availability, and
 >
-> ***NCAP_PKCNT(r,v,p,c,s)*** specifies the fraction of technology $p$'s
-> capacity in a region $r$ for a period $t$ and commodity $c$
-> (electricity or heat only) that is allowed to contribute to the peak
-> load in slice $s$; many types of supply processes are predictably
-> available during the peak and thus have a peak coefficient equal to 1,
-> whereas others (such as wind turbines or solar plants in the case of
-> electricity) are attributed a peak coefficient less than 1, since they
-> are on average only fractionally available at peak (e.g., a wind
-> turbine typically has a peak coefficient of .25 or .3, whereas a
-> hydroelectric plant, a gas plant, or a nuclear plant typically has a
-> peak coefficient equal to 1).
+> $NCAP_PKCNT(r,v,p,c,s)$ specifies the fraction of technology $p$'s capacity in a region $r$ for a period $t$ and commodity $c$ (electricity or heat only) that is allowed to contribute to the peak load in slice $s$; many types of supply processes are predictably available during the peak and thus have a peak coefficient equal to 1, whereas others (such as wind turbines or solar plants in the case of electricity) are attributed a peak coefficient less than 1, since they are on average only fractionally available at peak (e.g., a wind turbine typically has a peak coefficient of .25 or .3, whereas a hydroelectric plant, a gas plant, or a nuclear plant typically has a peak coefficient equal to 1).
 >
-> For simplicity it has been assumed in (5-7) that the time-slice
-> resolution of the peaking commodity and the time-slice resolution of
-> the commodity flows (FLO, TRADE) are the same. In practice, this is
-> not the case and additional conversion factors or summation operations
-> are necessary to match different time-slice levels.
+> For simplicity it has been assumed in (5-7) that the time-slice resolution of the peaking commodity and the time-slice resolution of the commodity flows (FLO, TRADE) are the same. In practice, this is not the case and additional conversion factors or summation operations are necessary to match different time-slice levels.
 >
-> *Remark*: to establish the peak capacity, two cases must be
-> distinguished in constraint ***EQ_PEAK***.
+> *Remark*: to establish the peak capacity, two cases must be distinguished in constraint ***EQ_PEAK***.
 >
->   -- For production processes where the peaking commodity is the only
-> commodity in the primary commodity group (denoted $c=pcg$), the capacity
-> of the process may be assumed to contribute to the peak.\
->   -- For processes where the peaking commodity is not the only member
-> of the pcg, there are several commodities included in the pcg.
-> Therefore, the capacity as such cannot be used in the equation. In
-> this case, the actual production is taken into account in the
-> contribution to the peak, instead of the capacity. For example, in the
-> case of CHP only the production of electricity contributes to the peak
-> electricity supply, not the entire capacity of the plant, because the
-> activity of the process consists of both electricity and heat
-> generation in either fixed or flexible proportions, and, depending on
-> the modeler\'s choice, the capacity may represent either the electric
-> power of the turbine in condensing or back-pressure mode, or the sum
-> of power and heat capacities in back-pressure mode. There is therefore
-> a slight inconsistency between these two cases, since in the first
-> case, a technology may contribute to the peak requirement without
-> producing any energy, whereas this is impossible in the second case.
+> - For production processes where the peaking commodity is the only commodity in the primary commodity group (denoted $c=pcg$), the capacity of the process may be assumed to contribute to the peak.
+> - For processes where the peaking commodity is not the only member of the pcg, there are several commodities included in the pcg. Therefore, the capacity as such cannot be used in the equation. In this case, the actual production is taken into account in the contribution to the peak, instead of the capacity. For example, in the case of CHP only the production of electricity contributes to the peak electricity supply, not the entire capacity of the plant, because the activity of the process consists of both electricity and heat generation in either fixed or flexible proportions, and, depending on the modeler\'s choice, the capacity may represent either the electric power of the turbine in condensing or back-pressure mode, or the sum of power and heat capacities in back-pressure mode. There is therefore a slight inconsistency between these two cases, since in the first case, a technology may contribute to the peak requirement without producing any energy, whereas this is impossible in the second case.
 
 Note also that in the peak equation (5-7), it is assumed that imports of
 the commodity are contributing to the peak of the importing region
@@ -1090,11 +898,11 @@ mathematical equations.
 #### A much simplified sketch of the grid constraints
 
 The traditional way to represent the nodes and arcs of a grid is shown
-in {numref}`grid_connection_nodes`, where each node is shown as a horizontal segment, and the
+in {numref}`grid-connection-nodes`, where each node is shown as a horizontal segment, and the
 nodes are connected via bi-directional arcs.
 
 ```{figure} assets/image17.png
-:name: grid_connection_nodes
+:name: grid-connection-nodes
 :align: center
 Connection of a grid node with other nodes.
 ```
@@ -1105,11 +913,8 @@ $G_{i} - L_{i} = \sum_{j = 1}^{M} P_{i,j}$ *for each i=1,2,\...,M*
 where:
 
 > $M$ the number of nodes connected with node $i$
->
 > $G_{i}$ active power injected into node $i$ by generators
->
 > $L_{i}$ active power withdrawn from node $i$ by consumer loads
->
 > $P_{i,j}$ branch flow from node $i$ to node $j$
 
 As mentioned above, these constraints are then modified so as to include
@@ -1119,31 +924,11 @@ new equations remain linear in the flow and other variables.
 
 #### Integrating grid equations into TIMES
 
-It should be clear that the variables *G~i~* and *L~i\ ~*must be tightly
-related to the rest of the TIMES variables that concern the electricity
-commodities. In fact, the modeler must first decide on an allocation of
-the set of generation technologies into *M* subsets, each subset being
-attached to a node of the grid. Similarly, the set of all technologies
-that consume electricity must also be partitioned into *M* subsets, each
-attached to a node. These two partitions are effected via new parameters
-specifying the fractions of each generation type to be allocated to each
-grid node, and similarly for the fractions of each technology consuming
-electricity to be allocated to grid each node. This indeed amounts to a
-partial regionalization of the model concerning the electricity sector.
-Thus, variables $G_{i}$ and $L_{i}$ are defined in relation to the
-existing TIMES variables.
+It should be clear that the variables $G_{i}$ and $L_{i}$ must be tightly related to the rest of the TIMES variables that concern the electricity commodities. In fact, the modeler must first decide on an allocation of the set of generation technologies into $M$ subsets, each subset being attached to a node of the grid. Similarly, the set of all technologies that consume electricity must also be partitioned into $M$ subsets, each attached to a node. These two partitions are effected via new parameters specifying the fractions of each generation type to be allocated to each grid node, and similarly for the fractions of each technology consuming electricity to be allocated to grid each node. This indeed amounts to a partial regionalization of the model concerning the electricity sector. Thus, variables $G_{i}$ and $L_{i}$ are defined in relation to the existing TIMES variables.
 
-Of course, the introduction of the grid requires modifying the
-electricity balance equations and peak equations, via the introduction
-of the net total flow variables the set of grid nodes. The electricity
-balance equations are modified for each time slice defined for
-electricity.
+Of course, the introduction of the grid requires modifying the electricity balance equations and peak equations, via the introduction of the net total flow variables the set of grid nodes. The electricity balance equations are modified for each time slice defined for electricity.
 
-Finally, additional a security constraint is added in the case of a
-multi-regional model, expressing that the total net export or import of
-electricity from region $r$ does not exceed a certain (user-defined)
-fraction of the capacity of the portion of the grid linking region
-$r$ to other regions.
+Finally, additional a security constraint is added in the case of a multi-regional model, expressing that the total net export or import of electricity from region $r$ does not exceed a certain (user-defined) fraction of the capacity of the portion of the grid linking region $r$ to other regions.
 
 #### Costs
 
@@ -1178,28 +963,15 @@ $LEC = \frac{\sum_{t = 1}^{n}{\frac{IC_{t}}{(1 + r)^{t - 1}} + \frac{OC_{t} + VC
 
 where
 
--   $r$ discount rate (e.g. 5%)
-
--   $IC_{t}$ investment expenditure in (the beginning of) year $t$
-
--   $OC_{t}$ fixed operating expenditure in year $t$
-
--   $VC_{t}$ variable operating expenditure in year $t$
-
--   $FC_{i,t}$ fuel-specific operating expenditure for fuel $i$ in year
-    $t$
-
--   $FD_{i,t}$ fuel-specific acquisition expenditure for fuel $i$ in
-    year $t$
-
--   $ED_{j,t}$ emission-specific allowance expenditure for emission $j$
-    in year $t$ (optional)
-
--   $BD_{k,t}$ revenues from commodity $k$ produced by the process in
-    year $t$ (optional)
-
--   $MO_{m,t}$ output of main product $m$ in year $t$, i.e. a member of
-    the $pcg$
+> $r$ discount rate (e.g. 5%)
+> $IC_{t}$ investment expenditure in (the beginning of) year $t$
+> $OC_{t}$ fixed operating expenditure in year $t$
+> $VC_{t}$ variable operating expenditure in year $t$
+> $FC_{i,t}$ fuel-specific operating expenditure for fuel $i$ in year $t$
+> $FD_{i,t}$ fuel-specific acquisition expenditure for fuel $i$ in year $t$
+> $ED_{j,t}$ emission-specific allowance expenditure for emission $j$ in year $t$ (optional)
+> $BD_{k,t}$ revenues from commodity $k$ produced by the process in year $t$ (optional)
+> $MO_{m,t}$ output of main product $m$ in year $t$, i.e. a member of the $pcg$
 
 Comments:
 
@@ -1243,32 +1015,12 @@ years. The objective function components for all variable costs have
 been modified accordingly.
 
 The following further modifications are done in the LIN formulation:
-
--   The cumulative constraints on commodity production (EQ(l)\_CUMNET
-    and EQ(l)\_CUMPRD) are modified to include linear interpolation of
-    the commodity variables involved;
-
--   The cumulative constraints on commodity and flow taxes and subsidies
-    (EQ(l)\_CUMCST) are modified to include linear interpolation of the
-    commodity and flow variables involved;
-
--   The dynamic equations of the Climate module are modified to include
-    linear interpolation of the variables involved;
-
--   The inter-period storage equations are modified to include linear
-    interpolation of the flow variables involved;
-
--   The cumulative user constraints for activities and flows are also
-    modified in a similar manner.
-
--   Note that in the LIN formulation the activity of ***inter-period
-    storage*** equations is measured at the milestone year (in the
-    standard formulation it is measured at the end of each period). In
-    addition, new EQ_STGIPS equations are added to ensure that the
-    storage level remains non-negative at the end of each period.
-    (Without these additional constraints, the linear interpolation of
-    storage could lead to a negative storage level if the period
-    contains more than a single year.)
+- The cumulative constraints on commodity production (EQ(l)\_CUMNET and EQ(l)\_CUMPRD) are modified to include linear interpolation of the commodity variables involved;
+- The cumulative constraints on commodity and flow taxes and subsidies (EQ(l)\_CUMCST) are modified to include linear interpolation of the commodity and flow variables involved;
+- The dynamic equations of the Climate module are modified to include linear interpolation of the variables involved;
+- The inter-period storage equations are modified to include linear interpolation of the flow variables involved;
+- The cumulative user constraints for activities and flows are also modified in a similar manner.
+- Note that in the LIN formulation the activity of ***inter-period storage*** equations is measured at the milestone year (in the standard formulation it is measured at the end of each period). In addition, new EQ_STGIPS equations are added to ensure that the storage level remains non-negative at the end of each period. (Without these additional constraints, the linear interpolation of storage could lead to a negative storage level if the period contains more than a single year.)
 
 
 ------------

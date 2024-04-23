@@ -163,7 +163,7 @@ The procedure was presented in a very general form, in order to let the
 user exert her ingenuity at will. Typical simple examples of using the
 feature may be useful.
 
-<ins>Example 1:</ins> trade-off between cost and risk.
+<ins>Example 1</ins>: trade-off between cost and risk.
 
 First, a special UC (call it RISK) is defined that expresses a **global
 risk** measure. The successive phases consist in minimizing the
@@ -172,12 +172,12 @@ following parameterized objective:
 $$Min\ OBJZ + \ \alpha \bullet RISK$$
 
 where α is a user chosen coefficient that may be varied within a range
-to explore an entire trade-off curve such as illustrated in {numref}`trade_off_risk_cost`,
+to explore an entire trade-off curve such as illustrated in {numref}`trade-off-risk-cost`,
 where the vertical axis represents the values of the cost objective
 function, and the horizontal axis the risk measure.
 
 ```{figure} assets/image18.png
-:name: trade_off_risk_cost
+:name: trade-off-risk-cost
 :align: center
 Trade-off between Risk and Cost.
 ```

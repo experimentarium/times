@@ -30,7 +30,7 @@ As a generalization to the basic scheme described above, the user can
 also request fixing to the previous solution different sets of fixed
 years accor­ding to region.
 
-**<ins>Example:</ins>** Assume that you would like to analyze the
+**<ins>Example</ins>**: Assume that you would like to analyze the
 15-region ETSAP TIAM model with some shocks after the year 2030, and you
 are interested in differences in the model solution only in regions that
 have notable gas or LNG trade with the EU. Therefore, you would like to
@@ -74,7 +74,7 @@ The amount of overlapping years between successive steps is by default
 half of the active step length (the value of TIMESTEP), but it can be
 controlled by the user.
 
-<ins>Important remark:</ins> as mentioned above, the user chooses the
+<ins>Important remark</ins>: as mentioned above, the user chooses the
 lengths of the sub-horizons and the length of the overlaps, *both
 expressed in years*. Because the time periods used in the model may be
 variable and may not always exactly match with the step-length and

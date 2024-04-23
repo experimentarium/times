@@ -66,7 +66,7 @@ capacity in several years within the modeling horizon proper.
 
 In addition to time-periods (which may be of variable length), there are
 time divisions within a year, also called *time-slices,* which may be
-defined at will by the user (see {numref}`timeslice_tree`). For instance, the user may
+defined at will by the user (see {numref}`timeslice-tree`). For instance, the user may
 want to define seasons, portions of the day/night, and/or
 weekdays/weekends. Time-slices are especially important whenever the
 mode and cost of production of an energy carrier at different times of
@@ -93,7 +93,7 @@ slices, and furthermore that specific investment decisions will be taken
 to insure adequate reserve capacity at peak.
 
 ```{figure} assets/image1.png
-:name: timeslice_tree
+:name: timeslice-tree
 :align: center
 Example of a time-slice tree.
 ```
@@ -158,7 +158,7 @@ using a network diagram, referred to as a *Reference Energy System*
 commodities as vertical lines. Commodity flows are represented as links
 between process boxes and commodity lines.
 
-{numref}`partial_view_ref_energy_syst` depicts a small portion of a hypothetical RES containing a
+{numref}`part-view-res` depicts a small portion of a hypothetical RES containing a
 single energy service demand, namely residential space heating. There
 are three end-use space heating technologies using the gas, electricity,
 and heating oil energy carriers (commodities), respectively. These
@@ -167,7 +167,7 @@ in the diagram by one gas plant, three electricity-generating plants
 (gas fired, coal fired, oil fired), and one oil refinery.
 
 ```{figure} assets/image2.png
-:name: partial_view_ref_energy_syst
+:name: part-view-res
 :align: center
 Partial view of a Reference Energy System (links are oriented left to right).
 ```

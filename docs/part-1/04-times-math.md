@@ -39,7 +39,7 @@ in chapter 3, which we restate here:
 producers and the consumers surpluses is maximized\"*
 
 
-{numref}`eq_demand_curve` of Chapter 3 provides a graphical illustration of this
+{numref}`eq-demand-curve` of Chapter 3 provides a graphical illustration of this
 theorem in a case where only one commodity is considered.
 
 ## Mathematics of the TIMES equilibrium
@@ -47,7 +47,7 @@ theorem in a case where only one commodity is considered.
 ### Defining demand functions
 
 From chapter 3, we have the following demand function for each demand
-category ***i***
+category $i$:
 
 $${DM_{i}/D{M_{i}}^{0} = (p_{i}/p_{i}^{0})^{E_{i}}(4 - 1)}$$
 
@@ -119,7 +119,7 @@ does not include cross terms) and concave in the $DM_i$ variables,
 each of its terms is easily linearized by piece-wise linear functions
 which approximate the integrals in (4-5). This is the same as saying
 that the inverse demand curves are approximated by staircase functions,
-as illustrated in {numref}`approx_non_linear_obj_function`. By so doing, the resulting optimization
+as illustrated in {numref}`approx-non-linear-obj-function`. By so doing, the resulting optimization
 problem becomes linear again. The linearization proceeds as follows.
 
 a)  For each demand category $i$ and each time period $t$, the
@@ -132,7 +132,7 @@ a)  For each demand category $i$ and each time period $t$, the
 
 b)  Select a grid that divides each range into a number $n$ of equal
     width intervals. Let $\beta_i(t)$ be the resulting common width of the
-    grid, $\beta_i(t) = R_i(t)/n$. See {numref}`approx_non_linear_obj_function` for a sketch of
+    grid, $\beta_i(t) = R_i(t)/n$. See {numref}`approx-non-linear-obj-function` for a sketch of
     the non-linear expression and of its step-wise constant
     approximation. The number of steps, $n$, should be chosen so that
     the step-wise constant approximation remains close to the exact
@@ -168,7 +168,7 @@ portion of that cost representing the negative of the consumer surplus
 is akin to a *welfare loss.*
 
 ```{figure} assets/image14.png
-:name: approx_non_linear_obj_function
+:name: approx-non-linear-obj-function
 :align: center
 Step-wise constant approximation of the non-linear terms in the objective function.
 ```
