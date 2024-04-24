@@ -519,20 +519,14 @@ The following further modifications are done in the LIN formulation:
 
 ------------
 
-[^26]: This rather improper term includes equality as well as inequality
-    relationships between mathematical expressions.
+[^26]: This rather improper term includes equality as well as inequality relationships between mathematical expressions.
 
 [^27]: For more information on optimizers see Brooke et al., 1998
 
 [^28]: IRE stands for Inter-Regional Exchange
 
-[^29]: Alternatively, one may use a convex programming code to solve the
-    entire TIMES LP.
+[^29]: Alternatively, one may use a convex programming code to solve the entire TIMES LP.
 
-[^30]: The salvage value is thus the only cost element that remains
-    lumped in the TIMES objective function. All other costs are
-    annualized.
+[^30]: The salvage value is thus the only cost element that remains lumped in the TIMES objective function. All other costs are annualized.
 
-[^31]: That fraction is equal to 1 if the technical life of the
-    investment made in period ***v*** fully covers period ***t***. It is
-    less than 1 (perhaps 0) otherwise.
+[^31]: That fraction is equal to 1 if the technical life of the investment made in period ***v*** fully covers period ***t***. It is less than 1 (perhaps 0) otherwise.

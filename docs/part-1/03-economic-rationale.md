@@ -19,8 +19,11 @@ $X_{s} = A_{0}\left( B_{K} \cdot K_{s}^{\rho} + B_{L} \cdot L_{S}^{\rho} + B_{E}
 where 
 
 > $X_{S}$ is the output of sector $S$,
+> 
 > $K_{S}$, $L_{S}$, and $E_{S}$ are the inputs of capital, labor and energy needed to produce one unit of output in sector $S$,
+> 
 > $\rho$ is the elasticity of substitution parameter,
+> 
 > $A_{0}$ and the $B$ 's are scaling coefficients.
 
 The choice of *ρ* determines the ease or difficulty with which one production factor may be substituted for another: the smaller $\rho$ is (but still greater than or equal to 1), the easier it is to substitute the factors to produce the same amount of output from sector $S$. Also note that the degree of factor substitutability does not vary among the factors of production --- the ease with which capital can be substituted for labor is equal to the ease with which capital can be substituted for energy, while maintaining the same level of output. GE models may also use alternate forms of production function (3-1), but retain the basic idea of an explicit substitutability of production factors.
@@ -172,75 +175,32 @@ This property is important inasmuch as it provides an alternative justification 
 
 ------------
 
-[^11]: These models assume that the relationships (as defined by the
-    form of the production functions as well as the calculated
-    parameters) between sector level inputs and outputs are in
-    equilibrium in the base year.
+[^11]: These models assume that the relationships (as defined by the form of the production functions as well as the calculated parameters) between sector level inputs and outputs are in equilibrium in the base year.
 
-[^12]: Most models use inputs such as labor, energy, and capital, but
-    other input factors may conceivably be added, such as arable land,
-    water, or even technical know-how. Similarly, labor may be further
-    subdivided into several categories.
+[^12]: Most models use inputs such as labor, energy, and capital, but other input factors may conceivably be added, such as arable land, water, or even technical know-how. Similarly, labor may be further subdivided into several categories.
 
-[^13]: Model for Evaluating Regional and Global Effects (Manne et al.,
-    1995)
+[^13]: Model for Evaluating Regional and Global Effects (Manne et al., 1995)
 
 [^14]: Second Generation Model (Edmonds et al., 1991)
 
-[^15]: It has been argued, based on strong experimental evidence, that
-    the change in demands for energy services indeed captures the main
-    economic impact of energy system policies on the economy at large
-    (Loulou and Kanudia, 2000)
+[^15]: It has been argued, based on strong experimental evidence, that the change in demands for energy services indeed captures the main economic impact of energy system policies on the economy at large (Loulou and Kanudia, 2000)
 
-[^16]: This property does not hold in three TIMES extensions presented
-    in Chapters 10-12.
+[^16]: This property does not hold in three TIMES extensions presented in Chapters 10-12.
 
-[^17]: These two properties do not hold in the time-stepped extension of
-    TIMES (chapter 9) and in Stochastic TIMES (Chapter 8.)
+[^17]: These two properties do not hold in the time-stepped extension of TIMES (chapter 9) and in Stochastic TIMES (Chapter 8.)
 
-[^18]: This is so because in Linear Programming the shadow price of a
-    constraint remains constant over a certain interval, and then
-    changes abruptly, giving rise to a stepwise constant functional
-    shape.
+[^18]: This is so because in Linear Programming the shadow price of a constraint remains constant over a certain interval, and then changes abruptly, giving rise to a stepwise constant functional shape.
 
-[^19]: This smooth curve will be discretized later for computational
-    purposes, and thus become a staircase function, as described in
-    section 4.2
+[^19]: This smooth curve will be discretized later for computational purposes, and thus become a staircase function, as described in section 4.2
 
-[^20]: As may be seen in {numref}`eq-supply-demand-endogenous`, the equilibrium is not necessarily
-    unique. In the case shown, any point on the vertical segment
-    containing the equilibrium is also an equilibrium, with the same
-    quantity $Q_E$ but a different price. In other situations, the
-    multiple equilibria may have a single price but multiple quantities.
+[^20]: As may be seen in {numref}`eq-supply-demand-endogenous`, the equilibrium is not necessarily unique. In the case shown, any point on the vertical segment containing the equilibrium is also an equilibrium, with the same quantity $Q_E$ but a different price. In other situations, the multiple equilibria may have a single price but multiple quantities.
 
-[^21]: This results from the fact that in TIMES each price $P_i$ is
-    the shadow price of a balance constraint (see section 5.4.4), and
-    may thus be (loosely) expressed as the derivative of the objective
-    function $F$ with respect to the right-hand-side of a balance
-    constraint, i.e. $\partial F/\partial Q_i$. When that price is further
-    differentiated with respect to another quantity $Q_j$, one gets
-    $\partial^2 F/(\partial Q_i . \partial Q_j)$, which, under mild conditions is always equal
-    to $\partial^2 F/(\partial Q_j . \partial Q_i)$, as desired.
+[^21]: This results from the fact that in TIMES each price $P_i$ is the shadow price of a balance constraint (see section 5.4.4), and may thus be (loosely) expressed as the derivative of the objective function $F$ with respect to the right-hand-side of a balance constraint, i.e. $\partial F/\partial Q_i$. When that price is further differentiated with respect to another quantity $Q_j$, one gets $\partial^2 F/(\partial Q_i . \partial Q_j)$, which, under mild conditions is always equal to $\partial^2 F/(\partial Q_j . \partial Q_i)$, as desired.
 
 [^22]: See e.g. Samuelson and Nordhaus (1977)
 
-[^23]: The term *shadow price* is often used in the mathematical
-    economics literature, whenever the price is derived from the
-    marginal value of a commodity. The qualifier 'shadow' is used to
-    distinguish the competitive market price from the price observed in
-    the real world, which may be different, as is the case in regulated
-    industries or in sectors where either consumers or producers
-    exercise market power, or again when other market imperfections
-    exist. When the equilibrium is computed using LP optimization, as is
-    the case for TIMES, the shadow price of each commodity is computed
-    as the dual variable of that commodity's balance constraint, see
-    chapter 14
+[^23]: The term *shadow price* is often used in the mathematical economics literature, whenever the price is derived from the marginal value of a commodity. The qualifier 'shadow' is used to distinguish the competitive market price from the price observed in the real world, which may be different, as is the case in regulated industries or in sectors where either consumers or producers exercise market power, or again when other market imperfections exist. When the equilibrium is computed using LP optimization, as is the case for TIMES, the shadow price of each commodity is computed as the dual variable of that commodity's balance constraint, see chapter 14
 
-[^24]: However, the resulting Linear Program has multiple optimal
-    solutions. Therefore, although *q*\* is an optimal solution, it is
-    not necessarily the one found when the modified LP is solved.
+[^24]: However, the resulting Linear Program has multiple optimal solutions. Therefore, although *q*\* is an optimal solution, it is not necessarily the one found when the modified LP is solved.
 
-[^25]: An agent has market power if its decisions, all other things
-    being equal, have an impact on the market price. Monopolies and
-    oligopolies are example of markets where one or several agents have
-    market power.
+[^25]: An agent has market power if its decisions, all other things being equal, have an impact on the market price. Monopolies and oligopolies are example of markets where one or several agents have market power.
