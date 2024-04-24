@@ -24,51 +24,67 @@ We now turn to the mathematical description of the above, starting with the MACR
 
 We start our description of the hybrid model by stating the MACRO equations (12-1) -- (12-6)[^39]:
 
-$Max\mspace{6mu}\mspace{6mu}\sum_{t = 1}^{T - 1}{dfact_{t}} \cdot \ln(C_{t}) + \frac{dfact_{T - 1} \cdot dfactcur{r_{T - 1}}^{\frac{d_{T - 1} + d_{T}}{2}}}{1 - dfactcur{r_{T}}^{\frac{d_{T - 1} + d_{T}}{2}}} \cdot \ln(C_{T})$
+$$Max\mspace{6mu}\mspace{6mu}\sum_{t = 1}^{T - 1}{dfact_{t}} \times \ln(C_{t}) + \frac{dfact_{T - 1} \times dfactcur{r_{T - 1}}^{\frac{d_{T - 1} + d_{T}}{2}}}{1 - dfactcur{r_{T}}^{\frac{d_{T - 1} + d_{T}}{2}}} \times \ln(C_{T})$$
 (12-1)
 
-$Y_{t} = C_{t} + INV_{t} + EC_{t}$ (12-2)
+$$Y_{t} = C_{t} + INV_{t} + EC_{t}$$ (12-2)
 
-$Y_{t} = \left( akl \cdot K_{r}^{kpvs \cdot \rho} \cdot l_{t}^{(1 - kpvs)\rho} + \sum_{dm}^{}{b_{dm} \cdot DEM\_ M_{t,dm}^{\rho}} \right)^{\frac{1}{\rho}}$
+$$Y_{t} = \left( akl \times K_{r}^{kpvs \times \rho} \times l_{t}^{(1 - kpvs)\rho} + \sum_{dm}^{}{b_{dm} \times DEM\_ M_{t,dm}^{\rho}} \right)^{\frac{1}{\rho}}$$
 (12-3)
 
-$l_{1} = 1\mspace{6mu}\mspace{6mu}\quad\text{and      }l_{t + 1} = l_{t} \cdot \left( 1 + growv_{t} \right)^{\frac{d_{t} + d_{t + 1}}{2}}$
+$$l_{1} = 1\mspace{6mu}\mspace{6mu}\quad\text{and      }l_{t + 1} = l_{t} \times \left( 1 + growv_{t} \right)^{\frac{d_{t} + d_{t + 1}}{2}}$$
 (12-4)
 
-$K_{t + 1} = tsrv_{t} \cdot K_{t} + \frac{1}{2}\left( d_{t} \cdot tsrv \cdot INV_{t} + d_{t + 1} \cdot INV_{t + 1} \right)$
+$$K_{t + 1} = tsrv_{t} \times K_{t} + \frac{1}{2}\left( d_{t} \times tsrv \times INV_{t} + d_{t + 1} \times INV_{t + 1} \right)$$
 (12-5)
 
-$K_{T} \cdot \left( growv_{T} + depr \right) \leq INV_{T}$ (12-6)
+$$K_{T} \times \left( growv_{T} + depr \right) \leq INV_{T}$$ (12-6)
 
 with the model **variables**:
 
 > $C_{t}$: annual consumption in period $t$,
+> 
 > $DEM\_ M_{t,dm}$: annual energy demand in MACRO for commodity $dm$ in period $t$,
+> 
 > $Y_{t}$: annual production in period $t$,
+> 
 > $INV_{t}$: annual investments in period $t$,
+> 
 > $EC_{t}$: annual energy costs in period $t$,
+> 
 > $K_{t}$: total capital in period $t$
 
 and the **exogenous parameters**:
 
 > $akl$: production function constant,
+> 
 > $b_{dm}$: demand coefficient,
+> 
 > $d_{t}$: duration of period $t$ in years,
+> 
 > $depr$: depreciation rate,
+> 
 > $dfact_{t}$: utility discount factor,
+> 
 > $dfactcurr_{t}$: annual discount rate,
+> 
 > $growv_{t}$: growth rate in period $t$,
+> 
 > $kpvs$ capital value share,
+> 
 > $l_{t}$: annual labor index in period $t$,
+> 
 > $\rho$: substitution constant,
+> 
 > $T$: period index of the last period,
+> 
 > $tsrv_{t}$: capital survival factor between two periods.
 
 The objective function (12-1) of the MACRO model is the maximization of the summation of discounted utility at each period. The utility is defined as the logarithm of consumption $C_{t}$ of the households. A logarithmic utility function embodies a decreasing marginal utility property (Manne, 1977). Note that the discount factor $dfact_{t}$ for period t must take into account both the length of the period and the time elapsed between the period\'s start and the base year. Note also that the discount factor of the last period has a larger impact since it is assumed to apply to the infinite time horizon after the last model period (alternatively, the user may decide to limit the number of years in the last term, in those cases where it is deemed important to confer less weight to the indefinite future).
 
 The national accounting equation (12-2) simply states that national production $Y_t$ must cover national consumption $C_t$ , plus investments $INV_t$, plus energy costs $EC_t$.
 
-The production function (12-3) represents the entire economy. It is a nested, constant elasticity of substitution (CES) function with the three input factors capital, labor and energy. The production input factors labor $l_{t}$ and capital $K_{t}$ form an aggregate, in which both can be substituted by each other represented via a Cobb-Douglas function. Then, the aggregate of the energy services and the aggregate of capital and labor can substitute each other. Note that labor is not endogenous in MACRO,but is specified exogenously by the user provided a labor growth rate $growv_{t}$.
+The production function (12-3) represents the entire economy. It is a nested, constant elasticity of substitution (CES) function with the three input factors capital, labor and energy. The production input factors labor $l_{t}$ and capital $K_{t}$ form an aggregate, in which both can be substituted by each other represented via a Cobb-Douglas function. Then, the aggregate of the energy services and the aggregate of capital and labor can substitute each other. Note that labor is not endogenous in MACRO, but is specified exogenously by the user provided a labor growth rate $growv_{t}$.
 
 The energy in term in (12-3) is a weighted sum of end-use demands in all sectors $dm$ of the economy, $DEM\_M_{t,dm}$, raised to the power $\rho$. We defer the definition of these quantities until the next subsection.
 
@@ -78,14 +94,13 @@ The capital value share $kpvs$ describes the share of capital in the sum of all 
 
 The capital dynamics equation (12-5) describes the capital stock in the current period $K_{t + 1}$ based on the capital stock in the previous period and on investments made in the current and the previous period. Depreciation leads to a reduction of the capital. This effect is taken into account by the capital survival factor$tsrv_{t}$, which describes the share of the capital or investment in period $t$ that still exists in period $t+1$. It is derived from the depreciation rate $depr$ using the following expression:
 
-$tsrv_{t} = (1 - depr)^{\frac{\left( d_{t + 1} + d_{t} \right)}{2}}$
-(12-7)
+$$tsrv_{t} = (1 - depr)^{\frac{\left( d_{t + 1} + d_{t} \right)}{2}}$$(12-7)
 
-Expression (12-7) calculates the capital survival factor for a period of years beginning with the end of the middle year $m_{t}$ and ending with the end of the year $m_{t + 1}$. The duration between these two middle years equals the duration $\frac{d_{t + 1} + d_{t}}{2}$. Then, a mean investment in period $t$ is calculated by weighting the investments in $t$ and $t+1$ with the respective period duration: $\frac{1}{2}\left( d_{t} \cdot tsrv \cdot INV_{t} + d_{t + 1} \cdot INV_{t + 1} \right)$.
+Expression (12-7) calculates the capital survival factor for a period of years beginning with the end of the middle year $m_{t}$ and ending with the end of the year $m_{t + 1}$. The duration between these two middle years equals the duration $\frac{d_{t + 1} + d_{t}}{2}$. Then, a mean investment in period $t$ is calculated by weighting the investments in $t$ and $t+1$ with the respective period duration: $\frac{1}{2}\left( d_{t} \times tsrv \times INV_{t} + d_{t + 1} \times INV_{t + 1} \right)$.
 
 For the first period it is assumed that the capital stock grows with the labor growth rate of the first period$growv_{0}$. Thus, the investment has to cover this growth rate plus the depreciation of capital. Since the initial capital stock is given and the depreciation and growth rates are exogenous, the investment in the first period can be calculated beforehand:
 
-$INV_{0} = K_{0} \cdot \left( depr + growv_{0} \right)$ (12-8)
+$$INV_{0} = K_{0} \times \left( depr + growv_{0} \right)$$ (12-8)
 
 Since the model horizon is finite, one has to ensure that the capital stock is not fully exhausted (which would maximize the utility in the model horizon). Therefore a terminal condition (12-6) is added, which guarantees that after the end of the model horizon a capital stock for the following generations exists. It is assumed that the capital stock beyond the end of horizon grows with the labor growth rate $growv_{T}$. This is coherent with the last term of the utility function.
 
@@ -93,14 +108,13 @@ Since the model horizon is finite, one has to ensure that the capital stock is n
 
 TIMES is represented via the following condensed LP
 
-$Min\ \sum_{t}^{}{dfact}_{t} \bullet {COST\_ T_{t}}_{}(x)$
+$Min\ \sum_{t}^{}{dfact}_{t} \times {COST\_ T_{t}}_{}(x)$
 
-s.t. $E \bullet x = DEM\_ T_{dm,t}$ (A)
+s.t. $E \times x = DEM\_ T_{dm,t}$ (A)
 
-$A \bullet x = b$ (B)
+$A \times x = b$ (B)
 
 where
-
 - $x$ is the vector of TIMES variables
 - ${COST\_ T_{t}}_{}(x)$ is the annual undiscounted cost TIMES expression
 - $dfact_t$ is the discount factor for period $t$
@@ -111,32 +125,36 @@ MACRO and TIMES are hard linked via two sets of variables: the energy variables 
 
 The aggregate energy input into MACRO (see equation (12-3)), is slightly different from the TIMES variables defined above. In the linked model, each term $DEM\_M$ is obtained by further applying a factor $aeeifac_{t,dm}$ as shown in equation (12-9).
 
-$DEM\_ T_{t,dm} = aeeifac_{t,dm} \cdot DEM\_ M_{t,dm}$ (12-9)
+$$DEM\_ T_{t,dm} = aeeifac_{t,dm} \times DEM\_ M_{t,dm}$$ (12-9)
 
 Indeed, the energy demand in the TIMES model can be lower than the energy requirement of the MACRO model due to demand reductions, which are caused by autonomous energy efficiency improvements and come in addition to those captured in the energy sector of the TIMES model. The autonomous energy efficiency improvement factor $aeeifac_{t,dm}$ is determined in a calibration procedure described in technical note "Documentation of the TIMES-MACRO model", which also discusses the weighing coefficients $b_{dm}$.
 
 The other link consists in accounting for the monetary flow $EC_{t}$, equal to the expenditures made in the energy sector. Precisely, $EC_{t}$is equal to the annual *undiscounted* energy system cost of the TIMES model, $COST\_ T_{t}$, (as used in the TIMES objective function), augmented with an additional term as shown in equation (12-10):
 
-$COST\_ T_{t} + \frac{1}{2}qfac\sum_{p}^{}{\frac{cstinv_{t,p}}{\exp f_{t} \cdot capfy_{p}} \cdot XCAP_{t,p}^{2}} = EC_{t}$
-(12-10)
+$$COST\_ T_{t} + \frac{1}{2}qfac\sum_{p}^{}{\frac{cstinv_{t,p}}{\exp f_{t} \times capfy_{p}} \times XCAP_{t,p}^{2}} = EC_{t}$$(12-10)
 
 with
 
-> $XCAP_{t,p}$: portion of the capacity expansion for technology $p$ in period $t$ that is penalized. Constraint (12-11) below states that it is the portion exceeding a predefined tolerable expansion rate $\exp f_{t}$,
+> $XCAP_{t,p}$: portion of the capacity expansion for technology $p$ in period $t$ that is penalized. 
+> Constraint (12-11) below states that it is the portion exceeding a predefined tolerable expansion rate $\exp f_{t}$,
+> 
 > $EC_{t}$: costs for the production factor energy in the MACRO model,
+> 
 > $qfac$: trigger to activate penalty term (0 for turning-off penalty, 1 for using penalty term),
+> 
 > $cstinv_{t,p}$: specific annualized investment costs of technology $p$ in period $t$,
+> 
 > $capfy_{p}$: maximum level of capacity for technology $p$,
+> 
 > $\exp f_{t}$: tolerable expansion between two periods.
 
 Just like in the pure MACRO model, the quadratic penalty term added on the left hand side of Eqn. (11) serves to slow down the penetration of technologies. This term plays a somewhat similar role as the growth constraints do in the stand-alone TIMES model. The variable $XCAP_{t,p}$ is the amount of capacity exceeding a predefined expansion level expressed by the expansion factor $\exp f_{t}$ and is determined by the following equation:
 
-$VAR\_ CAP_{t + 1,p} \leq \left( 1 + expf_{t} \right) \cdot VAR\_ CAP_{t,p} + XCAP_{t + 1,p}$
-(12-11)
+$$VAR\_CAP_{t + 1,p} \leq \left( 1 + expf_{t} \right) \times VAR\_CAP_{t,p} + XCAP_{t + 1,p}$$(12-11)
 
 with:
 
-$VAR\_ CAP_{t,p}$: total installed capacity of technology $p$ in period $t$.
+$VAR\_CAP_{t,p}$: total installed capacity of technology $p$ in period $t$.
 
 As long as the total installed capacity in period $t+1$ is below $\left( 1 + expf_{t} \right) \cdot CAP_{t,p}$ no penalty costs are applied. For the capacity amount $XCAP_{t + 1,p}$ exceeding this tolerated capacity level penalty costs are added to the regular costs of the TIMES model in Equation (12-10).
 

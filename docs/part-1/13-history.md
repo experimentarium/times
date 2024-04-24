@@ -69,7 +69,7 @@ In MARKAL, only two commodities have time-slices: electricity and low temperatur
 
 The flexible nature of the TIMES time-slices supports storage processes that 'consume' commodities at one time-slice and release them at another. MARKAL only supports night-to-day (electricity) storage.
 
-Note that many TIMES parameters may be time-slice dependent (such as availability factor (AF), basic efficiency (ACT_EFF), etc.
+Note that many TIMES parameters may be time-slice dependent (such as availability factor ($AF$), basic efficiency ($ACT\_EFF$), etc.
 
 #### Process generality
 
@@ -105,7 +105,7 @@ Both MARKAL and TIMES support stochastic programming (SP, Chapter 8) as a means 
 
 #### Climate module
 
-TIMES possesses a set of variables and equations that endogenize the concentration of CO~2~, CH4, and N2O, and also calculate the radiative forcing and global temperature changes resulting from GHG emissions and accumulation here. This new feature is described in Chapter 7.
+TIMES possesses a set of variables and equations that endogenize the concentration of $CO_2$, $CH_4$, and $N_2O$, and also calculate the radiative forcing and global temperature changes resulting from GHG emissions and accumulation here. This new feature is described in Chapter 7.
 
 
 ------------

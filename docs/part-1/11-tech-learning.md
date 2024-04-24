@@ -16,7 +16,7 @@ Empirical studies of unit investment costs of several technologies have been und
 
 A typical relationship between unit investment cost and cumulative investments is of the form:
 
-$$INVCOST_{t} = a \cdot C_{t}^{- b}(11 - 1)$$
+$$INVCOST_{t} = a \times C_{t}^{- b}$$ (11 - 1)
 
 where
 - $INVCOST$ [^37] is the unit cost of creating one unit of the technology, which is no longer a constant, but evolves as more units of the technology are produced;
@@ -35,7 +35,7 @@ We follow the basic approach described in Barreto, 2001.
 
 The first step of the formulation is to express the total investment cost, i.e. the quantity that should appear in the objective function. The cumulative investment cost $TC_t$ of a learning technology in period $t$ is obtained by integrating expression (11-1):
 
-$$TC_{t} = \int_{0}^{C_{t}}{a \cdot y^{- b}*dy} = \frac{a}{1 - b} \cdot {C_{t}}^{- b + 1}(11 - 2)$$
+$$TC_{t} = \int_{0}^{C_{t}}{a \times y^{- b}*dy} = \frac{a}{1 - b} \times {C_{t}}^{- b + 1}$$ (11 - 2)
 
 $TC_t$ is a concave function of $C_t$, with a shape as shown in {numref}`cumulative-learning-curve`.
 
@@ -49,9 +49,13 @@ With the Mixed Integer Programming approach implemented in TIMES, the cumulative
 
 1. The user specifies the set of learning technologies;
 2. For each learning technology, the user provides:
+
 	a. The progress ratio $pr$ (from which the learning index $b$ may be inferred)
+	
 	b. One initial point on the learning curve, denoted $(C_0,TC_0)$
+	
 	c. The maximum allowed cumulative investment $C_{max}$(from which the maximum total investment cost $TC_{max}$ may be inferred)
+	
 	d. The number $N$ of segments for approximating the cumulative learning curve over the $(C_0,C_{max})$ interval.
 
 > Note that each of these parameters, including $N$, may be different for different technologies.
@@ -90,7 +94,8 @@ We now define $N$ integer (0-1) variables $z_i$ that serve as indicators of whet
 
 where $b_i$ is the slope of the $i^{th}$ line segment, and $a_i$ is the value of the intercept of that segment with the vertical axis, as shown in {numref}`i-approx-learning-curve`. The precise expressions for $a_i$ and $b_i$ are:
 
-$${b_{i} = \frac{TC_{i} - TC_{i - 1}}{C_{i} - C_{i - 1}}i = 1,2,...,N}(11 - 5)$$
+$${b_{i} = \frac{TC_{i} - TC_{i - 1}}{C_{i} - C_{i - 1}}i = 1,2,...,N}$$(11 - 5)
+
 $a_{i} = TC_{i - 1} - b_{i} \cdot C_{i - 1}i = 1,2,...,N$
 
 ```{figure} assets/image30.png
@@ -107,7 +112,7 @@ $$\sum_{i = 1}^{N}{z_{i} = 1}$$
 
 We also need to make sure that each $x_i$ lies within the $i^{th}$ interval whenever $z_i$ is equal to 1 and is equal to 0 otherwise. This is done via two constraints:
 
-$$C_{i - 1} \cdot z_{i} \leq x_{i} \leq C_{i} \cdot z_{i}$$
+$$C_{i - 1} \times z_{i} \leq x_{i} \leq C_{i} \times z_{i}$$
 
 ### Objective function terms
 
@@ -115,7 +120,7 @@ Re-establishing the period index, we see that the objective function term at per
 
 ### Additional (optional) constraints
 
-Solving integer programming problems is facilitated if the domain of feasibility of the integer variables is reduced. This may be done via additional constraints that are not strictly needed but that are guaranteed to hold. In our application we know that experience (i.e. cumulative investment) is always increasing as time goes on. Therefore, if the cumulative investment in period t lies in segment i, it is certain that it will not lie in segments $i-1, i-2, .., 1$ in time period $t+1$. This leads to two new constraints (re-establishing the period index $t$ for the $z$ variables):
+Solving integer programming problems is facilitated if the domain of feasibility of the integer variables is reduced. This may be done via additional constraints that are not strictly needed but that are guaranteed to hold. In our application we know that experience (i.e. cumulative investment) is always increasing as time goes on. Therefore, if the cumulative investment in period $t$ lies in segment $i$, it is certain that it will not lie in segments $i-1, i-2, .., 1$ in time period $t+1$. This leads to two new constraints (re-establishing the period index $t$ for the $z$ variables):
 
 ![](assets/image31.png)
 
@@ -123,14 +128,7 @@ Summarizing the above formulation, we observe that each learning technology requ
 
 ## Clustered learning
 
-An interesting variation of ETL is also available in TIMES, namely the
-case where several technologies use the same key technology (or
-component), itself subject to learning. For instance, table 11.1 lists
-11 technologies using the key Gas Turbine technology. As experience
-builds up for gas the turbine, each of the 11 technologies in the
-cluster benefits. The phenomenon of clustered learning is modeled in
-TIMES via the following modification of the formulation of the previous
-section.
+An interesting variation of ETL is also available in TIMES, namely the case where several technologies use the same key technology (or component), itself subject to learning. For instance, table 11.1 lists 11 technologies using the key Gas Turbine technology. As experience builds up for gas the turbine, each of the 11 technologies in the cluster benefits. The phenomenon of clustered learning is modeled in TIMES via the following modification of the formulation of the previous section.
 
 Let $k$ designate the key technology and let $l = 1, 2, ...,L$ designate the set of clustered technologies attached to $k$. The approach consists of three steps:
 
@@ -140,7 +138,7 @@ ii) Step 2: subtract from each $INVCOST_l$ the initial investment cost of techno
 
 iii) Step 3: add the following constraint to the model, in each time period. This ensures that learning on $k$ spreads to all members of its cluster:
 
-$$VAR\_ NCAP_{k} - \sum_{l = 1}^{L}{VAR\_ NCAP_{l} = 0}$$
+$$VAR\_NCAP_{k} - \sum_{l = 1}^{L}{VAR\_NCAP_{l} = 0}$$
 
 *Table 11.1: Cluster of gas turbine technologies*
 
@@ -186,7 +184,7 @@ b) The LT has only one output, a new commodity $c$ representing the 'learning'. 
 
 c) Commodity $c$ may be exported to all other regions.
 
-Finally, in each 'real' region, the LT is represented with all its attributes *except the investment cost NCAP_COST.* Furthermore, the construction of one unit of the LT requires an input of one unit of the learning commodity $c$ (using the $NCAP_ICOM$ parameter see chapter 3 of PART II). This ensures that the sum of all investments in the LT in the real regions is exactly equal to the investment in the LT in region 0, as desired.
+Finally, in each 'real' region, the LT is represented with all its attributes *except the investment cost NCAP_COST.* Furthermore, the construction of one unit of the LT requires an input of one unit of the learning commodity $c$ (using the $NCAP\_ICOM$ parameter see chapter 3 of PART II). This ensures that the sum of all investments in the LT in the real regions is exactly equal to the investment in the LT in region 0, as desired.
 
 ## Endogenous vs. exogenous learning: a discussion
 
