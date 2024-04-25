@@ -2793,31 +2793,11 @@ where cg can be a single commodity in the PG, thereby making the process
 availability factor dependent on the output mix.
 
 **Remarks:**
-
--   The cg index in the input attributes *NCAP_AFC~r,v,p,cg,tsl~ /
-    NCAP_AFCS~r,v,p,cg,s~* can be either a single commodity in the PG,
-    the reserved group name \'ACT\' denoting the PG itself (for other
-    than storage processes, see below), or a commodity type of the PG.
-    Any *NCAP_AFCS~r,v,p,cg,s~* specified overrides an
-    *NCAP_AFC~r,v,p,cg,tsl~* specified on the same level, and any value
-    specified for a single commodity overrides a value specified for a
-    group containing the commodity.
-
--   For storage and trade processes, which both can have the same
-    commodity IN and OUT of the process, defining an
-    *NCAP_AFC/NCAP_AFCS* both for the commodity type and for the single
-    commodity itself results in the commodity availability being applied
-    to the output flow while the group availability is applied to the
-    input flow.
-
--   For storage processes, defining an *NCAP_AFC/NCAP_AFCS* on the
-    reserved group name \'ACT\' defines a separate availability factor
-    constraint (EQL_CAPFLO) for the storage level, and not for the flows
-    in the PG.
-
--   For trade processes, **prc_map~r,\'DISTR\',p~** can be also used for
-    removing exports from contributing to the availability equation, if
-    the process is bi-directional.
+- The cg index in the input attributes *NCAP_AFC~r,v,p,cg,tsl~ / NCAP_AFCS~r,v,p,cg,s~* can be either a single commodity in the PG, the reserved group name \'ACT\' denoting the PG itself (for other than storage processes, see below), or a commodity type of the PG. Any *NCAP_AFCS~r,v,p,cg,s~* specified overrides an *NCAP_AFC~r,v,p,cg,tsl~* specified on the same level, and any value specified for a single commodity overrides a value specified for a group containing the commodity.
+- For storage and trade processes, which both can have the same commodity IN and OUT of the process, defining an *NCAP_AFC/NCAP_AFCS* both for the commodity type and for the single     commodity itself results in the commodity availability being applied to the output flow while the group availability is applied to the input flow.
+- For storage processes, defining an *NCAP_AFC/NCAP_AFCS* on the reserved group name \'ACT\' defines a separate availability factor constraint (EQL_CAPFLO) for the storage level, and not for the flows in the PG.
+- For trade processes, **prc_map~r,\'DISTR\',p~** can be also used for removing exports from contributing to the availability equation, if the process is bi-directional.
+- Note that the availability factors defined by NCAP_AFC are multiplied by any NCAP_AF/NCAP_AFS/NCAP_AFA value if defined for the same timeslice.
 
 **Special notation used for the equation formulation:**
 

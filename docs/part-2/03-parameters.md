@@ -155,6 +155,8 @@ Nonetheless, a few options are supported also for the extrapolation of the $MULT
 | <=0 (or none) | No extrapolation (default)                                |
 |       1       | Extrapolation between data points only                    |
 |       2       | Extrapolation between and outside data points             |
+|       4       | Extrapolation between data points and backwards           |
+|       5       | Extrapolation between data points and forwards            |
 |      11       | Extrapolation between data points only, migration at ends |
 
   : Table 9: Option codes for the extrapolation of SHAPE/MULTI indexes.
@@ -236,7 +238,7 @@ Inheritance and aggregation rules for timeslice specific parameters in TIMES.
 
 ### Overview of user input parameters
 
-A list of all user input parameters is given in Table 13. In order to facilitate the recognition by the user of to which part of the model a parameter relates the following naming conventions apply to the prefixes of the parameters (Table 11).
+A list of all user input parameters (except for those specific to the TIMES-MACRO variants) is given in Table 13. For the MACRO input parameters, the reader is advised to consult the separate documentation. In order to facilitate the recognition by the user of to which part of the model a parameter relates the following naming conventions apply to the prefixes of the parameters (Table 11).
 
   --------------------- -------------------------------------------------
   **Prefix**            **Related model component**
