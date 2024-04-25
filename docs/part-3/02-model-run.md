@@ -1,133 +1,40 @@
 # The TIMES source code and the model run process
 
-As discussed in the previous section, the heart of TIMES is embodied in
-the GAMS source code, comprised of the matrix generator that digests the
-input data prepared from ANSWER or VEDA-FE and prepares the mathematical
-representation of the model instance, an optimizer to solve the
-resulting mathematical programming problem, and a report writer that
-post-processes the solution and prepares results files for ANSWER and
-VEDA-BE. It is this collection of GAMS source code routines that
-correspond to the TIMES model, where each TIMES model run proceeds
-through the appropriate path in the source code based upon the user
-specified runtime switches, described in Section 3, and the provided
-input data.
+As discussed in the previous section, the heart of TIMES is embodied in the GAMS source code, comprised of the matrix generator that digests the input data prepared from ANSWER or VEDA-FE and prepares the mathematical representation of the model instance, an optimizer to solve the resulting mathematical programming problem, and a report writer that post-processes the solution and prepares results files for ANSWER and VEDA-BE. It is this collection of GAMS source code routines that correspond to the TIMES model, where each TIMES model run proceeds through the appropriate path in the source code based upon the user specified runtime switches, described in Section 3, and the provided input data.
 
-For the most part, this process is seamless to the user, as the model
-management shells extract the scenario data and prepare ASCII text files
-in the layout required by GAMS, set up the top level GAMS control file,
-and initiate the model run (in a Command Prompt box). GAMS then compiles
-the source and data, constructs the model, invokes the solvers, and
-dumps the model results for importing back into the model management
-environment. However, knowledge of the run process and the files
-produced along the way can be helpful in diagnosing model errors (e.g.,
-a division by zero may necessitate turning on the source code listing
-(\$ONLISTING/\$OFFLIST at the top/bottom of the routine where the error
-is reported) to determine which parameter is causing the problem) or if
-a user is considering modifying the model formulation to, say, add a new
-kind of constraint (note that any such undertaking should be closely
-coordinated with ETSAP).
+For the most part, this process is seamless to the user, as the model management shells extract the scenario data and prepare ASCII text files in the layout required by GAMS, set up the top level GAMS control file, and initiate the model run (in a Command Prompt box). GAMS then compiles the source and data, constructs the model, invokes the solvers, and dumps the model results for importing back into the model management environment. However, knowledge of the run process and the files produced along the way can be helpful in diagnosing model errors (e.g., a division by zero may necessitate turning on the source code listing (\$ONLISTING/\$OFFLIST at the top/bottom of the routine where the error is reported) to determine which parameter is causing the problem) or if a user is considering modifying the model formulation to, say, add a new kind of constraint (note that any such undertaking should be closely coordinated with ETSAP).
 
 ## Overview of the model run process
 
-Once a model is readied, a run can be initiated from the model
-management systems by means of the Case Manager in VEDA-FE or the Run
-Model option on the ANSWER Home screen. In both systems the user
-assembles the list of scenarios to comprise the model run, taking care
-to ensure that the order of the scenarios is such that all RES
-components are first declared (that is their item name and set
-membership specified) and then assigned data.
+Once a model is readied, a run can be initiated from the model management systems by means of the Case Manager in VEDA-FE or the Run Model option on the ANSWER Home screen. In both systems the user assembles the list of scenarios to comprise the model run, taking care to ensure that the order of the scenarios is such that all RES components are first declared (that is their item name and set membership specified) and then assigned data.
 
-In the model management shells, the user can also adjust the TIMES model
-variant, run control switches, and solver options. For VEDA-FE this is
-done through the Case Manager, via the Control Panel, RUNFile template,
-and solver settings. Figure 4 shows an example of the VEDA-FE Control
-Panel. See Part IV for more on the use of the Case Manager in VEDA-FE.
+In the model management shells, the user can also adjust the TIMES model variant, run control switches, and solver options. For VEDA-FE this is done through the Case Manager, via the Control Panel, RUNFile template, and solver settings. {numref}`case-manager-control-form` shows an example of the VEDA-FE Control Panel. See Part IV for more on the use of the Case Manager in VEDA-FE.
 
-In ANSWER, the Run Model button brings up the Run Model Form, from which
-the model variant and most run control switches can be set. (The others
-need to be set using the Edit GAMS Control Options feature.) However the
-\<Solver\>.OPT file needs to be handled manually outside of ANSWER. See
-the separate ANSWER documentation for more details on these ANSWER
-facilities.
+In ANSWER, the Run Model button brings up the Run Model Form, from which the model variant and most run control switches can be set. (The others need to be set using the Edit GAMS Control Options feature.) However the \<Solver\>.OPT file needs to be handled manually outside of ANSWER. See the separate ANSWER documentation for more details on these ANSWER facilities.
 
-When a model run is initiated, three kinds of files are created by VEDA
-and ANSWER. The first is a Windows command script file VTRUN/ANSRUN.CMD
-(for VEDA/ANSWER respectively), which just identifies the run name,
-indicates where the source code resides, and perhaps any restart (see
-Section 3.8), and then calls the VEDA/ANSWER driver command script
-(VT_GAMS/ANS_RUN.CMD). The second is the top-level GAMS command file
-\<Case\>.RUN/GEN (for VEDA/ANSWER), which is passed to GAMS to initiate
-and control the model run. It sets the model variant, identifies the
-Milestone (run) years, lists the scenario data files (DD/DDS) to
-include, and invokes the main GAMS routine to have the model actually
-assembled mathematically, solved, and reported upon. It is discussed
-further in Section . The third group of files comprise the data
-dictionary \<scenario\>.DD/DDS file(s), which contain the user input
-sets and parameters in the format required by GAMS to fully describe the
-energy system to be analyzed.
+When a model run is initiated, three kinds of files are created by VEDA and ANSWER. The first is a Windows command script file VTRUN/ANSRUN.CMD (for VEDA/ANSWER respectively), which just identifies the run name, indicates where the source code resides, and perhaps any restart (see Section 3.8), and then calls the VEDA/ANSWER driver command script (VT_GAMS/ANS_RUN.CMD). The second is the top-level GAMS command file \<Case\>.RUN/GEN (for VEDA/ANSWER), which is passed to GAMS to initiate and control the model run. It sets the model variant, identifies the Milestone (run) years, lists the scenario data files (DD/DDS) to include, and invokes the main GAMS routine to have the model actually assembled mathematically, solved, and reported upon. It is discussed further in Section . The third group of files comprise the data dictionary \<scenario\>.DD/DDS file(s), which contain the user input sets and parameters in the format required by GAMS to fully describe the energy system to be analyzed.
 
-GAMS is a two pass language, first compiling and then executing. In the
-first pass, GAMS reads the input data prepared by ANSWER or VEDA-FE, and
-then proceeds to compile the data as well as the actual TIMES source
-code to ready it for execution (unless a Runtime license is employed in
-which case only the data is compiled).
+GAMS is a two pass language, first compiling and then executing. In the first pass, GAMS reads the input data prepared by ANSWER or VEDA-FE, and then proceeds to compile the data as well as the actual TIMES source code to ready it for execution (unless a Runtime license is employed in which case only the data is compiled).
 
-In the second pass, GAMS then proceeds to execute the complied data and
-code to declare the equations and variables that are to make up this
-particular TIMES incarnation and generate the appropriate coefficients
-for matrix intersection, that is the multiplier for the individual
-variables comprising each equation. With the matrix assembled GAMS then
-turns over the problem to the solver.
+In the second pass, GAMS then proceeds to execute the complied data and code to declare the equations and variables that are to make up this particular TIMES incarnation and generate the appropriate coefficients for matrix intersection, that is the multiplier for the individual variables comprising each equation. With the matrix assembled GAMS then turns over the problem to the solver.
 
-![](assets/image4.png){width="3.8583333333333334in"
-height="4.28456583552056in"}
+```{figure} assets/image4.png
+:name: case-manager-control-form
+:align: center
+VEDA-FE Case Manager Control Form.
+```
 
-[]{#_Ref321326034 .anchor}Figure 4: VEDA-FE Case Manager Control Form
+As a result of a model run a listing file (\<Case\>.LST), and a \<case\>.GDX file (GAMS dynamic data exchange file with all the model data and results) are created. The \<Case\>.LST file may contain compilation calls and execution path through the code, an echo print of the GAMS source code and the input data, a listing of the concrete model equations and variables, error messages, model statistics, model status, and solution dump. The amount of information displayed in the listing file can be adjusted by the user through GAMS options in the \<Case\>.RUN file.
 
-As a result of a model run a listing file (\<Case\>.LST), and a
-\<case\>.GDX file (GAMS dynamic data exchange file with all the model
-data and results) are created. The \<Case\>.LST file may contain
-compilation calls and execution path through the code, an echo print of
-the GAMS source code and the input data, a listing of the concrete model
-equations and variables, error messages, model statistics, model status,
-and solution dump. The amount of information displayed in the listing
-file can be adjusted by the user through GAMS options in the
-\<Case\>.RUN file.
+The \<Case\>.GDX file is an internal GAMS file. It is processed according to the information provided in the TIMES2VEDA.VDD to create results input files for the VEDA-BE software to analyze the model results in the \<case\>.VD\* text files. A dump of the solution results is also done to the \<case\>.ANT file for importing into ANSWER, if desired. At this point, model results can be imported into VEDA-BE and ANSWER respectively for post-process and analysis. More information on VEDA-BE and ANSWER results processing can be found in Part V and the separate ANSWER documentation respectively.
 
-The \<Case\>.GDX file is an internal GAMS file. It is processed
-according to the information provided in the TIMES2VEDA.VDD to create
-results input files for the VEDA-BE software to analyze the model
-results in the \<case\>.VD\* text files. A dump of the solution results
-is also done to the \<case\>.ANT file for importing into ANSWER, if
-desired. At this point, model results can be imported into VEDA-BE and
-ANSWER respectively for post-process and analysis. More information on
-VEDA-BE and ANSWER results processing can be found in Part V and the
-separate ANSWER documentation respectively.
+In addition to these output files, TIMES may create a file called QA_CHECK.LOG to inform the user of possible errors or inconsistencies in the model formulation. The QA_CHECK file should be examined by the user on a regular basis to make sure no "surprises" have crept into a model. The content and use of each of these files is discussed further in Section 2.3.
 
-In addition to these output files, TIMES may create a file called
-QA_CHECK.LOG to inform the user of possible errors or inconsistencies in
-the model formulation. The QA_CHECK file should be examined by the user
-on a regular basis to make sure no "surprises" have crept into a model.
-The content and use of each of these files is discussed further in
-Section 2.3.
-
-For the ETSAP Runtime GAMS license, which does not allow for adjustments
-to the TIMES source code by users (which in general is not encouraged
-anyway), a special TIMES.g00 file is used that contains the declaration
-of each variable and equation that is part of the model definition,
-thereby initializing the basic model structure.
+For the ETSAP Runtime GAMS license, which does not allow for adjustments to the TIMES source code by users (which in general is not encouraged anyway), a special TIMES.g00 file is used that contains the declaration of each variable and equation that is part of the model definition, thereby initializing the basic model structure.
 
 ## The TIMES source code
 
-The TIMES model generator is comprised of a host of GAMS source code
-routines, which are simple text files that reside in the user\'s
-\\VEDA\\VEDA-FE\\GAMS_SrcTIMESv### folder, as discussed in Section 1.3
-(or \\AnswerTIMESv6\\GAMS_SrcTI). Careful naming conventions are
-employed for all the source code routines. These conventions are
-characterized, for the most part, by prefixes and extensions
-corresponding to collections of files handling each aspect of the code
-(e.g., set bounds, prepare coefficients, specify equations), as
-summarized in Table 2.
+The TIMES model generator is comprised of a host of GAMS source code routines, which are simple text files that reside in the user\'s \\VEDA\\VEDA-FE\\GAMS_SrcTIMESv### folder, as discussed in Section 1.3 (or \\AnswerTIMESv6\\GAMS_SrcTI). Careful naming conventions are employed for all the source code routines. These conventions are characterized, for the most part, by prefixes and extensions corresponding to collections of files handling each aspect of the code (e.g., set bounds, prepare coefficients, specify equations), as summarized in Table 2.
 
   ----------------------------------------------------------------------------
   **Type**        **Nature of the Routine**
@@ -216,111 +123,22 @@ summarized in Table 2.
   **VDD**         directives for the VEDA-BE result analysis software
   ----------------------------------------------------------------------------
 
-  : []{#_Ref425138160 .anchor}Table 2: TIMES Routines Naming Conventions
+  : Table 2: TIMES Routines Naming Conventions
 
-Note that these don't cover every single routine in the TIMES source
-code folder, but do cover most all of the core routines involved in the
-construction and reporting of the model. They guide the steps of the run
-process as follows:
-
--   **GAMS Compile:** As mentioned above, GAMS operates as a two-phase
-    > compile then execute system. As such it first reads and assembles
-    > all the control, data, and code files into a ready executable;
-    > substituting user and/or shell provided values for all GAMS
-    > environment switches and subroutine parameter references (the
-    > %EnvVar% and %Param% references in the source code) that determine
-    > the path through the code for the requested model instance and
-    > options desired. If there are inconsistencies in input data they
-    > may result in compile-time errors (e.g., \$170 for a domain
-    > definition error), causing a run to stop. See Section for more on
-    > identifying the source of such errors.
-
--   **Initialization:** Upon completion of the compile step, all
-    > possible GAMS sets and parameters of the TIMES model generator are
-    > declared and initialized, then established for this instance of
-    > the model from the user's data dictionary file(s)
-    > (\<Case\>.DD[^14]). Model units are also initialized using the
-    > UNITS.DEF file, which contains the short names for the most common
-    > sets of units that are normally used in TIMES models, and which
-    > can be adjusted by the user.
-
--   **Execution:** After the run has been prepared, the maindrv.mod
-    > routine controls all the remaining tasks of the model run. The
-    > basic steps are as follows.
-
-    -   **Pre-processing:** One major task is the pre-processing of the
-        > model input data. During pre-processing control sets defining
-        > the valid domain of parameters, equations and variables are
-        > generated (e.g., for which periods each process is available,
-        > at what timeslice level (after inheritance) is each commodity
-        > tracked and does each process operate), input parameters are
-        > inter-/extrapolated, and time-slice specific input parameters
-        > are inherited/aggregated to the correct timeslice level as
-        > required by the model generator.
-
-    -   **Preparation of coefficients:** A core activity of the model
-        > generator is the proper derivation of the actual coefficients
-        > used in the model equations. In some cases coefficients
-        > correspond directly to input data (e.g., FLO_SHAR to the flow
-        > variables), but in other cases they must be transformed. For
-        > example, the investment cost (NCAP_COST) must be annualized,
-        > spread for the economic lifetime, and discounted before being
-        > applied to the investment variable (VAR_NCAP) in the objective
-        > function (EQ_OBJ), and based upon the technical lifetime the
-        > coefficients in the capacity transfer constraint (EQ_CPT**)**
-        > are determined to make sure that new investment are accounted
-        > for and retired appropriately.
-
-    -   **Generation of model equations:** Once all the coefficients are
-        > prepared, the file eqmain.mod controls the generation of the
-        > model equations. It calls the individual GAMS routines
-        > responsible for the actual generation of the equations of this
-        > particular instance of the TIMES model. The generation of the
-        > equations is controlled by sets, parameters, and switches
-        > carefully assembled by the pre-processor to ensure that no
-        > superfluous equations or matrix intersections are generated.
-
-    -   **Setting variable bounds:** The task of applying bounds to the
-        > model variables corresponding to user input parameters is
-        > handled by the bndmain.mod file. In some cases it is not
-        > appropriate to apply bounds directly to individual variables,
-        > but instead applying a bound may require the generation of an
-        > equation (e.g. the equation EQ(l)\_ACTBND is created when an
-        > annual activity bound is specified for a process having a
-        > diurnal timeslice resolution).
-
-    -   **Solving the model:** After construction of the actual matrix
-        > (rows, columns, intersections and bounds) the problem is
-        > passed to an optimizing solver employing the appropriate
-        > technique (LP, MIP, or NLP). The solver returns the solution
-        > of the optimization back to GAMS. The information regarding
-        > the solver status is written by TIMES in a text file called
-        > END_GAMS, which allows the user to quickly check whether the
-        > optimisation run was successful or not without having to go
-        > through the listing file. Information from this file is
-        > displayed by VEDA-FE and ANSWER at the completion of the run.
-
-    -   **Reporting:** Based on the optimal solution the reporting
-        > routines calculate result parameters, e.g. annual cost
-        > information by type, year and technology or commodity. These
-        > result parameters together with the solution values of the
-        > variables and equations (both primal and dual), as well as
-        > selected input data, are assembled in the \<case\>.GDX file.
-        > The gdx file is then processed by the GAMS GDX2VEDA.EXE
-        > utility according to the directives contained in
-        > TIMES2VEDA.VDD control file to generate files for the result
-        > analysis software VEDA-BE[^15]. The \<case\>.ANT file for
-        > providing results for import into ANSWER may also be produced,
-        > if desired.
+Note that these don't cover every single routine in the TIMES source code folder, but do cover most all of the core routines involved in the construction and reporting of the model. They guide the steps of the run process as follows:
+- **GAMS Compile:** As mentioned above, GAMS operates as a two-phase compile then execute system. As such it first reads and assembles all the control, data, and code files into a ready executable; substituting user and/or shell provided values for all GAMS environment switches and subroutine parameter references (the %EnvVar% and %Param% references in the source code) that determine the path through the code for the requested model instance and options desired. If there are inconsistencies in input data they may result in compile-time errors (e.g., \$170 for a domain definition error), causing a run to stop. See Section for more on identifying the source of such errors.
+- **Initialization:** Upon completion of the compile step, all possible GAMS sets and parameters of the TIMES model generator are declared and initialized, then established for this instance of the model from the user's data dictionary file(s) (\<Case\>.DD[^14]). Model units are also initialized using the UNITS.DEF file, which contains the short names for the most common sets of units that are normally used in TIMES models, and which can be adjusted by the user.
+- **Execution:** After the run has been prepared, the maindrv.mod routine controls all the remaining tasks of the model run. The basic steps are as follows.
+    - **Pre-processing:** One major task is the pre-processing of the model input data. During pre-processing control sets defining the valid domain of parameters, equations and variables are generated (e.g., for which periods each process is available, at what timeslice level (after inheritance) is each commodity tracked and does each process operate), input parameters are inter-/extrapolated, and time-slice specific input parameters are inherited/aggregated to the correct timeslice level as required by the model generator.
+    - **Preparation of coefficients:** A core activity of the model generator is the proper derivation of the actual coefficients used in the model equations. In some cases coefficients correspond directly to input data (e.g., FLO_SHAR to the flow variables), but in other cases they must be transformed. For example, the investment cost (NCAP_COST) must be annualized, spread for the economic lifetime, and discounted before being applied to the investment variable (VAR_NCAP) in the objective function (EQ_OBJ), and based upon the technical lifetime the coefficients in the capacity transfer constraint (EQ_CPT**)** are determined to make sure that new investment are accounted for and retired appropriately.
+    - **Generation of model equations:** Once all the coefficients are prepared, the file eqmain.mod controls the generation of the model equations. It calls the individual GAMS routines responsible for the actual generation of the equations of this particular instance of the TIMES model. The generation of the equations is controlled by sets, parameters, and switches carefully assembled by the pre-processor to ensure that no superfluous equations or matrix intersections are generated.
+    - **Setting variable bounds:** The task of applying bounds to the model variables corresponding to user input parameters is handled by the bndmain.mod file. In some cases it is not appropriate to apply bounds directly to individual variables, but instead applying a bound may require the generation of an equation (e.g. the equation EQ(l)\_ACTBND is created when an annual activity bound is specified for a process having a diurnal timeslice resolution).
+    - **Solving the model:** After construction of the actual matrix (rows, columns, intersections and bounds) the problem is passed to an optimizing solver employing the appropriate technique (LP, MIP, or NLP). The solver returns the solution of the optimization back to GAMS. The information regarding the solver status is written by TIMES in a text file called END_GAMS, which allows the user to quickly check whether the optimisation run was successful or not without having to go through the listing file. Information from this file is displayed by VEDA-FE and ANSWER at the completion of the run.
+    - **Reporting:** Based on the optimal solution the reporting routines calculate result parameters, e.g. annual cost information by type, year and technology or commodity. These result parameters together with the solution values of the variables and equations (both primal and dual), as well as selected input data, are assembled in the \<case\>.GDX file. The gdx file is then processed by the GAMS GDX2VEDA.EXE utility according to the directives contained in TIMES2VEDA.VDD control file to generate files for the result analysis software VEDA-BE[^15]. The \<case\>.ANT file for providing results for import into ANSWER may also be produced, if desired.
 
 ## Files produced during the run process
 
-Several files are produced by the run process. These include the files
-produced by the shell for model initiation, the .LST listing file, which
-echoes the GAMS compilation and execution process and reports on any
-errors encountered during solve, results files, and the QAcheck.log
-file. These files are summarized in Table 3 and discussed in this
-section.
+Several files are produced by the run process. These include the files produced by the shell for model initiation, the .LST listing file, which echoes the GAMS compilation and execution process and reports on any errors encountered during solve, results files, and the QAcheck.log file. These files are summarized in Table 3 and discussed in this section.
 
   ------------------------------------------------------------------------------
   **Extension**   **Produced By**     **Nature of the Output**
@@ -356,339 +174,170 @@ section.
   vdt             VEDA-FE or ANSWER   The RES topology information for the model
   ------------------------------------------------------------------------------
 
-  : []{#_Toc449540217 .anchor}Table 3: Files Produced by a TIMES Model
+  : Table 3: Files Produced by a TIMES Model
   Run
 
 ### Files produced by model initiation
 
-As discussed in Section 2.1, three sets of files are created by VEDA and
-ANSWER upon run initiation, the command script file VTRUN/ANSRUN.CMD,
-the top-level GAMS command file \<Case\>.RUN/GEN (for VEDA/ANSWER), and
-the data dictionary \<scenario\>.DD/DDS text file(s) that contain all
-the model data to be used in the run.
+As discussed in Section 2.1, three sets of files are created by VEDA and ANSWER upon run initiation, the command script file VTRUN/ANSRUN.CMD, the top-level GAMS command file \<Case\>.RUN/GEN (for VEDA/ANSWER), and the data dictionary \<scenario\>.DD/DDS text file(s) that contain all the model data to be used in the run.
 
-The VTRUN/ANSRUN.CMD script file calls GAMS, referring to the \<case\>
-file and identifying the location of the TIMES source code and gdx file.
-For VEDA-FE the CMD file consists of the line:
+The VTRUN/ANSRUN.CMD script file calls GAMS, referring to the \<case\> file and identifying the location of the TIMES source code and gdx file. For VEDA-FE the CMD file consists of the line:
 
 Call ..\\\<source_code_folder\>\\vt_gams \<case\>.run
 \<source_code_folder\> gamssave\\\<case\>
 
-along with a 2^nd^ line to call the GDX2VEDA utility to process the
-TIMES2VEDA.VDD file to prepare the \<case\>.VD\* result files for
-VEDA-BE. The ANSRUN.CMD file has a similar setup calling ANS_GAMS.CMD in
-the source code folder which invokes GAMS and subsequently the GDX2VEDA
-utility.
+along with a 2^nd^ line to call the GDX2VEDA utility to process the TIMES2VEDA.VDD file to prepare the \<case\>.VD\* result files for VEDA-BE. The ANSRUN.CMD file has a similar setup calling ANS_GAMS.CMD in the source code folder which invokes GAMS and subsequently the GDX2VEDA utility.
 
-The \<case\>.RUN/GEN file is the key file controlling the model run. It
-instructs the TIMES code what data to grab, what model variant to
-employ, how to handle the objective function, and other aspects of the
-model run controlled by the switches discussed in Section . An example
-.RUN file is displayed in . Rows beginning with an asterisk (\*) are
-comment lines for the user\'s convenience and are ignored by the code.
-Rows beginning with a dollar-sign (\$) are switches that can be set by
-the user (usually by means of VEDA/ANSWER).
+The \<case\>.RUN/GEN file is the key file controlling the model run. It instructs the TIMES code what data to grab, what model variant to employ, how to handle the objective function, and other aspects of the model run controlled by the switches discussed in Section . An example .RUN file is displayed in . Rows beginning with an asterisk (\*) are comment lines for the user\'s convenience and are ignored by the code. Rows beginning with a dollar-sign (\$) are switches that can be set by the user (usually by means of VEDA/ANSWER).
 
-Both VEDA and ANSWER have facilities to allow the user to tailor the
-content of the RUN/GEN files, though somewhat differently. In VEDA-FE
-the Case Manager RUNFile_Tmpl button allows the basic RUN template to be
-brought up, and if desired carefully edited. However, the Case Manager
-also has a Control Panel, shown in , where many of the more common
-switches can be set.
+Both VEDA and ANSWER have facilities to allow the user to tailor the content of the RUN/GEN files, though somewhat differently. In VEDA-FE the Case Manager RUNFile_Tmpl button allows the basic RUN template to be brought up, and if desired carefully edited. However, the Case Manager also has a Control Panel, shown in , where many of the more common switches can be set.
 
-At the beginning of a \<case\>.RUN file the version of the TIMES code
-being used is identified and some option control statements that
-influence the information output (e.g., SOLPRINT ON/OFF to see a dump of
-the solution, OFF recommended) are provided. The LIMROW/LIMCOL options
-allow the user to turn on equation listing in the .LST file (discussed
-in the next section) by setting the number of rows/columns of each type
-to be shown.
+At the beginning of a \<case\>.RUN file the version of the TIMES code being used is identified and some option control statements that influence the information output (e.g., SOLPRINT ON/OFF to see a dump of the solution, OFF recommended) are provided. The LIMROW/LIMCOL options allow the user to turn on equation listing in the .LST file (discussed in the next section) by setting the number of rows/columns of each type to be shown.
 
-Then compile-time dollar control options indicating which solver to use
-(if not the default to the particular solution algorithm), whether to
-echo the source code (\$ON/OFFLISTING) by printing it to the LST file,
-and that multiple definitions of sets and parameters (\$ONMULTI) are
-permitted (that is they can appear more than one time, which TIMES
-requires since first there are empty declarations for every possible
-parameter followed by the actual data provided by the user). Further
-possible dollar control options are also described in the GAMS manual.
+Then compile-time dollar control options indicating which solver to use (if not the default to the particular solution algorithm), whether to echo the source code (\$ON/OFFLISTING) by printing it to the LST file, and that multiple definitions of sets and parameters (\$ONMULTI) are permitted (that is they can appear more than one time, which TIMES requires since first there are empty declarations for every possible parameter followed by the actual data provided by the user). Further possible dollar control options are also described in the GAMS manual.
 
-Afterwards the content of several so-called TIMES dollar control (or
-environment) switches are specified. Within the source code the use of
-these control switches in combination with queries enables the model to
-skip or activate specific parts of the code. Thus it is possible to
-turn-on/off variants of the code, e.g. the use of the reduction
-algorithm, without changing the input data. The meaning and use of the
-different control switches is discussed in Section . Again these are
-generally set using the Case Manager/Run form in VEDA/ANSWER.
+Afterwards the content of several so-called TIMES dollar control (or environment) switches are specified. Within the source code the use of these control switches in combination with queries enables the model to skip or activate specific parts of the code. Thus it is possible to turn-on/off variants of the code, e.g. the use of the reduction algorithm, without changing the input data. The meaning and use of the different control switches is discussed in Section . Again these are generally set using the Case Manager/Run form in VEDA/ANSWER.
 
-After the basic control switches, the definition of the set of all
-timeslices is established by means of the call to the \<case\>\_TS.DD
-file before any other declarations carried out in the initialization
-file INITSYS.MOD. This is necessary to ensure the correct ordering of
-the timeslices for seasonal, weekly, or daynite storage processes. After
-the definition of the timeslices, the files INITSYS.COM and INITMTY.MOD,
-which are responsible for the declaration and initialization of all sets
-and parameters of the model generator, are included.
+After the basic control switches, the definition of the set of all timeslices is established by means of the call to the \<case\>\_TS.DD file before any other declarations carried out in the initialization file INITSYS.MOD. This is necessary to ensure the correct ordering of the timeslices for seasonal, weekly, or daynite storage processes. After the definition of the timeslices, the files INITSYS.COM and INITMTY.MOD, which are responsible for the declaration and initialization of all sets and parameters of the model generator, are included.
 
-![](assets/image5.png){width="5.4853083989501314in"
-height="7.114316491688539in"}
+```{figure} assets/image5.png
+:name: image-5
+:align: center
+```
 
-![](assets/image6.png){width="5.909908136482939in"
-height="4.98759842519685in"}
+```{figure} assets/image6.png
+:name: example-veda-fe-times
+:align: center
+ Example of a VEDA-FE TIMES \<case\>.RUN file[^16]
+```
 
-[]{#_Ref425136344 .anchor}Figure 5: Example of a VEDA-FE TIMES
-\<case\>.RUN file[^16]
+The line containing the include command for the file initmty.mod can be supplemented by calls for additional user extensions that trigger the use of additional special equations or report routines. The use of these extension options are described in more detail in Section 0.
 
-The line containing the include command for the file initmty.mod can be
-supplemented by calls for additional user extensions that trigger the
-use of additional special equations or report routines. The use of these
-extension options are described in more detail in Section 0.
+Afterwards the data dictionary file(s) (BASE.DD, ..., CO2_TAX_HIGH.DD in {numref}`example-veda-fe-times`) containing the user input sets and parameters are included, inserted automatically by VEDA-FE/ANSWER according to the list of scenarios in the Case Manager/Run forms by means of the \$INCLUDE statements. It is normally advisable to segregate user data into "packets" as scenarios, where there may be a single Base scenario containing the core descriptions of the energy system being studied and a series of alternate scenario depicting other aspects of the system. For example, one \<scenario\>.DD file may contain the description of the energy system for a reference scenario, and additional \<alt_scenario\>.DD files (.DDS for ANSWER) may be included containing additions or changes relative to the reference file, for example CO~2~ mitigation targets for a reduction scenario, or alternative technology specifications.
 
-Afterwards the data dictionary file(s) (BASE.DD, ..., CO2_TAX_HIGH.DD in
-Figure 5) containing the user input sets and parameters are included,
-inserted automatically by VEDA-FE/ANSWER according to the list of
-scenarios in the Case Manager/Run forms by means of the \$INCLUDE
-statements. It is normally advisable to segregate user data into
-"packets" as scenarios, where there may be a single Base scenario
-containing the core descriptions of the energy system being studied and
-a series of alternate scenario depicting other aspects of the system.
-For example, one \<scenario\>.DD file may contain the description of the
-energy system for a reference scenario, and additional
-\<alt_scenario\>.DD files (.DDS for ANSWER) may be included containing
-additions or changes relative to the reference file, for example CO~2~
-mitigation targets for a reduction scenario, or alternative technology
-specifications.
+The SET MILESTONYR declaration identifies years for this model run based upon those years identified in in VEDA via the Period Defs selected on the Case Manager (and maintained in SysSettings) and the Milestone Years button on the ANSWER run form. The dollar control switch RUN_NAME contains the short name of the scenario, and is used for the name of the results files (\<case\>.VD\*) passed to VEDA-BE.
 
-The SET MILESTONYR declaration identifies years for this model run based
-upon those years identified in in VEDA via the Period Defs selected on
-the Case Manager (and maintained in SysSettings) and the Milestone Years
-button on the ANSWER run form. The dollar control switch RUN_NAME
-contains the short name of the scenario, and is used for the name of the
-results files (\<case\>.VD\*) passed to VEDA-BE.
+Next in the example shown in , some runtime switches are activated to request levelized cost reporting and splitting of investment costs into core and the incremental additional cost arising from any technology based discount rate specified in the data. See Section for the full description of these and other control switches.
 
-Next in the example shown in , some runtime switches are activated to
-request levelized cost reporting and splitting of investment costs into
-core and the incremental additional cost arising from any technology
-based discount rate specified in the data. See Section for the full
-description of these and other control switches.
-
-The last line of the \<case\>.RUN file invokes the file main driver
-routine (maindrv.mod) that initiates all the remaining tasks related to
-the model run (pre-processing, coefficient calculation, setting of
-bounds, equation generation, solution, reporting). Thus any information
-provided after the inclusion of the maindrv.mod file will not be
-considered in the main model solve request, though if the user wishes to
-introduce specialized post-processing of the result that could be added
-(or better yet handled externally by GAMS code that processes the GDX
-file).
+The last line of the \<case\>.RUN file invokes the file main driver routine (maindrv.mod) that initiates all the remaining tasks related to the model run (pre-processing, coefficient calculation, setting of bounds, equation generation, solution, reporting). Thus any information provided after the inclusion of the maindrv.mod file will not be considered in the main model solve request, though if the user wishes to introduce specialized post-processing of the result that could be added (or better yet handled externally by GAMS code that processes the GDX file).
 
 ### GAMS listing file (.LST)
 
-![](assets/image7.png){width="3.7402777777777776in"
-height="1.3479166666666667in"}The GAMS listing file echoes the model
-run. In this file GAMS reports the compile and execution steps, presents
-a summary of the model statistics and objective function results, and
-reports any errors, if incurred. Optionally the user can request that
-the equation listing be turned on by specifying the LIMROW/LIMCOL
-(number of rows/columns of each type to be shown) and/or the solution
-dumped (via SOLPRINT) by means of the VEDA-FE CaseManager settings, as
-shown here.
+```{figure} assets/image7.png
+:name: image-7
+:align: center
+```
 
-![](assets/image8.png){width="2.4965277777777777in" height="0.9625in"}
+The GAMS listing file echoes the model run. In this file GAMS reports the compile and execution steps, presents a summary of the model statistics and objective function results, and reports any errors, if incurred. Optionally the user can request that the equation listing be turned on by specifying the LIMROW/LIMCOL (number of rows/columns of each type to be shown) and/or the solution dumped (via SOLPRINT) by means of the VEDA-FE Case Manager settings, as shown here.
 
-[]{#_Toc449540203 .anchor}Figure 6: Requesting Equation Listing and
-Solution Print
+```{figure} assets/image8.png
+:name: request-equation-list-sol-print
+:align: center
+Requesting Equation Listing and Solution Print.
+```
 
-For ANSWER these are handled by manually editing these entries in the
-GEN file either at runtime, or via the Run menu if the change is to be
-retrained as the default,
+For ANSWER these are handled by manually editing these entries in the GEN file either at runtime, or via the Run menu if the change is to be retrained as the default,
 
-When GAMS takes its 1^st^ pass the \<Case\>.LST file will report each of
-the individual source code modules compiled. \[Note that for any
-particular TIMES model instance, according to the Run Switch settings,
-only the routines needed are invoked, as discussed in Section .\]
+When GAMS takes its 1^st^ pass the \<Case\>.LST file will report each of the individual source code modules compiled. \[Note that for any particular TIMES model instance, according to the Run Switch settings, only the routines needed are invoked, as discussed in Section .\]
 
-A small snippet from the LST file compilation trace from an ANSWER-TIMES
-model run of is shown in , where the \"\...\" shows the nesting as one
-GAMS routine calls another with the appropriate parameters needed.
+A small snippet from the LST file compilation trace from an ANSWER-TIMES model run of is shown in , where the \"\...\" shows the nesting as one GAMS routine calls another with the appropriate parameters needed.
 
-![](assets/image9.png){width="5.037095363079615in"
-height="3.3319641294838145in"}
+```{figure} assets/image9.png
+:name: gams-compilation-source-code
+:align: center
+GAMS Compilation of the TIMES Source Code.
+```
 
-[]{#_Ref424779247 .anchor}Figure 7: GAMS Compilation of the TIMES Source
-Code
+If an error is encountered during the compilation operation GAMS will tag where the error occurred and report an error code. Most common in this regard is a Domain Error (\$170) where perhaps there was a typo in an item name, as in the example shown in , or the scenarios were not in the proper order and data was attempted to be assigned to a process before it was declared. Further discussion of errors encountered at this and other stages of the run process is found in Section .
 
-If an error is encountered during the compilation operation GAMS will
-tag where the error occurred and report an error code. Most common in
-this regard is a Domain Error (\$170) where perhaps there was a typo in
-an item name, as in the example shown in , or the scenarios were not in
-the proper order and data was attempted to be assigned to a process
-before it was declared. Further discussion of errors encountered at this
-and other stages of the run process is found in Section .
+```{figure} assets/image10.png
+:name: gams-compilation-error
+:align: center
+GAMS Compilation Error.
+```
 
-![](assets/image10.png){width="5.331776027996501in"
-height="3.330650699912511in"}
+Once the data and code have been successfully complied, execution takes place, with GAMS calling each TIMES routine needed according to the switches and data for this particular run. Again the LST file echoes this execution phase, as shown in . It is possible, though unlikely, to encounter a GAMS Execution error. The most common cause of this is the explicit specification of zero (0) as the efficiency of a process. An execution error is reported in the \<Case\>.LST file in a manner similar to a compilation error, tagged by "Error" at the point that the problem was encountered.
 
-[]{#_Ref321394441 .anchor}Figure 8: GAMS Compilation Error
+```{figure} assets/image11.png
+:name: gams-execution-times
+:align: center
+GAMS Execution of the TIMES Source Code.
+```
 
-Once the data and code have been successfully complied, execution takes
-place, with GAMS calling each TIMES routine needed according to the
-switches and data for this particular run. Again the LST file echoes
-this execution phase, as shown in . It is possible, though unlikely, to
-encounter a GAMS Execution error. The most common cause of this is the
-explicit specification of zero (0) as the efficiency of a process. An
-execution error is reported in the \<Case\>.LST file in a manner similar
-to a compilation error, tagged by "Error" at the point that the problem
-was encountered.
+Once execution of the matrix generator has completed GAMS reports the model run statistics (), and automatically invokes the solver.
 
-![](assets/image11.png){width="4.640065616797901in" height="3.375in"}
+```{figure} assets/image12.png
+:name: cplex-solver-stats
+:align: center
+CPLEX Solver Statistics.
+```
 
-[]{#_Ref425137029 .anchor}Figure 9: GAMS Execution of the TIMES Source
-Code
+If the OPTION LIMROW/LIMCOL is set to non-0 the equation mathematics are displayed in the list file, by equation block and/or column intersection, as shown in and 12 respectively.
 
-Once execution of the matrix generator has completed GAMS reports the
-model run statistics (), and automatically invokes the solver.
+```{figure} assets/image13.png
+:name: eq-list
+:align: center
+Equation Listing Example.
+```
 
-![](assets/image12.png){width="5.903778433945757in"
-height="2.925551181102362in"}
+ ```{figure} assets/image14.png
+:name: var-list
+:align: center
+Variable Listing Example.
+```
 
-[]{#_Ref419731791 .anchor}Figure 10: CPLEX Solver Statistics
+And if the SOLPRINT=ON option is activated then the level and marginals are reported as shown in .
 
-If the OPTION LIMROW/LIMCOL is set to non-0 the equation mathematics are
-displayed in the list file, by equation block and/or column
-intersection, as shown in and Figure 12 respectively.
+ ```{figure} assets/image15.png
+:name: solution-dump
+:align: center
+Solution Dump Example.
+```
 
-![](assets/image13.png){width="6.5in" height="2.4652777777777777in"}
+Upon successful solving the model the solution statistics are reported (Figure 14), where in this case CPLEX was used to solve a MIP model variant (in this example), and the report writer invoked to finish up by preparing the report. If the solver is not able to find an optimal solution, a non-Normal solve status will be reported, and the user can search the LST file for the string \"INFES\" for an indication of which equations are preventing model solution. Again, further information on the possible causes and resolution of such errors is found in Section .
 
-[]{#_Ref447876202 .anchor}Figure 11: Equation Listing Example
+ ```{figure} assets/image16.png
+:name: solver-solution-summary
+:align: center
+Solver Solution Summary.
+```
 
-![](assets/image14.png){width="4.1763899825021875in"
-height="3.800586176727909in"}
-
-[]{#_Ref447876098 .anchor}Figure 12: Variable Listing Example
-
-And if the SOLPRINT=ON option is activated then the level and marginals
-are reported as shown in .
-
-![](assets/image15.png){width="6.5in" height="3.3in"}
-
-[]{#_Ref447876120 .anchor}Figure 13: Solution Dump Example
-
-Upon successful solving the model the solution statistics are reported
-(), where in this case CPLEX was used to solve a MIP model variant (in
-this example), and the report writer invoked to finish up by preparing
-the report. If the solver is not able to find an optimal solution, a
-non-Normal solve status will be reported, and the user can search the
-LST file for the string \"INFES\" for an indication of which equations
-are preventing model solution. Again, further information on the
-possible causes and resolution of such errors is found in Section .
-
-![](assets/image16.png){width="6.052069116360455in"
-height="2.9810378390201224in"}
-
-[]{#_Ref419732903 .anchor}Figure 14: Solver Solution Summary
-
-The actual production of the dump of the model results is performed by
-the report writer for ANSWER resulting in a \<Case\>.ANT file which is
-imported back into ANSWER after the run complete and/or the GDX2VEDA
-utility prepared by GAMS and DecisionWare to facilitate the exchange of
-information from GAMS to VEDA-BE, which may be used with both VEDA-FE
-and ANSWER.
+The actual production of the dump of the model results is performed by the report writer for ANSWER resulting in a \<Case\>.ANT file which is imported back into ANSWER after the run complete and/or the GDX2VEDA utility prepared by GAMS and DecisionWare to facilitate the exchange of information from GAMS to VEDA-BE, which may be used with both VEDA-FE and ANSWER.
 
 ### Results files
 
-The TIMES report writing routine produces two sets of results-related
-outputs (along with the quality control LOG discussed in the next
-section). The \<case\>.ANT file is an ASCII text file, with results
-ready for import into ANSWER. The GAMS Data eXchange file (GDX) contains
-all the information associated with a model run \[input data,
-intermediate parameters, model results (primal and dual)\] in binary
-form. The GDX file may be examined by means of the GAMSIDE, available
-from the Windows Start Menu in the GAMS folder (or as a shortcut from
-the desktop if put there), if one really wants to dig into what's
-happening inside of a TIMES run (that is, the set members, preprocessor
-calculations, the model solution and the reporting parameters
-calculated).
+The TIMES report writing routine produces two sets of results-related outputs (along with the quality control LOG discussed in the next section). The \<case\>.ANT file is an ASCII text file, with results ready for import into ANSWER. The GAMS Data eXchange file (GDX) contains all the information associated with a model run \[input data, intermediate parameters, model results (primal and dual)\] in binary form. The GDX file may be examined by means of the GAMSIDE, available from the Windows Start Menu in the GAMS folder (or as a shortcut from the desktop if put there), if one really wants to dig into what's happening inside of a TIMES run (that is, the set members, preprocessor calculations, the model solution and the reporting parameters calculated).
 
-A more powerful feature within the GAMSIDE is a GDXDIFF facility under
-Utilities. As seen in Figure 15, the utility shows the differences
-between all components, comparing two model runs. Within the GDXDIFF
-utility, the user identifies the GDX files from the two runs and
-requests the resulting comparison GDX be prepared. The display then
-shows any differences between the two runs. The GDXDIFF is most
-effectively used by instructing VEDA to Create DD for the two runs via
-the Options and Case Manager forms, as shown in . Once the comparison
-GDX has been created, it is viewed in the GAMSIDE. By sorting by Type
-and scanning down one Symbol at a time, one can determine exactly what
-input data being sent to GAMS for the two runs is different.
+A more powerful feature within the GAMSIDE is a GDXDIFF facility under Utilities. As seen in  15, the utility shows the differences between all components, comparing two model runs. Within the GDXDIFF utility, the user identifies the GDX files from the two runs and requests the resulting comparison GDX be prepared. The display then shows any differences between the two runs. The GDXDIFF is most effectively used by instructing VEDA to Create DD for the two runs via the Options and Case Manager forms, as shown in . Once the comparison GDX has been created, it is viewed in the GAMSIDE. By sorting by Type and scanning down one Symbol at a time, one can determine exactly what input data being sent to GAMS for the two runs is different.
 
-![](assets/image17.png){width="3.4162489063867016in"
-height="4.446232502187226in"}
+ ```{figure} assets/image17.png
+:name: gams-ide-view-gdxdiff
+:align: center
+GAMSIDE View of the GDXDIFF Run Comparison.
+```
 
-[]{#_Ref321818210 .anchor}Figure 15: GAMSIDE View of the GDXDIFF Run
-Comparison
+However, the most common use of the GDX is its further processing to generate files for the result analysis software VEDA-BE[^17]. ETSAP worked with GAMS a number of years ago to develop a standalone utility (GDX2VEDA) to process the GAMS GDX file and produce the files read into VEDA-BE. The GDX2VEDA utility process a directives file (TIMES2VEDA.VDD) to determine which sets and model results are to be included and prepare said information for VEDA-BE. A general default version of the VDD is distributed with TIMES in the source code folder (for core TIMES, Stochastics, and MACRO), but may be augmented by the user if other information is desired from the solution. However, the process of changing the VDD should be done in consultation with someone fully familiar with the GAMS GDX file for TIMES and the basics of the GDX2VEDA utility. See Part V, Appendix B, for further information on the GDX2VEDA utility and VDD directives file.
 
-However, the most common use of the GDX is its further processing to
-generate files for the result analysis software VEDA-BE[^17]. ETSAP
-worked with GAMS a number of years ago to develop a standalone utility
-(GDX2VEDA) to process the GAMS GDX file and produce the files read into
-VEDA-BE. The GDX2VEDA utility process a directives file (TIMES2VEDA.VDD)
-to determine which sets and model results are to be included and prepare
-said information for VEDA-BE. A general default version of the VDD is
-distributed with TIMES in the source code folder (for core TIMES,
-Stochastics, and MACRO), but may be augmented by the user if other
-information is desired from the solution. However, the process of
-changing the VDD should be done in consultation with someone fully
-familiar with the GAMS GDX file for TIMES and the basics of the GDX2VEDA
-utility. See Part V, Appendix B, for further information on the GDX2VEDA
-utility and VDD directives file.
+ ```{figure} assets/image18.png
+:name: image18
+:align: center
+```
 
-![](assets/image18.png){width="3.561347331583552in"
-height="2.8687029746281714in"}
-![](assets/image19.png){width="1.6375404636920385in"
-height="2.8806977252843393in"}
+ ```{figure} assets/image19.png
+:name: veda-setup-data-only-gdx
+:align: center
+VEDA Setup for Data Only GDX Request.
+```
 
-[]{#_Ref447875229 .anchor}Figure 16: VEDA Setup for Data Only GDX
-Request
+The call to the GDX2VEDA routine is embedded in the VTRUN/ANSRUN.CMD command routines. There are three files produced for VEDA-BE by the GDX2VEDA utility: the \<Case\>.VD data dump with the attributes, and associated VDE (set elements), VDS (sets definition). In addition, VEDA-FE and ANSWER produce a \<Case\>.VDT (topology) file with the RES connectivity information. These files never require user intervention, though users wishing to post-process the GDX2VEDA results with their own tailored software, rather than VEDA-BE, might choose to parse the VD\* files to extract the desired information.
 
-The call to the GDX2VEDA routine is embedded in the VTRUN/ANSRUN.CMD
-command routines. There are three files produced for VEDA-BE by the
-GDX2VEDA utility: the \<Case\>.VD data dump with the attributes, and
-associated VDE (set elements), VDS (sets definition). In addition,
-VEDA-FE and ANSWER produce a \<Case\>.VDT (topology) file with the RES
-connectivity information. These files never require user intervention,
-though users wishing to post-process the GDX2VEDA results with their own
-tailored software, rather than VEDA-BE, might choose to parse the VD\*
-files to extract the desired information.
+Note that for both ANSWER and VEDA-BE, for the most part low-level (that is commodity/process) results are reported, along with some aggregate cost numbers (such as regional and overall objective function). It is left up to the user to construct relevant sets and tables in VEDA-BE to organize and aggregate the results into meaningful tables. Refer to Part V for a discussion of how to go about assembling report tables in VEDA-BE. For ANSWER the user is left with only the raw results and thereby needs to come up with their own approach to producing useful usable reporting tables, or use VEDA-BE.
 
-Note that for both ANSWER and VEDA-BE, for the most part low-level (that
-is commodity/process) results are reported, along with some aggregate
-cost numbers (such as regional and overall objective function). It is
-left up to the user to construct relevant sets and tables in VEDA-BE to
-organize and aggregate the results into meaningful tables. Refer to Part
-V for a discussion of how to go about assembling report tables in
-VEDA-BE. For ANSWER the user is left with only the raw results and
-thereby needs to come up with their own approach to producing useful
-usable reporting tables, or use VEDA-BE.
-
-In addition, as discussed in Section 3.10, there are a number of
-switches that control the report writer itself in terms of how it
-calculates certain outputs and prepares the results as part of the
-post-processing. Collectively these mechanisms provide the user with a
-wide range of reporting results and tools for dissecting and assembling
-the modeling results as part of effectively using TIMES to conduct
-energy policy analyses.
+In addition, as discussed in Section 3.10, there are a number of switches that control the report writer itself in terms of how it calculates certain outputs and prepares the results as part of the post-processing. Collectively these mechanisms provide the user with a wide range of reporting results and tools for dissecting and assembling the modeling results as part of effectively using TIMES to conduct energy policy analyses.
 
 ### QA check report (LOG) 
 
-In order to assist the user with identifying accidental modelling
-errors, a number of sanity checks are done by the model generator. If
-incorrect or suspicious specifications are found in these checks, a
-message is written in a text file named QA_CHECK.LOG, in the working
-folder. The checks implemented in TIMES Version 3.9.3 are listed in
-Table 5. The "Log entry" column shows the identification given for each
-suspicious specification.
+In order to assist the user with identifying accidental modelling errors, a number of sanity checks are done by the model generator. If incorrect or suspicious specifications are found in these checks, a message is written in a text file named QA_CHECK.LOG, in the working folder. The checks implemented in TIMES Version 3.9.3 are listed in Table 5. The "Log entry" column shows the identification given for each suspicious specification.
 
 +----+------------------------------------------------+------+--------+
 | *  | **Message / Description**                      | **Se | **Log  |
@@ -1063,75 +712,31 @@ suspicious specification.
 |    | commodity in the PG.                           |      | rocess |
 +----+------------------------------------------------+------+--------+
 
-: []{#_Toc449540218 .anchor}Table 4: TIMES Quality Assurance Checks (as
-of Version 4.4.0)
+: Table 4: TIMES Quality Assurance Checks (as of Version 4.4.0)
 
 ## Errors and their resolution
 
-Errors may be encountered during the compilation, execution (rarely), or
-solve stages of a TIMES model run. During the compilation step, if GAMS
-encounters any improperly defined item the run will be halted with a
-Domain or similar error and the user will need to examine the TIMES
-quality control LOG or GAMS listing (LST) files to ascertain the cause
-of the problem. While such problems are not normally encountered, some
-that might occur include:
+Errors may be encountered during the compilation, execution (rarely), or solve stages of a TIMES model run. During the compilation step, if GAMS encounters any improperly defined item the run will be halted with a Domain or similar error and the user will need to examine the TIMES quality control LOG or GAMS listing (LST) files to ascertain the cause of the problem. While such problems are not normally encountered, some that might occur include:
+- an item name was mistyped and therefore not defined;
+- an item was previously defined in one scenario but defined differently in another;
+- an item was not properly declared for a particular parameters (e.g., a non-trade process using an IRE parameter), and
+- scenarios were specified for the run in the wrong order so a data reference is encountered before the declaration (e.g., a bound on a new technology option is provided before it has been identified).
 
--   an item name was mistyped and therefore not defined;
+During the execution phase, if GAMS encounters any runtime errors it will halt and report where the error occurred in the LST file. While such problems are not normally encountered some causes of an execution error might be:
+- an explicit 0 is provided for an efficiency resulting in a divide by 0, and
+- there is a conflict between a lower and upper bound.
 
--   an item was previously defined in one scenario but defined
-    differently in another;
+Most commonly errors are encountered during the solve process, resulting in an infeasibility. Some causes of the model not being able to solve might be:
+- due to bounds, the energy system cannot be configured in such a way as to meet the limit;
+- owing to mis-specifying the demand serviced by a device, there is no or not enough capacity to satisfy said demand, and
+- the RES is not properly connected so a needed commodity is not able to reach the processes needing it.
 
--   an item was not properly declared for a particular parameters (e.g.,
-    a non-trade process using an IRE parameter), and
+To identify the cause of a solve error, if using CPLEX the user can activate the Infeasibility Finder (set in the CPLEX.OPT as default (via the IIS command) in VEDA-FE Case Manager or said file distributed with ANSWER). The CPLEX Infeasibility Finder will identify the explicit row/columns corresponding to the first infeasibility encountered and list the conflict involved in the \<Case\>.LST file, such as shown here where the electricity balance equation can't be satisfied (due
+to a limit being imposed on the first year electric grid capacity that is too small).
 
--   scenarios were specified for the run in the wrong order so a data
-    reference is encountered before the declaration (e.g., a bound on a
-    new technology option is provided before it has been identified).
+![](assets/image20.png)
 
-During the execution phase, if GAMS encounters any runtime errors it
-will halt and report where the error occurred in the LST file. While
-such problems are not normally encountered some causes of an execution
-error might be:
+This helps with tracking down the culprit, but the user still needs to figure out why the problem occurred. When using a solver other than CPLEX, or if the Infeasibility Finder is not activated, then the solution dump will be tagged for all the potentially interrelated model variables/equations that were not in equilibrium at the time the solve stopped. The user can find these by searching the LST file for the string \"INFES\".
 
--   an explicit 0 is provided for an efficiency resulting in a divide by
-    0, and
-
--   there is a conflict between a lower and upper bound.
-
-Most commonly errors are encountered during the solve process, resulting
-in an infeasibility. Some causes of the model not being able to solve
-might be:
-
--   due to bounds, the energy system cannot be configured in such a way
-    as to meet the limit;
-
--   owing to mis-specifying the demand serviced by a device, there is no
-    or not enough capacity to satisfy said demand, and
-
--   the RES is not properly connected so a needed commodity is not able
-    to reach the processes needing it.
-
-To identify the cause of a solve error, if using CPLEX the user can
-activate the Infeasibility Finder (set in the CPLEX.OPT as default (via
-the IIS command) in VEDA-FE Case Manager or said file distributed with
-ANSWER). The CPLEX Infeasibility Finder will identify the explicit
-row/columns corresponding to the first infeasibility encountered and
-list the conflict involved in the \<Case\>.LST file, such as shown here
-where the electricity balance equation can't be satisfied
-![](assets/image20.png){width="6.506944444444445in" height="0.2in"}(due
-to a limit being imposed on the first year electric grid capacity that
-is too small).
-
-This helps with tracking down the culprit, but the user still needs to
-figure out why the problem occurred. When using a solver other than
-CPLEX, or if the Infeasibility Finder is not activated, then the
-solution dump will be tagged for all the potentially interrelated model
-variables/equations that were not in equilibrium at the time the solve
-stopped. The user can find these by searching the LST file for the
-string \"INFES\".
-
-As a last resort, the model can be run with the equation listing turned
-on by setting LIMROW/LIMCOL to, say, 1000 in the \<case\>.RUN (via the
-Case Manager) / GEN (via Edit the GEN from the Run form) file, although
-the equations in this form can be challenging to interpret.
+As a last resort, the model can be run with the equation listing turned on by setting LIMROW/LIMCOL to, say, 1000 in the \<case\>.RUN (via the Case Manager) / GEN (via Edit the GEN from the Run form) file, although the equations in this form can be challenging to interpret.
 

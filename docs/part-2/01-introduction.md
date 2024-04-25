@@ -6,9 +6,9 @@ To assist the reader, the following conventions are employed consistently throug
 
 - Sets, and their associated index names, are in lower and bold case, e.g., **com** is the set of all commodities;
 - Literals, explicitly defined in the code, are in upper case within single quotes (note that in conformity with the GAMS syntax, single quotes must, in fact, be apostrophes), e.g., \'UP\' for upper bound;
-- Parameters, and scalars (constants, i.e., un-indexed parameters) are in upper case, e.g., NCAP_AF for the availability factor of a technology;
-- Variables are in upper case with a prefix of VAR\_, e.g., VAR_ACT corresponds to the activity level of a technology.
-- Equations are in upper case with a prefix of EQ\_ or EQ(l)\_ with the placeholder (l) denoting the equation type (l=E for a strict equality, l=L for an inequality with the left hand side term being smaller than or equal to the right hand side term and l=G for an inequality with the left hand side term being greater than or equal to the right hand side term), e.g., EQ_PTRANS is the process transformation equation (strict equality), and EQG_COMBAL is the commodity balance constraint of type G (inequality).
+- Parameters, and scalars (constants, i.e., un-indexed parameters) are in upper case, e.g., $NCAP\_AF$ for the availability factor of a technology;
+- Variables are in upper case with a prefix of $VAR\_$, e.g., $VAR\_ACT$ corresponds to the activity level of a technology.
+- Equations are in upper case with a prefix of $EQ\_$ or $EQ(l)\_$ with the placeholder ($l$) denoting the equation type ($l=E$ for a strict equality, $l=L$ for an inequality with the left hand side term being smaller than or equal to the right hand side term and $l=G$ for an inequality with the left hand side term being greater than or equal to the right hand side term), e.g., $EQ\_PTRANS$ is the process transformation equation (strict equality), and $EQG\_COMBAL$ is the commodity balance constraint of type $G$ (inequality).
 
 ## GAMS modelling language and TIMES implementation
 

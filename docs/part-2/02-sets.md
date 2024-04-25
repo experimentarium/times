@@ -1,74 +1,24 @@
 # Sets
 
-Sets are used in TIMES to group elements or combinations of elements
-with the purpose of specifying qualitative characteristics of the energy
-system. One can distinguish between one-dimensional and
-multi-dimensional sets. The former sets contain single elements, e.g.
-the set **prc** contains all processes of the model, while the elements
-of multi-dimensional sets are a combination of one-dimensional sets. An
-example for a multi-dimensional set is the set **top**, which specifies
-for a process the commodities entering and leaving that process.
+Sets are used in TIMES to group elements or combinations of elements with the purpose of specifying qualitative characteristics of the energy system. One can distinguish between one-dimensional and multi-dimensional sets. The former sets contain single elements, e.g.
+the set $prc$ contains all processes of the model, while the elements of multi-dimensional sets are a combination of one-dimensional sets. An example for a multi-dimensional set is the set $top$, which specifies for a process the commodities entering and leaving that process.
 
-Two types of sets are employed in the TIMES framework: user input sets
-and internal sets. User input sets are created by the user, and used to
-describe qualitative information and characteristics of the depicted
-energy system. One can distinguish the following functions associated
-with user input sets:
+Two types of sets are employed in the TIMES framework: user input sets and internal sets. User input sets are created by the user, and used to describe qualitative information and characteristics of the depicted energy system. One can distinguish the following functions associated with user input sets:
+- definition of the elements or building blocks of the energy system model (i.e. regions, processes, commodities),
+- definition of the time horizon and the sub-annual time resolution,
+- definition of special characteristics of the elements of the energy system.
 
--   definition of the elements or building blocks of the energy system
-    model (i.e. regions, processes, commodities),
+In addition to these user sets, TIMES also generates its own internal sets. Internal sets serve to both ensure proper exception handling (e.g., from what date is a technology available, or in which time-slices is a technology permitted to operate), as well as sometimes just to improve the performance or smooth the complexity of the actual model code.
 
--   definition of the time horizon and the sub-annual time resolution,
-
--   definition of special characteristics of the elements of the energy
-    system.
-
-In addition to these user sets, TIMES also generates its own internal
-sets. Internal sets serve to both ensure proper exception handling
-(e.g., from what date is a technology available, or in which time-slices
-is a technology permitted to operate), as well as sometimes just to
-improve the performance or smooth the complexity of the actual model
-code.
-
-In the following sections, the user input sets and the internal sets
-will be presented. A special type of set is a one-dimensional set, also
-called index, which is needed to build multi-dimensional sets or
-parameters. At the highest level of the one-dimensional sets are the
-master or "domain" sets that define the comprehensive list of elements
-(e.g., the main building blocks of the reference energy system such as
-the processes and commodities in all regions) permitted at all other
-levels, with which GAMS performs complete domain checking, helping to
-automatically ensure the correctness of set definition (for instance, if
-the process name used in a parameter is not spelled correctly, GAMS will
-issue a warning). Therefore, before elaborating on the various sets, the
-indexes used in TIMES are discussed.
+In the following sections, the user input sets and the internal sets will be presented. A special type of set is a one-dimensional set, also called index, which is needed to build multi-dimensional sets or parameters. At the highest level of the one-dimensional sets are the master or "domain" sets that define the comprehensive list of elements (e.g., the main building blocks of the reference energy system such as the processes and commodities in all regions) permitted at all other levels, with which GAMS performs complete domain checking, helping to automatically ensure the correctness of set definition (for instance, if the process name used in a parameter is not spelled correctly, GAMS will issue a warning). Therefore, before elaborating on the various sets, the indexes used in TIMES are discussed.
 
 ## Indexes (One-dimensional sets)
 
-Indexes (also called one-dimensional sets) contain in most cases the
-different elements of the energy model. A list of all indexes used in
-TIMES is given in Table 2. Examples of indexes are the set **prc**
-containing all processes, the set **c** containing all commodities, or
-the set **all_reg** containing all regions of the model. Some of the
-one-dimensional sets are subsets of another one-dimensional set, e.g.,
-the set **r** comprising the so-called internal model regions is a
-subset of the set **all_reg,** which in addition also contains the
-so-called external model regions[^2]. To express that the set **r**
-depends on the set **all_reg**, the master set **all_reg** is put in
-brackets after the set name **r**: **r**(**all_reg**).
+Indexes (also called one-dimensional sets) contain in most cases the different elements of the energy model. A list of all indexes used in TIMES is given in Table 2. Examples of indexes are the set $prc$ containing all processes, the set $c$ containing all commodities, or the set $all\_reg$ containing all regions of the model. Some of the one-dimensional sets are subsets of another one-dimensional set, e.g., the set $r$ comprising the so-called internal model regions is a subset of the set $all\_reg$, which in addition also contains the so-called external model regions[^2]. To express that the set $r$ depends on the set $all\_reg$, the master set $all\_reg$ is put in brackets after the set name $r$: $r(all\_reg)$.
 
-The set **cg** comprises all commodity groups[^3]. Each commodity c is
-considered as a commodity group with only one element: the commodity
-itself. Thus the commodity set **c** is a subset of the commodity group
-set **cg**.
+The set $cg$ comprises all commodity groups[^3]. Each commodity $c$ is considered as a commodity group with only one element: the commodity itself. Thus the commodity set $c$ is a subset of the commodity group set $cg$.
 
-Apart from indexes that are under user control, some indexes have fixed
-elements to serve as indicators within sets and parameters, most of
-which should not be modified by the user (Table 1). Exceptions to this
-rule are the sets defined in the file MAPLISTS.DEF. For example, while
-the process groups (**prc_grp)** listed in Table 1 are used within the
-code and must not be deleted, other process groups may be added by the
-user.
+Apart from indexes that are under user control, some indexes have fixed elements to serve as indicators within sets and parameters, most of which should not be modified by the user (Table 1). Exceptions to this rule are the sets defined in the file MAPLISTS.DEF. For example, while the process groups ($prc\_grp$) listed in Table 1 are used within the code and must not be deleted, other process groups may be added by the user.
 
 +------------+---------------------------------------------------------+
 | *          | **Description**                                         |
@@ -481,358 +431,125 @@ user.
 
 ##  User input sets
 
-The user input sets contain the fundamental information regarding the
-structure and the characteristics of the underlying energy system model.
-The user input sets can be grouped according to the type of information
-related to them:
+The user input sets contain the fundamental information regarding the structure and the characteristics of the underlying energy system model. The user input sets can be grouped according to the type of information related to them:
+- One dimensional sets defining the components of the energy system: regions, commodities, processes;
+- Sets defining the Reference Energy System (RES) within each region;
+- Sets defining the inter-connections (trade) between regions;
+- Sets defining the time structure of the model: periods, timeslices, timeslice hierarchy;
+- Sets defining various properties of processes or commodities.
 
--   One dimensional sets defining the components of the energy system:
-    regions, commodities, processes;
+The formulation of user constraints also uses sets to specify the type and the features of a constraint. The structure and the input information required to construct a user constraint is covered in detail in Chapter 6, and therefore will not be presented here.
 
--   Sets defining the Reference Energy System (RES) within each region;
+Most of the set specifications are handled for the user by the user shell through process and commodity characterization, and the user does not need to input these sets directly.
 
--   Sets defining the inter-connections (trade) between regions;
-
--   Sets defining the time structure of the model: periods, timeslices,
-    timeslice hierarchy;
-
--   Sets defining various properties of processes or commodities.
-
-The formulation of user constraints also uses sets to specify the type
-and the features of a constraint. The structure and the input
-information required to construct a user constraint is covered in detail
-in Chapter 6, and therefore will not be presented here.
-
-Most of the set specifications are handled for the user by the user
-shell through process and commodity characterization, and the user does
-not need to input these sets directly.
-
-In the following subsections first the sets related to the definition of
-the RES will be described (subsection 2.2.1), then the sets related to
-the time horizon and the sub-annual representation of the energy system
-will be presented (subsection 2.2.2). The mechanism for defining trade
-between regions of a multi-regional model is discussed in subsection
-2.2.3. Finally, an overview of all possible user input sets is given in
-subsection 2.2.4.
+In the following subsections first the sets related to the definition of the RES will be described (subsection 2.2.1), then the sets related to the time horizon and the sub-annual representation of the energy system will be presented (subsection 2.2.2). The mechanism for defining trade
+between regions of a multi-regional model is discussed in subsection 2.2.3. Finally, an overview of all possible user input sets is given in subsection 2.2.4.
 
 ### Definition of the Reference Energy System (RES)
 
-A TIMES model is structured by regions (**all_r**). One can distinguish
-between external regions and internal regions. The internal regions
-(**r**) correspond to regions within the area of study, and for which a
-RES has been defined by the user. Each internal region may contain
-processes and commodities to depict an energy system, whereas external
-regions serve only as origins of commodities (e.g. for import of primary
-energy resources or for the import of energy carriers) or as destination
-for the export of commodities. A region is defined as an internal region
-by putting it in the internal region set (**r)**, which is a subset of
-the set of all regions **all_r**. An external region needs no explicit
-definition, all regions that are member of the set **all_r** but not
-member of **r** are external regions. A TIMES model must consist of at
-least one internal region, the number of external regions is arbitrary.
-The main building blocks of the RES are processes (**p**) and
-commodities (**c)**, which are connected by commodity flows to form a
-network. An example of a RES with one internal region (UTOPIA) and two
-external regions (IMPEXP, MINRNW) is given in Figure 1.
+A TIMES model is structured by regions ($all\_r$). One can distinguish between external regions and internal regions. The internal regions ($r$) correspond to regions within the area of study, and for which a RES has been defined by the user. Each internal region may contain processes and commodities to depict an energy system, whereas external regions serve only as origins of commodities (e.g. for import of primary energy resources or for the import of energy carriers) or as destination for the export of commodities. A region is defined as an internal region by putting it in the internal region set ($r$), which is a subset of the set of all regions **all_r**. An external region needs no explicit definition, all regions that are member of the set $all\_r$ but not member of $r$ are external regions. A TIMES model must consist of at least one internal region, the number of external regions is arbitrary. The main building blocks of the RES are processes ($p$) and commodities ($c$), which are connected by commodity flows to form a network. An example of a RES with one internal region (UTOPIA) and two external regions (IMPEXP, MINRNW) is given in {numref}`inter-external-regions`.
 
-All components of the energy system, as well as nearly the entire input
-information, are identified by a region index. It is therefore possible
-to use the same process name in different regions with different
-numerical data (and description if desired), or even completely
-different commodities associated with the process.
+All components of the energy system, as well as nearly the entire input information, are identified by a region index. It is therefore possible to use the same process name in different regions with different numerical data (and description if desired), or even completely different commodities associated with the process.
 
-![](assets/image1.png){width="5.635416666666667in" height="3.4375in"}
-
-Figure 1: Example of internal and external regions in TIMES
+```{figure} assets/image1.png
+:name: inter-external-regions
+:align: center
+Example of internal and external regions in TIMES.
+```
 
 #### Processes
 
-A process may represent an individual plant, e.g. a specific existing
-nuclear power plant, or a generic technology, e.g. the coal-fired IGCC
-technology. TIMES distinguishes three main types of processes:
-
--   Standard processes;
-
--   Inter-regional exchange processes, and
-
--   Storage processes.
+A process may represent an individual plant, e.g. a specific existing nuclear power plant, or a generic technology, e.g. the coal-fired IGCC technology. TIMES distinguishes three main types of processes:
+- Standard processes;
+- Inter-regional exchange processes, and
+- Storage processes.
 
 ##### Standard processes
 
-The so-called standard processes can be used to model the majority of
-the energy technologies, e.g., condensing power plants, heat plants, CHP
-plants, demand devices such as boilers, coal extraction processes, etc.
-Standard processes can be classified into the following groups:
+The so-called standard processes can be used to model the majority of the energy technologies, e.g., condensing power plants, heat plants, CHP plants, demand devices such as boilers, coal extraction processes, etc. Standard processes can be classified into the following groups:
+- PRE for generic energy processes;
+- PRW for material processing technologies (by weight);
+- PRV for material processing technologies (by volume);
+- REF for refinery processes;
+- ELE for electricity generation technologies;
+- HPL for heat generation technologies;
+- CHP for combined heat and power plants;
+- DMD for demand devices;
+- DISTR for distribution systems;
+- MISC for miscellaneous processes.
 
--   PRE for generic energy processes;
+The process classification is done via the set $prc\_map(r,prc\_grp,p)$. This grouping is mainly intended for reporting purposes, but in some cases it also affects the properties of the processes[^10] and the constraint matrix. The set is maintained in the MAPLIST.DEF file, and may be adjusted by user with additional technology groups of interest, with some restrictions as noted in Table 1.
 
--   PRW for material processing technologies (by weight);
+The topology of a standard process is specified by the set $top(r,p,c,io)$ of all quadruples such that the process $p$ in region $r$ is consuming ($io =$ 'IN') or producing ($io =$ 'OUT') commodity $c$. Usually, for each entry of the topology set **top** a flow variable (see $VAR\_FLO$ in Chapter 5) will be created. When the so-called *reduction algorithm* is activated, some flow variables may be eliminated and replaced by other variables (see PART III, Section 3.7 for details).
 
--   PRV for material processing technologies (by volume);
+The activity variable ($VAR\_ACT$) of a standard process is in most cases equal to the sum of one or several commodity flows on either the input or the output side of a process. The activity of a process is limited by the available capacity, so that the activity variable establishes a link between the installed capacity of a process and the maximum possible commodity flows entering or leaving the process during a year or a subdivision of a year. The commodity flows that define the process activity are specified by the set $prc\_actunt(r,p,cg,u)$ where the commodity index $cg$ may be a single commodity or a user-defined commodity group, and $u$ is the activity unit. The commodity group defining the activity of a process is also called **P**rimary **C**ommodity **G**roup (PCG).
 
--   REF for refinery processes;
+```{figure} assets/image2.png
+:name: cg-activity
+:align: center
+Example of the definition of a commodity group and the activity of a normal process.
+```
 
--   ELE for electricity generation technologies;
+User-defined commodity groups are specified by means of the set $com\_gmap(r,cg,c)$, which indicates the commodities ($c$) belonging to the group ($cg$). Once a user-defined commodity group has been defined, one can use it for any processes for defining attributes that require a commodity group (not only for the definition of the process activity, but also for other purposes, e.g., in the transformation equation $EQ\_PTRANS$), as long as the members of the group are valid for the particular process and the process characteristic to be defined.
 
--   HPL for heat generation technologies;
+An example for the definition of the activity of a process is shown in {numref}`cg-activity`. In order to define the activity of the process SRE as the sum of the two output flows of gasoline (GSL) and diesel (DSL), one has to define a commodity group called CG_SRE containing these two commodities. The name of the commodity group can be arbitrarily chosen by the modeller.
 
--   CHP for combined heat and power plants;
+In addition to the activity of a process, one has to define the capacity unit of the process. This is done by means of the set $prc\_capunt(r,p,cg,u)$, where the index **cg** denotes the primary commodity group. In the example in {numref}`cap-unit-def` the capacity of the refinery process is defined in mtoe/a (megatonne oil equivalent). Since the capacity and activity units are different (mtoe for the capacity and PJ for the activity), the user has to supply the conversion factor from the
+energy unit embedded in the capacity unit to the activity unit. This is done by specifying the parameter $prc\_capact(r,p)$. In the example $prc\_capact$ has the value 41.868.
 
--   DMD for demand devices;
+```{figure} assets/image3.png
+:name: cap-unit-def
+:align: center
+Example of the definition of the capacity unit.
+```
 
--   DISTR for distribution systems;
+It might occur that the unit in which the commodity(ies) of the primary commodity group are measured, is different from the activity unit. An example is shown in {numref}`different-cap-unit-def`. The activity of the transport technology CAR is defined by commodity TX1, which is measured in passenger kilometres PKM. The activity of the process is, however, defined in vehicle kilometres VKM, while the capacity of the process CAR is defined as number of cars NOC.
 
--   MISC for miscellaneous processes.
+```{figure} assets/image4.png
+:name: different-cap-unit-def
+:align: center
+Example of different activity and commodity units.
+```
 
-The process classification is done via the set **prc_map(r,prc_grp,p)**.
-This grouping is mainly intended for reporting purposes, but in some
-cases it also affects the properties of the processes[^10] and the
-constraint matrix. The set is maintained in the MAPLIST.DEF file, and
-may be adjusted by user with additional technology groups of interest,
-with some restrictions as noted in Table 1.
-
-The topology of a standard process is specified by the set
-**top(r,p,c,io)** of all quadruples such that the process **p** in
-region **r** is consuming (**io** = \'IN\') or producing (**io** =
-\'OUT\') commodity **c**. Usually, for each entry of the topology set
-**top** a flow variable (see **VAR_FLO** in Chapter 5) will be created.
-When the so-called *reduction algorithm* is activated, some flow
-variables may be eliminated and replaced by other variables (see PART
-III, Section 3.7 for details).
-
-The activity variable (**VAR_ACT**) of a standard process is in most
-cases equal to the sum of one or several commodity flows on either the
-input or the output side of a process. The activity of a process is
-limited by the available capacity, so that the activity variable
-establishes a link between the installed capacity of a process and the
-maximum possible commodity flows entering or leaving the process during
-a year or a subdivision of a year. The commodity flows that define the
-process activity are specified by the set **prc_actunt(r,p,cg,u)** where
-the commodity index **cg** may be a single commodity or a user-defined
-commodity group, and **u** is the activity unit. The commodity group
-defining the activity of a process is also called **P**rimary
-**C**ommodity **G**roup (PCG).
-
-![](assets/image2.png){width="5.197916666666667in"
-height="2.7395833333333335in"}
-
-Figure 2: Example of the definition of a commodity group and the
-activity of a normal process.
-
-User-defined commodity groups are specified by means of the set
-**com_gmap(r,cg,c)**, which indicates the commodities (c) belonging to
-the group (cg). Once a user-defined commodity group has been defined,
-one can use it for any processes for defining attributes that require a
-commodity group (not only for the definition of the process activity,
-but also for other purposes, e.g., in the transformation equation
-EQ_PTRANS), as long as the members of the group are valid for the
-particular process and the process characteristic to be defined.
-
-An example for the definition of the activity of a process is shown in
-Figure 2. In order to define the activity of the process SRE as the sum
-of the two output flows of gasoline (GSL) and diesel (DSL), one has to
-define a commodity group called CG_SRE containing these two commodities.
-The name of the commodity group can be arbitrarily chosen by the
-modeller.
-
-In addition to the activity of a process, one has to define the capacity
-unit of the process. This is done by means of the set
-**prc_capunt(r,p,cg,u)**, where the index **cg** denotes the primary
-commodity group. In the example in Figure 3 the capacity of the refinery
-process is defined in mtoe/a (megatonne oil equivalent). Since the
-capacity and activity units are different (mtoe for the capacity and PJ
-for the activity), the user has to supply the conversion factor from the
-energy unit embedded in the capacity unit to the activity unit. This is
-done by specifying the parameter **prc_capact(r,p)**. In the example
-**prc_capact** has the value 41.868.
-
-![](assets/image3.png){width="4.791666666666667in"
-height="2.7395833333333335in"}
-
-Figure 3: Example of the definition of the capacity unit
-
-It might occur that the unit in which the commodity(ies) of the primary
-commodity group are measured, is different from the activity unit. An
-example is shown in Figure 4. The activity of the transport technology
-CAR is defined by commodity TX1, which is measured in passenger
-kilometres PKM. The activity of the process is, however, defined in
-vehicle kilometres VKM, while the capacity of the process CAR is defined
-as number of cars NOC.
-
-![](assets/image4.png){width="5.25in" height="3.4375in"}
-
-Figure 4: Example of different activity and commodity units
-
-The conversion factor from capacity to activity unit **prc_capact**
-describes the average mileage of a car per year. The process parameter
-**prc_actflo(r,y,p,cg)** contains the conversion factor from the
-activity unit to the commodity unit of the primary commodity group. In
-the example this factor corresponds to the average number of persons per
-car (1.5).
+The conversion factor from capacity to activity unit $prc\_capact$ describes the average mileage of a car per year. The process parameter $prc\_actflo(r,y,p,cg)$ contains the conversion factor from the activity unit to the commodity unit of the primary commodity group. In the example this factor corresponds to the average number of persons per car (1.5).
 
 ##### Inter-regional exchange processes
 
-Inter-regional exchange (IRE) processes are used for trading commodities
-between regions. They are needed for linking internal regions with
-external regions as well as for modelling trade between internal
-regions. A process is specified as an inter-regional exchange process by
-specifying it as a member of the set **prc_map(r,**\'**IRE**\'**,p)**.
-If the exchange process is connecting internal regions, this set entry
-is required for each of the internal regions trading with region r. The
-topology of an inter-regional exchange process **p** is defined by the
-set **top_ire(all_reg,com,all_r,c,p)** stating that the commodity
-**com** in region **all_reg** is exported to the region **all_r** (the
-traded commodity may have a different name **c** in region **all_r**
-than in region **all_reg)**. For example the topology of the export of
-the commodity electricity (ELC_F) from France (FRA) to Germany (GER),
-where the commodity is called ELC_G via the exchange process (HV_GRID)
-is modelled by the **top_ire** entry:
+Inter-regional exchange (IRE) processes are used for trading commodities between regions. They are needed for linking internal regions with external regions as well as for modelling trade between internal regions. A process is specified as an inter-regional exchange process by specifying it as a member of the set $prc\_map(r,'IRE',p)$. If the exchange process is connecting internal regions, this set entry is required for each of the internal regions trading with region $r$. The topology of an inter-regional exchange process $p$ is defined by the set $top\_ire(all\_reg,com,all\_r,c,p)$ stating that the commodity $com$ in region $all\_reg$ is exported to the region $all\_r$ (the traded commodity may have a different name $c$ in region $all\_r$ than in region $all\_reg$). For example the topology of the export of the commodity electricity (ELC_F) from France (FRA) to Germany (GER), where the commodity is called ELC_G via the exchange process (HV_GRID) is modelled by the $top\_ire$ entry:
 
-**top_ire**(\'FRA\', \'ELC_F\', \'GER\', \'ELC_G\', \'HV_GRID\')
+```
+top_ire('FRA', 'ELC_F', 'GER', 'ELC_G', 'HV_GRID')
+```
 
-The first pair of region and commodity (\'FRA\', \'ELC_F\') denotes the
-origin and the name of the traded commodity, while the second pair
-(\'GER\', \'ELC_G\') denotes the destination. The name of the traded
-commodity can be different in both regions, here \'ELC_F\' in France and
-\'ELC_G\' in Germany, depending on the chosen commodity names in both
-regions. As with standard processes, the activity definition set
-**prc_actunt(r,p,cg,u)** has to be specified for an exchange process
-belonging to each internal region. The special features related to
-inter-regional exchange processes are described in subsection .
+The first pair of region and commodity (\'FRA\', \'ELC_F\') denotes the origin and the name of the traded commodity, while the second pair (\'GER\', \'ELC_G\') denotes the destination. The name of the traded commodity can be different in both regions, here \'ELC_F\' in France and \'ELC_G\' in Germany, depending on the chosen commodity names in both regions. As with standard processes, the activity definition set $prc\_actunt(r,p,cg,u)$ has to be specified for an exchange process belonging to each internal region. The special features related to inter-regional exchange processes are described in subsection .
 
 ##### Storage processes
 
-Storage processes are used to store a commodity either between periods
-or between timeslices. A process (**p**) can be specified to be an
-inter-period storage (IPS) process for commodity (**c**) by defining the
-process to be of the type \'**STK**\' and **c** as its PCG (or,
-alternatively, including it as a member of the set
-**prc_stgips(r,p,c)**). In a similar way, a process is characterised as
-a timeslice storage by defining the process to be of the type
-\'**STG**\' and **c** as its PCG (alternatively, by inclusion in the set
-**prc_stgtss(r,p,c)**). A special case of timeslice storage is a
-so-called night-storage device (NST) where the commodity for charging
-and the one for discharging the storage are different. An example for a
-night storage device is an electric heating technology which is charged
-during the night using electricity and produces heat during the day.
-Including a process in the set **prc_nstts(r,p,s)** indicates that it is
-a night storage device which is charged in timeslice(s) **s**. More than
-one timeslice can be specified as charging timeslices, the non-specified
-timeslices are assumed to be discharging timeslices. The charging and
-discharging commodity of a night storage device are specified by the
-topology set (**top).** It should be noted that for inter-period storage
-and normal timeslice storage processes (non-NST) the commodity entering
-and leaving the storage (the charged and discharged commodity) should be
-a member of the PCG (and both should be, if they are different). Other
-auxiliary commodity flows are also permitted in combination with these
-two storage types, by including them in the topology (see Section
-4.3.5).
+Storage processes are used to store a commodity either between periods or between timeslices. A process ($p$) can be specified to be an inter-period storage (IPS) process for commodity ($c$) by defining the process to be of the type \'**STK**\' and $c$ as its PCG (or, alternatively, including it as a member of the set $prc\_stgips(r,p,c)$). In a similar way, a process is characterised as a timeslice storage by defining the process to be of the type \'**STG**\' and $c$ as its PCG (alternatively, by inclusion in the set $prc\_stgtss(r,p,c)$). A special case of timeslice storage is a so-called night-storage device (NST) where the commodity for charging and the one for discharging the storage are different. An example for a night storage device is an electric heating technology which is charged during the night using electricity and produces heat during the day. Including a process in the set $prc\_nstts(r,p,s)$ indicates that it is a night storage device which is charged in timeslice(s) $s$. More than one timeslice can be specified as charging timeslices, the non-specified timeslices are assumed to be discharging timeslices. The charging and discharging commodity of a night storage device are specified by the topology set ($top$). It should be noted that for inter-period storage and normal timeslice storage processes (non-NST) the commodity entering and leaving the storage (the charged and discharged commodity) should be a member of the PCG (and both should be, if they are different). Other auxiliary commodity flows are also permitted in combination with these two storage types, by including them in the topology (see Section 4.3.5).
 
-As for standard processes, the flows that define the activity of a
-storage process are identified by providing the set
-**prc_actunt(r,p,c)** entry. In contrast to standard processes, the
-activity of a storage process is however interpreted as the amount of
-the commodity being stored in the storage process. Accordingly the
-capacity of a storage process describes the maximum commodity amount
-that can be kept in storage.
+As for standard processes, the flows that define the activity of a storage process are identified by providing the set $prc\_actunt(r,p,c)$ entry. In contrast to standard processes, the activity of a storage process is however interpreted as the amount of the commodity being stored in the storage process. Accordingly the capacity of a storage process describes the maximum commodity amount that can be kept in storage.
 
-Internally, a **prc_map(r,\'STG\',p)** entry is always generated for all
-storage processes to put the process in the group of storage processes.
-A further **prc_map** entry is created to specify the type of storage
-(\'STK\' for inter-period storage, \'STS\' for general time-slice
-storage and \'NST\' for a night-storage device), unless already defined
-so by the user.
+Internally, a $prc\_map(r,'STG',p)$ entry is always generated for all storage processes to put the process in the group of storage processes. A further $prc\_map$ entry is created to specify the type of storage (\'STK\' for inter-period storage, \'STS\' for general time-slice storage and \'NST\' for a night-storage device), unless already defined so by the user.
 
 #### Commodities
 
-As mentioned before, the set of commodities ( **c** ) is a subset of the
-commodity group set (**cg)**. A commodity in TIMES is characterised by
-its type, which may be an energy carrier (\'NRG\'), a material
-(\'MAT\'), an emission or environmental impact (\'ENV\'), a demand
-commodity (\'DEM\') or a financial resource (\'FIN\'). The commodity
-type is indicated by membership in the commodity type mapping set
-(**com_tmap(r,com_type,c)**)**.** The commodity type affects the default
-sense of the commodity balance equation. For NRG, ENV and DEM the
-commodity production is normally greater than or equal to consumption,
-while for MAT and FIN the default commodity balance constraint is
-generated as an equality. The type of the commodity balance can be
-modified by the user for individual commodities by means of the
-commodity limit set (**com_lim(r,c,lim)**). The unit in which a
-commodity is measured is indicated by the commodity unit set
-(**com_unit(r,c,units_com)**). The user should note that within the GAMS
-code of TIMES no unit conversion, e.g., of import prices, takes place
-when the commodity unit is changed from one unit to another one.
-Therefore, the proper handling of the units is entirely the
-responsibility of the user (or the user interface).
+As mentioned before, the set of commodities ($c$) is a subset of the commodity group set ($cg$). A commodity in TIMES is characterised by its type, which may be an energy carrier (\'NRG\'), a material (\'MAT\'), an emission or environmental impact (\'ENV\'), a demand commodity (\'DEM\') or a financial resource (\'FIN\'). The commodity type is indicated by membership in the commodity type mapping set ($com\_tmap(r,com\_type,c)$). The commodity type affects the default sense of the commodity balance equation. For NRG, ENV and DEM the commodity production is normally greater than or equal to consumption, while for MAT and FIN the default commodity balance constraint is generated as an equality. The type of the commodity balance can be modified by the user for individual commodities by means of the commodity limit set ($com\_lim(r,c,lim)$). The unit in which a commodity is measured is indicated by the commodity unit set ($com\_unit(r,c,units\_com)$). The user should note that within the GAMS code of TIMES no unit conversion, e.g., of import prices, takes place when the commodity unit is changed from one unit to another one. Therefore, the proper handling of the units is entirely the responsibility of the user (or the user interface).
 
 ### Definition of the time structure
 
 #### Time horizon
 
-The time horizon for which the energy system is analysed may range from
-one year to many decades. The time horizon is usually split into several
-*periods* which are represented by so-called *milestone years*
-(**t(allyear)** or **milestonyr(allyear)**, see Figure 5). Each
-milestone year represents a point in time where decisions may be taken
-by the model, e.g. installation of new capacity or changes in the energy
-flows. The activity and flow variables used in TIMES may therefore be
-considered as average values over a period. The shortest possible
-duration of a period is one year. However, in order to keep the number
-of variables and equations at a manageable size, periods are usually
-comprised of several years. The durations of the periods do not have to
-be equal, so that it is possible that the first period, which usually
-represents the past and is used to calibrate the model to historic data,
-has a length of one year, while the following periods may have longer
-durations. Thus in TIMES both the number of periods and the duration of
-each period are fully under user control. The beginning year of a period
-**t**, **B(t)**, and its ending year, **E(t)**, have to be specified as
-input parameters by the user (see Table 13 in subsection 3.1.3).
+The time horizon for which the energy system is analysed may range from one year to many decades. The time horizon is usually split into several *periods* which are represented by so-called *milestone years* ($t(allyear)$ or $milestonyr(allyear)$, see {numref}`time-horizon-year-type`). Each milestone year represents a point in time where decisions may be taken by the model, e.g. installation of new capacity or changes in the energy flows. The activity and flow variables used in TIMES may therefore be considered as average values over a period. The shortest possible duration of a period is one year. However, in order to keep the number of variables and equations at a manageable size, periods are usually comprised of several years. The durations of the periods do not have to be equal, so that it is possible that the first period, which usually represents the past and is used to calibrate the model to historic data, has a length of one year, while the following periods may have longer durations. Thus in TIMES both the number of periods and the duration of each period are fully under user control. The beginning year of a period $t$, $B(t)$, and its ending year, $E(t)$, have to be specified as input parameters by the user (see Table 13 in subsection 3.1.3).
 
-To describe capacity installations that took place before the beginning
-of the model horizon, and still exist during the modeling horizon, TIMES
-uses additional years, the so-called *past years*
-(**pastyear(allyear)**), which identify the construction completion year
-of the already existing technologies. The amount of capacity that has
-been installed in a pastyear is specified by the parameter
-**NCAP_PASTI(r,allyear,p)**, also called *past investment*. For a
-process, an arbitrary number of past investments may be specified to
-reflect the age structure in the existing capacity stock. The union of
-the sets **milestonyr** and **pastyear** is called **modelyear** (or
-**v**). The years for which input data is provided by the user are
-called datayears (**datayear(allyear)**). The datayears do not have to
-coincide with modelyears, since the preprocessor will interpolate or
-extrapolate the data internally to the modelyears. All pastyears are by
-default included in datayears, but, as a general rule, any other years
-for which input data is provided should be explicitly included in the
-set **datayear** or that information will not be seen by the model.
-Apart from a few exceptions (see Table 3), all parameter values defined
-for years other than datayears (or pastyears) are ignored by the model
-generator. Due to the distinction between of modelyears and datayears,
-the definition of the model horizon, e.g., the duration and number of
-the periods, may be changed without having to adjust the input data to
-the new periods. The rules and options of the inter- and extrapolation
-routine are described in more detail in subection 3.1.1.
+To describe capacity installations that took place before the beginning of the model horizon, and still exist during the modeling horizon, TIMES uses additional years, the so-called past years ($pastyear(allyear)$), which identify the construction completion year of the already existing technologies. The amount of capacity that has been installed in a past year is specified by the parameter $NCAP\_PASTI(r,allyear,p)$, also called *past investment*. For a process, an arbitrary number of past investments may be specified to reflect the age structure in the existing capacity stock. The union of the sets $milestonyr$ and $pastyear$ is called $modelyear$ (or $v$). The years for which input data is provided by the user are called data years ($datayear(allyear)$). The data years do not have to coincide with model years, since the preprocessor will interpolate or extrapolate the data internally to the model years. All past years are by default included in data years, but, as a general rule, any other years for which input data is provided should be explicitly included in the set $datayear$ or that information will not be seen by the model. Apart from a few exceptions (see Table 3), all parameter values defined for years other than data years (or past years) are ignored by the model generator. Due to the distinction between model years and data years, the definition of the model horizon, e.g., the duration and number of the periods, may be changed without having to adjust the input data to the new periods. The rules and options of the inter- and extrapolation routine are described in more detail in subection 3.1.1.
 
-![](assets/image5.png){width="5.739583333333333in" height="3.1875in"}
+```{figure} assets/image5.png
+:name: time-horizon-year-type
+:align: center
+Definition of the time horizon and the different year types.
+```
 
-Figure 5: Definition of the time horizon and the different year types
-
-One should note that it is possible to define past investments
-(**NCAP_PASTI**) not only for pastyears but also for any years within
-the model horizon, including the milestone years. Since the first
-period(s) of a model may cover historical data, it is useful to store
-the already known capacity installations made during this time-span as
-past investments and not as a bound on new investments in the model
-database. If one later changes the beginning of the model horizon to a
-more recent year, the capacity data of the first period(s) do not have
-to be changed, since they are already stored as past investments. This
-feature therefore supports the decoupling of the datayears, for which
-input information is provided, and the definition of the model horizon
-for which the model is run, making it relatively easy to change the
-definition of the modeling horizon. Defining past investments for years
-within the actual model horizon may also be useful for identifying
-already planned (although not yet constructed) capacity expansions in
-the near future[^11].
+One should note that it is possible to define past investments ($NCAP\_PASTI$) not only for past years but also for any years within the model horizon, including the milestone years. Since the first period(s) of a model may cover historical data, it is useful to store the already known capacity installations made during this time-span as past investments and not as a bound on new investments in the model database. If one later changes the beginning of the model horizon to a more recent year, the capacity data of the first period(s) do not have to be changed, since they are already stored as past investments. This feature therefore supports the decoupling of the data years, for which input information is provided, and the definition of the model horizon for which the model is run, making it relatively easy to change the definition of the modeling horizon. Defining past investments for years within the actual model horizon may also be useful for identifying already planned (although not yet constructed) capacity expansions in the near future[^11].
 
   --------------------- -------------------------------------------------
   **Attribute name**    **Description**
@@ -880,237 +597,93 @@ the near future[^11].
 
 #### Timeslices
 
-The **milestone** years can be further divided in sub-annual timeslices
-in order to describe for the changing electricity load within a year,
-which may affect the required electricity generation capacity, or other
-commodity flows that need to be tracked at a finer than annual
-resolution. Timeslices may be organised into four hierarchy levels only:
-\'ANNUAL\', \'SEASON\', \'WEEKLY\' and \'DAYNITE\' defined by the
-internal set **tslvl**. The level ANNUAL consists of only one member,
-the predefined timeslice \'ANNUAL\', while the other levels may include
-an arbitrary number of divisions. The desired timeslice levels are
-activated by the user providing entries in set **ts_group(r,tslvl,s)**,
-where also the individual user-provided timeslices (**s)** are assigned
-to each level. An additional user input set **ts_map(r,s1,s2)** is
-needed to determine the structure of a timeslice tree, where timeslice
-**s1** is defined as the parent node of **s2**. Figure 6 illustrates a
-timeslice tree, in which a year is divided into four seasons consisting
-of working days and weekends, and each day is further divided into day
-and night timeslices. The name of each timeslice has to be unique in
-order to be used later as an index in other sets and parameters. Not all
-timeslice levels have to be utilized when building a timeslice tree, for
-example one can skip the \'WEEKLY\' level and directly connect the
-seasonal timeslices with the daynite timeslices. The duration of each
-timeslice is expressed as a fraction of the year by the parameter
-G_YRFR(r,s). The user is responsible for ensuring that each lower level
-group sums up properly to its parent timeslice, as this is not verified
-by the pre-processor.
+The **milestone** years can be further divided in sub-annual timeslices in order to describe for the changing electricity load within a year, which may affect the required electricity generation capacity, or other commodity flows that need to be tracked at a finer than annual resolution. Timeslices may be organised into four hierarchy levels only: \'ANNUAL\', \'SEASON\', \'WEEKLY\' and \'DAYNITE\' defined by the internal set $tslvl$. The level ANNUAL consists of only one member, the predefined timeslice \'ANNUAL\', while the other levels may include an arbitrary number of divisions. The desired timeslice levels are activated by the user providing entries in set $ts\_group(r,tslvl,s)$, where also the individual user-provided timeslices ($s$) are assigned to each level. An additional user input set $ts\_map(r,s1,s2)$ is needed to determine the structure of a timeslice tree, where timeslice $s1$ is defined as the parent node of $s2$. {numref}`timeslice-tree` illustrates a timeslice tree, in which a year is divided into four seasons consisting of working days and weekends, and each day is further divided into day and night timeslices. The name of each timeslice has to be unique in order to be used later as an index in other sets and parameters. Not all timeslice levels have to be utilized when building a timeslice tree, for example one can skip the \'WEEKLY\' level and directly connect the seasonal timeslices with the daynite timeslices. The duration of each timeslice is expressed as a fraction of the year by the parameter $G\_YRFR(r,s)$. The user is responsible for ensuring that each lower level group sums up properly to its parent timeslice, as this is not verified by the pre-processor.
 
-The definition of a timeslice tree is region-specific.[^13] When
-different timeslice names and durations are used in two regions
-connected by exchange processes, the mapping parameters
-IRE_CCVT(r,c,reg,com) for commodities and IRE_TSCVT(r,s,reg,ts) for
-timeslices have to be provided by the user to map the different
-timeslice definitions. When the same timeslice definitions are used,
-these mapping tables do not need to be specified by the user.
+The definition of a timeslice tree is region-specific.[^13] When different timeslice names and durations are used in two regions connected by exchange processes, the mapping parameters $IRE\_CCVT(r,c,reg,com)$ for commodities and $IRE\_TSCVT(r,s,reg,ts)$ for timeslices have to be provided by the user to map the different timeslice definitions. When the same timeslice definitions are used, these mapping tables do not need to be specified by the user.
 
-The original design of TIMES assumes that within each region, the
-definition of the timeslice tree applies to all model periods, such that
-one cannot employ different subsets of timeslices in different periods.
-In fact, allowing dynamically changing timeslice trees would tend to
-make both the model pre-processing and equation formulations
-substantially more complex, and therefore this design decision may be
-considered well justified. However, an experimental \"light-weight\"
-implementation has been made in view of supporting also dynamic
-timeslice trees (see Appendix E).
+The original design of TIMES assumes that within each region, the definition of the timeslice tree applies to all model periods, such that one cannot employ different subsets of timeslices in different periods. In fact, allowing dynamically changing timeslice trees would tend to make both the model pre-processing and equation formulations substantially more complex, and therefore this design decision may be considered well justified. However, an experimental \"light-weight\" implementation has been made in view of supporting also dynamic timeslice trees (see Appendix E).
 
-![](assets/image6.png){width="5.96875in" height="3.4791666666666665in"}
+```{figure} assets/image6.png
+:name: timeslice-tree
+:align: center
+Example of a timeslice tree.
+```
 
-Figure 6: Example of a timeslice tree
+Commodities may be tracked and process operation controlled at a particular timeslice level by using the sets $com\_tsl(r,c,tslvl)$ and $prc\_tsl(r,p,tslvl)$ respectively. Providing a commodity timeslice level determines for which timeslices the commodity balance will be generated, where the default is \'ANNUAL\'. For processes, the set $prc\_tsl$ determines the timeslice level of the activity variable. Thus, for instance, condensing power plants may be forced to operate on a seasonal level, so that the activity during a season is uniform, while hydropower production may vary between days and nights, if the \'DAYNITE\' level is specified for hydro power plants. Instead of specifying a timeslice level, the user can also identify individual timeslices for which a commodity or a process is available by the sets $com\_ts(r,c,s)$ and $prc\_ts(r,p,s)$ respectively. Note that when specifying individual timeslices for a specific commodity or process by means of $com\_ts$ or $prc\_ts$ they all have to be on the same timeslice level.
 
-Commodities may be tracked and process operation controlled at a
-particular timeslice level by using the sets **com_tsl(r,c,tslvl)** and
-**prc_tsl(r,p,tslvl)** respectively. Providing a commodity timeslice
-level determines for which timeslices the commodity balance will be
-generated, where the default is \'ANNUAL\'. For processes, the set
-**prc_tsl** determines the timeslice level of the activity variable.
-Thus, for instance, condensing power plants may be forced to operate on
-a seasonal level, so that the activity during a season is uniform, while
-hydropower production may vary between days and nights, if the
-\'DAYNITE\' level is specified for hydro power plants. Instead of
-specifying a timeslice level, the user can also identify individual
-timeslices for which a commodity or a process is available by the sets
-**com_ts(r,c,s)** and **prc_ts(r,p,s)** respectively. Note that when
-specifying individual timeslices for a specific commodity or process by
-means of **com_ts** or **prc_ts** they all have to be on the same
-timeslice level.
-
-The timeslice level of the commodity flows entering and leaving a
-process are determined internally by the preprocessor. The timeslice
-level of a flow variable equals the timeslice level of the process when
-the flow variable is part of the primary commodity group (PCG) defining
-the activity of the process. Otherwise the timeslice level of a flow
-variable is set to whichever level is finer, that of the commodity or
-the process.
+The timeslice level of the commodity flows entering and leaving a process are determined internally by the preprocessor. The timeslice level of a flow variable equals the timeslice level of the process when the flow variable is part of the primary commodity group (PCG) defining the activity of the process. Otherwise the timeslice level of a flow variable is set to whichever level is finer, that of the commodity or the process.
 
 ### Multi-regional models
 
-If a TIMES model consists of several internal regions, it is called a
-multi-regional model. Each of the internal regions contains a unique RES
-to represent the particularities of the region. As already mentioned,
-the regions can be connected by inter-regional exchange processes to
-enable trade of commodities between the regions. Two types of trade
-activities can be depicted in TIMES: bi-lateral trade between two
-regions and multilateral trade between several supply and demand
-regions.
+If a TIMES model consists of several internal regions, it is called a multi-regional model. Each of the internal regions contains a unique RES to represent the particularities of the region. As already mentioned, the regions can be connected by inter-regional exchange processes to enable trade of commodities between the regions. Two types of trade activities can be depicted in TIMES: bi-lateral trade between two regions and multilateral trade between several supply and demand regions.
 
-Bi-lateral trade takes place between specific pairs of regions. A pair
-of regions together with an exchange process and the direction of the
-commodity flow are first identified, where the model ensures that trade
-through the exchange process is balanced between these two regions
-(whatever amount is exported from region A to region B must be imported
-by region B from region A, possibly adjusted for trans­portation losses).
-The basic structure is shown in Figure 7. Bi-lateral trading may be
-fully described in TIMES by defining an inter-regional exchange process
-and by specifying the two pair-wise connections by indicating the
-regions and commodities be traded via the set
-**top_ire(r,c,reg,com,p)**. If trade should occur only in one direction
-then only that direction is provided in the set **top_ire** (export from
-region r into region reg). The process capacity and the process related
-costs (e.g. activity costs, investment costs) of the exchange process
-can be described individually for both regions by specifying the
-corresponding parameters in each regions. If for example the investment
-costs for an electricity line between two regions A and B are 1000
-monetary units (MU) per MW and 60 % of these investment costs should be
-allocated to region A and the remaining 40 % to region B, the investment
-costs for the exchange process have to be set to 600 MU/MW in region A
-and to 400 MU/MW in region B.
+Bi-lateral trade takes place between specific pairs of regions. A pair of regions together with an exchange process and the direction of the commodity flow are first identified, where the model ensures that trade through the exchange process is balanced between these two regions (whatever amount is exported from region A to region B must be imported by region B from region A, possibly adjusted for trans­portation losses). The basic structure is shown in {numref}`bilateral-trade`. Bi-lateral trading may be fully described in TIMES by defining an inter-regional exchange process and by specifying the two pair-wise connections by indicating the regions and commodities be traded via the set $top\_ire(r,c,reg,com,p)$. If trade should occur only in one direction then only that direction is provided in the set $top\_ire$ (export from region $r$ into region $reg$). The process capacity and the process related costs (e.g. activity costs, investment costs) of the exchange process can be described individually for both regions by specifying the corresponding parameters in each regions. If for example the investment costs for an electricity line between two regions A and B are 1000 monetary units (MU) per MW and 60 % of these investment costs should be allocated to region A and the remaining 40 % to region B, the investment costs for the exchange process have to be set to 600 MU/MW in region A and to 400 MU/MW in region B.
 
-![](assets/image7.png){width="6.104166666666667in"
-height="1.7916666666666667in"}
+```{figure} assets/image7.png
+:name: bilateral-trade
+:align: center
+Bilateral trade in TIMES.
+```
 
-Figure 7: Bilateral trade in TIMES
+Bi-lateral trade is the most detailed way to specify trade between regions. However, there are cases when it is not important to fully specify the pair of trading regions. In such cases, the so-called *multi-lateral trade* option decreases the size of the model while preserving enough flexibility. Multi-lateral trade is based on the idea that a common marketplace exists for a traded commodity with several supplying and several consuming regions for the commodity, e.g. for crude oil or GHG emission permits. To facilitate the modelling of this kind of trade scheme the concept of marketplace has been introduced in TIMES. To model a marketplace first the user has to identify one internal region that participates both in the production and consumption of the traded commodity. Then only one exchange process is used to link the supply and demand regions with the marketplace region using the set $top\_ire$.[^14]
 
-Bi-lateral trade is the most detailed way to specify trade between
-regions. However, there are cases when it is not important to fully
-specify the pair of trading regions. In such cases, the so-called
-*multi-lateral trade* option decreases the size of the model while
-preserving enough flexibility. Multi-lateral trade is based on the idea
-that a common marketplace exists for a traded commodity with several
-supplying and several consuming regions for the commodity, e.g. for
-crude oil or GHG emission permits. To facilitate the modelling of this
-kind of trade scheme the concept of marketplace has been introduced in
-TIMES. To model a marketplace first the user has to identify one
-internal region that participates both in the production and consumption
-of the traded commodity. Then only one exchange process is used to link
-the supply and demand regions with the marketplace region using the set
-**top_ire**.[^14]
+The following example illustrates the modelling of a marketplace in TIMES. Assume that we want to set up a market-based trading where the commodity CRUD can be exported by regions A, B, C, and D, and that it can be imported by regions C, D, E and F ({numref}`multilateral-trade`).
 
-The following example illustrates the modelling of a marketplace in
-TIMES. Assume that we want to set up a market-based trading where the
-commodity CRUD can be exported by regions A, B, C, and D, and that it
-can be imported by regions C, D, E and F (Figure 8).
+```{figure} assets/image8.png
+:name: multilateral-trade
+:align: center
+Example of multi-lateral trade in TIMES.
+```
 
-![](assets/image8.png){width="5.229166666666667in" height="2.875in"}
+First, the exchange process and marketplace should be defined. For example, we could choose the region C as the marketplace region. The exchange process has the name XP. The trade possibilities can then be defined simply by the following six $top\_ire$ entries:
 
-Figure 8: Example of multi-lateral trade in TIMES
+```
+SET PRC /'XP'/;
 
-First, the exchange process and marketplace should be defined. For
-example, we could choose the region C as the marketplace region. The
-exchange process has the name XP. The trade possibilities can then be
-defined simply by the following six **top_ire** entries:
+SET TOP_IRE /
+'A'.'CRUD'.'C'.'CRUD'.'XP'
+'B'.'CRUD'.'C'.'CRUD'.'XP'
+'D'.'CRUD'.'C'.'CRUD'.'XP'
+'C'.'CRUD'.'D'.'CRUD'.'XP'
+'C'.'CRUD'.'E'.'CRUD'.'XP'
+'C'.'CRUD'.'F'.'CRUD'.'XP'
+/;
+```
 
-> SET PRC / XP /;
->
-> SET TOP_IRE /
->
-> A .CRUD .C .CRUD .XP
->
-> B .CRUD .C .CRUD .XP
->
-> D .CRUD .C .CRUD .XP
->
-> C .CRUD .D .CRUD .XP
->
-> C .CRUD .E .CRUD .XP
->
-> C .CRUD .F .CRUD .XP
->
-> /;
+To complete the RES definition of the exchange process, only the set $prc\_actunt(r,p,c,u)$ is needed to define the units for the exchange process XP in all regions:
 
-To complete the RES definition of the exchange process, only the set
-**prc_actunt(r,p,c,u)** is needed to define the units for the exchange
-process XP in all regions:
+```
+SET PRC_ACTUNT /
+'A'.'XP'.'CRUD'.'PJ'
+'B'.'XP'.'CRUD'.'PJ'
+'C'.'XP'.'CRUD'.'PJ'
+'D'.'XP'.'CRUD'.'PJ'
+'E'.'XP'.'CRUD'.'PJ'
+'F'.'XP'.'CRUD'.'PJ'
+/;
+```
 
-> SET PRC_ACTUNT /
->
-> A .XP .CRUD .PJ
->
-> B .XP .CRUD .PJ
->
-> C .XP .CRUD .PJ
->
-> D .XP .CRUD .PJ
->
-> E .XP .CRUD .PJ
->
-> F .XP .CRUD .PJ
->
-> /;
-
-These definitions are sufficient for setting up of the market-based
-trade. Additionally, the user can of course specify various other data
-for the exchange processes, for example investment and distribution
-costs, and efficiencies.
+These definitions are sufficient for setting up of the market-based trade. Additionally, the user can of course specify various other data for the exchange processes, for example investment and distribution costs, and efficiencies.
 
 ### Overview of all user input sets
 
-All the input sets which are under user control in TIMES are listed in
-Table 4. For a few sets default settings exist that are applied if no
-user input information is given. Set names starting with the prefix
-'com\_' are associated with commodities, the prefix 'prc\_' denotes
-process information and the prefix 'uc\_' is reserved for sets related
-to user constraints. Column 3 of Table 4 is a description of each set.
-In some cases (especially for complex sets), two (equivalent)
-descriptions may be given, the first in general terms, followed by a
-more precise description within square brackets, given in terms of
-n-tuples of indices.
+All the input sets which are under user control in TIMES are listed in Table 4. For a few sets default settings exist that are applied if no user input information is given. Set names starting with the prefix $com\_$ are associated with commodities, the prefix $prc\_$ denotes process information and the prefix $uc\_$ is reserved for sets related to user constraints. Column 3 of Table 4 is a description of each set. In some cases (especially for complex sets), two (equivalent) descriptions may be given, the first in general terms, followed by a more precise description within square brackets, given in terms of n-tuples of indices.
 
 **Remark**
 
 Sets are used in basically two ways:
+- as the domain over which summations must be effected in some mathematical expression, or
+- as the domain over which a particular expression or constraint must be enumerated (replicated).
 
--   as the domain over which summations must be effected in some
-    mathematical expression, or
+In the case of n-dimensional sets, some indexes may be used for **enumeration and others for summation**. In each such situation, the distinction between the two uses of the indexes is made clear by the way each index is used in the expression.
 
--   as the domain over which a particular expression or constraint must
-    be enumerated (replicated).
-
-In the case of n-dimensional sets, some indexes may be used for
-**enumeration and others for summation**. In each such situation, the
-distinction between the two uses of the indexes is made clear by the way
-each index is used in the expression.
-
-An example will illustrate this important point: consider the
-4-dimensional set **top,** having indexes r,p,c,io (see table 4 for its
-precise description). If some quantity **A(r,p,c,io)** must be
-enumerated for all values of the third index (c=commodity) and of the
-last index (io=orientation), but summed over all processes (p) and
-regions (r), this will be mathematically denoted:
+An example will illustrate this important point: consider the 4-dimensional set $top$, having indexes $r,p,c,io$ (see table 4 for its precise description). If some quantity $A(r,p,c,io)$ must be enumerated for all values of the third index ($c=commodity$) and of the last index ($io=orientation$), but summed over all processes ($p$) and regions ($r$), this will be mathematically denoted:
 
 $$EXPRESSION1_{c,io} = \sum_{r,p,c,io \in top}^{}{A(r,p,c,io)}$$
 
-It is thus understood from the indexes listed in the name of the
-expression (c,io), that these two indexes are being enumerated, and
-thus, by deduction, only r and p are being summed upon. Thus the
-expression calculates the total of A for each commodity c, in each
-direction io ('IN' and 'OUT'), summed over all processes and regions.
+It is thus understood from the indexes listed in the name of the expression ($c,io$), that these two indexes are being enumerated, and thus, by deduction, only $r$ and $p$ are being summed upon. Thus the expression calculates the total of $A$ for each commodity $c$, in each direction $io$ ('IN' and 'OUT'), summed over all processes and regions.
 
-Another example illustrates the case of nested summations, where index r
-is enumerated in the inner summation, but is summed upon in the outer
-summation. Again here, the expression is made unambiguous by observing
-the positions of the different indexes (for instance, the outer
-summation is done on the r index)
+Another example illustrates the case of nested summations, where index $r$ is enumerated in the inner summation, but is summed upon in the outer summation. Again here, the expression is made unambiguous by observing the positions of the different indexes (for instance, the outer summation is done on the $r$ index)
 
 $$EXPRESSION2_{c,io} = \sum_{r,p,c,io \in top}^{}{B(r)\sum_{p}^{}{A(r,p)}}$$
 
@@ -1491,13 +1064,7 @@ $$EXPRESSION2_{c,io} = \sum_{r,p,c,io \in top}^{}{B(r)\sum_{p}^{}{A(r,p)}}$$
 
 ##  Definition of internal sets
 
-The sets internally derived by the TIMES model generator are given in
-Table 5. The list of internal sets presented here concentrates on the
-ones frequently used in the model generator and the ones used in the
-description of the model equations in Chapter 6. Some internal sets are
-omitted from Table 5 as they are strictly auxiliary sets of the
-preprocessor whose main purpose is the reduction of the computation time
-for preprocessor operations.
+The sets internally derived by the TIMES model generator are given in Table 5. The list of internal sets presented here concentrates on the ones frequently used in the model generator and the ones used in the description of the model equations in Chapter 6. Some internal sets are omitted from Table 5 as they are strictly auxiliary sets of the preprocessor whose main purpose is the reduction of the computation time for preprocessor operations.
 
 +----------------+-----------------------------------------------------+
 | **Set          | **Description**                                     |

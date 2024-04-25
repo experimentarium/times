@@ -853,26 +853,22 @@ $$EQ\_ CC_{r,t,p}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \r
 >
 > $\left\{ = \right\}$
 >
-> ![{\"mathml\":\"\<math
-> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-> for Microsoft
-> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
-> height="7.507655293088364e-3in"}
+> ![](media/image18.png)
 
 ### EQ_CLU(r,t,p)
 
-**Description:** For a [key]{.underline} learning ETL technology it
+**Description:** For a <ins>key</ins> learning ETL technology it
 defines investment in new capacity (VAR_NCAP) as the weighted sum of
 investments in new capacity of the attached clustered technologies. The
 weights used are the numeric values of the CLUSTER parameter.
 
 **Purpose and** Defines the relationship between investment in new
-capacity for a [key]{.underline}
+capacity for a <ins>key</ins> learning technology.
 
 **Occurrence:** learning ETL technology and investment in new capacity
 for the associated clustered technologies. This equation is generated in
 each time period for which the ETL technology is available. It is a
-[key]{.underline} learning technology, that is, it has associated
+<ins>key</ins> learning technology, that is, it has associated
 clustered technologies.
 
 **Units:** Money units, e.g., million 2000 US\$, or any other unit in
@@ -888,7 +884,7 @@ solution.
 *Dual variable:* The dual variable (DVR_CLU) of this constraint in the
 MIP solution is of little interest.
 
-**Remarks:** Activation of the special [clustered]{.underline} learning
+**Remarks:** Activation of the special <ins>clustered</ins> learning
 ETL option occurs automatically if data is included for the CLUSTER
 parameter.
 
@@ -903,11 +899,7 @@ parameter.
 >
 > $\left\{ = \right\}$
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+![](media/image18.png)
 
 ### EQ_COS(r,t,p)
 
@@ -949,11 +941,7 @@ $EQ\_ COS_{r,t,p}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \r
 >
 > $\left\{ = \right\}$
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+![](media/image18.png)
 
 ### EQ_CUINV(r,t,p)
 
@@ -1023,12 +1011,8 @@ limited usefulness, as already mentioned.
 
 $$EQ\_ DEL_{r,t,p}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \right) \right\rbrack$$
 
-> ![{\"mathml\":\"\<math
-> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-> for Microsoft
-> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
-> height="7.507655293088364e-3in"}
->
+![](media/image18.png)
+
 > $\left\{ = \right\} 1$
 
 ### EQ_EXPE1(r,t,p,k)
@@ -1065,19 +1049,11 @@ limited usefulness, as already mentioned.
 
 $$EQ\_ EXPE1_{r,t,p,k}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \right) \land (t < TLAST) \right\rbrack$$
 
-> ![{\"mathml\":\"\<math
-> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-> for Microsoft
-> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
-> height="7.507655293088364e-3in"}
->
+![](media/image18.png)
+
 > $\left\{ \geq \right\}$
->
-> ![{\"mathml\":\"\<math
-> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-> for Microsoft
-> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
-> height="7.507655293088364e-3in"}
+
+![](media/image18.png)
 
 ### EQ_EXPE2(r,t,p,k)
 
@@ -1115,19 +1091,12 @@ limited usefulness, as already mentioned.
 
 $$EQ\_ EXPE2_{r,t,p,k}\forall\left\lbrack (p \in teg) \land \left( (r,t,p) \in rtp \right) \land (t < TLAST) \right\rbrack$$
 
-> ![{\"mathml\":\"\<math
-> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-> for Microsoft
-> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
-> height="7.507655293088364e-3in"}
+![](media/image18.png)
 >
 > $\left\{ \leq \right\}$
 >
-> ![{\"mathml\":\"\<math
-> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-> for Microsoft
-> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
-> height="7.507655293088364e-3in"}
+![](media/image18.png)
+
 
 ### EQ_IC1(r,t,p)
 
@@ -1301,19 +1270,19 @@ $$CCAPK_{r,k,p}*VAR\_ DELTA_{r,t,p,k}$$
 
 ### EQ_MRCLU(r,t,p)
 
-**Description:** For a [key]{.underline} learning ETL technology it
+**Description:** For a <ins>key</ins> learning ETL technology it
 defines investment in new capacity (VAR_NCAP) as the weighted sum of
 investments in new capacity of the attached clustered technologies in
 multiple regions. The weights used are the numeric values of the
 TL_MRCLUST parameter.
 
 **Purpose and** Defines the relationship between investment in new
-capacity for a [key]{.underline}
+capacity for a <ins>key</ins> learning ETL technology.
 
 **Occurrence:** learning ETL technology and investment in new capacity
 for the associated clustered technologies. This equation is generated in
 each time period for which the ETL technology is available. It is a
-[key]{.underline} learning technology, that is, it has associated
+<ins>key</ins> learning technology, that is, it has associated
 clustered technologies, possibly in multiple regions.
 
 **Units:** Money units, e.g., million 2010 US\$, or any other unit in
@@ -1329,7 +1298,7 @@ solution.
 *Dual variable:* The dual variable of this constraint in the MIP
 solution is of little interest.
 
-**Remarks:** Activation of the special [clustered]{.underline} learning
+**Remarks:** Activation of the special <ins>clustered</ins> learning
 ETL option occurs automatically if data is included for the TL_MRCLUST
 parameter.
 
@@ -1372,11 +1341,7 @@ $$EQ\_ OBJSAL_{r,cur}$$
 
 > **...**
 
-\+![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+![](media/image18.png)
 
 ### EQ_OBJINV(r,cur) 
 
@@ -1402,9 +1367,4 @@ $$EQ\_ OBJINV_{r,cur}$$
 
 > ...
 
-\+![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
-
+![](media/image18.png)

@@ -373,11 +373,9 @@ The GAMS control variables that can be used for the savepoint and loadpoint feat
 
 :::
 
-![](assets/image22.png){width="3.0520833333333335in" 
-height="0.3388888888888889in"}
+![](assets/image22.png)
 
-![](assets/image23.png){width="1.1125in"
-height="0.6090277777777777in"}
+![](assets/image23.png)
 
 In VEDA-FE the LPOINT can be set from the Case Manager by requesting the loading of a previously GDX, and in ANSWER by means of Run Model Restart files specifications, as shown in
 Figure 18.
