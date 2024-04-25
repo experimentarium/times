@@ -297,7 +297,7 @@ with
     parameter, defined as the change in equilibrium atmospheric
     temperature induced by a doubling of CO~2~ concentration.
 
-[Remark]{.underline}: in contrast with most other parameters, the value
+<ins>Remark</ins>: in contrast with most other parameters, the value
 of C~s~ is highly uncertain, with a possible range of values from 1^o^C
 to 10^o^C. This parameter is therefore a prime candidate for sensitivity
 analysis, or for treatment by probabilistic methods such as stochastic
@@ -789,7 +789,7 @@ emissions to remain constant at the EOH value until a predefined year
 y \> EOH, before turning into the linear development towards the first
 user-defined value.
 
-**[Warning]{.underline}**: If **0 \< EXT-EOH \< E(M) = MAX~m~(E(m))**,
+**<ins>Warning:** If **0 \< EXT-EOH \< E(M) = MAX~m~(E(m))**,
 any user-defined global emission bounds for CO2-GTC, CH4-MT or N2O-MT,
 which may be inadvertently specified at years between **MAX(EXT-EOH,
 EOH)** and **E(M)**, will also be taken into account as target values
