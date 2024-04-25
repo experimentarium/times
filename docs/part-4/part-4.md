@@ -1,263 +1,130 @@
 # Overview
 
-This Part of the TIMES documentation provides an introduction to VEDA2.0
-(Version 1.190.1.1), a flexible, user-friendly tool that oversees all
-aspects of the management and use TIMES energy system models,
-incorporating modules for handling the model input templates (data) and
-run results. The manual does so by presenting a step-by-step
-introduction to building a TIMES model using a series of twelve DemoS
-models (available for download from the ETSAP website -
-<https://iea-etsap.org/index.php/documentation>) to progressively
-demonstrate VEDA-TIMES principles and modeling techniques. The remainder
-of Section 1 describes how to access and set up the TIMES DemoS models.
-Section 2 provides an orientation to the basic features of VEDA2.0,
-including software layout, commonly used data files and tables, and
-model management features. Section 3 then walks through the twelve DemoS
-models, providing for each a summary of the VEDA-TIMES features and
-model attributes introduced, a detailed guide to the templates and
-tables used, and a look at the model results.
+This Part of the TIMES documentation provides an introduction to VEDA2.0 (Version 1.190.1.1), a flexible, user-friendly tool that oversees all aspects of the management and use TIMES energy system models, incorporating modules for handling the model input templates (data) and run results. The manual does so by presenting a step-by-step introduction to building a TIMES model using a series of twelve DemoS models (available for download from the [ETSAP website](https://iea-etsap.org/index.php/documentation) to progressively demonstrate VEDA-TIMES principles and modeling techniques. The remainder of Section 1 describes how to access and set up the TIMES DemoS models. Section 2 provides an orientation to the basic features of VEDA2.0, including software layout, commonly used data files and tables, and model management features. Section 3 then walks through the twelve DemoS models, providing for each a summary of the VEDA-TIMES features and model attributes introduced, a detailed guide to the templates and tables used, and a look at the model results.
 
 ## Downloading and Registering VEDA2.0
 
-To download and install VEDA2.0 it is recommend that the new user first
-takes a look at the YouTube video on this topic noted in Section 2. Once
-downloaded, unzipped and starting VEDA2.0 the user is presented with an
-Activation screen where one proceeds by:
+To download and install VEDA2.0 it is recommend that the new user first takes a look at the YouTube video on this topic noted in Section 2. Once downloaded, unzipped and starting VEDA2.0 the user is presented with an Activation screen where one proceeds by:
+- Hitting **Get Trail Key**
+- Completing the **Registration Form**
+- Grabbing **the Trail Key** from your email,
+- Paste it into the Activation form, and request **Activation** -- as seen below.
 
--   Hitting **Get Trail Key**
+![](assets/image1.png)
 
--   Completing the **Registration Form**
 
--   Grabbing **the Trail Key** from your email,
+![](assets/image2.png)
 
--   Paste it into the Activation form, and request **Activation** -- as
-    seen below.
 
-![](assets/image1.png){width="4.84375in" height="3.4791666666666665in"}
+![](assets/image3.png)
 
-![](assets/image2.png){width="4.40625in" height="3.03125in"}
 
-![](assets/image3.png){width="4.4375in" height="2.5833333333333335in"}
-
-This will then bring you to the VEDA2.0 Start Page discussed in Section
-2.
+This will then bring you to the VEDA2.0 Start Page discussed in Section 2.
 
 ## Obtaining and Setting Up GAMS for TIMES
 
-As part of registering VEDA2.0 a request is sent to the ETSAP Liaison
-Officer who will arrange for an evaluation GAMS license file to be
-created, sending it to the new user along with the download and install
-procedures here:
+As part of registering VEDA2.0 a request is sent to the ETSAP Liaison Officer who will arrange for an evaluation GAMS license file to be created, sending it to the new user along with the download and install procedures here:
+1. Copy the GAMSLICE someplace on your computer.
+2. Head to <http://www.gams.com/download/> and select the Windows download option for either Win-64/32, as appropriate
+3. Run Setup by clicking on it in Windows Explore
 
-1.  Copy the GAMSLICE someplace on your computer.
+    a.  Check "**Use advanced installation mode**" at the bottom of the GAMS Setup form.
 
-2.  Head to <http://www.gams.com/download/> and select the Windows
-    download option for either Win-64/32, as appropriate
-
-3.  Run Setup by clicking on it in Windows Explore
-
-    a.  Check "**Use advanced installation mode**" at the bottom of the
-        GAMS Setup form.
-
-    b.  Let GAMS get installed into the default folder
-        (\\GAMS\\\<Win#\>\\\<ver\>.
+    b.  Let GAMS get installed into the default folder (\\GAMS\\\<Win#\>\\\<ver\>.
 
     c.  **Check the Add GAMS directory to PATH** environment variable.
 
     d.  Have the GAMSLICE.TXT copied from wherever it currently resides.
 
-**You may need to restart your computer to have the GAMS Path
-activated.**
+**You may need to restart your computer to have the GAMS Path activated.**
 
 Once you have VEDA installed you can try a TIMES model run.
 
 ## Downloading and Setting Up the DemoS Models
 
-The complete set of VEDA-TIMES DemoS models is available, along with all
-five Parts of the TIMES documentation, on the ETSAP Documentation web
-page (<http://www.iea-etsap.org/index.php/documentation>) under
-'VEDA-TIMES Demo Models,' and is downloaded as part of the VEDA2.0
-installation procedure. Thus you will also need VEDA2.0 installed in
-order to follow along with this manual. In addition, you'll need GAMS
-(General Algebraic Modeling System, [www.GAMS.com](http://www.GAMS.com))
-system in with the TIMES model generator is written. VEDA and GAMS
-evaluation licenses are available at
-<https://www.kanors-emr.org/AcquiringTools.php>.
+The complete set of VEDA-TIMES DemoS models is available, along with all five Parts of the TIMES documentation, on the [ETSAP Documentation webpage](http://www.iea-etsap.org/index.php/documentation) under 'VEDA-TIMES Demo Models,' and is downloaded as part of the VEDA2.0 installation procedure. Thus you will also need VEDA2.0 installed in order to follow along with this manual. In addition, you'll need [GAMS](https://www.gams.com) (General Algebraic Modeling System) system in with the TIMES model generator is written. VEDA and GAMS
+evaluation licenses are available at [KanORS](https://www.kanors-emr.org/AcquiringTools.php).
 
-To open the first DemoS from VEDA2.0 launch VEDA2.0. and from the
-StartPage select DemoS_001 from the list of available models, see
-Figure 1. The current model and version of VEDA2.0 is shown on the top
-row for the form.
+To open the first DemoS from VEDA2.0 launch VEDA2.0. and from the StartPage select DemoS_001 from the list of available models, see Figure 1. The current model and version of VEDA2.0 is shown on the top row for the form.
 
-![](assets/image4.png){width="6.510416666666667in"
-height="2.8854166666666665in"}
+![](assets/image4.png)
 
-[]{#_Ref54873777 .anchor}Figure 1. StartPage Model Selection & News
 
-Note that once a model has been selected the StartPage will have the
-Module buttons displayed at the top of the form, see Figure 3.
+Figure 1. StartPage Model Selection & News
 
-![](assets/image5.png){width="6.5in" height="0.34375in"}
+Note that once a model has been selected the StartPage will have the Module buttons displayed at the top of the form, see Figure 3.
+
+![](assets/image5.png)
+
 
 # Introduction to VEDA2.0 
 
-This section provides a brief introduction to the VEDA Excel template
-workbooks for specifying and building a model, and using VEDA2.0 to
-access and manage the templates, browsing the data, viewing the
-underlying Reference Energy System (RES) network depicting the energy
-system, and running a TIMES model.
+This section provides a brief introduction to the VEDA Excel template workbooks for specifying and building a model, and using VEDA2.0 to access and manage the templates, browsing the data, viewing the underlying Reference Energy System (RES) network depicting the energy system, and running a TIMES model.
 
-To assist with getting setup with and oriented to VEDA2.0 you may want
-to start by engaging with the short YouTube tutorials:
-
-1.  [Installation & Quick
-    Tour](https://www.youtube.com/watch?v=OnYIDiftNgM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=1)
-
-2.  [VEDA2.0
-    Menu](https://www.youtube.com/watch?v=OnYIDiftNgM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=2)
-
+To assist with getting setup with and oriented to VEDA2.0 you may want to start by engaging with the short YouTube tutorials:
+1.  [Installation & Quick Tour](https://www.youtube.com/watch?v=OnYIDiftNgM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=1)
+2.  [VEDA2.0 Menu](https://www.youtube.com/watch?v=OnYIDiftNgM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=2)
 3.  [Navigator](https://www.youtube.com/watch?v=OnYIDiftNgM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=3)
-
 4.  [Browse](https://www.youtube.com/watch?v=OnYIDiftNgM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=4)
-
-5.  [Item
-    Details](https://www.youtube.com/watch?v=OnYIDiftNgM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=5)
-
-6.  [Run
-    Manager](https://www.youtube.com/watch?v=3EkFqLyl5ZE&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=6)
-
+5.  [Item Details](https://www.youtube.com/watch?v=OnYIDiftNgM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=5)
+6.  [Run Manager](https://www.youtube.com/watch?v=3EkFqLyl5ZE&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=6)
 7.  Results *{now video yet}*
+8.  [ETSAP VEDA2.0 Tutorial Webinar (1.5hrs)](https://www.youtube.com/watch?v=OmDjlePsbsM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=10)
 
-8.  [ETSAP VEDA2.0 Tutorial Webinar
-    (1.5hrs)](https://www.youtube.com/watch?v=OmDjlePsbsM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=10)
+The main modules available in VEDA2.0, available from the StartPage, Modules menu, or \[Function Keys\] are:
+- **Navigator \[F6\]:** to oversee the management of the Excel workbooks;
+- **Browse \[F7\]:** to view all model data (based on filter and search facilities) in a dynamic data cube;
+- **Items List** indicating all the process/commodities appearing in the model, as well as user constraints;
+- **Items Details \[F8\]:** to view and cascade thru the RES (indicating any UCs the component is involved in), with process/commodity declaration information and cube data views;
+- **Run Manager \[F9\]:** for composing and submitting model runs, and 
+- **Results \[F10\]:** for model results analysis.
 
-The main modules available in VEDA2.0, available from the StartPage,
-Modules menu, or \[Function Keys\] are:
-
--   **Navigator \[F6\]:** to oversee the management of the Excel
-    workbooks;
-
--   **Browse \[F7\]:** to view all model data (based on filter and
-    search facilities) in a dynamic data cube;
-
--   **Items List** indicating all the process/commodities appearing in
-    the model, as well as user constraints;
-
--   **Items Details \[F8\]:** to view and cascade thru the RES
-    (indicating any UCs the component is involved in), with
-    process/commodity declaration information and cube data views;
-
--   **Run Manager \[F9\]:** for composing and submitting model runs, and
-
--   **Results \[F10\]:** for model results analysis.
-
-These are described in Section 2.5, after a description of the VEDA2.0
-template folder structure, file types, tables used to create model input
-and results module VEDA2.0 for analysis of model runs.
+These are described in Section 2.5, after a description of the VEDA2.0 template folder structure, file types, tables used to create model input and results module VEDA2.0 for analysis of model runs.
 
 ## Model Folder Organization
 
-All VEDA-TIMES model input data is organized in Excel workbooks (or
-files). VEDA2.0 then integrates information from all of these workbooks
-into internal databases to facilitate management of the model data and
-to prepare and submit a TIMES model, generated and solved with the GAMS
-sub-system. The user templates underlying models managed by VEDA2.0 are
-normally stored in a specific folder (by default \\VEDA\\VEDA_Models).
-Within this folder, there is a sub-folder for each individual model a
-user is working with, including all of the VEDA-TIMES Demo Models
-((\\VEDA\\VEDA_Models\\DemoS_001, \_002, etc.). The sub-folder structure
-is identical for each individual model (Figure 2, left side) and
-includes the kind of templates shown in the table below, as found with
-the DemoS_012 model.
+All VEDA-TIMES model input data is organized in Excel workbooks (or files). VEDA2.0 then integrates information from all of these workbooks into internal databases to facilitate management of the model data and to prepare and submit a TIMES model, generated and solved with the GAMS sub-system. The user templates underlying models managed by VEDA2.0 are normally stored in a specific folder (by default \\VEDA\\VEDA_Models). Within this folder, there is a sub-folder for each individual model a user is working with, including all of the VEDA-TIMES Demo Models ((\\VEDA\\VEDA_Models\\DemoS_001, \_002, etc.). The sub-folder structure is identical for each individual model (Figure 2, left side) and includes the kind of templates shown in the table below, as found with the DemoS_012 model.
 
-![](assets/image6.png){width="6.5in" height="3.5208333333333335in"}
+![](assets/image6.png)
 
-[]{#_Ref444525057 .anchor}Figure 2. Sub-folders Structure for each
-VEDA2.0 Model (showing the DemoS_012 files)
 
--   The **B-Y Templates**, the **SysSettings** files, the **BY_Trans**
-    file and **Sets**.
-
--   A sub-folder (**SubRES_TMPL**) to store all SubRES files and
-    associated transformation files.
-
--   A sub-folder (**SuppXLS**) to store all scenario files, as well
-    sub-folders for trade files (**Trades**) and demand files
-    (**Demands**) (Figure 2, right side).
-
--   Users are not concerned with the other sub-folders.
+Figure 2. Sub-folders Structure for each VEDA2.0 Model (showing the DemoS_012 files)
+- The **B-Y Templates**, the **SysSettings** files, the **BY_Trans** file and **Sets**.
+- A sub-folder (**SubRES_TMPL**) to store all SubRES files and associated transformation files.
+- A sub-folder (**SuppXLS**) to store all scenario files, as well sub-folders for trade files (**Trades**) and demand files (**Demands**) (Figure 2, right side).
+- Users are not concerned with the other sub-folders.
 
 ## VEDA2.0 StartPage
 
-VEDA2.0 opens displaying the StartPage (), which enables the launch of
-any of the individual components of VEDA by double-clicking on the
-associate box. The components may also be launch from the Modules
-pulldown menu, as well as via function keys as noted above. The main
-components most often used are readily accessible via the StartPage:
+VEDA2.0 opens displaying the StartPage (), which enables the launch of any of the individual components of VEDA by double-clicking on the associate box. The components may also be launch from the Modules pulldown menu, as well as via function keys as noted above. The main components most often used are readily accessible via the StartPage:
+- **Navigator:** oversee the management of the Excel workbooks;
+- **Browse:** access model data via dynamic cube tables;
+- **Items List:** list of all process, commodity, commodity groups and user constraint in a model;
+- **Items Detail:** basic Reference Energy System network diagram view of commodity/process connectivity and associated data;
+- **Run Manager:** to compose and submit model runs, and
+- **RESULTS**: examination of model run results via tables and graphs.
 
--   **Navigator:** oversee the management of the Excel workbooks;
+The current model (DemoS_001) and version of VEDA2.0 are shown on the top line of the form.
 
--   **Browse:** access model data via dynamic cube tables;
+![](assets/image7.png)
 
--   **Items List:** list of all process, commodity, commodity groups and
-    user constraint in a model;
-
--   **Items Detail:** basic Reference Energy System network diagram view
-    of commodity/process connectivity and associated data;
-
--   **Run Manager:** to compose and submit model runs, and
-
--   **RESULTS**: examination of model run results via tables and graphs.
-
-The current model (DemoS_001) and version of VEDA2.0 are shown on the
-top line of the form.
-
-![](assets/image7.png){width="6.489583333333333in"
-height="4.270833333333333in"}
-
-[]{#_Ref54877190 .anchor}Figure 3. Model StartPage
+Figure 3. Model StartPage
 
 ## VEDA2.0 Navigator and Types of Templates
 
-The VEDA2.0 Navigator (Figure 4) provides a comprehensive view of all
-Templates In the various folders managed by VEDA2.0 for the current
-model. The form opens with the last model loaded. To bring in your 1^st^
-or another model hit the Add New button in the upper left of the
-Navigator form, which opens Windows Explorer -- move to the VEDA_Models
-sub-folder of interest and click on it to start the process. VEDA2.0 may
-ask if you want to open a New Window, where "Yes" will start another
-instance of VEDA2.0 and "No" will replace the currently viewed model
-with the one requested, which also happens if you reselect the current
-model folder. You may reopen previously opened models via
-![](assets/image8.png){width="0.5625in" height="0.19791666666666666in"},
-which will again ask if you want to open a new instance or replace the
-only currently open.
+The VEDA2.0 Navigator (Figure 4) provides a comprehensive view of all Templates In the various folders managed by VEDA2.0 for the current model. The form opens with the last model loaded. To bring in your 1^st^ or another model hit the Add New button in the upper left of the Navigator form, which opens Windows Explorer -- move to the VEDA_Models sub-folder of interest and click on it to start the process. VEDA2.0 may ask if you want to open a New Window, where "Yes" will start another instance of VEDA2.0 and "No" will replace the currently viewed model with the one requested, which also happens if you reselect the current model folder. You may reopen previously opened models via ![](assets/image8.png), which will again ask if you want to open a new instance or replace the only currently open.
 
-When first opening the Navigator for a particular model the form will be
-presented as seen below, with all the panel types displayed. If you want
-to recover empty real estate simply Unpin say the Parametric and No Seed
-Value panes showing in Figure 4, resulting in what one sees in Figure 5,
-where by grabbing the vertical tabs in the middle of a pane the window
-size has also been adjusted. Note that when Unpinned the pane header
-appears to the right so that when clicked on it returns to the
-visualization pane.
+When first opening the Navigator for a particular model the form will be presented as seen below, with all the panel types displayed. If you want to recover empty real estate simply Unpin say the Parametric and No Seed Value panes showing in Figure 4, resulting in what one sees in Figure 5, where by grabbing the vertical tabs in the middle of a pane the window size has also been adjusted. Note that when Unpinned the pane header appears to the right so that when clicked on it returns to the visualization pane.
 
-![](assets/image9.png){width="6.5in" height="2.5416666666666665in"}
+![](assets/image9.png)
 
-[]{#_Ref335997296 .anchor}Figure 4. VEDA2.0 Navigator Layout
+Figure 4. VEDA2.0 Navigator Layout
 
-You may also switch the panes around, as done in Figure 5, where the
-Regular Scenario \[RS\] pane has been moved to the left of the Demand
-Scenario \[DS\] and Trade Scenario \[TS\] panes. This is accomplished by
-grabbing the pane at the top then using
-the![](assets/image10.png){width="0.3229166666666667in"
-height="0.2708333333333333in"}positioning tool to place the pane where
-you wish in the form. Note that when closing and reopening the Navigator
-(or VEDA2.0) the panes will appear as organized the last time.
+You may also switch the panes around, as done in Figure 5, where the Regular Scenario \[RS\] pane has been moved to the left of the Demand Scenario \[DS\] and Trade Scenario \[TS\] panes. This is accomplished by grabbing the pane at the top then using the![](assets/image10.png)positioning tool to place the pane where you wish in the form. Note that when closing and reopening the Navigator (or VEDA2.0) the panes will appear as organized the last time.
 
-![](assets/image11.png){width="5.21875in" height="4.385416666666667in"}
+![](assets/image11.png)
 
-[]{#_Ref47578864 .anchor}Figure 5. VEDA2.0 Navigator -- Tailored View
+Figure 5. VEDA2.0 Navigator -- Tailored View
 
 The specific folder associated with the active model can be opened by
 clicking on the model name at the both of the VEDA2.0 form (in Figure 4,
@@ -909,16 +776,13 @@ regions.
 
 ### User constraints and their tables
 
-User constraints provide the modeller with a flexible framework to add case-study specific constraints to the standard equation set embodied in TIMES model generator. With the help of user constraints, virtually any possible linear relationship between core components of the RES (as
-represented by variables in TIMES) can be formulated, and some input attributes can also be brought in as coefficients. User constraints can also be written to link variables across consecutive time slices or periods. Section 6.4 of Part II of the TIMES documentation contains an extensive discussion of the user constraint types available and their mathematics.
+User constraints provide the modeller with a flexible framework to add case-study specific constraints to the standard equation set embodied in TIMES model generator. With the help of user constraints, virtually any possible linear relationship between core components of the RES (as represented by variables in TIMES) can be formulated, and some input attributes can also be brought in as coefficients. User constraints can also be written to link variables across consecutive time slices or periods. Section 6.4 of Part II of the TIMES documentation contains an extensive discussion of the user constraint types available and their mathematics.
 
-Defining user constraints in VEDA2.0 templates is a two-step process. They are first declared with one or more **\~UC_SETS:** tags, which indicate their type and domain of coverage. Then their data is specified using a table with similar structure to that of a **\~FI_T** table, as shown in Figure 12. This example puts an upper limit on the CO2 arising from the Transportation plus Power sectors of the model from 2010 on, interpolation between 2010-2020 and the extending constant for the remainder of the modelling horizon (owing to interpolation rule (5) specified in the C_RHSRTS\~0 column).
+Defining user constraints in VEDA2.0 templates is a two-step process. They are first declared with one or more **\~UC_SETS:** tags, which indicate their type and domain of coverage. Then their data is specified using a table with similar structure to that of a **\~FI_T** table, as shown in Figure 12. This example puts an upper limit on the CO2 arising from the Transportation plus Power sectors of the model from 2010 on, interpolation between 2010-2020 and the extending constant for the remainder of the modelling horizon (owing to interpolation rule (5) specified in the UC_RHSRTS\~0 column).
 
-![](assets/image23.png){width="6.239583333333333in"
-height="0.7395833333333334in"}
+![](assets/image23.png)
 
-[]{#_Ref336865683 .anchor}Figure 12. Defining a User Constraint in
-VEDA2.0
+Figure 12. Defining a User Constraint in VEDA2.0
 
 Available UC sets are described in Table 5. Each set definition holds for the entire sheet, unless redefined. All the existing set definitions are applied to all user constraints in a table.
 
@@ -953,18 +817,16 @@ A UC table is then structured similarly to a Flexible Import table, with the **\
 | LimType       | UP/LO/FX/N                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Top_Check     | To control the process-commodity combinations via topology when both indexes exist for the attribute in question.  Valid entries: I/O/A. "I" will retain those  combinations where commodities are input to  processes. "O" =\> Output; . Default = either input or  output.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
-: []{#_Ref47658844 .anchor}Table 6. UC_INDEXES for user constraint
-tables
+: Table 6. UC_INDEXES for user constraint tables
 
 > \* Wild cards allowed, comma separated list permitted
 
 Valid data column headers are:
-
--   Any of the UC attributes available in the current TIMES code;
--   Years (including 0 for interpolation setting);
--   Region;
--   UP/LO, and
--   LHS/RHS.
+- Any of the UC attributes available in the current TIMES code;
+- Years (including 0 for interpolation setting);
+- Region;
+- UP/LO, and
+- LHS/RHS.
 
 Multiple values can be separated by "\~". Any specification without a region identifier in the column is applied to the region in the row identifier area. If there is no region, it applies to all regions in the active R_E/R_S specification.
 
@@ -4737,28 +4599,12 @@ exchanger + district heating network. Additional objectives include:
   -----------------------------------------------------------------------
 
 **Files**. The ninth step model is built by:
-
--   modifying two B-Y Templates (VT_REG1_ELC_v09, VT_REG2_ELC_v09) to
-    introduce past investment information;
-
--   using the BY Transformation file (BY_Trans) to insert base year
-    information (availability factor by time slice for existing wind and
-    solar plants and interpolation rules);
-
--   using a SubRES Transformation file (SubRES_NewTechs_Trans) to insert
-    information for new processes (availability factor by time slice for
-    new wind and solar plants) and to declare the availability or
-    non-availability of each process in each region;
-
--   building two new SubRES (one with an iron & steel sector; one with
-    CHP processes and district heating);
-
--   creating a scenario file to update information in the industrial
-    sector;
-
--   creating a scenario file with a user constraint on the minimum
-    penetration of district heating in the residential sector (Figure
-    160).
+- modifying two B-Y Templates (VT_REG1_ELC_v09, VT_REG2_ELC_v09) to introduce past investment information;
+- using the BY Transformation file (BY_Trans) to insert base year information (availability factor by time slice for existing wind and solar plants and interpolation rules);
+- using a SubRES Transformation file (SubRES_NewTechs_Trans) to insert information for new processes (availability factor by time slice for new wind and solar plants) and to declare the availability or non-availability of each process in each region;
+- building two new SubRES (one with an iron & steel sector; one with CHP processes and district heating);
+- creating a scenario file to update information in the industrial sector;
+- creating a scenario file with a user constraint on the minimum penetration of district heating in the residential sector (Figure 160).
 
 ![](assets/image189.png){width="6.5in" height="4.895833333333333in"}
 
@@ -4766,72 +4612,36 @@ exchanger + district heating network. Additional objectives include:
 
 ### B-Y Template VT_REG\*\_ELC_V09
 
-The only B-Y Templates that are modified are the electricity ones
-(VT_REG1_ELC_V09 and VT_REG2_ELC_V09).
+The only B-Y Templates that are modified are the electricity ones (VT_REG1_ELC_V09 and VT_REG2_ELC_V09).
 
 #### Con_ELC
 
-The STOCK attribute for existing capacity can be replaced by another
-attribute (PASTI = past investments) to describe capacity installations
-that took place before the beginning of the model horizon (2005) and
-still exist during the modelling horizon. For any process, an arbitrary
-number of past investments may be specified to reflect the age structure
-in the existing capacity stock: the hydro power plants in this example
-(Figure 161). Each vintage of PASTI capacity will be constant until the
-end of its technical life, after which the capacity becomes zero in a
-single step. This allows a vintage-based retirement profile for the
-existing stock to be introduced into the model without the need to
-calculate and specify a STOCK in each future year.
+The STOCK attribute for existing capacity can be replaced by another attribute (PASTI = past investments) to describe capacity installations that took place before the beginning of the model horizon (2005) and still exist during the modelling horizon. For any process, an arbitrary number of past investments may be specified to reflect the age structure in the existing capacity stock: the hydro power plants in this example (Figure 161). Each vintage of PASTI capacity will be constant until the end of its technical life, after which the capacity becomes zero in a single step. This allows a vintage-based retirement profile for the existing stock to be introduced into the model without the need to calculate and specify a STOCK in each future year.
 
-![](assets/image190.png){width="4.739583333333333in"
-height="1.6354166666666667in"}
+![](assets/image190.png)
 
-[]{#_Ref456285906 .anchor}Figure 161. Past Investments That Occurred
-Before 2005
+
+[]{#_Ref456285906 .anchor}Figure 161. Past Investments That Occurred Before 2005
 
 #### BY_Trans
 
-The BY_Trans file works like a scenario file, except that the rule-based
-filters and the update/insert changes apply only to those process and
-commodities already existing in the B-Y templates. In this example
-(Figure 162), the file is used to insert new information: the
-availability factor (AF) by time slice (SD, SN, etc.) for existing wind
-and solar plants (ELCREWIN00 and ELCRESOL00).
+The BY_Trans file works like a scenario file, except that the rule-based filters and the update/insert changes apply only to those process and commodities already existing in the B-Y templates. In this example (Figure 162), the file is used to insert new information: the availability factor (AF) by time slice (SD, SN, etc.) for existing wind and solar plants (ELCREWIN00 and ELCRESOL00).
 
 ![](assets/image191.png){width="6.0in" height="1.5729166666666667in"}
 
-[]{#_Ref444527927 .anchor}Figure 162. Transformation File to Insert New
-Attributes for Existing Processes
+[]{#_Ref444527927 .anchor}Figure 162. Transformation File to Insert New Attributes for Existing Processes
 
-The transformation file is also used to insert a new interpolation rule
-(2 = interpolation, but extrapolation with EPS (epsilon, or effectively
-zero), which inserts EPS in every year if no bound value is declared in
-any year) to avoid the installation of new capacity (NCAP_BND) after the
-base year for the existing hydro power plants (ELCREHYD00). VEDA2.0
-creates this entry by default for all technologies for which STOCK is
-declared. Since we have switched to using PASTI we need to declare it
-manually (Figure 163).
+The transformation file is also used to insert a new interpolation rule (2 = interpolation, but extrapolation with EPS (epsilon, or effectively zero), which inserts EPS in every year if no bound value is declared in any year) to avoid the installation of new capacity (NCAP_BND) after the base year for the existing hydro power plants (ELCREHYD00). VEDA2.0 creates this entry by default for all technologies for which STOCK is declared. Since we have switched to using PASTI we need to declare it manually (Figure 163).
 
 ![](assets/image192.png){width="6.0in" height="0.59375in"}
 
-[]{#_Ref444527932 .anchor}Figure 163. Transformation File to Insert a
-New Interpolation Rule
+[]{#_Ref444527932 .anchor}Figure 163. Transformation File to Insert a New Interpolation Rule
 
 ### SubRES_NewTechs_Trans
 
-Similarly to the BY_Trans file, a transformation file exists for each of
-the SubRES created. They are used to update/insert information for new
-processes and commodities declared in the corresponding SubRES and to
-declare the availability or non-availability of each process in each
-region. In this example, the transformation file of the SubRES_NewTechs
-is used to insert the availability factor for new wind and solar plants
-(ELCRNWIN01 and ELCRNSOL01) exactly as for the existing ones.
+Similarly to the BY_Trans file, a transformation file exists for each of the SubRES created. They are used to update/insert information for new processes and commodities declared in the corresponding SubRES and to declare the availability or non-availability of each process in each region. In this example, the transformation file of the SubRES_NewTechs is used to insert the availability factor for new wind and solar plants (ELCRNWIN01 and ELCRNSOL01) exactly as for the existing ones.
 
-To assign the availability of processes to regions, a new \~TFM_AVA
-table is created (Figure 164). The first line says that all processes
-(Pset_PN=\*) are available in all regions. The second line modifies this
-to say that the new hydro power plant is not available in REG1
-(1=available; 0=non-available).
+To assign the availability of processes to regions, a new \~TFM_AVA table is created (Figure 164). The first line says that all processes (Pset_PN=\*) are available in all regions. The second line modifies this to say that the new hydro power plant is not available in REG1 (1=available; 0=non-available).
 
 ![](assets/image193.png){width="2.8229166666666665in"
 height="0.6979166666666666in"}
@@ -4841,10 +4651,7 @@ Process Availability
 
 ### SubRES_New-IND
 
-In the new SubRES_New-IND file, a simplified iron & steel sector is
-added to the model (Figure 165). This file includes two sheets (IND and
-PRI); sheet names need to start with the name of one of the model
-sectors.
+In the new SubRES_New-IND file, a simplified iron & steel sector is added to the model (Figure 165). This file includes two sheets (IND and PRI); sheet names need to start with the name of one of the model sectors.
 
 ![](assets/image194.png){width="3.8958333333333335in"
 height="2.2708333333333335in"}

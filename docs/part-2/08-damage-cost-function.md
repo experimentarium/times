@@ -70,10 +70,7 @@ In both approaches, a number of assumptions are made:
 In a given time period, and for a given pollutant, the damage cost is
 modeled as follows:
 
-  -------------------------------------------------------------- --------
   $$DAM(EM) = \alpha \cdot EM^{\beta + 1}$$                      \(1\)
-
-  -------------------------------------------------------------- --------
 
 where:
 
@@ -92,25 +89,16 @@ where:
 If we denote the marginal cost at the reference level MC~0~, the
 following holds:
 
-  -------------------------------------------------------------- --------
   $$MC_{0} = \alpha \cdot (\beta + 1) \cdot EM_{0}^{\beta}$$     \(2\)
-
-  -------------------------------------------------------------- --------
 
 where EM~0~ is the reference amount of emissions. Therefore expression
 (1) may be re-written as:
 
-  ------------------------------------------------------------------------------------ --------
   $$DAM(EM) = MC_{0} \cdot \frac{EM^{\beta + 1}}{(\beta + 1) \cdot EM_{0}^{\beta}}$$   \(3\)
-
-  ------------------------------------------------------------------------------------ --------
 
 The marginal damage cost is therefore given by the following expression:
 
-  -------------------------------------------------------------- --------
   $$MC(EM) = MC_{0} \cdot \frac{EM^{\beta}}{EM_{0}^{\beta}}$$    \(4\)
-
-  -------------------------------------------------------------- --------
 
 The approach to damage costs described in this section applies more
 particularly to local pollutants. Extension to global emissions such GHG
@@ -134,17 +122,11 @@ and *n* intervals above the reference level. We also assume a middle
 interval centered at the reference emission level. To each interval
 corresponds one step variable *S*. Thus, we have for emissions:
 
-  ---------------------------------------------------------------------------- --------
   $$EM = \sum_{i = 1}^{m}S_{i}^{lo} + S^{mid} + \sum_{i = 1}^{n}S_{i}^{up}$$   \(5\)
-
-  ---------------------------------------------------------------------------- --------
 
 The damage cost can then be written as follows:
 
-  -------------------------------------------------------------------------------------------------------------------------------------- --------
   $$DAM(EM) = \sum_{i = 1}^{m}{MC_{i}^{lo} \cdot S_{i}^{lo}} + MC_{0} \cdot S^{mid} + \sum_{i = 1}^{n}{MC_{i}^{up} \cdot S_{i}^{up}}$$   \(6\)
-
-  -------------------------------------------------------------------------------------------------------------------------------------- --------
 
 where:
 
@@ -166,10 +148,7 @@ marginal costs at the center of each step. If all the steps intervals
 are of equal size, the marginal costs for the steps below the reference
 level are obtained by the following formula:
 
-  ----------------------------------------------------------------------------------- --------
   $$MC_{i}^{lo} = MC_{0} \cdot \left( \frac{(i - 0.5)}{(m + 0.5)} \right)^{\beta}$$   \(7\)
-
-  ----------------------------------------------------------------------------------- --------
 
 Formulas for the marginal costs of the other steps can be derived
 similarly.
@@ -429,17 +408,17 @@ PARAMETER DAM_BQTY / REG.EM 80 /;
 
 PARAMETER DAM_ELAST / REG.EM.LO 1, REG.EM.UP 0.7 /;
 
-![](media/image34.png){width="5.635416666666667in" height="3.8125in"}
-
-Figure
-
- 15. Example of a linearized damage function with 1+1+1 steps\
+ ```{figure} assets/image34.png
+:name: example-linearized-function-111
+:align: center
+Example of a linearized damage function with 1+1+1 steps\
 (1 lower step, 1 middle step, 1 upper step).
+```
 
 As we did not specify the number of steps, but we did specify the
 elasticities in both directions, the number of steps is assumed to be 1
 in both directions. The resulting damage cost function is illustrated in
-Figure 15. Because the damage function has a very coarse representation,
+{numref}`example-linearized-function-111`. Because the damage function has a very coarse representation,
 the total costs have notable deviations from the accurate non-linear
 function. Note that the step size has been automatically determined to
 be **DAM_BQTY/(DAM_STEP+0.5)** = 80/1.5. However, the last step has no
@@ -467,18 +446,18 @@ PARAMETER DAM_STEP / REG.EM.LO 5, REG.EM.UP 3 /;
 
 PARAMETER DAM_VOC / REG.EM.LO 60, REG.EM.UP 100 /;
 
-The resulting damage cost function is illustrated in Figure 16. The cost
+The resulting damage cost function is illustrated in {numref}`example-linearized-function-1513`. The cost
 function follows now very closely the accurate non-linear function. Note
 that the step sizes derived from the VOC specifications are 10 units for
 the lower steps, 20 for the middle step, and 30 units for the upper
 steps. However, the last step of course has no upper bound.
 
-![](media/image35.png){width="5.90625in" height="4.010416666666667in"}
-
-Figure
-
- B-16. Example of a linearized damage function with 1+5+1+3 steps\
+ ```{figure} assets/image35.png
+:name: example-linearized-function-1513
+:align: center
+Example of a linearized damage function with 1+5+1+3 steps\
 (one zero cost step, 5 lower steps, one middle step, 3 upper steps).
+```
 
 ## Variables
 
