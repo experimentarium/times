@@ -1,463 +1,181 @@
 # Parameters
 
-While sets describe structural information of the energy system or
-qualitative characteristics of its entities (e.g. processes or
-commodities), parameters contain numerical information. Examples of
-parameters are the import price of an energy carrier or the investment
-cost of a technology. Most parameters are time-series where a value is
-provided (or interpolated) for each year (datayear). The TIMES model
-generator distinguishes between user input parameters and internal
-parameters. The former are provided by the modeller (usually by way of a
-data handling system or "shell" such a VEDA-FE or ANSWER-TIMES), while
-the latter are internally derived from the user input parameters, in
-combination with information given by sets, in order to calculate for
-example the cost coefficients in the objective function. This Chapter
-first covers the user input parameters in Section 3.1 and then describes
-the most important internal parameters as far as they are relevant for
-the basic understanding of the equations (Section 3.2). Section 3.3
-presents the parameters used for reporting the results of a model run.
+While sets describe structural information of the energy system or qualitative characteristics of its entities (e.g. processes or commodities), parameters contain numerical information. Examples of parameters are the import price of an energy carrier or the investment cost of a technology. Most parameters are time-series where a value is provided (or interpolated) for each year ($datayear$). The TIMES model generator distinguishes between user input parameters and internal parameters. The former are provided by the modeller (usually by way of a data handling system or "shell" such a VEDA-FE or ANSWER-TIMES), while the latter are internally derived from the user input parameters, in combination with information given by sets, in order to calculate for example the cost coefficients in the objective function. This Chapter first covers the user input parameters in Section 3.1 and then describes the most important internal parameters as far as they are relevant for the basic understanding of the equations (Section 3.2). Section 3.3 presents the parameters used for reporting the results of a model run.
 
 ## User input parameters
 
-This section provides an overview of the user input parameters that are
-available in TIMES to describe the energy system. Before presenting the
-various parameters in detail in Section 3.1.3 two preprocessing
-algorithms applied to the user input data are presented, namely the
-inter-/extrapolation and the inheritance/aggregation routines. User
-input parameters that are time-dependent can be provided by the user for
-those years for which statistical information or future projections are
-available, and the inter-/extrapolation routine described in Section
-3.1.1 used to adjust the input data to the years required for the model
-run. Timeslice dependent parameters do not have to be provided on the
-timelice level of a process, commodity or commodity flow. Instead the
-so-called inheritance/aggregation routine described in Section 3.1.2
-assigns the input data from the user provided timeslice level to the
-appropriate timeslice level as necessary.
+This section provides an overview of the user input parameters that are available in TIMES to describe the energy system. Before presenting the various parameters in detail in Section 3.1.3 two preprocessing algorithms applied to the user input data are presented, namely the inter-/extrapolation and the inheritance/aggregation routines. User input parameters that are time-dependent can be provided by the user for those years for which statistical information or future projections are available, and the inter-/extrapolation routine described in Section 3.1.1 used to adjust the input data to the years required for the model run. Timeslice dependent parameters do not have to be provided on the timelice level of a process, commodity or commodity flow. Instead the so-called inheritance/aggregation routine described in Section 3.1.2 assigns the input data from the user provided timeslice level to the appropriate timeslice level as necessary.
 
 ### Inter- and extrapolation of user input parameters
 
-Time-dependent user input parameters are specified for specific years,
-the so-called *datayears* (**datayear**). These datayears do not have to
-coincide with the modelyears (**v** or **modelyear)** needed for the
-current run. Reasons for differences between these two sets are for
-example that the period definition for the model has been altered after
-having provided the initial set of input data leading to different
-milestoneyears (**t** or **milestoneyr)** or that data are only
-available for certain years that do not match the modelyears. In order
-to avoid burdening the user with the cumbersome adjustment of the input
-data to the modelyears, an inter-/extrapolation (I/E) routine is
-embedded in the TIMES model generator. The inter-/extrapolation routine
-distinguishes between a default inter-/extrapolation that is
-automatically applied to the input data and an enhanced user-controlled
-inter-/extrapolation that allows the user to specify an
-inter-/extrapolation rule for each time-series explicitly. Independent
-of the default or user-controlled I/E options, TIMES inter-/extrapolates
-(using the standard algorithm) all cost parameters in the objective
-function to the individual years of the model as part of calculating the
-annual cost details (see section 3.1.1.3 below).
+Time-dependent user input parameters are specified for specific years, the so-called *data years* ($datayear$). These data years do not have to coincide with the model years ($v$ or $modelyear$) needed for the current run. Reasons for differences between these two sets are for example that the period definition for the model has been altered after having provided the initial set of input data leading to different milestone years ($t$ or $milestoneyr$) or that data are only available for certain years that do not match the model years. In order to avoid burdening the user with the cumbersome adjustment of the input data to the model years, an inter-/extrapolation (I/E) routine is embedded in the TIMES model generator. The inter-/extrapolation routine distinguishes between a default inter-/extrapolation that is automatically applied to the input data and an enhanced user-controlled inter-/extrapolation that allows the user to specify an inter-/extrapolation rule for each time-series explicitly. Independent of the default or user-controlled I/E options, TIMES inter-/extrapolates (using the standard algorithm) all cost parameters in the objective function to the individual years of the model as part of calculating the annual cost details (see section 3.1.1.3 below).
 
-The possibility of controlling interpolation on a time-series basis
-improves the independence between the years found in the primary
-database and the data actually used in the individual runs of a TIMES
-model. In this way the model is made more flexible with respect to
-running scenarios with arbitrary model years and period lengths, while
-using basically the very same input database.
+The possibility of controlling interpolation on a time-series basis improves the independence between the years found in the primary database and the data actually used in the individual runs of a TIMES model. In this way the model is made more flexible with respect to running scenarios with arbitrary model years and period lengths, while using basically the very same input database.
 
 #### Inter/extrapolation options
 
-The TIMES interpolation/extrapolation facility provides both a default
-I/E method for all time-series parameters, and options for the user to
-control the interpolation and extrapolation of each individual time
-series (Table 6). The option 0 does not change the default behavior. The
-specific options that correspond to the default methods are 3 (the
-standard default) and 10 (alternative default method for bounds and RHS
-parameters).
+The TIMES interpolation/extrapolation facility provides both a default I/E method for all time-series parameters, and options for the user to control the interpolation and extrapolation of each individual time series (Table 6). The option 0 does not change the default behavior. The specific options that correspond to the default methods are 3 (the standard default) and 10 (alternative default method for bounds and RHS parameters).
 
-Non-default interpolation/extrapolation can be requested for any
-parameter by providing an additional instance of the parameter with an
-indicator in the YEAR index and a value corresponding to one of the
-integer-valued Option Codes (see Table 6 and example below). This
-control specification activates the interpolation/extrapolation rule for
-the time series, and is distinguished from actual time-series data by
-providing a special control label (\'**0**\') in the YEAR index. The
-particular interpolation rule to apply is a function of the Option Code
-assigned to the control record for the parameter. Note that for
-log-linear interpolation the Option Code indicates the year from which
-the interpolation is switched from standard to log-linear mode. TIMES
-user shell(s) will provide mechanisms for imbedding the control label
-and setting the Option Code through easily understandable selections
-from a user-friendly drop-down list, making the specification simple and
-transparent to the user.
+Non-default interpolation/extrapolation can be requested for any parameter by providing an additional instance of the parameter with an indicator in the $YEAR$ index and a value corresponding to one of the integer-valued Option Codes (see Table 6 and example below). This
+control specification activates the interpolation/extrapolation rule for the time series, and is distinguished from actual time-series data by providing a special control label (\'**0**\') in the $YEAR$ index. The particular interpolation rule to apply is a function of the Option Code assigned to the control record for the parameter. Note that for log-linear interpolation the Option Code indicates the year from which the interpolation is switched from standard to log-linear mode. TIMES user shell(s) will provide mechanisms for imbedding the control label and setting the Option Code through easily understandable selections from a user-friendly drop-down list, making the specification simple and transparent to the user.
 
-The enhanced interpolation/extrapolation facility provides the user with
-the following options to control the interpolation and extrapolation of
-each individual time series:
+The enhanced interpolation/extrapolation facility provides the user with the following options to control the interpolation and extrapolation of each individual time series:
+- Interpolation and extrapolation of data in the default way as predefined in TIMES. This option does not require any explicit action from the user.
+- No interpolation or extrapolation of data (only valid for non-cost parameters).
+- Interpolation between data points but no extrapolation (useful for many bounds). See option codes 1 and 11 in Table 2 below
+- Interpolation between data points entered, and filling-in all points outside the interpolation window with the EPS (zero) value. This can useful for e.g. the RHS of equality-type user constraints, or bounds on future investment in a particular instance of a technology. See option codes 2 and 12 in Table 2 below.
+- Forced interpolation and extrapolation throughout the time horizon. Can be useful for parameters that are by default not interpolated. See option codes 3, 4, and 5 as well as 14 and 15 in Table 2 below.
+- Log-linear interpolation beyond a specified data year, and both forward and backward extrapolation outside the interpolation window. Log-linear interpolation is guided by relative coefficients of annual change instead of absolute data values.
 
-  ---------- --------------------------------------------------- -----------
-  **Option   **Action**                                          **Applies
-  code**                                                         to**
+| Option code  | Action                                                                                                                            | Applies to  |
+| :----------: | --------------------------------------------------------------------------------------------------------------------------------- | :---------: |
+| 0 (or none)  | Interpolation and extrapolation of data in the default way as predefined in TIMES (see below)                                     |     All     |
+|     \<0      | No interpolation or extrapolation of data (only valid for non-cost parameters).                                                   |     All     |
+|      1       | Interpolation between data points but no extrapolation.                                                                           |     All     |
+|      2       | Interpolation between data points entered, and filling-in all points outside the inter­polation window with the EPS value.        |     All     |
+|      3       | Forced interpolation and both forward and backward extrapolation throughout the time horizon.                                     |     All     |
+|      4       | Interpolation and backward extrapolation                                                                                          |     All     |
+|      5       | Interpolation and forward extrapolation                                                                                           |     All     |
+|      10      | Migrated interpolation/extrapolation within periods                                                                               | Bounds, RHS |
+|      11      | Interpolation migrated at end-points, no extrapolation                                                                            | Bounds, RHS |
+|      12      | Interpolation migrated at ends, extrapolation with EPS                                                                            | Bounds, RHS |
+|      14      | Interpolation migrated at end, backward extrapolation                                                                             | Bounds, RHS |
+|      15      | Interpolation migrated at start, forward extrapolation                                                                            | Bounds, RHS |
+| YEAR (≥1000) | Log-linear interpolation beyond the specified YEAR, and both forward and backward extrapolation outside the interpolation window. |     All     |
 
-  0 (or      Interpolation and extrapolation of data in the      All
-  none)      default way as predefined in TIMES (see below)      
+  : Table 6: Option codes for the control of time series data interpolation
 
-  \< 0       No interpolation or extrapolation of data (only     All
-             valid for non-cost parameters).                     
+Migration means that data points are interpolated and extrapolated within each period but not across periods. This method thus migrates any data point specified for other than $milestoneyr$ year to the corresponding $milestoneyr$ year within the period, so that it will be effective in that period.
 
-  1          Interpolation between data points but no            All
-             extrapolation.                                      
-
-  2          Interpolation between data points entered, and      All
-             filling-in all points outside the inter­polation     
-             window with the EPS value.                          
-
-  3          Forced interpolation and both forward and backward  All
-             extrapolation throughout the time horizon.          
-
-  4          Interpolation and backward extrapolation            All
-
-  5          Interpolation and forward extrapolation             All
-
-  10         Migrated interpolation/extrapolation within periods Bounds, RHS
-
-  11         Interpolation migrated at end-points, no            Bounds, RHS
-             extrapolation                                       
-
-  12         Interpolation migrated at ends, extrapolation with  Bounds, RHS
-             EPS                                                 
-
-  14         Interpolation migrated at end, backward             Bounds, RHS
-             extrapolation                                       
-
-  15         Interpolation migrated at start, forward            Bounds, RHS
-             extrapolation                                       
-
-  YEAR\      Log-linear interpolation beyond the specified YEAR, All
-  (≥ 1000)   and both forward and backward extrapolation outside 
-             the interpolation window.                           
-  ---------- --------------------------------------------------- -----------
-
-  : Table 6: Option codes for the control of time series data
-  interpolation
-
-> • Interpolation and extrapolation of data in the default way as
-> predefined in TIMES. This option does not require any explicit action
-> from the user.
-
-• No interpolation or extrapolation of data (only valid for non-cost
-parameters).
-
-> • Interpolation between data points but no extrapolation (useful for
-> many bounds). See option codes 1 and 11 in Table 2 below.
->
-> • Interpolation between data points entered, and filling-in all points
-> outside the interpolation window with the EPS (zero) value. This can
-> useful for e.g. the RHS of equality-type user constraints, or bounds
-> on future investment in a particular instance of a technology. See
-> option codes 2 and 12 in Table 2 below.
->
-> • Forced interpolation and extrapolation throughout the time horizon.
-> Can be useful for parameters that are by default not interpolated. See
-> option codes 3, 4, and 5 as well as 14 and 15 in Table 2 below.
->
-> • Log-linear interpolation beyond a specified data year, and both
-> forward and backward extrapolation outside the interpolation window.
-> Log-linear interpolation is guided by relative coefficients of annual
-> change instead of absolute data values.
-
-Migration means that data points are interpolated and extrapolated
-within each period but not across periods. This method thus migrates any
-data point specified for other than milestoneyr year to the
-corresponding milestoneyr year within the period, so that it will be
-effective in that period.
-
-Log-linear interpolation means that the values in the data series are
-interpreted as coefficients of annual change beyond a given YEAR. The
-YEAR can be any year, including modelyears. The user only has to take
-care that the data values in the data series correspond to the
-interpretation given to them when using the log-linear option. For
-simplicity, however, the first data point is always interpreted as an
-absolute value, because log-linear interpolation requires at least one
-absolute data point to start with.
+Log-linear interpolation means that the values in the data series are interpreted as coefficients of annual change beyond a given $YEAR$. The $YEAR$ can be any year, including model years. The user only has to take care that the data values in the data series correspond to the interpretation given to them when using the log-linear option. For simplicity, however, the first data point is always interpreted as an absolute value, because log-linear interpolation requires at least one absolute data point to start with.
 
 #### Default inter/extrapolation
 
-The standard default method of inter-/extrapolation corresponds to the
-option 3, which interpolates linearly between data points, while it
-extrapolates the first/last data point constantly backward/forward. This
-method, full interpolation and extrapolation, is by default applied to
-most TIMES time series parameters. However, the parameters listed in
-Table 7 are by default **NOT** inter/extrapolated in this way, but have
-a different default method.
+The standard default method of inter-/extrapolation corresponds to the option 3, which interpolates linearly between data points, while it extrapolates the first/last data point constantly backward/forward. This method, full interpolation and extrapolation, is by default applied to most TIMES time series parameters. However, the parameters listed in Table 7 are by default **NOT** inter/extrapolated in this way, but have a different default method.
 
 #### Interpolation of cost parameters
 
-As a general rule, all cost parameters in TIMES are densely interpolated
-and extrapolated. This means that the parameters will have a value for
-every single year within the range of years they apply, and the changes
-in costs over years will thus be accurately taken into account in the
-objective function. The user can use the interpolation options 1--5 for
-even cost parameters. Whenever an option is specified for a cost
-parameter, it will be first sparsely interpolated/extrapolated according
-to the user option over the union of modelyear and datayear, and any
-remaining empty data points are filled with the EPS value. The EPS
-values will ensure that despite the subsequent dense interpolation the
-effect of user option will be preserved to the extent possible. However,
-one should note that due to dense interpolation, the effects of the user
-options will inevitably be smoothed.
+As a general rule, all cost parameters in TIMES are densely interpolated and extrapolated. This means that the parameters will have a value for every single year within the range of years they apply, and the changes in costs over years will thus be accurately taken into account in the objective function. The user can use the interpolation options 1--5 for even cost parameters. Whenever an option is specified for a cost parameter, it will be first sparsely interpolated/extrapolated according to the user option over the union of modelyear and datayear, and any remaining empty data points are filled with the EPS value. The EPS values will ensure that despite the subsequent dense interpolation the effect of user option will be preserved to the extent possible. However, one should note that due to dense interpolation, the effects of the user options will inevitably be smoothed.
 
 #### Examples of using I/E options
 
 **Example 1:**
 
-> Assume that we have three normal data points in a FLO_SHAR data
-> series:
->
-> FLO_SHAR(\'REG\',\'1995\',\'PRC1\',\'COAL\',\'IN_PRC1\',\'ANNUAL\',\'UP\')
-> = 0.25;
->
-> FLO_SHAR(\'REG\',\'2010\',\'PRC1\',\'COAL\',\'IN_PRC1\',\'ANNUAL\',\'UP\')
-> = 0.12;
->
-> FLO_SHAR(\'REG\',\'2020\',\'PRC1\',\'COAL\',\'IN_PRC1\',\'ANNUAL\',\'UP\')
-> = 0.05;
->
-> FLO_SHAR is by default NOT interpolated or extrapolated in TIMES. To
-> force interpolation/extrapolation of the FLO_SHAR parameter the
-> following control option for this data series should be added:
->
-> FLO_SHAR(\'REG\',\'0\',\'PRC1\',\'COAL\',\'IN_PRC1\',\'ANNUAL\',\'UP\')
-> = 3;
+Assume that we have three normal data points in a FLO_SHAR data series:
 
-  -----------------------------------------------------------------------------
-  **Parameter**   **Justification**                               **Default\
-                                                                  I/E**
-  --------------- ----------------------------------------------- -------------
-  ACT_BND         Bound may be intended at specific periods only. 10\
-                                                                  (migration)
+```
+FLO_SHAR('REG','1995','PRC1','COAL','IN_PRC1','ANNUAL','UP') = 0.25;
+FLO_SHAR('REG','2010','PRC1','COAL','IN_PRC1','ANNUAL','UP') = 0.12;
+FLO_SHAR('REG','2020','PRC1','COAL','IN_PRC1','ANNUAL','UP') = 0.05;
+```
 
-  CAP_BND                                                         
+$FLO\_SHAR$ is by default NOT interpolated or extrapolated in TIMES. To force interpolation/extrapolation of the $FLO\_SHAR$ parameter the following control option for this data series should be added:
 
-  NCAP_BND                                                        
+```
+FLO_SHAR('REG','0','PRC1','COAL','IN_PRC1','ANNUAL','UP') = 3;
+```
 
-  NCAP_DISC                                                       
+| Parameter  | Justification                                                                                                                      |  Default I/E   |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------- | :------------: |
+| ACT_BND    | Bound may be intended at specific periods only.                                                                                    | 10 (migration) |
+| CAP_BND    |                                                                                                                                    |                |
+| NCAP_BND   |                                                                                                                                    |                |
+| NCAP_DISC  |                                                                                                                                    |                |
+| FLO_FR     |                                                                                                                                    |                |
+| FLO_SHAR   |                                                                                                                                    |                |
+| STGIN_BND  |                                                                                                                                    |                |
+| STGOUT_BND |                                                                                                                                    |                |
+| COM_BNDNET |                                                                                                                                    |                |
+| COM_BNDPRD |                                                                                                                                    |                |
+| COM_CUMNET |                                                                                                                                    |                |
+| COM_CUMPRD |                                                                                                                                    |                |
+| REG_BNDCST |                                                                                                                                    |                |
+| RCAP_BND   |                                                                                                                                    |                |
+| IRE_BND    |                                                                                                                                    |                |
+| IRE_XBND   |                                                                                                                                    |                |
+| PRC_MARK   | Constraint may be intended at specific periods only                                                                                |       11       |
+| PRC_RESID  | Residual capacity usually intended to be only interpolated                                                                         |      1\*       |
+| UC_RHST    | User constraint may be intended for specific periods only                                                                          | 10 (migration) |
+| UC_RHSRT   |                                                                                                                                    |                |
+| UC_RHSRTS  |                                                                                                                                    |                |
+| NCAP_AFM   | Interpolation meaningless for these parameters (parameter value is a discrete number indicating which MULTI curve should be used). | 10 (migration) |
+| NCAP_FOMM  |                                                                                                                                    |                |
+| NCAP_FSUBM |                                                                                                                                    |                |
+| NCAP_FTAXM |                                                                                                                                    |                |
+| COM_ELASTX | Interpolation meaningless for these parameters (parameter value is a discrete number indicating which SHAPE curve should be used). | 10 (migration) |
+| FLO_FUNCX  |                                                                                                                                    |                |
+| NCAP_AFX   |                                                                                                                                    |                |
+| NCAP_FOMX  |                                                                                                                                    |                |
+| NCAP_FSUBX |                                                                                                                                    |                |
+| NCAP_FTAXX |                                                                                                                                    |                |
+| NCAP_PASTI | Parameter describes past investment for a single vintage year.                                                                     |      none      |
+| NCAP_PASTY | Parameter describes number of years over which to distribute past investments.                                                     |      none      |
+| CM_MAXC    | Bound may be intended at specific years only                                                                                       |      none      |
+| PEAKDA_BL  | Blending parameters at the moment not interpolated                                                                                 |      none      |
 
-  FLO_FR                                                          
+\* If only a single $PRC\_RESID$ value is specified, assumed to decay linearly over $NCAP\_TLIFE$ years
 
-  FLO_SHAR                                                        
-
-  STGIN_BND                                                       
-
-  STGOUT_BND                                                      
-
-  COM_BNDNET                                                      
-
-  COM_BNDPRD                                                      
-
-  COM_CUMNET                                                      
-
-  COM_CUMPRD                                                      
-
-  REG_BNDCST                                                      
-
-  RCAP_BND                                                        
-
-  IRE_BND                                                         
-
-  IRE_XBND                                                        
-
-  PRC_MARK        Constraint may be intended at specific periods  11
-                  only                                            
-
-  PRC_RESID       Residual capacity usually intended to be only   1\*
-                  interpolated                                    
-
-  UC_RHST         User constraint may be intended for specific    10\
-                  periods only                                    (migration)
-
-  UC_RHSRT                                                        
-
-  UC_RHSRTS                                                       
-
-  NCAP_AFM        Interpolation meaningless for these parameters  10\
-                  (parameter value is a discrete number           (migration)
-                  indicating which MULTI curve should be used).   
-
-  NCAP_FOMM                                                       
-
-  NCAP_FSUBM                                                      
-
-  NCAP_FTAXM                                                      
-
-  COM_ELASTX      Interpolation meaningless for these parameters  10\
-                  (parameter value is a discrete number           (migration)
-                  indicating which SHAPE curve should be used).   
-
-  FLO_FUNCX                                                       
-
-  NCAP_AFX                                                        
-
-  NCAP_FOMX                                                       
-
-  NCAP_FSUBX                                                      
-
-  NCAP_FTAXX                                                      
-
-  NCAP_PASTI      Parameter describes past investment for a       none
-                  single vintage year.                            
-
-  NCAP_PASTY      Parameter describes number of years over which  none
-                  to distribute past investments.                 
-
-  CM_MAXC         Bound may be intended at specific years only    none
-
-  PEAKDA_BL       Blending parameters at the moment not           none
-                  interpolated                                    
-
-  \* If only a                                                    
-  single                                                          
-  PRC_RESID value                                                 
-  is specified,                                                   
-  assumed to                                                      
-  decay linearly                                                  
-  over NCAP_TLIFE                                                 
-  years                                                           
-  -----------------------------------------------------------------------------
-
-  : Table 7: Parameters not being fully inter/extrapolated by default
+: Table 7: Parameters not being fully inter/extrapolated by default
 
 **Example 2:**
 
-> Assume that we define the following log-linear I/E option for a
-> FLO_SHAR data series:
->
-> FLO_SHAR(\'REG\',\'0\',\'PRC1\',\'COAL\',\'IN_PRC1\',\'ANNUAL\',\'UP\')
-> = 2005;
->
-> This parameter specifies a log-linear control option with the value
-> for the threshold YEAR of log-linear interpolation taken from 2005.
-> The option specifies that all data points up to the year 2005 should
-> be interpreted normally (as absolute data values), but all values
-> beyond that year should be interpreted as coefficients of annual
-> change. By using this interpretation, TIMES will then apply full
-> inter­polation and extrapolation to the whole data series. It is the
-> responsibility of the user to ensure that the first data point and all
-> data points up to (and including) the year 2005 represent absolute
-> values of the parameter, and that all subsequent data points represent
-> coefficients of annual change. Using the data of the example above,
-> the first data point beyond 2005 is found for the year 2010, and it
-> has the value of 0.12. The inter­pretation thus requires that the
-> maximum flow share of COAL in the commodity group IN_PRC1 is actually
-> meant to increase by as much as 12% per annum between the years 1995
-> and 2010, and by 5% per annum between 2010 and 2020.
+Assume that we define the following log-linear I/E option for a $FLO\_SHAR$ data series:
+
+```
+FLO_SHAR('REG','0','PRC1','COAL','IN_PRC1','ANNUAL','UP') = 2005;
+```
+
+This parameter specifies a log-linear control option with the value for the threshold YEAR of log-linear interpolation taken from 2005. The option specifies that all data points up to the year 2005 should be interpreted normally (as absolute data values), but all values beyond that year should be interpreted as coefficients of annual change. By using this interpretation, TIMES will then apply full inter­polation and extrapolation to the whole data series. It is the responsibility of the user to ensure that the first data point and all data points up to (and including) the year 2005 represent absolute values of the parameter, and that all subsequent data points represent coefficients of annual change. Using the data of the example above, the first data point beyond 2005 is found for the year 2010, and it has the value of 0.12. The inter­pretation thus requires that the maximum flow share of COAL in the commodity group IN_PRC1 is actually meant to increase by as much as 12% per annum between the years 1995 and 2010, and by 5% per annum between 2010 and 2020.
 
 #### Applicability
 
-  -----------------------------------------------------------------------
-  **Parameter**            **Comment**
-  ------------------------ ----------------------------------------------
-  NCAP_AFM                 Parameter value is a discrete numbers
-                           indicating which MULTI curve should be used,
-                           and not a time series datum.
+All the enhanced I/E options described above are available for all TIMES timeseries parameters, excluding $PRC\_RESID$ and $COM\_BPRICE$. $PRC\_RESID$ is always interpolated, as if option 1 were used, but is also extrapolated forwards over $TLIFE$ when either I/E option 5 or 15 is specified. $COM\_BPRICE$ is not interpolated at all, as it is obtained from the Baseline solution. Moreover, the I/E options are not applicable to the integer-valued parameters related to the $SHAPE$ and $MULTI$ tables, which are listed in Table 8.
 
-  NCAP_FOMM                
 
-  NCAP_FSUBM               
-
-  NCAP_FTAXM               
-
-  COM_ELASTX               Parameter value is a discrete number
-                           indicating which SHAPE curve should be used,
-                           and not a time series datum.
-
-  FLO_FUNCX                
-
-  NCAP_AFX                 
-
-  NCAP_FOMX                
-
-  NCAP_FSUBX               
-
-  NCAP_FTAXX               
-  -----------------------------------------------------------------------
+| Parameter  | Comment                                                                                                         |
+| ---------- | --------------------------------------------------------------------------------------------------------------- |
+| NCAP_AFM   | Parameter value is a discrete numbers indicating which MULTI curve should be used, and not a time series datum. |
+| NCAP_FOMM  |                                                                                                                 |
+| NCAP_FSUBM |                                                                                                                 |
+| NCAP_FTAXM |                                                                                                                 |
+| COM_ELASTX | Parameter value is a discrete number indicating which SHAPE curve should be used, and not a time series datum.  |
+| FLO_FUNCX  |                                                                                                                 |
+| NCAP_AFX   |                                                                                                                 |
+| NCAP_FOMX  |                                                                                                                 |
+| NCAP_FSUBX |                                                                                                                 |
+| NCAP_FTAXX |                                                                                                                 |
 
   : Table 8: Parameters which cannot be interpolated.
 
-All the enhanced I/E options described above are available for all TIMES
-time-series parameters, excluding PRC_RESID and COM_BPRICE. PRC_RESID is
-always interpolated, as if option 1 were used, but is also extrapolated
-forwards over TLIFE when either I/E option 5 or 15 is specified.
-COM_BPRICE is not interpolated at all, as it is obtained from the
-Baseline solution. Moreover, the I/E options are not applicable to the
-integer-valued parameters related to the SHAPE and MULTI tables, which
-are listed in Table 8.
+Nonetheless, a few options are supported also for the extrapolation of the $MULTI$ and $SHAPE$ index parameters, as shown in Table 9. The extrapolation can be done either only inside the data points provided by the user, or both inside and outside those data points. When using the inside data points option, the index specified for any $datayear$ is extrapolated to all model years ($v$) between that $datayear$ and the following $datayear$ for which the $SHAPE$ index is specified. The extrapolation options are available for all of the $SHAPE$ and $MULTI$ parameters listed in Table 8.
 
-Nonetheless, a few options are supported also for the extrapolation of
-the MULTI and SHAPE index parameters, as shown in Table 9. The
-extrapolation can be done either only inside the data points provided by
-the user, or both inside and outside those data points. When using the
-inside data points option, the index specified for any **datayear** is
-extrapolated to all modelyears (**v)** between that **datayear** and the
-following **datayear** for which the SHAPE index is specified. The
-extrapolation options are available for all of the SHAPE and MULTI
-parameters listed in Table 8.
 
-  ----------------- -----------------------------------------------------
-  **Option code**   **Action**
-
-  \<= 0 (or none)   No extrapolation (default)
-
-  1                 Extrapolation between data points only
-
-  2                 Extrapolation between and outside data points
-
-  11                Extrapolation between data points only, migration at
-                    ends
-  ----------------- -----------------------------------------------------
+|  Option code  | Action                                                    |
+| :-----------: | --------------------------------------------------------- |
+| <=0 (or none) | No extrapolation (default)                                |
+|       1       | Extrapolation between data points only                    |
+|       2       | Extrapolation between and outside data points             |
+|      11       | Extrapolation between data points only, migration at ends |
 
   : Table 9: Option codes for the extrapolation of SHAPE/MULTI indexes.
 
 **Example:**
 
-> The user has specified the following two SHAPE indexes and a control
-> option for extrapolation:
->
-> NCAP_AFX(\'REG\', \'0\', \'PRC1\') = 1;
->
-> NCAP_AFX(\'REG\', \'1995\', \'PRC1\') = 12;
->
-> NCAP_AFX(\'REG\', \'2010\', \'PRC1\') = 13;
->
-> In this case, all modelyears (**v)** between 1995 and 2010 will get
-> the shape index 12. No extrapolation is done for modelyears (**v)**
-> beyond 2010 or before 1995.
+The user has specified the following two SHAPE indexes and a control option for extrapolation:
+
+```
+NCAP_AFX('REG', '0', 'PRC1') = 1;
+NCAP_AFX('REG', '1995', 'PRC1\') = 12;
+NCAP_AFX('REG', '2010', 'PRC1') = 13;
+``` 
+ 
+ In this case, all model years ($v$) between 1995 and 2010 will get the shape index 12. No extrapolation is done for model years ($v$) beyond 2010 or before 1995.
 
 ### Inheritance and aggregation of timesliced input parameters
 
-As mentioned before, processes and commodities can be modelled in TIMES
-on different timeslice levels. Some of the input parameters that
-describe a process or a commodity are timeslice specific, i.e. they have
-to be provided by the user for specific timeslices, e.g. the
-availability factor NCAP_AF of a power plant operating on a \'DAYNITE\'
-timeslice level. During the process of developing a model, the timeslice
-resolution of some processes or even the entire model may be refined.
-One could imagine for example the situation that a user starts
-developing a model on an \'ANNUAL\' timeslice level and refines the
-model later by refining the timeslice definition of the processes and
-commodities. In order to avoid the need for all the timeslice related
-parameters to be re-entered again for the finer timeslices, TIMES
-supports inheritance and aggregation of parameter values along the
-timeslice tree.
+As mentioned before, processes and commodities can be modelled in TIMES on different timeslice levels. Some of the input parameters that describe a process or a commodity are timeslice specific, i.e. they have to be provided by the user for specific timeslices, e.g. the availability factor $NCAP\_AF$ of a power plant operating on a \'DAYNITE\' timeslice level. During the process of developing a model, the timeslice resolution of some processes or even the entire model may be refined. One could imagine for example the situation that a user starts developing a model on an \'ANNUAL\' timeslice level and refines the model later by refining the timeslice definition of the processes and commodities. In order to avoid the need for all the timeslice related parameters to be re-entered again for the finer timeslices, TIMES supports inheritance and aggregation of parameter values along the timeslice tree.
 
-Inheritance in this context means that input data being specified on a
-coarser timeslice level (higher up the tree) are inherited to a finer
-timeslice level (lower down the tree), whereas aggregation means that
-timeslice specific data are aggregated from a finer timeslice level
-(lower down the tree) to a coarser one (further up the tree). The
-inheritance feature may also be useful in some cases where the value of
-a parameter should be the same over all timeslices, since in this case
-it is sufficient to provide the parameter value for the \'ANNUAL\'
-timeslice which is then inherited to the required finer target
-timeslices.[^21]
+Inheritance in this context means that input data being specified on a coarser timeslice level (higher up the tree) are inherited to a finer timeslice level (lower down the tree), whereas aggregation means that timeslice specific data are aggregated from a finer timeslice level (lower down the tree) to a coarser one (further up the tree). The inheritance feature may also be useful in some cases where the value of a parameter should be the same over all timeslices, since in this case it is sufficient to provide the parameter value for the \'ANNUAL\' timeslice which is then inherited to the required finer target timeslices.[^21]
 
   -----------------------------------------------------------------------
   **Inheritance       **Description**
@@ -504,42 +222,21 @@ timeslices.[^21]
 
   : Table 10: Inheritance and aggregation rules
 
-The TIMES pre-processor supports different inheritance and aggregation
-rules, which depend on the type of attribute. The main characteristics
-of the different inheritance and aggregation rules are summarised in
-Table 10. The specific rules applied to each individual parameter are
-listed in the detailed reference further below.
+The TIMES pre-processor supports different inheritance and aggregation rules, which depend on the type of attribute. The main characteristics of the different inheritance and aggregation rules are summarised in Table 10. The specific rules applied to each individual parameter are listed in the detailed reference further below.
 
-The different aggregation rules are illustrated by examples in {numref}`inheritance_aggregation_rules_parameters`.
-It should be noted that if input data are specified on two timeslice
-levels different from the target level, then especially the weighted
-inheritance/aggregation method may lead to incorrect results. Therefore,
-at least for the parameters where weighted methods are applied, it is
-recommended to provide input data only for timeslices on one timeslice
-level. However, for parameters that are directly inherited, specifying
-values at multiple levels may sometimes be a convenient way to reduce
-the amount of values to be specified.[^22]
+The different aggregation rules are illustrated by examples in {numref}`inheritance-aggregation-rules-parameters`. It should be noted that if input data are specified on two timeslice levels different from the target level, then especially the weighted inheritance/aggregation method may lead to incorrect results. Therefore, at least for the parameters where weighted methods are applied, it is recommended to provide input data only for timeslices on one timeslice level. However, for parameters that are directly inherited, specifying values at multiple levels may sometimes be a convenient way to reduce the amount of values to be specified.[^22]
 
-Bound parameters are in most cases not levelized by inheritance, only by
-aggregation. Exceptions to this rule are the relative type bound
-parameters NCAP_AF and FLO_SHAR, which are inherited by the target
-timeslices. One should also notice that, due to levelization, fixed
-bounds that are either inherited or aggregated to the target timeslice
-level will always override any upper and lower bounds simultaneously
-specified.
+Bound parameters are in most cases not levelized by inheritance, only by aggregation. Exceptions to this rule are the relative type bound parameters $NCAP\_AF$ and $FLO\_SHAR$, which are inherited by the target timeslices. One should also notice that, due to levelization, fixed bounds that are either inherited or aggregated to the target timeslice level will always override any upper and lower bounds simultaneously specified.
 
 ```{figure} assets/image9.png
-:name: inheritance_aggregation_rules_parameters
+:name: inheritance-aggregation-rules-parameters
 :align: center
 Inheritance and aggregation rules for timeslice specific parameters in TIMES.
 ```
 
 ### Overview of user input parameters
 
-A list of all user input parameters is given in Table 13. In order to
-facilitate the recognition by the user of to which part of the model a
-parameter relates the following naming conventions apply to the prefixes
-of the parameters (Table 11).
+A list of all user input parameters is given in Table 13. In order to facilitate the recognition by the user of to which part of the model a parameter relates the following naming conventions apply to the prefixes of the parameters (Table 11).
 
   --------------------- -------------------------------------------------
   **Prefix**            **Related model component**
@@ -571,8 +268,7 @@ of the parameters (Table 11).
 
   : Table 11: Naming conventions for user input parameters
 
-For brevity, the default interpolation/extrapolation method for each
-parameter is given by using the abbreviations listed in Table 12.
+For brevity, the default interpolation/extrapolation method for each parameter is given by using the abbreviations listed in Table 12.
 
   --------------------- -------------------------------------------------
   **Abbreviation**      **Description**
@@ -5850,15 +5546,7 @@ parameter is given by using the abbreviations listed in Table 12.
 
 ##  Internal parameters
 
-Table 14 gives an overview of internal parameters generated by the TIMES
-preprocessor. Similar to the description of the internal sets, not all
-internal parameters used within TIMES are discussed. The list given in
-Table 14 focuses mainly on the parameters used in the preparation and
-creation of the equations in Chapter 6. In addition to the internal
-parameters listed here, the TIMES preprocessor computes additional
-internal parameters which are either used only as auxiliary parameters
-being valid only in a short section of the code or which are introduced
-to improve the performance of the code regarding computational time.
+Table 14 gives an overview of internal parameters generated by the TIMES preprocessor. Similar to the description of the internal sets, not all internal parameters used within TIMES are discussed. The list given in Table 14 focuses mainly on the parameters used in the preparation and creation of the equations in Chapter 6. In addition to the internal parameters listed here, the TIMES preprocessor computes additional internal parameters which are either used only as auxiliary parameters being valid only in a short section of the code or which are introduced to improve the performance of the code regarding computational time.
 
 +------------+--------------------+------------------------------------+
 | **Internal | **Instances**      | **Description**                    |
@@ -6399,26 +6087,11 @@ to improve the performance of the code regarding computational time.
 
 ### Overview of report parameters
 
-The parameters generated internally by TIMES to document the results of
-a model run are listed in Table 15. These parameters can be imported
-into the **VEDA-BE** tool for further result analysis. They are
-converted out of the **GDX**[^32] file via the **gdx2veda** GAMS utility
-into a **VEDA-BE** compatible format according to the file
-**times2veda.vdd**[^33]. Note that some of the results are not
-transferred into parameters, but are directly accessed through the
-**times2veda.vdd** file (levels of commodity balances and peaking
-equation, total discounted value of objective function). The following
-naming conventions apply to the prefixes of the report parameters:
-
--   CST\_: detailed annual undiscounted cost parameters; note that also
-    the costs of past investments, which are constants in the objective
-    function, are being reported;
-
--   PAR\_: various primal and dual solution parameters;
-
--   EQ(l)\_: directly accessed GAMS equation levels/marginals
-
--   REG\_: regional total cost indicators.
+The parameters generated internally by TIMES to document the results of a model run are listed in Table 15. These parameters can be imported into the **VEDA-BE** tool for further result analysis. They are converted out of the **GDX**[^32] file via the **gdx2veda** GAMS utility into a **VEDA-BE** compatible format according to the file **times2veda.vdd**[^33]. Note that some of the results are not transferred into parameters, but are directly accessed through the **times2veda.vdd** file (levels of commodity balances and peaking equation, total discounted value of objective function). The following naming conventions apply to the prefixes of the report parameters:
+- CST\_: detailed annual undiscounted cost parameters; note that also the costs of past investments, which are constants in the objective function, are being reported;
+- $PAR\_$: various primal and dual solution parameters;
+- $EQ(l)\_$: directly accessed GAMS equation levels/marginals
+- $REG\_$: regional total cost indicators.
 
 
 | Report parameter<sup>[^34]</sup> (Indexes) | VEDA-BE attribute name | Description |
@@ -6946,13 +6619,9 @@ naming conventions apply to the prefixes of the report parameters:
 
 : Table 15: Report parameters in TIMES
 
-
 ### Acronyms used in cost reporting parameters
 
-The acronyms used in the reporting parameters for referring to certain
-types of costs are summarized in Table 16. The acronyms are used as
-qualifiers in the **uc_n** index of each reporting attribute, and are
-accessible in VEDA-BE through that same dimension.
+The acronyms used in the reporting parameters for referring to certain types of costs are summarized in Table 16. The acronyms are used as qualifiers in the $uc\_n$ index of each reporting attribute, and are accessible in VEDA-BE through that same dimension.
 
 +--------------+-------------------------------------------------------+
 | **Cost       | **Component acronyms**                                |
@@ -7046,116 +6715,49 @@ accessible in VEDA-BE through that same dimension.
 
 ### The levelized cost reporting option
 
-As indicated in Table 15 above, the reporting of levelized costs for
-each process can be requested by setting the option RPT_OPT(\'NCAP\',
-\'1\'). The results are stored in the VEDA-BE **Var_NcapR** result
-attribute, with the qualifier \'LEVCOST\' (with a possible system label
-prefix).
+As indicated in Table 15 above, the reporting of levelized costs for each process can be requested by setting the option RPT_OPT(\'NCAP\', \'1\'). The results are stored in the VEDA-BE $Var\_NcapR$ result attribute, with the qualifier \'LEVCOST\' (with a possible system label prefix).
 
-The levelized cost calculation option looks to weight all the costs
-influencing the choice of a technology by TIMES. It takes into
-consideration investment, operating, fuel, and other costs as a means of
-comparing the full cost associated with each technology.
+The levelized cost calculation option looks to weight all the costs influencing the choice of a technology by TIMES. It takes into consideration investment, operating, fuel, and other costs as a means of comparing the full cost associated with each technology.
 
-Levelized cost can be calculated according to the following general
-formula:
+Levelized cost can be calculated according to the following general formula:
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------
   $$LEC = \frac{\sum_{t = 1}^{n}{\frac{IC_{t}}{(1 + r)^{t - 1}} + \frac{OC_{t} + VC_{t} + \sum_{i}^{}{FC_{i,t} + FD_{i,t}} + \sum_{j}^{}{ED_{j,t}}}{(1 + r)^{t - 0.5}} -}\frac{\sum_{k}^{}{BD_{k,t}}}{(1 + r)^{t - 0.5}}}{\sum_{t = 1}^{n}\frac{\sum_{m}^{}{MO_{m,t}}}{(1 + r)^{t - 0.5}}}$$   \(1\)
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  : Table 17: Core TIMES parameters related to the modelling of CHP
-  processes.
+  : Table 17: Core TIMES parameters related to the modelling of CHP processes.
 
 where
+-   $r$ = discount rate (e.g. 5%)
+-   $IC_t$ = investment expenditure in (the beginning of) year $t$
+-   $OC_t$ = fixed operating expenditure in year $t$
+-   $VC_t$ = variable operating expenditure in year $t$
+-   $FC_{it}$ = fuel-specific operating expenditure for fuel $i$ in year $t$
+-   $FD_{it}$ = fuel-specific acquisition expenditure for fuel $i$ in year $t$
+-   $ED_{jt}$ = emission-specific allowance expenditure for emission $j$ in year $t$ (optional)
+-   $BD_{kt}$ = revenues from by-product $k$ in year $t$ (optional; see below)
+-   $MO_{mt}$ = output of main product $m$ in year $t$
 
--   *r* = discount rate (e.g. 5%)
+The exponent $(t-0.5)$ in the formula indicates the good practice of using mid-year discounting for continuous streams of annual expenditures.
 
--   *IC~t~* = investment expenditure in (the beginning of) year *t*
+In TIMES, the specific investment, fixed and variable O&M costs and fuel-specific flow costs are calculated directly from the input data. However, for the fuel acquisition prices, emission prices and by-product prices, ***commodity marginals*** from the model solution are used. All the unit costs are multiplied by the corresponding ***variable levels*** as given by the model solution: investment cost and fixed operating costs are multiplied by the amounts of capacity installed / existing, variable operation costs by the activity levels, and fuel-specific costs by the process flow levels. Mid-year discounting can also be activated.
 
--   *OC~t~* = fixed operating expenditure in year *t*
-
--   *VC~t~* = variable operating expenditure in year *t*
-
--   *FC~it~* = fuel-specific operating expenditure for fuel *i* in year
-    *t*
-
--   *FD~it~* = fuel-specific acquisition expenditure for fuel *i* in
-    year *t*
-
--   *ED~jt~* = emission-specific allowance expenditure for emission *j*
-    in year *t* (optional)
-
--   *BD~kt~* = revenues from by-product *k* in year *t* (optional; see
-    below)
-
--   *MO~mt~* = output of main product *m* in year *t*
-
-The exponent *t*--*0.5* in the formula indicates the good practice of
-using mid-year discounting for continuous streams of annual
-expenditures.
-
-In TIMES, the specific investment, fixed and variable O&M costs and
-fuel-specific flow costs are calculated directly from the input data.
-However, for the fuel acquisition prices, emission prices and by-product
-prices, ***commodity marginals*** from the model solution are used. All
-the unit costs are multiplied by the corresponding ***variable levels***
-as given by the model solution: investment cost and fixed operating
-costs are multiplied by the amounts of capacity installed / existing,
-variable operation costs by the activity levels, and fuel-specific costs
-by the process flow levels. Mid-year discounting can also be activated.
-
-The outputs of the main products are taken from the flow levels of the
-commodities in the primary group (PG) of the process. An exception is
-CHP processes, for which the elec­tricity output is considered the sole
-main output, and heat is considered as a by-product.
+The outputs of the main products are taken from the flow levels of the commodities in the primary group (PG) of the process. An exception is CHP processes, for which the elec­tricity output is considered the sole main output, and heat is considered as a by-product.
 
 **Options for variants of levelized cost reporting:**
 
 1.  <ins>Do not include emission prices or by-product revenues in the calculation</ins> (RPT_OPT('NCAP','1') = --1):
 
-> In this option emission prices are omitted from the calculation, in
-> accordance with the most commonly used convention for LEC calculation.
-> Consequently, any by-product revenues need to be omitted as well,
-> because if emissions have prices, the by-product prices in the
-> solution would of course be polluted by those prices, and thus it
-> would be inconsistent to use them in the calcu­lation. Instead, in this
-> case any amount of by-product energy produced by ELE, CHP and HPL
-> processes is indirectly credited by reducing the fuel-specific costs
-> in the calculation to the fraction of the main output in the total
-> amount of energy produced.
+> In this option emission prices are omitted from the calculation, in accordance with the most commonly used convention for LEC calculation. Consequently, any by-product revenues need to be omitted as well, because if emissions have prices, the by-product prices in the solution would of course be polluted by those prices, and thus it would be inconsistent to use them in the calcu­lation. Instead, in this case any amount of by-product energy produced by ELE, CHP and HPL processes is indirectly credited by reducing the fuel-specific costs in the calculation to the fraction of the main output in the total amount of energy produced.
 
 2.  <ins>Include both emission prices and by-product revenues in the calculation</ins> (RPT_OPT('NCAP','1') = 1):
 
-> In this option both emission prices and by-product revenues are
-> included in the calculation. The levelized cost thus represents the
-> unit cost after subtracting the levelized value of all by-products
-> from the gross value of the levelized cost. This approach of crediting
-> for by-products in the LEC calculation has been utilized, for example,
-> in the IEA *Projected Costs of Generating Electricity* studies.
+> In this option both emission prices and by-product revenues are included in the calculation. The levelized cost thus represents the unit cost after subtracting the levelized value of all by-products from the gross value of the levelized cost. This approach of crediting for by-products in the LEC calculation has been utilized, for example, in the IEA *Projected Costs of Generating Electricity* studies.
 
 3.  <ins>Include not only emission prices and by-product revenues, but also the revenues from the main product in the calculation</ins> (RPT_OPT('NCAP','1') = 2):
 
-> This option is similar to option (2) above, but in this case all
-> product revenues are included in the calculation, including also the
-> peak capacity credit from the TIMES peaking equation (when defined).
-> The calculated LEC value thus represents the levelized **net** unit
-> cost after subtracting the value of all products from the gross
-> levelized cost. For competitive new capacity vintages, the resulting
-> levelized cost should in this case generally be *negative*, because
-> investments into technologies that enter the solution are normally
-> profitable. For the marginal technologies the levelized cost can be
-> expected to be very close to zero. Only those technologies that have
-> been in some way forced into the solution, e.g. by specifying lower
-> bounds on the capacity or by some other types of constraints, should
-> normally have a positive levelized cost when using this option.
+> This option is similar to option (2) above, but in this case all product revenues are included in the calculation, including also the peak capacity credit from the TIMES peaking equation (when defined). The calculated LEC value thus represents the levelized **net** unit cost after subtracting the value of all products from the gross levelized cost. For competitive new capacity vintages, the resulting levelized cost should in this case generally be *negative*, because investments into technologies that enter the solution are normally profitable. For the marginal technologies the levelized cost can be expected to be very close to zero. Only those technologies that have been in some way forced into the solution, e.g. by specifying lower bounds on the capacity or by some other types of constraints, should normally have a positive levelized cost when using this option.
 
-In the TIMES calculation, the expenditures for technology investments
-and process commodity flows include also taxes minus subsidies, if such
-have been specified. The levelized costs are calculated by process
-vintage, but only for new capacity vintages, as for them both the full
-cost data influencing technology choice and the operating history
-starting from the commissioning date are available, which is rarely the
-case for existing vintages.
+In the TIMES calculation, the expenditures for technology investments and process commodity flows include also taxes minus subsidies, if such have been specified. The levelized costs are calculated by process vintage, but only for new capacity vintages, as for them both the full cost data influencing technology choice and the operating history starting from the commissioning date are available, which is rarely the case for existing vintages.

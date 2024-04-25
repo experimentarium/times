@@ -2,23 +2,17 @@
 
 ## Summary of components
 
-The TIMES model environment under VEDA is depicted in {numref}`components_TIMES_VEDA`. For ANSWER the underlying model management flow is very similar, with the addition of a \<Case\>.ANT file being dumped by the TIMES GAMS report writer for importing of the model results into ANSWER, if desired, though model TIMES users tend to rely on the extra power brought to bear by VEDA-BE.
+The TIMES model environment under VEDA is depicted in {numref}`components-times-veda`. For ANSWER the underlying model management flow is very similar, with the addition of a \<Case\>.ANT file being dumped by the TIMES GAMS report writer for importing of the model results into ANSWER, if desired, though model TIMES users tend to rely on the extra power brought to bear by VEDA-BE.
 
 It is composed of five distinct components described below.
-
 - **The TIMES Model Generator** (as well as **MARKAL**[^1]) comprises the GAMS source code that processes each dataset (the model) and generates a matrix with all the coefficients that specify the economic equilibrium model of the energy system as a mathematical programming problem. The model generator also post-processes the optimization to prepare results that are suitable to be read by the model management systems (and other tools). It is shown in labelled as TIMES. The TIMES model generator is available from ETSAP under an open source license[^2].
-
 - **The model** is a set of data files (spreadsheets, databases, simple ASCII files), which fully describes an energy system (technologies, commodities, resources, and demands for energy services) in a format compatible with an associated model management shell. Each set of files comprises one model (perhaps consisting of a number of regional models) and is \"owned\" by the developer(s). It is shown in as the Data and Assumptions box in the upper left. Instances of global models include the IEA\'s Energy Technology Perspectives (ETP[^3]), the TIMES Integrated Assessment Models (TIAM[^4]), and that of the European Fusion Development Agreement (EFDA[^5]). Large multi-region models exist in the form of Pan-European TIMES models (JRC-EU-TIMES[^6] and PET[^7]) covering all EU member states (+ Norway, Switzerland and Iceland in the PET model), and the Framework for Analysis of Climate-Energy-Technology Systems (FACETS[^8]) for the US. Finally, there are numerous national, regional, and municipal models developed by the ETSAP Partner institutions and other institutions.[^9]^,^[^10]
-
 - **A Model Management \"shell\"** is a user interface that oversees all aspects of working with a model, including handling the input data, invoking the Model Generator, and examining the results. It is shown in labelled VEDA-FE and VEDA-BE for the parts handling the input data and model results respectively. It thereby makes practical the use of robust models (theoretically, simple models can be handled by means of ASCII file editors, if desired). The first shell, MUSS, was developed in 1990 by DecisionWare Inc. for use with MARKAL (and is no longer available). Two shells currently in use for TIMES are ANSWER, originally developed by ABARE and subsequently the property of Noble-Soft Systems Pty Ltd[^11], and VEDA, developed by KanORS-EMR. Both ANSWER and VEDA handle MARKAL as well as TIMES. Both shells were partly developed using ETSAP resources, along with substantial contributions of the developers and other projects employing the systems. Note that as shown in , VEDA-FE interacts with GAMS by means of the \*.RUN/DD files and GAMS interacts with VEDA-BE by processing the GDX file to produce the run VD\* files. VEDA-BE can write to XLS or other file types. See Sections IV and V for a description of VEDA, and the separate ANSWER documentation respectively.
-
 - **The General Algebraic Modeling System (GAMS)**[^12] is the computer programming language in which the MARKAL and TIMES Model Generators are written. GAMS is a two-pass language (first compiling the input data and source code, then executing for the data provided) designed explicitly to facilitate the formulation of complex mathematically programming models. GAMS integrates smoothly with various solvers to generate the mathematic programming problem and seamlessly pass it to the solvers for optimization, then post-process the optimization to produce the TIMES results report for the \"shells.\" It is shown in GAMS together with the final component, Solvers. During a run, GAMS produces a LST file with an echo of the model run steps and solution. The LOG file in the figure is actually produced by TIMES, listing the quality assurance checks. GAMS is the property of GAMS Development Corporation, Washington D.C. Information on GAMS may be found at [www.gams.com](http://www.gams.com/). More specific GAMS - ETSAP information can be obtained from the ETSAP Liaison Officer, [Gary Goldstein](mailto:DecisionWare.NY@gmail.com).
-
 - **A solver** is a software package integrated with GAMS which solves the mathematical programming problem produced by the Model Generator for a particular instance of the TIMES model. Solvers are discussed further in Section 1.4. More information on solvers may be found at [www.gams.com](http://www.gams.com/).
 
-
 ```{figure} assets/image1.png
-:name: components_TIMES_VEDA
+:name: components-times-veda
 :align: center
 Components of the TIMES Modeling Platform Under VEDA.
 ```
@@ -66,50 +60,30 @@ GAMS employs "soft" licensing. That is, each system is licensed for a certain Wi
 Note that GAMS provides two kinds of licenses for working with TIMES, the conventional license which provides the user with the actual TIMES GAMS source code, and a Runtime license where the source code is precompiled and therefore may not be changed. The Runtime license ONLY permits GAMS to be used in conjunction with TIMES. That is, no other GAMS models may be run using a ETSAP TIMES Runtime license. The Runtime license is sold at half the price of a corresponding full license. To obtain GAMS for use with MARKAL/TIMES contact the ETSAP Liaison Officer, [Gary Goldstein](mailto:DecisionWare.NY@gmail.com).
 
 The basic procedure for installing GAMS is:
-
-1. Copy your GAMS license file, GAMSLICE.txt, provided as part of the
-    licensing process by the Liaison Officer, someplace on your
-    computer.
-2. Head to <http://www.gams.com/download/> and select the Windows
-    download option for either Win-64/32, as appropriate.
+1. Copy your GAMS license file, GAMSLICE.txt, provided as part of the licensing process by the Liaison Officer, someplace on your computer.
+2. Head to <http://www.gams.com/download/> and select the Windows download option for either Win-64/32, as appropriate.
 3. Run Setup by clicking on it in Windows Explorer
+
     a.  Check "Use advanced installation mode" at the bottom of the GAMS Setup form.
+    
     b.  Let GAMS get installed into the default folder (\\GAMS\\\<Win#\>\\\<ver\>).
+    
     c.  Check the Add GAMS directory to PATH environment variable.
+    
     d.  Have the GAMSLICE.TXT copied from wherever it currently resides.
 
 If you are using a non-default solver (e.g., CPLEX is the default for LP and MIP models and CONOPT for NLP) then there is one further step that must be carried out to complete the setup procedure:
-
 4. If using a non-default solver, upon completion use Windows Explorer to go to the GAMS system folder and run the GAMSINST program to set the default solver for each type to the solvers supported by your license GAMSLICE file by entering the associated number in the list and hitting return or just hitting return (if your solver is the default or not listed).
 
 Which solver to use is a function of the TIMES model variant to be solved and the solver(s) purchased by the user with GAMS. Basically the solvers used for TIMES fall into three categories, linear (LP), mixed integer (MIP) and non-linear (NLP), where Table 1 provides a partial list of the GAMS solvers generally used with TIMES for each main model variant. For a complete list of the solvers available refer to the GAMS website. The various Model Instances mentioned in the table are discussed further in Section , as well as in Parts I and II.
 
-+-----------------------+-------------+--------------------------------+
-| **Model Instance**    | **Nature of | **Viable Solvers**             |
-|                       | Model**     |                                |
-+=======================+=============+================================+
-| Basic TIMES           | Linear (LP) | For full-blown TIMES models    |
-| (including Elastic    |             | power solvers are recommended  |
-| Demand, Climate,      |             | (CPLEX/XPRESS/GUROBI)          |
-| Stochastic, etc.)     |             |                                |
-|                       |             | For modest size models MINOS   |
-|                       |             | or the "free" public solvers   |
-|                       |             | may suffice                    |
-+-----------------------+-------------+--------------------------------+
-| Discrete Investment,  | Mixed       | Power solvers are recommended  |
-| Discrete Retirement,  | Integer     | (CPLEX/XPRESS/GUROBI)          |
-| Discrete Dispatching  | (MIP)       |                                |
-| and Endogenous        |             | For modest size models the     |
-| Technology Learning   |             | "free" public CBC solvers may  |
-| Extensions            |             | suffice                        |
-+-----------------------+-------------+--------------------------------+
-| MACRO (integrated or  | Non-linear  | CONOPT recommended, MINOS an   |
-| MSA/CSA), Micro (NLP  | (NLP)       | option (but no longer being    |
-| option), Damage (NLP  |             | developed)                     |
-| option)               |             |                                |
-+-----------------------+-------------+--------------------------------+
+| Model Instance                                                                                               | Nature of Model     | Viable Solvers                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Basic TIMES (including Elastic Demand, Climate, Stochastic, etc.)                                            | Linear (LP)         | For full-blown TIMES models power solvers are recommended (CPLEX/XPRESS/GUROBI). For modest size models MINOS or the "free" public solvers may suffice |
+| Discrete Investment, Discrete Retirement, Discrete Dispatching and Endogenous Technology Learning Extensions | Mixed Integer (MIP) | Power solvers are recommended (CPLEX/XPRESS/GUROBI).  For modest size models the "free" public CBC solvers may suffice                                 |
+| MACRO (integrated or MSA/CSA), Micro (NLP option), Damage (NLP option)                                       | Non-linear (NLP)    | CONOPT recommended, MINOS an option (but no longer being developed)                                                                                    |
 
-: []{#_Ref449533258 .anchor}Table 1: TIMES Model Variants and GAMS Solvers
+: Table 1: TIMES Model Variants and GAMS Solvers
 
 ## Organization of Part III
 

@@ -297,7 +297,7 @@ with
     parameter, defined as the change in equilibrium atmospheric
     temperature induced by a doubling of CO~2~ concentration.
 
-<ins>Remark:</ins> in contrast with most other parameters, the value
+<ins>Remark</ins>: in contrast with most other parameters, the value
 of C~s~ is highly uncertain, with a possible range of values from 1^o^C
 to 10^o^C. This parameter is therefore a prime candidate for sensitivity
 analysis, or for treatment by probabilistic methods such as stochastic
