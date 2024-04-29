@@ -75,43 +75,18 @@ $FLO\_SHAR$ is by default NOT interpolated or extrapolated in TIMES. To force in
 FLO_SHAR('REG','0','PRC1','COAL','IN_PRC1','ANNUAL','UP') = 3;
 ```
 
-| Parameter  | Justification                                                                                                                      |  Default I/E   |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------- | :------------: |
-| ACT_BND    | Bound may be intended at specific periods only.                                                                                    | 10 (migration) |
-| CAP_BND    |                                                                                                                                    |                |
-| NCAP_BND   |                                                                                                                                    |                |
-| NCAP_DISC  |                                                                                                                                    |                |
-| FLO_FR     |                                                                                                                                    |                |
-| FLO_SHAR   |                                                                                                                                    |                |
-| STGIN_BND  |                                                                                                                                    |                |
-| STGOUT_BND |                                                                                                                                    |                |
-| COM_BNDNET |                                                                                                                                    |                |
-| COM_BNDPRD |                                                                                                                                    |                |
-| COM_CUMNET |                                                                                                                                    |                |
-| COM_CUMPRD |                                                                                                                                    |                |
-| REG_BNDCST |                                                                                                                                    |                |
-| RCAP_BND   |                                                                                                                                    |                |
-| IRE_BND    |                                                                                                                                    |                |
-| IRE_XBND   |                                                                                                                                    |                |
-| PRC_MARK   | Constraint may be intended at specific periods only                                                                                |       11       |
-| PRC_RESID  | Residual capacity usually intended to be only interpolated                                                                         |      1\*       |
-| UC_RHST    | User constraint may be intended for specific periods only                                                                          | 10 (migration) |
-| UC_RHSRT   |                                                                                                                                    |                |
-| UC_RHSRTS  |                                                                                                                                    |                |
-| NCAP_AFM   | Interpolation meaningless for these parameters (parameter value is a discrete number indicating which MULTI curve should be used). | 10 (migration) |
-| NCAP_FOMM  |                                                                                                                                    |                |
-| NCAP_FSUBM |                                                                                                                                    |                |
-| NCAP_FTAXM |                                                                                                                                    |                |
-| COM_ELASTX | Interpolation meaningless for these parameters (parameter value is a discrete number indicating which SHAPE curve should be used). | 10 (migration) |
-| FLO_FUNCX  |                                                                                                                                    |                |
-| NCAP_AFX   |                                                                                                                                    |                |
-| NCAP_FOMX  |                                                                                                                                    |                |
-| NCAP_FSUBX |                                                                                                                                    |                |
-| NCAP_FTAXX |                                                                                                                                    |                |
-| NCAP_PASTI | Parameter describes past investment for a single vintage year.                                                                     |      none      |
-| NCAP_PASTY | Parameter describes number of years over which to distribute past investments.                                                     |      none      |
-| CM_MAXC    | Bound may be intended at specific years only                                                                                       |      none      |
-| PEAKDA_BL  | Blending parameters at the moment not interpolated                                                                                 |      none      |
+| Parameter                                                                                                                                                                                                                 | Justification                                                                                                                      |  Default I/E   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | :------------: |
+| ACT_BND <br>CAP_BND <br>NCAP_BND <br>NCAP_DISC <br>FLO_FR <br>FLO_SHAR <br>STGIN_BND <br>STGOUT_BND <br>COM_BNDNET <br>COM_BNDPRD <br>COM_CUMNET <br>COM_CUMPRD <br>REG_BNDCST <br>RCAP_BND <br>IRE_BND <br>IRE_XBND <br> | Bound may be intended at specific periods only.                                                                                    | 10 (migration) |
+| PRC_MARK                                                                                                                                                                                                                  | Constraint may be intended at specific periods only                                                                                |       11       |
+| PRC_RESID                                                                                                                                                                                                                 | Residual capacity usually intended to be only interpolated                                                                         |      1\*       |
+| UC_RHST <br>UC_RHSRT<br>UC_RHSRTS                                                                                                                                                                                         | User constraint may be intended for specific periods only                                                                          | 10 (migration) |
+| NCAP_AFM <br>NCAP_FOMM <br>NCAP_FSUBM <br>NCAP_FTAXM<br>                                                                                                                                                                  | Interpolation meaningless for these parameters (parameter value is a discrete number indicating which MULTI curve should be used). | 10 (migration) |
+| COM_ELASTX <br>FLO_FUNCX <br>NCAP_AFX <br>NCAP_FOMX <br>NCAP_FSUBX <br>NCAP_FTAXX                                                                                                                                         | Interpolation meaningless for these parameters (parameter value is a discrete number indicating which SHAPE curve should be used). | 10 (migration) |
+| NCAP_PASTI                                                                                                                                                                                                                | Parameter describes past investment for a single vintage year.                                                                     |      none      |
+| NCAP_PASTY                                                                                                                                                                                                                | Parameter describes number of years over which to distribute past investments.                                                     |      none      |
+| CM_MAXC                                                                                                                                                                                                                   | Bound may be intended at specific years only                                                                                       |      none      |
+| PEAKDA_BL                                                                                                                                                                                                                 | Blending parameters at the moment not interpolated                                                                                 |      none      |
 
 \* If only a single $PRC\_RESID$ value is specified, assumed to decay linearly over $NCAP\_TLIFE$ years
 
@@ -132,18 +107,10 @@ This parameter specifies a log-linear control option with the value for the thre
 All the enhanced I/E options described above are available for all TIMES timeseries parameters, excluding $PRC\_RESID$ and $COM\_BPRICE$. $PRC\_RESID$ is always interpolated, as if option 1 were used, but is also extrapolated forwards over $TLIFE$ when either I/E option 5 or 15 is specified. $COM\_BPRICE$ is not interpolated at all, as it is obtained from the Baseline solution. Moreover, the I/E options are not applicable to the integer-valued parameters related to the $SHAPE$ and $MULTI$ tables, which are listed in Table 8.
 
 
-| Parameter  | Comment                                                                                                         |
-| ---------- | --------------------------------------------------------------------------------------------------------------- |
-| NCAP_AFM   | Parameter value is a discrete numbers indicating which MULTI curve should be used, and not a time series datum. |
-| NCAP_FOMM  |                                                                                                                 |
-| NCAP_FSUBM |                                                                                                                 |
-| NCAP_FTAXM |                                                                                                                 |
-| COM_ELASTX | Parameter value is a discrete number indicating which SHAPE curve should be used, and not a time series datum.  |
-| FLO_FUNCX  |                                                                                                                 |
-| NCAP_AFX   |                                                                                                                 |
-| NCAP_FOMX  |                                                                                                                 |
-| NCAP_FSUBX |                                                                                                                 |
-| NCAP_FTAXX |                                                                                                                 |
+| Parameter                                                                         | Comment                                                                                                         |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| NCAP_AFM <br>NCAP_FOMM <br>NCAP_FSUBM <br>NCAP_FTAXM                              | Parameter value is a discrete numbers indicating which MULTI curve should be used, and not a time series datum. |
+| COM_ELASTX <br>FLO_FUNCX <br>NCAP_AFX <br>NCAP_FOMX <br>NCAP_FSUBX <br>NCAP_FTAXX | Parameter value is a discrete number indicating which SHAPE curve should be used, and not a time series datum.  |
 
   : Table 8: Parameters which cannot be interpolated.
 
