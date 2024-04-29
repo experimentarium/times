@@ -22,7 +22,10 @@ $${\eta_{F} = \frac{\eta_{B} \times (1 + R)}{1 + R \times S}
 }$$
 $${S = \frac{\eta_{B} \times (1 + R) - \eta_{F}}{\eta_{F} \times R}}$$
 
-The core TIMES parameters for modeling the CHP attributes are listed in Table 17.
+The core TIMES parameters for modeling the CHP attributes are listed in {numref}`core-chp-parameters`.
+
+:::{table} Core TIMES parameters related to the modelling of CHP processes.
+:name: core-chp-parameters
 
 | Attribute name      | Description                                                     |
 | ------------------- | --------------------------------------------------------------- |
@@ -33,6 +36,8 @@ The core TIMES parameters for modeling the CHP attributes are listed in Table 17
 | NCAP_CDME           | Efficiency in full condensing mode                              |
 | NCAP_BPME           | Efficiency in back-pressure mode (full CHP mode) \*             |
 | NCAP_AFA / NCAP_AFC | Bound on the annual utilization factor                          |
+
+:::
 
 \* Only taken into account for processes defined to be of type CHP with the set .     
 
