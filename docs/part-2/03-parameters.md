@@ -146,52 +146,28 @@ As mentioned before, processes and commodities can be modelled in TIMES on diffe
 
 Inheritance in this context means that input data being specified on a coarser timeslice level (higher up the tree) are inherited to a finer timeslice level (lower down the tree), whereas aggregation means that timeslice specific data are aggregated from a finer timeslice level (lower down the tree) to a coarser one (further up the tree). The inheritance feature may also be useful in some cases where the value of a parameter should be the same over all timeslices, since in this case it is sufficient to provide the parameter value for the \'ANNUAL\' timeslice which is then inherited to the required finer target timeslices.[^21]
 
-  -----------------------------------------------------------------------
-  **Inheritance       **Description**
-  rules**             
-  ------------------- ---------------------------------------------------
-  Direct inheritance  A value on a coarser timeslice is inherited by
-                      target timeslices below (in the timeslice tree),
-                      without changing the numeric values.
+```{list-table} Inheritance and aggregation rules
+:name: inheritance-and-aggregation-rules
+:align: left
 
-  Weighted            A value on a coarser timeslice is inherited by
-  inheritance         target timeslices below (in the timeslice tree) by
-                      weighting the input value with the ratio of the
-                      duration of the target timeslices to the duration
-                      of the coarser timeslice. Example: Parameter
-                      COM_FR.
+* - **Inheritance rules**
+  - **Description**
+* - Direct inheritance
+  - A value on a coarser timeslice is inherited by target timeslices below (in the timeslice tree), without changing the numeric values.
+* - Weighted inheritance
+  - A value on a coarser timeslice is inherited by target timeslices below (in the timeslice tree) by weighting the input value with the ratio of the duration of the target timeslices to the duration of the coarser timeslice. Example: Parameter COM_FR.
+* - No inheritance
+  - Absolute bound parameters specified on a coarser timeslice level than the target timeslice level are not inherited. Instead a constraint summing over related variables on the finer timeslices is generated, e.g. an annual ACT_BND parameter specified for a process with a \'DAYNITE\' process timeslice level (prc_tsl) leads to a constraint (EQ_ACTBND) with the summation over the activity variables on the \'DAYNITE\' level as LHS term and with the bound as RHS term.
+* - **Aggregation rules**
+  - **Description**
+* - Standard aggregation
+  - The values specified on finer timeslices are aggregated to the target timeslice being a parent node in the timeslice tree by summing over the values on the finer timeslices.         
+* - Weighted aggregation
+  - The values specified for finer timeslices are aggregated to the target timeslice being a parent node in the timeslice tree by summing over the weighted values on the finer timeslices. The ratios of the duration of the finer timeslices to the duration of the target timeslice serve as weighting factors.
 
-  No inheritance      Absolute bound parameters specified on a coarser
-                      timeslice level than the target timeslice level are
-                      not inherited. Instead a constraint summing over
-                      related variables on the finer timeslices is
-                      generated, e.g. an annual ACT_BND parameter
-                      specified for a process with a \'DAYNITE\' process
-                      timeslice level (prc_tsl) leads to a constraint
-                      (EQ_ACTBND) with the summation over the activity
-                      variables on the \'DAYNITE\' level as LHS term and
-                      with the bound as RHS term.
+```
 
-  **Aggregation       **Description**
-  rules**             
-
-  Standard            The values specified on finer timeslices are
-  aggregation         aggregated to the target timeslice being a parent
-                      node in the timeslice tree by summing over the
-                      values on the finer timeslices.
-
-  Weighted            The values specified for finer timeslices are
-  aggregation         aggregated to the target timeslice being a parent
-                      node in the timeslice tree by summing over the
-                      weighted values on the finer timeslices. The ratios
-                      of the duration of the finer timeslices to the
-                      duration of the target timeslice serve as weighting
-                      factors.
-  -----------------------------------------------------------------------
-
-  : Table 10: Inheritance and aggregation rules
-
-The TIMES pre-processor supports different inheritance and aggregation rules, which depend on the type of attribute. The main characteristics of the different inheritance and aggregation rules are summarised in Table 10. The specific rules applied to each individual parameter are listed in the detailed reference further below.
+The TIMES pre-processor supports different inheritance and aggregation rules, which depend on the type of attribute. The main characteristics of the different inheritance and aggregation rules are summarised in {numref}`inheritance-and-aggregation-rules`. The specific rules applied to each individual parameter are listed in the detailed reference further below.
 
 The different aggregation rules are illustrated by examples in {numref}`inheritance-aggregation-rules-parameters`. It should be noted that if input data are specified on two timeslice levels different from the target level, then especially the weighted inheritance/aggregation method may lead to incorrect results. Therefore, at least for the parameters where weighted methods are applied, it is recommended to provide input data only for timeslices on one timeslice level. However, for parameters that are directly inherited, specifying values at multiple levels may sometimes be a convenient way to reduce the amount of values to be specified.[^22]
 
