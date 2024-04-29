@@ -14,18 +14,21 @@ The possibility of controlling interpolation on a time-series basis improves the
 
 #### Inter/extrapolation options
 
-The TIMES interpolation/extrapolation facility provides both a default I/E method for all time-series parameters, and options for the user to control the interpolation and extrapolation of each individual time series (Table 6). The option 0 does not change the default behavior. The specific options that correspond to the default methods are 3 (the standard default) and 10 (alternative default method for bounds and RHS parameters).
+The TIMES interpolation/extrapolation facility provides both a default I/E method for all time-series parameters, and options for the user to control the interpolation and extrapolation of each individual time series ({numref}`ie-control-options`). The option 0 does not change the default behavior. The specific options that correspond to the default methods are 3 (the standard default) and 10 (alternative default method for bounds and RHS parameters).
 
-Non-default interpolation/extrapolation can be requested for any parameter by providing an additional instance of the parameter with an indicator in the $YEAR$ index and a value corresponding to one of the integer-valued Option Codes (see Table 6 and example below). This
+Non-default interpolation/extrapolation can be requested for any parameter by providing an additional instance of the parameter with an indicator in the $YEAR$ index and a value corresponding to one of the integer-valued Option Codes (see {numref}`ie-control-options` and example below). This
 control specification activates the interpolation/extrapolation rule for the time series, and is distinguished from actual time-series data by providing a special control label (\'**0**\') in the $YEAR$ index. The particular interpolation rule to apply is a function of the Option Code assigned to the control record for the parameter. Note that for log-linear interpolation the Option Code indicates the year from which the interpolation is switched from standard to log-linear mode. TIMES user shell(s) will provide mechanisms for imbedding the control label and setting the Option Code through easily understandable selections from a user-friendly drop-down list, making the specification simple and transparent to the user.
 
 The enhanced interpolation/extrapolation facility provides the user with the following options to control the interpolation and extrapolation of each individual time series:
 - Interpolation and extrapolation of data in the default way as predefined in TIMES. This option does not require any explicit action from the user.
 - No interpolation or extrapolation of data (only valid for non-cost parameters).
-- Interpolation between data points but no extrapolation (useful for many bounds). See option codes 1 and 11 in Table 2 below
-- Interpolation between data points entered, and filling-in all points outside the interpolation window with the EPS (zero) value. This can useful for e.g. the RHS of equality-type user constraints, or bounds on future investment in a particular instance of a technology. See option codes 2 and 12 in Table 2 below.
-- Forced interpolation and extrapolation throughout the time horizon. Can be useful for parameters that are by default not interpolated. See option codes 3, 4, and 5 as well as 14 and 15 in Table 2 below.
+- Interpolation between data points but no extrapolation (useful for many bounds). See option codes 1 and 11 in {numref}`ie-control-options` below.
+- Interpolation between data points entered, and filling-in all points outside the interpolation window with the EPS (zero) value. This can useful for e.g. the RHS of equality-type user constraints, or bounds on future investment in a particular instance of a technology. See option codes 2 and 12 in {numref}`ie-control-options` below.
+- Forced interpolation and extrapolation throughout the time horizon. Can be useful for parameters that are by default not interpolated. See option codes 3, 4, and 5 as well as 14 and 15 in {numref}`ie-control-options` below.
 - Log-linear interpolation beyond a specified data year, and both forward and backward extrapolation outside the interpolation window. Log-linear interpolation is guided by relative coefficients of annual change instead of absolute data values.
+
+:::{table} Option codes for the control of time series data interpolation.
+:name: ie-control-options
 
 | Option code  | Action                                                                                                                            | Applies to  |
 | :----------: | --------------------------------------------------------------------------------------------------------------------------------- | :---------: |
@@ -43,7 +46,7 @@ The enhanced interpolation/extrapolation facility provides the user with the fol
 |      15      | Interpolation migrated at start, forward extrapolation                                                                            | Bounds, RHS |
 | YEAR (≥1000) | Log-linear interpolation beyond the specified YEAR, and both forward and backward extrapolation outside the interpolation window. |     All     |
 
-  : Table 6: Option codes for the control of time series data interpolation
+:::
 
 Migration means that data points are interpolated and extrapolated within each period but not across periods. This method thus migrates any data point specified for other than $milestoneyr$ year to the corresponding $milestoneyr$ year within the period, so that it will be effective in that period.
 
@@ -51,7 +54,7 @@ Log-linear interpolation means that the values in the data series are interprete
 
 #### Default inter/extrapolation
 
-The standard default method of inter-/extrapolation corresponds to the option 3, which interpolates linearly between data points, while it extrapolates the first/last data point constantly backward/forward. This method, full interpolation and extrapolation, is by default applied to most TIMES time series parameters. However, the parameters listed in Table 7 are by default **NOT** inter/extrapolated in this way, but have a different default method.
+The standard default method of inter-/extrapolation corresponds to the option 3, which interpolates linearly between data points, while it extrapolates the first/last data point constantly backward/forward. This method, full interpolation and extrapolation, is by default applied to most TIMES time series parameters. However, the parameters listed in {numref}`no-default-full-ie` are by default **NOT** inter/extrapolated in this way, but have a different default method.
 
 #### Interpolation of cost parameters
 
@@ -75,6 +78,9 @@ $FLO\_SHAR$ is by default NOT interpolated or extrapolated in TIMES. To force in
 FLO_SHAR('REG','0','PRC1','COAL','IN_PRC1','ANNUAL','UP') = 3;
 ```
 
+:::{table} Parameters not being fully inter/extrapolated by default
+:name: no-default-full-ie
+
 | Parameter                                                                                                                                                                                                                 | Justification                                                                                                                      |  Default I/E   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | :------------: |
 | ACT_BND <br>CAP_BND <br>NCAP_BND <br>NCAP_DISC <br>FLO_FR <br>FLO_SHAR <br>STGIN_BND <br>STGOUT_BND <br>COM_BNDNET <br>COM_BNDPRD <br>COM_CUMNET <br>COM_CUMPRD <br>REG_BNDCST <br>RCAP_BND <br>IRE_BND <br>IRE_XBND <br> | Bound may be intended at specific periods only.                                                                                    | 10 (migration) |
@@ -88,9 +94,9 @@ FLO_SHAR('REG','0','PRC1','COAL','IN_PRC1','ANNUAL','UP') = 3;
 | CM_MAXC                                                                                                                                                                                                                   | Bound may be intended at specific years only                                                                                       |      none      |
 | PEAKDA_BL                                                                                                                                                                                                                 | Blending parameters at the moment not interpolated                                                                                 |      none      |
 
-\* If only a single $PRC\_RESID$ value is specified, assumed to decay linearly over $NCAP\_TLIFE$ years
+:::
 
-: Table 7: Parameters not being fully inter/extrapolated by default
+\* If only a single $PRC\_RESID$ value is specified, assumed to decay linearly over $NCAP\_TLIFE$ years
 
 **Example 2:**
 
@@ -104,18 +110,22 @@ This parameter specifies a log-linear control option with the value for the thre
 
 #### Applicability
 
-All the enhanced I/E options described above are available for all TIMES timeseries parameters, excluding $PRC\_RESID$ and $COM\_BPRICE$. $PRC\_RESID$ is always interpolated, as if option 1 were used, but is also extrapolated forwards over $TLIFE$ when either I/E option 5 or 15 is specified. $COM\_BPRICE$ is not interpolated at all, as it is obtained from the Baseline solution. Moreover, the I/E options are not applicable to the integer-valued parameters related to the $SHAPE$ and $MULTI$ tables, which are listed in Table 8.
+All the enhanced I/E options described above are available for all TIMES timeseries parameters, excluding $PRC\_RESID$ and $COM\_BPRICE$. $PRC\_RESID$ is always interpolated, as if option 1 were used, but is also extrapolated forwards over $TLIFE$ when either I/E option 5 or 15 is specified. $COM\_BPRICE$ is not interpolated at all, as it is obtained from the Baseline solution. Moreover, the I/E options are not applicable to the integer-valued parameters related to the $SHAPE$ and $MULTI$ tables, which are listed in {numref}`interpolation-not-applicable`.
 
+:::{table} Parameters which cannot be interpolated.
+:name: interpolation-not-applicable
 
 | Parameter                                                                         | Comment                                                                                                         |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | NCAP_AFM <br>NCAP_FOMM <br>NCAP_FSUBM <br>NCAP_FTAXM                              | Parameter value is a discrete numbers indicating which MULTI curve should be used, and not a time series datum. |
 | COM_ELASTX <br>FLO_FUNCX <br>NCAP_AFX <br>NCAP_FOMX <br>NCAP_FSUBX <br>NCAP_FTAXX | Parameter value is a discrete number indicating which SHAPE curve should be used, and not a time series datum.  |
 
-  : Table 8: Parameters which cannot be interpolated.
+:::
 
-Nonetheless, a few options are supported also for the extrapolation of the $MULTI$ and $SHAPE$ index parameters, as shown in Table 9. The extrapolation can be done either only inside the data points provided by the user, or both inside and outside those data points. When using the inside data points option, the index specified for any $datayear$ is extrapolated to all model years ($v$) between that $datayear$ and the following $datayear$ for which the $SHAPE$ index is specified. The extrapolation options are available for all of the $SHAPE$ and $MULTI$ parameters listed in Table 8.
+Nonetheless, a few options are supported also for the extrapolation of the $MULTI$ and $SHAPE$ index parameters, as shown in {numref}`e-option-codes-shape-multi`. The extrapolation can be done either only inside the data points provided by the user, or both inside and outside those data points. When using the inside data points option, the index specified for any $datayear$ is extrapolated to all model years ($v$) between that $datayear$ and the following $datayear$ for which the $SHAPE$ index is specified. The extrapolation options are available for all of the $SHAPE$ and $MULTI$ parameters listed in {numref}`interpolation-not-applicable`.
 
+:::{table} Option codes for the extrapolation of SHAPE/MULTI indexes.
+:name: e-option-codes-shape-multi
 
 |  Option code  | Action                                                    |
 | :-----------: | --------------------------------------------------------- |
@@ -126,7 +136,7 @@ Nonetheless, a few options are supported also for the extrapolation of the $MULT
 |       5       | Extrapolation between data points and forwards            |
 |      11       | Extrapolation between data points only, migration at ends |
 
-  : Table 9: Option codes for the extrapolation of SHAPE/MULTI indexes.
+:::
 
 **Example:**
 
@@ -134,7 +144,7 @@ The user has specified the following two SHAPE indexes and a control option for 
 
 ```
 NCAP_AFX('REG', '0', 'PRC1') = 1;
-NCAP_AFX('REG', '1995', 'PRC1\') = 12;
+NCAP_AFX('REG', '1995', 'PRC1') = 12;
 NCAP_AFX('REG', '2010', 'PRC1') = 13;
 ``` 
  
@@ -181,55 +191,42 @@ Inheritance and aggregation rules for timeslice specific parameters in TIMES.
 
 ### Overview of user input parameters
 
-A list of all user input parameters (except for those specific to the TIMES-MACRO variants) is given in Table 13. For the MACRO input parameters, the reader is advised to consult the separate documentation. In order to facilitate the recognition by the user of to which part of the model a parameter relates the following naming conventions apply to the prefixes of the parameters (Table 11).
+A list of all user input parameters (except for those specific to the TIMES-MACRO variants) is given in Table 13. For the MACRO input parameters, the reader is advised to consult the separate documentation. In order to facilitate the recognition by the user of to which part of the model a parameter relates the following naming conventions apply to the prefixes of the parameters ({numref}`uip-naming-conventions`).
 
-  --------------------- -------------------------------------------------
-  **Prefix**            **Related model component**
+:::{table} Naming conventions for user input parameters.
+:name: uip-naming-conventions
 
-  G\_                   Global characteristic
+| Prefix      | Related model component        |
+| ----------- | ------------------------------ |
+| G\_         | Global characteristic          |
+| ACT\_       | Activity of a process          |
+| CAP\_       | Capacity of a process          |
+| COM\_       | Commodity                      |
+| FLO\_       | Process flow                   |
+| IRE\_       | Inter-regional exchange        |
+| NCAP\_      | New capacity of a process      |
+| PRC\_       | Process                        |
+| RCAP\_      | Retiring capacity of a process |
+| REG\_ / R\_ | Region-specific characteristic |
+| STG\_       | Storage process                |
+| UC\_        | User constraint                |
 
-  ACT\_                 Activity of a process
+:::
 
-  CAP\_                 Capacity of a process
+For brevity, the default interpolation/extrapolation method for each parameter is given by using the abbreviations listed in {numref}`ie-abbreviations`.
 
-  COM\_                 Commodity
+:::{table} Abbreviations for default I/E method in Table 13.
+:name: ie-abbreviations
 
-  FLO\_                 Process flow
+| Abbreviation | Description                                   |
+| ------------ | --------------------------------------------- |
+| STD          | Standard full inter-/extrapolation (option 3) |
+| MIG          | Migration (option 10)                         |
+| \<number\>   | Option code for any other default method      |
+| none         | No default inter-/extrapolation               |
+| N/A          | Inter-/extrapolation not applicable           |
 
-  IRE\_                 Inter-regional exchange
-
-  NCAP\_                New capacity of a process
-
-  PRC\_                 Process
-
-  RCAP\_                Retiring capacity of a process
-
-  REG\_ / R\_           Region-specific characteristic
-
-  STG\_                 Storage process
-
-  UC\_                  User constraint
-  --------------------- -------------------------------------------------
-
-  : Table 11: Naming conventions for user input parameters
-
-For brevity, the default interpolation/extrapolation method for each parameter is given by using the abbreviations listed in Table 12.
-
-  --------------------- -------------------------------------------------
-  **Abbreviation**      **Description**
-
-  STD                   Standard full inter-/extrapolation (option 3)
-
-  MIG                   Migration (option 10)
-
-  \<number\>            Option code for any other default method
-
-  none                  No default inter-/extrapolation
-
-  N/A                   Inter-/extrapolation not applicable
-  --------------------- -------------------------------------------------
-
-  : Table 12: Abbreviations for default I/E method in Table 13.
+:::
 
 +-----------+--------+----------+-------------+----------+-----------+
 | **Input   | **R    | **Units  | **Insta     | **Descr  | *         |
