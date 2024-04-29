@@ -156,7 +156,7 @@ As mentioned before, processes and commodities can be modelled in TIMES on diffe
 
 Inheritance in this context means that input data being specified on a coarser timeslice level (higher up the tree) are inherited to a finer timeslice level (lower down the tree), whereas aggregation means that timeslice specific data are aggregated from a finer timeslice level (lower down the tree) to a coarser one (further up the tree). The inheritance feature may also be useful in some cases where the value of a parameter should be the same over all timeslices, since in this case it is sufficient to provide the parameter value for the \'ANNUAL\' timeslice which is then inherited to the required finer target timeslices.[^21]
 
-```{list-table} Inheritance and aggregation rules
+```{list-table} Inheritance and aggregation rules.
 :name: inheritance-and-aggregation-rules
 :align: left
 
@@ -6563,97 +6563,57 @@ The parameters generated internally by TIMES to document the results of a model 
 
 ### Acronyms used in cost reporting parameters
 
-The acronyms used in the reporting parameters for referring to certain types of costs are summarized in Table 16. The acronyms are used as qualifiers in the $uc\_n$ index of each reporting attribute, and are accessible in VEDA-BE through that same dimension.
+The acronyms used in the reporting parameters for referring to certain types of costs are summarized in {numref}`acronyms-in-cost-reporting`. The acronyms are used as qualifiers in the $uc\_n$ index of each reporting attribute, and are accessible in VEDA-BE through that same dimension.
 
-+--------------+-------------------------------------------------------+
-| **Cost       | **Component acronyms**                                |
-| parameter**  |                                                       |
-+--------------+-------------------------------------------------------+
-| CAP_NEW\     | Newly installed capacity and lump-sum investment      |
-| (r           | costs by vintage and commissioning period:            |
-| ,v,p,t,uc_n) |                                                       |
-|              | INSTCAP New capacity of vintage v commissioned in     |
-|              | period t                                              |
-|              |                                                       |
-|              | LUMPINV Lump-sum investment costs for vintage v in    |
-|              | period t                                              |
-|              |                                                       |
-|              | LUMPIX Lump-sum investment taxes & subsidies for      |
-|              | vintage v, period t                                   |
-|              |                                                       |
-|              | INV+ Lump-sum investment portion attributable to      |
-|              | hurdle rate in excess of the general discount rate    |
-|              |                                                       |
-|              | INVX+ Lump-sum tax & subsidy portion attributable to  |
-|              | hurdle rate in excess of the general discount rate    |
-+--------------+-------------------------------------------------------+
-| CST_PVC\     | Total discounted costs by commodity (optional):       |
-| (uc_n,r,c)   |                                                       |
-|              | COM Commodity-related costs, taxes and subsidies      |
-|              |                                                       |
-|              | ELS Losses in elastic demands                         |
-|              |                                                       |
-|              | DAM Damage costs                                      |
-+--------------+-------------------------------------------------------+
-| CST_PVP\     | Total discounted costs by process (optional):         |
-| (uc_n,r,p)   |                                                       |
-|              | INV Investment costs, taxes and subsidies, excluding  |
-|              | portions attributable to hurdle rates in excess of    |
-|              | the general discount rate                             |
-|              |                                                       |
-|              | INV+ Investment costs, taxes and subsidies, portions  |
-|              | attributable to hurdle rates in excess of the general |
-|              | discount rate                                         |
-|              |                                                       |
-|              | FIX Fixed costs, taxes and subsidies                  |
-|              |                                                       |
-|              | ACT Activity costs                                    |
-|              |                                                       |
-|              | FLO Flows costs taxes and subsidies (including        |
-|              | exogenous IRE prices)                                 |
-|              |                                                       |
-|              | IRE Implied trade costs minus revenues                |
-+--------------+-------------------------------------------------------+
-| REG_ACOST\   | Regional total annualized costs by period:            |
-| (r,t,uc_n)   |                                                       |
-|              | INV Annualized investment costs                       |
-|              |                                                       |
-|              | INVX Annualized investment taxes and subsidies        |
-|              |                                                       |
-|              | FIX Annual fixed costs                                |
-|              |                                                       |
-|              | FIXX Annual fixed taxes and subsidies                 |
-|              |                                                       |
-|              | VAR Annual variable costs                             |
-|              |                                                       |
-|              | VARX Annual variable taxes and subsidies              |
-|              |                                                       |
-|              | IRE Annual implied trade costs minus revenues         |
-|              |                                                       |
-|              | ELS Annual losses in elastic demands                  |
-|              |                                                       |
-|              | DAM Annual damage costs                               |
-+--------------+-------------------------------------------------------+
-| REG_WOBJ\    | Regional total discounted system cost by component:   |
-| (r,uc_n,c)   |                                                       |
-|              | INV Investment costs                                  |
-|              |                                                       |
-|              | INVX Investment taxes and subsidies                   |
-|              |                                                       |
-|              | FIX Fixed costs                                       |
-|              |                                                       |
-|              | FIXX Fixed taxes and subsidies                        |
-|              |                                                       |
-|              | VAR Variable costs                                    |
-|              |                                                       |
-|              | VARX Variable taxes and subsidies                     |
-|              |                                                       |
-|              | ELS Losses in elastic demands                         |
-|              |                                                       |
-|              | DAM Damage costs                                      |
-+--------------+-------------------------------------------------------+
+```{list-table} Acronyms used in the cost reporting parameters.
+:name: acronyms-in-cost-reporting
+:header-rows: 1
 
-: Table 16: Acronyms used in the cost reporting parameters.
+* - Cost parameter
+  - Component acronyms
+* - CAP_NEW (r,v,p,t,uc_n)
+  - Newly installed capacity and lump-sum investment costs by vintage and commissioning period:
+ <br>INSTCAP New capacity of vintage v commissioned in period t
+ <br>LUMPINV Lump-sum investment costs for vintage v in period t
+ <br>LUMPIX Lump-sum investment taxes & subsidies for vintage v, period t
+ <br>INV+ Lump-sum investment portion attributable to hurdle rate in excess of the general discount rate
+ <br>INVX+ Lump-sum tax & subsidy portion attributable to hurdle rate in excess of the general discount rate
+* - CST_PVC (uc_n,r,c)
+  - Total discounted costs by commodity (optional):
+ <br>COM Commodity-related costs, taxes and subsidies
+ <br>ELS Losses in elastic demands
+ <br>DAM Damage costs
+* - CST_PVP (uc_n,r,p)
+  - Total discounted costs by process (optional):
+ <br>INV Investment costs, taxes and subsidies, excluding portions attributable to hurdle rates in excess of the general discount rate
+ <br>INV+ Investment costs, taxes and subsidies, portions attributable to hurdle rates in excess of the general discount rate
+ <br>FIX Fixed costs, taxes and subsidies
+ <br>ACT Activity costs
+ <br>FLO Flows costs taxes and subsidies (including exogenous IRE prices)
+ <br>IRE Implied trade costs minus revenues
+ * - REG_ACOST (r,t,uc_n)
+   - Regional total annualized costs by period:
+ <br>INV Annualized investment costs
+ <br>INVX Annualized investment taxes and subsidies
+ <br>FIX Annual fixed costs
+ <br>FIXX Annual fixed taxes and subsidies
+ <br>VAR Annual variable costs
+ <br>VARX Annual variable taxes and subsidies
+ <br>IRE Annual implied trade costs minus revenues
+ <br>ELS Annual losses in elastic demands
+ <br>DAM Annual damage costs
+* - REG_WOBJ (r,uc_n,c)
+  - Regional total discounted system cost by component:
+ <br>INV Investment costs
+ <br>INVX Investment taxes and subsidies
+ <br>FIX Fixed costs
+ <br>FIXX Fixed taxes and subsidies
+ <br>VAR Variable costs
+ <br>VARX Variable taxes and subsidies
+ <br>ELS Losses in elastic demands
+ <br>DAM Damage costs
+
+```
 
 ### The levelized cost reporting option
 
