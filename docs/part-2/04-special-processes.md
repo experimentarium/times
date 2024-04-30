@@ -22,7 +22,10 @@ $${\eta_{F} = \frac{\eta_{B} \times (1 + R)}{1 + R \times S}
 }$$
 $${S = \frac{\eta_{B} \times (1 + R) - \eta_{F}}{\eta_{F} \times R}}$$
 
-The core TIMES parameters for modeling the CHP attributes are listed in Table 17.
+The core TIMES parameters for modeling the CHP attributes are listed in {numref}`core-chp-parameters`.
+
+:::{table} Core TIMES parameters related to the modelling of CHP processes.
+:name: core-chp-parameters
 
 | Attribute name      | Description                                                     |
 | ------------------- | --------------------------------------------------------------- |
@@ -33,6 +36,8 @@ The core TIMES parameters for modeling the CHP attributes are listed in Table 17
 | NCAP_CDME           | Efficiency in full condensing mode                              |
 | NCAP_BPME           | Efficiency in back-pressure mode (full CHP mode) \*             |
 | NCAP_AFA / NCAP_AFC | Bound on the annual utilization factor                          |
+
+:::
 
 \* Only taken into account for processes defined to be of type CHP with the set .     
 
@@ -289,7 +294,7 @@ The rules for defining the availabilities for trade flows can be summarized as f
 
 *<ins>Remarks:</ins>*
 1. As any process has only a single capacity variable, the availabilities specified for the import/export flows are always proportional to the same overall capacity.
-2. Note that any the availability factors defined by $NCAP\_AFC$ are multiplied by any $NCAP\_AF$/$NCAP\_AFS$/$NCAT\_AFA$ value if defined for the same timeslice.
+2. Note that the availability factors defined by $NCAP\_AFC$ are multiplied by any $NCAP\_AF$/$NCAP\_AFS$/$NCAP\_AFA$ value if defined for the same timeslice.
 
 ### Notes on other attributes for trade processes
 
@@ -342,9 +347,9 @@ Day/Night storage (NST) is a timeslice storage, which can store energy over the 
 
 Day/Night storage processes that produce ANNUAL level demand commodities can be modeled either as genuine storage processes or as standard processes with a night storage capability. In both cases \'NST\' should be specified as the process type. If the process itself is defined to operate at the DAYNITE level, the process will be a genuine storage process, but if it is defined to operate at the ANNUAL level, it will be a standard process. For any such night storage devices, the charging and discharging commodity may be different, as defined via the set $top$.
 
-When the NST process $p$ is a genuine storage process, the input set $prc_nstts(r,p,s)$ may be used for defining the charging timeslices $s$. Discharging can then only occur in timeslices other than the charging timeslices. Defining $prc\_nstts$ is required for all other genuine NST processes, except those serving an ANNUAL level demand, which can always discharge at the level of the demand, regardless of any $prc\_nstts$ defined.
+When the NST process $p$ is a genuine storage process, the input set $prc_nstts(r,p,s)$ may be used for defining the charging timeslices $s$. Discharging can then only occur in timeslices other than the charging timeslices. Defining $prc\_nstts$ is required for all other genuine NST processes, except those serving an ANNUAL level demand, which can always discharge at the level of the demand, regardless of any $prc\_nstts$ defined. By defining $prc\_nstts$ on the ANNUAL level for a storage with an ANNUAL level input commodity, one can impose its $COM\_FR$ profile as the predefined inflow load profile.
 
-In both types of NST storage, if the process is serving any ANNUAL level demand, the demand commodity is produced according to the load curve, while the charging can be optimized so that it occurs at night timeslices only. However, when the NST process is a normal process, it can be described in all other respects just as any other end-use technologies. For example, electric heating systems with accumulators can be described basically in the same way as direct electric heating systems, but with the additional night storage capability.
+In both types of NST storage, if the process is serving any ANNUAL level demand, the demand commodity is produced according to the load curve, while the charging can be optimized so that it occurs at night timeslices only. However, when the NST process is a normal process, it can be described in all other respects just as any other end-use technologies. For example, electric heating systems with accumulators can be described basically in the same way as direct electric heating systems, but with the additional night storage capability for which operational constraints may be defined e.g. with $FLO\_FR$.
 
 ### Inter-period storage
 
@@ -474,7 +479,7 @@ be summarized as follows:
 
 *<ins>Remarks:</ins>*
 1.  As any storage process has only a single capacity variable, the assumption is that the availabilities specified for the output/input flows and the activity are all proportional to the same capacity.
-2. Note that any the availability factors defined by $NCAP\_AFC$ are multiplied by any $NCAP\_AF$ / $NCAP\_AFS$ / $NCAP\_AFA$ value if defined for the same timeslice.
+2. Note that the availability factors defined by $NCAP\_AFC$ are multiplied by any $NCAP\_AF$ / $NCAP\_AFS$ / $NCAP\_AFA$ value if defined for the same timeslice.
 
 ### Notes on other attributes for storage processes
 
@@ -541,7 +546,7 @@ There are important limitations of using standard processes parameters for stora
 
 *<ins>Additional remark on peaking equations</ins>*
 
-In peaking equations, storage processes producing the peaking commodity are by default taken into account by their capacity on the supply side, and not at all by their flows (charging / discharging). By defining the storage process as a member of the set $PRC\_PKNO$, and also defining $NCAP\_PKCNT>0$, the discharge from the storage is taken into account on the supply side instead of the capacity, and the charging into the storage is included on the consumption side (should such happen in the peak timeslice). That can be recommended, whenever the capacity represents the amount stored, and not the output capacity, and may be reasonable even for storage processes where the capacity represents the nominal maximum output flow.
+In peaking equations, processes that have a peaking commodity as the PCG (as an output) are by default taken into account by their capacity on the supply side. This holds also for storage processes, which are thus by default not contributing to the peak by their flows (charging / discharging). However, by defining the storage process as a member of the set $PRC\_PKNO$, and also defining $NCAP\_PKCNT>0$, the discharge from the storage is taken into account on the supply side instead of the capacity, and the charging into the storage is included on the consumption side (should such happen in the peak timeslice). This can be recommended, whenever the capacity represents the amount stored, and not the output capacity, and may be reasonable even for storage processes where the capacity represents the nominal maximum output flow. Conversely, if the PG of a storage process is a commodity group (e.g. NRG), only the flows are by default contributing to the peak.  Should contribution by capacity be preferred, one can request that by defining $PRC\_PKAF$ for the process and the appropriate $NCAP\_PKCNT$ factors for the capacity.
 
 ### Load-shifting storage processes
 

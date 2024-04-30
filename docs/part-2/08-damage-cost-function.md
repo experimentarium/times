@@ -222,46 +222,14 @@ be used together with the decomposed MACRO_MSA option.
 
 ### Input parameters
 
-All the parameters for describing damage functions are available in the
-VEDA-FE shell, where they may be specified. All parameters have a prefix
-\'DAM\_\' in the GAMS code of the model generator. The parameters are
-discussed in more detail below:
+All the parameters for describing damage functions are available in the VEDA-FE shell, where they may be specified. All parameters have a prefix \'DAM\_\' in the GAMS code of the model generator. The parameters are discussed in more detail below:
+1. The parameter **DAM_COST** is used to specify the marginal damage cost at the reference level of emissions. The parameter has a year index, which can be utilized also for turning damage accounting on/off for an emission in a period (by specifying an EPS value for the cost). **DAM_COST** is interpolated/extrapolated by default, but unlike other cost parameters, the interpolation is sparse, and the costs are assumed to be constant within each period.
+2. The parameter **DAM_BQTY** is used to specify the reference level of emissions. If not specified or set to zero, the marginal damage costs will be assumed constant, and no emission steps are used.
+3. The parameter **DAM_ELAST** is used to specify the elasticity of marginal damage costs to emissions in the lower and upper direction. If specified in one direction only, the elasticity is assumed in both directions. If neither is specified, the marginal damage costs will be constant in both directions.
+4. The parameter **DAM_STEP** can be used for specifying the number of emission steps below and above the reference level of emissions. The last step above the reference level will always have an infinite bound. If the number of steps is not provided in either direction, but the elasticity is, one step is assumed in that direction. If a non-zero **DAM_STEP**(r,c,\'N\') is specified, the damage costs for commodity **c** in region **r** are not included in the objective. If the NLP formulation is used (DAMAGE=NLP), all **DAM_STEP** parameters will be ignored.
+5. The parameter **DAM_VOC** can be used for specifying the variation in emissions covered by the emission steps, both in the lower an upper direction. The variation in the lower direction should be less than or equal to the reference level of emissions. If the lower variation is smaller than **DAM_BQTY**, the damage costs are zero for emissions below the difference. The lower variance can thus be used for defining a threshold level for the damage costs. If **DAM_VOC** is not specified in the lower direction, it is assumed to be equal to **DAM_BQTY**. If **DAM_VOC** is not specified in the upper direction, the emission step size in the upper direction is assumed to be equal to that in the lower direction. The limtype 'N' can be used for defining step sizes in proportion to the reference level. If the NLP formulation is used (DAMAGE\=\=NLP), any **DAM_VOC** parameters specified in the upper direction will be ignored.  However, even in the NLP formulation the lower **DAM_VOC** can be used for defining a threshold emission level for the costs.
 
-1.  The parameter **DAM_COST** is used to specify the marginal damage
-    cost at the reference level of emissions. The parameter has a year
-    index, which can be utilized also for turning damage accounting
-    on/off for an emission in a period (by specifying an EPS value for
-    the cost). **DAM_COST** is interpolated/extrapolated by default, but
-    unlike other cost parameters, the interpolation is sparse, and the
-    costs are assumed to be constant within each period.
-
-2.  The parameter **DAM_BQTY** is used to specify the reference level of
-    emissions. If not specified or set to zero, the marginal damage
-    costs will be assumed constant, and no emission steps are used.
-
-3.  The parameter **DAM_ELAST** is used to specify the elasticity of
-    marginal damage costs to emissions in the lower and upper direction.
-    If specified in one direction only, the elasticity is assumed in
-    both directions. If neither is specified, the marginal damage costs
-    will be constant in both directions.
-
-4.  The parameter **DAM_STEP** can be used for specifying the number of
-    emission steps below and above the reference level of emissions. The
-    last step above the reference level will always have an infinite
-    bound. If the number of steps is not provided in either direction,
-    but the elasticity is, one step is assumed in that direction. If a
-    non-zero **DAM_STEP**(r,c,\'N\') is specified, the damage costs for
-    commodity **c** in region **r** are not included in the objective.
-    If the NLP formulation is used (DAMAGE=NLP), all **DAM_STEP**
-    parameters will be ignored.
-
-5.  The parameter **DAM_VOC** can be used for specifying the variation
-    in emissions covered by the emission steps, both in the lower an
-    upper direction. The variation in the lower direction should be less
-    than or equal to the reference level of emissions. If the lower
-    variation is smaller than **DAM_BQTY**, the damage costs.
-
-The input parameters are listed in Table B-1.
+The input parameters are listed in Table B-1. 
 
 +---------+--------+-----------+----------+--------------+-----------+
 | **Input | **R    | **Units / | **       | **D          | *         |
@@ -329,7 +297,7 @@ The input parameters are listed in Table B-1.
 | D       | See    | TIMES     | Only     | Variation in | EQ_DAMAGE |
 | AM_VOC\ | above  | emission  | taken    | emissions    |           |
 | (       |        | unit      | into     | covered by   | EQ_OBJDAM |
-| r,c,bd) |        |           | account  | the emission |           |
+| r,c,lim) |        |           | account  | the emission |           |
 |         |        | (0, INF); | if       | steps in the |           |
 |         |        | ≤ D       | DAM_COST | lower/upper  |           |
 |         |        | AM_BQTY;\ | has been | direction. A |           |
