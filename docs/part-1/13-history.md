@@ -107,7 +107,6 @@ Both MARKAL and TIMES support stochastic programming (SP, Chapter 8) as a means 
 
 TIMES possesses a set of variables and equations that endogenize the concentration of $CO_2$, $CH_4$, and $N_2O$, and also calculate the radiative forcing and global temperature changes resulting from GHG emissions and accumulation here. This new feature is described in Chapter 7.
 
-
 ------------
 
 [^43]: With the kind permission of Professor Stephen Hawking

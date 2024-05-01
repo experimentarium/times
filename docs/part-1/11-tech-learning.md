@@ -50,13 +50,13 @@ With the Mixed Integer Programming approach implemented in TIMES, the cumulative
 1. The user specifies the set of learning technologies;
 2. For each learning technology, the user provides:
 
-	a. The progress ratio $pr$ (from which the learning index $b$ may be inferred)
-	
-	b. One initial point on the learning curve, denoted $(C_0,TC_0)$
-	
-	c. The maximum allowed cumulative investment $C_{max}$(from which the maximum total investment cost $TC_{max}$ may be inferred)
-	
-	d. The number $N$ of segments for approximating the cumulative learning curve over the $(C_0,C_{max})$ interval.
+    a. The progress ratio $pr$ (from which the learning index $b$ may be inferred)
+
+    b. One initial point on the learning curve, denoted $(C_0,TC_0)$
+
+    c. The maximum allowed cumulative investment $C_{max}$(from which the maximum total investment cost $TC_{max}$ may be inferred)
+
+    d. The number $N$ of segments for approximating the cumulative learning curve over the $(C_0,C_{max})$ interval.
 
 > Note that each of these parameters, including $N$, may be different for different technologies.
 
@@ -197,7 +197,6 @@ ETL modelers are well aware of this phenomenon, and they use additional constrai
 In view of the preceding discussion, a fundamental question arises: is it worthwhile for the modeler to go to the trouble of modeling *endogenous* learning (with all the attendant computational burdens) when the results are to a large extent conditioned by *exogenous* upper bounds? We do not have a clear and unambiguous answer to this question; that is left for each modeler to evaluate.
 
 However, given the above caveat, a possible alternative to ETL would consist in using exogenous learning trajectories. To do so, the same sequence of 'realistic' upper bounds on capacity would be selected by the modeler, and the values of the unit investment costs ($INVCOST$) would be externally computed by plugging these upper bounds into the learning formula (11-1). This approach makes use of the same exogenous upper bounds as the ETL approach, but avoids the MIP computational burden of ETL. Of course, the running of exogenous learning scenarios is not entirely foolproof, since there is no absolute guarantee that the capacity of a learning technology will turn out to be exactly equal to its exogenous upper bound. If that were not the case, a modified scenario would have to be run, with upper bounds adjusted downward. This trial-and-error approach may seem inelegant, but it should be remembered that it (or some other heuristic approach) might prove to be necessary in those cases where the number of learning technologies and the model size are both large (thus making the rigorous ETL formulation computationally intractable).
-
 
 ------------
 

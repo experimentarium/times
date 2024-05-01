@@ -66,8 +66,8 @@ $$ \Delta F_{CO2}(y) = \gamma \times \frac{ln(M_{atm}(y)/M_0)}{ln 2}$$
 
 where:
 
--   $M_0$ (i.e., CO2ATM_PRE_IND) is the pre-industrial (circa 1750) reference atmospheric concentration of $CO_2$ = 596.4 GtC
--   $\gamma$ is the radiative forcing sensitivity to atmospheric $CO_2$ concentration doubling = $3.7 \ W/m^2$
+- $M_0$ (i.e., CO2ATM_PRE_IND) is the pre-industrial (circa 1750) reference atmospheric concentration of $CO_2$ = 596.4 GtC
+- $\gamma$ is the radiative forcing sensitivity to atmospheric $CO_2$ concentration doubling = $3.7 \ W/m^2$
 
 b) The radiative forcing due to atmospheric CH4 is given by the following expression (IPCC 2007), where the subscript tot has been omitted
 
@@ -139,7 +139,6 @@ with
 - $λ$ feedback parameter (climatic retroaction). It is customary to write $λ$ as $λ =γ/C_s$, $C_s$ being the climate sensitivity parameter, defined as the change in equilibrium atmospheric temperature induced by a doubling of CO~2~ concentration. In contrast with most other parameters, the value of $C_s$ is highly uncertain, with a possible range of values from $1^oC$ to $10^oC$. This parameter is therefore a prime candidate for sensitivity analysis, or for treatment by probabilistic methods such as stochastic programming.
 
 For more details on the implementation of the Climate Module in TIMES, including parameters, variables, and equations, as represented in the TIMES code, see Appendix A of Part II.
-
 
 ------------
 

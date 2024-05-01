@@ -149,12 +149,12 @@ These were remedied by making changes in parts of the **OBJ** cost representatio
 The three options are as follows:
 - The original OBJ with minor changes made to it, activated via the **OBLONG** switch.
 - The modified objective function (**MOD**). The **MOD** formulation adds only a few modifications to the standard formulation:
-	- The model periods are defined in a different way; and
-	- The investment spreads in the investment Cases 1a and 1b (see section 6.2 of Part II for a list of all cases) are defined slightly differently.
+    - The model periods are defined in a different way; and
+    - The investment spreads in the investment Cases 1a and 1b (see section 6.2 of Part II for a list of all cases) are defined slightly differently.
 - The **ALT** formulation includes all the modifications made in the MOD formulation. In addition, it includes the following further modifications that eliminate basically all of the remaining problems in the standard formulation:
-	- The investment spreads in the investment Case 1b are defined slightly differently;
-	- The capacity transfer coefficients for newly installed capacities are defined slightly differently, so that the effective lifetime of technologies is calculated taking into account discounting;
-	- Variable costs are adjusted to be in sync with the available capacity.
+    - The investment spreads in the investment Case 1b are defined slightly differently;
+    - The capacity transfer coefficients for newly installed capacities are defined slightly differently, so that the effective lifetime of technologies is calculated taking into account discounting;
+    - Variable costs are adjusted to be in sync with the available capacity.
 
 It has been observed that these three options yield results that have practically the same degree of accuracy and reliability. There is however an advantage to the MOD and ALT options, as the milestone years need no longer be at the middle of a period.
 
@@ -299,7 +299,7 @@ Note also that in the peak equation (5-7), it is assumed that imports of the com
 
 In TIMES variables are optionally attached to various quantities related to commodities, such as total quantity produced. Therefore it is quite easy to put constraints on these quantities, by simply bounding the commodity variables in each period. It is also possible to impose cumulative bounds on commodities over more than one period, a particularly useful feature for cumulatively bounding emissions or modeling reserves of fossil fuels. By introducing suitable naming conventions for emissions the user may constrain emissions from specific sectors. Furthermore, the user may also impose global emission constraints that apply to several regions taken together, by allowing emissions to be traded across regions. Alternatively or concurrently a tax or penalty may be applied to each produced (or consumed) unit of a commodity (energy form, emission), via specific parameters.
 
-A specific type of constraint may be defined to limit the share of process (p) in the total production of commodity (c). The constraint indicates that the flow of commodity (c) from/to process (p) is bounded by a given fraction of the total production of commodity (c). In the present implementation, the same given fraction is applied to all time­ slices.
+A specific type of constraint may be defined to limit the share of process (p) in the total production of commodity (c). The constraint indicates that the flow of commodity (c) from/to process (p) is bounded by a given fraction of the total production of commodity (c). In the present implementation, the same given fraction is applied to all timeslices.
 
 ### User constraints
 
@@ -317,7 +317,7 @@ Typically, a growth constraint is of the following generic form (ignoring severa
 
 $VAR\_CAP(t+1) \leq (1+ GROWTH^{M(t+1)- M(t)}).VAR\_CAP(t) + K$ (5-8)
 
-The $GROWTH$ coefficient is defined as a new attribute of the technology, and represents the maximum annual growth allowed for the capacity. The quantity $M(t+1)-M(t)$ is the number of years between the milestones of periods $t$ and $t+1$. The constant $K$ is useful whenever the technology has no capacity initially, in order to allow capacity to build over time (if $K$ were absent and initial capacity is zero, the technology would never acquire any capacity)
+The $GROWTH$ coefficient is defined as a new attribute of the technology, and represents the maximum annual growth allowed for the capacity. The quantity $M(t+1)-M(t)$ is the number of years between the milestones of periods $t$ and $t+1$. The constant $K$ is useful whenever the technology has no capacity initially, in order to allow capacity to build over time (if $K$ were absent and initial capacity is zero, the technology would never acquire any capacity).
 
 Note that the sign of the constraint may also be of the \"larger than or equal to\" type to express a maximum rate of abandonment, in which case the \"+\" sign is replaced by a \"--\" sign in the right-hand-side of the constraint. Equality is also allowed, but must be used only exceptionally in order to avoid railroading of the model.
 
@@ -515,7 +515,6 @@ The following further modifications are done in the LIN formulation:
 - The inter-period storage equations are modified to include linear interpolation of the flow variables involved;
 - The cumulative user constraints for activities and flows are also modified in a similar manner.
 - Note that in the LIN formulation the activity of ***inter-period storage*** equations is measured at the milestone year (in the standard formulation it is measured at the end of each period). In addition, new EQ_STGIPS equations are added to ensure that the storage level remains non-negative at the end of each period. (Without these additional constraints, the linear interpolation of storage could lead to a negative storage level if the period contains more than a single year.)
-
 
 ------------
 

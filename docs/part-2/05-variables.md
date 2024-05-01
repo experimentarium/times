@@ -221,8 +221,7 @@ Table 23 is a list of TIMES variables by category, with brief description of eac
 
 ## $VAR\_CAP(r,t,p)$ 
 
-> **Definition:** the installed capacity in place in any given year **t**, of all vintages of a process determined by the equation EQ(*l*)\_CPT. The variable is equal to the sum of all previously made
-> investments in new capacity, plus any remaining residual capacity installed before the modeling horizon, that has not yet reached the end of its technical lifetime, and minus any capacity that has been retired early.
+> **Definition:** the installed capacity in place in any given year **t**, of all vintages of a process determined by the equation EQ(*l*)\_CPT. The variable is equal to the sum of all previously made investments in new capacity, plus any remaining residual capacity installed before the modeling horizon, that has not yet reached the end of its technical lifetime, and minus any capacity that has been retired early.
 >
 > **Role:** Its main purpose is to allow the total capacity of a process to be bounded. The variable is only created when
 - capacity bounds (CAP_BND) for the total capacity installed are specified. In case only one lower or one upper capacity bound is specified, the variable is not generated, but the bound is directly used in the EQ(l)\_CPT constraint.
@@ -276,8 +275,7 @@ Table 23 is a list of TIMES variables by category, with brief description of eac
 
 ## $VAR\_CUMFLO(r,p,c,y1,y2)$
 
-> **Definition:** the cumulative amount of flow in commodity **c** by process **p** in region **r** between years **y1** and **y2**, over all timeslices. With the commodity name **c=**\'ACT\' (reserved system
-> label), the variable represents the cumulative amount of process activity.
+> **Definition:** the cumulative amount of flow in commodity **c** by process **p** in region **r** between years **y1** and **y2**, over all timeslices. With the commodity name **c=**\'ACT\' (reserved system label), the variable represents the cumulative amount of process activity.
 >
 > **Role:** this variable is only created if a bound is imposed on the cumulative amount of process flow or activity. The variable is defined through the equation EQ_CUMFLO.
 >
@@ -287,8 +285,7 @@ Table 23 is a list of TIMES variables by category, with brief description of eac
 
 ## $VAR\_DNCAP(r,t,p,u)$ / $VAR\_SNCAP(r,t,p)$
 
-> **Definition:** VAR_DNCAP is only used for processes selected by the user as being discrete, i.e. for which the new capacity in period **t** may only be equal to one of a set of discrete sizes, specified
-> by the user. For such processes, VAR_DNCAP is a binary decision variable equal to 1 if the investment is equal to size **'u'** and 0 otherwise. Thanks to an additional constraint, only one of the various potential sizes allowed for the investment at period **t** is indeed allowed.
+> **Definition:** VAR_DNCAP is only used for processes selected by the user as being discrete, i.e. for which the new capacity in period **t** may only be equal to one of a set of discrete sizes, specified by the user. For such processes, VAR_DNCAP is a binary decision variable equal to 1 if the investment is equal to size **'u'** and 0 otherwise. Thanks to an additional constraint, only one of the various potential sizes allowed for the investment at period **t** is indeed allowed.
 >
 > VAR_SNCAP is only used for processes selected by the user as having semi-continuous amounts of new capacity, i.e. for which new capacity in period **t** may only be zero or between positive lower and upper bounds specified by the user.
 >
@@ -341,7 +338,6 @@ Table 23 is a list of TIMES variables by category, with brief description of eac
 ## $VAR\_NCAP(r,v,p)$
 
 > **Definition:** the amount of new capacity (or what has traditionally been called "investment" in new capacity, or capacity build-up) at period **v**. As will be explained in Section 6.2.2, VAR_NCAP represents the total investment in technology **p** at period **v** only when ILED+TLIFE ≥ D(v), where D(v) is the period length. And, as discussed further in that Section, when ILED+TLIFE \< D(v), the model assumes that the investment is repeated as many times as necessary within the period so that the life of the last repetition is beyond the end of period **v**. In this case VAR_NCAP represents the capacity level of the single investments. {numref}`repeated-investment-same-period` illustrates a case where the investment is made twice in period **v** (and some capacity still remains after period **v**). The average capacity in period **v** resulting from the investment VAR_NCAP(v) is less than VAR_NCAP(v), due to the delay ILED (it is equal to VAR_NCAP(v)\* D(v)/TLIFE). The average capacity in period **v+1** due to VAR_NCAP(v) is also less than VAR_NCAP(v) because the end of life of the second round of investment occurs before the end of period **v+1**. These adjustments are made in every equation involving VAR_NCAP by the internal parameter COEF_CPT.
-
 
  ```{figure} assets/image15.png
 :name: repeated-investment-same-period

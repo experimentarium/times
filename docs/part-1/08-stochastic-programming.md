@@ -23,8 +23,7 @@ Uncertainty on a given parameter is said to be resolved, either fully or partial
 
 The **key observation** is that prior to resolution time, the decision maker (and hence the model) does not know the eventual values of the uncertain parameters, but still has to take decisions. On the contrary, after resolution, the decision maker knows with certainty the outcome of some event(s) and his subsequent decisions will be different depending on which outcome has occurred.
 
-For the example shown in {numref}`stochastic-TIMES-tree`, in 2000 and 2010 there can be only
-one set of decisions, whereas in 2020 there will be two sets of decisions, contingent on which of the mitigation outcomes (High or Low) has occurred, and in 2030, 2040, 2050 and 2060, there will be four sets of contingent decisions.
+For the example shown in {numref}`stochastic-TIMES-tree`, in 2000 and 2010 there can be only one set of decisions, whereas in 2020 there will be two sets of decisions, contingent on which of the mitigation outcomes (High or Low) has occurred, and in 2030, 2040, 2050 and 2060, there will be four sets of contingent decisions.
 
 ```{figure} assets/image23.png
 :name: stochastic-TIMES-tree
@@ -116,7 +115,7 @@ In addition, in TIMES there is also an experimental variant for the modeling of 
 
 ## Alternative criteria for the objective function
 
-The preceding description of stochastic programming assumes that the policy maker accepts the expected cost as his optimizing criterion. This is equivalent to saying that he is risk neutral. In many situations, the assumption of risk neutrality is only an approxi­mation of the true utility function of a decision maker.
+The preceding description of stochastic programming assumes that the policy maker accepts the expected cost as his optimizing criterion. This is equivalent to saying that he is risk neutral. In many situations, the assumption of risk neutrality is only an approximation of the true utility function of a decision maker.
 
 Two alternative candidates for the objective function are:
 - Expected utility criterion with linearized risk aversion
@@ -156,9 +155,9 @@ This is the expected utility formulation implemented into the TIMES model genera
 
 ## Solving approaches
 
-General multi-stage stochastic programming problems of the type described above can be solved by standard deterministic algorithms by solving the deterministic equivalent of the stochastic model. This is the most straightforward approach, which may be applied to all problem instances. However, the resulting deterministic problem may become very large and thus difficult to solve, especially if integer vari­ables are introduced, but also in the case of linear models with a large number of stochastic scenarios.
+General multi-stage stochastic programming problems of the type described above can be solved by standard deterministic algorithms by solving the deterministic equivalent of the stochastic model. This is the most straightforward approach, which may be applied to all problem instances. However, the resulting deterministic problem may become very large and thus difficult to solve, especially if integer variables are introduced, but also in the case of linear models with a large number of stochastic scenarios.
 
-Two-stage stochastic programming problems can also be solved efficiently by using a Benders de­composition algorithm (Wets, 1989). Therefore, the classical decompo­sition approach to solving large multi-stage stochastic linear programs has been nested Benders decomposition. However, a multi-stage stochastic program with integer vari­ables does not, in general, allow a nested Benders decomposition. Consequently, more complex decompositions approaches are needed in the general case (e.g. Dantzig-Wolfe decomposition with dynamic column generation, or stochastic decomposition methods).
+Two-stage stochastic programming problems can also be solved efficiently by using a Benders decomposition algorithm (Wets, 1989). Therefore, the classical decomposition approach to solving large multi-stage stochastic linear programs has been nested Benders decomposition. However, a multi-stage stochastic program with integer variables does not, in general, allow a nested Benders decomposition. Consequently, more complex decompositions approaches are needed in the general case (e.g. Dantzig-Wolfe decomposition with dynamic column generation, or stochastic decomposition methods).
 
 The current version of the TIMES implementation for stochastic programming is solely based on directly solving the equivalent deterministic problem. As this may lead to very large problem instances, stochastic TIMES models are in practice limited to a relatively small number of branches of the event tree (SOW\'s).
 
@@ -167,7 +166,6 @@ The current version of the TIMES implementation for stochastic programming is so
 The introduction of uncertainty alters the economic interpretation of the TIMES solution. Over the last two decades, economic modeling paradigms have evolved to a class of equilibria called Dynamic Stochastic General Equilibria (DSGE, see references Chen and Crucuni, 2012; de Walque et al., 2005; Smets et al., 2007). In the case of Stochastic TIMES, we are in the presence of a Dynamic Stochastic Partial Equilibria (DSPE), with a much less developed literature. The complete characterization of a DSPE is beyond the scope of this documentation, but it is useful to note some of its properties, which derive from the theory of Linear Programming, as follows: 
 - During the first stage (i.e. before resolution of any uncertainties), the meaning of the primal solution is identical to that of a deterministic TIMES run, i.e. of a set of optimal decisions, whereas the meaning of the shadow prices is that of *expected prices*(resp. expected marginal utility changes) of the various commodities. This is so because the shadow price is the marginal change in objective function when a commodity\'s balance is marginally altered, and the objective function is an expected cost (resp. an expected utility function).
 - During subsequent stages, the primal values of any given branch of the event tree represent the optimal decisions *conditional on the corresponding outcome being true*, and the shadow prices are the *expected*[^35] *prices* of the commodities also conditional on the corresponding outcome being true.
-
 
 ------------
 

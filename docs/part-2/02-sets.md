@@ -1,7 +1,6 @@
 # Sets
 
-Sets are used in TIMES to group elements or combinations of elements with the purpose of specifying qualitative characteristics of the energy system. One can distinguish between one-dimensional and multi-dimensional sets. The former sets contain single elements, e.g.
-the set $prc$ contains all processes of the model, while the elements of multi-dimensional sets are a combination of one-dimensional sets. An example for a multi-dimensional set is the set $top$, which specifies for a process the commodities entering and leaving that process.
+Sets are used in TIMES to group elements or combinations of elements with the purpose of specifying qualitative characteristics of the energy system. One can distinguish between one-dimensional and multi-dimensional sets. The former sets contain single elements, e.g. the set $prc$ contains all processes of the model, while the elements of multi-dimensional sets are a combination of one-dimensional sets. An example for a multi-dimensional set is the set $top$, which specifies for a process the commodities entering and leaving that process.
 
 Two types of sets are employed in the TIMES framework: user input sets and internal sets. User input sets are created by the user, and used to describe qualitative information and characteristics of the depicted energy system. One can distinguish the following functions associated with user input sets:
 - definition of the elements or building blocks of the energy system model (i.e. regions, processes, commodities),
@@ -442,8 +441,7 @@ The formulation of user constraints also uses sets to specify the type and the f
 
 Most of the set specifications are handled for the user by the user shell through process and commodity characterization, and the user does not need to input these sets directly.
 
-In the following subsections first the sets related to the definition of the RES will be described (subsection 2.2.1), then the sets related to the time horizon and the sub-annual representation of the energy system will be presented (subsection 2.2.2). The mechanism for defining trade
-between regions of a multi-regional model is discussed in subsection 2.2.3. Finally, an overview of all possible user input sets is given in subsection 2.2.4.
+In the following subsections first the sets related to the definition of the RES will be described (subsection 2.2.1), then the sets related to the time horizon and the sub-annual representation of the energy system will be presented (subsection 2.2.2). The mechanism for defining trade between regions of a multi-regional model is discussed in subsection 2.2.3. Finally, an overview of all possible user input sets is given in subsection 2.2.4.
 
 ### Definition of the Reference Energy System (RES)
 
@@ -494,8 +492,7 @@ User-defined commodity groups are specified by means of the set $com\_gmap(r,cg,
 
 An example for the definition of the activity of a process is shown in {numref}`cg-activity`. In order to define the activity of the process SRE as the sum of the two output flows of gasoline (GSL) and diesel (DSL), one has to define a commodity group called CG_SRE containing these two commodities. The name of the commodity group can be arbitrarily chosen by the modeller.
 
-In addition to the activity of a process, one has to define the capacity unit of the process. This is done by means of the set $prc\_capunt(r,p,cg,u)$, where the index **cg** denotes the primary commodity group. In the example in {numref}`cap-unit-def` the capacity of the refinery process is defined in mtoe/a (megatonne oil equivalent). Since the capacity and activity units are different (mtoe for the capacity and PJ for the activity), the user has to supply the conversion factor from the
-energy unit embedded in the capacity unit to the activity unit. This is done by specifying the parameter $prc\_capact(r,p)$. In the example $prc\_capact$ has the value 41.868.
+In addition to the activity of a process, one has to define the capacity unit of the process. This is done by means of the set $prc\_capunt(r,p,cg,u)$, where the index **cg** denotes the primary commodity group. In the example in {numref}`cap-unit-def` the capacity of the refinery process is defined in mtoe/a (megatonne oil equivalent). Since the capacity and activity units are different (mtoe for the capacity and PJ for the activity), the user has to supply the conversion factor from the energy unit embedded in the capacity unit to the activity unit. This is done by specifying the parameter $prc\_capact(r,p)$. In the example $prc\_capact$ has the value 41.868.
 
 ```{figure} assets/image3.png
 :name: cap-unit-def
@@ -617,7 +614,7 @@ The timeslice level of the commodity flows entering and leaving a process are de
 
 If a TIMES model consists of several internal regions, it is called a multi-regional model. Each of the internal regions contains a unique RES to represent the particularities of the region. As already mentioned, the regions can be connected by inter-regional exchange processes to enable trade of commodities between the regions. Two types of trade activities can be depicted in TIMES: bi-lateral trade between two regions and multilateral trade between several supply and demand regions.
 
-Bi-lateral trade takes place between specific pairs of regions. A pair of regions together with an exchange process and the direction of the commodity flow are first identified, where the model ensures that trade through the exchange process is balanced between these two regions (whatever amount is exported from region A to region B must be imported by region B from region A, possibly adjusted for trans­portation losses). The basic structure is shown in {numref}`bilateral-trade`. Bi-lateral trading may be fully described in TIMES by defining an inter-regional exchange process and by specifying the two pair-wise connections by indicating the regions and commodities be traded via the set $top\_ire(r,c,reg,com,p)$. If trade should occur only in one direction then only that direction is provided in the set $top\_ire$ (export from region $r$ into region $reg$). The process capacity and the process related costs (e.g. activity costs, investment costs) of the exchange process can be described individually for both regions by specifying the corresponding parameters in each regions. If for example the investment costs for an electricity line between two regions A and B are 1000 monetary units (MU) per MW and 60 % of these investment costs should be allocated to region A and the remaining 40 % to region B, the investment costs for the exchange process have to be set to 600 MU/MW in region A and to 400 MU/MW in region B.
+Bi-lateral trade takes place between specific pairs of regions. A pair of regions together with an exchange process and the direction of the commodity flow are first identified, where the model ensures that trade through the exchange process is balanced between these two regions (whatever amount is exported from region A to region B must be imported by region B from region A, possibly adjusted for transportation losses). The basic structure is shown in {numref}`bilateral-trade`. Bi-lateral trading may be fully described in TIMES by defining an inter-regional exchange process and by specifying the two pair-wise connections by indicating the regions and commodities be traded via the set $top\_ire(r,c,reg,com,p)$. If trade should occur only in one direction then only that direction is provided in the set $top\_ire$ (export from region $r$ into region $reg$). The process capacity and the process related costs (e.g. activity costs, investment costs) of the exchange process can be described individually for both regions by specifying the corresponding parameters in each regions. If for example the investment costs for an electricity line between two regions A and B are 1000 monetary units (MU) per MW and 60 % of these investment costs should be allocated to region A and the remaining 40 % to region B, the investment costs for the exchange process have to be set to 600 MU/MW in region A and to 400 MU/MW in region B.
 
 ```{figure} assets/image7.png
 :name: bilateral-trade
@@ -1507,7 +1504,7 @@ The sets internally derived by the TIMES model generator are given in Table 5. T
 | (r,t,c,s,io)   | since the all the processes producing               |
 |                | (**io**=\'OUT\') or consuming it (**io**=\'IN\')    |
 |                | are turned-off. In the case of **io**=\'OUT\', the  |
-|                | com­modity is not available, meaning that processes  |
+|                | commodity is not available, meaning that processes  |
 |                | having only this commodity as input cannot operate. |
 |                | Similar reasoning applies to the case               |
 |                | **io**=\'IN\'.                                      |
