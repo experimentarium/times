@@ -196,7 +196,6 @@ and is subject to the conservation constraint: $\sum_{r}^{}{NTX_{r,t}\  = \text{
 
 The adaptation of Rutherford algorithm to TIMES-MACRO was formalized by Kypreos (2006) and implemented by Kypreos and Lettila as the above-mentioned technical note.
 
-
 ------------
 
 [^39]: The concrete implementation in the TIMES-MACRO model differs in some points, e.g. the consumption variable in the utility function is substituted by equations (12-2) and (12-3).

@@ -106,7 +106,7 @@ Assume that we define the following log-linear I/E option for a $FLO\_SHAR$ data
 FLO_SHAR('REG','0','PRC1','COAL','IN_PRC1','ANNUAL','UP') = 2005;
 ```
 
-This parameter specifies a log-linear control option with the value for the threshold YEAR of log-linear interpolation taken from 2005. The option specifies that all data points up to the year 2005 should be interpreted normally (as absolute data values), but all values beyond that year should be interpreted as coefficients of annual change. By using this interpretation, TIMES will then apply full inter­polation and extrapolation to the whole data series. It is the responsibility of the user to ensure that the first data point and all data points up to (and including) the year 2005 represent absolute values of the parameter, and that all subsequent data points represent coefficients of annual change. Using the data of the example above, the first data point beyond 2005 is found for the year 2010, and it has the value of 0.12. The inter­pretation thus requires that the maximum flow share of COAL in the commodity group IN_PRC1 is actually meant to increase by as much as 12% per annum between the years 1995 and 2010, and by 5% per annum between 2010 and 2020.
+This parameter specifies a log-linear control option with the value for the threshold YEAR of log-linear interpolation taken from 2005. The option specifies that all data points up to the year 2005 should be interpreted normally (as absolute data values), but all values beyond that year should be interpreted as coefficients of annual change. By using this interpretation, TIMES will then apply full interpolation and extrapolation to the whole data series. It is the responsibility of the user to ensure that the first data point and all data points up to (and including) the year 2005 represent absolute values of the parameter, and that all subsequent data points represent coefficients of annual change. Using the data of the example above, the first data point beyond 2005 is found for the year 2010, and it has the value of 0.12. The interpretation thus requires that the maximum flow share of COAL in the commodity group IN_PRC1 is actually meant to increase by as much as 12% per annum between the years 1995 and 2010, and by 5% per annum between 2010 and 2020.
 
 #### Applicability
 
@@ -171,7 +171,7 @@ Inheritance in this context means that input data being specified on a coarser t
 * - **Aggregation rules**
   - **Description**
 * - Standard aggregation
-  - The values specified on finer timeslices are aggregated to the target timeslice being a parent node in the timeslice tree by summing over the values on the finer timeslices.         
+  - The values specified on finer timeslices are aggregated to the target timeslice being a parent node in the timeslice tree by summing over the values on the finer timeslices.
 * - Weighted aggregation
   - The values specified for finer timeslices are aggregated to the target timeslice being a parent node in the timeslice tree by summing over the weighted values on the finer timeslices. The ratios of the duration of the finer timeslices to the duration of the target timeslice serve as weighting factors.
 
@@ -5031,7 +5031,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
 |           |        |          | Does not    | days,    | various   |
 |           |        | -   7    | affect      | and      | e         |
 |           |        |     for  | int         | thereby  | quations, |
-|           |        |     any  | er­pretation | also the | notably   |
+|           |        |     any  | erpretation | also the | notably   |
 |           |        |     ts   | of          | number   | storage   |
 |           |        |          | a           | of       | and       |
 |           |        |    above | vailability | t        | di        |
@@ -6626,33 +6626,33 @@ Levelized cost can be calculated according to the following general formula:
   $$LEC = \frac{\sum_{t = 1}^{n}{\frac{IC_{t}}{(1 + r)^{t - 1}} + \frac{OC_{t} + VC_{t} + \sum_{i}^{}{FC_{i,t} + FD_{i,t}} + \sum_{j}^{}{ED_{j,t}}}{(1 + r)^{t - 0.5}} -}\frac{\sum_{k}^{}{BD_{k,t}}}{(1 + r)^{t - 0.5}}}{\sum_{t = 1}^{n}\frac{\sum_{m}^{}{MO_{m,t}}}{(1 + r)^{t - 0.5}}}$$   \(1\)
 
 where
--   $r$ = discount rate (e.g. 5%)
--   $IC_t$ = investment expenditure in (the beginning of) year $t$
--   $OC_t$ = fixed operating expenditure in year $t$
--   $VC_t$ = variable operating expenditure in year $t$
--   $FC_{it}$ = fuel-specific operating expenditure for fuel $i$ in year $t$
--   $FD_{it}$ = fuel-specific acquisition expenditure for fuel $i$ in year $t$
--   $ED_{jt}$ = emission-specific allowance expenditure for emission $j$ in year $t$ (optional)
--   $BD_{kt}$ = revenues from by-product $k$ in year $t$ (optional; see below)
--   $MO_{mt}$ = output of main product $m$ in year $t$
+- $r$ = discount rate (e.g. 5%)
+- $IC_t$ = investment expenditure in (the beginning of) year $t$
+- $OC_t$ = fixed operating expenditure in year $t$
+- $VC_t$ = variable operating expenditure in year $t$
+- $FC_{it}$ = fuel-specific operating expenditure for fuel $i$ in year $t$
+- $FD_{it}$ = fuel-specific acquisition expenditure for fuel $i$ in year $t$
+- $ED_{jt}$ = emission-specific allowance expenditure for emission $j$ in year $t$ (optional)
+- $BD_{kt}$ = revenues from by-product $k$ in year $t$ (optional; see below)
+- $MO_{mt}$ = output of main product $m$ in year $t$
 
 The exponent $(t-0.5)$ in the formula indicates the good practice of using mid-year discounting for continuous streams of annual expenditures.
 
 In TIMES, the specific investment, fixed and variable O&M costs and fuel-specific flow costs are calculated directly from the input data. However, for the fuel acquisition prices, emission prices and by-product prices, ***commodity marginals*** from the model solution are used. All the unit costs are multiplied by the corresponding ***variable levels*** as given by the model solution: investment cost and fixed operating costs are multiplied by the amounts of capacity installed / existing, variable operation costs by the activity levels, and fuel-specific costs by the process flow levels. Mid-year discounting can also be activated.
 
-The outputs of the main products are taken from the flow levels of the commodities in the primary group (PG) of the process. An exception is CHP processes, for which the elec­tricity output is considered the sole main output, and heat is considered as a by-product.
+The outputs of the main products are taken from the flow levels of the commodities in the primary group (PG) of the process. An exception is CHP processes, for which the electricity output is considered the sole main output, and heat is considered as a by-product.
 
 **Options for variants of levelized cost reporting:**
 
-1.  <ins>Do not include emission prices or by-product revenues in the calculation</ins> (RPT_OPT('NCAP','1') = --1):
+1. <ins>Do not include emission prices or by-product revenues in the calculation</ins> (RPT_OPT('NCAP','1') = --1):
 
 > In this option emission prices are omitted from the calculation, in accordance with the most commonly used convention for LEC calculation. Consequently, any by-product revenues need to be omitted as well, because if emissions have prices, the by-product prices in the solution would of course be polluted by those prices, and thus it would be inconsistent to use them in the calcu­lation. Instead, in this case any amount of by-product energy produced by ELE, CHP and HPL processes is indirectly credited by reducing the fuel-specific costs in the calculation to the fraction of the main output in the total amount of energy produced.
 
-2.  <ins>Include both emission prices and by-product revenues in the calculation</ins> (RPT_OPT('NCAP','1') = 1):
+2. <ins>Include both emission prices and by-product revenues in the calculation</ins> (RPT_OPT('NCAP','1') = 1):
 
 > In this option both emission prices and by-product revenues are included in the calculation. The levelized cost thus represents the unit cost after subtracting the levelized value of all by-products from the gross value of the levelized cost. This approach of crediting for by-products in the LEC calculation has been utilized, for example, in the IEA *Projected Costs of Generating Electricity* studies.
 
-3.  <ins>Include not only emission prices and by-product revenues, but also the revenues from the main product in the calculation</ins> (RPT_OPT('NCAP','1') = 2):
+3. <ins>Include not only emission prices and by-product revenues, but also the revenues from the main product in the calculation</ins> (RPT_OPT('NCAP','1') = 2):
 
 > This option is similar to option (2) above, but in this case all product revenues are included in the calculation, including also the peak capacity credit from the TIMES peaking equation (when defined). The calculated LEC value thus represents the levelized **net** unit cost after subtracting the value of all products from the gross levelized cost. For competitive new capacity vintages, the resulting levelized cost should in this case generally be *negative*, because investments into technologies that enter the solution are normally profitable. For the marginal technologies the levelized cost can be expected to be very close to zero. Only those technologies that have been in some way forced into the solution, e.g. by specifying lower bounds on the capacity or by some other types of constraints, should normally have a positive levelized cost when using this option.
 

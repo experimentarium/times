@@ -16,18 +16,18 @@ Here the ***runname*** identifier (corresponding to the run \<case\> name) is a 
 :name: run_name-times-files
 :align: left
 
-| Extension* | Description |
-| ---------- |--------------|
-| ANT | ANSWER results dump |
-| GDX | GAMS data exchange file (for GAMS2VEDA processing)
-| \*\_DP.GDX | Base demand prices to seed a TIMES elastic demand policy run |
-| LOG | Optional GAMS file producing a trace of the model resource usage (activated by lo=1 on the GAMS call line in ANS_GAMS / VT_GAMS.CMD, which needs to be added by the user manually if needed) |
-| LST | GAMS output file with the compile/execute/solve trace, and optional solution dump (via SOLPRINT=YES on the OPTIONS line at the top of the RUN command script)
-| \*\_P.GDX | Save/Load point GAMS restart files |
-| RUN | Top level routine calling GAMS (and for VEDA-FE the GDX2VEDA routine) |
-| \*\_RunSummary.log | Run summary for the associated model run |
-| \*\_TS.DD | Timeslices declaration for the associated model run |
-| VD\* | Suite of results/Set definition(S)/Element description(E)/topology(T) for VEDA-BE |
+| Extension*         | Description                                                                                                                                                                                  |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ANT                | ANSWER results dump                                                                                                                                                                          |
+| GDX                | GAMS data exchange file (for GAMS2VEDA processing)                                                                                                                                           |
+| \*\_DP.GDX         | Base demand prices to seed a TIMES elastic demand policy run                                                                                                                                 |
+| LOG                | Optional GAMS file producing a trace of the model resource usage (activated by lo=1 on the GAMS call line in ANS_GAMS / VT_GAMS.CMD, which needs to be added by the user manually if needed) |
+| LST                | GAMS output file with the compile/execute/solve trace, and optional solution dump (via SOLPRINT=YES on the OPTIONS line at the top of the RUN command script)                                |
+| \*\_P.GDX          | Save/Load point GAMS restart files                                                                                                                                                           |
+| RUN                | Top level routine calling GAMS (and for VEDA-FE the GDX2VEDA routine)                                                                                                                        |
+| \*\_RunSummary.log | Run summary for the associated model run                                                                                                                                                     |
+| \*\_TS.DD          | Timeslices declaration for the associated model run                                                                                                                                          |
+| VD\*               | Suite of results/Set definition(S)/Element description(E)/topology(T) for VEDA-BE                                                                                                            |
 
 :::
 
@@ -94,13 +94,13 @@ The user can choose to use several alternative objective function formulations i
 :name: obj-func-formulation-opt
 :align: left
 
-| OBJ Option | Description |
-| ---------- | ------------|
-| ALT | Uses modified capacity transfer coefficients that improve the independency of investment costs on period definitions. |
+| OBJ Option     | Description                                                                                                                                                                                                                                                                                                                                                                   |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ALT            | Uses modified capacity transfer coefficients that improve the independency of investment costs on period definitions.                                                                                                                                                                                                                                                         |
 | AUTO (default) | TIMES auto­matically selects the objective function among the standard formulation or the 'MOD' alternative formulation according to the B(t) and E(t) parameters speci­fied by the user. If those parameters comply with the assumptions used in the standard formulation, then the standard formulation is used, but if not then the alternative formulation 'MOD' is used. |
-| LIN | Assumes linear evolution of flows and activities between Milestone years, but is otherwise similar to the ALT formulation. |
-| MOD | Period boundaries B(t) and E(t) are internally set to be halfway between Milestone years, giving flexibility to set Milestone years to be other than the middle of each period. Investments in Cases I.1.a and I.1.b only of the objective function investment decision are spread somewhat differently across years. |
-| STD | To ensure that the standard formulation is unconditionally used, even if the B(t) and E(t) parameters do not comply with the standard assumptions. |
+| LIN            | Assumes linear evolution of flows and activities between Milestone years, but is otherwise similar to the ALT formulation.                                                                                                                                                                                                                                                    |
+| MOD            | Period boundaries B(t) and E(t) are internally set to be halfway between Milestone years, giving flexibility to set Milestone years to be other than the middle of each period. Investments in Cases I.1.a and I.1.b only of the objective function investment decision are spread somewhat differently across years.                                                         |
+| STD            | To ensure that the standard formulation is unconditionally used, even if the B(t) and E(t) parameters do not comply with the standard assumptions.                                                                                                                                                                                                                            |
 
 :::
 
@@ -148,8 +148,7 @@ See the documentation on stochastic programming and tradeoff analysis in TIMES f
 
 ### Hedging recurring uncertainties \[SPINES\]
 
-For modeling recurring uncertainties, such as hydrological conditions or fuel-price volatilities, the stochastic mode can be activated also in such a way that the SOW index will be inactive for all capacity-related variables (VAR_NCAP, VAR_CAP, VAR_RCAP, VAR_SCAP, VAR_DRCAP, VAR_DNCAP).
-This modification to the standard multi-stage stochastic formulation makes it possible to use the stochastic mode for hedging against recurring uncertainties, and for finding the corresponding optimal investment strategy.
+For modeling recurring uncertainties, such as hydrological conditions or fuel-price volatilities, the stochastic mode can be activated also in such a way that the SOW index will be inactive for all capacity-related variables (VAR_NCAP, VAR_CAP, VAR_RCAP, VAR_SCAP, VAR_DRCAP, VAR_DNCAP). This modification to the standard multi-stage stochastic formulation makes it possible to use the stochastic mode for hedging against recurring uncertainties, and for finding the corresponding optimal investment strategy.
 
 This variant of the stochastic mode can be activated by using the following control variable setting:
 
@@ -169,8 +168,7 @@ The SPINES control variable is available only in TIMES versions 3.3.0 and above,
 
 ### Fixing initial periods \[FIXBOH\]
 
-The purpose of the FIXBOH option is to bind the first years of a model run to the same values determined during a previous optimization. The approach first requires that a reference case be run, and then by using FIXBOH the model generator sets fixed bounds for a subsequent run
-according to the solution values from the reference case up to the last Milestone year less than or equal to the year specified by the FIXBOH control variable. The FIXBOH control has to be used together with the LPOINT control variable, in the following way:
+The purpose of the FIXBOH option is to bind the first years of a model run to the same values determined during a previous optimization. The approach first requires that a reference case be run, and then by using FIXBOH the model generator sets fixed bounds for a subsequent run according to the solution values from the reference case up to the last Milestone year less than or equal to the year specified by the FIXBOH control variable. The FIXBOH control has to be used together with the LPOINT control variable, in the following way:
 
 > \$SET FIXBOH 2050
 
@@ -178,7 +176,7 @@ according to the solution values from the reference case up to the last Mileston
 
 Here, the value of FIXBOH (2050) specifies the year, up to which the model solution will be fixed to the previous solution, and the value of LPOINT (run_name) specifies the name of the previous run, from which the previous solution is to be retrieved. Consequently, either a full GDX file or a GAMS "point file" (see section 3.8) from the previous run should be available. If no such GDX file is found, a compiler error is issued. The Milestone years of the previous run must match those in the current run.
 
-As a generalization to the basic scheme described above, the user can also request fixing to the previous solution different amounts of first years accor­ding to region. The region-specific years up to which the model solution will be fixed can be specified by using the TIMES REG_FIXT(reg) parameter. The FIXBOH control variable is in this case treated as a default value for REG_FIXT.
+As a generalization to the basic scheme described above, the user can also request fixing to the previous solution different amounts of first years according to region. The region-specific years up to which the model solution will be fixed can be specified by using the TIMES REG_FIXT(reg) parameter. The FIXBOH control variable is in this case treated as a default value for REG_FIXT.
 
 :::{admonition} Example
 
@@ -288,25 +286,25 @@ An example for a situation where model size can be reduced is a process with one
 The effects arising from activating the reduction algorithm are each described below.
 
 1. Process without capacity related parameters does not need capacity variables:
-	- No capacity variables **VAR_CAP** and **VAR_NCAP** created.
-	- No **EQL_CAPACT** equation created.
+    - No capacity variables **VAR_CAP** and **VAR_NCAP** created.
+    - No **EQL_CAPACT** equation created.
 2. Primary commodity group consists of only one commodity:
-	- Flow variable **VAR_FLO** of primary commodity is replaced by activity variable.
-	- No **EQ_ACTFLO** equation defining the activity variable created.
+    - Flow variable **VAR_FLO** of primary commodity is replaced by activity variable.
+    - No **EQ_ACTFLO** equation defining the activity variable created.
 3. Exchange process imports/exports only one commodity:
-	- Import/Export flow **VAR_IRE** can be replaced by activity variable (might not be true if exchange process has an efficiency).
-	- No **EQ_ACTFLO** equation defining the activity variable created.
+    - Import/Export flow **VAR_IRE** can be replaced by activity variable (might not be true if exchange process has an efficiency).
+    - No **EQ_ACTFLO** equation defining the activity variable created.
 4. Process with one input and one output commodity:
-	- One of the two flows has to define the activity variable. The other flow variable can be replaced by the activity variable multiplied/divided by the efficiency.
-	- No **EQ_PTRANS** equation created.
+    - One of the two flows has to define the activity variable. The other flow variable can be replaced by the activity variable multiplied/divided by the efficiency.
+    - No **EQ_PTRANS** equation created.
 5. An emission flow of a process can be replaced by the sum of the fossil flows multiplied by the corresponding emission factor:
-	- No flow variables for the emissions created
-	- No **EQ_PTRANS** equation for the emission factor.
+    - No flow variables for the emissions created
+    - No **EQ_PTRANS** equation for the emission factor.
 6. Upper/fixed activity bound **ACT_BND** of zero on a higher timeslice level than the process timeslice level is replaced by activity bounds on the process timeslice level. Thus no **EQG/E_ACTBND** equation is created.
 7. Process with upper/fixed activity bound of zero cannot be used in current period. Hence, all flow variables of this process are forced to zero and need not be generated in the current period. Also **EQ_ACTFLO** and **EQx_CAPACT** are not generated. If the output commodities of this process can only be produced by this process, also the processes consuming these commodities are forced to be idle, when no other input fuel alternative exists.
 8. When a **FLO_FUNC** parameter between two commodities is defined and one of these two commodities defines the activity of the process, the other flow variable can be replaced by the activity variable being multiplied/divided by the **FLO_FUNC** parameter.
-	- One flow variable is replaced.
-	- No **EQ_PTRANS** equation for the **FLO_FUNC** parameter is created.
+    - One flow variable is replaced.
+    - No **EQ_PTRANS** equation for the **FLO_FUNC** parameter is created.
 
 ### Implementation
 
@@ -328,22 +326,21 @@ The main solution and solver statistics for model runs of a USEPA9r-TIMES model 
 :name: reduction-model-comparison
 :align: left
 
-| Statistic | Reduce Not Set | Reduce=NO | Reduce=YES |
-| --------- | ---------------| --------- | ---------- |
-| Block / Single Equations | 92 / 1,652,677 | 92 / 1,796,525 | 92 / 870,814 |
-| Block / Single Variables | 14 / 2,429,348 | 14 / 2,564,039 | 14 / 1,645,631 | 
-| Total Non-Zeros | 7,432,490 | 8,048,546 | 5,853,371 |
-| Generation | 49.499 SECONDS | 62.681 SECONDS | 45.802 SECONDS |
-| Execution | 102.462 SECONDS | 115.394 SECONDS | 95.972 SECONDS |
-| Memory | 2,075 MB | 2,180 MB | 1,957 MB |
-| Iteration Count | 126 | 116 | 110 |
-| Objective Value | 88503425.2162 | 88151566.0679 | 88503425.2162 |
-| Resource Usage / Solution | Time | 1323.824 | 2656.557 | 1320.111 |
+| Statistic                      | Reduce Not Set  |    Reduce=NO    |   Reduce=YES   |
+| ------------------------------ | :-------------: | :-------------: | :------------: |
+| Block / Single Equations       | 92 / 1,652,677  | 92 / 1,796,525  |  92 / 870,814  |
+| Block / Single Variables       | 14 / 2,429,348  | 14 / 2,564,039  | 14 / 1,645,631 |
+| Total Non-Zeros                |    7,432,490    |    8,048,546    |   5,853,371    |
+| Generation                     | 49.499 SECONDS  | 62.681 SECONDS  | 45.802 SECONDS |
+| Execution                      | 102.462 SECONDS | 115.394 SECONDS | 95.972 SECONDS |
+| Memory                         |    2,075 MB     |    2,180 MB     |    1,957 MB    |
+| Iteration Count                |       126       |       116       |      110       |
+| Objective Value                |  88503425.2162  |  88151566.0679  | 88503425.2162  |
+| Resource Usage / Solution Time |    1323.824     |    2656.557     |    1320.111    |
 
 :::
 
-Comparing the non-setting of REDUCE vs. REDUCE=YES the number of equations and variables in the reduction is around 47% lower than in the non-reduced case. Since the smaller number of equations and variables require less memory, the memory usage in the reduction run decreases by
-6.4%. The solution time is only reduced slightly compared to the non-reduced model run.
+Comparing the non-setting of REDUCE vs. REDUCE=YES the number of equations and variables in the reduction is around 47% lower than in the non-reduced case. Since the smaller number of equations and variables require less memory, the memory usage in the reduction run decreases by 6.4%. The solution time is only reduced slightly compared to the non-reduced model run.
 
 :::{admonition} Issues Using the Reduction Algorithm
 
@@ -378,8 +375,7 @@ The GAMS control variables that can be used for the savepoint and loadpoint feat
 
 ![](assets/image23.png)
 
-In VEDA-FE the LPOINT can be set from the Case Manager by requesting the loading of a previously GDX, and in ANSWER by means of Run Model Restart files specifications, as shown in
-Figure 18.
+In VEDA-FE the LPOINT can be set from the Case Manager by requesting the loading of a previously GDX, and in ANSWER by means of Run Model Restart files specifications, as shown in Figure 18.
 
 ## Debugging controls
 
