@@ -68,9 +68,9 @@ The VEDA-FE Case Manager (BasePrice) and ANSWER Run (ModelVariant) buttons allow
 The general equilibrium mode of TIMES can be activated in two different ways, using the following MACRO control switch settings:
 
 > \$SET MACRO YES -- activate the standard MACRO formulation
- 
+
 > \$SET MACRO MSA -- activate the MACRO decomposition formulation
- 
+
 > \$SET MACRO MLF -- activate the linearized MACRO-MLF formulation
 
 For further information about the standard MACRO formulation, see the TIMES-MACRO documentation available at the [ETSAP site](https://www.iea-etsap.org/index.php/documentation).
@@ -245,9 +245,9 @@ In this example, the TIMESTEP control variable specifies the active step length 
 
 Because the time periods used in the model may be variable and may not always exactly match with the step-length and overlap, the actual active step-lengths and overlaps may somewhat differ from the values specified. At each step the model generator tries to make a best match between the remaining available periods and the prescribed step length. However, at each step at least one of the previously solved periods is fixed, and at least one remaining new period is taken into the active optimization in the current step.
 
-## TIMES extensions 
+## TIMES extensions
 
-### Major formulation extensions 
+### Major formulation extensions
 
 There are several powerful extensions to the core TIMES code that introduce advanced modeling features. The extension options allow the user to link in additional equations or reporting routines to the standard TIMES code, e.g. the DSC extension for using lumpy investments. The entire information relevant to the extensions is isolated in separate files from the standard TIMES code. These files are identified by their extensions, e.g. **\*.DSC** for lumpy investments or **\*.CLI** for the climate module. The extension mechanism allows the TIMES programmer to add new features to the model generator, and test them, with only minimal hooks provided in the standard TIMES code. It is also possible to have different variants of an equation type, for example of the market share equation, or to choose between different reporting routines, for example adding detailed cost reporting. The extension options currently available in TIMES are summarized in {numref}`times-extension-opt`.
 
@@ -307,7 +307,7 @@ VEDA-FE Case Manager and ANSWER Run Model Options form along with the GEN templa
   <br>The VDA extension is always automatically enabled by both VEDA-FE and ANSWER. The attributes implemented are documented in Part II.
 ```
 
-### User extensions 
+### User extensions
 
 Besides the core extensions discussed in the previous section, the model management system allows user extensions to be introduced for extended pre-processing of advanced parameter specifications that make the specification of (complex) input parameters much simpler, and to refine features describing technology operations (e.g., for CHPs).
 
@@ -408,7 +408,7 @@ Comparing the non-setting of REDUCE vs. REDUCE=YES the number of equations and v
 - Shadow price of non-generated EQ_PTRANS equations are lost.
 - Reduced cost of upper/fixed ACT_BND of zero are lost. If one needs this information, one should use a very small number instead, e.g. 1.e-5, as value for the activity bound.
 :::
-## GAMS savepoint / loadpoint controls 
+## GAMS savepoint / loadpoint controls
 
 TIMES includes GAMS control variables that can be used to utilize the GAMS savepoint and loadpoint facilities. The savepoint facility makes it possible to save the basis information (levels and dual values of variables and equations) into a GDX file after model solution. The loadpoint facility makes it possible to load previously saved basis information from a GDX file and utilize it for a so-called warm start to speed up model solution.
 
@@ -532,7 +532,7 @@ The various \$\<switch\> \<value\> switches controlling reporting of the model r
 * - RNGUP
   - ranging information (UP) for VAR_NCAP (when CPLEX ranging is activated; in terms of investment costs
 ```
- 
+
 For the BENCOST report, all of the absolute indicators are expressed in terms of undiscounted investment costs (like those specified by NCAP_COST). For example, the competitiveness gap represents the amount of change in investment costs that would bring the technology competitive (the VAR_NCAP variable would enter the solution basis). Ranging information can only be reported when the CPLEX ranging option has been used. The ranging option can be activated by adding the following two lines into the CPLEX options file (CPLEX.OPT):
 
 > objrng VAR_NCAP
@@ -628,7 +628,7 @@ Here, KEY1, KEY2, ... refer to the main option group and N1, N2, ... refer to su
   - \<\>0
   - Report process flows of NRG subtype NRG_TYPE at the ANNUAL level (\<0) or at COM_TSL level (\> 0, overriding option). With Value=2 one can enable reporting of input flow levels in conjunction with using also sub-group 1.
 ```
- 
+
 ## Miscellaneous controls
 
 Various other \$\<option\> switches control miscellaneous aspects of a TIMES model run, as described in {numref}`misc-ctrl-opt-settings`.

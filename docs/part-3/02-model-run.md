@@ -40,85 +40,85 @@ The TIMES model generator is comprised of a host of GAMS source code routines, w
 :name: times-routines-naming
 :row-headers: 1
 
-* - **Type**     
+* - **Type**
   - **Nature of the Routine**
-* - **Prefix**   
+* - **Prefix**
   - 
-* - **ans**      
+* - **ans**
   - ANSWER TIMES specific pre-processor code
-* - **bnd**      
+* - **bnd**
   - set bounds on model variables
-* - **cal**      
+* - **cal**
   - calculations performed in support of the preprocessor and report writer
-* - **coef**     
+* - **coef**
   - prepare the actual matrix intersection coefficients
-* - **eq**       
+* - **eq**
   - equations specification (the actual assembling of the coefficients of the matrix)
-* - **err**      
+* - **err**
   - Error trapping and handling
-* - **fil**      
+* - **fil**
   - handles the fundamental interpolation/extrapolation/normalization of the original input data
-* - **init**     
+* - **init**
   - initialize all sets and parameters potentially involved in assembling a TIMES model
-* - **main**     
+* - **main**
   - Top level routines according to the model variant to be solved
-* - **mod**      
+* - **mod**
   - the declaration of the equations and variables for each model variant
-* - **pp**       
+* - **pp**
   - preprocess routines responsible for preparing the TIMES internal parameters by assembling, interpolating, levelizing, normalizing, and processing the input data to prepare the data structures needed to produce the model coefficients
-* - **qa**       
+* - **qa**
   - Quality assurance checking and reporting
-* - **rpt**      
+* - **rpt**
   - main reporting components performing the calculations needed and assembling the relevant parameters from the model results
-* - **sol**      
+* - **sol**
   - components of the results report writer that prepares the solution for outputting
-* - **solve**    
+* - **solve**
   - manage the actual call to solve the model (that is the call to invoke the optimizer)
-* - **uc**       
+* - **uc**
   - handles the user constraints
 * - **Extension**
   - 
-* - **ABS**      
+* - **ABS**
   - Ancillary Balancing Services routines
-* - **ANS**      
+* - **ANS**
   - ANSWER specific code
-* - **CLI**      
+* - **CLI**
   - climate module routines
-* - **CMD**      
+* - **CMD**
   - Windows command scripts to invoke GAMS/GDX2VEDA in order to solve and afterwards dump the model results
-* - **DEF**      
+* - **DEF**
   - setting of defaults
-* - **DSC**      
+* - **DSC**
   - discrete (lumpy) investment routines
-* - **ETL**      
+* - **ETL**
   - endogenous technology learning routines
-* - **GMS**      
+* - **GMS**
   - lower level GAMS routines to perform interpolation, apply shaping of input parameters, etc.
-* - **RUN/GEN**  
+* - **RUN/GEN**
   - VEDA-FE/ANSWER specific GAMS TIMES command templates for dynamic substitution of the switches and parameters needed at run submission to identify the model variant and other options that will guide the current model run
-* - **IER**      
+* - **IER**
   - routines and extensions prepared by the University of Stuttgart (Institute for the Rational Use of Energy, IER) (e.g., for more advanced modeling of CHPs)
-* - **LIN**      
+* - **LIN**
   - routines related to the alternative objective formulations
-* - **MOD**      
+* - **MOD**
   - core TIMES routines preparing the actual model
-* - **MLF**      
+* - **MLF**
   - code related to the MLF implementation of TIMES-MACRO
-* - **MSA**      
+* - **MSA**
   - code related to the MSA implementation of decomposed TIMES-MACRO
-* - **RED**      
+* - **RED**
   - reduction algorithm routines
-* - **RPT**      
+* - **RPT**
   - report writer routines
-* - **STC**      
+* - **STC**
   - code related to stochastics
-* - **STP**      
+* - **STP**
   - code related to time-stepped or partially fixed-horizon solution
-* - **TM**       
+* - **TM**
   - the core TIMES MACRO code
-* - **VDA**      
+* - **VDA**
   - routines related to new TIMES features implemented under the VDA extension
-* - **VDD**      
+* - **VDD**
   - directives for the VEDA-BE result analysis software
 ```
 
@@ -201,7 +201,7 @@ After the basic control switches, the definition of the set of all timeslices is
 ```{figure} assets/image6.png
 :name: example-veda-fe-times
 :align: center
- Example of a VEDA-FE TIMES \<case\>.RUN file[^16]
+Example of a VEDA-FE TIMES \<case\>.RUN file[^16]
 ```
 
 The line containing the include command for the file initmty.mod can be supplemented by calls for additional user extensions that trigger the use of additional special equations or report routines. The use of these extension options are described in more detail in Section 0.
@@ -328,7 +328,7 @@ Note that for both ANSWER and VEDA-BE, for the most part low-level (that is comm
 
 In addition, as discussed in Section 3.10, there are a number of switches that control the report writer itself in terms of how it calculates certain outputs and prepares the results as part of the post-processing. Collectively these mechanisms provide the user with a wide range of reporting results and tools for dissecting and assembling the modeling results as part of effectively using TIMES to conduct energy policy analyses.
 
-### QA check report (LOG) 
+### QA check report (LOG)
 
 In order to assist the user with identifying accidental modelling errors, a number of sanity checks are done by the model generator. If incorrect or suspicious specifications are found in these checks, a message is written in a text file named QA_CHECK.LOG, in the working folder. The checks implemented in TIMES Version 3.9.3 are listed in {numref}`times-qa-checks`. The "Log entry" column shows the identification given for each suspicious specification.
 
