@@ -128,7 +128,7 @@ Summarizing the above formulation, we observe that each learning technology requ
 
 ## Clustered learning
 
-An interesting variation of ETL is also available in TIMES, namely the case where several technologies use the same key technology (or component), itself subject to learning. For instance, table 11.1 lists 11 technologies using the key Gas Turbine technology. As experience builds up for gas the turbine, each of the 11 technologies in the cluster benefits. The phenomenon of clustered learning is modeled in TIMES via the following modification of the formulation of the previous section.
+An interesting variation of ETL is also available in TIMES, namely the case where several technologies use the same key technology (or component), itself subject to learning. For instance, {numref}`gas-turbine-tech-cluster` lists 11 technologies using the key Gas Turbine technology. As experience builds up for gas the turbine, each of the 11 technologies in the cluster benefits. The phenomenon of clustered learning is modeled in TIMES via the following modification of the formulation of the previous section.
 
 Let $k$ designate the key technology and let $l = 1, 2, ...,L$ designate the set of clustered technologies attached to $k$. The approach consists of three steps:
 
@@ -140,35 +140,23 @@ iii) Step 3: add the following constraint to the model, in each time period. Thi
 
 $$VAR\_NCAP_{k} - \sum_{l = 1}^{L}{VAR\_NCAP_{l} = 0}$$
 
-*Table 11.1: Cluster of gas turbine technologies*
+:::{table} Cluster of gas turbine technologies (from A. Sebregts and K. Smekens, unpublished report, 2002)
+:name: gas-turbine-tech-cluster
 
-*(from A. Sebregts and K. Smekens, unpublished report, 2002)*
-
-  -----------------------------------------------------------------------
-  Description
-
-  Integrated Coal gasification power plant
-
-  Integrated Coal Gasification Fuel Cell plant
-
-  Gas turbine peaking plant
-
-  Existing gas Combined Cycle power plant
-
-  New gas Combined Cycle power plant
-
-  Combined cycle Fuel Cell power plant
-
-  Existing gas turbine CHP plant
-
-  Existing Combined Cycle CHP plant
-
-  Biomass gasification: small industrial cog.
-
-  Biomass gasification: Combined Cycle power plant
-
-  Biomass gasification: ISTIG+reheat
-  -----------------------------------------------------------------------
+| Description                                      |
+| ------------------------------------------------ |
+| Integrated Coal gasification power plant         |
+| Integrated Coal Gasification Fuel Cell plant     |
+| Gas turbine peaking plant                        |
+| Existing gas Combined Cycle power plant          |
+| New gas Combined Cycle power plant               |
+| Combined cycle Fuel Cell power plant             |
+| Existing gas turbine CHP plant                   |
+| Existing Combined Cycle CHP plant                |
+| Biomass gasification: small industrial cog.      |
+| Biomass gasification: Combined Cycle power plant |
+| Biomass gasification: ISTIG+reheat               |
+:::
 
 ## Learning in a multiregional TIMES model
 
