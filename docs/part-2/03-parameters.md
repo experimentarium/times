@@ -27,26 +27,53 @@ The enhanced interpolation/extrapolation facility provides the user with the fol
 - Forced interpolation and extrapolation throughout the time horizon. Can be useful for parameters that are by default not interpolated. See option codes 3, 4, and 5 as well as 14 and 15 in {numref}`ie-control-options` below.
 - Log-linear interpolation beyond a specified data year, and both forward and backward extrapolation outside the interpolation window. Log-linear interpolation is guided by relative coefficients of annual change instead of absolute data values.
 
-:::{table} Option codes for the control of time series data interpolation.
+```{list-table} Option codes for the control of time series data interpolation.
 :name: ie-control-options
+:header-rows: 1
 
-| Option code  | Action                                                                                                                            | Applies to  |
-| :----------: | --------------------------------------------------------------------------------------------------------------------------------- | :---------: |
-| 0 (or none)  | Interpolation and extrapolation of data in the default way as predefined in TIMES (see below)                                     |     All     |
-|     \<0      | No interpolation or extrapolation of data (only valid for non-cost parameters).                                                   |     All     |
-|      1       | Interpolation between data points but no extrapolation.                                                                           |     All     |
-|      2       | Interpolation between data points entered, and filling-in all points outside the inter­polation window with the EPS value.        |     All     |
-|      3       | Forced interpolation and both forward and backward extrapolation throughout the time horizon.                                     |     All     |
-|      4       | Interpolation and backward extrapolation                                                                                          |     All     |
-|      5       | Interpolation and forward extrapolation                                                                                           |     All     |
-|      10      | Migrated interpolation/extrapolation within periods                                                                               | Bounds, RHS |
-|      11      | Interpolation migrated at end-points, no extrapolation                                                                            | Bounds, RHS |
-|      12      | Interpolation migrated at ends, extrapolation with EPS                                                                            | Bounds, RHS |
-|      14      | Interpolation migrated at end, backward extrapolation                                                                             | Bounds, RHS |
-|      15      | Interpolation migrated at start, forward extrapolation                                                                            | Bounds, RHS |
-| YEAR (≥1000) | Log-linear interpolation beyond the specified YEAR, and both forward and backward extrapolation outside the interpolation window. |     All     |
-
-:::
+* - Option code
+  - Action
+  - Applies to
+* - 0 (or none)
+  - Interpolation and extrapolation of data in the default way as predefined in TIMES (see below)
+  - All
+* - \<0
+  - No interpolation or extrapolation of data (only valid for non-cost parameters).
+  - All
+* - 1
+  - Interpolation between data points but no extrapolation.
+  - All
+* - 2
+  - Interpolation between data points entered, and filling-in all points outside the interpolation window with the EPS value.
+  - All
+* - 3
+  - Forced interpolation and both forward and backward extrapolation throughout the time horizon.
+  - All
+* - 4
+  - Interpolation and backward extrapolation
+  - All
+* - 5
+  - Interpolation and forward extrapolation
+  - All
+* - 10
+  - Migrated interpolation/extrapolation within periods
+  - Bounds, RHS
+* - 11
+  - Interpolation migrated at end-points, no extrapolation
+  - Bounds, RHS
+* - 12
+  - Interpolation migrated at ends, extrapolation with EPS
+  - Bounds, RHS
+* - 14
+  - Interpolation migrated at end, backward extrapolation
+  - Bounds, RHS
+* - 15
+  - Interpolation migrated at start, forward extrapolation
+  - Bounds, RHS
+* - YEAR (≥1000)
+  - Log-linear interpolation beyond the specified YEAR, and both forward and backward extrapolation outside the interpolation window.
+  - All
+```
 
 Migration means that data points are interpolated and extrapolated within each period but not across periods. This method thus migrates any data point specified for other than $milestoneyr$ year to the corresponding $milestoneyr$ year within the period, so that it will be effective in that period.
 
@@ -78,23 +105,69 @@ $FLO\_SHAR$ is by default NOT interpolated or extrapolated in TIMES. To force in
 FLO_SHAR('REG','0','PRC1','COAL','IN_PRC1','ANNUAL','UP') = 3;
 ```
 
-:::{table} Parameters not being fully inter/extrapolated by default
+```{list-table} Parameters not being fully inter/extrapolated by default
 :name: no-default-full-ie
+:header-rows: 1
 
-| Parameter                                                                                                                                                                                                                 | Justification                                                                                                                      |  Default I/E   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | :------------: |
-| ACT_BND <br>CAP_BND <br>NCAP_BND <br>NCAP_DISC <br>FLO_FR <br>FLO_SHAR <br>STGIN_BND <br>STGOUT_BND <br>COM_BNDNET <br>COM_BNDPRD <br>COM_CUMNET <br>COM_CUMPRD <br>REG_BNDCST <br>RCAP_BND <br>IRE_BND <br>IRE_XBND <br> | Bound may be intended at specific periods only.                                                                                    | 10 (migration) |
-| PRC_MARK                                                                                                                                                                                                                  | Constraint may be intended at specific periods only                                                                                |       11       |
-| PRC_RESID                                                                                                                                                                                                                 | Residual capacity usually intended to be only interpolated                                                                         |      1\*       |
-| UC_RHST <br>UC_RHSRT<br>UC_RHSRTS                                                                                                                                                                                         | User constraint may be intended for specific periods only                                                                          | 10 (migration) |
-| NCAP_AFM <br>NCAP_FOMM <br>NCAP_FSUBM <br>NCAP_FTAXM<br>                                                                                                                                                                  | Interpolation meaningless for these parameters (parameter value is a discrete number indicating which MULTI curve should be used). | 10 (migration) |
-| COM_ELASTX <br>FLO_FUNCX <br>NCAP_AFX <br>NCAP_FOMX <br>NCAP_FSUBX <br>NCAP_FTAXX                                                                                                                                         | Interpolation meaningless for these parameters (parameter value is a discrete number indicating which SHAPE curve should be used). | 10 (migration) |
-| NCAP_PASTI                                                                                                                                                                                                                | Parameter describes past investment for a single vintage year.                                                                     |      none      |
-| NCAP_PASTY                                                                                                                                                                                                                | Parameter describes number of years over which to distribute past investments.                                                     |      none      |
-| CM_MAXC                                                                                                                                                                                                                   | Bound may be intended at specific years only                                                                                       |      none      |
-| PEAKDA_BL                                                                                                                                                                                                                 | Blending parameters at the moment not interpolated                                                                                 |      none      |
-
-:::
+* - Parameter
+  - Justification
+  - Default I/E
+* - ACT_BND
+  <br>CAP_BND
+  <br>NCAP_BND
+  <br>NCAP_DISC
+  <br>FLO_FR
+  <br>FLO_SHAR
+  <br>STGIN_BND
+  <br>STGOUT_BND
+  <br>COM_BNDNET
+  <br>COM_BNDPRD
+  <br>COM_CUMNET
+  <br>COM_CUMPRD
+  <br>REG_BNDCST
+  <br>RCAP_BND
+  <br>IRE_BND
+  <br>IRE_XBND
+  - Bound may be intended at specific periods only.
+  - 10 (migration)
+* - PRC_MARK
+  - Constraint may be intended at specific periods only
+  - 11
+* - PRC_RESID
+  - Residual capacity usually intended to be only interpolated
+  - 1\*
+* - UC_RHST
+  <br>UC_RHSRT
+  <br>UC_RHSRTS
+  - User constraint may be intended for specific periods only
+  - 10 (migration)
+* - NCAP_AFM
+  <br>NCAP_FOMM
+  <br>NCAP_FSUBM
+  <br>NCAP_FTAXM
+  - Interpolation meaningless for these parameters (parameter value is a discrete number indicating which MULTI curve should be used).
+  - 10 (migration)
+* - COM_ELASTX
+  <br>FLO_FUNCX
+  <br>NCAP_AFX
+  <br>NCAP_FOMX
+  <br>NCAP_FSUBX
+  <br>NCAP_FTAXX
+  - Interpolation meaningless for these parameters (parameter value is a discrete number indicating which SHAPE curve should be used).
+  - 10 (migration)
+* - NCAP_PASTI
+  - Parameter describes past investment for a single vintage year.
+  - none
+* - NCAP_PASTY
+  - Parameter describes number of years over which to distribute past investments.
+  - none
+* - CM_MAXC
+  - Bound may be intended at specific years only
+  - none
+* - PEAKDA_BL
+  - Blending parameters at the moment not interpolated
+  - none
+```
 
 \* If only a single $PRC\_RESID$ value is specified, assumed to decay linearly over $NCAP\_TLIFE$ years
 
@@ -112,31 +185,47 @@ This parameter specifies a log-linear control option with the value for the thre
 
 All the enhanced I/E options described above are available for all TIMES timeseries parameters, excluding $PRC\_RESID$ and $COM\_BPRICE$. $PRC\_RESID$ is always interpolated, as if option 1 were used, but is also extrapolated forwards over $TLIFE$ when either I/E option 5 or 15 is specified. $COM\_BPRICE$ is not interpolated at all, as it is obtained from the Baseline solution. Moreover, the I/E options are not applicable to the integer-valued parameters related to the $SHAPE$ and $MULTI$ tables, which are listed in {numref}`interpolation-not-applicable`.
 
-:::{table} Parameters which cannot be interpolated.
+```{list-table} Parameters which cannot be interpolated.
 :name: interpolation-not-applicable
+:header-rows: 1
 
-| Parameter                                                                         | Comment                                                                                                         |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| NCAP_AFM <br>NCAP_FOMM <br>NCAP_FSUBM <br>NCAP_FTAXM                              | Parameter value is a discrete numbers indicating which MULTI curve should be used, and not a time series datum. |
-| COM_ELASTX <br>FLO_FUNCX <br>NCAP_AFX <br>NCAP_FOMX <br>NCAP_FSUBX <br>NCAP_FTAXX | Parameter value is a discrete number indicating which SHAPE curve should be used, and not a time series datum.  |
-
-:::
+* - Parameter
+  - Comment
+* - NCAP_AFM
+  <br>NCAP_FOMM
+  <br>NCAP_FSUBM
+  <br>NCAP_FTAXM
+  - Parameter value is a discrete numbers indicating which MULTI curve should be used, and not a time series datum.
+* - COM_ELASTX
+  <br>FLO_FUNCX
+  <br>NCAP_AFX
+  <br>NCAP_FOMX
+  <br>NCAP_FSUBX
+  <br>NCAP_FTAXX
+  - Parameter value is a discrete number indicating which SHAPE curve should be used, and not a time series datum.
+```
 
 Nonetheless, a few options are supported also for the extrapolation of the $MULTI$ and $SHAPE$ index parameters, as shown in {numref}`e-option-codes-shape-multi`. The extrapolation can be done either only inside the data points provided by the user, or both inside and outside those data points. When using the inside data points option, the index specified for any $datayear$ is extrapolated to all model years ($v$) between that $datayear$ and the following $datayear$ for which the $SHAPE$ index is specified. The extrapolation options are available for all of the $SHAPE$ and $MULTI$ parameters listed in {numref}`interpolation-not-applicable`.
 
-:::{table} Option codes for the extrapolation of SHAPE/MULTI indexes.
+```{list-table} Option codes for the extrapolation of SHAPE/MULTI indexes.
 :name: e-option-codes-shape-multi
+:header-rows: 1
 
-|  Option code  | Action                                                    |
-| :-----------: | --------------------------------------------------------- |
-| <=0 (or none) | No extrapolation (default)                                |
-|       1       | Extrapolation between data points only                    |
-|       2       | Extrapolation between and outside data points             |
-|       4       | Extrapolation between data points and backwards           |
-|       5       | Extrapolation between data points and forwards            |
-|      11       | Extrapolation between data points only, migration at ends |
-
-:::
+* - Option code
+  - Action
+* - <=0 (or none)
+  - No extrapolation (default)
+* - 1
+  - Extrapolation between data points only
+* - 2
+  - Extrapolation between and outside data points
+* - 4
+  - Extrapolation between data points and backwards
+* - 5
+  - Extrapolation between data points and forwards
+* - 11
+  - Extrapolation between data points only, migration at ends
+```
 
 **Example:**
 
@@ -186,12 +275,13 @@ Bound parameters are in most cases not levelized by inheritance, only by aggrega
 ```{figure} assets/image9.png
 :name: inheritance-aggregation-rules-parameters
 :align: center
+
 Inheritance and aggregation rules for timeslice specific parameters in TIMES.
 ```
 
 ### Overview of user input parameters
 
-A list of all user input parameters (except for those specific to the TIMES-MACRO variants) is given in Table 13. For the MACRO input parameters, the reader is advised to consult the separate documentation. In order to facilitate the recognition by the user of to which part of the model a parameter relates the following naming conventions apply to the prefixes of the parameters ({numref}`uip-naming-conventions`).
+A list of all user input parameters (except for those specific to the TIMES-MACRO variants) is given in {numref}`user-input-parameters`. For the MACRO input parameters, the reader is advised to consult the separate documentation. In order to facilitate the recognition by the user of to which part of the model a parameter relates the following naming conventions apply to the prefixes of the parameters ({numref}`uip-naming-conventions`).
 
 :::{table} Naming conventions for user input parameters.
 :name: uip-naming-conventions
@@ -215,7 +305,7 @@ A list of all user input parameters (except for those specific to the TIMES-MACR
 
 For brevity, the default interpolation/extrapolation method for each parameter is given by using the abbreviations listed in {numref}`ie-abbreviations`.
 
-:::{table} Abbreviations for default I/E method in Table 13.
+:::{table} Abbreviations for default I/E method in {numref}`user-input-parameters`.
 :name: ie-abbreviations
 
 | Abbreviation | Description                                   |
@@ -225,8 +315,11 @@ For brevity, the default interpolation/extrapolation method for each parameter i
 | \<number\>   | Option code for any other default method      |
 | none         | No default inter-/extrapolation               |
 | N/A          | Inter-/extrapolation not applicable           |
-
 :::
+
+```{list-table} User input parameters in TIMES
+:name: user-input-parameters
+:header-rows: 1
 
 +-----------+--------+----------+-------------+----------+-----------+
 | **Input   | **R    | **Units  | **Insta     | **Descr  | *         |
@@ -5483,547 +5576,294 @@ For brevity, the default interpolation/extrapolation method for each parameter i
 |           |        |          | override    |          |           |
 |           |        |          | VDA_EMCB.   |          |           |
 +-----------+--------+----------+-------------+----------+-----------+
-
-: Table 13: User input parameters in TIMES
+```
 
 ##  Internal parameters
 
-Table 14 gives an overview of internal parameters generated by the TIMES preprocessor. Similar to the description of the internal sets, not all internal parameters used within TIMES are discussed. The list given in Table 14 focuses mainly on the parameters used in the preparation and creation of the equations in Chapter 6. In addition to the internal parameters listed here, the TIMES preprocessor computes additional internal parameters which are either used only as auxiliary parameters being valid only in a short section of the code or which are introduced to improve the performance of the code regarding computational time.
+{numref}`internal-parameters` gives an overview of internal parameters generated by the TIMES preprocessor. Similar to the description of the internal sets, not all internal parameters used within TIMES are discussed. The list given in {numref}`internal-parameters` focuses mainly on the parameters used in the preparation and creation of the equations in Chapter 6. In addition to the internal parameters listed here, the TIMES preprocessor computes additional internal parameters which are either used only as auxiliary parameters being valid only in a short section of the code or which are introduced to improve the performance of the code regarding computational time.
 
-+------------+--------------------+------------------------------------+
-| **Internal | **Instances**      | **Description**                    |
-| parame     |                    |                                    |
-| ter**[^31] | **(Required / Omit |                                    |
-|            | / Special          |                                    |
-| **(        | conditions)**      |                                    |
-| Indexes)** |                    |                                    |
-+============+====================+====================================+
-| ALPH       | For learning       | Axis intercept on cumulative cost  |
-|            | technologies teg   | axis for description of linear     |
-| (r,kp,teg) | when ETL is used.  | equation valid for segment kp.     |
-+------------+--------------------+------------------------------------+
-| BETA       | For learning       | Slope of cumulative cost curve in  |
-|            | technologies teg   | segment kp ( = specific investment |
-| (r,kp,teg) | when ETL is used.  | cost).                             |
-+------------+--------------------+------------------------------------+
-| CCAPK      | For learning       | Cumulative capacity at kinkpoint   |
-|            | technologies teg   | kp.                                |
-| (r,kp,teg) | when ETL is used.  |                                    |
-+------------+--------------------+------------------------------------+
-| CCO        | For learning       | Initial cumulative cost of         |
-| ST0(r,teg) | technologies teg   | learning technology teg.           |
-|            | when ETL is used.  |                                    |
-+------------+--------------------+------------------------------------+
-| CCOSTK     | For learning       | Cumulative investment cost at      |
-|            | technologies teg   | kinkpoint kp.                      |
-| (r,kp,teg) | when ETL is used.  |                                    |
-+------------+--------------------+------------------------------------+
-| CCOSTM     | For learning       | Maximum cumulative cost based on   |
-|            | technologies teg   | CCAPM.                             |
-| (r,teg)    | when ETL is used.  |                                    |
-+------------+--------------------+------------------------------------+
-| COEF_AF    | For each           | Availability coefficient of the    |
-|            | technology, at the | capacity (new investment variable  |
-| (r,v       | level of process   | VAR_NCAP plus still existing past  |
-| ,t,p,s,bd) | operation          | investments NCAP_PASTI) in         |
-|            | (PRC_TSL).         | EQ(l)\_CAPACT; COEF_AF is derived  |
-|            |                    | from the availability input        |
-|            |                    | parameters NCAP_AF, NCAP_AFA and   |
-|            |                    | NCAP_AFS taking into account any   |
-|            |                    | specified MULTI or SHAPE           |
-|            |                    | multipliers.                       |
-+------------+--------------------+------------------------------------+
-| COEF_CPT   | For each           | Fraction of capacity built in      |
-|            | technology the     | period v that is available in      |
-| (r,v,t,p)  | amount of an       | period t; might be smaller than 1  |
-|            | investment         | due to NCAP_ILED in vintage period |
-|            | (VAR_NCAP)         | or the fact that the lifetime ends |
-|            | available in the   | within a period.                   |
-|            | period.            |                                    |
-+------------+--------------------+------------------------------------+
-| COEF_ICOM  | Whenever there is  | Coefficient for commodity          |
-|            | a commodity        | requirement during construction in |
-| (          | required during    | period t due to investment         |
-| r,v,t,p,c) | construction, the  | decision in period v (see also     |
-|            | consuming being    | NCAP_ICOM).                        |
-|            | taken from the     |                                    |
-|            | balance constraint |                                    |
-|            | (EQ(l)\_COMBAL).   |                                    |
-|            |                    |                                    |
-|            | Applied to the     |                                    |
-|            | investment         |                                    |
-|            | variable           |                                    |
-|            | (VAR_NCAP) of      |                                    |
-|            | period v in the    |                                    |
-|            | commodity balance  |                                    |
-|            | (EQ(l)\_COMBAL) of |                                    |
-|            | period t.          |                                    |
-|            |                    |                                    |
-|            | The duration       |                                    |
-|            | during which the   |                                    |
-|            | commodity is       |                                    |
-|            | produced starts in |                                    |
-|            | the year           |                                    |
-|            | B(v)+NCAP_ILE      |                                    |
-|            | D(v)--NCAP_CLED(v) |                                    |
-|            | and ends in the    |                                    |
-|            | year               |                                    |
-|            | B(v                |                                    |
-|            | )+NCAP_ILED(v)--1. |                                    |
-+------------+--------------------+------------------------------------+
-| COEF_OCOM  | Whenever there is  | Coefficient for commodity release  |
-|            | a commodity        | during decommissioning time in     |
-| (          | released during    | period t due to investment made in |
-| r,v,t,p,c) | decommissioning,   | period v.                          |
-|            | the production     |                                    |
-|            | being added to the |                                    |
-|            | balance constraint |                                    |
-|            | (EQ(l)\_COMBAL).   |                                    |
-|            |                    |                                    |
-|            | Applied to the     |                                    |
-|            | investment         |                                    |
-|            | variable           |                                    |
-|            | (VAR_NCAP) of      |                                    |
-|            | period v in the    |                                    |
-|            | commodity balance  |                                    |
-|            | (EQ(l)\_COMBAL) of |                                    |
-|            | period t.          |                                    |
-|            |                    |                                    |
-|            | The release occurs |                                    |
-|            | during the         |                                    |
-|            | decommissioning    |                                    |
-|            | lifetime           |                                    |
-|            | NCAP_DLIFE.        |                                    |
-+------------+--------------------+------------------------------------+
-| COEF_PTRAN | For each flow      | Coefficient of flow variable of    |
-|            | through a process. | commodity c belonging to commodity |
-| (r         |                    | group cg in EQ_PTRANS equation     |
-| ,v,t,p,cg, |                    | between the commodity groups cg    |
-| c,com_grp) |                    | and com_grp.                       |
-+------------+--------------------+------------------------------------+
-| COEF_PVT   | For each region,   | Coefficient for the present value  |
-|            | the present value  | of periods, used primarily for     |
-| (r,t)      | of the time in     | undiscounting the solution         |
-|            | each period.       | marginals.                         |
-+------------+--------------------+------------------------------------+
-| COEF_RPTI  | For each           | Number of repeated investment of   |
-|            | technology whose   | process p in period v when the     |
-| (r,v,p)    | technical life     | technical lifetime minus the       |
-|            | (NCAP_TLIFE) is    | construction time is shorter than  |
-|            | shorter than the   | the period duration; Rounded to    |
-|            | period.            | the next largest integer number.   |
-+------------+--------------------+------------------------------------+
-| COR_SALVD  | For each           | Correction factor for              |
-|            | technology         | decommissioning costs taking into  |
-| (          | existing past the  | account technical discount rates   |
-| r,v,p,cur) | end of the         | and economic decommissioning       |
-|            | modelling horizon  | times.                             |
-|            | with               |                                    |
-|            | decommissioning    |                                    |
-|            | costs, adjustment  |                                    |
-|            | in the objective   |                                    |
-|            | function.          |                                    |
-+------------+--------------------+------------------------------------+
-| COR_SALVI  | For each process   | Correction factor for investment   |
-|            | extending past the | costs taking into account          |
-| (          | end of the         | technical discount rates, economic |
-| r,v,p,cur) | modelling horizon  | lifetimes and a user-defined       |
-|            | adjustment in the  | discount shift (triggered by the   |
-|            | objective          | control switch MIDYEAR (see        |
-|            | function.          | Section 6.2 EQ_OBJ).               |
-+------------+--------------------+------------------------------------+
-| D          | For each period,   | Duration of period t.              |
-|            | D(t) =             |                                    |
-| \(t\)      | E(t)--B(t)+1.      |                                    |
-+------------+--------------------+------------------------------------+
-| DUR_MAX    | For the model.     | Maximum of NCAP_ILED +             |
-|            |                    | NCAP_TLIFE + NCAP_DLAG +           |
-|            |                    | NCAP_DLIFE + NCAP_DELIF over all   |
-|            |                    | regions, periods and processes.    |
-+------------+--------------------+------------------------------------+
-| LEAD\      | For each milestone | Time between milestone years       |
-| (t)        | year.              | **t**--1 and **t**, in years. For  |
-|            |                    | the first milestone year t1,       |
-|            |                    | LEAD(t1)=M(t1)--B(t1)+1.           |
-+------------+--------------------+------------------------------------+
-| M          | For each period,   | Middle year of period t.           |
-|            | if the duration of |                                    |
-| \(v\)      | the period is      |                                    |
-|            | even, the middle   |                                    |
-|            | year of the period |                                    |
-|            | is B(t) + D(t)/2   |                                    |
-|            | -- 1, if the       |                                    |
-|            | period is uneven,  |                                    |
-|            | the middle year is |                                    |
-|            | B(t) + D(t)/2 --   |                                    |
-|            | 0.5.               |                                    |
-+------------+--------------------+------------------------------------+
-| MINYR      | For the model      | Minimum year over t = M(t) -- D(t) |
-|            |                    | +1; used in objective function.    |
-+------------+--------------------+------------------------------------+
-| MIYR_V1    | For the model      | First year of model horizon.       |
-+------------+--------------------+------------------------------------+
-| MIYR_VL    | For the model      | Last year of model horizon.        |
-+------------+--------------------+------------------------------------+
-| NTCHTEG    | For learning       | Number of processes using the same |
-|            | technologies teg   | key technology teg.                |
-| (r,teg)    | when ETL with      |                                    |
-|            | technology         |                                    |
-|            | clusters is used.  |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_ACOST  | For each process   | Inter-/Extrapolated variable costs |
-|            | with activity      | (ACT_COST) for activity variable   |
-| (          | costs.             | (VAR_ACT) for each year.           |
-| r,y,p,cur) |                    |                                    |
-|            | Enters the         |                                    |
-|            | objective function |                                    |
-|            | (EQ_OBJVAR).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_COMNT  | For each commodity | Inter-/Extrapolated cost, tax and  |
-|            | with costs, taxes  | subsidy (distinguished by the type |
-| (r,y,c,s   | or subsidies on    | index) on net production of        |
-| ,type,cur) | the net            | commodity (c) for each year        |
-|            | production.        | associated with the variable       |
-|            |                    | VAR_COMNET. Cost types (type) are  |
-|            | Enters the         | COST, TAX and SUB.                 |
-|            | objective function |                                    |
-|            | (EQ_OBJVAR).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_COMPD  | For each commodity | Inter-/Extrapolated cost, tax and  |
-|            | with costs, taxes  | subsidy (distinguished by the type |
-| (r,y,c,s   | or subsidies on    | index) on production of commodity  |
-| ,type,cur) | the commodity      | (c) for each year associated with  |
-|            | production.        | the variable VAR_COMPRD. Cost      |
-|            |                    | types (type) are COST, TAX and     |
-|            | Enters the         | SUB.                               |
-|            | objective function |                                    |
-|            | (EQ_OBJVAR).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_CRF    | For each           | Capital recovery factor of         |
-|            | technology with    | investment in technology p in      |
-| (          | investment costs.  | objective function taking into     |
-| r,y,p,cur) |                    | account the economic lifetime      |
-|            | Enters objective   | (NCAP_ELIFE) and the technology    |
-|            | function           | specific discount rate             |
-|            | (EQ_OBJINV).       | (NCAP_DRATE) or, if the latter is  |
-|            |                    | not specified, the general         |
-|            |                    | discount rate (G_DRATE).           |
-+------------+--------------------+------------------------------------+
-| OBJ_CRFD   | For each           | Capital recovery factor of         |
-|            | technology with    | decommissioning costs in           |
-| (          | decommissioning    | technology p taking into account   |
-| r,y,p,cur) | costs.             | the economic lifetime (NCAP_DELIF) |
-|            |                    | and the technology specific        |
-|            | Enters objective   | discount rate (NCAP_DRATE) or, if  |
-|            | function           | the latter is not specified, the   |
-|            | (EQ_OBJINV).       | general discount rate (G_DRATE).   |
-+------------+--------------------+------------------------------------+
-| OBJ_DCEOH  | Enters objective   | Discount factor for the year EOH + |
-|            | function           | 1 based on the general discount    |
-| (r,cur)    | (EQ_OBJSALV).      | rate (G_DRATE).                    |
-+------------+--------------------+------------------------------------+
-| OBJ_DCOST  | For each           | Inter-/Extrapolated                |
-|            | technology with    | decommissioning costs (NCAP_DCOST) |
-| (          | decommissioning    | for each year related to the       |
-| r,y,p,cur) | costs.             | investment (VAR_NCAP) of process   |
-|            |                    | p.                                 |
-|            | Enters objective   |                                    |
-|            | function           |                                    |
-|            | (EQ_OBJINV).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_DISC   | Enters objective   | Annual discount factor based on    |
-|            | function           | the general discount rate          |
-| (r,y,cur)  | (EQ_OBJINV,        | (G_DRATE) to discount costs in the |
-|            | EQ_OBJVAR,         | year y to the base year (G_DYEAR). |
-|            | EQ_OBJFIX,         |                                    |
-|            | EQ_OBJSALV,        |                                    |
-|            | EQ_OBJELS).        |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_DIVI   | Enters objective   | Divisor for investment costs       |
-|            | function           | (period duration, technical        |
-| (r,v,p)    | (EQ_OBJINV).       | lifetime or investment lead time   |
-|            |                    | depending on the investment cases  |
-|            |                    | 1a, 1b, 2a, 2b).                   |
-+------------+--------------------+------------------------------------+
-| OBJ_DIVIII | Enters objective   | Divisor for decommissioning costs  |
-|            | function           | and salvaging of decommissioning   |
-| (r,v,p)    | (EQ_OBJINV).       | costs (period duration, technical  |
-|            |                    | lifetime or decommissioning time   |
-|            |                    | depending on the investment cases  |
-|            |                    | 1a, 1b, 2a, 2b).                   |
-+------------+--------------------+------------------------------------+
-| OBJ_DIVIV  | Enters objective   | Divisor for fixed operating and    |
-|            | function           | maintenance costs and salvaging of |
-| (r,v,p)    | (EQ_OBJFIX).       | investment costs.                  |
-+------------+--------------------+------------------------------------+
-| OBJ_DLAGC  | Enters objective   | Inter-/Extrapolated fixed capacity |
-|            | function           | (VAR_NCAP+NCAP_PASTI) costs        |
-| (          | (EQ_OBJFIX).       | between the end of the technical   |
-| r,y,p,cur) |                    | lifetime and the beginning of the  |
-|            |                    | decommissioning for each year.     |
-+------------+--------------------+------------------------------------+
-| OBJ_FCOST  | For each flow      | Inter-/Extrapolated flow costs     |
-|            | variable with flow | (FLO_COST) for each year for the   |
-| (r,y,      | related costs.     | flow or trade variable (VAR_FLO,   |
-| p,c,s,cur) |                    | VAR_IRE) as well as capacity       |
-|            | Enters objective   | related flows (specified by        |
-|            | function           | NCAP_COM, NCP_ICOM, NCAP_OCOM).    |
-|            | (EQ_OBJVAR).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_FDELV  | For each flow with | Inter-/Extrapolated delivery costs |
-|            | delivery costs.    | (FLO_DELIV) for each year for the  |
-| (r,y,      |                    | flow or trade variable (VAR_FLO,   |
-| p,c,s,cur) | Enters objective   | VAR_IRE) as well as capacity       |
-|            | function           | related flows (specified by        |
-|            | (EQ_OBJVAR).       | NCAP_COM, NCP_ICOM, NCAP_OCOM).    |
-+------------+--------------------+------------------------------------+
-| OBJ_FOM    | For each process   | Inter-/Extrapolated fixed          |
-|            | with fixed         | operating and maintenance costs    |
-| (          | operating and      | (NCAP_FOM) for the installed       |
-| r,y,p,cur) | maintenance costs. | capacity (VAR_NCAP+NCAP_PASTI) for |
-|            |                    | each year.                         |
-|            | Enters the         |                                    |
-|            | objective function |                                    |
-|            | (EQ_OBJFIX).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_FSB    | For each process   | Inter-/Extrapolated subsidy        |
-|            | with subsidy on    | (NCAP_FSUB) on installed capacity  |
-| (          | existing capacity. | (VAR_NCAP+NCAP_PASTI) for each     |
-| r,y,p,cur) |                    | year.                              |
-|            | Enters objective   |                                    |
-|            | function           |                                    |
-|            | (EQ_OBJFIX).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_FSUB   | For each flow      | Inter-/Extrapolated subsidy        |
-|            | variable with      | (FLO_SUB) for the flow or trade    |
-| (r,y,      | subsidies.         | variable (VAR_FLO, VAR_IRE) for    |
-| p,c,s,cur) |                    | each year as well as capacity      |
-|            | Enters objective   | related flows (specified by        |
-|            | function           | NCAP_COM, NCP_ICOM, NCAP_OCOM).    |
-|            | (EQ_OBJVAR).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_FTAX   | For each flow      | Inter-/Extrapolated tax (FLO_TAX)  |
-|            | variable with      | for flow or trade variable         |
-| (r,y,      | taxes.             | (VAR_FLO, VAR_IRE) for each year   |
-| p,c,s,cur) |                    | as well as capacity related flows  |
-|            | Enters objective   | (specified by NCAP_COM, NCP_ICOM,  |
-|            | function           | NCAP_OCOM).                        |
-|            | (EQ_OBJVAR).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_FTX    | For each process   | Inter-/Extrapolated tax            |
-|            | with taxes on      | (NCAP_FTAX) on installed capacity  |
-| (          | existing capacity. | (VAR_NCAP+NCAP_PASTI) for each     |
-| r,y,p,cur) |                    | year.                              |
-|            | Enters objective   |                                    |
-|            | function           |                                    |
-|            | (EQ_OBJFIX).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_ICOST  | For each process   | Inter-/Extrapolated investment     |
-|            | with investment    | costs (NCAP_COST) for investment   |
-| (          | costs.             | variable (VAR_NCAP) for each year. |
-| r,y,p,cur) |                    |                                    |
-|            | Enters objective   |                                    |
-|            | function           |                                    |
-|            | (EQ_OBJINV).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_IPRIC  | For each           | Inter-/Extrapolated import/export  |
-|            | import/export flow | prices (IRE_PRICE) for             |
-| (r,y       | with prices        | import/export variable (VAR_IRE)   |
-| ,p,c,s,all | assigned to it.    | for each year.                     |
-| _r,ie,cur) |                    |                                    |
-|            | Enters objective   |                                    |
-|            | function           |                                    |
-|            | (EQ_OBJVAR).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_ISUB   | For each process   | Inter-/Extrapolated subsidy        |
-|            | with subsidy on    | (NCAP_ISUB) on new capacity        |
-| (          | new investment.    | (VAR_NCAP) for each year.          |
-| r,y,p,cur) |                    |                                    |
-|            | Enters objective   |                                    |
-|            | function           |                                    |
-|            | (EQ_OBJINV).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_ITAX   | For each process   | Inter-/Extrapolated tax            |
-|            | with taxes on new  | (NCAP_ITAX) on new capacity        |
-| (          | investment.        | (VAR_NCAP) for each year.          |
-| r,y,p,cur) |                    |                                    |
-|            | Enters objective   |                                    |
-|            | function           |                                    |
-|            | (EQ_OBJINV).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_PASTI  | Enters objective   | Correction factor for past         |
-|            | function           | investments.                       |
-| (          | (EQ_OBJINV).       |                                    |
-| r,v,p,cur) |                    |                                    |
-+------------+--------------------+------------------------------------+
-| OBJ_PVT\   | Used as a          | Present value of time (in years)   |
-| (r,t,cur)  | multiplier in      | in period **t**, according to      |
-|            | objective function | currency **cur** in region **r**,  |
-|            | in a few sparse    | discounted to the base year.       |
-|            | cases.             |                                    |
-+------------+--------------------+------------------------------------+
-| OBJSIC     | For learning       | Investment cost related salvage    |
-|            | technologies.      | value of learning technology teg   |
-| (r,v,teg)  |                    | with vintage period v at year      |
-|            | Enters objective   | EOH+1.                             |
-|            | function           |                                    |
-|            | (EQ_OBJINV).       |                                    |
-+------------+--------------------+------------------------------------+
-| OBJSSC     | For processes with | Investment cost related salvage    |
-|            | investment costs.  | value of process p with vintage    |
-| (          |                    | period v at year EOH+1.            |
-| r,v,p,cur) | Enters objective   |                                    |
-|            | function           |                                    |
-|            | (EQ_OBJSALV).      |                                    |
-+------------+--------------------+------------------------------------+
-| PAT        | For learning       | Learning curve coefficient in the  |
-|            | technologies teg   | relationship:                      |
-| (r,teg)    | when ETL is used.  |                                    |
-|            |                    | SC = PAT \* VAR_CCAP\^(-PBT).      |
-+------------+--------------------+------------------------------------+
-| PBT        | For learning       | Learning curve exponent PBT(r,teg) |
-|            | technologies teg   | = LOG(PRAT(r,teg))/LOG(2).         |
-| (r,teg)    | when ETL is used.  |                                    |
-+------------+--------------------+------------------------------------+
-| PYR_V1     | For the model      | Minimum of pastyears and MINYR.    |
-+------------+--------------------+------------------------------------+
-| RS_FR      | Defined for all    | Fraction of timeslice s in         |
-|            | commodities.       | timeslice ts, if s is below ts,    |
-| (r,s,ts)   | Applied to flow    | otherwise 1. In other words,       |
-|            | variables in all   | RS_FR(r,s,ts) = G_YRFR(r,s) /      |
-|            | equations in order | G_YRFR(r,ts), if s is below ts,    |
-|            | to take into       | and otherwise 1.                   |
-|            | account cases      |                                    |
-|            | where the          |                                    |
-|            | variables may be   |                                    |
-|            | defined at a       |                                    |
-|            | different          |                                    |
-|            | timeslice level    |                                    |
-|            | than the level of  |                                    |
-|            | the equation.      |                                    |
-+------------+--------------------+------------------------------------+
-| RS_STG\    | Mainly applied for | Lead from previous timeslice in    |
-| (r,s)      | the modelling of   | the same cycle under the parent    |
-|            | storace cycles,    | timeslice.                         |
-|            | but also in        |                                    |
-|            | dispatching        |                                    |
-|            | equations.         |                                    |
-+------------+--------------------+------------------------------------+
-| RS_STGAV   | Only applicable to | Average residence time of storage  |
-|            | storage processes  | activity.                          |
-| (r,s)      | (STG): timeslice   |                                    |
-|            | storage devices,   |                                    |
-|            | to calculate       |                                    |
-|            | activity costs in  |                                    |
-|            | proportion to the  |                                    |
-|            | time the commodity |                                    |
-|            | is stored.         |                                    |
-+------------+--------------------+------------------------------------+
-| RS_STGPRD  | Only applicable to | Number of storage periods in a     |
-|            | storage processes  | year for each timeslice.           |
-| (r,s)      | (STG): timeslice   |                                    |
-|            | storage,           |                                    |
-|            | inter-period       |                                    |
-|            | storage or night   |                                    |
-|            | storage devices.   |                                    |
-+------------+--------------------+------------------------------------+
-| RS_UCS\    | Applied in         | Lead from previous timeslice in    |
-| (r,s,side) | timeslice-dynamic  | the same cycle under the parent    |
-|            | user constraints,  | timeslice.                         |
-|            | to refer to the    |                                    |
-|            | previous timeslice |                                    |
-|            | in the same cycle. |                                    |
-+------------+--------------------+------------------------------------+
-| RTP_FFCX   | The efficiency     | Average SHAPE multiplier of the    |
-|            | parameter          | parameter FLO_FUNC and FLO_SUM     |
-| (r,v,t,    | COEF_PTRAN is      | efficiencies in the EQ_PTRANS      |
-| p,cg,c,cg) | multiplied by the  | equation in the period (t) for     |
-|            | factor             | capacity with vintage period (v).  |
-|            | (1+RTP_FFCX).      | The SHAPE curve that should be     |
-|            |                    | used is specified by the user      |
-|            | Enters EQ_PTRANS   | parameter FLO_FUNCX. The SHAPE     |
-|            | equation.          | feature allows to alter technical  |
-|            |                    | parameter given for the vintage    |
-|            |                    | period as a function of the age of |
-|            |                    | the installation.                  |
-+------------+--------------------+------------------------------------+
-| RTCS_TSFR  | Defined for each   | The effective handling of          |
-|            | commodity with     | timeslice                          |
-| (r         | COM_FR. Applied to | aggregation/disaggregation. If ts  |
-| ,t,c,s,ts) | flow variables in  | is below s in the timeslice tree,  |
-|            | all equations in   | the value is 1, if s is below ts   |
-|            | order to take into | the value is COM_FR(r,s) /         |
-|            | account cases      | COM_FR(r,ts) for demand            |
-|            | where some of the  | commodities with COM_FR given and  |
-|            | variables may be   | G_YRFR(r,s) / G_YRFR(r,ts) for all |
-|            | defined at a       | other commodities.                 |
-|            | different          |                                    |
-|            | timeslice level    | The parameter is used to match the |
-|            | than the level of  | timeslice resolution of flow       |
-|            | the equation.      | variables (VAR_FLO/VAR_IRE) and    |
-|            |                    | commodities. RTCS_TSFR is the      |
-|            |                    | coefficient of the flow variable,  |
-|            |                    | which is producing or consuming    |
-|            |                    | commodity c, in the commodity      |
-|            |                    | balance of c. If timeslice s       |
-|            |                    | corresponds to the commodity       |
-|            |                    | timeslice resolution of c and      |
-|            |                    | timeslice ts to the timeslice      |
-|            |                    | resolution of the flow variable    |
-|            |                    | two cases may occur:               |
-|            |                    |                                    |
-|            |                    | The flow variables are on a finer  |
-|            |                    | timeslice level than the commodity |
-|            |                    | balance: in this case the flow     |
-|            |                    | variables with timeslices s being  |
-|            |                    | below ts in the timeslice tree are |
-|            |                    | summed to give the aggregated flow |
-|            |                    | within timeslice ts. RTCS_TSFR has |
-|            |                    | the value 1.                       |
-|            |                    |                                    |
-|            |                    | The flow variables are on coarser  |
-|            |                    | timeslice level than the commodity |
-|            |                    | balance: in this case the flow     |
-|            |                    | variable is split-up on the finer  |
-|            |                    | timeslice level of the commodity   |
-|            |                    | balance according to the ratio of  |
-|            |                    | the timeslice duration of s to ts: |
-|            |                    | RTCS_TSFR has the value =          |
-|            |                    | COM_FR(r,s) / COM_FR(r,s1) for     |
-|            |                    | demand commodities and G_YRFR(r,s) |
-|            |                    | / G_YRFR(r,s1) otherwise. When     |
-|            |                    | COM_FR is used, the demand load    |
-|            |                    | curve is moved to the demand       |
-|            |                    | process. Thus, it is possible to   |
-|            |                    | model demand processes on an       |
-|            |                    | ANNUAL level and ensure at the     |
-|            |                    | same time that the process follows |
-|            |                    | the given load curve COM_FR.       |
-+------------+--------------------+------------------------------------+
-| SALV_DEC   | For those          | Salvage proportion of              |
-|            | technologies with  | decommissioning costs made at      |
-| (r         | salvage costs      | period v with commissioning year   |
-| ,v,p,k,ll) | incurred after the | k.                                 |
-|            | model horizon the  |                                    |
-|            | contribution to    |                                    |
-|            | the objective      |                                    |
-|            | function.          |                                    |
-+------------+--------------------+------------------------------------+
-| SALV_INV   | For those          | Salvage proportion of investment   |
-|            | technologies with  | made at period v with              |
-| (r,v,p,k)  | salvage costs      | commissioning year k.              |
-|            | incurred after the |                                    |
-|            | model horizon the  |                                    |
-|            | contribution to    |                                    |
-|            | the objective      |                                    |
-|            | function.          |                                    |
-+------------+--------------------+------------------------------------+
-| YEARVAL    | A value for each   | Numerical value of year index      |
-|            | year.              | (e.g. YEARVAL(\'1984\') equals     |
-| \(y\)      |                    | 1984).                             |
-+------------+--------------------+------------------------------------+
+```{list-table} Internal parameters in TIMES
+:name: internal-parameters
+:header-rows: 1
 
-: Table 14: Internal parameters in TIMES
+* - Internal parameter[^31] (Indexes)
+  - Instances (Required / Omit / Special conditions)
+  - Description
+* - ALPH
+  <br>(r,kp,teg)
+  - For learning technologies teg when ETL is used.
+  - Axis intercept on cumulative cost axis for description of linear equation valid for segment kp.
+* - BETA
+  <br>(r,kp,teg)
+  - For learning technologies teg when ETL is used.
+  - Slope of cumulative cost curve in segment kp (= specific investment cost).
+* - CCAPK
+  <br>(r,kp,teg)
+  - For learning technologies teg when ETL is used.
+  - Cumulative capacity at kinkpoint kp.
+* - CCOST0
+  <br>(r,teg)
+  - For learning technologies teg when ETL is used.
+  - Initial cumulative cost of learning technology teg.
+* - CCOSTK
+  <br>(r,kp,teg)
+  - For learning technologies teg when ETL is used.
+  - Cumulative investment cost at kinkpoint kp.
+* - CCOSTM
+  <br>(r,teg)
+  - For learning technologies teg when ETL is used.
+  - Maximum cumulative cost based on CCAPM.
+* - COEF_AF
+  <br>(r,v,t,p,s,bd)
+  - For each technology, at the level of process operation (PRC_TSL).
+  - Availability coefficient of the capacity (new investment variable VAR_NCAP plus still existing past investments NCAP_PASTI) in EQ(l)\_CAPACT; COEF_AF is derived from the availability input parameters NCAP_AF, NCAP_AFA and NCAP_AFS taking into account any specified MULTI or SHAPE multipliers.
+* - COEF_CPT
+  <br>(r,v,t,p)
+  - For each technology the amount of an investment (VAR_NCAP) available in the period.
+  - Fraction of capacity built in period v that is available in period t; might be smaller than 1 due to NCAP_ILED in vintage period or the fact that the lifetime ends within a period.
+* - COEF_ICOM
+  <br>(r,v,t,p,c)
+  - Whenever there is a commodity required during construction, the consuming being taken from the balance constraint (EQ(l)\_COMBAL).
+  <br>Applied to the investment variable (VAR_NCAP) of period v in the commodity balance (EQ(l)\_COMBAL) of period t.
+  <br>The duration during which the commodity is produced starts in the year B(v)+NCAP_ILE D(v)--NCAP_CLED(v) and ends in the year B(v)+NCAP_ILED(v)--1.
+  - Coefficient for commodity requirement during construction in period t due to investment decision in period v (see also NCAP_ICOM).
+* - COEF_OCOM
+  <br>(r,v,t,p,c)
+  - Whenever there is a commodity released during decommissioning, the production being added to the balance constraint (EQ(l)\_COMBAL).
+  <br>Applied to the investment variable (VAR_NCAP) of period v in the commodity balance (EQ(l)\_COMBAL) of period t.
+  <br>The release occurs during the decommissioning lifetime NCAP_DLIFE.
+  - Coefficient for commodity release during decommissioning time in period t due to investment made in period v.
+* - COEF_PTRAN
+  <br>(r,v,t,p,cg,c,com_grp)
+  - For each flow through a process.
+  - Coefficient of flow variable of commodity c belonging to commodity group cg in EQ_PTRANS equation between the commodity groups cg and com_grp.
+* - COEF_PVT
+  <br>(r,t)
+  - For each region, the present value of the time in each period.
+  - Coefficient for the present value of periods, used primarily for undiscounting the solution marginals.
+* - COEF_RPTI
+  <br>(r,v,p)
+  - For each technology whose technical life (NCAP_TLIFE) is shorter than the period.
+  - Number of repeated investment of process p in period v when the technical lifetime minus the construction time is shorter than the period duration; Rounded to the next largest integer number.
+* - COR_SALVD
+  <br>(r,v,p,cur)
+  - For each technology existing past the end of the modelling horizon with decommissioning costs, adjustment in the objective function.
+  - Correction factor for decommissioning costs taking into account technical discount rates and economic decommissioning times.
+* - COR_SALVI
+  <br>(r,v,p,cur)
+  - For each process extending past the end of the modelling horizon adjustment in the objective function.
+  - Correction factor for investment costs taking into account technical discount rates, economic lifetimes and a user-defined discount shift (triggered by the control switch MIDYEAR (see Section 6.2 EQ_OBJ).
+* - D
+  <br>(t)
+  - For each period, D(t) = E(t)--B(t)+1.
+  - Duration of period t.
+* - DUR_MAX
+  - For the model.
+  - Maximum of NCAP_ILED + NCAP_TLIFE + NCAP_DLAG + NCAP_DLIFE + NCAP_DELIF over all regions, periods and processes.
+* - LEAD
+  <br>(t)
+  - For each milestone year.
+  - Time between milestone years **t**--1 and **t**, in years. For the first milestone year t1, LEAD(t1)=M(t1)--B(t1)+1.
+* - M
+  <br>(v)
+  - For each period, if the duration of the period is even, the middle year of the period is B(t) + D(t)/2 -- 1, if the period is uneven, the middle year is B(t) + D(t)/2 -- 0.5.
+  - Middle year of period t.
+* - MINYR
+  - For the model
+  - Minimum year over t = M(t) -- D(t) +1; used in objective function.
+* - MIYR_V1
+  - For the model
+  - First year of model horizon.
+* - MIYR_VL
+  - For the model
+  - Last year of model horizon.
+* - NTCHTEG
+  <br>(r,teg)
+  - For learning technologies teg when ETL with technology clusters is used.
+  - Number of processes using the same key technology teg.
+* - OBJ_ACOST
+  <br>(r,y,p,cur)
+  - For each process with activity costs.
+  <br>Enters the objective function (EQ_OBJVAR).
+  - Inter-/Extrapolated variable costs (ACT_COST) for activity variable (VAR_ACT) for each year.
+* - OBJ_COMNT
+  <br>(r,y,c,s,type,cur)
+  - For each commodity with costs, taxes or subsidies on the net production.
+  <br>Enters the objective function (EQ_OBJVAR).
+  - Inter-/Extrapolated cost, tax and subsidy (distinguished by the type index) on net production of commodity (c) for each year associated with the variable VAR_COMNET. Cost types (type) are COST, TAX and SUB.
+* - OBJ_COMPD
+  <br>(r,y,c,s,type,cur)
+  - For each commodity with costs, taxes or subsidies on the commodity production.
+  <br>Enters the objective function (EQ_OBJVAR).
+  - Inter-/Extrapolated cost, tax and subsidy (distinguished by the type index) on production of commodity (c) for each year associated with the variable VAR_COMPRD. Cost types (type) are COST, TAX and SUB.
+* - OBJ_CRF
+  <br>(r,y,p,cur)
+  - For each technology with investment costs.
+  <br>Enters objective function (EQ_OBJINV).
+  - Capital recovery factor of investment in technology p in objective function taking into account the economic lifetime (NCAP_ELIFE) and the technology specific discount rate (NCAP_DRATE) or, if the latter is not specified, the general discount rate (G_DRATE).
+* - OBJ_CRFD
+  <br>(r,y,p,cur)
+  - For each technology with decommissioning costs.
+  <br>Enters objective function (EQ_OBJINV).
+  - Capital recovery factor of decommissioning costs in technology p taking into account the economic lifetime (NCAP_DELIF) and the technology specific discount rate (NCAP_DRATE) or, if the latter is not specified, the general discount rate (G_DRATE).
+* - OBJ_DCEOH
+  <br>(r,cur)
+  - Enters objective function (EQ_OBJSALV).
+  - Discount factor for the year EOH + 1 based on the general discount rate (G_DRATE).
+* - OBJ_DCOST
+  <br>(r,y,p,cur)
+  - For each technology with decommissioning costs.
+  <br>Enters objective function (EQ_OBJINV).
+  - Inter-/Extrapolated decommissioning costs (NCAP_DCOST) for each year related to the investment (VAR_NCAP) of process p.
+* - OBJ_DISC
+  <br>(r,y,cur)
+  - Enters objective function (EQ_OBJINV, EQ_OBJVAR, EQ_OBJFIX, EQ_OBJSALV, EQ_OBJELS).
+  - Annual discount factor based on the general discount rate (G_DRATE) to discount costs in the year y to the base year (G_DYEAR).
+* - OBJ_DIVI
+  <br>(r,v,p)
+  - Enters objective function (EQ_OBJINV).
+  - Divisor for investment costs (period duration, technical lifetime or investment lead time depending on the investment cases 1a, 1b, 2a, 2b).
+* - OBJ_DIVIII
+  <br>(r,v,p)
+  - Enters objective function (EQ_OBJINV).
+  - Divisor for decommissioning costs and salvaging of decommissioning costs (period duration, technical lifetime or decommissioning time depending on the investment cases 1a, 1b, 2a, 2b).
+* - OBJ_DIVIV
+  <br>(r,v,p)
+  - Enters objective function (EQ_OBJFIX).
+  - Divisor for fixed operating and maintenance costs and salvaging of investment costs.
+* - OBJ_DLAGC
+  <br>(r,y,p,cur)
+  - Enters objective function (EQ_OBJFIX).
+  - Inter-/Extrapolated fixed capacity (VAR_NCAP+NCAP_PASTI) costs between the end of the technical lifetime and the beginning of the decommissioning for each year.
+* - OBJ_FCOST
+  <br>(r,y,p,c,s,cur)
+  - For each flow variable with flow related costs.
+  <br>Enters objective function (EQ_OBJVAR).
+  - Inter-/Extrapolated flow costs (FLO_COST) for each year for the flow or trade variable (VAR_FLO, VAR_IRE) as well as capacity related flows (specified by NCAP_COM, NCP_ICOM, NCAP_OCOM).
+* - OBJ_FDELV
+  <br>(r,y,p,c,s,cur)
+  - For each flow with delivery costs.
+  <br>Enters objective function (EQ_OBJVAR).
+  - Inter-/Extrapolated delivery costs (FLO_DELIV) for each year for the flow or trade variable (VAR_FLO, VAR_IRE) as well as capacity related flows (specified by NCAP_COM, NCP_ICOM, NCAP_OCOM).
+* - OBJ_FOM
+  <br>(r,y,p,cur)
+  - For each process with fixed operating and maintenance costs.
+  <br>Enters the objective function (EQ_OBJFIX).
+  - Inter-/Extrapolated fixed operating and maintenance costs (NCAP_FOM) for the installed capacity (VAR_NCAP+NCAP_PASTI) for each year.
+* - OBJ_FSB
+  <br>(r,y,p,cur)
+  - For each process with subsidy on existing capacity.
+  <br>Enters objective function (EQ_OBJFIX).
+  - Inter-/Extrapolated subsidy (NCAP_FSUB) on installed capacity (VAR_NCAP+NCAP_PASTI) for each year.
+* - OBJ_FSUB
+  <br>(r,y,p,c,s,cur)
+  - For each flow variable with subsidies.
+  <br>Enters objective function (EQ_OBJVAR).
+  - Inter-/Extrapolated subsidy (FLO_SUB) for the flow or trade variable (VAR_FLO, VAR_IRE) for each year as well as capacity related flows (specified by NCAP_COM, NCP_ICOM, NCAP_OCOM).
+* - OBJ_FTAX
+  <br>(r,y,p,c,s,cur)
+  - For each flow variable with taxes.
+  <br>Enters objective function (EQ_OBJVAR).
+  - Inter-/Extrapolated tax (FLO_TAX) for flow or trade variable (VAR_FLO, VAR_IRE) for each year as well as capacity related flows (specified by NCAP_COM, NCP_ICOM, NCAP_OCOM).
+* - OBJ_FTX
+  <br>(r,y,p,cur)
+  - For each process with taxes on existing capacity.
+  <br>Enters objective function (EQ_OBJFIX).
+  - Inter-/Extrapolated tax (NCAP_FTAX) on installed capacity (VAR_NCAP+NCAP_PASTI) for each year.
+* - OBJ_ICOST
+  <br>(r,y,p,cur)
+  - For each process with investment costs.
+  <br>Enters objective function (EQ_OBJINV).
+  - Inter-/Extrapolated investment costs (NCAP_COST) for investment variable (VAR_NCAP) for each year.
+* - OBJ_IPRIC
+  <br>(r,y,p,c,s,all_r,ie,cur)
+  - For each import/export flow with prices assigned to it.
+  <br>Enters objective function (EQ_OBJVAR).
+  - Inter-/Extrapolated import/export prices (IRE_PRICE) for import/export variable (VAR_IRE) for each year.
+* - OBJ_ISUB
+  <br>(r,y,p,cur)
+  - For each process with subsidy on new investment.
+  <br>Enters objective function (EQ_OBJINV).
+  - Inter-/Extrapolated subsidy (NCAP_ISUB) on new capacity (VAR_NCAP) for each year.
+* - OBJ_ITAX
+  <br>(r,y,p,cur)
+  - For each process with taxes on new investment.
+  <br>Enters objective function (EQ_OBJINV).
+  - Inter-/Extrapolated tax (NCAP_ITAX) on new capacity (VAR_NCAP) for each year.
+* - OBJ_PASTI
+  <br>(r,v,p,cur)
+  - Enters objective function (EQ_OBJINV).
+  - Correction factor for past investments.
+* - OBJ_PVT
+  <br>(r,t,cur)
+  - Used as a multiplier in objective function in a few sparse cases.
+  - Present value of time (in years) in period **t**, according to currency **cur** in region **r**, discounted to the base year.
+* - OBJSIC
+  <br>(r,v,teg)
+  - For learning technologies.
+  <br>Enters objective function (EQ_OBJINV).
+  - Investment cost related salvage value of learning technology teg with vintage period v at year EOH+1.
+* - OBJSSC
+  <br>(r,v,p,cur)
+  - For processes with investment costs.
+  <br>Enters objective function (EQ_OBJSALV).
+  - Investment cost related salvage value of process p with vintage period v at year EOH+1.
+* - PAT
+  <br>(r,teg)
+  - For learning technologies teg when ETL is used.
+  - Learning curve coefficient in the relationship: SC = PAT \* VAR_CCAP\^(-PBT).
+* - PBT
+  <br>(r,teg)
+  - For learning technologies teg when ETL is used.
+  - Learning curve exponent PBT(r,teg) = LOG(PRAT(r,teg))/LOG(2).
+* - PYR_V1
+  - For the model
+  - Minimum of pastyears and MINYR.
+* - RS_FR
+  <br>(r,s,ts)
+  - Defined for all commodities. Applied to flow variables in all equations in order to take into account cases where the variables may be defined at a different timeslice level than the level of the equation.
+  - Fraction of timeslice s in timeslice ts, if s is below ts, otherwise 1. In other words, RS_FR(r,s,ts) = G_YRFR(r,s) / G_YRFR(r,ts), if s is below ts, and otherwise 1.
+* - RS_STG
+  <br>(r,s)
+  - Mainly applied for the modelling of storace cycles, but also in dispatching equations.
+  - Lead from previous timeslice in the same cycle under the parent timeslice.
+* - RS_STGAV
+  <br>(r,s)
+  - Only applicable to storage processes (STG): timeslice storage devices, to calculate activity costs in proportion to the time the commodity is stored.
+  - Average residence time of storage activity.
+* - RS_STGPRD
+  <br>(r,s)
+  - Only applicable to storage processes (STG): timeslice storage, inter-period storage or night storage devices.
+  - Number of storage periods in a year for each timeslice.
+* - RS_UCS
+  <br>(r,s,side)
+  - Applied in timeslice-dynamic user constraints, to refer to the previous timeslice in the same cycle.
+  - Lead from previous timeslice in the same cycle under the parent timeslice.
+* - RTP_FFCX
+  <br>(r,v,t,p,cg,c,cg)
+  - The efficiency parameter COEF_PTRAN is multiplied by the factor (1+RTP_FFCX).
+  <br>Enters EQ_PTRANS equation.
+  - Average SHAPE multiplier of the parameter FLO_FUNC and FLO_SUM efficiencies in the EQ_PTRANS equation in the period (t) for capacity with vintage period (v). The SHAPE curve that should be used is specified by the user parameter FLO_FUNCX. The SHAPE feature allows to alter technical parameter given for the vintage period as a function of the age of the installation.
+* - RTCS_TSFR
+  <br>(r,t,c,s,ts)
+  - Defined for each commodity with COM_FR. Applied to flow variables in all equations in order to take into account cases where some of the variables may be defined at a different timeslice level than the level of the equation.
+  - The effective handling of timeslice aggregation/disaggregation. If ts is below s in the timeslice tree, the value is 1, if s is below ts the value is COM_FR(r,s) / COM_FR(r,ts) for demand commodities with COM_FR given and G_YRFR(r,s) / G_YRFR(r,ts) for all other commodities.
+  <br>The parameter is used to match the timeslice resolution of flow variables (VAR_FLO/VAR_IRE) and commodities. RTCS_TSFR is the coefficient of the flow variable, which is producing or consuming commodity c, in the commodity balance of c. If timeslice s corresponds to the commodity timeslice resolution of c and timeslice ts to the timeslice resolution of the flow variable two cases may occur:
+  <br>The flow variables are on a finer timeslice level than the commodity balance: in this case the flow variables with timeslices s being below ts in the timeslice tree are summed to give the aggregated flow within timeslice ts. RTCS_TSFR has the value 1.
+  <br>The flow variables are on coarser timeslice level than the commodity balance: in this case the flow variable is split-up on the finer timeslice level of the commodity balance according to the ratio of the timeslice duration of s to ts: RTCS_TSFR has the value = COM_FR(r,s) / COM_FR(r,s1) for demand commodities and G_YRFR(r,s) / G_YRFR(r,s1) otherwise. When COM_FR is used, the demand load curve is moved to the demand process. Thus, it is possible to model demand processes on an ANNUAL level and ensure at the same time that the process follows the given load curve COM_FR.
+* - SALV_DEC
+  <br>(r,v,p,k,ll)
+  - For those technologies with salvage costs incurred after the model horizon the contribution to the objective function.
+  - Salvage proportion of decommissioning costs made at period v with commissioning year k.
+* - SALV_INV
+  <br>(r,v,p,k)
+  - For those technologies with salvage costs incurred after the model horizon the contribution to the objective function.
+  - Salvage proportion of investment made at period v with commissioning year k.
+* - YEARVAL
+  <br>(y)
+  - A value for each year.
+  - Numerical value of year index (e.g. YEARVAL(\'1984\') equals 1984).
+```
 
 ##  Report parameters
 
@@ -6035,531 +5875,336 @@ The parameters generated internally by TIMES to document the results of a model 
 - $EQ(l)\_$: directly accessed GAMS equation levels/marginals
 - $REG\_$: regional total cost indicators.
 
+```{list-table} Report parameters in TIMES
+:name: times-report-parameters
+:header-rows: 1
 
-| Report parameter<sup>[^34]</sup> (Indexes) | VEDA-BE attribute name | Description |
-| --- | --- | --- |
-| AGG_OUT <br> (r,t,c,s) </br>    | VAR_FOut   | Commodity production by an aggregation process: <br> Production of commodity (c) in period (t) and timeslice (s) from other commodities aggregated into c. </br>|
-| CAP_NEW <br> (r,v,p,t,uc_n) </br>  | Cap_New  | Newly installed capacity and lumpsum investment by vintage and commissioning period: <br> New capacity and lumpsum investment of process (p) of vintage (v) commissioned in period (t). </br>|
-
-+--------+-------+-----------------------------------------------------+
-| CM_R   | V     | Climate module results for the levels of climate    |
-| ESULT\ | AR_Cl | variable (c) in period (t).                         |
-| (c,t)  | imate |                                                     |
-+--------+-------+-----------------------------------------------------+
-| CM_M   | Dual  | Climate module results for the duals of constraint  |
-| AXC_M\ | _Clic | related to climate variable (c) in period (t).      |
-| (c,t)  |       |                                                     |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cos   | Annual activity costs:                              |
-| _ACTC\ | t_Act |                                                     |
-| (r     |       | Annual undiscounted variable costs (caused by       |
-| ,v,t,p |       | ACT_COST) in period (t) associated with the         |
-| ,uc_n) |       | operation (activity) of a process (p) with vintage  |
-|        |       | period (v). Additional indicator (uc_n) for         |
-|        |       | start-up costs.                                     |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cos   | Annual commodity costs:                             |
-| _COMC\ | t_Com |                                                     |
-| (      |       | Annual undiscounted costs for commodity (c) (caused |
-| r,t,c) |       | by COM_CSTNET and COM_CSTPRD) in period (t).        |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cos   | Annual elastic demand cost term:                    |
-| _COME\ | t_Els |                                                     |
-| (      |       | Annual costs (losses) due to elastic demand changes |
-| r,t,c) |       | of commodity (c). When elastic demands are used the |
-|        |       | objective function describes the total surplus of   |
-|        |       | producers and consumers, which reaches its maximum  |
-|        |       | in the equilibrium of demand and supply.            |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cost  | Annual commodity taxes/subsidies:                   |
-| _COMX\ | _Comx |                                                     |
-| (      |       | Annual undiscounted taxes and subsidies for         |
-| r,t,c) |       | commodity (c) (caused by COM_TAXNET, COM_SUBNET,    |
-|        |       | COM_TAXPRD, COM_SUBPRD) in period (t).              |
-+--------+-------+-----------------------------------------------------+
-| CS     | Cos   | Annual damage cost term:                            |
-| T_DAM\ | t_Dam |                                                     |
-| (      |       | Annual undiscounted commodity (c) related costs,    |
-| r,t,c) |       | caused by DAM_COST, in period (t).                  |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cos   | Annual decommissioning costs:                       |
-| _DECC\ | t_Dec |                                                     |
-| (r,    |       | Annual undiscounted decommissioning costs (caused   |
-| v,t,p) |       | by NCAP_DCOST and NCAP_DLAGC) in period (t),        |
-|        |       | associated with the dismantling of process (p) with |
-|        |       | vintage period (v).                                 |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cos   | Annual fixed operating and maintenance costs:       |
-| _FIXC\ | t_Fom |                                                     |
-| (r,    |       | Annual undiscounted fixed operating and maintenance |
-| v,t,p) |       | costs (caused by NCAP_FOM) in period (t) associated |
-|        |       | with the installed capacity of process (p) with     |
-|        |       | vintage period (v).                                 |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cost  | Annual fixed taxes/subsidies:                       |
-| _FIXX\ | _Fixx |                                                     |
-| (r,    |       | Annual undiscounted fixed operating and maintenance |
-| v,t,p) |       | costs (caused by NCAP_FTAX, NCAP_FSUB) in period    |
-|        |       | (t) associated with the installed capacity of       |
-|        |       | process (p) with vintage period (v).                |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cos   | Annual flow costs (including import/export prices): |
-| _FLOC\ | t_Flo |                                                     |
-| (r,v,  |       | Annual undiscounted flow related costs (caused by   |
-| t,p,c) |       | FLO_COST, FLO_DELV, IRE_PRICE) in period (t)        |
-|        |       | associated with a commodity (c) flow in/out of a    |
-|        |       | process (p) with vintage period (v) as well as      |
-|        |       | capacity related commodity flows (specified by      |
-|        |       | NCAP_COM, NCAP_ICOM, NCAP_OCOM).                    |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cost  | Annual flow taxes/subsidies:                        |
-| _FLOX\ | _Flox |                                                     |
-| (r,v,  |       | Annual undiscounted flow related costs (caused by   |
-| t,p,c) |       | FLO_TAX, FLO_SUB) in period (t) associated with a   |
-|        |       | commodity (c) flow in/out of a process (p) with     |
-|        |       | vintage period (v) as well as capacity related      |
-|        |       | commodity flows (specified by NCAP_COM, NCAP_ICOM,  |
-|        |       | NCAP_OCOM).                                         |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cos   | Annual investment costs:                            |
-| _INVC\ | t_Inv |                                                     |
-| (r     |       | Annual undiscounted investment costs (caused by     |
-| ,v,t,p |       | NCAP_COST) in period (t) spread over the economic   |
-| ,uc_n) |       | lifetime (NCAP_ELIFE) of a process (p) with vintage |
-|        |       | period (v).                                         |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cost  | Annual investment taxes/subsidies:                  |
-| _INVX\ | _Invx |                                                     |
-| (r     |       | Annual undiscounted investment costs (caused by     |
-| ,v,t,p |       | NCAP_ITAX, NCAP_ISUB) in period (t) spread over the |
-| ,uc_n) |       | economic lifetime (NCAP_ELIFE) of a process (p)     |
-|        |       | with vintage period (v).                            |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cos   | Annual implied costs of endogenous trade:           |
-| _IREC\ | t_ire |                                                     |
-| (r,v,  |       | Annual undiscounted costs from endogenous           |
-| t,p,c) |       | imports/exports of commodity (c) in period (t)      |
-|        |       | associated with process (p) and vintage period (v), |
-|        |       | valued according to the marginal(s) of the trade    |
-|        |       | equation of process p.                              |
-+--------+-------+-----------------------------------------------------+
-| CS     | Cos   | Total discounted costs by commodity (optional,      |
-| T_PVC\ | t_NPV | activate by setting RPT_OPT(\'OBJ\',\'1\')=1):      |
-| (uc_   |       |                                                     |
-| n,r,c) |       | Total present value of commodity-related costs in   |
-|        |       | the base year, by type (with types COM, ELS, DAM).  |
-|        |       | See Part III, Section 3.10 on the reporting         |
-|        |       | options, and Table 16 below for acronym             |
-|        |       | explanations.                                       |
-+--------+-------+-----------------------------------------------------+
-| CS     | Cos   | Total discounted costs by process (optional,        |
-| T_PVP\ | t_NPV | activate by setting RPT_OPT(\'OBJ\',\'1\')=1):      |
-| (uc_   |       |                                                     |
-| n,r,p) |       | Total present value of process-related costs in the |
-|        |       | base year, by type (with types INV, INV+, FIX, ACT, |
-|        |       | FLO, IRE, where INV+ is only used for the split     |
-|        |       | according to hurdle rate). See Part III, Section    |
-|        |       | 3.10 on the reporting options, and Table 16 below   |
-|        |       | for acronym explanations.                           |
-+--------+-------+-----------------------------------------------------+
-| CST    | Cost  | Salvage values of capacities at EOH+1:              |
-| _SALV\ | _Salv |                                                     |
-| (      |       | Salvage value of investment cost, taxes and         |
-| r,v,p) |       | subsidies of process (p) with vintage period (v),   |
-|        |       | for which the technical lifetime exceeds the end of |
-|        |       | the model horizon, value at year EOH+1.             |
-+--------+-------+-----------------------------------------------------+
-| CST    | Tim   | Discounted value of time by period:                 |
-| _TIME\ | e_NPV |                                                     |
-| (r,t,s |       | Present value of the time in each model period (t)  |
-| ,uc_n) |       | by region (r), with s=\'ANNUAL\' and                |
-|        |       | uc_n=\'COST\'/\'LEVCOST\' depending on whether the  |
-|        |       | \$SET ANNCOST LEV reporting option has been used.   |
-+--------+-------+-----------------------------------------------------+
-| EQ_P   | EQ    | Peaking Constraint Slack:                           |
-| EAK.L\ | _Peak |                                                     |
-| (r,    |       | Level of the peaking equation (EQ_PEAK) of          |
-| t,c,s) |       | commodity (c) in period (t) and timeslice (s).      |
-+--------+-------+-----------------------------------------------------+
-| E      | EQ_C  | Commodity Slack/Levels:                             |
-| QE_COM | ombal |                                                     |
-| BAL.L\ |       | Level of the commodity balance equation             |
-| (r,    |       | (EQE_COMBAL) of commodity (c) in period (t) and     |
-| t,c,s) |       | timeslice (s), where the equation is a strict       |
-|        |       | equality.                                           |
-+--------+-------+-----------------------------------------------------+
-| E      | EQ_C  | Commodity Slack/Levels:                             |
-| QG_COM | ombal |                                                     |
-| BAL.L\ |       | Level of the commodity balance equation             |
-| (r,    |       | (EQG_COMBAL) of commodity (c) in period (t) and     |
-| t,c,s) |       | timeslice (s), where the equation is an inequality. |
-+--------+-------+-----------------------------------------------------+
-| F_IN\  | VA    | Commodity Consumption by Process:                   |
-| (      | R_FIn |                                                     |
-| r,v,t, |       | Input flow (consumption) of commodity (c) in period |
-| p,c,s) |       | (t) and timeslice (s) into process (p) with vintage |
-|        |       | period (v), including exchange processes.           |
-+--------+-------+-----------------------------------------------------+
-| F_OUT\ | VAR   | Commodity Production by Process:                    |
-| (      | _FOut |                                                     |
-| r,v,t, |       | Output flow (production) of commodity (c) in period |
-| p,c,s) |       | (t) and timeslice (s) from process (p) with vintage |
-|        |       | period (v), including exchange processes.           |
-+--------+-------+-----------------------------------------------------+
-| O      | ObjZ  | Total discounted system cost:                       |
-| BJZ.L\ |       |                                                     |
-| ()     |       | Level of the ObjZ variable, equal to the value of   |
-|        |       | the objective function.                             |
-+--------+-------+-----------------------------------------------------+
-| P_OUT\ | VAR   | Commodity Flow Levels by Process (set               |
-| (r,t,  | _POut | RPT_OPT(NRG_TYPE,\'1\')=1 to activate, see Part     |
-| p,c,s) |       | III):                                               |
-|        |       |                                                     |
-|        |       | Output flow level (power level) of commodity (c) in |
-|        |       | period (t) and timeslice (s) of process (p). By     |
-|        |       | default only Output levels are reported, but with   |
-|        |       | RPT_OPT(NRG_TYPE,\'3\')=2, input levels are         |
-|        |       | reported as negative values.                        |
-+--------+-------+-----------------------------------------------------+
-| PAR    | VA    | Process Activity:                                   |
-| _ACTL\ | R_Act |                                                     |
-| (r,v,  |       | Level value of activity variable (VAR_ACT) in       |
-| t,p,s) |       | period (t), timeslice (s) of process (p) in vintage |
-|        |       | period (v).                                         |
-+--------+-------+-----------------------------------------------------+
-| PAR    | VAR   | Process Activity -- Marginals:                      |
-| _ACTM\ | _ActM |                                                     |
-| (r,v,  |       | Undiscounted annual reduced costs of activity       |
-| t,p,s) |       | variable (VAR_ACT) in period (t) and timeslice (s)  |
-|        |       | of process (p) with vintage period (v); when the    |
-|        |       | variable is at its lower (upper) bound, the reduced |
-|        |       | cost describes the increase (decrease) in the       |
-|        |       | objective function caused by an increase of the     |
-|        |       | lower (upper) bound by one unit; the reduced cost   |
-|        |       | can also be interpreted as the necessary decrease   |
-|        |       | or increase of the cost coefficient of the activity |
-|        |       | variable in the objective function, for the         |
-|        |       | activity variable to leave its lower (upper) bound. |
-+--------+-------+-----------------------------------------------------+
-| PAR    | VA    | Technology Capacity:                                |
-| _CAPL\ | R_Cap |                                                     |
-| (      |       | Capacity of process (p) in period (t), derived from |
-| r,t,p) |       | VAR_NCAP in previous periods summed over all        |
-|        |       | vintage periods. For still existing past            |
-|        |       | investments, see PAR_PASTI.                         |
-+--------+-------+-----------------------------------------------------+
-| PAR_   | PAR_  | Capacity Lower Limit:                               |
-| CAPLO\ | CapLO |                                                     |
-| (      |       | Lower bound on capacity variable (CAP_BND('LO')),   |
-| r,t,p) |       | only reported, if the lower bound is greater than   |
-|        |       | zero.                                               |
-+--------+-------+-----------------------------------------------------+
-| PAR    | VAR   | Technology Capacity -- Marginals:                   |
-| _CAPM\ | _CapM |                                                     |
-| (      |       | Undiscounted reduced costs of capacity variable     |
-| r,t,p) |       | (VAR_CAP); only reported in those cases, in which   |
-|        |       | the capacity variable is generated (bound CAP_BND   |
-|        |       | specified or endogenous technology learning is      |
-|        |       | used); the reduced costs describe in the case, that |
-|        |       | the capacity variable is at its lower (upper)       |
-|        |       | bound, the cost increase (decrease) of the          |
-|        |       | objective function caused by an increase of the     |
-|        |       | lower (upper) bound by one unit. The reduced cost   |
-|        |       | is undiscounted with COEF_PVT.                      |
-+--------+-------+-----------------------------------------------------+
-| PAR_   | PAR_  | Capacity Upper Limit:                               |
-| CAPUP\ | CapUP |                                                     |
-| (      |       | Upper bound on capacity variable (CAP_BND('UP')),   |
-| r,t,p) |       | only reported, if upper bound is smaller than       |
-|        |       | infinity.                                           |
-+--------+-------+-----------------------------------------------------+
-| P      | EQ_Co | Commodity Slack/Levels -- Marginals:                |
-| AR_COM | mbalM |                                                     |
-| BALEM\ |       | Undiscounted annual shadow price of commodity       |
-| (r,    |       | balance (EQE_COMBAL) being a strict equality. The   |
-| t,c,s) |       | marginal value describes the cost increase in the   |
-|        |       | objective function, if the difference between       |
-|        |       | production and consumption is increased by one      |
-|        |       | unit. The marginal value can be determined by the   |
-|        |       | production side (increasing production), but can    |
-|        |       | also be set by the demand side (e.g., decrease of   |
-|        |       | consumption by energy saving or substitution        |
-|        |       | measures).                                          |
-+--------+-------+-----------------------------------------------------+
-| P      | EQ_Co | Commodity Slack/Levels -- Marginals:                |
-| AR_COM | mbalM |                                                     |
-| BALGM\ |       | Undiscounted annual shadow price of commodity       |
-| (r,    |       | balance (EQG_COMBAL) being an inequality            |
-| t,c,s) |       | (production being greater than or equal to          |
-|        |       | consumption); positive number, if production equals |
-|        |       | consumption; the marginal value describes the cost  |
-|        |       | increase in the objective function, if the          |
-|        |       | difference between production and consumption is    |
-|        |       | increased by one unit. The marginal value can be    |
-|        |       | determined by the production side (increasing       |
-|        |       | production), but can also be set by the demand side |
-|        |       | (e.g., decrease of consumption by energy saving or  |
-|        |       | substitution measures).                             |
-+--------+-------+-----------------------------------------------------+
-| PAR_CO | VAR_C | Commodity Net:                                      |
-| MNETL\ | omnet |                                                     |
-| (r,    |       | Level value of the variable corresponding the net   |
-| t,c,s) |       | level of a commodity (c) (VAR_COMNET). The net      |
-|        |       | level of a commodity is equivalent to the total     |
-|        |       | production minus total consumption of said          |
-|        |       | commodity. It is only reported, if a bound or cost  |
-|        |       | is specified for it or it is used in a user         |
-|        |       | constraint.                                         |
-+--------+-------+-----------------------------------------------------+
-| PAR_CO | V     | Commodity Net -- Marginal:                          |
-| MNETM\ | AR_Co |                                                     |
-| (r,    | mnetM | Undiscounted annual reduced costs of the VAR_COMNET |
-| t,c,s) |       | variable of commodity (c). It is only reported, if  |
-|        |       | a bound or cost is specified for it or it is used   |
-|        |       | in a user constraint.                               |
-+--------+-------+-----------------------------------------------------+
-| PAR_CO | VAR_C | Commodity Total Production:                         |
-| MPRDL\ | omprd |                                                     |
-| (r,    |       | Level value of the commodity production variable    |
-| t,c,s) |       | (VAR_COMPRD). The variable represents the total     |
-|        |       | production of a commodity. It is only reported, if  |
-|        |       | a bound or cost is specified for it or it is used   |
-|        |       | in a user constraint.                               |
-+--------+-------+-----------------------------------------------------+
-| PAR_CO | V     | Commodity Total Production -- Marginal:             |
-| MPRDM\ | AR_Co |                                                     |
-| (r,    | mprdM | Undiscounted annual reduced costs of the commodity  |
-| t,c,s) |       | production variable (VAR_COMPRD). It is only        |
-|        |       | reported, if a bound or cost is specified for it or |
-|        |       | it is used in a user constraint.                    |
-+--------+-------+-----------------------------------------------------+
-| PAR_C  | VAR_C | Cumulative costs by type (if constrained);\         |
-| UMCST\ | umCst | Level of cumulative constraint for costs of type    |
-| (r     |       | (uc_n) and currency (c) in region (r).              |
-| ,v,t,u |       |                                                     |
-| c_n,c) |       |                                                     |
-+--------+-------+-----------------------------------------------------+
-| PAR_CU | EQ_C  | Cumulative flow constraint -- Levels:               |
-| MFLOL\ | umflo |                                                     |
-| (r,p,  |       | Level of cumulative constraint for flow of          |
-| c,v,t) |       | commodity (c) of process (p) between the year range |
-|        |       | (v--t).                                             |
-+--------+-------+-----------------------------------------------------+
-| PAR_CU | EQ_Cu | Cumulative flow constraint -- Marginals:            |
-| MFLOM\ | mfloM |                                                     |
-| (r,p,  |       | Shadow price of cumulative constraint for flow of   |
-| c,v,t) |       | commodity (c) of process (p) between the year range |
-|        |       | (v--t). Not undiscounted.                           |
-+--------+-------+-----------------------------------------------------+
-| PAR    | VAR   | Electricity supply by technology and energy source  |
-| _EOUT\ | _Eout | (optional):                                         |
-| (r,v,  |       |                                                     |
-| t,p,c) |       | Electricity output of electricity supply processes  |
-|        |       | by energy source; based on using NRG_TMAP to        |
-|        |       | identify electricity commodities, but excludes      |
-|        |       | standard and storage processes having electricity   |
-|        |       | as input.                                           |
-|        |       |                                                     |
-|        |       | (Opted out by default -- set                        |
-|        |       | RPT_OPT(\'FLO\',\'5\')=1 to activate; see Part III, |
-|        |       | Section 3.10).                                      |
-+--------+-------+-----------------------------------------------------+
-| PA     | see:  | Flow of commodity (c) entering or leaving process   |
-| R_FLO\ | F_IN/ | (p) with vintage period (v) in period (t).          |
-| (      | F_OUT |                                                     |
-| r,v,t, |       |                                                     |
-| p,c,s) |       |                                                     |
-+--------+-------+-----------------------------------------------------+
-| PA     | none  | Discounted reduced costs of flow variable of        |
-| R_FLO\ |       | commodity (c) in period (t) of process (p) with     |
-| (      |       | vintage period (v); the reduced costs describe that |
-| r,v,t, |       | the flow variable is at its lower (upper) bound,    |
-| p,c,s) |       | and give the cost increase (decrease) of the        |
-|        |       | objective function caused by an increase of the     |
-|        |       | lower (upper) bound by one unit; the undiscounted   |
-|        |       | reduced costs can be interpreted as the necessary   |
-|        |       | decrease / increase of the cost coefficient of the  |
-|        |       | flow variable, such that the flow will leave its    |
-|        |       | lower (upper) bound.                                |
-+--------+-------+-----------------------------------------------------+
-| PA     | see:  | Inter-regional exchange flow of commodity (c) in    |
-| R_IRE\ | F_IN/ | period (t) via exchange process (p) entering region |
-| (r,v   | F_OUT | (r) as import (ie='IMP') or leaving region (r) as   |
-| ,t,p,c |       | export (ie='EXP').                                  |
-| ,s,ie) |       |                                                     |
-+--------+-------+-----------------------------------------------------+
-| PAR    | none  | Discounted reduced costs of inter-regional exchange |
-| _IREM\ |       | flow variable of commodity (c) in period (t) of     |
-| (r,v   |       | exchange process (p) with vintage period (v); the   |
-| ,t,p,c |       | reduced costs describe that the flow variable is at |
-| ,s,ie) |       | its lower (upper) bound, and give the cost increase |
-|        |       | (or decrease) of the objective function caused by   |
-|        |       | an increase of the lower (upper bound) by one unit; |
-|        |       | the undiscounted reduced costs can be interpreted   |
-|        |       | as the necessary decrease / increase of the cost    |
-|        |       | coefficient of the flow variable in the objective   |
-|        |       | function, such that the flow will leave its lower   |
-|        |       | (upper) bound.                                      |
-+--------+-------+-----------------------------------------------------+
-| PAR_   | EQ    | Inter-regional trade equations -- Marginals:        |
-| IPRIC\ | _IreM |                                                     |
-| (r,t   |       | Undiscounted shadow price of the inter-regional     |
-| ,p,c,s |       | trade equation of commodity (c) via exchange        |
-| ,uc_n) |       | process (p) in period (t) and timeslice (s). The    |
-|        |       | undiscounted shadow price can be interpreted as the |
-|        |       | import/export price of the traded commodity. Note:  |
-|        |       | ucn={IMP/EXP}.                                      |
-+--------+-------+-----------------------------------------------------+
-| PAR_   | VAR   | Technology Investment -- New capacity:              |
-| NCAPL\ | _Ncap |                                                     |
-| (      |       | Level value of investment variable (VAR_NCAP) of    |
-| r,t,p) |       | process (p) in period (v).                          |
-+--------+-------+-----------------------------------------------------+
-| PAR_   | VAR_  | Technology Investment -- Marginals:                 |
-| NCAPM\ | NcapM |                                                     |
-| (      |       | Undiscounted reduced costs of investment variable   |
-| r,t,p) |       | (VAR_NCAP) of process (p); only reported, when the  |
-|        |       | capacity variable is at its lower or upper bound;   |
-|        |       | the reduced costs describe in the case, that the    |
-|        |       | investment variable is at its lower (upper) bound,  |
-|        |       | the cost increase (decrease) of the objective       |
-|        |       | function caused by an increase of the lower (upper) |
-|        |       | bound by one unit; the undiscounted reduced costs   |
-|        |       | can be interpreted as the necessary decrease /      |
-|        |       | increase in the investment cost coefficient, such   |
-|        |       | that the investment variable will leave its lower   |
-|        |       | (upper) bound.                                      |
-+--------+-------+-----------------------------------------------------+
-| PAR_   | VAR_  | Technology Investment -- BenCost + ObjRange (see    |
-| NCAPR\ | NcapR | Part III, Section 3.10 for more details):           |
-| (r,t,p |       |                                                     |
-| ,uc_n) |       | Cost-benefit and ranging indicators for process (p) |
-|        |       | in period (t), where uc_n is the name of the        |
-|        |       | indicator:                                          |
-|        |       |                                                     |
-|        |       | • COST - the total unit costs of VAR_NCAP (in terms |
-|        |       | of an equivalent investment cost)                   |
-|        |       |                                                     |
-|        |       | • CGAP - competitiveness gap (in terms of           |
-|        |       | investment costs), obtained directly from the       |
-|        |       | VAR_NCAP marginals (and optional ranging            |
-|        |       | information)                                        |
-|        |       |                                                     |
-|        |       | • GGAP - competitiveness gap (in terms of           |
-|        |       | investment costs), obtained by checking also the    |
-|        |       | VAR_ACT, VAR_FLO and VAR_CAP marginals, in case     |
-|        |       | VAR_NCAP is basic at zero                           |
-|        |       |                                                     |
-|        |       | • RATIO - benefit / cost ratio, based on CGAP       |
-|        |       |                                                     |
-|        |       | • GRATIO - benefit / cost ratio, based on GGAP      |
-|        |       |                                                     |
-|        |       | • RNGLO - ranging information (LO) for VAR_NCAP (if |
-|        |       | ranging is activated; in terms of investment costs) |
-|        |       |                                                     |
-|        |       | • RNGUP - ranging information (UP) for VAR_NCAP (if |
-|        |       | ranging is activated; in terms of investment costs) |
-+--------+-------+-----------------------------------------------------+
-| PAR_   | VA    | Technology Capacity:                                |
-| PASTI\ | R_Cap |                                                     |
-| (r,    |       | Residual capacity of past investments (NCAP_PASTI)  |
-| t,p,v) |       | of process (p) still existing in period (t), where  |
-|        |       | vintage (v) is set to \'0\' to distinguish residual |
-|        |       | capacity from new capacity.                         |
-+--------+-------+-----------------------------------------------------+
-| PAR_   | EQ_   | Peaking Constraint Slack -- Marginals:              |
-| PEAKM\ | PeakM |                                                     |
-| (r,    |       | Undiscounted annual shadow price of peaking         |
-| t,c,s) |       | equation (EQ_PEAK) associated with commodity (c);   |
-|        |       | since the peaking equation is at most only binding  |
-|        |       | for one timeslice (s), a shadow price only exists   |
-|        |       | for one timeslice. The shadow price can be          |
-|        |       | interpreted as an additional premium to the shadow  |
-|        |       | price of the commodity balance that consumers of    |
-|        |       | commodity (c) have to pay for consumption during    |
-|        |       | peak times. The premium is used (besides other      |
-|        |       | sources) to cover the capacity related costs (e.g., |
-|        |       | investment costs) of capacity contributing reserve  |
-|        |       | capacity during peak times.                         |
-+--------+-------+-----------------------------------------------------+
-| PA     | PA    | Process topology:                                   |
-| R_TOP\ | R_Top |                                                     |
-| (r     |       | Process topology indicators for reporting use.      |
-| ,t,p,c |       | Values are all zero, period (t) is the first        |
-| ,uc_n) |       | milestone year, and uc_n = IN/OUT. (Opted out by    |
-|        |       | default -- SET RPT_TOP YES to activate.)            |
-+--------+-------+-----------------------------------------------------+
-| PAR_   | U     | Marginal cost of market-share constraint:           |
-| UCMRK\ | ser_c |                                                     |
-| (r     | onFXM | Undiscounted shadow price of group-wise market      |
-| ,t,uc_ |       | share constraint (defined with PRC_MARK) for        |
-| n,c,s) |       | commodity c, identified with name uc_n, in period t |
-|        |       | and timeslice s.                                    |
-+--------+-------+-----------------------------------------------------+
-| PAR_   | User_ | Marginal cost of dynamic process bound constraint:  |
-| UCRTP\ | DynbM |                                                     |
-| (u     |       | Undiscounted shadow price of dynamic process-wise   |
-| c_n,r, |       | bound constraint, identified with name uc_n, for    |
-| t,p,c) |       | variable c (CAP / NCAP / ACT), in period t and      |
-|        |       | timeslice s.                                        |
-+--------+-------+-----------------------------------------------------+
-| PAR    | Use   | Level of user constraint (or its slack) (only       |
-| _UCSL\ | r_con | reported when the VAR_UC variables are used):       |
-| (uc_n, |       |                                                     |
-| r,t,s) |       | The level of user constraint (uc_n) by region (r),  |
-|        |       | period (t) and timeslice (s). The levels should be  |
-|        |       | zero whenever the RHS constant is zero and the      |
-|        |       | equation is binding. If the constraint is not       |
-|        |       | binding, the level together with the RHS constant   |
-|        |       | gives the gap for the equation to become binding.   |
-+--------+-------+-----------------------------------------------------+
-| PAR    | U     | Marginal cost of user constraint (all bound types): |
-| _UCSM\ | ser_c |                                                     |
-| (uc_n, | onFXM | Marginal of user constraint (uc_n) by region (r),   |
-| r,t,s) |       | period (t) and timeslice (s). The marginals are     |
-|        |       | undiscounted, if the constraint is defined by       |
-|        |       | region and period. The marginals of cumulative and  |
-|        |       | multi-region user constraints are not undiscounted  |
-|        |       | (reported with **r** or **t** as \'NONE\') due to   |
-|        |       | ambiguity. However, ambiguously undiscounted        |
-|        |       | marginals of multi-region constraints are also      |
-|        |       | reported by each region involved.                   |
-+--------+-------+-----------------------------------------------------+
-| REG_   | Reg_  | Regional total annualized costs by period:          |
-| ACOST\ | ACost |                                                     |
-| (r,t   |       | Total annualized costs in region (r) by period (t)  |
-| ,uc_n) |       | and cost category. The cost categories are INV,     |
-|        |       | INVX, FIX, FIXX, VAR, VARX, IRE, ELS and DAM (see   |
-|        |       | Table 16 below for more information).               |
-+--------+-------+-----------------------------------------------------+
-| REG    | Reg   | Regional total discounted implied trade cost:       |
-| _IREC\ | _irec |                                                     |
-| (r)    |       | Total discounted implied trade costs in region (r), |
-|        |       | derived by multiplying the shadow prices of the     |
-|        |       | trade equations by the trade volumes. The sum of    |
-|        |       | REG_IREC over regions is zero.                      |
-+--------+-------+-----------------------------------------------------+
-| RE     | Re    | Regional total discounted system cost:              |
-| G_OBJ\ | g_obj |                                                     |
-| (r)    |       | Discounted objective value (EQ_OBJ) for each region |
-|        |       | (r).                                                |
-+--------+-------+-----------------------------------------------------+
-| REG    | Reg   | Regional total discounted system cost by component: |
-| _WOBJ\ | _wobj |                                                     |
-| (r,u   |       | Discounted objective value (EQ_OBJ) for each region |
-| c_n,c) |       | (r), by cost type (uc_n) and currency (c). The cost |
-|        |       | types are: INV, INVX, FIX, FIXX, VAR, VARX, ELS,    |
-|        |       | DAM (see Table 16 below for more information).      |
-+--------+-------+-----------------------------------------------------+
-| VA     | Va    | Annual commodity flow values:                       |
-| L_FLO\ | l_Flo |                                                     |
-| (r,v,  |       | Flows of process (p) multiplied by the commodity    |
-| t,p,c) |       | balance marginals of those commodities (c) in       |
-|        |       | period (t); the values can be interpreted as the    |
-|        |       | market values of the process inputs and outputs.    |
-+--------+-------+-----------------------------------------------------+
-
-: Table 15: Report parameters in TIMES
+* - Report parameter[^34] (Indexes)
+  - VEDA-BE attribute name
+  - Description
+* - AGG_OUT
+  <br>(r,t,c,s)
+  - VAR_FOut
+  - Commodity production by an aggregation process:
+  <br>Production of commodity (c) in period (t) and timeslice (s) from other commodities aggregated into c.
+* - CAP_NEW
+  <br>(r,v,p,t,uc_n)
+  - Cap_New
+  - Newly installed capacity and lumpsum investment by vintage and commissioning period:
+  <br>New capacity and lumpsum investment of process (p) of vintage (v) commissioned in period (t).
+* - CM_RESULT
+  <br>(c,t)
+  - VAR_Climate
+  - Climate module results for the levels of climate variable (c) in period (t).
+* - CM_MAXC_M
+  <br>(c,t)
+  - Dual_Clic
+  - Climate module results for the duals of constraint related to climate variable (c) in period (t).
+* - CST_ACTC
+  <br>(r,v,t,p,uc_n)
+  - Cost_Act
+  - Annual activity costs:
+  <br>Annual undiscounted variable costs (caused by ACT_COST) in period (t) associated with the operation (activity) of a process (p) with vintage period (v). Additional indicator (uc_n) for start-up costs.
+* - CST_COMC
+  <br>(r,t,c)
+  - Cost_Com
+  - Annual commodity costs:
+  <br>Annual undiscounted costs for commodity (c) (caused by COM_CSTNET and COM_CSTPRD) in period (t).
+* - CST_COME
+  <br>(r,t,c)
+  - Cost_Els
+  - Annual elastic demand cost term:
+  <br>Annual costs (losses) due to elastic demand changes of commodity (c). When elastic demands are used the objective function describes the total surplus of producers and consumers, which reaches its maximum in the equilibrium of demand and supply.
+* - CST_COMX
+  <br>(r,t,c)
+  - Cost_Comx
+  - Annual commodity taxes/subsidies:
+  <br>Annual undiscounted taxes and subsidies for commodity (c) (caused by COM_TAXNET, COM_SUBNET, COM_TAXPRD, COM_SUBPRD) in period (t).
+* - CST_DAM
+  <br>(r,t,c)
+  - Cost_Dam
+  - Annual damage cost term:
+  <br>Annual undiscounted commodity (c) related costs, caused by DAM_COST, in period (t).
+* - CST_DECC
+  <br>(r,v,t,p)
+  - Cost_Dec
+  - Annual decommissioning costs:
+  <br>Annual undiscounted decommissioning costs (caused by NCAP_DCOST and NCAP_DLAGC) in period (t), associated with the dismantling of process (p) with vintage period (v).
+* - CST_FIXC
+  <br>(r,v,t,p)
+  - Cost_Fom
+  - Annual fixed operating and maintenance costs:
+  <br>Annual undiscounted fixed operating and maintenance costs (caused by NCAP_FOM) in period (t) associated with the installed capacity of process (p) with vintage period (v).
+* - CST_FIXX
+  <br>(r,v,t,p)
+  - Cost_Fixx
+  - Annual fixed taxes/subsidies:
+  <br>Annual undiscounted fixed operating and maintenance costs (caused by NCAP_FTAX, NCAP_FSUB) in period (t) associated with the installed capacity of process (p) with vintage period (v).
+* - CST_FLOC
+  <br>(r,v,t,p,c)
+  - Cost_Flo
+  - Annual flow costs (including import/export prices):
+  <br>Annual undiscounted flow related costs (caused by FLO_COST, FLO_DELV, IRE_PRICE) in period (t) associated with a commodity (c) flow in/out of a process (p) with vintage period (v) as well as capacity related commodity flows (specified by NCAP_COM, NCAP_ICOM, NCAP_OCOM).
+* - CST_FLOX
+  <br>(r,v,t,p,c)
+  - Cost_Flox
+  - Annual flow taxes/subsidies:
+  <br>Annual undiscounted flow related costs (caused by FLO_TAX, FLO_SUB) in period (t) associated with a commodity (c) flow in/out of a process (p) with vintage period (v) as well as capacity related commodity flows (specified by NCAP_COM, NCAP_ICOM, NCAP_OCOM).
+* - CST_INVC
+  <br>(r,v,t,p,uc_n)
+  - Cost_Inv
+  - Annual investment costs:
+  <br>Annual undiscounted investment costs (caused by NCAP_COST) in period (t) spread over the economic lifetime (NCAP_ELIFE) of a process (p) with vintage period (v).
+* - CST_INVX
+  <br>(r,v,t,p,uc_n)
+  - Cost_Invx
+  - Annual investment taxes/subsidies:
+  <br>Annual undiscounted investment costs (caused by NCAP_ITAX, NCAP_ISUB) in period (t) spread over the economic lifetime (NCAP_ELIFE) of a process (p) with vintage period (v).
+* - CST_IREC
+  <br>(r,v,t,p,c)
+  - Cost_ire
+  - Annual implied costs of endogenous trade:
+  <br>Annual undiscounted costs from endogenous imports/exports of commodity (c) in period (t) associated with process (p) and vintage period (v), valued according to the marginal(s) of the trade equation of process p.
+* - CST_PVC
+  <br>(uc_n,r,c)
+  - Cost_NPV
+  - Total discounted costs by commodity (optional, activate by setting RPT_OPT(\'OBJ\',\'1\')=1):
+  <br>Total present value of commodity-related costs in the base year, by type (with types COM, ELS, DAM). See Part III, Section 3.10 on the reporting options, and Table 16 below for acronym explanations.
+* - CST_PVP
+  <br>(uc_n,r,p)
+  - Cost_NPV
+  - Total discounted costs by process (optional, activate by setting RPT_OPT(\'OBJ\',\'1\')=1):
+  <br>Total present value of process-related costs in the base year, by type (with types INV, INV+, FIX, ACT, FLO, IRE, where INV+ is only used for the split according to hurdle rate). See Part III, Section 3.10 on the reporting options, and Table 16 below for acronym explanations.
+* - CST_SALV
+  <br>(r,v,p)
+  - Cost_Salv
+  - Salvage values of capacities at EOH+1:
+  <br>Salvage value of investment cost, taxes and subsidies of process (p) with vintage period (v), for which the technical lifetime exceeds the end of the model horizon, value at year EOH+1.
+* - CST_TIME
+  <br>(r,t,s,uc_n)
+  - Time_NPV
+  - Discounted value of time by period:
+  <br>Present value of the time in each model period (t) by region (r), with s=\'ANNUAL\' and uc_n=\'COST\'/\'LEVCOST\' depending on whether the \$SET ANNCOST LEV reporting option has been used.
+* - EQ_PEAK.L
+  <br>(r,t,c,s)
+  - EQ_Peak
+  - Peaking Constraint Slack:
+  <br>Level of the peaking equation (EQ_PEAK) of commodity (c) in period (t) and timeslice (s).
+* - EQE_COMBAL.L
+  <br>(r,t,c,s)
+  - EQ_Combal
+  - Commodity Slack/Levels:
+  <br>Level of the commodity balance equation (EQE_COMBAL) of commodity (c) in period (t) and timeslice (s), where the equation is a strict equality.
+* - EQG_COMBAL.L
+  <br>(r,t,c,s)
+  - EQ_Combal
+  - Commodity Slack/Levels:
+  <br>Level of the commodity balance equation (EQG_COMBAL) of commodity (c) in period (t) and timeslice (s), where the equation is an inequality.
+* - F_IN
+  <br>(r,v,t,p,c,s)
+  - VAR_FIn
+  - Commodity Consumption by Process:
+  <br>Input flow (consumption) of commodity (c) in period (t) and timeslice (s) into process (p) with vintage period (v), including exchange processes.
+* - F_OUT
+  <br>(r,v,t,p,c,s)
+  - VAR_FOut
+  - Commodity Production by Process:
+  <br>Output flow (production) of commodity (c) in period (t) and timeslice (s) from process (p) with vintage period (v), including exchange processes.
+* - OBJZ.L
+  <br>()
+  - ObjZ
+  - Total discounted system cost:
+  <br>Level of the ObjZ variable, equal to the value of the objective function.
+* - P_OUT
+  <br>(r,t,p,c,s)
+  - VAR_POut
+  - Commodity Flow Levels by Process (set RPT_OPT(NRG_TYPE,\'1\')=1 to activate, see Part III):
+  <br>Output flow level (power level) of commodity (c) in period (t) and timeslice (s) of process (p). By default only Output levels are reported, but with RPT_OPT(NRG_TYPE,\'3\')=2, input levels are reported as negative values.
+* - PAR_ACTL
+  <br>(r,v,t,p,s)
+  - VAR_Act
+  - Process Activity:
+  <br>Level value of activity variable (VAR_ACT) in period (t), timeslice (s) of process (p) in vintage period (v).
+* - PAR_ACTM
+  <br>(r,v,t,p,s)
+  - VAR_ActM
+  - Process Activity -- Marginals:
+  <br>Undiscounted annual reduced costs of activity variable (VAR_ACT) in period (t) and timeslice (s) of process (p) with vintage period (v); when the variable is at its lower (upper) bound, the reduced cost describes the increase (decrease) in the objective function caused by an increase of the lower (upper) bound by one unit; the reduced cost can also be interpreted as the necessary decrease or increase of the cost coefficient of the activity variable in the objective function, for the activity variable to leave its lower (upper) bound.
+* - PAR_CAPL
+  <br>(r,t,p)
+  - VAR_Cap
+  - Technology Capacity:
+  <br>Capacity of process (p) in period (t), derived from VAR_NCAP in previous periods summed over all vintage periods. For still existing past investments, see PAR_PASTI.
+* - PAR_CAPLO
+  <br>(r,t,p)
+  - PAR_CapLO
+  - Capacity Lower Limit:
+  <br>Lower bound on capacity variable (CAP_BND('LO')), only reported, if the lower bound is greater than zero.
+* - PAR_CAPM
+  <br>(r,t,p)
+  - VAR_CapM
+  - Technology Capacity -- Marginals:
+  <br>Undiscounted reduced costs of capacity variable (VAR_CAP); only reported in those cases, in which the capacity variable is generated (bound CAP_BND specified or endogenous technology learning is used); the reduced costs describe in the case, that the capacity variable is at its lower (upper) bound, the cost increase (decrease) of the objective function caused by an increase of the lower (upper) bound by one unit. The reduced cost is undiscounted with COEF_PVT.
+* - PAR_CAPUP
+  <br>(r,t,p)
+  - PAR_CapUP
+  - Capacity Upper Limit:
+  <br>Upper bound on capacity variable (CAP_BND('UP')), only reported, if upper bound is smaller than infinity.
+* - PAR_COMBALEM
+  <br>(r,t,c,s)
+  - EQ_CombalM
+  - Commodity Slack/Levels -- Marginals:
+  <br>Undiscounted annual shadow price of commodity balance (EQE_COMBAL) being a strict equality. The marginal value describes the cost increase in the objective function, if the difference between production and consumption is increased by one unit. The marginal value can be determined by the production side (increasing production), but can also be set by the demand side (e.g., decrease of consumption by energy saving or substitution measures).
+* - PAR_COMBALGM
+  <br>(r,t,c,s)
+  - EQ_CombalM
+  - Commodity Slack/Levels -- Marginals:
+  <br>Undiscounted annual shadow price of commodity balance (EQG_COMBAL) being an inequality (production being greater than or equal to consumption); positive number, if production equals consumption; the marginal value describes the cost increase in the objective function, if the difference between production and consumption is increased by one unit. The marginal value can be determined by the production side (increasing production), but can also be set by the demand side (e.g., decrease of consumption by energy saving or substitution measures).
+* - PAR_COMNETL
+  <br>(r,t,c,s)
+  - VAR_Comnet
+  - Commodity Net:
+  <br>Level value of the variable corresponding the net level of a commodity (c) (VAR_COMNET). The net level of a commodity is equivalent to the total production minus total consumption of said commodity. It is only reported, if a bound or cost is specified for it or it is used in a user constraint.
+* - PAR_COMNETM
+  <br>(r,t,c,s)
+  - VAR_ComnetM
+  - Commodity Net -- Marginal:
+  <br>Undiscounted annual reduced costs of the VAR_COMNET variable of commodity (c). It is only reported, if a bound or cost is specified for it or it is used in a user constraint.
+* - PAR_COMPRDL
+  <br>(r,t,c,s)
+  - VAR_Comprd
+  - Commodity Total Production:
+  <br>Level value of the commodity production variable (VAR_COMPRD). The variable represents the total production of a commodity. It is only reported, if a bound or cost is specified for it or it is used in a user constraint.
+* - PAR_COMPRDM
+  <br>(r,t,c,s)
+  - VAR_ComprdM
+  - Commodity Total Production -- Marginal:
+  <br>Undiscounted annual reduced costs of the commodity production variable (VAR_COMPRD). It is only reported, if a bound or cost is specified for it or it is used in a user constraint.
+* - PAR_CUMCST
+  <br>(r,v,t,uc_n,c)
+  - VAR_CumCst
+  - Cumulative costs by type (if constrained);\ Level of cumulative constraint for costs of type (uc_n) and currency (c) in region (r).
+  <br>
+* - PAR_CUMFLOL
+  <br>(r,p,c,v,t)
+  - EQ_Cumflo
+  - Cumulative flow constraint -- Levels:
+  <br>Level of cumulative constraint for flow of commodity (c) of process (p) between the year range (v--t).
+* - PAR_CUMFLOM
+  <br>(r,p,c,v,t)
+  - EQ_CumfloM
+  - Cumulative flow constraint -- Marginals:
+  <br>Shadow price of cumulative constraint for flow of commodity (c) of process (p) between the year range (v--t). Not undiscounted.
+* - PAR_EOUT
+  <br>(r,v,t,p,c)
+  - VAR_Eout
+  - Electricity supply by technology and energy source (optional):
+  <br>Electricity output of electricity supply processes by energy source; based on using NRG_TMAP to identify electricity commodities, but excludes standard and storage processes having electricity as input.
+  <br>(Opted out by default -- set RPT_OPT(\'FLO\',\'5\')=1 to activate; see Part III, Section 3.10).
+* - PAR_FLO
+  <br>(r,v,t,p,c,s)
+  - see: F_IN/F_OUT
+  - Flow of commodity (c) entering or leaving process (p) with vintage period (v) in period (t).
+* - PAR_FLO
+  <br>(r,v,t,p,c,s)
+  - none
+  - Discounted reduced costs of flow variable of commodity (c) in period (t) of process (p) with vintage period (v); the reduced costs describe that the flow variable is at its lower (upper) bound, and give the cost increase (decrease) of the objective function caused by an increase of the lower (upper) bound by one unit; the undiscounted reduced costs can be interpreted as the necessary decrease / increase of the cost coefficient of the flow variable, such that the flow will leave its lower (upper) bound.
+* - PAR_IRE
+  <br>(r,v,t,p,c,s,ie)
+  - see: F_IN/F_OUT
+  - Inter-regional exchange flow of commodity (c) in period (t) via exchange process (p) entering region (r) as import (ie='IMP') or leaving region (r) as export (ie='EXP').
+* - PAR_IREM
+  <br>(r,v,t,p,c,s,ie)
+  - none
+  - Discounted reduced costs of inter-regional exchange flow variable of commodity (c) in period (t) of exchange process (p) with vintage period (v); the reduced costs describe that the flow variable is at its lower (upper) bound, and give the cost increase (or decrease) of the objective function caused by an increase of the lower (upper bound) by one unit; the undiscounted reduced costs can be interpreted as the necessary decrease / increase of the cost coefficient of the flow variable in the objective function, such that the flow will leave its lower (upper) bound.
+* - PAR_IPRIC
+  <br>(r,t,p,c,s,uc_n)
+  - EQ_IreM
+  - Inter-regional trade equations -- Marginals:
+  <br>Undiscounted shadow price of the inter-regional trade equation of commodity (c) via exchange process (p) in period (t) and timeslice (s). The undiscounted shadow price can be interpreted as the import/export price of the traded commodity. Note: ucn={IMP/EXP}.
+* - PAR_NCAPL
+  <br>(r,t,p)
+  - VAR_Ncap
+  - Technology Investment -- New capacity:
+  <br>Level value of investment variable (VAR_NCAP) of process (p) in period (v).
+* - PAR_NCAPM
+  <br>(r,t,p)
+  - VAR_NcapM
+  - Technology Investment -- Marginals:
+  <br>Undiscounted reduced costs of investment variable (VAR_NCAP) of process (p); only reported, when the capacity variable is at its lower or upper bound; the reduced costs describe in the case, that the investment variable is at its lower (upper) bound, the cost increase (decrease) of the objective function caused by an increase of the lower (upper) bound by one unit; the undiscounted reduced costs can be interpreted as the necessary decrease / increase in the investment cost coefficient, such that the investment variable will leave its lower (upper) bound.
+* - PAR_NCAPR
+  <br>(r,t,p,uc_n)
+  - VAR_NcapR
+  - Technology Investment -- BenCost + ObjRange (see Part III, Section 3.10 for more details):
+  <br>Cost-benefit and ranging indicators for process (p) in period (t), where uc_n is the name of the indicator:
+  <br>COST - the total unit costs of VAR_NCAP (in terms of an equivalent investment cost)
+  <br>CGAP - competitiveness gap (in terms of investment costs), obtained directly from the VAR_NCAP marginals (and optional ranging information)
+  <br>GGAP - competitiveness gap (in terms of investment costs), obtained by checking also the VAR_ACT, VAR_FLO and VAR_CAP marginals, in case VAR_NCAP is basic at zero
+  <br>RATIO - benefit / cost ratio, based on CGAP
+  <br>GRATIO - benefit / cost ratio, based on GGAP
+  <br>RNGLO - ranging information (LO) for VAR_NCAP (if ranging is activated; in terms of investment costs)
+  <br>RNGUP - ranging information (UP) for VAR_NCAP (if ranging is activated; in terms of investment costs)
+* - PAR_PASTI
+  <br>(r,t,p,v)
+  - VAR_Cap
+  - Technology Capacity:
+  <br>Residual capacity of past investments (NCAP_PASTI) of process (p) still existing in period (t), where vintage (v) is set to \'0\' to distinguish residual capacity from new capacity.
+* - PAR_PEAKM
+  <br>(r,t,c,s)
+  - EQ_PeakM
+  - Peaking Constraint Slack -- Marginals:
+  <br>Undiscounted annual shadow price of peaking equation (EQ_PEAK) associated with commodity (c); since the peaking equation is at most only binding for one timeslice (s), a shadow price only exists for one timeslice. The shadow price can be interpreted as an additional premium to the shadow price of the commodity balance that consumers of commodity (c) have to pay for consumption during peak times. The premium is used (besides other sources) to cover the capacity related costs (e.g., investment costs) of capacity contributing reserve capacity during peak times.
+* - PAR_TOP
+  <br>(r,t,p,c,uc_n)
+  - PAR_Top
+  - Process topology:
+  <br>Process topology indicators for reporting use. Values are all zero, period (t) is the first milestone year, and uc_n = IN/OUT. (Opted out by default -- SET RPT_TOP YES to activate.)
+* - PAR_UCMRK
+  <br>(r,t,uc_n,c,s)
+  - User_conFXM
+  - Marginal cost of market-share constraint:
+  <br>Undiscounted shadow price of group-wise market share constraint (defined with PRC_MARK) for commodity c, identified with name uc_n, in period t and timeslice s.
+* - PAR_UCRTP
+  <br>(uc_n,r,t,p,c)
+  - User_DynbM
+  - Marginal cost of dynamic process bound constraint:
+  <br>Undiscounted shadow price of dynamic process-wise bound constraint, identified with name uc_n, for variable c (CAP / NCAP / ACT), in period t and timeslice s.
+* - PAR_UCSL
+  <br>(uc_n,r,t,s)
+  - User_con
+  - Level of user constraint (or its slack) (only reported when the VAR_UC variables are used):
+  <br>The level of user constraint (uc_n) by region (r), period (t) and timeslice (s). The levels should be zero whenever the RHS constant is zero and the equation is binding. If the constraint is not binding, the level together with the RHS constant gives the gap for the equation to become binding.
+* - PAR_UCSM
+  <br>(uc_n,r,t,s)
+  - User_conFXM
+  - Marginal cost of user constraint (all bound types):
+  <br>Marginal of user constraint (uc_n) by region (r), period (t) and timeslice (s). The marginals are undiscounted, if the constraint is defined by region and period. The marginals of cumulative and multi-region user constraints are not undiscounted (reported with **r** or **t** as \'NONE\') due to ambiguity. However, ambiguously undiscounted marginals of multi-region constraints are also reported by each region involved.
+* - REG_ACOST
+  <br>(r,t,uc_n)
+  - Reg_ACost
+  - Regional total annualized costs by period:
+  <br>Total annualized costs in region (r) by period (t) and cost category. The cost categories are INV, INVX, FIX, FIXX, VAR, VARX, IRE, ELS and DAM (see Table 16 below for more information).
+* - REG_IREC
+  <br>(r)
+  - Reg_irec
+  - Regional total discounted implied trade cost:
+  <br>Total discounted implied trade costs in region (r), derived by multiplying the shadow prices of the trade equations by the trade volumes. The sum of REG_IREC over regions is zero.
+* - REG_OBJ
+  <br>(r)
+  - Reg_obj
+  - Regional total discounted system cost:
+  <br>Discounted objective value (EQ_OBJ) for each region (r).
+* - REG_WOBJ
+  <br>(r,uc_n,c)
+  - Reg_wobj
+  - Regional total discounted system cost by component:
+  <br>Discounted objective value (EQ_OBJ) for each region (r), by cost type (uc_n) and currency (c). The cost types are: INV, INVX, FIX, FIXX, VAR, VARX, ELS, DAM (see Table 16 below for more information).
+* - VAL_FLO
+  <br>(r,v,t,p,c)
+  - Val_Flo
+  - Annual commodity flow values:
+  <br>Flows of process (p) multiplied by the commodity balance marginals of those commodities (c) in period (t); the values can be interpreted as the market values of the process inputs and outputs. |
+```
 
 ### Acronyms used in cost reporting parameters
 
@@ -6573,51 +6218,50 @@ The acronyms used in the reporting parameters for referring to certain types of 
   - Component acronyms
 * - CAP_NEW (r,v,p,t,uc_n)
   - Newly installed capacity and lump-sum investment costs by vintage and commissioning period:
- <br>INSTCAP New capacity of vintage v commissioned in period t
- <br>LUMPINV Lump-sum investment costs for vintage v in period t
- <br>LUMPIX Lump-sum investment taxes & subsidies for vintage v, period t
- <br>INV+ Lump-sum investment portion attributable to hurdle rate in excess of the general discount rate
- <br>INVX+ Lump-sum tax & subsidy portion attributable to hurdle rate in excess of the general discount rate
+  <br>INSTCAP New capacity of vintage v commissioned in period t
+  <br>LUMPINV Lump-sum investment costs for vintage v in period t
+  <br>LUMPIX Lump-sum investment taxes & subsidies for vintage v, period t
+  <br>INV+ Lump-sum investment portion attributable to hurdle rate in excess of the general discount rate
+  <br>INVX+ Lump-sum tax & subsidy portion attributable to hurdle rate in excess of the general discount rate
 * - CST_PVC (uc_n,r,c)
   - Total discounted costs by commodity (optional):
- <br>COM Commodity-related costs, taxes and subsidies
- <br>ELS Losses in elastic demands
- <br>DAM Damage costs
+  <br>COM Commodity-related costs, taxes and subsidies
+  <br>ELS Losses in elastic demands
+  <br>DAM Damage costs
 * - CST_PVP (uc_n,r,p)
   - Total discounted costs by process (optional):
- <br>INV Investment costs, taxes and subsidies, excluding portions attributable to hurdle rates in excess of the general discount rate
- <br>INV+ Investment costs, taxes and subsidies, portions attributable to hurdle rates in excess of the general discount rate
- <br>FIX Fixed costs, taxes and subsidies
- <br>ACT Activity costs
- <br>FLO Flows costs taxes and subsidies (including exogenous IRE prices)
- <br>IRE Implied trade costs minus revenues
+  <br>INV Investment costs, taxes and subsidies, excluding portions attributable to hurdle rates in excess of the general discount rate
+  <br>INV+ Investment costs, taxes and subsidies, portions attributable to hurdle rates in excess of the general discount rate
+  <br>FIX Fixed costs, taxes and subsidies
+  <br>ACT Activity costs
+  <br>FLO Flows costs taxes and subsidies (including exogenous IRE prices)
+  <br>IRE Implied trade costs minus revenues
  * - REG_ACOST (r,t,uc_n)
    - Regional total annualized costs by period:
- <br>INV Annualized investment costs
- <br>INVX Annualized investment taxes and subsidies
- <br>FIX Annual fixed costs
- <br>FIXX Annual fixed taxes and subsidies
- <br>VAR Annual variable costs
- <br>VARX Annual variable taxes and subsidies
- <br>IRE Annual implied trade costs minus revenues
- <br>ELS Annual losses in elastic demands
- <br>DAM Annual damage costs
+  <br>INV Annualized investment costs
+  <br>INVX Annualized investment taxes and subsidies
+  <br>FIX Annual fixed costs
+  <br>FIXX Annual fixed taxes and subsidies
+  <br>VAR Annual variable costs
+  <br>VARX Annual variable taxes and subsidies
+  <br>IRE Annual implied trade costs minus revenues
+  <br>ELS Annual losses in elastic demands
+  <br>DAM Annual damage costs
 * - REG_WOBJ (r,uc_n,c)
   - Regional total discounted system cost by component:
- <br>INV Investment costs
- <br>INVX Investment taxes and subsidies
- <br>FIX Fixed costs
- <br>FIXX Fixed taxes and subsidies
- <br>VAR Variable costs
- <br>VARX Variable taxes and subsidies
- <br>ELS Losses in elastic demands
- <br>DAM Damage costs
-
+  <br>INV Investment costs
+  <br>INVX Investment taxes and subsidies
+  <br>FIX Fixed costs
+  <br>FIXX Fixed taxes and subsidies
+  <br>VAR Variable costs
+  <br>VARX Variable taxes and subsidies
+  <br>ELS Losses in elastic demands
+  <br>DAM Damage costs
 ```
 
 ### The levelized cost reporting option
 
-As indicated in Table 15 above, the reporting of levelized costs for each process can be requested by setting the option RPT_OPT(\'NCAP\', \'1\'). The results are stored in the VEDA-BE $Var\_NcapR$ result attribute, with the qualifier \'LEVCOST\' (with a possible system label prefix).
+As indicated in {numref}`times-report-parameters` above, the reporting of levelized costs for each process can be requested by setting the option RPT_OPT(\'NCAP\', \'1\'). The results are stored in the VEDA-BE $Var\_NcapR$ result attribute, with the qualifier \'LEVCOST\' (with a possible system label prefix).
 
 The levelized cost calculation option looks to weight all the costs influencing the choice of a technology by TIMES. It takes into consideration investment, operating, fuel, and other costs as a means of comparing the full cost associated with each technology.
 
@@ -6657,3 +6301,32 @@ The outputs of the main products are taken from the flow levels of the commoditi
 > This option is similar to option (2) above, but in this case all product revenues are included in the calculation, including also the peak capacity credit from the TIMES peaking equation (when defined). The calculated LEC value thus represents the levelized **net** unit cost after subtracting the value of all products from the gross levelized cost. For competitive new capacity vintages, the resulting levelized cost should in this case generally be *negative*, because investments into technologies that enter the solution are normally profitable. For the marginal technologies the levelized cost can be expected to be very close to zero. Only those technologies that have been in some way forced into the solution, e.g. by specifying lower bounds on the capacity or by some other types of constraints, should normally have a positive levelized cost when using this option.
 
 In the TIMES calculation, the expenditures for technology investments and process commodity flows include also taxes minus subsidies, if such have been specified. The levelized costs are calculated by process vintage, but only for new capacity vintages, as for them both the full cost data influencing technology choice and the operating history starting from the commissioning date are available, which is rarely the case for existing vintages.
+
+
+[^21]: The term *target timeslice level* or *target timeslice* is used in the following as synonym for the timeslice level or timeslices which are required by the model generators depending on the process or commodity timeslice resolution (**prc_tsl** and **com_tsl** respectively).
+
+[^22]: Note that as an exception, for NCAP_AF direct inheritance and aggregation will be disabled if any values are specified at the process timeslice level. However, this may be circumvented by using NCAP_AFS for defining the values at process timeslices.
+
+[^23]: The first row contains the parameter name, the second row contains in brackets the index domain over which the parameter is defined.
+
+[^24]: This column gives references to related input parameters (in upper case) or sets (in lower case) being used in the context of this parameter as well as internal parameters/sets or result parameters being derived from the input parameter.
+
+[^25]: This column lists the unit of the parameter, the possible range of its numeric value \[in square brackets\] and the inter-/extrapolation rules that apply.
+
+[^26]: An indication of circumstances for which the parameter is to be provided or omitted, as well as description of inheritance/aggregation rules applied to parameters having the timeslice (**s)** index.
+
+[^27]: Equations or variables that are directly affected by the parameter.
+
+[^28]: Abbreviation i/e = inter-/extrapolation
+
+[^29]: Standard aggregation not implemented for FLO_BND.
+
+[^30]: The indexing of auxiliary consumption flows or emissions of inter-regional exchange processes is illustrated in the figure below.
+
+[^31]: The first row contains the parameter name, the second row contains in brackets the index domain, for which the parameter is defined.
+
+[^32]: GDX stands for GAMS Data Exchange. A GDX file is a binary file that stores the values of one or more GAMS symbols such as sets, parameters variables and equations. GDX files can be used to prepare data for a GAMS model, present results of a GAMS model, store results of the same model using different parameters etc. They do not store a model formulation or executable statements.
+
+[^33]: The use of the **gdx2veda** tool together with the **times2veda.vdd** control file and the **VEDA-BE** software are described in Part V.
+
+[^34]: First row: parameter name; second row (in brackets): the index domain, for which the parameter is defined.
