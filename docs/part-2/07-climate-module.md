@@ -45,11 +45,11 @@ $${CH4_{atm}(y) = (1 - \Phi_{CH4}) \cdot CH4_{atm}(y - 1) + EA_{CH4}(y)(1a)
 
 where
 
-- *CH4~atm~ , CH4~up~ ,* and *EA~CH4~* are respectively: the atmospheric concentration, the natural concentration[^47] (both expressed in Mt), and the anthropogenic emission of CH~4~ (expressed in Mt/yr). *EA~CH4~* is generated within the model, but *CH4~up~* is fully exogenous (see values for CH4-UP and CH4-ATM in Table A-2). All quantities are indexed by year.
+- *CH4~atm~ , CH4~up~ ,* and *EA~CH4~* are respectively: the atmospheric concentration, the natural concentration[^47] (both expressed in Mt), and the anthropogenic emission of CH~4~ (expressed in Mt/yr). *EA~CH4~* is generated within the model, but *CH4~up~* is fully exogenous (see values for CH4-UP and CH4-ATM in {numref}`cli-parameters`). All quantities are indexed by year.
 
 - *d~CH4~ =2.84* (the density of *CH4,* expressed in *Mt/ppbv*) is then used to convert concentration in Mt into ppbv.
 
-- $1 - \Phi_{CH4}$ is the one-year retention rate of CH~4~ in the atmosphere, see Table A-1.
+- $1 - \Phi_{CH4}$ is the one-year retention rate of CH~4~ in the atmosphere, see {numref}`cli-user-input-parameters`.
 
 c\) N2O accumulation is also represented by a single-box model in which the atmospheric N2O concentration obeys the following equations:
 
@@ -59,9 +59,9 @@ $${N2O_{atm}(y) = (1 - \Phi_{N2O}) \cdot N2O_{atm}(y - 1) + EA_{N2O}(y)(1b)
 
 where
 
-- *N2O~atm~ , N2O~up~ ,* and *EA~N2O\ ~*, are respectively: the atmospheric concentration, the natural concentration (both expressed in Mt), and the anthropogenic emission of N~2~O (expressed in Mt/yr). *EA~N2O~* is generated within the model, but *N2O~up~* is fully exogenous (see values for N2O-UP and N2O-ATM in Table A-2). All quantities are indexed by year,
+- *N2O~atm~ , N2O~up~ ,* and *EA~N2O\ ~*, are respectively: the atmospheric concentration, the natural concentration (both expressed in Mt), and the anthropogenic emission of N~2~O (expressed in Mt/yr). *EA~N2O~* is generated within the model, but *N2O~up~* is fully exogenous (see values for N2O-UP and N2O-ATM in {numref}`cli-parameters`). All quantities are indexed by year,
 - *d~N2O~* = 7.81 (the density of *N2O,* expressed in *Mt/ppbv*) is then used to convert concentration in Mt to ppbv units.
-- $1 - \Phi_{N2O}$ is the one-year retention rate of N~2~O in the atmosphere, see table A-1.
+- $1 - \Phi_{N2O}$ is the one-year retention rate of N~2~O in the atmosphere, see {numref}`cli-user-input-parameters`.
 
 > *Note*: For both CH~4~ and N~2~O, the total atmospheric concentrations (UP+ATM) are used in the forcing expressions (see below) and are reported in the results.
 
@@ -81,7 +81,6 @@ a\) The relationship between CO2 accumulation and increased radiative forcing, *
 
   ------------------------------------------------------------------------
 
-  : Table D-1*.* Switches
 
 where:
 
@@ -102,7 +101,7 @@ c) The radiative forcing due to atmospheric N2O is given by the following expres
 >
 > Note that the *f(x,y)* function, which quantifies the cross-effects on forcing of the presence in the atmosphere of both gases (CH4 and N2O), is not quite symmetrical in the two gases. As usual, the 0 subscript indicates the pre-industrial times (1750)
 
-d) *EXOFOR(y)* is the increase in total radiative forcing at period *t* relative to pre-industrial level due to GHGs that are not represented explicitly in the model. Units = W/m^2^. In Nordhaus and Boyer (1999), only emissions of CO~2~ were explicitly modeled, and therefore O(y) accounted for all other GHG's. In TIMES, N~2~O and CH~4~ are fully accounted for, but some other substances are not (e.g. CFC's, aerosols, ozone, etc.). Therefore, our values for *EXOFOR(y)* will differ from those in Nordhaus and Boyer. It is the modeler's responsibility to include in the calculation of *EXOFOR(y)* only the forcings from those gases and other causes that are not modeled. Table A-3 shows a possible trajectory for EXOFOR.
+d) *EXOFOR(y)* is the increase in total radiative forcing at period *t* relative to pre-industrial level due to GHGs that are not represented explicitly in the model. Units = W/m^2^. In Nordhaus and Boyer (1999), only emissions of CO~2~ were explicitly modeled, and therefore O(y) accounted for all other GHG's. In TIMES, N~2~O and CH~4~ are fully accounted for, but some other substances are not (e.g. CFC's, aerosols, ozone, etc.). Therefore, our values for *EXOFOR(y)* will differ from those in Nordhaus and Boyer. It is the modeler's responsibility to include in the calculation of *EXOFOR(y)* only the forcings from those gases and other causes that are not modeled. {numref}`tiam-world-exoforcing-example` shows a possible trajectory for EXOFOR.
 
 The parameterization of the three forcing equations (4a, 4b, 4c) is not controversial and relies on the results reported by Working Group I in the IPCC. IPCC (2001, Table 6.2, p.358) provides a value of 3.7 for γ, smaller than the one used by Nordhaus and Boyer (γ = 4.1). We have adopted this lower value of 3.7 W/m^2^ as default in TIMES. Users are free to experiment with other values of the γ parameter. The same reference provides the entire expressions for all three forcing equations.
 
@@ -131,7 +130,6 @@ First, an interval of interest for the concentration M must be selected by the u
   where:             $$slope = \gamma \cdot \frac{\ln(M_{2}/M_{1})/\ln 2}{(M_{2} - M_{1})}$$                                                                       
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  : Table D-2*.* Iput parameters specific to demand functions
 
 > The linearized forcing expression implemented in TIMES is the average of the two linear estimates.
 
@@ -154,9 +152,9 @@ with
 - σ~3~ = 1-year coefficient of heat gain by deep oceans,
 - λ = feedback parameter (climatic retroaction). It is customary to write λ as λ* =γ*/C~s~, C~s~ being the *climate sensitivity* parameter, defined as the change in equilibrium atmospheric temperature induced by a doubling of CO~2~ concentration.
 
-<ins>Remark</ins>: in contrast with most other parameters, the value of C~s~ is highly uncertain, with a possible range of values from 1^o^C to 10^o^C. This parameter is therefore a prime candidate for sensitivity analysis, or for treatment by probabilistic methods such as stochastic programming. In Table A-2, a best estimate value of 2.9 ^o^C is shown, as per IPCC (2001, 2007).
+<ins>Remark</ins>: in contrast with most other parameters, the value of C~s~ is highly uncertain, with a possible range of values from 1^o^C to 10^o^C. This parameter is therefore a prime candidate for sensitivity analysis, or for treatment by probabilistic methods such as stochastic programming. In {numref}`cli-parameters`, a best estimate value of 2.9 ^o^C is shown, as per IPCC (2001, 2007).
 
-In the next section we describe all the input parameters required to define the climate equations and those needed to define climate constraints. With few exceptions (such as the densities of the gases), all parameters are modifiable by the user, should the need arise. We also provide Table A-2 summarizing the default values of the parameters.
+In the next section we describe all the input parameters required to define the climate equations and those needed to define climate constraints. With few exceptions (such as the densities of the gases), all parameters are modifiable by the user, should the need arise. We also provide {numref}`cli-parameters` summarizing the default values of the parameters.
 
 ## Switches and Parameters
 
@@ -164,7 +162,7 @@ In the next section we describe all the input parameters required to define the 
 
 The Climate Module (CLI) extension of TIMES can be activated and employed by using the Parameters and Switches described in this chapter.
 
-Besides the basic input data parameters described in , the user also has full control over the CLI component being activated by means of the \$SET CLI YES switch. This switch is provided by the data handling system when the user indicates that the CLI option is to be included:
+Besides the basic input data parameters described in {numref}`cli-user-input-parameters`, the user also has full control over the CLI component being activated by means of the \$SET CLI YES switch. This switch is provided by the data handling system when the user indicates that the CLI option is to be included:
 
 > \$SET CLI YES
 
@@ -188,136 +186,85 @@ The **reporting years** for the climate variables are the same as the calculatio
 
 ### Input parameters
 
-Like all other aspects of TIMES, the user defines the Climate Module components of the energy system by means of input parameters, which are described in this section. Table A-1 below describes the User Input Parameters that are associated with the Climate Module option.
+Like all other aspects of TIMES, the user defines the Climate Module components of the energy system by means of input parameters, which are described in this section. {numref}`cli-user-input-parameters` describes the User Input Parameters that are associated with the Climate Module option.
 
-+-----------+--------+------------------------------------------------+
-| **Input   | *      | **Description**                                |
-| Pa        | *Units |                                                |
-| rameter** | &**    |                                                |
-|           |        |                                                |
-| **(I      | **Defa |                                                |
-| ndexes)** | ults** |                                                |
-+===========+========+================================================+
-| CM_CONST  | Units: | Various Climate Module constants, where item   |
-|           | See on | can be:                                        |
-| (item)    | the    |                                                |
-|           | right  | PHI-UP-AT: carbon transfer coefficient UP→ATM  |
-|           |        |                                                |
-|           | Defa   | PHI-AT-UP: carbon transfer coefficient ATM →UP |
-|           | ults:\ |                                                |
-|           | See    | PHI-LO-UP: carbon transfer coefficient LO→UP   |
-|           | below  |                                                |
-|           |        | PHI-UP-LO: carbon transfer coefficient UP →LO  |
-|           |        |                                                |
-|           |        | GAMMA: radiative forcing sensitivity, in W/m2  |
-|           |        |                                                |
-|           |        | CS: temperature sensitivity, in ^o^C           |
-|           |        |                                                |
-|           |        | LAMBDA: λ = γ / C~s~                           |
-|           |        |                                                |
-|           |        | SIGMA1: speed of adjustment, in W-yr/m^2^/^o^C |
-|           |        |                                                |
-|           |        | SIGMA2: thermal capacity ratio, in W/m^2^/^o^C |
-|           |        |                                                |
-|           |        | SIGMA3: transfer rate upper to deep ocean, in  |
-|           |        | yr ^-1^                                        |
-|           |        |                                                |
-|           |        | CO2-PREIND: pre-industrial atmosph. CO2, in    |
-|           |        | GtC                                            |
-|           |        |                                                |
-|           |        | PHI-CH4: annual decay of atmospheric CH4,      |
-|           |        | fraction                                       |
-|           |        |                                                |
-|           |        | PHI-N2O: annual decay of atmospheric N2O,      |
-|           |        | fraction                                       |
-|           |        |                                                |
-|           |        | EXT-EOH: activates horizon extension, ≥0, year |
-|           |        |                                                |
-|           |        | BEOHMOD: defines year interval for reporting,  |
-|           |        | years                                          |
-+-----------+--------+------------------------------------------------+
-| CM        | Units: | Historical calibration values at years *y*,    |
-| _HISTORY\ | See on | for *cm_var*:                                  |
-| (         | the    |                                                |
-| y,cm_var) | right  | CO2-ATM: atmospheric mass of CO2, in GtC       |
-|           |        |                                                |
-|           | Defa   | CO2-UP: mass of CO2 in biosphere, in GtC       |
-|           | ults:\ |                                                |
-|           | See    | CO2-LO: mass of CO2 in lower ocean, in GtC     |
-|           | below  |                                                |
-|           |        | DELTA-ATM: atmospheric temperature change, in  |
-|           |        | °C                                             |
-|           |        |                                                |
-|           |        | DELTA-LO: oceanic temperature change, in °C    |
-|           |        |                                                |
-|           |        | CH4-ATM: anthropogenic CH4 concentration, in   |
-|           |        | Mt                                             |
-|           |        |                                                |
-|           |        | CH4-UP: natural CH4 concentration, in Mt       |
-|           |        |                                                |
-|           |        | N2O-ATM: anthropogenic N2O concentration, in   |
-|           |        | Mt                                             |
-|           |        |                                                |
-|           |        | N2O-UP: natural N2O concentration, in Mt       |
-+-----------+--------+------------------------------------------------+
-| C         | Global | Conversion factors from regional GHG           |
-| M_GHGMAP\ | units: | commodities (c) to global emissions (*cg*) in  |
-| (r,c,cg)  | CO2:   | the Climate Module, where cg=                  |
-|           | GtC\   |                                                |
-|           | CH4:   | CO2-GtC: global CO2 emissions in GtC           |
-|           | Mt\    |                                                |
-|           | N2O:   | CH4-Mt: global CH4 emissions in Mt             |
-|           | Mt     |                                                |
-|           |        | N2O-Mt: global N2O emissions in Mt             |
-+-----------+--------+------------------------------------------------+
-| CM        | Unit:  | Radiative forcing from exogenous sources (from |
-| _EXOFORC\ | W/m2   | greenhouse gases not modelled) in year *y*.    |
-| (y)       |        |                                                |
-+-----------+--------+------------------------------------------------+
-| C         | Unit:  | Parameters for the linear forcing functions    |
-| M_LINFOR\ | For    | for cm_var:                                    |
-| (y,cm     | CO2:   |                                                |
-| _var,lim) | ppm    | CO2-PPM: lower (LO) and upper (UP) end of the  |
-|           |        | concentration range over which the forcing     |
-|           | CH     | function for CO~2~ is linearized (in ppm)      |
-|           | 4/N2O: |                                                |
-|           | W/     | CH4-PPB: multiplier (N) for the CH~4~          |
-|           | m2/ppb | concentration and constant term (FX) of the    |
-|           |        | linear forcing function                        |
-|           | De     |                                                |
-|           | fault: | N2O-PPB: multiplier (N) for the N~2~O          |
-|           | none   | concentration and constant term (FX) of the    |
-|           |        | linear forcing function                        |
-+-----------+--------+------------------------------------------------+
-| CM_MAXC\  | De     | Maximum level of climate indicator *cm_var* in |
-| (         | fault: | year *y*.                                      |
-| y,cm_var) | none   |                                                |
-|           |        | CO2-GtC: CO2 emissions in GtC                  |
-|           |        |                                                |
-|           |        | CH4-Mt: CH4 emissions in Mt                    |
-|           |        |                                                |
-|           |        | N2O-Mt: N2O emissions in Mt                    |
-|           |        |                                                |
-|           |        | CO2-ATM: atm. CO2 concentration /              |
-|           |        | pre-industrial ratio                           |
-|           |        |                                                |
-|           |        | CO2-PPM: atm. CO2 concentration in ppm         |
-|           |        |                                                |
-|           |        | CH4-PPB: atm. CH4 concentration in ppb         |
-|           |        |                                                |
-|           |        | N2O-PPB: atm. N2O concentration in ppb         |
-|           |        |                                                |
-|           |        | DELTA-ATM: atmospheric temperature change, in  |
-|           |        | °C                                             |
-|           |        |                                                |
-|           |        | FORCING: total radiative forcing, in W/m2      |
-+-----------+--------+------------------------------------------------+
-| CM        | Unit:  | Maximum level of CO2 concentration in GtC.     |
-| _MAXCO2C\ | GtC    |                                                |
-| (y)       |        |                                                |
-+-----------+--------+------------------------------------------------+
+```{list-table} Definition of Climate Module user input parameters.
+:name: cli-user-input-parameters
+:header-rows: 1
 
-: Table D-3*.* Non-linear CES demand function example
+* - Input Parameter (Indexes)
+  - Units & Defaults
+  - Description
+* - CM_CONST (item)
+  - Units: See on the right
+  <br>Defaults: See below
+  - Various Climate Module constants, where item can be:
+  <br>PHI-UP-AT: carbon transfer coefficient UP→ATM
+  <br>PHI-AT-UP: carbon transfer coefficient ATM →UP
+  <br>PHI-LO-UP: carbon transfer coefficient LO→UP
+  <br>PHI-UP-LO: carbon transfer coefficient UP →LO
+  <br>GAMMA: radiative forcing sensitivity, in W/m2
+  <br>CS: temperature sensitivity, in ^o^C
+  <br>LAMBDA: λ = γ / C~s~
+  <br>SIGMA1: speed of adjustment, in W-yr/m^2^/^o^C
+  <br>SIGMA2: thermal capacity ratio, in W/m^2^/^o^C
+  <br>SIGMA3: transfer rate upper to deep ocean, in yr ^-1^
+  <br>CO2-PREIND: pre-industrial atmosph. CO2, in GtC
+  <br>PHI-CH4: annual decay of atmospheric CH4, fraction
+  <br>PHI-N2O: annual decay of atmospheric N2O, fraction
+  <br>EXT-EOH: activates horizon extension, ≥0, year
+  <br>BEOHMOD: defines year interval for reporting, years
+* - CM_HISTORY (y,cm_var)
+  - Units: See on the right
+  <br>Defaults: See below
+  - Historical calibration values at years *y*, for *cm_var*:
+  <br>CO2-ATM: atmospheric mass of CO2, in GtC
+  <br>CO2-UP: mass of CO2 in biosphere, in GtC
+  <br>CO2-LO: mass of CO2 in lower ocean, in GtC
+  <br>DELTA-ATM: atmospheric temperature change, in °C
+  <br>DELTA-LO: oceanic temperature change, in °C
+  <br>CH4-ATM: anthropogenic CH4 concentration, in Mt
+  <br>CH4-UP: natural CH4 concentration, in Mt
+  <br>N2O-ATM: anthropogenic N2O concentration, in Mt
+  <br>N2O-UP: natural N2O concentration, in Mt
+* - CM_GHGMAP (r,c,cg)
+  - Global units:
+  <br>CO2: GtC
+  <br>CH4: Mt
+  <br>N2O: Mt
+  - Conversion factors from regional GHG commodities (c) to global emissions (*cg*) in the Climate Module, where cg=
+  <br>CO2-GtC: global CO2 emissions in GtC
+  <br>CH4-Mt: global CH4 emissions in Mt
+  <br>N2O-Mt: global N2O emissions in Mt
+* - CM_EXOFORC (y)
+  - Unit: W/m2
+  - Radiative forcing from exogenous sources (from greenhouse gases not modelled) in year *y*.
+* - CM_LINFOR (y,cm_var,lim)
+  - Unit:
+  <br>CO2: ppm
+  <br>CH4/N2O: W/m2/ppb
+  <br>Default: none
+  - Parameters for the linear forcing functions for cm_var:
+  <br>CO2-PPM: lower (LO) and upper (UP) end of the concentration range over which the forcing function for CO~2~ is linearized (in ppm)
+  <br>CH4-PPB: multiplier (N) for the CH~4~ concentration and constant term (FX) of the linear forcing function
+  <br>N2O-PPB: multiplier (N) for the N~2~O concentration and constant term (FX) of the linear forcing function
+* - CM_MAXC (y,cm_var)
+  - Default: none
+  - Maximum level of climate indicator *cm_var* in year *y*.
+  <br>CO2-GtC: CO2 emissions in GtC
+  <br>CH4-Mt: CH4 emissions in Mt
+  <br>N2O-Mt: N2O emissions in Mt
+  <br>CO2-ATM: atm. CO2 concentration / pre-industrial ratio
+  <br>CO2-PPM: atm. CO2 concentration in ppm
+  <br>CH4-PPB: atm. CH4 concentration in ppb
+  <br>N2O-PPB: atm. N2O concentration in ppb
+  <br>DELTA-ATM: atmospheric temperature change, in °C
+  <br>FORCING: total radiative forcing, in W/m2
+* - CM_MAXCO2C (y)
+  - Unit: GtC
+  - Maximum level of CO2 concentration in GtC. 
+```
+
 
 #### Mapping of regional emissions to global emissions
 
@@ -446,32 +393,24 @@ The main purpose of extending the climate equations beyond EOH is to be able to 
 
 The extended climate equations must be explicitly activated by the user. The activation can be done by specifying any non-negative value for the new Climate Module constant **CM_CONST**(**\'EXT-EOH\')**. Different values of the constant will have the following meaning:
 
-  -----------------------------------------------------------------------
-  **Value**   **Meaning**
-  ----------- -----------------------------------------------------------
-  -1          The feature is deactivated.
-  (default)   
+```{list-table}
+:header-rows: 1
 
-  0           In this case **\'EXT-EOH\'** will be automatically adjusted
-              to E(*M*), where *M *is the last model year ***m*** for
-              which the end-year **E(*m*)** is specified. The adjusted
-              parameter will then have the same meaning as in the case
-              EXT-EOH \> 0 below.
-
-  \>0         The emissions at EOH will remain constant at the endogenous
-              value in EOH=E(T) (where T=last **milestone year**) until
-              the year MAX(**EXT-EOH**, EOH), and then develop linearly
-              from that value to the first user-defined emission value in
-              a subsequent year.
-  -----------------------------------------------------------------------
-
-  : Table D-4*.* Linear CES demand function example
+* - Value
+  - Meaning
+* - -1 (default)
+  - The feature is deactivated.
+* - 0
+  - In this case **\'EXT-EOH\'** will be automatically adjusted to E(*M*), where *M *is the last model year ***m*** for which the end-year **E(*m*)** is specified. The adjusted parameter will then have the same meaning as in the case EXT-EOH \> 0 below.
+* - \>0
+  - The emissions at EOH will remain constant at the endogenous value in EOH=E(T) (where T=last **milestone year**) until the year MAX(**EXT-EOH**, EOH), and then develop linearly from that value to the first user-defined emission value in a subsequent year.
+```
 
 The setting **EXT-EOH**=**0** may be useful for ensuring that any user-defined target values for the emissions will only be taken into account beyond the last ***model year***, even in model runs where a truncated model horizon is used. In such case, when **EXT-EOH**=**0** is used, the emissions are assumed to remain constant between the truncated EOH and the end of the full model horizon.
 
 A positive value **EXT-EOH**=**y** **≤ EOH** means that a linear development of emissions towards the first user-defined value is requested to start im­mediately at the EOH, regardless of the model horizon being truncated or not. Finally, a positive value **EXT-EOH**=**y** **\> EOH** can be useful if the user wishes the emissions to remain constant at the EOH value until a predefined year y \> EOH, before turning into the linear development towards the first user-defined value.
 
-**<ins>Warning:** If **0 \< EXT-EOH \< E(M) = MAX~m~(E(m))**, any user-defined global emission bounds for CO2-GTC, CH4-MT or N2O-MT, which may be inadvertently specified at years between **MAX(EXT-EOH, EOH)** and **E(M)**, will also be taken into account as target values for the emission trajectories.
+**<ins>Warning</ins>:** If **0 \< EXT-EOH \< E(M) = MAX~m~(E(m))**, any user-defined global emission bounds for CO2-GTC, CH4-MT or N2O-MT, which may be inadvertently specified at years between **MAX(EXT-EOH, EOH)** and **E(M)**, will also be taken into account as target values for the emission trajectories.
 
 The global greenhouse gas emissions that can be considered by the extended climate equations are the three main input emissions to the Climate Module:
 
@@ -483,7 +422,7 @@ The user can specify target emission values for these emissions at any year(s) b
 
 Starting from the year ***B***= MAX(EOH,EXT-EOH), the emissions will be assumed to develop linearly from the value at EOH to the first user-specified value beyond ***B***. If no target values are specified, the emissions will be assumed to remain constant at the EOH value. If several successive values are speci­fied, the emissions will develop linearly also between the successive target values.
 
-Bounds on the global atmospheric temperature, forcing or GHG con­cen­trations can be specified at any years beyond the EOH, in the normal way. In addition, exogenous forcing can be specified and is interpolated beyond EOH.
+Bounds on the global atmospheric temperature, forcing or GHG concentrations can be specified at any years beyond the EOH, in the normal way. In addition, exogenous forcing can be specified and is interpolated beyond EOH.
 
 The Climate Equations will be calculated beyond EOH at each of the years for which either a user-defined emission target or a temperature or concentration bound is specified. The years considered thus span between the EOH and the last year for which a CM_MAXC is specified. However, as described above, any emission bounds between EOH and MAX(EOH,EXT-EOH) will be ignored.
 
@@ -526,7 +465,7 @@ CM_MAXC_M is indexed by year *y* and constraint type. The values are reported fo
 
 ### Default values of the climate parameters
 
-Table A-2 shows the default values of all parameters of the Climate Module except exogenous forcing. All defaults may be modified by the user. {#table-a-2-shows-the-default-values-of-all-parameters-of-the-climate-module-except-exogenous-forcing.-all-defaults-may-be-modified-by-the-user. .Header-03}
+{numref}`cli-parameters` shows the default values of all parameters of the Climate Module except exogenous forcing. All defaults may be modified by the user. {#table-a-2-shows-the-default-values-of-all-parameters-of-the-climate-module-except-exogenous-forcing.-all-defaults-may-be-modified-by-the-user. .Header-03}
 
 CS and SIGMA1 may be assumed random, in which case the default values are not used. The user must specify their values explicitly using the appropriate parameter names described earlier. {#cs-and-sigma1-may-be-assumed-random-in-which-case-the-default-values-are-not-used.-the-user-must-specify-their-values-explicitly-using-the-appropriate-parameter-names-described-earlier. .Header-03}
 
@@ -534,138 +473,81 @@ The parameters highlighted blue are upper bounds on five climate variables (in t
 
 The three parameters highlighted pink concern the extension of emissions beyond EOH, as described in the separate note on this subject.  {#the-three-parameters-highlighted-pink-concern-the-extension-of-emissions-beyond-eoh-as-described-in-the-separate-note-on-this-subject. .Header-03}
 
-shows an example of specification of the EXOFORCING time series. {#shows-an-example-of-specification-of-the-exoforcing-time-series. .Header-03}
+{numref}`tiam-world-exoforcing-example` shows an example of specification of the EXOFORCING time series. {#shows-an-example-of-specification-of-the-exoforcing-time-series. .Header-03}
 
-  -----------------------------------------------------------------------------
-  **Attribute**    **Lim**   **DataYear**   **Item**       **Default value**
-  ---------------- --------- -------------- -------------- --------------------
-  CM_HISTORY                 2005           CO2-ATM        807.27
+:::{table} Parameters of the climatic module (default values).
+:name: cli-parameters
 
-  CM_HISTORY                 2005           CO2-UP         793
+| Attribute  | Lim | DataYear | Item       | Default value |
+| ---------- | :-: | :------: | ---------- | ------------: |
+| CM_HISTORY |     |   2005   | CO2-ATM    |        807.27 |
+| CM_HISTORY |     |   2005   | CO2-UP     |           793 |
+| CM_HISTORY |     |   2005   | CO2-LO     |         19217 |
+| CM_HISTORY |     |   2005   | DELTA-ATM  |          0.76 |
+| CM_HISTORY |     |   2005   | DELTA-LO   |          0.06 |
+| CM_HISTORY |     |   2005   | CH4-UP     |          1988 |
+| CM_HISTORY |     |   2005   | CH4-ATM    |          3067 |
+| CM_HISTORY |     |   2005   | N2O-UP     |          2109 |
+| CM_HISTORY |     |   2005   | N2O-ATM    |           390 |
+| CM_CONST   |     |          | GAMMA      |          3.71 |
+| CM_CONST   |     |          | PHI-UP-AT  |        0.0453 |
+| CM_CONST   |     |          | PHI-AT-UP  |        0.0495 |
+| CM_CONST   |     |          | PHI-LO-UP  |       0.00053 |
+| CM_CONST   |     |          | PHI-UP-LO  |        0.0146 |
+| CM_CONST   |     |          | LAMBDA     |          1.41 |
+| CM_CONST   |     |          | CS         |           2.9 |
+| CM_CONST   |     |          | SIGMA1     |         0.024 |
+| CM_CONST   |     |          | SIGMA2     |          0.44 |
+| CM_CONST   |     |          | SIGMA3     |         0.002 |
+| CM_CONST   |     |          | CO2-PREIND |         596.4 |
+| CM_CONST   |     |          | PHI-CH4    |       0.09158 |
+| CM_CONST   |     |          | PHI-N2O    |      0.008803 |
+| CM_LINFOR  | LO  |   2005   | CO2-PPM    |           375 |
+| CM_LINFOR  | UP  |   2005   | CO2-PPM    |           550 |
+| CM_LINFOR  |  N  |   2005   | CH4-PPB    |       0.00034 |
+| CM_LINFOR  | FX  |   2005   | CH4-PPB    |      -0.11000 |
+| CM_LINFOR  |  N  |   2005   | N2O-PPB    |       0.00292 |
+| CM_LINFOR  | FX  |   2005   | N2O-PPB    |      -0.76900 |
+| CM_MAXC    |     |   2005   | CO2-PPM    |           500 |
+| CM_MAXC    |     |   2005   | CO2-ATM    |          1000 |
+| CM_MAXC    |     |   2005   | FORCING    |            10 |
+| CM_MAXC    |     |   2005   | DELTA-ATM  |            10 |
+| CM_MAXC    |     |   2005   | CO2-GTC    |            50 |
+| CM_CONST   |     |          | EXT-EOH    |          2150 |
+| CM_CONST   |     |          | BEOHMOD    |            20 |
+| CM_MAXC    |     |   2200   | CO2-GTC    |             0 |
+:::
 
-  CM_HISTORY                 2005           CO2-LO         19217
+:::{table} Example of EXOFORCING (from TIAM-WORLD, 2010 version).
+:name: tiam-world-exoforcing-example
 
-  CM_HISTORY                 2005           DELTA-ATM      0.76
-
-  CM_HISTORY                 2005           DELTA-LO       0.06
-
-  CM_HISTORY                 2005           CH4-UP         1988
-
-  CM_HISTORY                 2005           CH4-ATM        3067
-
-  CM_HISTORY                 2005           N2O-UP         2109
-
-  CM_HISTORY                 2005           N2O-ATM        390
-
-  CM_CONST                                  GAMMA          3.71
-
-  CM_CONST                                  PHI-UP-AT      0.0453
-
-  CM_CONST                                  PHI-AT-UP      0.0495
-
-  CM_CONST                                  PHI-LO-UP      0.00053
-
-  CM_CONST                                  PHI-UP-LO      0.0146
-
-  CM_CONST                                  LAMBDA         1.41
-
-  CM_CONST                                  CS             2.9
-
-  CM_CONST                                  SIGMA1         0.024
-
-  CM_CONST                                  SIGMA2         0.44
-
-  CM_CONST                                  SIGMA3         0.002
-
-  CM_CONST                                  CO2-PREIND     596.4
-
-  CM_CONST                                  PHI-CH4        0.09158
-
-  CM_CONST                                  PHI-N2O        0.008803
-
-  CM_LINFOR        LO        2005           CO2-PPM        375
-
-  CM_LINFOR        UP        2005           CO2-PPM        550
-
-  CM_LINFOR        N         2005           CH4-PPB        0.00034
-
-  CM_LINFOR        FX        2005           CH4-PPB        -0.11000
-
-  CM_LINFOR        N         2005           N2O-PPB        0.00292
-
-  CM_LINFOR        FX        2005           N2O-PPB        -0.76900
-
-  CM_MAXC                    2005           CO2-PPM        500
-
-  CM_MAXC                    2005           CO2-ATM        1000
-
-  CM_MAXC                    2005           FORCING        10
-
-  CM_MAXC                    2005           DELTA-ATM      10
-
-  CM_MAXC                    2005           CO2-GTC        50
-
-  CM_CONST                                  EXT-EOH        2150
-
-  CM_CONST                                  BEOHMOD        20
-
-  CM_MAXC                    2200           CO2-GTC        0
-  -----------------------------------------------------------------------------
-
-  : Table D-5*.* Model variables employed in demand functions
-
-
-**Table A-3. Example of EXOFORCING (from TIAM-WORLD, 2010 version)**
-
-  ------------------------------------------------------------------------
-  **Attribute**                    **DataYear**        **Value**
-  -------------------------------- ------------------- -------------------
-  CM_EXOFORC                       2005                -0.25376
-
-  CM_EXOFORC                       2010                -0.20475
-
-  CM_EXOFORC                       2015                -0.16055
-
-  CM_EXOFORC                       2020                -0.11689
-
-  CM_EXOFORC                       2025                -0.10104
-
-  CM_EXOFORC                       2030                -0.0774
-
-  CM_EXOFORC                       2035                -0.06398
-
-  CM_EXOFORC                       2040                -0.03787
-
-  CM_EXOFORC                       2045                -0.0354
-
-  CM_EXOFORC                       2050                -0.04528
-
-  CM_EXOFORC                       2055                -0.06434
-
-  CM_EXOFORC                       2060                -0.08634
-
-  CM_EXOFORC                       2065                -0.09485
-
-  CM_EXOFORC                       2070                -0.09632
-
-  CM_EXOFORC                       2075                -0.09254
-
-  CM_EXOFORC                       2080                -0.08929
-
-  CM_EXOFORC                       2085                -0.08868
-
-  CM_EXOFORC                       2090                -0.08273
-
-  CM_EXOFORC                       2095                -0.0796
-
-  CM_EXOFORC                       2100                -0.07447
-  ------------------------------------------------------------------------
-
-  : Table D-6. Model constraints specific to demand functions
+|  Attribute |  DataYear |  Value    |
+| -----------|-----------|---------  |
+| CM_EXOFORC |  2005     |  -0.25376 |
+| CM_EXOFORC | 2010      | -0.20475  |
+| CM_EXOFORC | 2015      | -0.16055  |
+| CM_EXOFORC | 2020      | -0.11689  |
+| CM_EXOFORC | 2025      | -0.10104  |
+| CM_EXOFORC | 2030      | -0.0774   |
+| CM_EXOFORC | 2035      | -0.06398  |
+| CM_EXOFORC | 2040      | -0.03787  |
+| CM_EXOFORC | 2045      | -0.0354   |
+| CM_EXOFORC | 2050      | -0.04528  |
+| CM_EXOFORC | 2055      | -0.06434  |
+| CM_EXOFORC | 2060      | -0.08634  |
+| CM_EXOFORC | 2065      | -0.09485  |
+| CM_EXOFORC | 2070      | -0.09632  |
+| CM_EXOFORC | 2075      | -0.09254  |
+| CM_EXOFORC | 2080      | -0.08929  |
+| CM_EXOFORC | 2085      | -0.08868  |
+| CM_EXOFORC | 2090      | -0.08273  |
+| CM_EXOFORC | 2095      | -0.0796   |
+| CM_EXOFORC | 2100      | -0.07447  |
+:::
 
 ## Variables
 
-The variables that are used in the Climate Module in TIMES are presented in below. The climate indicators represented in the Climate Module are grouped according to the following internal sets, which are referred to in the GAMS formulation, presented in Section 5:
+The variables that are used in the Climate Module in TIMES are presented in {numref}`cli-specific-variables` below. The climate indicators represented in the Climate Module are grouped according to the following internal sets, which are referred to in the GAMS formulation, presented in Section 5:
 
 - **cm_var**: the set of all climate indicators
 - **cm_tkind**: aggregate total indicators (CO2-GtC, CH4-Mt, N2O-Mt, FORCING)
@@ -674,23 +556,17 @@ The variables that are used in the Climate Module in TIMES are presented in belo
 - **cm_atmap~tkind,cm_var~**: mapping between aggregate indicators *tkind* and the corresponding boundable atmospheric indicators (CO2-PPM / CH4-PPM / N2O-PPM / DELTA_ATM);
 - **cm_atbox ~tkind,cm_box~**: mapping between mapping between aggregate emission indicators *tkind* and the corresponding reservoirs that comprise the atmospheric concentration part; contains the pairs {(CO2-GtC,ATM), (CH4-Mt,ATM),(CH4-Mt,UP),(N2O-Mt,ATM),(N2O-Mt,UP) }
 
-+------------+---------------------------------------------------------+
-| **Variable | **Variable Description**                                |
-| (          |                                                         |
-| Indexes)** |                                                         |
-+============+=========================================================+
-| >          | Represents the total amount of climate indicator        |
-| VAR_CLITOT | *cm_var* in year y, where *cm_var* is one of {CO2-GtC,  |
-| >          | CH4-Mt, N2O-Mt, FORCING}.                               |
-| >          |                                                         |
-| (cm_var,y) |                                                         |
-+------------+---------------------------------------------------------+
-| >          | Represents the amount of reservoir indicator *cm_var*   |
-| VAR_CLIBOX | in a single reservoir/box in year y, where *cm_var* is  |
-| >          | one of {CO2-ATM, CO2-UP, CO2-LO, CH4-ATM, CH4-UP,       |
-| >          | N2O-ATM, N2O-UP, DELTA-ATM, DELTA-LO}.                  |
-| (cm_var,y) |                                                         |
-+------------+---------------------------------------------------------+
+```{list-table} Model variables specific to the Climate Module.
+:name: cli-specific-variables
+:header-rows: 1
+
+* - Variable (Indexes) 
+  - Variable Description
+* - VAR_CLITOT (cm_var,y)
+  - Represents the total amount of climate indicator *cm_var* in year y, where *cm_var* is one of {CO2-GtC, CH4-Mt, N2O-Mt, FORCING}
+* - VAR_CLIBOX (cm_var,y)
+  - Represents the amount of reservoir indicator *cm_var* in a single reservoir/box in year y, where *cm_var* is one of {CO2-ATM, CO2-UP, CO2-LO, CH4-ATM, CH4-UP, N2O-ATM, N2O-UP, DELTA-ATM, DELTA-LO}.
+```
 
 ### VAR_CLITOT(cm_var,y)
 
@@ -730,33 +606,21 @@ General notation:
 - *y:* designates a year, while *t* designates a period (ranging from 1 to T)
 - *Υ:* designates the calibration year, which can be chosen by the user to be either *B*(1)--1, *m*(1)--1, or *m*(1)*,* see section above.
 
-  -------------------------------------------------------------------------
-  **Constraints   **Constraint Description**
-  (Indexes)**     
-  --------------- ---------------------------------------------------------
-  EQ_CLITOT\      Defines the amount of global greenhouse gas emissions in
-  (cm_var,t)      each period; defines the amount of total radiative
-                  forcing from the greenhouse gas concentrations in each
-                  period *t*.
+```{list-table} Climate Module specific constraints (all in the GAMS file equ_ext.cli).
+:name: cli-specific-constraints
+:header-rows: 1
 
-  EQ_CLICONC\     Defines the mass of each greenhouse gas *cm_var* in each
-  (cm_var,\       reservoir *cm_box* at the end of the milestoneyr **m(t)**
-  cm_box,t)       of period *t*.
-
-  EQ_CLITEMP\     Defines the temperature increase in the each reservoir
-  (cm_box,t)      *cm_box* (the lower atmosphere and the lower ocean layer)
-                  over its pre-industrial temperature measured at the end
-                  of milestoneyr **m(t)** of period *t*.
-
-  EQ_CLIMAX\      Imposes an upper bound on any or all of the climate
-  (y,cm_var)      variables *cm_var* (*CO2-GTC, CH4-MT, N2O-MT, CO2-ATM,
-                  CO2-PPM, CH4-PPB, N2O-PPB, FORCING, DELTA-ATM)*, at any
-                  desired year *y*, according to the user-defined input
-                  parameter CM_MAXC.
-  -------------------------------------------------------------------------
-
-**\
-**
+* - Constraints (Indexes)
+  - Constraint Description
+* - EQ_CLITOT (cm_var,t)
+  - Defines the amount of global greenhouse gas emissions in each period; defines the amount of total radiative forcing from the greenhouse gas concentrations in each period *t*.
+* - EQ_CLICONC (cm_var,cm_box,t)
+  - Defines the mass of each greenhouse gas *cm_var* in each reservoir *cm_box* at the end of the milestoneyr **m(t)** of period *t*.
+* - EQ_CLITEMP (cm_box,t)
+  - Defines the temperature increase in the each reservoir *cm_box* (the lower atmosphere and the lower ocean layer) over its pre-industrial temperature measured at the end of milestoneyr **m(t)** of period *t*.
+* - EQ_CLIMAX (y,cm_var)
+  - Imposes an upper bound on any or all of the climate variables *cm_var* (*CO2-GTC, CH4-MT, N2O-MT, CO2-ATM, CO2-PPM, CH4-PPB, N2O-PPB, FORCING, DELTA-ATM)*, at any desired year *y*, according to the user-defined input parameter CM_MAXC.
+```
 
 ### EQ_CLITOT(cm_var,t)
 
@@ -971,7 +835,7 @@ $$VAR\_ CLITOT_{'FORCING',y}\quad \leq \quad CM\_ MAXC_{y,'FORCING'}$$
 
 $$\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},'\mathbf{ATM}'}}^{}{VAR\_ CLIBOX_{cm\_ var,y}}\quad \leq \quad CM\_ MAXC_{y,cm\_ var}$$
 
-## References {#references .unnumbered}
+## References
 
 Drouet L., Edwards N.R. and A. Haurie (2004). "Coupling Climate and Economic Models in a Cost-Benefit Framework: A Convex Optimization Approach". Submitted to *Environmental Modeling and Assessment.*
 
@@ -982,3 +846,9 @@ IPCC. 2001. *Climatic change 2001: The Scientific Basis.* Intergovernmental Pane
 Nordhaus, W. D. and J. Boyer. 1999. *Roll the DICE Again: Economic Models of Global Warming*. Yale University, manuscript edition.
 
 Wigley, T.M.L., Solomon, M. and S.C.B. Raper. 1994. *Model for the Assessment of Greenhouse-Gas Induced Climate Change*. Version 1.2. Climate Research Unit, University of East Anglia, UK.
+
+
+[^46]: There exists another well-known representation of CO~2~ accumulation equations, using a five-box model.
+
+[^47]: Note that the subscripts *atm* and *up*, which for the CO2 equations referred to the atmosphere and upper reservoirs, have been reused for the CH4 and N2O equations to stand for anthropogenic and natural concentrations.
+

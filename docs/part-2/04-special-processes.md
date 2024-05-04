@@ -40,11 +40,10 @@ The core TIMES parameters for modeling the CHP attributes are listed in {numref}
 
 \* Only taken into account for processes defined to be of type CHP with the set .     
 
-  : Table 18: Alternative ways of modelling efficiencies of CHP processes.
-
 ```{figure} assets/image11.png
 :name: cph-characteristics
 :align: center
+
 Illustration of basic CHP characteristics supported in TIMES.
 ```
 
@@ -79,7 +78,7 @@ For modelling a flexible pass-out turbine system in TIMES, the following approac
 - Optionally, define also a maximum annual utilization factor considering the typical optimal sizing of CHP plants in the heat network represented (using the parameter $NCAP\_AFA$ and/or $NCAP\_AFC$);
 - Optionally, define a minimum stable operation level (using $ACT\_MINLD$).
 
-Again, the specifications should be quite straightforward. The slope $S$ of the iso-fuel line represents the amount of electricity lost per heat gained. In the example of {numref}`chp-characteristics`, the inverse of the slope has the value 7 and so one would define $NCAP\_CEH = -1/7$.
+Again, the specifications should be quite straightforward. The slope $S$ of the iso-fuel line represents the amount of electricity lost per heat gained. In the example of {numref}`chp-characteristics`, the inverse of the slope has the value 7 and so one would define $NCAP\_CEH=-1/7$.
 
 Alternatively, if it would seem more convenient to define both the condensing mode efficiency and the full CHP efficiency, that can be done by using the parameters $NCAP\_CDME$ (condensing mode efficiency) and $NCAP\_BPME$ (back-pressure mode efficiency). When these two parameters are used, the $NCAP\_CEH$ and $ACT\_EFF$ parameters should then not be used at all. The activity will in this alternative approach always represent the electricity output in condensing mode.
 
@@ -89,75 +88,63 @@ For pass-out turbine technologies that have a reduction operation capability, on
 
 As indicated above, the recommended basis of the activity of a CHP technology is the maximum electricity output, because the available technology data is usually best suited for using the electricity output as the basis for the activity. However, also the total energy output in full CHP mode can be used as the basis for the activity, should that be a more convenient way of defining the process data.
 
-The table below summarizes the different options modelling CHP processes according to the choice of the main efficiency parameters. Note that the cases with $-1<CEH≤0$ and $0≤CEH<1$ are identical when there is no lower bound for $NCAP\_CHPR$ specified, apart from the handling of emission factors defined using the \'ACT\' placeholder in $FLO\_EMIS$.
+The {numref}`chp-efficiencies-modelling-alternatives` summarizes the different options modelling CHP processes according to the choice of the main efficiency parameters. Note that the cases with $-1<CEH≤0$ and $0≤CEH<1$ are identical when there is no lower bound for $NCAP\_CHPR$ specified, apart from the handling of emission factors defined using the \'ACT\' placeholder in $FLO\_EMIS$.
 
-+-------------+-------------+-------------+-------------+------------+
-| **Chara     | **Choices   |             |             |            |
-| cteristic** | of          |             |             |            |
-|             | parameters  |             |             |            |
-|             | for         |             |             |            |
-|             | modelling   |             |             |            |
-|             | CHP         |             |             |            |
-|             | eff         |             |             |            |
-|             | iciencies** |             |             |            |
-+=============+=============+=============+=============+============+
-| Efficiency  | ACT_EFF +   |             |             | NCAP_CDME+ |
-| parameters  | NCAP_CEH    |             |             |            |
-|             |             |             |             | NCAP_BPME  |
-+-------------+-------------+-------------+-------------+------------+
-| Value of    | --1\<CEH≤0  | 0≤CEH\<1    | CEH ≥ 1     | None       |
-| CEH         |             |             |             |            |
-+-------------+-------------+-------------+-------------+------------+
-| Inte        | Decrease in | Loss in     | Loss in     | None       |
-| rpretation\ | electricity | electricity | heat output |            |
-| of CEH      | output per  | output per  | per unit of |            |
-|             | unit of     | unit of     | electricity |            |
-|             | heat gained | heat gained | gained      |            |
-|             | (when       | (when       |             |            |
-|             | moving      | moving      | (when       |            |
-|             | towards     | towards     | moving      |            |
-|             | full CHP    | full CHP    | towards     |            |
-|             | mode)       | mode)       | con­densing  |            |
-|             |             |             | mode)       |            |
-+-------------+-------------+-------------+-------------+------------+
-| Activity    | Max.        | Electricity | Total       | E          |
-|             | electricity | output in   | energy      | lectricity |
-|             | output      | full        | output in   | output in  |
-|             |             | condensing  | full CHP    | condensing |
-|             |             | mode        | mode        | mode       |
-+-------------+-------------+-------------+-------------+------------+
-| Capacity    | Electrical  | Electrical  | Elec        | Electrical |
-|             | capacity    | capacity    | trical+heat | capacity   |
-|             |             |             | capacity    |            |
-+-------------+-------------+-------------+-------------+------------+
-| Efficiency  | Max.        | Electrical  | Total       | Electrical |
-| sp          | electrical  | efficiency  | efficiency  | efficiency |
-| ecification | efficiency  | in full     | in full CHP | in         |
-|             | (=ACT_EFF)\ | condensing  | mode        | condensing |
-|             | + the CEH   | mode        |             | mode +     |
-|             | sp          | (=ACT_EFF)\ | (=ACT_EFF)\ | total      |
-|             | ecification | + the CEH   | + the CEH   | efficiency |
-|             |             | sp          | sp          | in full    |
-|             |             | ecification | ecification | CHP mode   |
-+-------------+-------------+-------------+-------------+------------+
-| Investment  | Per         | Per         | Per         | Per        |
-| & fixed O&M | electrical  | electrical  | elec        | electrical |
-| costs       | capacity    | capacity    | trical+heat | capacity   |
-|             |             |             | capacity    |            |
-+-------------+-------------+-------------+-------------+------------+
-| Variable    | Per         | Per         | Per         | Per        |
-| costs       | activity    | activity    | activity    | activity   |
-|             | (see above) | (see above) | (see above) | (see       |
-|             |             |             |             | above)     |
-+-------------+-------------+-------------+-------------+------------+
-| Emission    | Applied     | Applied to  | Applied to  | Applied to |
-| factors     | directly to | the PCG     | the PCG     | the PCG    |
-| defined per | the         | flows       | flows       | flows      |
-| \'ACT\'     | activity    |             |             |            |
-|             | levels      |             |             |            |
-+-------------+-------------+-------------+-------------+------------+
+```{list-table} Alternative ways of modelling efficiencies of CHP processes.
+:name: chp-efficiencies-modelling-alternatives
+:header-rows: 1
 
-: Table 19: Specific TIMES parameters related to the modelling of trade processes.
+* - Characteristic
+  - Choices of parameters for modelling CHP efficiencies
+  - Choices of parameters for modelling CHP efficiencies
+  - Choices of parameters for modelling CHP efficiencies
+  - Choices of parameters for modelling CHP efficiencies
+* - Efficiency parameters
+  - ACT_EFF + NCAP_CEH
+  - ACT_EFF + NCAP_CEH
+  - ACT_EFF + NCAP_CEH
+  - NCAP_CDME + NCAP_BPME
+* - Value of CEH
+  - --1\<CEH≤0
+  - 0≤CEH\<1
+  - CEH ≥ 1
+  - None
+* - Interpretation of CEH
+  - Decrease in electricity output per unit of heat gained (when moving towards full CHP mode)
+  - Loss in electricity output per unit of heat gained (when moving towards full CHP mode)
+  - Loss in heat output per unit of electricity gained (when moving towards condensing mode)
+  - None
+* - Activity
+  - Max. electricity output
+  - Electricity output in full condensing mode
+  - Total energy output in full CHP mode
+  - Electricity output in condensing mode
+* - Capacity
+  - Electrical capacity
+  - Electrical capacity
+  - Electrical+heat capacity
+  - Electrical capacity
+* - Efficiency specification
+  - Max. electrical efficiency (=ACT_EFF) + the CEH specification
+  - Electrical efficiency in full condensing mode (=ACT_EFF) + the CEH specification
+  - Total efficiency in full CHP mode (=ACT_EFF) + the CEH specification
+  - Electrical efficiency in condensing mode + total efficiency in full CHP mode
+* - Investment \& fixed O&M costs
+  - Per electrical capacity
+  - Per electrical capacity
+  - Per electrical+heat capacity
+  - Per electrical capacity
+* - Variable costs
+  - Per activity (see above)
+  - Per activity (see above)
+  - Per activity (see above)
+  - Per activity (see above)
+* - Emission factors defined per \'ACT\'
+  - Applied directly to the activity levels
+  - Applied to the PCG flows
+  - Applied to the PCG flows
+  - Applied to the PCG flows
+```
 
 ## Inter-regional exchange processes 
 
@@ -168,6 +155,7 @@ In TIMES, the inter-regional trading structure of a given commodity basically co
 ```{figure} assets/image12.png
 :name: trading-subnetwork-exchange
 :align: center
+
 General structure of the pair-wise specification of the trading sub-network allowed in TIMES for a single exchange process.
 ```
 
@@ -182,6 +170,7 @@ The general structure allowed for the trading sub-networks can be further divide
 ```{figure} assets/image13.png
 :name: bilateral-trade
 :align: center
+
 Case 1: Bi-lateral trade (both R_1 and R_2 qualify as R_M).
 ```
 
@@ -200,6 +189,7 @@ The timeslice levels of the traded commodity may be different in each region (as
 ```{figure} assets/image14.png
 :name: case2-case3-trade
 :align: center
+
 General structure of unidirectional trade into a single import region (Case 2, left) and multidirectional trade from a single export region (Case 3, right)
 ```
 
@@ -263,18 +253,27 @@ All the $top\_ire$ specifications are handled for the user by the user shell (VE
 
 **<ins>Input parameters</ins>**
 
-Input parameters specific to inter-regional exchange processes are listed in Table 19.
+Input parameters specific to inter-regional exchange processes are listed in {numref}`trade-process-modelling-parameters`.
 
-| Attribute name (indexes)               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| $IRE\_FLO$ $(r1,y,p,c1,r2,c2,s2)$      | Coefficient that represents the efficiency of exchange from $r1$ to $r2$, inside an inter-regional process where both regions are internal. Note that separate $IRE\_FLO$ are required for import and export. Default =1 for each $top\_ire$ direction specified. Timeslice $s2$ refers to the region where the commodity arrives. Units: none                                                                                                                                                                           |
-| $IRE\|_FLOSUM$ $(r,y,p,c1,s,ie,c2,io)$ | Special attribute to represent auxiliary consumption ($io='IN'$), or production/emission ($io='OUT'$) of commodity $c2$ due to the import / export (index $ie$) of the commodity $c1$ in region $r$ by an inter-regional process $p$[^36]. It is a fixed $FLO\_SUM$ with (one of) the pcg in that region. These relate commodities on the same side of the process. Auxiliary flows can also be specified on the process activity, by setting $c1='ACT'$ in the $IRE\_FLOSUM$ parameter (or in a $FLO\_EMIS$ parameter). |
-| $IRE\_BND$ $(r1,y,c,s,r2,ie,bd)$       | Bound on the total import/export (index $ie$) into/from internal region $r1$, from/to region $r2$, where region $r2$ may be internal or external^37; $c$ is the name of commodity in region $r1$. Default none.                                                                                                                                                                                                                                                                                                          |
-| $IRE\_XBND$ $(r,y,c,s,ie,bd)$          | Bound on total imports/exports of commodity $c$ in region $r$, to/from all destinations/sources, where $r$ may be an internal or external region. (Default value: none)                                                                                                                                                                                                                                                                                                                                                  |
-| $IRE\_CCVT$ $(r1,c1,r2,c2)$            | Conversion factor between commodity units, from unit of $c1$ in region $r1$ to unit of $c2$ in region $r2$, as part of inter-regional exchanges. Default = 1, when exchange permitted. Units: none.                                                                                                                                                                                                                                                                                                                      |
-| $IRE\_TSCVT$ $(r1,s1,r2,s2)$           | A matrix that transforms timeslices of region $r1$ to region $r2$ as part of inter-regional exchanges, including both internal and external. Default value = 1 when exchange permitted. Units: none.                                                                                                                                                                                                                                                                                                                     |
+```{list-table} Specific TIMES parameters related to the modelling of trade processes.
+:name: trade-process-modelling-parameters
+:header-rows: 1
 
-  : Table 20: Limitations of using standard process parameters for IRE processes.
+* - Attribute name (indexes)
+  - Description
+* - IRE\_FLO (r1,y,p,c1,r2,c2,s2)
+  - Coefficient that represents the efficiency of exchange from $r1$ to $r2$, inside an inter-regional process where both regions are internal. Note that separate $IRE\_FLO$ are required for import and export. Default =1 for each $top\_ire$ direction specified. Timeslice $s2$ refers to the region where the commodity arrives. Units: none
+* - IRE\_FLOSUM (r,y,p,c1,s,ie,c2,io)
+  - Special attribute to represent auxiliary consumption ($io='IN'$), or production/emission ($io='OUT'$) of commodity $c2$ due to the import / export (index $ie$) of the commodity $c1$ in region $r$ by an inter-regional process $p$[^36]. It is a fixed FLO\_SUM with (one of) the pcg in that region. These relate commodities on the same side of the process. Auxiliary flows can also be specified on the process activity, by setting $c1='ACT'$ in the IRE\_FLOSUM parameter (or in a FLO\_EMIS parameter).
+* - IRE\_BND (r1,y,c,s,r2,ie,bd)
+  - Bound on the total import/export (index $ie$) into/from internal region $r1$, from/to region $r2$, where region $r2$ may be internal or external[^37]; $c$ is the name of commodity in region $r1$. Default none.
+* - IRE\_XBND (r,y,c,s,ie,bd)
+  - Bound on total imports/exports of commodity $c$ in region $r$, to/from all destinations/sources, where $r$ may be an internal or external region. (Default value: none)
+* - IRE\_CCVT (r1,c1,r2,c2)
+  - Conversion factor between commodity units, from unit of $c1$ in region $r1$ to unit of $c2$ in region $r2$, as part of inter-regional exchanges. Default = 1, when exchange permitted. Units: none.
+* - IRE\_TSCVT (r1,s1,r2,s2)
+  - A matrix that transforms timeslices of region $r1$ to region $r2$ as part of inter-regional exchanges, including both internal and external. Default value = 1 when exchange permitted. Units: none.
+```
 
 *<ins>Remarks:</ins>*
 1. In market-based trading the $IRE\_FLO$ parameter is taken into account on the export side only (representing the efficiency from the export region to the common marketplace). By using this convention, any bi-lateral exchange can be represented by a fully equivalent market-based exchange simply by choosing one of the two regions to be the marketplace, and adding the corresponding entry to the set $rpc\_market(r,p,c)$. The efficiency of the exports from the market region itself to the marketplace should also be specified with an IRE_FLO parameter, when necessary ($r1=r2=$ market region).
@@ -295,22 +294,46 @@ The rules for defining the availabilities for trade flows can be summarized as f
 
 ### Notes on other attributes for trade processes
 
-There are important limitations of using the parameters for standard processes for IRE processes. The most important limitations are summarized Table 20 with regard to the parameters with the prefixes $ACT\_$, $FLO\_$ and $PRC\_$. In addition, none of the CHP parameters, storage parameters ($STG\_*$), or dispatching parameters ($ACT\_MINLD$, $ACT\_UPS$, $ACT\_CSTUP$, $ACT\_LOSPL$, $ACT\_CSTPL$, $ACT\_TIME$), can be used for IRE processes, and are ignored if used.
+There are important limitations of using the parameters for standard processes for IRE processes. The most important limitations are summarized in {numref}`standard-parameters-limitations-for-ire` with regard to the parameters with the prefixes $ACT\_$, $FLO\_$ and $PRC\_$. In addition, none of the CHP parameters, storage parameters ($STG\_*$), or dispatching parameters ($ACT\_MINLD$, $ACT\_UPS$, $ACT\_CSTUP$, $ACT\_LOSPL$, $ACT\_CSTPL$, $ACT\_TIME$), can be used for IRE processes, and are ignored if used.
 
-| Attribute name | Description                                                                 | Limitations                                                                                                                                                                                       |
-| -------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ACT_EFF        | Activity efficiency                                                         | Can not be used                                                                                                                                                                                   |
-| FLO_BND        | Bound on a process flow variable                                            | The bound will apply to the sum of both imports and exports of the given commodity, or, alternatively, to the net imports when a true commodity group is specified in the parameter (e.g. NRG). |
-| FLO_EFF        | Amount of process flow per unit of other process flow(s) or activity.       | Same as for FLO_EMIS.                                                                                                                                                                             |
-| FLO_EMIS       | Amount of emissions per unit of process flow(s) or activity.                | Can only be used on the activity, by specifying \'ACT\' as the source group.                                                                                                                      |
-| FLO_FR         | Process flow fraction                                                       | Can not be used                                                                                                                                                                                   |
-| FLO_FUNC       | Relationship between 2 groups of flows                                      | Can not be used                                                                                                                                                                                   |
-| FLO_MARK       | Process market share bound                                                  | The bound will apply to import flow if FLO_MARK≥0, and to export flow if FLO_MARK≤0.                                                                                                              |
-| FLO_SHAR       | Process flow share                                                          | Can not be used                                                                                                                                                                                   |
-| FLO_SUM        | Multiplier for a commodity flow in a relationship between 2 groups of flows | Can not be used                                                                                                                                                                                   |
-| PRC_MARK       | Process group-wise market share bound                                       | Same as for FLO_MARK.                                                                                                                                                                             |
+```{list-table} Limitations of using standard process parameters for IRE processes.
+:name: standard-parameters-limitations-for-ire
+:header-rows: 1
 
-  : Table 21: Specific TIMES parameters related to the modelling of storage processes.
+* - Attribute name
+  - Description
+  - Limitations
+* - ACT_EFF
+  - Activity efficiency
+  - Can not be used
+* - FLO_BND
+  - Bound on a process flow variable
+  - The bound will apply to the sum of both imports and exports of the given commodity, or, alternatively, to the net imports when a true commodity group is specified in the parameter (e.g. NRG).
+* - FLO_EFF
+  - Amount of process flow per unit of other process flow(s) or activity.
+  - Same as for FLO_EMIS.
+* - FLO_EMIS
+  - Amount of emissions per unit of process flow(s) or activity.
+  - Can only be used on the activity, by specifying \'ACT\' as the source group.
+* - FLO_FR
+  - Process flow fraction
+  - Can not be used
+* - FLO_FUNC
+  - Relationship between 2 groups of flows
+  - Can not be used
+* - FLO_MARK
+  - Process market share bound
+  - The bound will apply to import flow if FLO_MARK≥0, and to export flow if FLO_MARK≤0.
+* - FLO_SHAR
+  - Process flow share
+  - Can not be used
+* - FLO_SUM
+  - Multiplier for a commodity flow in a relationship between 2 groups of flows
+  - Can not be used
+* - PRC_MARK
+  - Process group-wise market share bound
+  - Same as for FLO_MARK.
+```
 
 Additional remarks with respect to inter-regional trade (IRE) processes:
 - By using the process type indicator \'DISTR\', the activity and capacity of an IRE process will be based on the import flow only, if the same commodity is both imported and exported. In this case also $NCAP\_AFC(c)$ will only apply to the import flow of $c$.
@@ -392,77 +415,37 @@ In order to avoid any arbitrary storage flows on the production or consumption s
 
 **<ins>Input parameters</ins>**
 
-The TIMES input parameters that are specific to storage processes or have a specific functionality for storage processes are summarized in Table 21.
+The TIMES input parameters that are specific to storage processes or have a specific functionality for storage processes are summarized in {numref}`storage-specific-parameters`.
 
-  ------------------ -------------------------------------------------------
-  **Attribute name\  **Description**
-  (indexes)**        
+```{list-table} Specific TIMES parameters related to the modelling of storage processes.
+:name: storage-specific-parameters
+:header-rows: 1
 
-  STG_CHRG\          Exogenous amount assumed to be charged into storage
-  (r,y,p,s)          **p**, in timeslice **s** and year **y**. For timeslice
-                     storage this parameter can be specified for each
-                     period, while for inter-period storage this parameter
-                     is only taken into account for the first period, to
-                     describe the initial content of the storage at the
-                     beginning of the model horizon. Units: Unit of the
-                     storage input flow.
-
-  STG_EFF\           Coefficient that represents the storage efficiency of a
-  (r,y,p)            storage process **p** in region **r**. Applied at the
-                     commodity balance to the output flow.
-
-  STG_LOSS\          Coefficient that represents the annual storage losses
-  (r,y,p,s)          of a storage process **p** in region **r**, as a
-                     fraction of the (average) amount stored, corresponding
-                     to a storage time of one year. If the value specified
-                     is negative, the corresponding annual losses are
-                     interpreted as an annual equilibrium loss (under
-                     exponential decay).
-
-  STG_MAXCYC\        Defines a limit for the storage cycling within each
-  (r,y,p)            period, by giving the maximum number of cycles over the
-                     full lifetime for process **p**, region **r**.
-
-  STG_SIFT\          Defines the storage process **p** as a special
-  (r,y,p,c,s)        load-shifting storage process for commodity **c**, and
-                     defines the maximum fraction of shifted loads in
-                     proportion to the demand. See section 4.3.9 for
-                     additional information.
-
-  STGIN_BND\         Bound on the input flow of commodity **c** of storage
-  (r,y,p,c,s,bd)     process **p** in a timeslice **s**. Units: Unit of the
-                     storage input flow. (Default value: none)
-
-  STGOUT_BND\        Bound on the output flow of commodity **c** of storage
-  (r,y,p,c,s,bd)     process **p** in a timeslice **s**. Units: Unit of the
-                     storage input flow. (Default value: none)
-
-  FLO_FUNC\          Defines the ratio between the flow of commodity **c2**
-  (r,y,p,c1,c2,s)    and the flow of commodity **c1**, in timeslice **s**,
-                     in other words, an efficiency coefficient giving the
-                     flow of commodity **c2** per one unit of flow of
-                     commodity **c1**. For storage processes, can be used
-                     for defining amount of discharge in **c2** per unit of
-                     auxiliary flow of **c1**, or amount of auxiliary flow
-                     of **c2** per unit of charging in **c1**.
-
-  PRC_ACTFLO\        Defines a conversion coefficient between the activity
-  (r,y,p,c)          and the flow in commodity **c**. For storage processes,
-                     PRC_ACTFLO can be used for the commodities in the PCG
-                     in the standard way, but also for defining the amount
-                     of auxiliary flow of **c** per unit of activity.
-
-  NCAP_AFC\          Can be used for defining availability factors for the
-  (r,y,p,cg,tslvl)   process activity (amount stored), process output flow,
-                     or process input flow, or any combination of these. See
-                     Section 6.3 for additional information.
-
-  NCAP_AFCS\         As NCAP_AFC above, but can be specified for individual
-  (r,y,p,cg,s)       timeslices. NCAP_AFCs values override NCAP_AFC values
-                     defined at the same level.
-  ------------------ -------------------------------------------------------
-
-  : Table 22: Limitations of using standard process parameters for storage processes.
+* - Attribute name (indexes)
+  - Description
+* - STG_CHRG (r,y,p,s)
+  - Exogenous amount assumed to be charged into storage **p**, in timeslice **s** and year **y**. For timeslice storage this parameter can be specified for each period, while for inter-period storage this parameter is only taken into account for the first period, to describe the initial content of the storage at the beginning of the model horizon. Units: Unit of the storage input flow.
+* - STG_EFF (r,y,p)
+  - Coefficient that represents the storage efficiency of a storage process **p** in region **r**. Applied at the commodity balance to the output flow.
+* - STG_LOSS (r,y,p,s)
+  - Coefficient that represents the annual storage losses of a storage process **p** in region **r**, as a fraction of the (average) amount stored, corresponding to a storage time of one year. If the value specified is negative, the corresponding annual losses are interpreted as an annual equilibrium loss (under exponential decay).
+* - STG_MAXCYC (r,y,p)
+  - Defines a limit for the storage cycling within each period, by giving the maximum number of cycles over the full lifetime for process **p**, region **r**.
+* - STG_SIFT (r,y,p,c,s)
+  - Defines the storage process **p** as a special load-shifting storage process for commodity **c**, and defines the maximum fraction of shifted loads in proportion to the demand. See section 4.3.9 for additional information.
+* - STGIN_BND (r,y,p,c,s,bd)
+  - Bound on the input flow of commodity **c** of storage process **p** in a timeslice **s**. Units: Unit of the storage input flow. (Default value: none)
+* - STGOUT_BND (r,y,p,c,s,bd)
+  - Bound on the output flow of commodity **c** of storage process **p** in a timeslice **s**. Units: Unit of the storage input flow. (Default value: none)
+* - FLO_FUNC (r,y,p,c1,c2,s)
+  - Defines the ratio between the flow of commodity **c2** and the flow of commodity **c1**, in timeslice **s**, in other words, an efficiency coefficient giving the flow of commodity **c2** per one unit of flow of commodity **c1**. For storage processes, can be used for defining amount of discharge in **c2** per unit of auxiliary flow of **c1**, or amount of auxiliary flow of **c2** per unit of charging in **c1**.
+* - PRC_ACTFLO (r,y,p,c)
+  - Defines a conversion coefficient between the activity and the flow in commodity **c**. For storage processes, PRC_ACTFLO can be used for the commodities in the PCG in the standard way, but also for defining the amount of auxiliary flow of **c** per unit of activity.
+* - NCAP_AFC (r,y,p,cg,tslvl)
+  - Can be used for defining availability factors for the process activity (amount stored), process output flow, or process input flow, or any combination of these. See Section 6.3 for additional information.
+* - NCAP_AFCS (r,y,p,cg,s)
+  - As NCAP_AFC above, but can be specified for individual timeslices. NCAP_AFCs values override NCAP_AFC values defined at the same level.
+```
 
 ### Availability factors for storage processes
 
@@ -474,71 +457,57 @@ The rules for defining the availabilities for storage flows/activity can be summ
 - $NCAP\_AFC(r,y,p,'ACT',tsl)$ can additionally be used for bounding the activity (the amount stored); in this case one must bear in mind that any capacity expressed in power units (e.g. MW/GW) is assumed to represent a gross storage capacity equivalent to the amount produced by full power during one full year/week/day for SEASON/WEEKLY/DAYNITE level storage processes, respectively, assuming $STG\_EFF=1$. Knowing this, the availability factor can be adjusted to correspond to the assumed real storage capacity. For example, a capacity of 1 GW is assumed to represent a storage capacity of 24 GWh for a DAYNITE storage, and if the real daily storage capacity is, say 8 GWh/GW, the maximum availability factor should be $0.333/STG\_EFF$, on the DAYNITE level.
 
 *<ins>Remarks:</ins>*
-1.  As any storage process has only a single capacity variable, the assumption is that the availabilities specified for the output/input flows and the activity are all proportional to the same capacity.
-2. Note that the availability factors defined by $NCAP\_AFC$ are multiplied by any $NCAP\_AF$ / $NCAP\_AFS$ / $NCAP\_AFA$ value if defined for the same timeslice.
+1. As any storage process has only a single capacity variable, the assumption is that the availabilities specified for the output/input flows and the activity are all proportional to the same capacity.
+2. Note that the availability factors defined by NCAP\_AFC are multiplied by any NCAP\_AF / NCAP\_AFS / NCAP\_AFA value if defined for the same timeslice.
 
 ### Notes on other attributes for storage processes
 
-There are important limitations of using standard processes parameters for storage processes. The most important limitations are summarized in Table 22, with regard to the parameters with the prefixes $ACT\_$, $FLO\_$ and $PRC\_$. In addition, none of the CHP parameters, IRE parameters ($IRE\_$), or dispatching parameters ($ACT\_MINLD$, $ACT\_UPS$, $ACT\_CSTUP$, $ACT\_LOSPL$, $ACT\_CSTPL$, $ACT\_TIME$), can be used for storage processes, and are ignored if used.
+There are important limitations of using standard processes parameters for storage processes. The most important limitations are summarized in {numref}`standard-parameters-limitations-for-storage`, with regard to the parameters with the prefixes $ACT\_$, $FLO\_$ and $PRC\_$. In addition, none of the CHP parameters, IRE parameters ($IRE\_$), or dispatching parameters (ACT\_MINLD, ACT\_UPS, ACT\_CSTUP, ACT\_LOSPL, ACT\_CSTPL, ACT\_TIME), can be used for storage processes, and are ignored if used.
 
-  ------------------- ------------------------------- --------------------------
-  **Attribute name**  **Description**                 **Limitations**
+```{list-table} Limitations of using standard process parameters for storage processes.
+:name: standard-parameters-limitations-for-storage
+:header-rows: 1
 
-  ACT_EFF             Activity efficiency             Can not be used
-
-  FLO_BND             Bound on a process flow         Can only be used for
-                      variable                        bounding auxiliary storage
-                                                      flows.
-
-  FLO_COST            Added variable cost for         Can only be used for the
-                      commodity flow                  charging (input) flow(s),
-                                                      and for all auxiliary
-                                                      flows.
-
-  FLO_DELIV           Delivery cost for commodity     Can only be used for the
-                      flow                            discharge (output)
-                                                      flow(s), and for all
-                                                      auxiliary flows.
-
-  FLO_EFF,\           Amount of process flow per unit Can only be used for
-  FLO_EMIS\           of other process flow(s) or     defining an auxiliary flow
-  (r,y,p,cg,c,s)      activity.                       per unit of activity, by
-                                                      specifying \'ACT\' as the
-                                                      source group (cg).
-
-  FLO_FR              Process flow fraction           Can only be used for
-                                                      auxiliary storage flows.
-
-  FLO_FUNC            Relationship between 2 groups   Can only be used for
-                      of flows                        defining auxiliary storage
-                                                      flows.
-
-  FLO_MARK            Process market share bound      For a stored commodity,
-                                                      the bound will apply to
-                                                      discharge flow when
-                                                      FLO_MARK≥0, and to
-                                                      charging flow if
-                                                      FLO_MARK≤0.
-
-  FLO_SHAR\           Process flow share              Can only be used among
-  (r,y,p,c,cg,s,bd)                                   auxiliary flows, and for
-                                                      bounding the output flow
-                                                      (c) in proportion to the
-                                                      activity (cg=\'ACT\')
-
-  FLO_SUM             Multiplier for a commodity flow Can only be used among
-                      in a relationship between 2     auxiliary flows.
-                      groups of flows                 
-
-  FLO_TAX, FLO_SUB    Tax/subsidy for the             Can only be used for
-                      production/use of commodity by  auxiliary storage flows
-                      process                         
-
-  PRC_MARK            Process group-wise market share Same limitations as for
-                      bound                           FLO_MARK.
-  ------------------- ------------------------------- --------------------------
-
-  : Table 25. User constraint modifier attributes available in TIMES.
+* - Attribute name
+  - Description
+  - Limitations
+* - ACT_EFF
+  - Activity efficiency
+  - Can not be used
+* - FLO_BND
+  - Bound on a process flow variable
+  - Can only be used for bounding auxiliary storage flows.
+* - FLO_COST
+  - Added variable cost for commodity flow
+  - Can only be used for the charging (input) flow(s), and for all auxiliary flows.
+* - FLO_DELIV
+  - Delivery cost for commodity flow
+  - Can only be used for the discharge (output) flow(s), and for all auxiliary flows.
+* - FLO_EFF, FLO_EMIS (r,y,p,cg,c,s)
+  - Amount of process flow per unit of other process flow(s) or activity.
+  - Can only be used for defining an auxiliary flow per unit of activity, by specifying \'ACT\' as the source group (cg).
+* - FLO_FR
+  - Process flow fraction
+  - Can only be used for auxiliary storage flows.
+* - FLO_FUNC
+  - Relationship between 2 groups of flows
+  - Can only be used for defining auxiliary storage flows.
+* - FLO_MARK
+  - Process market share bound
+  - For a stored commodity, the bound will apply to discharge flow when FLO_MARK≥0, and to charging flow if FLO_MARK≤0.
+* - FLO_SHAR (r,y,p,c,cg,s,bd)
+  - Process flow share
+  - Can only be used among auxiliary flows, and for bounding the output flow (c) in proportion to the activity (cg=\'ACT\')
+* - FLO_SUM
+  - Multiplier for a commodity flow in a relationship between 2 groups of flows
+  - Can only be used amongauxiliary flows.
+* - FLO_TAX, FLO_SUB
+  - Tax/subsidy for the production/use of commodity by process
+  - Can only be used forauxiliary storage flows
+* - PRC_MARK
+  - Process group-wise market share bound
+  - Same limitations as for FLO_MARK.
+```
 
 *<ins>Additional remark on peaking equations</ins>*
 
@@ -564,3 +533,10 @@ The following types of costs can be modelled for load-shifting processes:
 - Capacity cost (cost on the discharge load capacity, using $NCAP\_COST$);
 - Fixed O&M cost (cost on the discharge load capacity, using $NCAP\_FOM$);
 - Cost of shifting of one unit of demand load by one hour, forward (UP) and/or backward (LO) (using $ACT\_CSTRMP$).
+
+
+[^35]: The activity remains constant over the iso-fuel line, but the electricity output varies when moving along it. Maximum electrical output is thus usually the most convenient quantity along this line for defining the basis of the process activity and capacity. This choice should then be consistently reflected in the input data (see Table 18).
+
+[^36]: The indexing of auxiliary consumption flows or emissions of inter-regional exchange processes is illustrated in the figure below.
+
+[^37]: The equation EQ(l)\_XBND may have an external regional as region index (bounding the import from one external regions to all other regions).

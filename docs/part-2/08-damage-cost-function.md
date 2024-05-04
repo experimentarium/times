@@ -111,6 +111,7 @@ All the parameters for describing damage functions are available in the VEDA-FE 
 
 The input parameters are listed in Table B-1. 
 
+```{list-tables} Table B-1. Input parameters for the TIMES Damage Cost Functions.
 +---------+--------+-----------+----------+--------------+-----------+
 | **Input | **R    | **Units / | **       | **D          | *         |
 | para    | elated | Ranges &  | Instance | escription** | *Affected |
@@ -187,6 +188,7 @@ The input parameters are listed in Table B-1.
 |         |        |           |          | defined with |           |
 |         |        |           |          | bd=\'LO\'.   |           |
 +---------+--------+-----------+----------+--------------+-----------+
+```
 
 ### Reporting parameters
 
@@ -201,23 +203,17 @@ These parameters are included in the .vdd files that describe the parameters to 
 
 The damage costs are always reported by using the accurate non-linear expressions, even if the linearized formulation is chosen for the augmented objective function.
 
-+-----------------+----------------------------------------------------+
-| Table           |                                                    |
-|                 |                                                    |
-|  B-2. Reporting |                                                    |
-| parameters for  |                                                    |
-| the TIMES       |                                                    |
-| Damage cost     |                                                    |
-| functions.      |                                                    |
-+-----------------+----------------------------------------------------+
-| **Parameter**   | **Description**                                    |
-+-----------------+----------------------------------------------------+
-| CST_DAM(r,t,c)  | Damage costs by region, period and emission        |
-|                 | (standard TIMES)                                   |
-+-----------------+----------------------------------------------------+
-| SCST_DAM        | Damage costs by region, period and emission        |
-| (w,r,t,c)       | (stochastic TIMES)                                 |
-+-----------------+----------------------------------------------------+
+```{list-table} Reporting parameters for the TIMES Damage cost functions.
+:name: dam-reporting-parameters
+:header-rows: 1
+
+* - Parameter
+  - Description
+* - CST_DAM (r,t,c)
+  - Damage costs by region, period and emission(standard TIMES)
+* - SCST_DAM (w,r,t,c)
+  - Damage costs by region, period and emission (stochastic TIMES)
+```
 
 ## Examples
 
@@ -271,21 +267,21 @@ Example of a linearized damage function with 1+5+1+3 steps (one zero cost step, 
 
 ## Variables
 
-There are only two sets of new variables in the damage cost formulation, VAR_DAM and VAR_OBJDAM, which are shown below in Table B-3. The variables VAR_DAM represent the steps in the emissions in each period. In the linearized formulation, there are DAM_STEP(\...,\'LO\') number of step variables on the lower side and DAM_STEP(\...\'UP\') number of step variables on the higher side of emissions. In addition, one step variable of type \'FX\' corresponds to the middle step that includes the reference level of emissions, and an optional additional step variable of type \'FX\' corresponds to the zero-damage fraction of emissions, as defined by the difference between DAM_BQTY(..) and DAM_VOC(\...,\'LO\').
+There are only two sets of new variables in the damage cost formulation, VAR_DAM and VAR_OBJDAM, which are shown below in {numref}`dam-variables`. The variables VAR_DAM represent the steps in the emissions in each period. In the linearized formulation, there are DAM_STEP(\...,\'LO\') number of step variables on the lower side and DAM_STEP(\...\'UP\') number of step variables on the higher side of emissions. In addition, one step variable of type \'FX\' corresponds to the middle step that includes the reference level of emissions, and an optional additional step variable of type \'FX\' corresponds to the zero-damage fraction of emissions, as defined by the difference between DAM_BQTY(..) and DAM_VOC(\...,\'LO\').
 
 The variables VAR_OBJDAM represent the total discounted damage costs by region. The undiscounted costs in each period described in Section 2 are discounted and summed over all periods and emissions in each region. As emissions are in TIMES assumed to be constant within each period, damage costs are likewise assumed to be constant within each period.
 
-  -----------------------------------------------------------------------------
-  **Variable           **Variable Description**
-  (Indexes)**          
-  -------------------- --------------------------------------------------------
-  VAR_DAM\             The emission step variable for the damage function of
-  (r,t,c,bd,j)         commodity **c** in region **r**, for each step **j** in
-                       each direction **bd**.
+```{list-table} Model variables specific to the Damage Cost Functions.
+:name: dam-variables
+:header-rows: 1
 
-  VAR_OBJ\             The variable is equal to the sum of the total discounted
-  (r,\'OBJDAM\',cur)   damage costs in each region **r** with currency **cur**.
-  -----------------------------------------------------------------------------
+* - Variable (Indexes)
+  - Variable Description
+* - VAR_DAM (r,t,c,bd,j)
+  - The emission step variable for the damage function of commodity **c** in region **r**, for each step **j** in each direction **bd**.
+* - VAR_OBJ (r,\'OBJDAM\',cur)
+  - The variable is equal to the sum of the total discounted damage costs in each region **r** with currency **cur**.
+```
 
 ### VAR_DAMAGE(r,t,c,bd,j)
 
@@ -313,22 +309,23 @@ The variables VAR_OBJDAM represent the total discounted damage costs by region. 
 
 ## Equations
 
-There are two blocks of equations generated for damage cost functions, whenever they are included in the objective function. The two equations related to the damage functions are listed and briefly described below in Table B-4. The equations include the balance of stepped emissions, the objective component for damage costs, and the augmented total objective function.
+There are two blocks of equations generated for damage cost functions, whenever they are included in the objective function. The two equations related to the damage functions are listed and briefly described below in {numref}`dam-constraints`. The equations include the balance of stepped emissions, the objective component for damage costs, and the augmented total objective function.
 
 In addition, the standard TIMES objective function, **EQ_OBJ**, is augmented by the present value of the damage costs, as defined by the equation EQ_OBJDAM.
 
 We now give the formulations of these constraints.
 
-  -------------------------------------------------------------------------
-  **Constraints   **Constraint Description**
-  (Indexes)**     
-  --------------- ---------------------------------------------------------
-  EQ_DAMAGE\      The balance equation between the stepped emission
-  (r,t,c)         variables and the total emissions in each period.
+```{list-table} Constraints specific to damage costs (in the GAMS file eqdamage.mod).
+:name: dam-constraints
+:header-rows: 1
 
-  EQ_OBJDAM\      The total discounted damage costs by region, which will
-  (r,cur)         be added as a component to the objective function.
-  -------------------------------------------------------------------------
+* - Constraints (Indexes)
+  - Constraint Description
+* - EQ_DAMAGE (r,t,c)
+  - The balance equation between the stepped emission variables and the total emissions in each period.
+* - EQ_OBJDAM (r,cur) 
+  - The total discounted damage costs by region, which will be added as a component to the objective function.
+```
 
 ### EQ_DAMAGE(r,t,c)
 
@@ -439,3 +436,16 @@ Loulou, R., Goldstein, G. & Noble, K. 2004. *Documentation for the MARKAL Family
 Loulou, R., Remme, U., Kanudia, A., Lehtilä, A. & Goldstein, G. 2005. *Documentation for the TIMES Model*. Energy Technology Systems Ananlysis Programme (ETSAP), April 2005. <http://www.iea-etsap.org/web/Documentation.asp>
 
 Nemhauser, G.L., Rinnooy Kan, A.H.G. & Todd, M.J. (eds.) 1989. Handbooks in Operations Research and Management Science, Vol I: Optimization. North-Holland.
+
+
+[^48]: The first row contains the parameter name, the second row contains in brackets the index domain over which the parameter is defined.
+
+[^49]: This column gives references to related input parameters or sets being used in the context of this parameter as well as internal parameters/sets or result parameters being derived from the input parameter.
+
+[^50]: This column lists the unit of the parameter, the possible range of its numeric value \[in square brackets\] and the inter-/extrapolation rules that apply.
+
+[^51]: An indication of circumstances for which the parameter is to be provided or omitted.
+
+[^52]: Equations or variables that are directly affected by the parameter.
+
+[^53]: Abbreviation i/e = inter-/extrapolation

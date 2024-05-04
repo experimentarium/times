@@ -10,475 +10,176 @@ In this chapter we provide the data and modeling details associated with modelin
 
 ## Sets, Switches and Parameters
 
-Like all other aspects of TIMES the user describes the ETL components of the energy system by means of a Set and the Parameters and Switches described in this chapter. Table C-1 and Table C-2 below describe the User Input Parameters, and the Matrix Coefficient and Internal Model Sets and Parameters, respectively, that are associated with the Endogenous Technological Learning option. Note that the special clustered learning ETL option requires one additional User Input Parameter (ETL-CLUSTER), and two additional Matrix Coefficient/Internal Model Parameters (CLUSTER and NTCHTEG).
+Like all other aspects of TIMES the user describes the ETL components of the energy system by means of a Set and the Parameters and Switches described in this chapter. {numref}`etl-user-input-parameters` and {numref}`etl-internal-parameters` below describe the User Input Parameters, and the Matrix Coefficient and Internal Model Sets and Parameters, respectively, that are associated with the Endogenous Technological Learning option. Note that the special clustered learning ETL option requires one additional User Input Parameter (ETL-CLUSTER), and two additional Matrix Coefficient/Internal Model Parameters (CLUSTER and NTCHTEG).
 
 Besides the basic data described in Table the user controls whether or not the ETL component is activated by means of the \$SET ETL 'YES' switch. This switch is provided by the data handling system when the user indicates that the ETL option is to be included in a run. This permits the easy exclusion of the feature if the user does not want to perform a MIP solve without having to remove the ETL data.
 
-+-------+-------+--------+--------+---------+-------------------------+
-| **    | **    | **R    | *      | **Ins   | **Description**         |
-| Input | Alias | elated | *Units | tance** |                         |
-| P     | /     | Parame | /Range |         |                         |
-| arame | Int   | ters** | &**    | (       |                         |
-| ter** | ernal |        |        | Require |                         |
-|       | N     |        | **Defa | d/Omit/ |                         |
-| **(   | ame** |        | ults** | Special |                         |
-| Index |       |        |        | Cond    |                         |
-| es)** |       |        |        | itions) |                         |
-+=======+=======+========+========+=========+=========================+
-| >     | TL_   | *PAT*  | -      | -   Re  | The initial cumulative  |
-| CCAP0 | CCAP0 |        |  Units | quired, | capacity (starting      |
-| >     |       | *C     |     of |         | point on the learning   |
-| >     |       | COST0* |     ca |   along | curve) for a            |
-| (r,p) |       |        | pacity |         | (non-resource)          |
-|       |       |        |        |    with | technology that is      |
-|       |       |        | (e.g., |     the | modeled as one for      |
-|       |       |        |        |         | which endogenous        |
-|       |       |        |    GW, |   other | technology learning     |
-|       |       |        |        |     ETL | (ETL) applies. Learning |
-|       |       |        |  PJa). |         | only begins once this   |
-|       |       |        |        |   input | level of installed      |
-|       |       |        | -      |         | capacity is realized.   |
-|       |       |        |   \[op |    para |                         |
-|       |       |        | en\];\ | meters, | -   The CCAP0 parameter |
-|       |       |        |     no |     for |     appears as the      |
-|       |       |        |     de |         |     right-hand-side of  |
-|       |       |        | fault. |    each |     the cumulative      |
-|       |       |        |        |     l   |     capacity definition |
-|       |       |        |        | earning |     constraint          |
-|       |       |        |        |     tec |     (EQ_CUINV).         |
-|       |       |        |        | hnology |                         |
-|       |       |        |        |         | -   Note that if the    |
-|       |       |        |        |  (TEG). |     NCAP_PASTI          |
-|       |       |        |        |         |     parameter is        |
-|       |       |        |        |         |     specified for an    |
-|       |       |        |        |         |     ETL technology,     |
-|       |       |        |        |         |     then its value in   |
-|       |       |        |        |         |     the first period    |
-|       |       |        |        |         |     should match the    |
-|       |       |        |        |         |     value of CCAP0,     |
-|       |       |        |        |         |     otherwise an        |
-|       |       |        |        |         |     infeasibility will  |
-|       |       |        |        |         |     occur.              |
-+-------+-------+--------+--------+---------+-------------------------+
-| >     | TL_   | *C     | -      | -   Re  | The maximum cumulative  |
-| CCAPM | CCAPM | COSTM* |  Units | quired, | capacity (ending point  |
-| >     |       |        |     of |         | on the learning curve)  |
-| >     |       |        |     ca |   along | for a (non-resource)    |
-| (r,p) |       |        | pacity |         | technology that is      |
-|       |       |        |        |    with | modeled as one for      |
-|       |       |        | (e.g., |     the | which endogenous        |
-|       |       |        |        |         | technology learning     |
-|       |       |        |    GW, |   other | (ETL) applies.          |
-|       |       |        |        |     ETL |                         |
-|       |       |        |  PJa). |         | -   The parameter CCAPM |
-|       |       |        |        |   input |     does not appear in  |
-|       |       |        | -      |         |     any of the ETL      |
-|       |       |        |   \[op |    para |     constraints, but    |
-|       |       |        | en\];\ | meters, |     its value affects   |
-|       |       |        |     no |     for |     the values of a     |
-|       |       |        |     d  |         |     number of internal  |
-|       |       |        | efault |    each |     parameters that     |
-|       |       |        |        |     l   |     directly contribute |
-|       |       |        |        | earning |     to one or more of   |
-|       |       |        |        |     tec |     the ETL             |
-|       |       |        |        | hnology |     constraints.        |
-|       |       |        |        |         |                         |
-|       |       |        |        |  (TEG). |                         |
-+-------+-------+--------+--------+---------+-------------------------+
-| > TEG | TEG   | *      | -      | -   R   | An indicator (always 1) |
-| >     |       | ETL-CU |   Indi | equired | that a process is       |
-| >     |       | MCAP0* | cator. |     to  | modeled as one for      |
-| \(p\) |       |        |        |     i   | which endogenous        |
-|       |       | *ET    | -   \  | dentify | technology learning     |
-|       |       | L-CUMC | [1\];\ |     the | (ETL) applies.          |
-|       |       | APMAX* |     no |     l   |                         |
-|       |       |        |     de | earning | -   The set TEG         |
-|       |       | *E     | fault. |         |     controls the        |
-|       |       | TL-INV |        |  techno |     generation of the   |
-|       |       | COST0* |        | logies. |     ETL constraints.    |
-|       |       |        |        |         |     Each of the ETL     |
-|       |       | *ETL-N |        | -   For |     constraints is      |
-|       |       | UMSEG* |        |         |     generated only for  |
-|       |       |        |        |    each |     those technologies  |
-|       |       | *ET    |        |     TEG |     that are in set     |
-|       |       | L-PROG |        |     the |     TEG.                |
-|       |       | RATIO* |        |         |                         |
-|       |       |        |        |   other |                         |
-|       |       |        |        |     ETL |                         |
-|       |       |        |        |         |                         |
-|       |       |        |        |   input |                         |
-|       |       |        |        |     par |                         |
-|       |       |        |        | ameters |                         |
-|       |       |        |        |     are |                         |
-|       |       |        |        |     re  |                         |
-|       |       |        |        | quired. |                         |
-+-------+-------+--------+--------+---------+-------------------------+
-| > SC0 | T     | *PAT*  | -      | -   Re  | The investment cost     |
-| >     | L_SC0 |        |   Base | quired, | corresponding to the    |
-| >     |       |        |        |         | starting point on the   |
-| (r,p) |       |        |   year |   along | learning curve for a    |
-|       |       |        |     mo |         | technology that is      |
-|       |       |        | netary |    with | modeled as one for      |
-|       |       |        |        |     the | which endogenous        |
-|       |       |        |  units |         | technology learning     |
-|       |       |        |        |   other | (ETL) applies.          |
-|       |       |        |    per |     ETL |                         |
-|       |       |        |        |         | -   The parameter SC0   |
-|       |       |        |   unit |   input |     does not appear in  |
-|       |       |        |     of |         |     any of the ETL      |
-|       |       |        |     ca |    para |     constraints, but    |
-|       |       |        | pacity | meters, |     its value affects   |
-|       |       |        |        |     for |     the values of a     |
-|       |       |        | (e.g., |         |     number of internal  |
-|       |       |        |        |    each |     parameters that     |
-|       |       |        |   2000 |     l   |     directly contribute |
-|       |       |        |        | earning |     to one or more of   |
-|       |       |        | M\$/GW |     tec |     the ETL             |
-|       |       |        |     or | hnology |     constraints.        |
-|       |       |        |        |         |                         |
-|       |       |        |  PJa). |  (TEG). |                         |
-|       |       |        |        |         |                         |
-|       |       |        | -      |         |                         |
-|       |       |        |   \[op |         |                         |
-|       |       |        | en\];\ |         |                         |
-|       |       |        |     no |         |                         |
-|       |       |        |     de |         |                         |
-|       |       |        | fault. |         |                         |
-+-------+-------+--------+--------+---------+-------------------------+
-| > SEG | T     | *ALPH* | -      | -   Re  | The number of segments  |
-| >     | L_SEG |        | Number | quired, | to be used in           |
-| >     |       | *BETA* |     of |         | approximating the       |
-| (r,p) |       |        |        |   along | learning curve for a    |
-|       |       | *      | steps. |         | technology that is      |
-|       |       | CCAPK* |        |    with | modeled as one for      |
-|       |       |        | -      |     the | which endogenous        |
-|       |       | *C     |    \[1 |         | technology learning     |
-|       |       | COSTK* | -6\];\ |   other | (ETL) applies.          |
-|       |       |        |     no |     ETL |                         |
-|       |       |        |     de |         | -   The SEG parameter   |
-|       |       |        | fault. |   input |     appears in all of   |
-|       |       |        |        |         |     the ETL constraints |
-|       |       |        |        |    para |     that are related to |
-|       |       |        |        | meters, |     piecewise linear    |
-|       |       |        |        |     for |     approximation of    |
-|       |       |        |        |         |     the learning curve  |
-|       |       |        |        |    each |     (EQ_CC, EQ_COS,     |
-|       |       |        |        |     l   |     EQ_EXPE1, EQ_EXPE2, |
-|       |       |        |        | earning |     EQ_LA1, EQ_LA2).    |
-|       |       |        |        |     tec |                         |
-|       |       |        |        | hnology |                         |
-|       |       |        |        |         |                         |
-|       |       |        |        |  (TEG). |                         |
-+-------+-------+--------+--------+---------+-------------------------+
-| >     | TL    | *      | -   D  | -   Re  | The "progress ratio"    |
-|  PRAT | _PRAT | CCAPK* | ecimal | quired, | for a technology that   |
-| >     |       |        |        |         | is modeled as one for   |
-| >     |       | *C     |    fra |   along | which endogenous        |
-| (r,p) |       | COST0* | ction. |         | technology learning     |
-|       |       |        |        |    with | (ETL) applies. The      |
-|       |       | *C     | -      |     the | progress ratio, which   |
-|       |       | COSTM* |    \[0 |         | is referred to as the   |
-|       |       |        | -1\];\ |   other | learning rate, is       |
-|       |       | *PAT*  |     no |     ETL | defined as the ratio of |
-|       |       |        |     de |         | the change in unit      |
-|       |       | *PBT*  | fault. |   input | investment cost each    |
-|       |       |        |        |         | time cumulative         |
-|       |       |        |        |    para | investment in an ETL    |
-|       |       |        |        | meters, | technology doubles.     |
-|       |       |        |        |     for | That is, if the initial |
-|       |       |        |        |         | unit investment cost is |
-|       |       |        |        |    each | SC0 and the progress    |
-|       |       |        |        |     l   | ratio is PRAT, then     |
-|       |       |        |        | earning | after cumulative        |
-|       |       |        |        |     tec | investment is doubled   |
-|       |       |        |        | hnology | the unit investment     |
-|       |       |        |        |         | cost will be PRAT \*    |
-|       |       |        |        |  (TEG). | SC0.                    |
-|       |       |        |        |         |                         |
-|       |       |        |        |         | -   The parameter PRAT  |
-|       |       |        |        |         |     does not appear in  |
-|       |       |        |        |         |     any of the ETL      |
-|       |       |        |        |         |     constraints, but    |
-|       |       |        |        |         |     its value affects   |
-|       |       |        |        |         |     the values of a     |
-|       |       |        |        |         |     number of internal  |
-|       |       |        |        |         |     parameters (ALPH,   |
-|       |       |        |        |         |     BETA, CCAPK,        |
-|       |       |        |        |         |     CCOST0) that        |
-|       |       |        |        |         |     directly contribute |
-|       |       |        |        |         |     to one or more of   |
-|       |       |        |        |         |     the ETL             |
-|       |       |        |        |         |     constraints.        |
-+-------+-------+--------+--------+---------+-------------------------+
-| > CL  | TL_CL | *TL_MR | -   D  | -   P   | The "cluster mapping    |
-| USTER | USTER | CLUST* | ecimal | rovided | and coupling factor"    |
-| >     |       |        |        |     to  | for a technology that   |
-| > (r  | NCL   |        |    fra |         | is modeled as a         |
-| ,p,p) | USTER |        | ction. |   model | [clustered]{.underline} |
-|       |       |        |        |     cl  | technology is           |
-|       |       |        | -      | ustered | associated with a       |
-|       |       |        |    \[0 |     end | [key]{.underline}       |
-|       |       |        | -1\];\ | ogenous | learning technology to  |
-|       |       |        |     no |     tec | which endogenous        |
-|       |       |        |     de | hnology | technology learning     |
-|       |       |        | fault. |     le  | (ETL) applies.          |
-|       |       |        |        | arning. | Clustered technologies  |
-|       |       |        |        |         | use the key ETL         |
-|       |       |        |        | -       | technology, and are     |
-|       |       |        |        |    Each | subject to learning via |
-|       |       |        |        |     of  | the key technology.     |
-|       |       |        |        |     the |                         |
-|       |       |        |        |     l   | -   The first index of  |
-|       |       |        |        | earning |     the CLUSTER         |
-|       |       |        |        |     par |     parameter is a      |
-|       |       |        |        | ameters |     [key]{.underline}   |
-|       |       |        |        |         |     learning            |
-|       |       |        |        |    must |     technology.         |
-|       |       |        |        |         |                         |
-|       |       |        |        |    also | -   The second index of |
-|       |       |        |        |     be  |     the CLUSTER         |
-|       |       |        |        |     sp  |     parameter is a      |
-|       |       |        |        | ecified |                         |
-|       |       |        |        |     for | [clustered]{.underline} |
-|       |       |        |        |     the |     technology that is  |
-|       |       |        |        |     key |     associated with     |
-|       |       |        |        |     l   |     this                |
-|       |       |        |        | earning |     [key]{.underline}   |
-|       |       |        |        |         |     learning            |
-|       |       |        |        |    tech |     technology.         |
-|       |       |        |        | nology. |                         |
-|       |       |        |        |         | -   In general there    |
-|       |       |        |        |         |     may be several      |
-|       |       |        |        |         |                         |
-|       |       |        |        |         | [clustered]{.underline} |
-|       |       |        |        |         |     technologies each   |
-|       |       |        |        |         |     of which is         |
-|       |       |        |        |         |     associated with the |
-|       |       |        |        |         |     same                |
-|       |       |        |        |         |     [key]{.underline}   |
-|       |       |        |        |         |     learning            |
-|       |       |        |        |         |     technology, and     |
-|       |       |        |        |         |     hence there may be  |
-|       |       |        |        |         |     several instances   |
-|       |       |        |        |         |     of the CLUSTER      |
-|       |       |        |        |         |     parameter each of   |
-|       |       |        |        |         |     which has the same  |
-|       |       |        |        |         |     [key]{.underline}   |
-|       |       |        |        |         |     learning technology |
-|       |       |        |        |         |     as its first index. |
-|       |       |        |        |         |                         |
-|       |       |        |        |         | -   The numerical value |
-|       |       |        |        |         |     of the CLUSTER      |
-|       |       |        |        |         |     parameter indicates |
-|       |       |        |        |         |     the extent of       |
-|       |       |        |        |         |     coupling between    |
-|       |       |        |        |         |     the                 |
-|       |       |        |        |         |                         |
-|       |       |        |        |         | [clustered]{.underline} |
-|       |       |        |        |         |     technology and the  |
-|       |       |        |        |         |     [key]{.underline}   |
-|       |       |        |        |         |     learning technology |
-|       |       |        |        |         |     to which it is      |
-|       |       |        |        |         |     associated.         |
-+-------+-------+--------+--------+---------+-------------------------+
-| > T   |       | *CL    | -   D  | -   See | The multi-region        |
-| L_MRC |       | USTER* | ecimal |         | cluster mapping and     |
-| LUST\ |       |        |        | CLUSTER | coupling factor.        |
-| > (r, |       |        |    fra |         | Similar to CLUSTER, but |
-| teg,r |       |        | ction. |         | may be used to map      |
-| eg,p) |       |        |        |         | technologies p in       |
-|       |       |        | -      |         | multilple regions reg   |
-|       |       |        |    \[0 |         | to key components teg   |
-|       |       |        | -1\];\ |         | in region r. See        |
-|       |       |        |     no |         | CLUSTER.                |
-|       |       |        |     de |         |                         |
-|       |       |        | fault. |         |                         |
-+-------+-------+--------+--------+---------+-------------------------+
+```{list-table} Definition of ETL user input parameters.
+:name: etl-user-input-parameters
+:header-rows: 1
 
-+---------+---+--------------------------------------------------------+
-| *       | * | **Description & Calculations**                         |
-| *Matrix | * |                                                        |
-| C       | T |                                                        |
-| ontrols | y |                                                        |
-| &       | p |                                                        |
-| Coeff   | e |                                                        |
-| icients | * |                                                        |
-| (ind    | * |                                                        |
-| exes)** |   |                                                        |
-+=========+===+========================================================+
-| ALPH    | I | ALPH are the intercepts on the vertical axis of the    |
-|         |   | line segments in the piecewise linear approximation of |
-| (r,k,p) |   | the cumulative cost curve. They are calculated in      |
-|         |   | COEF_ETL.ETL from the starting and ending points of    |
-|         |   | the cumulative cost curve, its assumed form, the       |
-|         |   | number of segments used in its piecewise linear        |
-|         |   | approximation, and the choice of successive interval   |
-|         |   | lengths on the vertical axis to be such that each      |
-|         |   | interval is twice as wide as the preceding one. The    |
-|         |   | parameter ALPH occurs in the ETL equation EQ_COS that  |
-|         |   | defines the piecewise linear approximation to the      |
-|         |   | cumulative cost curve.                                 |
-+---------+---+--------------------------------------------------------+
-| BETA    | I | BETA are the slopes of the line segments in the        |
-|         |   | piecewise linear approximation of the cumulative cost  |
-| (r,k,p) |   | curve. They are calculated in COEF_ETL.ETL from the    |
-|         |   | starting and ending points of the cumulative cost      |
-|         |   | curve, its assumed form, the number of segments used   |
-|         |   | in its piecewise linear approximation, and the choice  |
-|         |   | of successive interval lengths on the vertical axis to |
-|         |   | be such that each interval is twice as wide as the     |
-|         |   | preceding one. The parameter BETA occurs in the ETL    |
-|         |   | equation EQ_COS that defines the piecewise linear      |
-|         |   | approximation to the cumulative cost curve.            |
-+---------+---+--------------------------------------------------------+
-| CCAP0   | A | CCAP0 is the initial cumulative capacity (starting     |
-|         |   | point on the learning curve). The parameter CCAP0      |
-| (r,p)   |   | occurs in the ETL equation EQ_CUINV that defines       |
-|         |   | cumulative capacity in each period.                    |
-+---------+---+--------------------------------------------------------+
-| CCAPK   | I | CCAPK are the break points on the horizontal axis in   |
-|         |   | the piecewise linear approximation of the cumulative   |
-| (k,p)   |   | cost curve. They are calculated in COEF_ETL.ETL from   |
-|         |   | the starting and ending points of the cumulative cost  |
-|         |   | curve, its assumed form, the number of segments used   |
-|         |   | in its piecewise linear approximation, and the choice  |
-|         |   | of successive interval lengths on the vertical axis to |
-|         |   | be such that each interval is twice as wide as the     |
-|         |   | preceding one. The parameter CCAPK occurs in the ETL   |
-|         |   | equations EQ_LA1 and EQ_LA2 whose role is to ensure    |
-|         |   | that variable R_LAMB(r,t,k,p) lies in the k^th^        |
-|         |   | interval, i.e., between CCAPK(r,k-1,p) and             |
-|         |   | CCAPK(r,k,p), when its associated binary variable      |
-|         |   | R_DELTA(r,t,k,p) = 1.                                  |
-+---------+---+--------------------------------------------------------+
-| CCOST0  | I | CCOST0 is the initial cumulative cost (starting point  |
-|         |   | on the learning curve). It is calculated in            |
-| (r,p)   |   | COEF_ETL.ETL from the initial cumulative capacity      |
-|         |   | (CCAP0) and corresponding initial investment cost      |
-|         |   | (user input parameter SC0) and the progress ratio      |
-|         |   | (user input parameter PRAT). The parameter CCOST0      |
-|         |   | occurs in the ETL equation EQ_IC1 that defines first   |
-|         |   | period investment costs (prior to discounting).        |
-+---------+---+--------------------------------------------------------+
-| SEG     | A | The user input parameter SEG is the number of segments |
-|         |   | in the cumulative cost curve. The parameter SEG occurs |
-| (r,p)   |   | in all of those ETL equations that are related to the  |
-|         |   | piecewise linear approximation of the cumulative cost  |
-|         |   | curve.                                                 |
-+---------+---+--------------------------------------------------------+
-| TEG     | S | TEG is the set of technologies to which endogenous     |
-|         |   | technology learning (ETL) applies. Each of the ETL     |
-| \(p\)   |   | equations has set TEG as an index.                     |
-+---------+---+--------------------------------------------------------+
-| CLUSTER | I | The user input parameter CLUSTER (cluster mapping and  |
-|         |   | coupling factor) is only relevant when modeling        |
-| (r,p,p) |   | clustered endogenous technology learning. The          |
-|         |   | parameter occurs in the special ETL cluster equation   |
-|         |   | EQ_CLU that defines investment in new capacity         |
-|         |   | (VAR_NCAP) in the key learning technology as the       |
-|         |   | weighted sum of investments in new capacity of the     |
-|         |   | clustered technologies that are attached to the key    |
-|         |   | technology. (The weights used are the numeric values   |
-|         |   | of the CLUSTER parameter.)                             |
-+---------+---+--------------------------------------------------------+
-| TL_     | I | The user input parameter TL_MRCLUST is only relevant   |
-| MRCLUST |   | when modeling clustered endogenous technology          |
-|         |   | learning. The parameter occurs in the special ETL      |
-| (r,teg  |   | cluster equation EQ_MRCLU that defines investment in   |
-| ,reg,p) |   | new capacity (VAR_NCAP) in the key learning technology |
-|         |   | as the weighted sum of investments in new capacity of  |
-|         |   | the clustered technologies that are attached to the    |
-|         |   | key technology.                                        |
-+---------+---+--------------------------------------------------------+
-| NTCHTEG | I | The parameter NTCHTEG is only relevant when modeling   |
-|         |   | clustered endogenous technology learning. If TEG is an |
-| (r,p)   |   | ETL technology, then NTCHTEG(R,TEG) is the number of   |
-|         |   | clustered technologies that are attached to key        |
-|         |   | technology TEG. NTCHTEG is calculated in COEF_ETL.ETL  |
-|         |   | from the "cluster mapping and coupling factor"         |
-|         |   | (CLUSTER). It occurs in the special ETL cluster        |
-|         |   | equation EQ_CLU.                                       |
-+---------+---+--------------------------------------------------------+
-| PBT     |   | The learning index PBT is an internal parameter        |
-|         |   | calculated in COEF_ETL.ETL. It is derived from the     |
-| (r,p)   |   | progress ratio PRAT using the formula: PBT(r,p) =      |
-|         |   | -log(PRAT(r,p))/log(2). PBT does not occur directly in |
-|         |   | the equations, but is used in the calculation of       |
-|         |   | equation coefficients.                                 |
-+---------+---+--------------------------------------------------------+
-| PAT     |   | The internal parameter PAT describes the specific      |
-|         |   | investment costs of the first unit. It is derived in   |
-| (r,p)   |   | COEF_ETL.ETL using PBT, SC0 and CCAP0. PAT does not    |
-|         |   | occur directly in the equations, but is used in the    |
-|         |   | calculation of equation coefficients.                  |
-+---------+---+--------------------------------------------------------+
-| K       |   | The set K has the members '1'-'6' and is used as       |
-|         |   | indicator for the kink points of the piecewise linear  |
-|         |   | approximation of the cumulative cost curve. The number |
-|         |   | of elements can be changed in the \*run file if        |
-|         |   | desired.                                               |
-+---------+---+--------------------------------------------------------+
-| WEIG    | I | The internal parameter WEIG is calculated in           |
-|         |   | COEF_ETL.ETL and is used as a factor in the            |
-| (r      |   | calculation of the length of the intervals being used  |
-| ,k,prc) |   | in the piecewise linear approximation of the           |
-|         |   | cumulative cost curve. The interval lengths on the     |
-|         |   | vertical axis are chosen in such a way that each       |
-|         |   | interval is twice as wide as the preceding one.        |
-+---------+---+--------------------------------------------------------+
+* - Input Parameter (Indexes)
+  - Alias / Internal Name
+  - Related Parameters
+  - Units/Range & Defaults
+  - Instance (Requid/Omit/Special Conditions)
+  - Description
+* - CCAP0 (r,p)
+  - TL_CCAP0
+  - *PAT*
+  <br>*CCOST0*
+  - Units of capacity (e.g., GW, PJa).
+  <br>\[open\]; no default.
+  - Required, along with the other ETL input parameters, for each learning technology (TEG).
+  - The initial cumulative capacity (starting point on the learning curve) for a (non-resource) technology that is modeled as one for which endogenous technology learning (ETL) applies. Learning only begins once this level of installed capacity is realized.
+  <br>The CCAP0 parameter appears as the right-hand-side of the cumulative capacity definition constraint (EQ_CUINV).
+  <br>Note that if the NCAP_PASTI parameter is specified for an ETL technology, then its value in the first period should match the value of CCAP0, otherwise an infeasibility will occur.
+* - CCAPM (r,p)
+  - TL_CCAPM
+  - *CCOSTM*
+  - Units of capacity (e.g., GW, PJa).
+  <br>\[open\]; no default.
+  - Required, along with the other ETL input parameters, for each learning technology (TEG).
+  - The maximum cumulative capacity (ending point on the learning curve) for a (non-resource) technology that is modeled as one for which endogenous technology learning (ETL) applies.
+  <br>The parameter CCAPM does not appear in any of the ETL constraints, but its value affects the values of a number of internal parameters that directly contribute to one or more of the ETL constraints.
+* - TEG (p)
+  - TEG
+  - *ETL-CUMCAP0*
+  <br>*ETL-CUMCAPMAX*
+  <br>*ETL-INVCOST0*
+  <br>*ETL-NUMSEG*
+  <br>*ETL-PROGRATIO*
+  - Indicator.
+  <br>\[1\]; no default.
+  - Required to identify the learning technologies.
+  <br>For each TEG the other ETL input parameters are required.
+  - An indicator (always 1) that a process is modeled as one for which endogenous technology learning (ETL) applies.
+  <br>The set TEG controls the generation of the ETL constraints. Each of the ETL constraints is generated only for those technologies that are in set TEG.
+* - SC0 (r,p)
+  - TL_SC0
+  - *PAT*
+  - Base year monetary units per unit of capacity (e.g., 2000 M\$/GW or PJa).
+  <br>\[open\]; no default.
+  - Required, along with the other ETL input parameters, for each learning technology (TEG).
+  - The investment cost corresponding to the starting point on the learning curve for a technology that is modeled as one for which endogenous technology learning (ETL) applies.
+  <br>The parameter SC0 does not appear in any of the ETL constraints, but its value affects the values of a number of internal parameters that directly contribute to one or more of the ETL constraints.
+* - SEG (r,p)
+  - TL_SEG
+  - *ALPH*
+  <br>*BETA*
+  <br>*CCAPK*
+  <br>*CCOSTK*
+  - Number of steps.
+  <br>\[1-6\]; no default.
+  - Required, along with the other ETL input parameters, for each learning technology (TEG).
+  - The number of segments to be used in approximating the learning curve for a technology that is modeled as one for which endogenous technology learning (ETL) applies.
+  <br>The SEG parameter appears in all of the ETL constraints that are related to piecewise linear approximation of the learning curve (EQ_CC, EQ_COS, EQ_EXPE1, EQ_EXPE2, EQ_LA1, EQ_LA2).
+* - PRAT (r,p)
+  - TL_PRAT
+  - *CCAPK*
+  <br>*CCOST0*
+  <br>*CCOSTM*
+  <br>*PAT*
+  <br>*PBT*
+  - Decimal fraction.
+  <br>\[0-1\]; no default.
+  - Required, along with the other ETL input parameters, for each learning technology (TEG).
+  - The "progress ratio" for a technology that is modeled as one for which endogenous technology learning (ETL) applies. The progress ratio, which is referred to as the learning rate, is defined as the ratio of the change in unit investment cost each time cumulative investment in an ETL technology doubles. That is, if the initial unit investment cost is SC0 and the progress ratio is PRAT, then after cumulative investment is doubled the unit investment cost will be PRAT \* SC0.
+  <br>The parameter PRAT does not appear in any of the ETL constraints, but its value affects the values of a number of internal parameters (ALPH, BETA, CCAPK, CCOST0) that directly contribute to one or more of the ETL constraints.
+* - CLUSTER (r,p,p)
+  - TL_CLUSTER
+  <br>NCLUSTER
+  - *TL_MRCLUST*
+  - Decimal fraction.
+  <br>\[0-1\]; no default.
+  - Provided to model clustered endogenous technology learning.
+  <br>Each of the learning parameters must also be specified for the key learning technology.
+  - The "cluster mapping and coupling factor" for a technology that is modeled as a [clustered]{.underline} technology is associated with a [key]{.underline} learning technology to which endogenous technology learning (ETL) applies. Clustered technologies use the key ETL technology, and are subject to learning via the key technology.
+  <br>The first index of the CLUSTER parameter is a [key]{.underline} learning technology.
+  <br>The second index of the CLUSTER parameter is a [clustered]{.underline} technology that is associated with this [key]{.underline} learning technology.
+  <br>In general there may be several [clustered]{.underline} technologies each of which is associated with the same [key]{.underline} learning technology, and hence there may be several instances of the CLUSTER parameter each of which has the same [key]{.underline} learning technology as its first index.
+  <br>The numerical value of the CLUSTER parameter indicates the extent of coupling between the [clustered]{.underline} technology and the [key]{.underline} learning technology to which it is associated.
+* - TL_MRCLUST (r,teg,reg,p)
+  - 
+  - *CLUSTER*
+  - Decimal fraction.
+  <br>\[0-1\]; no default.
+  - See CLUSTER
+  - The multi-region cluster mapping and coupling factor. Similar to CLUSTER, but may be used to map technologies p in multilple regions reg to key components teg in region r. See CLUSTER.
+```
+
+```{list-table} ETL-specific matrix coefficient and internal model parameters[^42]
+:name: etl-internal-parameters
+:header-rows: 1
+
+* - Matrix Controls & Coefficients (indexes)
+  - Type
+  - Description & Calculations
+* - ALPH (r,k,p)
+  - I
+  - ALPH are the intercepts on the vertical axis of the line segments in the piecewise linear approximation of the cumulative cost curve. They are calculated in COEF_ETL.ETL from the starting and ending points of the cumulative cost curve, its assumed form, the number of segments used in its piecewise linear approximation, and the choice of successive interval lengths on the vertical axis to be such that each interval is twice as wide as the preceding one. The parameter ALPH occurs in the ETL equation EQ_COS that defines the piecewise linear approximation to the cumulative cost curve.
+* - BETA (r,k,p)
+  - I
+  - BETA are the slopes of the line segments in the piecewise linear approximation of the cumulative cost curve. They are calculated in COEF_ETL.ETL from the starting and ending points of the cumulative cost curve, its assumed form, the number of segments used in its piecewise linear approximation, and the choice of successive interval lengths on the vertical axis to be such that each interval is twice as wide as the preceding one. The parameter BETA occurs in the ETL equation EQ_COS that defines the piecewise linear approximation to the cumulative cost curve.
+* - CCAP0 (r,p)
+  - A
+  - CCAP0 is the initial cumulative capacity (starting point on the learning curve). The parameter CCAP0 occurs in the ETL equation EQ_CUINV that defines cumulative capacity in each period.
+* - CCAPK (k,p)
+  - I
+  - CCAPK are the break points on the horizontal axis in the piecewise linear approximation of the cumulative cost curve. They are calculated in COEF_ETL.ETL from the starting and ending points of the cumulative cost curve, its assumed form, the number of segments used in its piecewise linear approximation, and the choice of successive interval lengths on the vertical axis to be such that each interval is twice as wide as the preceding one. The parameter CCAPK occurs in the ETL equations EQ_LA1 and EQ_LA2 whose role is to ensure that variable R_LAMB(r,t,k,p) lies in the k^th^ interval, i.e., between CCAPK(r,k-1,p) and CCAPK(r,k,p), when its associated binary variable R_DELTA(r,t,k,p) = 1.
+* - CCOST0 (r,p)
+  - I
+  - CCOST0 is the initial cumulative cost (starting point on the learning curve). It is calculated in COEF_ETL.ETL from the initial cumulative capacity (CCAP0) and corresponding initial investment cost (user input parameter SC0) and the progress ratio (user input parameter PRAT). The parameter CCOST0 occurs in the ETL equation EQ_IC1 that defines first period investment costs (prior to discounting).
+* - SEG (r,p)
+  - A
+  - The user input parameter SEG is the number of segments in the cumulative cost curve. The parameter SEG occurs in all of those ETL equations that are related to the piecewise linear approximation of the cumulative cost curve.
+* - TEG (p)
+  - S
+  - TEG is the set of technologies to which endogenous technology learning (ETL) applies. Each of the ETL equations has set TEG as an index.
+* - CLUSTER (r,p,p)
+  - I
+  - The user input parameter CLUSTER (cluster mapping and coupling factor) is only relevant when modeling clustered endogenous technology learning. The parameter occurs in the special ETL cluster equation EQ_CLU that defines investment in new capacity (VAR_NCAP) in the key learning technology as the weighted sum of investments in new capacity of the clustered technologies that are attached to the key technology. (The weights used are the numeric values of the CLUSTER parameter.)
+* - TL_MRCLUST (r,teg,reg,p)
+  - I
+  - The user input parameter TL_MRCLUST is only relevant when modeling clustered endogenous technology learning. The parameter occurs in the special ETL cluster equation EQ_MRCLU that defines investment in new capacity (VAR_NCAP) in the key learning technology as the weighted sum of investments in new capacity of the clustered technologies that are attached to the key technology.
+* - NTCHTEG (r,p)
+  - I
+  - The parameter NTCHTEG is only relevant when modeling clustered endogenous technology learning. If TEG is an ETL technology, then NTCHTEG(R,TEG) is the number of clustered technologies that are attached to key technology TEG. NTCHTEG is calculated in COEF_ETL.ETL from the "cluster mapping and coupling factor" (CLUSTER). It occurs in the special ETL cluster equation EQ_CLU.
+* - PBT (r,p)
+ -
+  - The learning index PBT is an internal parameter calculated in COEF_ETL.ETL. It is derived from the progress ratio PRAT using the formula: PBT(r,p) = -log(PRAT(r,p))/log(2). PBT does not occur directly in the equations, but is used in the calculation of equation coefficients.
+* - PAT (r,p)
+ -
+  - The internal parameter PAT describes the specific investment costs of the first unit. It is derived in COEF_ETL.ETL using PBT, SC0 and CCAP0. PAT does not occur directly in the equations, but is used in the calculation of equation coefficients.
+* - K
+ -
+  - The set K has the members '1'-'6' and is used as indicator for the kink points of the piecewise linear approximation of the cumulative cost curve. The number of elements can be changed in the \*run file if desired.
+* - WEIG (r,k,prc)
+  - I
+  - The internal parameter WEIG is calculated in COEF_ETL.ETL and is used as a factor in the calculation of the length of the intervals being used in the piecewise linear approximation of the cumulative cost curve. The interval lengths on the vertical axis are chosen in such a way that each interval is twice as wide as the preceding one.
+```
 
 ## Variables
 
-The variables that are used to model the Endogenous Technological Learning option in TIMES are presented in Table below. As is the case with the modeling of lumpy investments, the primary role of the variables and equations used to model ETL is to control the standard TIMES investment variable (VAR_NCAP) and the associated dynamic cost of these investments, so ETL is rather self-contained. That is the VAR_NCAP variable links the ETL decisions to the rest of the model, and the VAR_IC investment cost variable determines the associated contribution to the regional investment costs (VAR_OBJINV). Note that the special clustered learning ETL option does not require any additional variables, as compared with the modeling of endogenous technology learning when there are no clusters.
+The variables that are used to model the Endogenous Technological Learning option in TIMES are presented in {numref}`etl-variables`. As is the case with the modeling of lumpy investments, the primary role of the variables and equations used to model ETL is to control the standard TIMES investment variable (VAR_NCAP) and the associated dynamic cost of these investments, so ETL is rather self-contained. That is the VAR_NCAP variable links the ETL decisions to the rest of the model, and the VAR_IC investment cost variable determines the associated contribution to the regional investment costs (VAR_OBJINV). Note that the special clustered learning ETL option does not require any additional variables, as compared with the modeling of endogenous technology learning when there are no clusters.
 
-+------------+---------------------------------------------------------+
-| **Variable | **Variable Description**                                |
-| (          |                                                         |
-| Indexes)** |                                                         |
-+============+=========================================================+
-| > VAR_CCAP | The cumulative investment in capacity for an ETL        |
-| >          | technology. This variable represents the initial        |
-| > (r,t,p)  | cumulative capacity (CCAP0) plus investments in new     |
-|            | capacity made up to and including the current period.   |
-|            | This variable differs from the total installed capacity |
-|            | for a technology (VAR_CAP) in that it includes all      |
-|            | investments in new capacity made up to and including    |
-|            | the current period, whereas the latter only includes    |
-|            | investments that are still available (i.e. whose life   |
-|            | has not expired yet).                                   |
-+------------+---------------------------------------------------------+
-| >          | The cumulative cost of investment in capacity for an    |
-|  VAR_CCOST | ETL technology. The cumulative cost is interpolated     |
-| >          | from the piecewise linear approximation of the          |
-| > (r,t,p)  | cumulative cost curve.                                  |
-+------------+---------------------------------------------------------+
-| >          | Binary variable (takes the value 0 or 1) used for an    |
-|  VAR_DELTA | ETL technology to indicate in which interval of the     |
-| >          | piecewise linear approximation of the cumulative cost   |
-| >          | curve the cumulative investment in capacity (VAR_CCAP)  |
-|  (r,t,p,k) | lies. A value of 1 for this variable for exactly one    |
-|            | interval k indicates that VAR_CCAP lies in the k^th^    |
-|            | interval.                                               |
-+------------+---------------------------------------------------------+
-| > VAR_IC   | The portion of the cumulative cost of investment in     |
-| >          | capacity for an ETL technology (VAR_CCOST) that is      |
-| > (r,t,p)  | incurred in period t, and so subject to the same        |
-|            | discounting that applies to other period t investment   |
-|            | costs. This variable is calculated as the difference    |
-|            | between the cumulative costs of investment in capacity  |
-|            | for periods t and t-1, and enters the regional          |
-|            | investment cost part of the objective function          |
-|            | (EQ_OBJINV)                                             |
-+------------+---------------------------------------------------------+
-| >          | Continuous variable used for an ETL technology to       |
-|  VAR_LAMBD | represent the portion of cumulative investment in       |
-| >          | capacity (VAR_CCAP) that lies in the k^th^ interval of  |
-| >          | the piecewise linear approximation of the cumulative    |
-|  (r,t,p,k) | cost curve. For a given ETL technology and given time   |
-|            | period, ETL model constraints involving this variable   |
-|            | and the associated binary variable VAR_DELTA ensure     |
-|            | that VAR_LAMBD is positive for exactly one interval k.  |
-+------------+---------------------------------------------------------+
+```{list-table} ETL-specific model variables.
+:name: etl-variables
+:header-rows: 1
+
+* - Variable (Indexes)
+  - Variable Description
+* - VAR_CCAP (r,t,p)
+  - The cumulative investment in capacity for an ETL technology. This variable represents the initial cumulative capacity (CCAP0) plus investments in new capacity made up to and including the current period. This variable differs from the total installed capacity for a technology (VAR_CAP) in that it includes all investments in new capacity made up to and including the current period, whereas the latter only includes investments that are still available (i.e. whose life has not expired yet).
+* - VAR_CCOST (r,t,p)
+  - The cumulative cost of investment in capacity for an ETL technology. The cumulative cost is interpolated from the piecewise linear approximation of the cumulative cost curve.
+* - VAR_DELTA (r,t,p,k)
+  - Binary variable (takes the value 0 or 1) used for an ETL technology to indicate in which interval of the piecewise linear approximation of the cumulative cost curve the cumulative investment in capacity (VAR_CCAP) lies. A value of 1 for this variable for exactly one interval k indicates that VAR_CCAP lies in the k^th^ interval.
+* - VAR_IC (r,t,p)
+  - The portion of the cumulative cost of investment in capacity for an ETL technology (VAR_CCOST) that is incurred in period t, and so subject to the same discounting that applies to other period t investment costs. This variable is calculated as the difference between the cumulative costs of investment in capacity for periods t and t-1, and enters the regional investment cost part of the objective function (EQ_OBJINV)
+* - VAR_LAMBD (r,t,p,k)
+  - Continuous variable used for an ETL technology to represent the portion of cumulative investment in capacity (VAR_CCAP) that lies in the k^th^ interval of the piecewise linear approximation of the cumulative cost curve. For a given ETL technology and given time period, ETL model constraints involving this variable and the associated binary variable VAR_DELTA ensure that VAR_LAMBD is positive for exactly one interval k.
+```
 
 ### VAR_CCAP(r,t,p)
 
@@ -556,111 +257,58 @@ This variable also appears in the cumulative capacity interpolation constraint (
 
 ## Equations
 
-The equations that are used to model the Endogenous Technological Learning option in TIMES are presented in Table C-4 below. Since the primary role of the variables and equations used to model ETL is to control the standard TIMES investment variable (VAR_NCAP) and the associated dynamic cost of these investments, ETL is rather self-contained. That is the VAR_NCAP variable links the ETL decisions to the rest of the model, and the VAR_IC investment cost variable determines the associated contribution to the regional investment cost part objective function (EQ_OBJINV). Note that the special clustered learning ETL option involves one additional equation (EQ_CLU), as compared with the modeling of endogenous technology learning where there are no clusters. IN BOX BELOW, ADD ANSWER or CHANGE TO \"system\"
+The equations that are used to model the Endogenous Technological Learning option in TIMES are presented in {numref}`etl-constraints` below. Since the primary role of the variables and equations used to model ETL is to control the standard TIMES investment variable (VAR_NCAP) and the associated dynamic cost of these investments, ETL is rather self-contained. That is the VAR_NCAP variable links the ETL decisions to the rest of the model, and the VAR_IC investment cost variable determines the associated contribution to the regional investment cost part objective function (EQ_OBJINV). Note that the special clustered learning ETL option involves one additional equation (EQ_CLU), as compared with the modeling of endogenous technology learning where there are no clusters. IN BOX BELOW, ADD ANSWER or CHANGE TO \"system\"
 
-+------------+---------------------------------------------+-----------+
-| C          | Constraint Description                      | GAMS Ref  |
-| onstraints |                                             |           |
-| (Indexes)  |                                             |           |
-+============+=============================================+===========+
-| > EQ_CC    | The Cumulative Capacity Interpolation       | EQ        |
-| >          | constraint for an ETL technology. This      | U_EXT.ETL |
-| > (r,t,p)  | constraint defines the cumulative           |           |
-|            | investment in capacity for a technology     |           |
-|            | (VAR_CCAP) in a period as the sum over all  |           |
-|            | intervals k of the continuous variables     |           |
-|            | R_LAMBD(r,t,p,k) that represent cumulative  |           |
-|            | investment in capacity as lying in the      |           |
-|            | k^th^ interval of the piecewise linear      |           |
-|            | approximation of the cumulative cost curve. |           |
-+------------+---------------------------------------------+-----------+
-| > EQ_CLU   | Constraint that is generated only for the   | EQ        |
-| >          | special clustered learning ETL option       | U_EXT.ETL |
-| > (r,t,p)  | (CLUSTER). For a key learning ETL           |           |
-|            | technology it defines investment in new     |           |
-|            | capacity (VAR_NCAP) as the weighted sum of  |           |
-|            | investments in new capacity of the          |           |
-|            | associated clustered technologies.          |           |
-+------------+---------------------------------------------+-----------+
-| > EQ_COS   | The Cumulative Cost Interpolation           | EQ        |
-| >          | constraint for an ETL technology. This      | U_EXT.ETL |
-| > (r,t,p)  | constraint defines the interpolated         |           |
-|            | cumulative cost of investment in capacity   |           |
-|            | for a technology (VAR_CCOST) in a period in |           |
-|            | terms of the binary variables VAR_DELTA and |           |
-|            | the continuous variables VAR_LAMBD, and the |           |
-|            | internal model parameters ALPH and BETA.    |           |
-+------------+---------------------------------------------+-----------+
-| > EQ_CUINV | The Cumulative Capacity Definition          | EQ        |
-| >          | constraint for an ETL technology. Defines   | U_EXT.ETL |
-| > (r,t,p)  | the cumulative investment in capacity for a |           |
-|            | technology in a period as the initial       |           |
-|            | cumulative capacity (CCAP0) plus the sum of |           |
-|            | investments in new capacity (VAR_NCAP) made |           |
-|            | up to and including this period.            |           |
-+------------+---------------------------------------------+-----------+
-| > EQ_DEL   | The constraint for an ETL technology that   | EQ        |
-| >          | ensures that in each period there is        | U_EXT.ETL |
-| > (r,t,p)  | exactly one interval k for which the binary |           |
-|            | variable R_DELTA(r,t,p,k) has value 1 (with |           |
-|            | zero values for intervals ≠ k).             |           |
-+------------+---------------------------------------------+-----------+
-| > EQ_EXPE1 | One of two constraints for an ETL           | EQ        |
-| >          | technology to improve MIP solution time by  | U_EXT.ETL |
-| >          | reducing the domain of feasibility of the   |           |
-|  (r,t,p,k) | binary variables VAR_DELTA.                 |           |
-+------------+---------------------------------------------+-----------+
-| > EQ_EXPE2 | Second of two constraints for an ETL        | EQ        |
-| >          | technology to improve MIP solution time by  | U_EXT.ETL |
-| >          | reducing the domain of feasibility of the   |           |
-|  (r,t,p,k) | binary variables VAR_DELTA.                 |           |
-+------------+---------------------------------------------+-----------+
-| > EQ_IC1   | The constraint for an ETL technology that   | EQ        |
-| >          | defines the portion of the cumulative cost  | U_EXT.ETL |
-| > (r,t,p)  | of investment in capacity (VAR_IC) that is  |           |
-|            | incurred in the first period of the model   |           |
-|            | horizon.                                    |           |
-+------------+---------------------------------------------+-----------+
-| > EQ_IC2   | The constraint for an ETL technology that   | EQ        |
-| >          | defines the portion of the cumulative cost  | U_EXT.ETL |
-| > (r,t,p)  | of investment in capacity (VAR_IC) that is  |           |
-|            | incurred in each period but the first one.  |           |
-+------------+---------------------------------------------+-----------+
-| > EQ_LA1   | The constraint for an ETL technology that   | EQ        |
-| >          | sets a lower bound on the continuous        | U_EXT.ETL |
-| >          | variable VAR_LAMBD(r,t,p,k).                |           |
-|  (r,t,p,k) |                                             |           |
-+------------+---------------------------------------------+-----------+
-| > EQ_LA2   | The constraint for an ETL technology that   | EQ        |
-| >          | sets an upper bound on the continuous       | U_EXT.ETL |
-| >          | variable VAR_LAMBD(r,t,p,k).                |           |
-|  (r,t,p,k) |                                             |           |
-+------------+---------------------------------------------+-----------+
-| >          | Constraint that is generated only for the   | EQ        |
-|  EQ_MRCLU\ | special clustered learning ETL option       | U_EXT.ETL |
-| > (r,t,p)  | (TL_MRCLUST). For a key learning ETL        |           |
-|            | technology it defines investment in new     |           |
-|            | capacity (VAR_NCAP) as the weighted sum of  |           |
-|            | investments in new capacity of the          |           |
-|            | associated clustered technologies in        |           |
-|            | multilple regions.                          |           |
-+------------+---------------------------------------------+-----------+
-| >          | For an ETL technology in periods            | EQO       |
-|  EQ_OBJSAL | appropriately close to the model horizon,   | BSALV.MOD |
-| >          | part of the investment costs (VAR_IC)       |           |
-| > (r,cur)  | exceed the model horizon. This part of the  |           |
-|            | investment cost is reflected in the         |           |
-|            | calculation of the salvage value variable   |           |
-|            | VAR_OBJSAL.                                 |           |
-+------------+---------------------------------------------+-----------+
-| >          | The endogenously calculated cost of         | EQO       |
-|  EQ_OBJINV | investments for learning technologies       | BJINV.MOD |
-| >          | (VAR_IC) needs to be discounted and         |           |
-| > (r,cur)  | included in the regional investment cost    |           |
-|            | part of the objective function (EQ_OBJINV)  |           |
-|            | in place of the traditional investment      |           |
-|            | calculation using variable VAR_NCAP.        |           |
-+------------+---------------------------------------------+-----------+
+```{list-table} Table C-4. ETL-specific model constraints
+:name: etl-constraints
+:header-rows: 1
+
+* - Constraints (Indexes)
+  - Constraint Description
+  - GAMS Ref
+* - EQ_CC (r,t,p)
+  - The Cumulative Capacity Interpolation constraint for an ETL technology. This constraint defines the cumulative investment in capacity for a technology (VAR_CCAP) in a period as the sum over all intervals k of the continuous variables R_LAMBD(r,t,p,k) that represent cumulative investment in capacity as lying in the k^th^ interval of the piecewise linear approximation of the cumulative cost curve.
+  - EQU_EXT.ETL
+* - EQ_CLU (r,t,p)
+  - Constraint that is generated only for the special clustered learning ETL option (CLUSTER). For a key learning ETL technology it defines investment in new capacity (VAR_NCAP) as the weighted sum of investments in new capacity of the associated clustered technologies.
+  - EQU_EXT.ETL
+* - EQ_COS (r,t,p)
+  - The Cumulative Cost Interpolation constraint for an ETL technology. This constraint defines the interpolated cumulative cost of investment in capacity for a technology (VAR_CCOST) in a period in terms of the binary variables VAR_DELTA and the continuous variables VAR_LAMBD, and the internal model parameters ALPH and BETA.
+  - EQU_EXT.ETL
+* - EQ_CUINV (r,t,p)
+  - The Cumulative Capacity Definition constraint for an ETL technology. Defines the cumulative investment in capacity for a technology in a period as the initial cumulative capacity (CCAP0) plus the sum of investments in new capacity (VAR_NCAP) made up to and including this period.
+  - EQU_EXT.ETL
+* - EQ_DEL (r,t,p)
+  - The constraint for an ETL technology that ensures that in each period there is exactly one interval k for which the binary variable R_DELTA(r,t,p,k) has value 1 (with zero values for intervals ≠ k).
+  - EQU_EXT.ETL
+* - EQ_EXPE1 (r,t,p,k)
+  - One of two constraints for an ETL technology to improve MIP solution time by reducing the domain of feasibility of the binary variables VAR_DELTA.
+  - EQU_EXT.ETL
+* - EQ_EXPE2 (r,t,p,k)
+  - Second of two constraints for an ETL technology to improve MIP solution time by reducing the domain of feasibility of the binary variables VAR_DELTA.
+  - EQU_EXT.ETL
+* - EQ_IC1 (r,t,p)
+  - The constraint for an ETL technology that defines the portion of the cumulative cost of investment in capacity (VAR_IC) that is incurred in the first period of the model horizon.
+  - EQU_EXT.ETL
+* - EQ_IC2 (r,t,p)
+  - The constraint for an ETL technology that defines the portion of the cumulative cost of investment in capacity (VAR_IC) that is incurred in each period but the first one.
+  - EQU_EXT.ETL
+* - EQ_LA1 (r,t,p,k)
+  - The constraint for an ETL technology that sets a lower bound on the continuous variable VAR_LAMBD(r,t,p,k).
+  - EQU_EXT.ETL
+* - EQ_LA2 (r,t,p,k)
+  - The constraint for an ETL technology that sets an upper bound on the continuous variable VAR_LAMBD(r,t,p,k).
+  - EQU_EXT.ETL
+* - EQ_MRCLU\ (r,t,p)
+  - Constraint that is generated only for the special clustered learning ETL option (TL_MRCLUST). For a key learning ETL technology it defines investment in new capacity (VAR_NCAP) as the weighted sum of investments in new capacity of the associated clustered technologies in multilple regions.
+  - EQU_EXT.ETL
+* - EQ_OBJSAL (r,cur)
+  - For an ETL technology in periods appropriately close to the model horizon, part of the investment costs (VAR_IC) exceed the model horizon. This part of the investment cost is reflected in the calculation of the salvage value variable VAR_OBJSAL.
+  - EQOBSALV.MOD
+* - EQ_OBJINV (r,cur)
+  - The endogenously calculated cost of investments for learning technologies (VAR_IC) needs to be discounted and included in the regional investment cost part of the objective function (EQ_OBJINV) in place of the traditional investment calculation using variable VAR_NCAP.
+  - EQOBJINV.MOD
+```
 
 ### EQ_CC(r,t,p)
 
@@ -1055,3 +703,6 @@ $$EQ\_ OBJINV_{r,cur}$$
 
 
 ![](media/image18.png)
+
+
+[^42]: Parameters that occur in the ETL-specific equations but that also occur in non-ETL equations (e.g., TCH_LIFE) are not listed in this table.
