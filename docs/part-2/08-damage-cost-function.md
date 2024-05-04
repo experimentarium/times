@@ -109,9 +109,12 @@ All the parameters for describing damage functions are available in the VEDA-FE 
 4. The parameter **DAM_STEP** can be used for specifying the number of emission steps below and above the reference level of emissions. The last step above the reference level will always have an infinite bound. If the number of steps is not provided in either direction, but the elasticity is, one step is assumed in that direction. If a non-zero **DAM_STEP**(r,c,\'N\') is specified, the damage costs for commodity **c** in region **r** are not included in the objective. If the NLP formulation is used (DAMAGE=NLP), all **DAM_STEP** parameters will be ignored.
 5. The parameter **DAM_VOC** can be used for specifying the variation in emissions covered by the emission steps, both in the lower an upper direction. The variation in the lower direction should be less than or equal to the reference level of emissions. If the lower variation is smaller than **DAM_BQTY**, the damage costs are zero for emissions below the difference. The lower variance can thus be used for defining a threshold level for the damage costs. If **DAM_VOC** is not specified in the lower direction, it is assumed to be equal to **DAM_BQTY**. If **DAM_VOC** is not specified in the upper direction, the emission step size in the upper direction is assumed to be equal to that in the lower direction. The limtype 'N' can be used for defining step sizes in proportion to the reference level. If the NLP formulation is used (DAMAGE\=\=NLP), any **DAM_VOC** parameters specified in the upper direction will be ignored.  However, even in the NLP formulation the lower **DAM_VOC** can be used for defining a threshold emission level for the costs.
 
-The input parameters are listed in Table B-1. 
+The input parameters are listed in {numref}`dam-input-parameters`. 
 
-```{list-tables} Table B-1. Input parameters for the TIMES Damage Cost Functions.
+```{list-tables} Input parameters for the TIMES Damage Cost Functions.
+:name: dam-input-parameters
+:header-rows: 1
+
 +---------+--------+-----------+----------+--------------+-----------+
 | **Input | **R    | **Units / | **       | **D          | *         |
 | para    | elated | Ranges &  | Instance | escription** | *Affected |
@@ -427,7 +430,7 @@ $${\sum_{(t,c) \in \left\{ \mathbf{rt}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{
 }{\left\{ = \right\}
 }{VAR\_ OBJ_{r,'OBJDAM',cur}}$$
 
-## References {#references-1 .unnumbered}
+## References
 
 Goldstein, G., Noble, K. & Van Regemorter, D. 2001. *Adaptation to MARKAL for including environmental damages*. MARKAL User Information Note.
 

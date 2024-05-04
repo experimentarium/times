@@ -1017,7 +1017,7 @@ The constraints available in standard TIMES are shown in {numref}`times-equation
 * - Equation Name
   - Short description
 * - BND_ELAST
-  - Upper bound on each of the step variables used to linearize the demand function when elastic demand feature is used |
+  - Upper bound on each of the step variables used to linearize the demand function when elastic demand feature is used
 * - EQ(l)\_ACTBND
   - Bound on the activity of a process
 * - EQE_ACTEFF
@@ -1646,63 +1646,39 @@ $${EQ(l)\_ BLND_{r,t,ble,spe} \ni bl\_ type_{r,ble,spe}
 
 **Remarks**:
 
-- The available cost aggergations that can be bounded are listed in the table below.
+- The available cost aggregations that can be bounded are listed in the table below.
 - All the cost components related to investments are expressed in terms of annualized capital costs, i.e. as annuities paid in the year(s) in question. These components thus include interest during both construction and payback time. 
 - In all combined cost aggregations, subsidies are treated as negative costs when summed up with other cost/taxes, but when bounded alone they are treated as positive.
 
-  -----------------------------------------------------------------------
-  **Cost aggregation    **Description**
-  ID**                  
-  --------------------- -------------------------------------------------
-  INV                   investment costs (annuities)
+:::{table}
 
-  INVTAX                investment taxes (annuities)
-
-  INVSUB                investment subsidies (annuities)
-
-  INVTAXSUB             investment taxes-subsidies (annuities)
-
-  INVALL                = INV+INVTAXSUB (annuities)
-
-  FOM                   fixed OM costs
-
-  FOMTAX                fixed operating taxes
-
-  FOMSUB                fixed operating subsidies
-
-  FOMTAXSUB             fixed operating taxes-subsidies
-
-  FOMALL                = FOM+FOMTAXSUB
-
-  FIX                   = INV+FOM
-
-  FIXTAX                = INVTAX+FOMTAX
-
-  FIXSUB                = INVSUB+FOMSUB
-
-  FIXTAXSUB             = FIXTAX-FIXSUB
-
-  FIXALL                = FIX+FIXTAXSUB
-
-  COMTAX                commodity taxes
-
-  COMSUB                commodity subsidies
-
-  COMTAXSUB             commodity taxes-subsidies
-
-  FLOTAX                process commodity flow taxes
-
-  FLOSUB                process commodity flow subsidies
-
-  FLOTAXSUB             process commodity flow taxes-subsidies
-
-  ALLTAX                = FIXTAX+COMTAX+FLOTAX
-
-  ALLSUB                = FIXSUB+COMSUB+FLOSUB
-
-  ALLTAXSUB             = ALLTAX-ALLSUB
-  -----------------------------------------------------------------------
-
+| Cost aggregation ID | Description                            |
+| ------------------- | -------------------------------------- |
+| INV                 | investment costs (annuities)           |
+| INVTAX              | investment taxes (annuities)           |
+| INVSUB              | investment subsidies (annuities)       |
+| INVTAXSUB           | investment taxes-subsidies (annuities) |
+| INVALL              | = INV+INVTAXSUB (annuities)            |
+| FOM                 | fixed OM costs                         |
+| FOMTAX              | fixed operating taxes                  |
+| FOMSUB              | fixed operating subsidies              |
+| FOMTAXSUB           | fixed operating taxes-subsidies        |
+| FOMALL              | = FOM+FOMTAXSUB                        |
+| FIX                 | = INV+FOM                              |
+| FIXTAX              | = INVTAX+FOMTAX                        |
+| FIXSUB              | = INVSUB+FOMSUB                        |
+| FIXTAXSUB           | = FIXTAX-FIXSUB                        |
+| FIXALL              | = FIX+FIXTAXSUB                        |
+| COMTAX              | commodity taxes                        |
+| COMSUB              | commodity subsidies                    |
+| COMTAXSUB           | commodity taxes-subsidies              |
+| FLOTAX              | process commodity flow taxes           |
+| FLOSUB              | process commodity flow subsidies       |
+| FLOTAXSUB           | process commodity flow taxes-subsidies |
+| ALLTAX              | = FIXTAX+COMTAX+FLOTAX                 |
+| ALLSUB              | = FIXSUB+COMSUB+FLOSUB                 |
+| ALLTAXSUB           | = ALLTAX-ALLSUB                        |
+:::
 
 **Notation:**
 
