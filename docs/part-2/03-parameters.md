@@ -321,5261 +321,2311 @@ For brevity, the default interpolation/extrapolation method for each parameter i
 :name: user-input-parameters
 :header-rows: 1
 
-+-----------+--------+----------+-------------+----------+-----------+
-| **Input   | **R    | **Units  | **Insta     | **Descr  | *         |
-| pa        | elated | / Ranges | nces**[^26] | iption** | *Affected |
-| rameter** | sets / | &        |             |          | equations |
-|           | param  | Default  | (Required / |          | or        |
-| (Inde     | eters* | values & | Omit /      |          | variabl   |
-| xes)[^23] | *[^24] | Default  | Special     |          | es**[^27] |
-|           |        | int      | conditions) |          |           |
-|           |        | er-/extr |             |          |           |
-|           |        | apolatio |             |          |           |
-|           |        | n**[^25] |             |          |           |
-+===========+========+==========+=============+==========+===========+
-| ACT_BND   |        | Units of | Since       | Bound on | Activity  |
-|           |        | activity | inter-/ex   | the      | limit     |
-| (         |        |          | trapolation | overall  | c         |
-| r,datayea |        | \[0,∞);\ | default is  | activity | onstraint |
-| r,p,s,bd) |        | default  | MIG, the    | a        | (EQ(l)    |
-|           |        | value:   | bound must  | process. | \_ACTBND) |
-|           |        | none     | be          |          | when s is |
-|           |        |          | explicitly  |          | above     |
-|           |        | Default  | specified   |          | prc_tsl.  |
-|           |        | i        | for each    |          |           |
-|           |        | /e[^28]: | period,     |          | Direct    |
-|           |        | MIG      | unless an   |          | bound on  |
-|           |        |          | inter-/ex   |          | activity  |
-|           |        |          | trapolation |          | variable  |
-|           |        |          | option is   |          | (VAR_ACT) |
-|           |        |          | set.        |          | when at   |
-|           |        |          |             |          | the       |
-|           |        |          | If the      |          | prc_tsl   |
-|           |        |          | bound is    |          | level.    |
-|           |        |          | specified   |          |           |
-|           |        |          | for a       |          |           |
-|           |        |          | timeslice s |          |           |
-|           |        |          | above the   |          |           |
-|           |        |          | process     |          |           |
-|           |        |          | timeslice   |          |           |
-|           |        |          | resolution  |          |           |
-|           |        |          | (prc_tsl),  |          |           |
-|           |        |          | the bound   |          |           |
-|           |        |          | is applied  |          |           |
-|           |        |          | to the sum  |          |           |
-|           |        |          | of the      |          |           |
-|           |        |          | activity    |          |           |
-|           |        |          | variables   |          |           |
-|           |        |          | according   |          |           |
-|           |        |          | to the      |          |           |
-|           |        |          | timeslice   |          |           |
-|           |        |          | tree.       |          |           |
-|           |        |          |             |          |           |
-|           |        |          | Standard    |          |           |
-|           |        |          | a           |          |           |
-|           |        |          | ggregation. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| ACT_COST  | OBJ_   | Monetary |             | Variable | Applied   |
-|           | ACOST, | unit per |             | costs    | to the    |
-| (r,dataye | CST    | unit of  |             | as       | activity  |
-| ar,p,cur) | _ACTC, | activity |             | sociated | variable  |
-|           |        |          |             | with the | (VAR_ACT) |
-|           | C      | \[       |             | activity | as a      |
-|           | ST_PVP | open\];\ |             | of a     | component |
-|           |        | default  |             | process. | of the    |
-|           |        | value:   |             |          | objective |
-|           |        | none     |             |          | function  |
-|           |        |          |             |          | (EQ       |
-|           |        | Default  |             |          | _OBJVAR). |
-|           |        | i/e: STD |             |          |           |
-|           |        |          |             |          | May       |
-|           |        |          |             |          | appear in |
-|           |        |          |             |          | user      |
-|           |        |          |             |          | co        |
-|           |        |          |             |          | nstraints |
-|           |        |          |             |          | (EQ_UC\*) |
-|           |        |          |             |          | if        |
-|           |        |          |             |          | specified |
-|           |        |          |             |          | in        |
-|           |        |          |             |          | UC_NAME.  |
-+-----------+--------+----------+-------------+----------+-----------+
-| ACT_CSTPL | ACT_   | Monetary | Used as an  | Partial  | Generates |
-| (r,dataye | MINLD\ | unit per | alternative | load     | an        |
-| ar,p,cur) | ACT    | unit of  | or          | cost     | a         |
-|           | _LOSPL | activity | supplement  | penalty, | dditional |
-|           |        |          | to using    | defined  | term in   |
-|           |        | \[0,∞);\ | AC          | as an    | EQ_OBJVAR |
-|           |        | default  | T_LOSPL(r,y | ad       | for the   |
-|           |        | value:   | ,p,\'FX\'). | ditional | increase  |
-|           |        | none     | When used   | cost per | in        |
-|           |        |          | as an       | activity | operating |
-|           |        | Default  | a           | at the   | cost.     |
-|           |        | i/e: STD | lternative, | minimum  |           |
-|           |        |          | the fuel    | o        |           |
-|           |        |          | increase at | perating |           |
-|           |        |          | the minimum | level,   |           |
-|           |        |          | operating   | corre    |           |
-|           |        |          | level that  | sponding |           |
-|           |        |          | should be   | to the   |           |
-|           |        |          | included in | ef       |           |
-|           |        |          | the cost    | ficiency |           |
-|           |        |          | penalty     | loss at  |           |
-|           |        |          | must be     | that     |           |
-|           |        |          | embedded in | load     |           |
-|           |        |          | the         | level.   |           |
-|           |        |          | ACT_CSTPL   |          |           |
-|           |        |          | c           | Added as |           |
-|           |        |          | oefficient. | an extra |           |
-|           |        |          |             | term to  |           |
-|           |        |          |             | variable |           |
-|           |        |          |             | costs in |           |
-|           |        |          |             | the      |           |
-|           |        |          |             | o        |           |
-|           |        |          |             | bjective |           |
-|           |        |          |             | and      |           |
-|           |        |          |             | re       |           |
-|           |        |          |             | porting. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| AC        | A      | Corrency | Can be used | Defines  | Activates |
-| T_CSTRMP\ | CT_UPS | unit per | for         | ramp-up  | g         |
-| (r,       |        | unit of  | standard    | (L=UP)   | eneration |
-| datayear, |        | capacity | processes   | or       | of        |
-| p,bd,cur) |        | (change  | in basic,   | r        | EQ        |
-|           |        | in load) | advanced    | amp-down | _ACTRMPC. |
-|           |        |          | and         | (L=LO)   |           |
-|           |        | \[0,∞);\ | discrete    | cost per | Generates |
-|           |        | default  | unit        | unit of  | an        |
-|           |        | value:   | commitment  | load     | a         |
-|           |        | none     | extensions. | change   | dditional |
-|           |        |          |             | (in      | term in   |
-|           |        | Default  | Can also be | capacity | EQ_OBJVAR |
-|           |        | i/e: STD | used for    | units).  | for the   |
-|           |        |          | lo          |          | increase  |
-|           |        |          | ad-shifting | For      | in        |
-|           |        |          | processes   | *        | operating |
-|           |        |          | for         | *load-sh | cost.     |
-|           |        |          | defining    | ifting** |           |
-|           |        |          | the cost of | p        |           |
-|           |        |          | shifting    | rocesses |           |
-|           |        |          | loads per   | defines  |           |
-|           |        |          | unit of     | the cost |           |
-|           |        |          | demand load | of       |           |
-|           |        |          | by one      | shifting |           |
-|           |        |          | hour.       | one unit |           |
-|           |        |          |             | of load  |           |
-|           |        |          |             | by one   |           |
-|           |        |          |             | hour,    |           |
-|           |        |          |             | forward  |           |
-|           |        |          |             | (UP) or  |           |
-|           |        |          |             | backward |           |
-|           |        |          |             | (LO).    |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| A         | ACT_   | Currency | Activates   | Defines  | Generates |
-| CT_CSTSD\ | CSTUP\ | units    | the         | start-up | an        |
-| (r,data   | ACT_S  | per unit | advanced    | (bd=UP)  | a         |
-| year,p,up | DTIME\ | of       | unit        | and      | dditional |
-| t,bd,cur) | ACT_   | st       | commitment  | shutdown | term in   |
-|           | MAXNON | arted-up | option.     | costs    | EQ_OBJVAR |
-|           |        | capacity |             | (bd=LO)  | for the   |
-|           |        |          | In the case | per unit | increase  |
-|           |        | \[0,∞);\ | of the      | of       | in        |
-|           |        | Default  | shut-down   | st       | operating |
-|           |        | value:   | costs, only | arted-up | cost.     |
-|           |        | none     | the tuple   | c        |           |
-|           |        |          | (upt, bd) = | apacity, |           |
-|           |        | Default  | (HOT, LO)   | differ   |           |
-|           |        | i/e: STD | is a valid  | entiated |           |
-|           |        |          | instance    | by       |           |
-|           |        |          | for this    | start-up |           |
-|           |        |          | parameter.  | type     |           |
-|           |        |          |             | (upt).\  |           |
-|           |        |          | Requires    | The      |           |
-|           |        |          | the         | start-up |           |
-|           |        |          | parameter   | type of  |           |
-|           |        |          | ACT_MAXNON  | a power  |           |
-|           |        |          | to be       | plant    |           |
-|           |        |          | defined as  | depends  |           |
-|           |        |          | well.       | on its   |           |
-|           |        |          |             | non-ope  |           |
-|           |        |          |             | rational |           |
-|           |        |          |             | time     |           |
-|           |        |          |             | after    |           |
-|           |        |          |             | sh       |           |
-|           |        |          |             | ut-down, |           |
-|           |        |          |             | as       |           |
-|           |        |          |             | defined  |           |
-|           |        |          |             | by using |           |
-|           |        |          |             | ACT      |           |
-|           |        |          |             | _MAXNON. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| A         | ACT_   | Monetary | The tslvl   | Cost of  | Activates |
-| CT_CSTUP\ | MINLD\ | unit per | level       | process  | g         |
-| (r,dat    | A      | unit of  | refers to   | start-up | eneration |
-| ayear,p,t | CT_UPS | capacity | the         | per unit | of        |
-| slvl,cur) |        |          | timeslice   | of       | E         |
-|           |        | \[0,∞);\ | cycle for   | st       | QL_ACTUPS |
-|           |        | default  | which the   | arted-up | eqs.      |
-|           |        | value:   | start-up    | c        |           |
-|           |        | none     | cost is     | apacity. | Generates |
-|           |        |          | defined.    |          | an        |
-|           |        | Default  |             | Added as | a         |
-|           |        | i/e: STD | Only        | an extra | dditional |
-|           |        |          | applicable  | term to  | term in   |
-|           |        |          | when the    | variable | the       |
-|           |        |          | min. stable | costs in | variable  |
-|           |        |          | operating   | the      | operating |
-|           |        |          | level has   | o        | costs     |
-|           |        |          | been        | bjective | included  |
-|           |        |          | defined     | and      | in        |
-|           |        |          | with        | re       | E         |
-|           |        |          | ACT_MINLD.  | porting. | Q_OBJVAR. |
-+-----------+--------+----------+-------------+----------+-----------+
-| ACT_CUM   | F      | Activity | The years   | Bound on | Generates |
-| (r,p,     | LO_CUM | unit     | y1 and y2   | the      | an        |
-| y1,y2,bd) |        |          | may be any  | cu       | instance  |
-|           |        | \[0,∞);\ | years of    | mulative | of the    |
-|           |        | default  | the set     | amount   | c         |
-|           |        | value:   | allyear;    | of       | umulative |
-|           |        | none     | where y1    | annual   | c         |
-|           |        |          | may also be | process  | onstraint |
-|           |        | Default  | \'BOH\' for | activity |           |
-|           |        | i/e: N/A | first year  | between  | (E        |
-|           |        |          | of first    | the      | Q_CUMFLO) |
-|           |        |          | period and  | years y1 |           |
-|           |        |          | y2 may be   | and y2,  |           |
-|           |        |          | \'EOH\' for | within a |           |
-|           |        |          | last year   | region.  |           |
-|           |        |          | of last     |          |           |
-|           |        |          | period.     |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| ACT_EFF\  |        | Activity | The group   | Activity | Generates |
-| (         |        | unit per | cg may be a | ef       | instances |
-| r,datayea |        | flow     | single      | ficiency | of the    |
-| r,p,cg,s) |        | unit     | commodity,  | for      | activity  |
-|           |        |          | group, or   | process, | e         |
-|           |        | \[0,∞);\ | commodity   | i.e.     | fficiency |
-|           |        | Default  | type on the | amount   | c         |
-|           |        | value:   | shadow      | of       | onstraint |
-|           |        | none     | side, or a  | activity | (EQ       |
-|           |        |          | single      | per unit | E_ACTEFF) |
-|           |        | Default  | commodity   | of       |           |
-|           |        | group    | in the PCG; | c        |           |
-|           |        | ef       | cg=\'ACT\'  | ommodity |           |
-|           |        | ficiency | refers to   | flows in |           |
-|           |        | =1 when  | the default | the      |           |
-|           |        | values   | shadow      | group    |           |
-|           |        | are      | group. If   | cg.      |           |
-|           |        | s        | no group    |          |           |
-|           |        | pecified | efficiency  | For more |           |
-|           |        | only for | is defined, | inf      |           |
-|           |        | in       | shadow      | ormation |           |
-|           |        | dividual | group is    | on       |           |
-|           |        | comm     | assumed to  | usage,   |           |
-|           |        | odities. | be the      | see      |           |
-|           |        |          | commodity   | Section  |           |
-|           |        | Default  | type.       | 6.3 for  |           |
-|           |        | i/e: STD | Individual  | details  |           |
-|           |        |          | commodity   | about    |           |
-|           |        |          | e           | EQE      |           |
-|           |        |          | fficiencies | _ACTEFF. |           |
-|           |        |          | are         |          |           |
-|           |        |          | multiplied  |          |           |
-|           |        |          | with the    |          |           |
-|           |        |          | shadow      |          |           |
-|           |        |          | group       |          |           |
-|           |        |          | efficiency  |          |           |
-|           |        |          | (           |          |           |
-|           |        |          | default=1). |          |           |
-|           |        |          |             |          |           |
-|           |        |          | Levelized   |          |           |
-|           |        |          | to the      |          |           |
-|           |        |          | timeslice   |          |           |
-|           |        |          | level of    |          |           |
-|           |        |          | the flow    |          |           |
-|           |        |          | variables   |          |           |
-|           |        |          | in the      |          |           |
-|           |        |          | shadow      |          |           |
-|           |        |          | group.\     |          |           |
-|           |        |          | Direct      |          |           |
-|           |        |          | i           |          |           |
-|           |        |          | nheritance. |          |           |
-|           |        |          | Weighted    |          |           |
-|           |        |          | a           |          |           |
-|           |        |          | ggregation. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| ACT_FLO\  |        | Flow     | Inherited   | Flow of  | Es        |
-| (         |        | unit per | /aggregated | com      | tablishes |
-| r,datayea |        | activity | to the      | modities | a         |
-| r,p,cg,s) |        | unit     | timeslice   | in cg in | trans     |
-|           |        |          | levels of   | pr       | for­mation |
-|           |        | \[0,∞);\ | the the     | oportion | rel       |
-|           |        | default  | process     | to the   | ationship |
-|           |        | value:   | flow        | process  | (E        |
-|           |        | none     | (cg=com) or | a        | Q_PTRANS) |
-|           |        |          | the process | ctivity, | between   |
-|           |        | Default  | activity\   | in       | the flows |
-|           |        | i/e: STD | (when       | t        | in the    |
-|           |        |          | cg=genuine  | imeslice | PCG and   |
-|           |        |          | group).     | s.       | one or    |
-|           |        |          |             |          | more      |
-|           |        |          | Direct      |          | input (or |
-|           |        |          | i           |          | output)   |
-|           |        |          | nheritance. |          | com       |
-|           |        |          |             |          | modities. |
-|           |        |          | Weighted    |          |           |
-|           |        |          | a           |          |           |
-|           |        |          | ggregation. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| A         | ACT    | Decimal  | Endogenous  | Partial  | Generates |
-| CT_LOSPL\ | _MINLD | fraction | partial     | load     | instances |
-| (r,datay  |        |          | load        | ef       | of the    |
-| ear,p,bd) | ACT    | \[0,∞);\ | modeling    | ficiency | partial   |
-|           | _CSTPL | default  | can only be | par      | load      |
-|           |        | values:  | used for    | ameters. | e         |
-|           |        |          | processes   |          | fficiency |
-|           |        | FX: none | that have   | 1\)      | c         |
-|           |        |          | their       | (bd=     | onstraint |
-|           |        | LO:      | efficiency  | \'FX\'): | EQ_ACTPL. |
-|           |        | default  | modelled by | Prop     |           |
-|           |        | value is | the ACT_EFF | ortional |           |
-|           |        | A        | parameter,  | increase |           |
-|           |        | CT_MINLD | which must  | in       |           |
-|           |        | or 0.1\  | be defined  | specific |           |
-|           |        | if that  | on the      | fuel     |           |
-|           |        | is not   | shadow side | con      |           |
-|           |        | defined  | of the      | ­sumption |           |
-|           |        |          | process.    | at       |           |
-|           |        | UP: 0.6  |             | minimum  |           |
-|           |        |          | For other   | o        |           |
-|           |        | Default  | processes,  | perating |           |
-|           |        | i/e: STD | the         | level\   |           |
-|           |        |          | ACT_CSTPL   | 2)       |           |
-|           |        |          | parameter   | (bd=\    |           |
-|           |        |          | can be used | 'LO\'):\ |           |
-|           |        |          | for         | Minimum  |           |
-|           |        |          | modeling a  | o        |           |
-|           |        |          | cost        | perating |           |
-|           |        |          | penalty at  | level of |           |
-|           |        |          | partial     | partial  |           |
-|           |        |          | loads.      | load     |           |
-|           |        |          |             | op       |           |
-|           |        |          |             | eration\ |           |
-|           |        |          |             | 3)       |           |
-|           |        |          |             | (bd=\    |           |
-|           |        |          |             | 'UP\'):\ |           |
-|           |        |          |             | Fraction |           |
-|           |        |          |             | of       |           |
-|           |        |          |             | feasible |           |
-|           |        |          |             | load     |           |
-|           |        |          |             | range    |           |
-|           |        |          |             | above    |           |
-|           |        |          |             | the      |           |
-|           |        |          |             | minimum  |           |
-|           |        |          |             | o        |           |
-|           |        |          |             | perating |           |
-|           |        |          |             | level,   |           |
-|           |        |          |             | below    |           |
-|           |        |          |             | which    |           |
-|           |        |          |             | the      |           |
-|           |        |          |             | ef       |           |
-|           |        |          |             | ficiency |           |
-|           |        |          |             | losses   |           |
-|           |        |          |             | are      |           |
-|           |        |          |             | assumed  |           |
-|           |        |          |             | to       |           |
-|           |        |          |             | occur.   |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| ACT_LOSSD | ACT_   | Dimen    | Can only be | Used for | Activates |
-|           | LOSPL\ | sionless | used when   | modeling | g         |
-| (r,       | ACT_   |          | the         | en       | eneration |
-| datayear, | MINLD\ | \[0,∞);\ | advanced    | dogenous | of        |
-| p,upt,bd) | ACT_S  | default  | unit        | partial  | EQ_SUDPLL |
-|           | DTIME\ | value:   | commitment  | load     |           |
-|           | A      | none     | option is   | ef       |           |
-|           | CT_EFF |          | used for    | ficiency |           |
-|           |        | Default  | the process | losses   |           |
-|           |        | i/e: STD | (therefore, | during   |           |
-|           |        |          | defining\   | the      |           |
-|           |        |          | both        | start-up |           |
-|           |        |          | ACT_CSTSD   | and      |           |
-|           |        |          | and         | s        |           |
-|           |        |          | ACT_MAXNON  | hut-down |           |
-|           |        |          | is          | phase.   |           |
-|           |        |          | required)   |          |           |
-|           |        |          |             | -   With |           |
-|           |        |          | Requires    |          |           |
-|           |        |          | also that   |    bd=UP |           |
-|           |        |          | ACT_EFF has |          |           |
-|           |        |          | been used   |  defines |           |
-|           |        |          | for         |          |           |
-|           |        |          | defining    | increase |           |
-|           |        |          | the process |     in   |           |
-|           |        |          | efficiency  |          |           |
-|           |        |          | (on the     | specific |           |
-|           |        |          | shadow side |     fuel |           |
-|           |        |          | of the      |     con  |           |
-|           |        |          | process).   | ­sump­tion |           |
-|           |        |          |             |     at   |           |
-|           |        |          |             |     the  |           |
-|           |        |          |             |          |           |
-|           |        |          |             |    start |           |
-|           |        |          |             |     up   |           |
-|           |        |          |             |     load |           |
-|           |        |          |             |          |           |
-|           |        |          |             |    level |           |
-|           |        |          |             |          |           |
-|           |        |          |             |  defined |           |
-|           |        |          |             |     by   |           |
-|           |        |          |             |     the  |           |
-|           |        |          |             |          |           |
-|           |        |          |             |    ratio |           |
-|           |        |          |             |     A    |           |
-|           |        |          |             | CT_MINLD |           |
-|           |        |          |             |     /    |           |
-|           |        |          |             |          |           |
-|           |        |          |             |   ACT_SD |           |
-|           |        |          |             | TIME(upt |           |
-|           |        |          |             | ,\'UP\') |           |
-|           |        |          |             |     for  |           |
-|           |        |          |             |          |           |
-|           |        |          |             | start-up |           |
-|           |        |          |             |     type |           |
-|           |        |          |             |     upt; |           |
-|           |        |          |             |          |           |
-|           |        |          |             | -   With |           |
-|           |        |          |             |          |           |
-|           |        |          |             |    bd=LO |           |
-|           |        |          |             |          |           |
-|           |        |          |             |  defines |           |
-|           |        |          |             |     the  |           |
-|           |        |          |             |          |           |
-|           |        |          |             | increase |           |
-|           |        |          |             |     in   |           |
-|           |        |          |             |          |           |
-|           |        |          |             | specific |           |
-|           |        |          |             | fuel     |           |
-|           |        |          |             | con      |           |
-|           |        |          |             | sump­tion |           |
-|           |        |          |             | at the   |           |
-|           |        |          |             | start up |           |
-|           |        |          |             | load     |           |
-|           |        |          |             | level    |           |
-|           |        |          |             | defined  |           |
-|           |        |          |             | by the   |           |
-|           |        |          |             | ratio    |           |
-|           |        |          |             | A        |           |
-|           |        |          |             | CT_MINLD |           |
-|           |        |          |             | /        |           |
-|           |        |          |             | ACT      |           |
-|           |        |          |             | _SDTIME( |           |
-|           |        |          |             | \'HOT\', |           |
-|           |        |          |             | \'LO\'). |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| AC        | ACT_   | hours    | Can only be | Max.     | Activates |
-| T_MAXNON\ | CSTSD\ |          | used when   | non-ope  | g         |
-| (r,dataye | ACT_   | \[0,∞);\ | the         | rational | eneration |
-| ar,p,upt) | SDTIME | default  | advanced    | time     | of        |
-|           |        | value:   | unit        | before   | EQ_SUDUPT |
-|           |        | none     | commitment  | tr       |           |
-|           |        |          | option is   | ansition |           |
-|           |        | Default  | used for    | to next  |           |
-|           |        | i/e: STD | the process | stand-by |           |
-|           |        |          | (thus       | co       |           |
-|           |        |          | defining\   | ndition, |           |
-|           |        |          | ACT_CSTSD   | by       |           |
-|           |        |          | is          | start-up |           |
-|           |        |          | required)   | type, in |           |
-|           |        |          |             | hours    |           |
-|           |        |          |             |          |           |
-|           |        |          |             | -        |           |
-|           |        |          |             |  Defines |           |
-|           |        |          |             |     the  |           |
-|           |        |          |             |     max. |           |
-|           |        |          |             |          |           |
-|           |        |          |             |  non-ope |           |
-|           |        |          |             | rational |           |
-|           |        |          |             |     time |           |
-|           |        |          |             |          |           |
-|           |        |          |             |   before |           |
-|           |        |          |             |     a    |           |
-|           |        |          |             |     su   |           |
-|           |        |          |             | bsequent |           |
-|           |        |          |             |          |           |
-|           |        |          |             | start-up |           |
-|           |        |          |             |     of   |           |
-|           |        |          |             |     type |           |
-|           |        |          |             |     upt. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| A         | AC     | Decimal  | Can only be | Minimum  | Generates |
-| CT_MINLD\ | T_UPS\ | fraction | used for    | stable   | instances |
-| (r,da     | ACT    |          | standard    | o        | of        |
-| tayear,p) | _CSTUP | \[0,∞);\ | processes   | perating | equations |
-|           |        | default  | (not IRE or | level of |           |
-|           | ACT_   | value:   | STG). Must  | a        | E         |
-|           | CSTPL\ | none     | be defined  | disp     | Q_CAPLOAD |
-|           | ACT    |          | if          | atchable | and       |
-|           | _LOSPL | Default  | ACT_CSTUP   | process. |           |
-|           |        | i/e: STD | or ACT_TIME |          | EQ        |
-|           |        |          | is          |          | E_ACTUPS. |
-|           |        |          | specified.  |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| AC        | ACT_   | hours    | Can only be | Defines  | Activates |
-| T_SDTIME\ | CSTSD\ |          | used when   | the      | g         |
-| (r,       | ACT_   | \[0,∞);\ | ACT_CSTSD   | duration | eneration |
-| datayear, | MAXNON | default  | is          | of       | of        |
-| p,upt,bd) |        | value:   | specified   | start-up | EQ        |
-|           |        | none     | for the     | (bd=UP)  | _SUDTIME, |
-|           |        |          | process     | and      | and       |
-|           |        | Default  | (advanced   | s        |           |
-|           |        | i/e: STD | unit        | hut-down | used also |
-|           |        |          | commitment  | (bd=LO)  | in the    |
-|           |        |          | option)     | phases,  | e         |
-|           |        |          |             | by       | quations\ |
-|           |        |          | When        | start-up | EQ_ACTPL  |
-|           |        |          | specifying  | type, in |           |
-|           |        |          | the         | hours.   | E         |
-|           |        |          | duration of |          | Q_SDSLANT |
-|           |        |          | the         |          |           |
-|           |        |          | shut-down   |          | E         |
-|           |        |          | phase, only |          | Q_SDMINON |
-|           |        |          | the tuple   |          |           |
-|           |        |          | (upt,b      |          | EQ_SUDPLL |
-|           |        |          | d)=(HOT,LO) |          |           |
-|           |        |          | is valid    |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| ACT_TIME  | ACT    | Hours    | Can be used | 1\)      | Generates |
-| (r,dataye | _MINLD |          | for         | Minimum  | instances |
-| ar,p,lim) |        | \[0,∞);\ | standard    | online   | of        |
-|           | ACT    | default  | processes   |          | EQ        |
-|           | _CSTUP | value:   | when        | (UP) /   | L_ACTUPC. |
-|           |        | none     | start-up    | offline  |           |
-|           | AC     |          | costs have  | (LO)     | For       |
-|           | T_UPS\ | Default  | been        |          | load      |
-|           | ST     | i/e: STD | modeled,    | hours of | -shifting |
-|           | G_SIFT |          | using both  | a        | storage   |
-|           |        |          | ACT_MINLD   | process  | p         |
-|           |        |          | and         |          | rocesses, |
-|           |        |          |             | with     | generates |
-|           |        |          | ACT_CSTUP   | start-up | instances |
-|           |        |          | at the      | costs    | of        |
-|           |        |          |             |          |           |
-|           |        |          | DAY         | modeled  | E         |
-|           |        |          | NITE/WEEKLY | (li      | Q_SLSIFT. |
-|           |        |          | level.      | m=LO/UP) |           |
-|           |        |          |             |          |           |
-|           |        |          | The lim     | 2\)      |           |
-|           |        |          | type \'FX\' | Maximum  |           |
-|           |        |          | is not      | number   |           |
-|           |        |          | supported   |          |           |
-|           |        |          | for this    | of       |           |
-|           |        |          | use, and is | start-up |           |
-|           |        |          | ignored.    | cycles   |           |
-|           |        |          |             |          |           |
-|           |        |          | Can also be | within   |           |
-|           |        |          | used for    | process  |           |
-|           |        |          | lo          | t        |           |
-|           |        |          | ad-shifting | ime­slice |           |
-|           |        |          | storage     | cycles   |           |
-|           |        |          | processes,  | (lim=N). |           |
-|           |        |          | for         |          |           |
-|           |        |          | defining    | 3\)      |           |
-|           |        |          | the maximum | Maximum  |           |
-|           |        |          | de          | delay or |           |
-|           |        |          | lay/advance | advance  |           |
-|           |        |          | of load     | of load  |           |
-|           |        |          | shift, or   | shift    |           |
-|           |        |          | the         | (lim=U   |           |
-|           |        |          | time-window | P/LO/FX) |           |
-|           |        |          | for load    | or load  |           |
-|           |        |          | balancing   | b        |           |
-|           |        |          | (cf. Sect.  | alancing |           |
-|           |        |          | 4.3.9).     | time     |           |
-|           |        |          |             | (lim=N)  |           |
-|           |        |          |             | for a    |           |
-|           |        |          |             | load-    |           |
-|           |        |          |             | shifting |           |
-|           |        |          |             | storage. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| ACT_UPS\  | ACT_   | Decimal  | Inherited   | Maximum  | Generates |
-| (         | MINLD\ | fraction | /aggregated | r        | instances |
-| r,datayea | ACT    |          | to the      | amp-rate | of        |
-| r,p,s,bd) | _CSTUP | \[0,∞);\ | timeslice   | (        | equation  |
-|           |        | default  | levels of   | down/up) | EQ        |
-|           | ACT_   | value:   | the process | of       | _ACTRAMP. |
-|           | CSTPL\ | none     | activity.   | process  |           |
-|           | ACT    |          |             | activity |           |
-|           | _LOSPL | Default  | Direct      | as a     |           |
-|           |        | i/e: STD | i           | fraction |           |
-|           |        |          | nheritance. | of       |           |
-|           |        |          |             | nominal  |           |
-|           |        |          | Weighted    | on-line  |           |
-|           |        |          | a           | capacity |           |
-|           |        |          | ggregation. | per      |           |
-|           |        |          |             | hour.    |           |
-|           |        |          | The ramp    |          |           |
-|           |        |          | rates can   |          |           |
-|           |        |          | only be     |          |           |
-|           |        |          | specified   |          |           |
-|           |        |          | with        |          |           |
-|           |        |          | bd=LO/UP.   |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| B         | M, D,  |          | Required    | B        |           |
-|           | E,     |          | for each    | eginning |           |
-| \(t\)     | COE    |          | milestone   | year of  |           |
-|           | F_CPT, |          | year, but   | period   |           |
-|           | rtp_   |          | is          | t.       |           |
-|           | vintyr |          | aut         |          |           |
-|           |        |          | o-generated |          |           |
-|           |        |          | if not      |          |           |
-|           |        |          | specified   |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| CAP_BND   | PAR_   | Capacity | Since       | Bound on | Imposes   |
-|           | CAPLO, | unit     | inter-/ex   | in       | an        |
-| (r,datay  | PAR    |          | trapolation | vestment | indirect  |
-| ear,p,bd) | _CAPUP | \[0,∞);\ | is default  | in new   | limit on  |
-|           |        | default  | is MIG, a   | c        | the       |
-|           |        | value:   | bound must  | apacity. | capacity  |
-|           |        | none     | be          |          | transfer  |
-|           |        |          | specified   |          | equation  |
-|           |        | Default  | for each    |          | (EQ_CPT)  |
-|           |        | i/e: MIG | period      |          | by means  |
-|           |        |          | desired, if |          | of a      |
-|           |        |          | no explicit |          | direct    |
-|           |        |          | inter-/ex   |          | bound on  |
-|           |        |          | trapolation |          | the       |
-|           |        |          | option is   |          | capacity  |
-|           |        |          | given.      |          | variable  |
-|           |        |          | Relaxed if  |          | (         |
-|           |        |          | upper bound |          | VAR_CAP). |
-|           |        |          | less than   |          |           |
-|           |        |          | existing    |          |           |
-|           |        |          | no          |          |           |
-|           |        |          | n-retirable |          |           |
-|           |        |          | capacity.   |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| CM_CONST  |        | Constant | See         | Various  | EQ_CLITOT |
-|           |        | specific | Appendix on | climate  |           |
-| (item)    |        | unit     | Climate     | module   | E         |
-|           |        |          | Module for  | co       | Q_CLICONC |
-|           |        | \        | details.    | nstants, |           |
-|           |        | [open\]; |             | e.g. phi | E         |
-|           |        |          |             | and      | Q_CLITEMP |
-|           |        | default  |             | sigma    |           |
-|           |        | value:   |             | values   | E         |
-|           |        | See      |             | between  | Q_CLIBEOH |
-|           |        | Appendix |             | res      |           |
-|           |        |          |             | ervoirs. |           |
-|           |        | Default  |             |          |           |
-|           |        | i/e: N/A |             |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         |        | Forcing  | Default     | R        | EQ_CLITOT |
-| M_EXOFORC |        | unit     | values are  | adiative |           |
-|           |        |          | provided.   | forcing  |           |
-| (year)    |        | \        | See         | from     |           |
-|           |        | [open\]; | Appendix on | e        |           |
-|           |        |          | Climate     | xogenous |           |
-|           |        | default  | Module for  | sources  |           |
-|           |        | value:   | details.    |          |           |
-|           |        | none     |             |          |           |
-|           |        |          |             |          |           |
-|           |        | Default  |             |          |           |
-|           |        | i/e: STD |             |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         |        | Units of | The global  | Mapping  | EQ_CLITOT |
-| M_GHGMAP\ |        | climate  | emissions   | and      |           |
-| (r,       |        | module   | in the      | co       |           |
-| c,cm_var) |        | e        | climate     | nversion |           |
-|           |        | missions | module      | of       |           |
-|           |        | per      | (cm_var)    | regional |           |
-|           |        | units of | are         | GHG      |           |
-|           |        | regional | \'CO2-GtC\' | e        |           |
-|           |        | e        | (GtC),      | missions |           |
-|           |        | missions | \'CH4-Mt\'  | to       |           |
-|           |        |          | (Mt) and    | global   |           |
-|           |        | \[0, ∞); | \'N2O-Mt\'  | e        |           |
-|           |        |          | (Mt). See   | missions |           |
-|           |        | default  | Appendix on | in the   |           |
-|           |        | value:   | Climate     | climate  |           |
-|           |        | none     | Module for  | module   |           |
-|           |        |          | details.    |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         |        | Climate  | Default     | Cal      | EQ_CLITOT |
-| M_HISTORY |        | variable | values are  | ibration |           |
-|           |        | unit     | provided    | values   | E         |
-| (y        |        |          | until 2010. | for CO2  | Q_CLICONC |
-| ear,item) |        | \[0, ∞); | See         | and      |           |
-|           |        |          | Appendix on | forcing  | E         |
-|           |        | default  | Climate     |          | Q_CLITEMP |
-|           |        | value:   | Module for  |          |           |
-|           |        | none     | details.    |          | E         |
-|           |        |          |             |          | Q_CLIBEOH |
-|           |        | Default  |             |          |           |
-|           |        | i/e: STD |             |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| CM_LINFOR |        | Forcing  | With lim    | Pa       | EQ_CLITOT |
-|           |        | unit per | types       | rameters |           |
-| (         |        | conce    | LO/UP, CO2  | of       |           |
-| datayear, |        | ntration | forcing     | li       |           |
-| item,lim) |        | unit     | function    | nearized |           |
-|           |        |          | can be      | forcing  |           |
-|           |        | \        | au          | f        |           |
-|           |        | [open\]; | tomatically | unctions |           |
-|           |        |          | linearized  |          |           |
-|           |        | default  | between the |          |           |
-|           |        | value:   | co          |          |           |
-|           |        | none     | ncent­ration |          |           |
-|           |        |          | levels      |          |           |
-|           |        | Default  | given. For  |          |           |
-|           |        | i/e: STD | CH4 and     |          |           |
-|           |        |          | N2O, lim    |          |           |
-|           |        |          | types FX/N  |          |           |
-|           |        |          | must be     |          |           |
-|           |        |          | used        |          |           |
-|           |        |          | (N=co       |          |           |
-|           |        |          | n­cent­ration |          |           |
-|           |        |          | multiplier, |          |           |
-|           |        |          | FX=constant |          |           |
-|           |        |          | term). See  |          |           |
-|           |        |          | Appendix on |          |           |
-|           |        |          | Climate     |          |           |
-|           |        |          | Module for  |          |           |
-|           |        |          | details.    |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| CM_MAXC   |        | Climate  | Since no    | Maximum  | EQ_CLIMAX |
-|           |        | variable | default     | level of |           |
-| (datay    |        | unit     | inter-/ext  | climate  |           |
-| ear,item) |        |          | rapolation, | variable |           |
-|           |        | \[0, ∞); | bounds must |          |           |
-|           |        |          | be          |          |           |
-|           |        | default  | explicitly  |          |           |
-|           |        | value:   | specified   |          |           |
-|           |        | none     | for each    |          |           |
-|           |        |          | desired     |          |           |
-|           |        | Default  | year,       |          |           |
-|           |        | i/e:     | unless an   |          |           |
-|           |        | none     | explicit    |          |           |
-|           |        |          | inter-/ex   |          |           |
-|           |        |          | trapolation |          |           |
-|           |        |          | option is   |          |           |
-|           |        |          | set.\       |          |           |
-|           |        |          | See         |          |           |
-|           |        |          | Appendix on |          |           |
-|           |        |          | Climate     |          |           |
-|           |        |          | Module for  |          |           |
-|           |        |          | details.    |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| COM_AGG   |        | C        | When        | Agg      | Adds a    |
-| (r,dayaye |        | ommodity | commodity   | regation | term in   |
-| ar,c1,c2) |        | units    | lim_type is | of       | EQ(l      |
-|           |        |          | LO and      | c        | )\_COMBAL |
-|           |        | \[       | commodity   | ommodity | and       |
-|           |        | open\];\ | type is not | NET/PRD  |           |
-|           |        | default  | DEM,        | pr       | EQ(l)     |
-|           |        | value:   | VAR_COMNET  | oduction | \_COMPRD. |
-|           |        | none     | of c1 is    | to the   |           |
-|           |        |          | aggregated  | pr       |           |
-|           |        | Default  | to c2;      | oduction |           |
-|           |        | i/e: STD |             | side of  |           |
-|           |        |          | When        | the      |           |
-|           |        |          | commodity   | balance  |           |
-|           |        |          | lim_type is | of       |           |
-|           |        |          | FX/N or     | another  |           |
-|           |        |          | commodity   | co       |           |
-|           |        |          | type is     | mmodity. |           |
-|           |        |          | DEM,        |          |           |
-|           |        |          | VAR_COMPRD  |          |           |
-|           |        |          | of c1 is    |          |           |
-|           |        |          | aggregated  |          |           |
-|           |        |          | to c2.      |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         | rhs_c  | C        | Since       | Limit on | The       |
-| OM_BNDNET | ombal, | ommodity | inter-/ex   | the net  | balance   |
-|           | rcs_   | unit     | trapolation | amount   | c         |
-| (         | combal |          | default is  | of a     | onstraint |
-| r,datayea |        | \[       | MIG, a      | c        | is set to |
-| r,c,s,bd) |        | open\];\ | bound must  | ommodity | an        |
-|           |        | default  | be          | (v       | equality  |
-|           |        | value:   | specified   | ariable\ | (EQE      |
-|           |        | none     | for each    | VAR      | _COMBAL). |
-|           |        |          | period      | _COMNET) |           |
-|           |        | Default  | desired, if | within a | Either    |
-|           |        | i/e: MIG | no explicit | region   | the finer |
-|           |        |          | inter-/ex   | for a    | timeslice |
-|           |        | Remark:  | trapolation | pa       | variables |
-|           |        | All      | option is   | rticular | are       |
-|           |        | VA       | given.      | ti       | summed    |
-|           |        | R_COMNET |             | meslice. | (EQ(l)    |
-|           |        | v        | If the      |          | \_BNDNET) |
-|           |        | ariables | bound is    |          | or the    |
-|           |        | are by   | specified   |          | bound     |
-|           |        | default  | for a       |          | applied   |
-|           |        | non-n    | timeslice s |          | direct to |
-|           |        | egative, | above the   |          | the       |
-|           |        | i.e.     | commodity   |          | commodity |
-|           |        | have     | timeslice   |          | net       |
-|           |        | lower    | resolution  |          | va        |
-|           |        | bounds   | (com_tsl),  |          | riable(VA |
-|           |        | of zero  | the bound   |          | R_COMNET) |
-|           |        |          | is applied  |          | when at   |
-|           |        |          | to the sum  |          | the       |
-|           |        |          | of the net  |          | commodity |
-|           |        |          | commodity   |          | level     |
-|           |        |          | variables   |          | (         |
-|           |        |          | (           |          | com_tsl). |
-|           |        |          | VAR_COMNET) |          |           |
-|           |        |          | below it,   |          |           |
-|           |        |          | according   |          |           |
-|           |        |          | to the      |          |           |
-|           |        |          | timeslice   |          |           |
-|           |        |          | tree.       |          |           |
-|           |        |          |             |          |           |
-|           |        |          | Standard    |          |           |
-|           |        |          | a           |          |           |
-|           |        |          | ggregation. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         | rhs_c  | C        | Since       | Limit on | The       |
-| OM_BNDPRD | omprd, | ommodity | inter-/ex   | the      | balance   |
-|           | rcs_   | unit     | trapolation | amount   | c         |
-| (         | comprd |          | default is  | of a     | onstraint |
-| r,datayea |        | \[0,∞);\ | MIG, a      | c        | is set to |
-| r,c,s,bd) |        | default  | bound must  | ommodity | an        |
-|           |        | value:   | be          | produced | equality  |
-|           |        | none     | specified   | (        | (EQE      |
-|           |        |          | for each    | variable | _COMBAL). |
-|           |        | Default  | period      |          |           |
-|           |        | i/e: MIG | desired, if | VAR      | Finer     |
-|           |        |          | no explicit | _COMPRD) | timeslice |
-|           |        | Remark:  | inter-/ex   |          | variables |
-|           |        | All      | trapolation | within a | summed    |
-|           |        | VA       | option is   | region   | (EQ(l)\   |
-|           |        | R_COMPRD | given.      | for a    | _BNDPRD). |
-|           |        | v        |             | pa       |           |
-|           |        | ariables | If the      | rticular | or the    |
-|           |        | are by   | bound is    | ti       | bound is  |
-|           |        | default  | specified   | meslice. | applied   |
-|           |        | non-n    | for a       |          | direct to |
-|           |        | egative, | timeslice s |          | the       |
-|           |        | i.e.     | being above |          | commodity |
-|           |        | have     | the         |          | p         |
-|           |        | lower    | commodity   |          | roduction |
-|           |        | bounds   | timeslice   |          | variable  |
-|           |        | of zero  | resolution  |          | (VA       |
-|           |        |          | (com_tsl),  |          | R_COMPRD) |
-|           |        |          | the bound   |          | when at   |
-|           |        |          | is applied  |          | the       |
-|           |        |          | to the sum  |          | commodity |
-|           |        |          | of the      |          | level     |
-|           |        |          | commodity   |          | (         |
-|           |        |          | production  |          | com_tsl). |
-|           |        |          | variables   |          |           |
-|           |        |          | (           |          |           |
-|           |        |          | VAR_COMPRD) |          |           |
-|           |        |          | below it,   |          |           |
-|           |        |          | according   |          |           |
-|           |        |          | to the      |          |           |
-|           |        |          | timeslice   |          |           |
-|           |        |          | tree.       |          |           |
-|           |        |          |             |          |           |
-|           |        |          | Standard    |          |           |
-|           |        |          | a           |          |           |
-|           |        |          | ggregation. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         | COM_   | Monetary | The control | Base     | Controls  |
-| OM_BPRICE | ELAST, | unit per | parameter   | price of | the       |
-|           | COM    | c        | \$SET       | a demand | inclusion |
-| (r,t      | _STEP, | ommodity | TIMESED     | c        | of the    |
-| ,c,s,cur) | C      | unit     | 'YES' to    | ommodity | elastic   |
-|           | OM_VOC |          | activate    | for the  | demand    |
-|           |        | \[       | elastic     | elastic  | variable  |
-|           |        | open\];\ | demands     | demand   | (V        |
-|           |        | default  | must be     | form     | AR_ELAST) |
-|           |        | value:   | set.        | ulation. | in the    |
-|           |        | none     |             |          | commodity |
-|           |        |          |             |          | balance   |
-|           |        | Default  |             |          | equat     |
-|           |        | i/e:     |             |          | ion(EQ(l) |
-|           |        | none     |             |          | \_COMBAL) |
-|           |        |          |             |          |           |
-|           |        |          |             |          | Applied   |
-|           |        |          |             |          | to the    |
-|           |        |          |             |          | elastic   |
-|           |        |          |             |          | demand    |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | (V        |
-|           |        |          |             |          | AR_ELAST) |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (EQ       |
-|           |        |          |             |          | _OBJELS). |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         | OBJ_   | Monetary | Direct      | Cost on  | Forces    |
-| OM_CSTNET | COMNT, | unit per | i           | the net  | the net   |
-|           |        | c        | nheritance. | amount   | commodity |
-| (r        | CST    | ommodity |             | of a     | variable  |
-| ,datayear | _COMC, | unit     | Weighted    | c        | (VA       |
-| ,c,s,cur) |        |          | a           | ommodity | R_COMNET) |
-|           | CS     | \[       | ggregation. | within a | to be     |
-|           | T_PVC, | open\];\ |             | region   | included  |
-|           |        | default  |             | for a    | in the    |
-|           | rhs_c  | value:   |             | pa       | equality  |
-|           | ombal, | none     |             | rticular | balance   |
-|           | rcs_   |          |             | ti       | c         |
-|           | combal | Default  |             | meslice. | onstraint |
-|           |        | i/e: STD |             |          | (EQE      |
-|           |        |          |             |          | _COMBAL). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | Applied   |
-|           |        |          |             |          | to said   |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | cost      |
-|           |        |          |             |          | component |
-|           |        |          |             |          | of the    |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (EQ       |
-|           |        |          |             |          | _OBJVAR). |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         | OBJ_   | Monetary | Direct      | Cost on  | Forces    |
-| OM_CSTPRD | COMPD, | unit per | i           | the      | the       |
-|           | CST    | c        | nheritance. | pr       | commodity |
-| (r        | _COMC, | ommodity |             | oduction | p         |
-| ,datayear |        | unit     | Weighted    | of a     | roduction |
-| ,c,s,cur) | CS     |          | a           | co       | variable  |
-|           | T_PVC, | \[       | ggregation. | mmodity, | (VA       |
-|           | rhs_c  | open\];\ |             | within a | R_COMPRD) |
-|           | omprd, | default  |             | region   | to be     |
-|           | rcs_   | value:   |             | for a    | included  |
-|           | comprd | none     |             | pa       | in the    |
-|           |        |          |             | rticular | equality  |
-|           |        | Default  |             | ti       | balance   |
-|           |        | i/e: STD |             | meslice. | c         |
-|           |        |          |             |          | onstraint |
-|           |        |          |             |          | (EQE      |
-|           |        |          |             |          | _COMBAL). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | Applied   |
-|           |        |          |             |          | to said   |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | cost      |
-|           |        |          |             |          | component |
-|           |        |          |             |          | of the    |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (EQ       |
-|           |        |          |             |          | _OBJVAR). |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         | bo     | C        | The years   | Bound on | Forces    |
-| OM_CUMNET | hyear, | ommodity | y1 and y2   | the      | the net   |
-|           | eo     | unit     | may be any  | cu       | commodity |
-| (r,       | hyear, |          | years of    | mulative | variable  |
-| y1,y2,bd) | rhs_c  | \[0,∞);\ | the set     | net      | (VA       |
-|           | ombal, | default  | allyear;    | amount   | R_COMNET) |
-|           | rcs_c  | value:   | where y1    | of a     | to be     |
-|           | ombal, | none     | may also be | c        | included  |
-|           | rtc_   |          | 'BOH' for   | ommodity | in the    |
-|           | cumnet | Default  | first year  | between  | equality  |
-|           |        | i/e: not | of first    | the      | balance   |
-|           |        | possible | period and  | years y1 | c         |
-|           |        |          | y2 may be   | and y2,  | onstraint |
-|           |        |          | 'EOH' for   | within a | (EQE      |
-|           |        |          | last year   | region   | _COMBAL). |
-|           |        |          | of last     | over     |           |
-|           |        |          | period.     | tim      | Generates |
-|           |        |          |             | eslices. | the       |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | umulative |
-|           |        |          |             |          | commodity |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | onstraint |
-|           |        |          |             |          | (EQ(l)\   |
-|           |        |          |             |          | _CUMNET). |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         | bo     | C        | The years   | Bound on | Forces    |
-| OM_CUMPRD | hyear, | ommodity | y1 and y2   | the      | the net   |
-|           | eo     | unit     | may be any  | cu       | commodity |
-| (r,       | hyear, |          | years of    | mulative | variable  |
-| y1,y2,bd) | rhs_c  | \[0,∞);\ | the set     | pr       | (VA       |
-|           | omprd, | default  | allyear;    | oduction | R_COMPRD) |
-|           | rcs_c  | value:   | where y1    | of a     | to be     |
-|           | omprd, | none     | may also be | c        | included  |
-|           | rtc_   |          | 'BOH' for   | ommodity | in the    |
-|           | cumprd | Default  | first year  | between  | balance   |
-|           |        | i/e: not | of first    | the      | equation  |
-|           |        | possible | period and  | years y1 | (EQE      |
-|           |        |          | y2 may be   | and y2   | _COMBAL). |
-|           |        |          | 'EOH' for   | within a |           |
-|           |        |          | last year   | region   | The       |
-|           |        |          | of last     | over     | c         |
-|           |        |          | period.     | tim      | umulative |
-|           |        |          |             | eslices. | c         |
-|           |        |          |             |          | onstraint |
-|           |        |          |             |          | is        |
-|           |        |          |             |          | generated |
-|           |        |          |             |          | (EQ(l)\   |
-|           |        |          |             |          | _CUMPRD). |
-+-----------+--------+----------+-------------+----------+-----------+
-| COM_ELAST | COM_B  | Dimen    | The control | El       | Controls  |
-|           | PRICE, | sionless | parameter   | asticity | the       |
-| (r        | COM    |          |             | of       | inclusion |
-| ,datayear | _STEP, | \[       | \$SET       | demand   | of the    |
-| ,c,s,lim) | COM    | open\];\ | TIMESED YES | in       | elastic   |
-|           | _VOC,\ | default  | must be set | dicating | demand    |
-|           | C      | value:   | to activate | how much | variable  |
-|           | OM_AGG | none     | elastic     | the      | (V        |
-|           |        |          | demands.    | demand   | AR_ELAST) |
-|           |        | Default  |             | ris      | in the    |
-|           |        | i/e: STD | An          | es/falls | commodity |
-|           |        |          | elasticity  | in       | balance   |
-|           |        |          | is required | response | equat     |
-|           |        |          | for each    | to a     | ion(EQ(l) |
-|           |        |          | direction   | unit     | \_COMBAL) |
-|           |        |          | the demand  | change   |           |
-|           |        |          | is          | in the   | Applied   |
-|           |        |          | permitted   | marginal | to the    |
-|           |        |          | to move.    | cost of  | elastic   |
-|           |        |          |             | meeting  | demand    |
-|           |        |          | The index   | a demand | variable  |
-|           |        |          | lim =       | that is  | (V        |
-|           |        |          | \'LO\'      | elastic. | AR_ELAST) |
-|           |        |          | corresponds |          | in the    |
-|           |        |          | to demand   | See also | objective |
-|           |        |          | decrease,   | Appendix | function  |
-|           |        |          | while lim = | D for    | costs     |
-|           |        |          | \'UP\'      | ad       | (EQ       |
-|           |        |          | denotes the | ditional | _OBJELS). |
-|           |        |          | direction   | details  |           |
-|           |        |          | for demand  | on       |           |
-|           |        |          | increase.   | defining |           |
-|           |        |          |             | demand   |           |
-|           |        |          | A different | fu       |           |
-|           |        |          | value may   | nctions. |           |
-|           |        |          | be provided |          |           |
-|           |        |          | for each    |          |           |
-|           |        |          | direction,  |          |           |
-|           |        |          | thus curves |          |           |
-|           |        |          | may be      |          |           |
-|           |        |          | asymmetric. |          |           |
-|           |        |          |             |          |           |
-|           |        |          | S           |          |           |
-|           |        |          | ubstitution |          |           |
-|           |        |          | e           |          |           |
-|           |        |          | lasticities |          |           |
-|           |        |          | can be      |          |           |
-|           |        |          | defined     |          |           |
-|           |        |          | with        |          |           |
-|           |        |          | lim=\'N\',  |          |           |
-|           |        |          | among a     |          |           |
-|           |        |          | group of    |          |           |
-|           |        |          | demands     |          |           |
-|           |        |          | aggregated  |          |           |
-|           |        |          | by COM_AGG. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         | COM    | Integer  | Provided    | Shape    | Affects   |
-| OM_ELASTX | _ELAST | scalar   | when        | index    | the       |
-| (r,datay  |        |          | shaping of  | for the  | demand    |
-| ear,c,bd) |        | \[       | elasticity  | el       | ela       |
-|           |        | 1,999\]; | based upon  | asticity | sticities |
-|           |        |          | demand      | of       | applied   |
-|           |        | default  | level is    | demand   | in        |
-|           |        | value:   | desired.    |          | EQ_OBJELS |
-|           |        | none\    |             |          |           |
-|           |        | Default  | Note: Shape |          |           |
-|           |        | extrap   | index 1 is  |          |           |
-|           |        | olation: | reserved    |          |           |
-|           |        | MIG      | for         |          |           |
-|           |        |          | constant 1. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| COM_FR    | COM    | Decimal  | Normally    | Fraction | Applied   |
-|           | _PROJ, | fraction | defined     | of the   | to the    |
-| (r,data   | c      |          | only for    | annual   | annual    |
-| year,c,s) | om_ts, | \        | demand      | demand   | demand    |
-|           | co     | [0,1\];\ | commodities | (C       | (         |
-|           | m_tsl, | default  | (com_type = | OM_PROJ) | COM_PROJ) |
-|           |        | value:   | \'DEM\'),   | or       | as the    |
-|           | RTC    | t        | but can be  | c        | RHS of    |
-|           | S_TSFR | imeslice | applied to  | ommodity | the       |
-|           |        | duration | any         | flow     | balance   |
-|           |        | (G_YRFR) | commodity   | o        | equation  |
-|           |        |          | for         | ccurring | (EQ(l)\   |
-|           |        | Default  | defining    | in       | _COMBAL). |
-|           |        | i/e: STD | load        | t        |           |
-|           |        |          | profiles.   | imeslice | Enters    |
-|           |        |          |             | s;       | the       |
-|           |        |          | Affects     | d        | peaking   |
-|           |        |          | timeslice   | escribes | equation  |
-|           |        |          | resolution  | the      | (         |
-|           |        |          | at which a  | shape of | EQ_PEAK), |
-|           |        |          | commodity   | the load | if a      |
-|           |        |          | is tracked  | curve.   | peaking   |
-|           |        |          | (           |          | c         |
-|           |        |          | RTCS_TSFR), |          | ommodity. |
-|           |        |          | and thereby |          |           |
-|           |        |          | may affect  |          | Applied   |
-|           |        |          | when a      |          | to the    |
-|           |        |          | process     |          | bounds of |
-|           |        |          | cannot      |          | elastic   |
-|           |        |          | operate     |          | demand    |
-|           |        |          | (rtps_off). |          | step      |
-|           |        |          |             |          | variables |
-|           |        |          | Weighted    |          | (VA       |
-|           |        |          | i           |          | R_ELAST). |
-|           |        |          | nheritance. |          |           |
-|           |        |          |             |          | Applied   |
-|           |        |          | Weighted    |          | via       |
-|           |        |          | a           |          | RTFCS_FR  |
-|           |        |          | ggregation. |          | in all    |
-|           |        |          |             |          | equations |
-|           |        |          |             |          | to flows  |
-|           |        |          |             |          | having a  |
-|           |        |          |             |          | timeslice |
-|           |        |          |             |          | level     |
-|           |        |          |             |          | coarser   |
-|           |        |          |             |          | than      |
-|           |        |          |             |          | target    |
-|           |        |          |             |          | level.    |
-+-----------+--------+----------+-------------+----------+-----------+
-| COM_IE    |        | Decimal  | Direct      | Infras   | Overall   |
-|           |        | fraction | i           | tructure | e         |
-| (r,data   |        |          | nheritance. | or       | fficiency |
-| year,c,s) |        | (0,∞);\  |             | tran     | applied   |
-|           |        | default  | Weighted    | smission | to the    |
-|           |        | value: 1 | a           | ef       | total     |
-|           |        |          | ggregation. | ficiency | p         |
-|           |        | Default  |             | of a     | roduction |
-|           |        | i/e: STD |             | co       | of a      |
-|           |        |          |             | mmodity. | commodity |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | commodity |
-|           |        |          |             |          | balance   |
-|           |        |          |             |          | equation  |
-|           |        |          |             |          | (EQ(l)\   |
-|           |        |          |             |          | _COMBAL). |
-+-----------+--------+----------+-------------+----------+-----------+
-| COM_PKFLX | com    | Scalar   | Direct      | Di       | Applied   |
-|           | _peak, |          | i           | fference | to the    |
-| (r,data   | com    | \[       | nheritance. | between  | total     |
-| year,c,s) | _pkts, | open\];\ |             | the      | co        |
-|           | COM_   | default  | Weighted    | average  | nsumption |
-|           | PKRSV, | value:   | a           | demand   | of a      |
-|           | FLO    | none     | ggregation. | and the  | commodity |
-|           | _PKCOI |          |             | peak     | to raise  |
-|           |        | Default  |             | demand   | the       |
-|           |        | i/e: STD |             | in       | capacity  |
-|           |        |          |             | t        | needed to |
-|           |        |          |             | imeslice | satisfy   |
-|           |        |          |             | s,       | the       |
-|           |        |          |             | e        | peaking   |
-|           |        |          |             | xpressed | c         |
-|           |        |          |             | as       | onstraint |
-|           |        |          |             | fraction | (         |
-|           |        |          |             | of the   | EQ_PEAK). |
-|           |        |          |             | average  |           |
-|           |        |          |             | demand.  |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| COM_PKRSV | com    | Scalar   | Requires    | Peak     | Applied   |
-|           | _peak, |          | that        | reserve  | to the    |
-| (r,da     | com    | \[0,∞);\ | commodity c | margin   | total     |
-| tayear,c) | _pkts, | default  | is also     | as       | co        |
-|           | COM_   | value:   | requested   | fraction | nsumption |
-|           | PKFLX, | none     | to have     | of peak  | of a      |
-|           | FLO    |          | peaking     | demand,  | commodity |
-|           | _PKCOI | Default  | c           | e.g. if  | to raise  |
-|           |        | i/e: STD | onstraints, | C        | the       |
-|           |        |          | by defining | OM_PKRSV | capacity  |
-|           |        |          | COM_PEAK or | = 0.2,   | needed to |
-|           |        |          | COM_PKTS    | the      | satisfy   |
-|           |        |          |             | total    | the       |
-|           |        |          |             | i        | peaking   |
-|           |        |          |             | nstalled | c         |
-|           |        |          |             | capacity | onstraint |
-|           |        |          |             | must     | (         |
-|           |        |          |             | exceed   | EQ_PEAK). |
-|           |        |          |             | the peak |           |
-|           |        |          |             | load by  |           |
-|           |        |          |             | 20%.     |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| COM_PROJ  | COM_FR | C        | In standard | P        | Serves as |
-|           |        | ommodity | usage, only | rojected | the RHS   |
-| (r,da     |        | unit     | applicable  | annual   | (after    |
-| tayear,c) |        |          | to demand   | demand   | COM_FR    |
-|           |        | \[0,∞);\ | commodities | for a    | applied)  |
-|           |        | default  | (com_type = | co       | of the    |
-|           |        | value:   | 'DEM').\    | mmodity. | commodity |
-|           |        | none     | In advanced |          | balance   |
-|           |        |          | usage, may  |          | c         |
-|           |        | Default  | also be     |          | onstraint |
-|           |        | i/e: STD | specified   |          | (EQ(l)\   |
-|           |        |          | for other   |          | _COMBAL). |
-|           |        |          | commodities |          |           |
-|           |        |          | for         |          | Enters    |
-|           |        |          | defining an |          | the       |
-|           |        |          | exogenous   |          | peaking   |
-|           |        |          | demand.\    |          | equation  |
-|           |        |          | Demand is   |          | (         |
-|           |        |          | allocated   |          | EQ_PEAK), |
-|           |        |          | to          |          | if a      |
-|           |        |          | sub-annual  |          | peaking   |
-|           |        |          | timeslices  |          | c         |
-|           |        |          | according   |          | ommodity. |
-|           |        |          | to COM_FR.  |          |           |
-|           |        |          |             |          | Applied   |
-|           |        |          |             |          | when      |
-|           |        |          |             |          | setting   |
-|           |        |          |             |          | the upper |
-|           |        |          |             |          | bound of  |
-|           |        |          |             |          | an        |
-|           |        |          |             |          | elastic   |
-|           |        |          |             |          | demand    |
-|           |        |          |             |          | step      |
-|           |        |          |             |          | (VA       |
-|           |        |          |             |          | R_ELAST). |
-+-----------+--------+----------+-------------+----------+-----------+
-| COM_STEP  | COM_B  | Integer  | The control | Number   | Controls  |
-|           | PRICE, | number   | parameter   | of steps | the       |
-| (r,c,bd)  | COM_   |          | \$SET       | to use   | instance  |
-|           | ELAST, | \[1,∞);\ | TIMESED     | for the  | of the    |
-|           | CO     | default  | 'YES' must  | appro    | elastic   |
-|           | M_VOC, | value:   | be set to   | ximation | demand    |
-|           |        | none     | activate    | of       | variable  |
-|           | rcj    |          | elastic     | change   | (V        |
-|           |        |          | demands.    | of       | AR_ELAST) |
-|           |        |          | The number  | p        | in:       |
-|           |        |          | of steps is | roducer/ |           |
-|           |        |          | required    | consumer | the       |
-|           |        |          | for each    | surplus  | commodity |
-|           |        |          | direction   | when     | balance   |
-|           |        |          | the demand  | using    | equation  |
-|           |        |          | is          | the      | (EQ(l)\   |
-|           |        |          | permitted   | li       | _COMBAL); |
-|           |        |          | to move.    | nearized |           |
-|           |        |          |             | elastic  | setting   |
-|           |        |          | The index   | demand   | of the    |
-|           |        |          | bd=LO       | formu    | step      |
-|           |        |          | denotes the | lations. | limit for |
-|           |        |          | direction   |          | the       |
-|           |        |          | of demand   |          | elastic   |
-|           |        |          | decrease,   |          | demand    |
-|           |        |          | bd=UP       |          | variable  |
-|           |        |          | increase,   |          | (VA       |
-|           |        |          | and bd=FX   |          | R_ELAST); |
-|           |        |          | is a        |          |           |
-|           |        |          | shortcut    |          | enters    |
-|           |        |          | for both. A |          | the       |
-|           |        |          | different   |          | objective |
-|           |        |          | value may   |          | function  |
-|           |        |          | be provided |          | costs     |
-|           |        |          | for each    |          | (EQ       |
-|           |        |          | direction,  |          | _OBJELS). |
-|           |        |          | thus curves |          |           |
-|           |        |          | may be      |          |           |
-|           |        |          | asymmetric. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         | OBJ_   | Monetary | Direct      | Subsidy  | Forces    |
-| OM_SUBNET | COMNT, | unit per | i           | on the   | the net   |
-|           | CST    | c        | nheritance. | net      | commodity |
-| (r        | _COMX, | ommodity |             | amount   | variable  |
-| ,datayear |        | unit     | Weighted    | of a     | (VA       |
-| ,c,s,cur) | CS     |          | a           | c        | R_COMNET) |
-|           | T_PVC, | \[0,∞);\ | ggregation. | ommodity | to be     |
-|           | rhs_c  | default  |             | within a | included  |
-|           | ombal, | value:   |             | region   | in the    |
-|           | rcs_   | none     |             | for a    | equality  |
-|           | combal |          |             | pa       | balance   |
-|           |        | Default  |             | rticular | c         |
-|           |        | i/e: STD |             | ti       | onstraint |
-|           |        |          |             | meslice. | (EQE      |
-|           |        |          |             |          | _COMBAL). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | Applied   |
-|           |        |          |             |          | (-) to    |
-|           |        |          |             |          | said      |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | cost      |
-|           |        |          |             |          | component |
-|           |        |          |             |          | of the    |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (EQ       |
-|           |        |          |             |          | _OBJVAR). |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         | OBJ_   | Monetary | Direct      | Subsidy  | Forces    |
-| OM_SUBPRD | COMPD, | unit per | i           | on the   | the       |
-|           | CST    | c        | nheritance. | pr       | commodity |
-| (r        | _COMX, | ommodity |             | oduction | p         |
-| ,datayear |        | unit     | Weighted    | of a     | roduction |
-| ,c,s,cur) | CS     |          | a           | c        | variable  |
-|           | T_PVC, | \[0,∞);\ | ggregation. | ommodity | (VA       |
-|           | rhs_c  | default  |             | within a | R_COMPRD) |
-|           | omprd, | value:   |             | region   | to be     |
-|           | rcs_   | none     |             | for a    | included  |
-|           | comprd |          |             | pa       | in the    |
-|           |        | Default  |             | rticular | equality  |
-|           |        | i/e: STD |             | ti       | balance   |
-|           |        |          |             | meslice. | c         |
-|           |        |          |             |          | onstraint |
-|           |        |          |             |          | (EQE      |
-|           |        |          |             |          | _COMBAL). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | Applied   |
-|           |        |          |             |          | (-) to    |
-|           |        |          |             |          | said      |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | cost      |
-|           |        |          |             |          | component |
-|           |        |          |             |          | of the    |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (EQ       |
-|           |        |          |             |          | _OBJVAR). |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         | OBJ_   | Monetary | Direct      | Tax on   | Forces    |
-| OM_TAXNET | COMNT, | unit per | i           | the net  | the net   |
-|           | CST    | c        | nheritance. | amount   | commodity |
-| (r        | _COMX, | ommodity |             | of a     | variable  |
-| ,datayear |        | unit     | Weighted    | c        | (VA       |
-| ,c,s,cur) | CS     |          | a           | ommodity | R_COMNET) |
-|           | T_PVC, | \[0,∞);\ | ggregation. | within a | to be     |
-|           | rhs_c  | default  |             | region   | included  |
-|           | ombal, | value:   |             | for a    | in the    |
-|           | rcs_   | none     |             | pa       | equality  |
-|           | combal |          |             | rticular | balance   |
-|           |        | Default  |             | ti       | c         |
-|           |        | i/e: STD |             | meslice. | onstraint |
-|           |        |          |             |          | (EQE      |
-|           |        |          |             |          | _COMBAL). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | Applied   |
-|           |        |          |             |          | to said   |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | cost      |
-|           |        |          |             |          | component |
-|           |        |          |             |          | of the    |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (EQ       |
-|           |        |          |             |          | _OBJVAR). |
-+-----------+--------+----------+-------------+----------+-----------+
-| C         | OBJ_   | Monetary | Direct      | Tax on   | Forces    |
-| OM_TAXPRD | COMPD, | unit per | i           | the      | the       |
-|           | CST    | c        | nheritance. | pr       | commodity |
-| (r        | _COMX, | ommodity |             | oduction | p         |
-| ,datayear |        | unit     | Weighted    | of a     | roduction |
-| ,c,s,cur) | CS     |          | a           | c        | variable  |
-|           | T_PVC, | \[0,∞);\ | ggregation. | ommodity | (VA       |
-|           | rhs_c  | default  |             | within a | R_COMPRD) |
-|           | omprd, | value:   |             | region   | to be     |
-|           | rcs_   | none     |             | for a    | included  |
-|           | comprd |          |             | pa       | in the    |
-|           |        | Default  |             | rticular | equality  |
-|           |        | i/e: STD |             | ti       | balance   |
-|           |        |          |             | meslice. | c         |
-|           |        |          |             |          | onstraint |
-|           |        |          |             |          | (EQE      |
-|           |        |          |             |          | _COMBAL). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | Applied   |
-|           |        |          |             |          | to said   |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | cost      |
-|           |        |          |             |          | component |
-|           |        |          |             |          | of the    |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (EQ       |
-|           |        |          |             |          | _OBJVAR). |
-+-----------+--------+----------+-------------+----------+-----------+
-| COM_VOC   | COM_B  | Dimen    | The control | Possible | Applied   |
-|           | PRICE, | sionless | parameter   | v        | when      |
-| (r,datay  | COM    |          | \$SET       | ariation | setting   |
-| ear,c,bd) | _STEP, | \[0,∞);\ | TIMESED     | of       | the bound |
-|           | COM    | default: | 'YES' to    | demand   | of an     |
-|           | _ELAST | none     | activate    | in both  | elastic   |
-|           |        |          | elastic     | di       | demand    |
-|           |        | Default  | demands     | rections | step      |
-|           |        | i/e: STD | must be     | when     | (VA       |
-|           |        |          | set.        | using    | R_ELAST). |
-|           |        |          |             | the      |           |
-|           |        |          | A number is | elastic  | Applied   |
-|           |        |          | required    | demand   | to the    |
-|           |        |          | for each    | form     | e         |
-|           |        |          | direction   | ulation. | lasticity |
-|           |        |          | the demand  |          | variable  |
-|           |        |          | is          |          | in the    |
-|           |        |          | permitted   |          | objective |
-|           |        |          | to move.    |          | function  |
-|           |        |          |             |          | costs     |
-|           |        |          | The index   |          | (EQ       |
-|           |        |          | bd = LO     |          | _OBJELS). |
-|           |        |          | corresponds |          |           |
-|           |        |          | to the      |          |           |
-|           |        |          | direction   |          |           |
-|           |        |          | of          |          |           |
-|           |        |          | decreasing  |          |           |
-|           |        |          | the demand, |          |           |
-|           |        |          | while bd =  |          |           |
-|           |        |          | UP denotes  |          |           |
-|           |        |          | the         |          |           |
-|           |        |          | direction   |          |           |
-|           |        |          | for demand  |          |           |
-|           |        |          | increase.   |          |           |
-|           |        |          |             |          |           |
-|           |        |          | A different |          |           |
-|           |        |          | value may   |          |           |
-|           |        |          | be provided |          |           |
-|           |        |          | for each    |          |           |
-|           |        |          | direction,  |          |           |
-|           |        |          | thus curves |          |           |
-|           |        |          | may be      |          |           |
-|           |        |          | asymmetric. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| DAM_BQTY\ | DA     | C        | Only        | Base     | EQ_DAMAGE |
-| (r,c)     | M_COST | ommodity | effective   | quantity |           |
-|           |        | unit     | when        | of       | EQ_OBJDAM |
-|           |        |          | DAM_COST    | e        |           |
-|           |        | \[0,∞);  | has been    | missions |           |
-|           |        |          | defined for | for      |           |
-|           |        | default  | commodity   | damage   |           |
-|           |        | value:   | c.          | cost     |           |
-|           |        | none     |             | ac       |           |
-|           |        |          |             | counting |           |
-|           |        | Default  |             |          |           |
-|           |        | i/e: N/A |             |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| DAM_COST  | DA     | Monetary | Damage      | Marginal | EQ_DAMAGE |
-| (r,dataye | M_BQTY | unit per | costs are   | damage   |           |
-| ar,c,cur) |        | c        | by default  | cost of  | EQ_OBJDAM |
-|           |        | ommodity | endogenous  | e        |           |
-|           |        | unit     | (included   | missions |           |
-|           |        |          | in the      | at Base  |           |
-|           |        | \[0,∞);  | objective). | q        |           |
-|           |        |          |             | uantity. |           |
-|           |        | default  | To set them |          |           |
-|           |        | value:   | exogenous,  |          |           |
-|           |        | none     | use \$SET   |          |           |
-|           |        |          | DAMAGE NO   |          |           |
-|           |        | Default  |             |          |           |
-|           |        | i/e: STD |             |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| D         | DA     | Dimen    | Only        | El       | EQ_OBJDAM |
-| AM_ELAST\ | M_COST | sionless | effective   | asticity |           |
-| (r,c,lim) |        |          | when        | of       |           |
-|           | DA     | \[0,∞);\ | DAM_COST    | damage   |           |
-|           | M_BQTY | default  | has been    | cost in  |           |
-|           |        | value:   | defined for | the      |           |
-|           |        | none     | commodity   | lower or |           |
-|           |        |          | c.          | upper    |           |
-|           |        | Default  |             | d        |           |
-|           |        | i/e: N/A |             | irection |           |
-|           |        |          |             | from     |           |
-|           |        |          |             | Base     |           |
-|           |        |          |             | q        |           |
-|           |        |          |             | uantity. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| DAM_STEP\ | DA     | Integer  | Only        | Number   | EQ_DAMAGE |
-| (r,c,lim) | M_COST | number   | effective   | of steps |           |
-|           |        |          | when        | for      | EQ_OBJDAM |
-|           | DA     | \[1,∞);\ | DAM_COST    | lin      |           |
-|           | M_BQTY | default  | has been    | earizing |           |
-|           |        | value:   | defined for | damage   |           |
-|           |        | none     | commodity   | costs in |           |
-|           |        |          | c.          | the      |           |
-|           |        | Default  |             | lower or |           |
-|           |        | i/e: N/A |             | upper    |           |
-|           |        |          |             | d        |           |
-|           |        |          |             | irection |           |
-|           |        |          |             | from     |           |
-|           |        |          |             | Base     |           |
-|           |        |          |             | q        |           |
-|           |        |          |             | uantity. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| DAM_VOC\  | DA     | Decimal  | Only        | Variance | EQ_OBJDAM |
-| (r,c,lim) | M_COST | fraction | effective   | of       |           |
-|           |        |          | when        | e        |           |
-|           | DA     | LO:      | DAM_COST    | missions |           |
-|           | M_BQTY | \[0,1\]; | has been    | in the   |           |
-|           |        | UP:      | defined for | lower or |           |
-|           |        | \[0,∞);\ | commodity   | upper    |           |
-|           |        | default  | c.          | d        |           |
-|           |        | value:   |             | irection |           |
-|           |        | none     |             | from     |           |
-|           |        |          |             | Base     |           |
-|           |        | Default  |             | quantity |           |
-|           |        | i/e: N/A |             | as a     |           |
-|           |        |          |             | fraction |           |
-|           |        |          |             | of Base  |           |
-|           |        |          |             | q        |           |
-|           |        |          |             | uantity. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| E         | B, D,  |          | For each    | End year | The       |
-|           | M,     |          | modelyear   | of       | amount of |
-| \(t\)     | COE    |          | period      | period   | new       |
-|           | F_CPT, |          |             | t, used  | i         |
-|           |        |          |             | in       | nvestment |
-|           | rtp_   |          |             | det      | (         |
-|           | vintyr |          |             | ermining | VAR_NCAP) |
-|           |        |          |             | the      | carried   |
-|           |        |          |             | length   | over in   |
-|           |        |          |             | of each  | the       |
-|           |        |          |             | period   | capacity  |
-|           |        |          |             |          | transfer  |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | onstraint |
-|           |        |          |             |          | (EQ(      |
-|           |        |          |             |          | l)\_CPT). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | Amount of |
-|           |        |          |             |          | in        |
-|           |        |          |             |          | vestments |
-|           |        |          |             |          | (         |
-|           |        |          |             |          | VAR_NCAP) |
-|           |        |          |             |          | remaining |
-|           |        |          |             |          | past the  |
-|           |        |          |             |          | modelling |
-|           |        |          |             |          | horizon   |
-|           |        |          |             |          | that      |
-|           |        |          |             |          | needs to  |
-|           |        |          |             |          | be        |
-|           |        |          |             |          | credited  |
-|           |        |          |             |          | back to   |
-|           |        |          |             |          | the       |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (EQ       |
-|           |        |          |             |          | _OBJINV). |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_BND   |        | C        | If the      | Bound on | Flow      |
-|           |        | ommodity | bound is    | the flow | activity  |
-| (r,d      |        | unit     | specified   | of a     | limit     |
-| atayear,p |        |          | for a       | c        | c         |
-| ,cg,s,bd) |        | \[0,∞);\ | timeslice s | ommodity | onstraint |
-|           |        | default: | being above | or the   | (EQ(l)    |
-|           |        | none     | the flow    | sum of   | \_FLOBND) |
-|           |        |          | timeslice   | flows    | when s is |
-|           |        | Default  | resolution  | within a | above     |
-|           |        | i/e: MIG | (r          | c        | r         |
-|           |        |          | tpcs_varf), | ommodity | tpcs_varf |
-|           |        |          | the bound   | group.   |           |
-|           |        |          | is applied  |          | Direct    |
-|           |        |          | to the sum  |          | bound on  |
-|           |        |          | of the flow |          | activity  |
-|           |        |          | variables   |          | variable  |
-|           |        |          | (VAR_FLO)   |          | (VAR_FLO) |
-|           |        |          | according   |          | when at   |
-|           |        |          | to the      |          | the       |
-|           |        |          | timeslice   |          | r         |
-|           |        |          | tree,       |          | tpcs_varf |
-|           |        |          | otherwise   |          | level.    |
-|           |        |          | directly to |          |           |
-|           |        |          | the flow    |          |           |
-|           |        |          | variable.   |          |           |
-|           |        |          |             |          |           |
-|           |        |          | No          |          |           |
-|           |        |          | aggreg      |          |           |
-|           |        |          | ation.[^29] |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_COST  | OBJ_   | Monetary | Direct      | Variable | Applied   |
-|           | FCOST, | unit per | inheritance | cost of  | to the    |
-| (r,d      | CST    | c        |             | a        | flow      |
-| atayear,p | _FLOC, | ommodity | Weighted    | process  | variable  |
-| ,c,s,cur) |        | unit     | aggregation | as       | (VAR_FLO) |
-|           | C      |          |             | sociated | when      |
-|           | ST_PVP | \[       |             | with the | entering  |
-|           |        | open\];\ |             | pro      | the       |
-|           |        | default: |             | duction/ | objective |
-|           |        | none     |             | con      | function  |
-|           |        |          |             | sumption | (EQ       |
-|           |        | Default  |             | of a     | _OBJVAR). |
-|           |        | i/e: STD |             | co       |           |
-|           |        |          |             | mmodity. | May       |
-|           |        |          |             |          | appear in |
-|           |        |          |             |          | user      |
-|           |        |          |             |          | co        |
-|           |        |          |             |          | nstraints |
-|           |        |          |             |          | (EQ_UC\*) |
-|           |        |          |             |          | if        |
-|           |        |          |             |          | specified |
-|           |        |          |             |          | in        |
-|           |        |          |             |          | UC_NAME.  |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_CUM   | A      | Flow     | The years   | Bound on | Generates |
-| (r,p,c,   | CT_CUM | unit     | y1 and y2   | the      | an        |
-| y1,y2,bd) |        |          | may be any  | cu       | instance  |
-|           |        | \[0,∞);\ | years of    | mulative | of the    |
-|           |        | default  | the set     | amount   | c         |
-|           |        | value:   | allyear;    | of       | umulative |
-|           |        | none     | where y1    | annual   | c         |
-|           |        |          | may also be | process  | onstraint |
-|           |        | Default  | \'BOH\' for | activity |           |
-|           |        | i/e: N/A | first year  | between  | (E        |
-|           |        |          | of first    | the      | Q_CUMFLO) |
-|           |        |          | period and  | years y1 |           |
-|           |        |          | y2 may be   | and y2,  |           |
-|           |        |          | \'EOH\' for | within a |           |
-|           |        |          | last year   | region.  |           |
-|           |        |          | of last     |          |           |
-|           |        |          | period.     |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_DELIV | OBJ_   | Monetary | Direct      | Cost of  | Applied   |
-|           | FDELV, | unit per | i           | a        | to the    |
-| (r,d      | CST    | c        | nheritance. | de       | flow      |
-| atayear,p | _FLOC, | ommodity |             | livering | variable  |
-| ,c,s,cur) |        | unit     | Weighted    | (co      | (VAR_FLO) |
-|           | C      |          | a           | nsuming) | when      |
-|           | ST_PVP | \[       | ggregation. | a        | entering  |
-|           |        | open\];\ |             | c        | the       |
-|           |        | default: |             | ommodity | objective |
-|           |        | none     |             | to a     | function  |
-|           |        |          |             | process. | (EQ       |
-|           |        | Default  |             |          | _OBJVAR). |
-|           |        | i/e: STD |             |          |           |
-|           |        |          |             |          | May       |
-|           |        |          |             |          | appear in |
-|           |        |          |             |          | user      |
-|           |        |          |             |          | co        |
-|           |        |          |             |          | nstraints |
-|           |        |          |             |          | (EQ_UC\*) |
-|           |        |          |             |          | if        |
-|           |        |          |             |          | specified |
-|           |        |          |             |          | in        |
-|           |        |          |             |          | UC_NAME.  |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_EFF   | FLO    | C        | Inherited   | Defines  | Generates |
-| (r,       | _EMIS\ | ommodity | /aggregated | the      | process   |
-| datayear, | PRC_   | unit of  | to the      | amount   | trans     |
-| p,cg,c,s) | ACTFLO | c /      | timeslice   | of       | formation |
-|           |        | c        | levels of   | c        | equation  |
-|           |        | ommodity | the flow    | ommodity | (E        |
-|           |        | unit of  | variables   | flow of  | Q_PTRANS) |
-|           |        | cg       | of the      | c        | between   |
-|           |        |          | commodities | ommodity | one or    |
-|           |        | \[       | in group    | (c) per  | more      |
-|           |        | open\];\ | cg. All     | unit of  | input (or |
-|           |        | default  | parameters  | other    | output)   |
-|           |        | value:   | with the    | process  | co        |
-|           |        | none     | same        | flow(s)  | mmodities |
-|           |        |          | process (p) | or       | and one   |
-|           |        | Default  | and target  | activity | output    |
-|           |        | i/e: STD | commodity   | (cg).    | (or       |
-|           |        |          | (c) are     |          | input)    |
-|           |        |          | combined in |          | com       |
-|           |        |          | the same    |          | modities. |
-|           |        |          | tra         |          |           |
-|           |        |          | nsformation |          |           |
-|           |        |          | equation.   |          |           |
-|           |        |          |             |          |           |
-|           |        |          | By using    |          |           |
-|           |        |          | cg=\'ACT\', |          |           |
-|           |        |          | the         |          |           |
-|           |        |          | attribute   |          |           |
-|           |        |          | will be     |          |           |
-|           |        |          | defined per |          |           |
-|           |        |          | unit of     |          |           |
-|           |        |          | activity,   |          |           |
-|           |        |          | by applying |          |           |
-|           |        |          | it on all   |          |           |
-|           |        |          | PCG flows   |          |           |
-|           |        |          | with the    |          |           |
-|           |        |          | value       |          |           |
-|           |        |          | divided by  |          |           |
-|           |        |          | any         |          |           |
-|           |        |          | u           |          |           |
-|           |        |          | ser-defined |          |           |
-|           |        |          | PRC_ACTFLO. |          |           |
-|           |        |          |             |          |           |
-|           |        |          | FLO_EFF     |          |           |
-|           |        |          | defined for |          |           |
-|           |        |          | an          |          |           |
-|           |        |          | individual  |          |           |
-|           |        |          | flow will   |          |           |
-|           |        |          | override    |          |           |
-|           |        |          | any value   |          |           |
-|           |        |          | for a       |          |           |
-|           |        |          | group.      |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_EMIS  | F      | C        | See         | Defines  | See       |
-| (r,da     | LO_EFF | ommodity | FLO_EFF.    | the      | FLO_EFF.  |
-| tayear,p, | (      | unit of  |             | amount   |           |
-| cg,com,s) | alias) | c /      | If com is   | of       |           |
-|           |        | c        | of type ENV | e        |           |
-|           |        | ommodity | and is not  | missions |           |
-|           |        | unit of  | in the      | (c) per  |           |
-|           |        | cg       | process     | unit of  |           |
-|           |        |          | topology,   | process  |           |
-|           |        | \[       | it is added | flow(s)  |           |
-|           |        | open\];\ | to it as an | or       |           |
-|           |        | default  | output      | activity |           |
-|           |        | value:   | flow.       | (cg).    |           |
-|           |        | none     |             |          |           |
-|           |        |          |             |          |           |
-|           |        | Default  |             |          |           |
-|           |        | i/e: STD |             |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_FR    |        | Decimal  | FLO_FR may  | 1\)      | A share   |
-|           |        | fraction | be          | Bounds   | equation  |
-| (r,       |        |          | specified   | the flow | (EQ(l     |
-| datayear, |        | \[0,1\]  | as lower,   | of       | )\_FLOFR) |
-| p,c,s,bd) |        | /        | upper or    | c        | limiting  |
-|           |        | \[0,∞);\ | fixed       | ommodity | the       |
-|           |        | default  | bounds, in  | (c)      | amount of |
-|           |        | value:   | contrast to | entering | commodity |
-|           |        | none     | COM_FR.     | or       | (c) is    |
-|           |        |          |             | leaving  | generated |
-|           |        | Default  | Can be      | process  | according |
-|           |        | i/e: MIG | specified   | (p) in a | to the    |
-|           |        |          | for any     | ti       | bound     |
-|           |        |          | flow        | meslice, | type (bd  |
-|           |        |          | variable    | in       | = l       |
-|           |        |          | having a    | pr       | in        |
-|           |        |          | subannual   | o­por­tion | dicator). |
-|           |        |          | timeslice   | to       |           |
-|           |        |          | resolution. | annual   |           |
-|           |        |          |             | flow.    |           |
-|           |        |          | Weighted    |          |           |
-|           |        |          | a           | 2\) If   |           |
-|           |        |          | ggregation. | s        |           |
-|           |        |          |             | pecified |           |
-|           |        |          | Direct      | also at  |           |
-|           |        |          | i           | the      |           |
-|           |        |          | nheritance, | ANNUAL   |           |
-|           |        |          | if defined  | level,   |           |
-|           |        |          | at the      | bounds   |           |
-|           |        |          | ANNUAL      | the flow |           |
-|           |        |          | level.      | *        |           |
-|           |        |          |             | *level** |           |
-|           |        |          |             | in       |           |
-|           |        |          |             | pr       |           |
-|           |        |          |             | oportion |           |
-|           |        |          |             | to the   |           |
-|           |        |          |             | average  |           |
-|           |        |          |             | level    |           |
-|           |        |          |             | under    |           |
-|           |        |          |             | the      |           |
-|           |        |          |             | parent   |           |
-|           |        |          |             | t        |           |
-|           |        |          |             | imeslice |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_FUNC  | FL     | C        | If for the  | A key    | Es        |
-|           | O_SUM, | ommodity | same        | p        | tablishes |
-| (r,dat    | FLO_   | unit of  | indexes the | arameter | the basic |
-| ayear,p,c | FUNCX, | cg2/c    | parameter   | de       | trans     |
-| g1,cg2,s) | COEF_  | ommodity | FLO_SUM is  | scribing | formation |
-|           | PTRAN, | unit of  | specified   | the      | rel       |
-|           | rpc_   | cg1      | but no      | basic    | ationship |
-|           | ffunc, |          | FLO_FUNC,   | o        | (E        |
-|           | rpcg   | \[       | the         | peration | Q_PTRANS) |
-|           | _ptran | open\];\ | FLO_FUNC is | of or    | between   |
-|           |        | default  | set to 1.   | within a | one or    |
-|           |        | value:   |             | process. | more      |
-|           |        | see next | Important   | Sets the | input (or |
-|           |        | column   | factor in   | ratio    | output)   |
-|           |        |          | determining | between  | co        |
-|           |        | Default  | the level   | the sum  | mmodities |
-|           |        | i/e: STD | at which a  | of flows | and one   |
-|           |        |          | process     | in       | or more   |
-|           |        |          | operates in | c        | output    |
-|           |        |          | that the    | ommodity | (or       |
-|           |        |          | derived     | group    | input)    |
-|           |        |          | tra         | cg2 to   | com       |
-|           |        |          | nsformation | the sum  | modities. |
-|           |        |          | parameter   | of flows |           |
-|           |        |          | (           | in       | Es        |
-|           |        |          | COEF_PTRAN) | c        | tablishes |
-|           |        |          | is          | ommodity | the       |
-|           |        |          | inherited   | group    | rel       |
-|           |        |          | /aggregated | cg1,     | ationship |
-|           |        |          | to the      | thereby  | between   |
-|           |        |          | timeslice   | defining | storage   |
-|           |        |          | levels of   | the      | charging  |
-|           |        |          | the flow    | ef       | /         |
-|           |        |          | variables   | ficiency | di        |
-|           |        |          | associated  | of       | scharging |
-|           |        |          | with the    | p        | and a     |
-|           |        |          | commodities | roducing | related   |
-|           |        |          | in the      | cg2 from | commodity |
-|           |        |          | group cg1.  | cg1      | flow      |
-|           |        |          |             | (subject | (VAR_FLO) |
-|           |        |          |             | to any   | in the    |
-|           |        |          |             | F        | auxiliary |
-|           |        |          |             | LO_SUM). | storage   |
-|           |        |          |             | cg1 and  | flow      |
-|           |        |          |             | cg2 may  | equation  |
-|           |        |          |             | be also  | (EQ       |
-|           |        |          |             | single   | _STGAUX). |
-|           |        |          |             | comm     |           |
-|           |        |          |             | odities. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| F         | FLO    | Integer  | Provided    | A        | Applied   |
-| LO_FUNCX\ | _FUNC, | scalar   | when        | ge-based | to the    |
-| (r,d      | FL     |          | shaping     | shaping  | flow      |
-| atayear,p | O_SUM, | \[       | based upon  | curve    | variable  |
-| ,cg1,cg2) | COEF   | 1,999\]; | age is      | (SHAPE)  | (VAR_FLO) |
-|           | _PTRAN |          | desired.    | to be    | in a      |
-|           |        | default  |             | applied  | trans     |
-|           |        | value:   | Vintaged    | to the   | formation |
-|           |        | none\    | processes   | flow     | equation  |
-|           |        | Default  | only.       | pa       | (         |
-|           |        | extrap   |             | rameters | EQ_PTRANS |
-|           |        | olation: | Note: Shape | (        | /         |
-|           |        | MIG      | index 1 is  | ACT_EFF/ | EQ        |
-|           |        |          | reserved    | ACT_FLO/ | E_ACTEFF) |
-|           |        |          | for         | FL       | to        |
-|           |        |          | constant 1. | O_FUNC/F | account   |
-|           |        |          |             | LO_SUM/F | for       |
-|           |        |          | A           | LO_EMIS/ | changes   |
-|           |        |          | CT_EFF(cg): | FLO_EFF) | in the    |
-|           |        |          | cg1=cg,     |          | trans     |
-|           |        |          | cg2=\'ACT\' |          | for­mation |
-|           |        |          |             |          | e         |
-|           |        |          | A           |          | fficiency |
-|           |        |          | CT_FLO(cg): |          | according |
-|           |        |          | c           |          | to the    |
-|           |        |          | g1=\'ACT\', |          | age of    |
-|           |        |          | cg2=cg      |          | each      |
-|           |        |          |             |          | process   |
-|           |        |          | FLO_        |          | vintage.  |
-|           |        |          | EMIS(cg,c): |          |           |
-|           |        |          | cg1=cg2=c   |          |           |
-|           |        |          |             |          |           |
-|           |        |          | FLO         |          |           |
-|           |        |          | _EFF(cg,c): |          |           |
-|           |        |          | cg1=cg2=c   |          |           |
-|           |        |          |             |          |           |
-|           |        |          | FLO_FUN     |          |           |
-|           |        |          | C(cg1,cg2): |          |           |
-|           |        |          | cgN=cgN     |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_MARK  | PR     | Decimal  | The same    | Proc     | The       |
-|           | C_MARK | fraction | given       | ess-wise | i         |
-| (         |        |          | fraction is | market   | ndividual |
-| r,datayea |        | \        | applied to  | share in | process   |
-| r,p,c,bd) |        | [0,1\];\ | all         | total    | flow      |
-|           |        | default  | time­slices  | c        | variables |
-|           |        | value:   | of the      | ommodity | (VAR_FLO, |
-|           |        | none     | commodity   | pro      | VAR_IN,   |
-|           |        |          | (this could | duction. | VAR_S     |
-|           |        | Default  | be          |          | TGIN/OUT) |
-|           |        | i/e: STD | generalized |          | are       |
-|           |        |          | to allow    |          | co        |
-|           |        |          | time-sli    |          | nstrained |
-|           |        |          | ce-specific |          | (EQ(l)    |
-|           |        |          | fractions,  |          | \_FLOMRK) |
-|           |        |          | if deemed   |          | to a      |
-|           |        |          | useful).    |          | fraction  |
-|           |        |          |             |          | of the    |
-|           |        |          | If an       |          | total     |
-|           |        |          | ANNUAL      |          | p         |
-|           |        |          | level       |          | roduction |
-|           |        |          | m           |          | of a      |
-|           |        |          | arket-share |          | commodity |
-|           |        |          | is desired  |          | (VAR      |
-|           |        |          | for a       |          | _COMPRD). |
-|           |        |          | timesliced  |          |           |
-|           |        |          | commodity,  |          | Forces    |
-|           |        |          | PRC_MARK    |          | the       |
-|           |        |          | can be used |          | commodity |
-|           |        |          | instead.    |          | p         |
-|           |        |          |             |          | roduction |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | (VA       |
-|           |        |          |             |          | R_COMPRD) |
-|           |        |          |             |          | to be     |
-|           |        |          |             |          | included  |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | equality  |
-|           |        |          |             |          | balance   |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | onstraint |
-|           |        |          |             |          | (EQE      |
-|           |        |          |             |          | _COMBAL). |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_PKCOI | COM_   | Scalar   | FLO_PKCOI   | Factor   | Applied   |
-|           | PKRSV, |          | is          | that     | to the    |
-| (r,dataye | COM_   | \[       | specified   | permits  | flow      |
-| ar,p,c,s) | PKFLX, | open\];\ | for         | att      | variable  |
-|           | com    | default  | individual  | ributing | (VAR_FLO) |
-|           | _peak, | value: 1 | processes p | more (or | to adjust |
-|           | co     |          | consuming   | less)    | the       |
-|           | m_pkts | Default  | the peak    | demand   | amount of |
-|           |        | i/e: STD | commodity   | to the   | a         |
-|           |        |          | c.          | peaking  | commodity |
-|           |        |          |             | equation | consumed  |
-|           |        |          | Direct      | (        | when      |
-|           |        |          | i           | EQ_PEAK) | co        |
-|           |        |          | nheritance. | than the | nsidering |
-|           |        |          |             | average  | the       |
-|           |        |          | Weighted    | demand   | average   |
-|           |        |          | ag          | ca       | demand    |
-|           |        |          | gregation.\ | lculated | con       |
-|           |        |          | \           | by the   | tributing |
-|           |        |          | Used when   | model,   | to the    |
-|           |        |          | the         | to       | peaking   |
-|           |        |          | timeslices  | handle   | c         |
-|           |        |          | are not     | the      | onstraint |
-|           |        |          | necessarily | s        | (         |
-|           |        |          | fine enough | ituation | EQ_PEAK). |
-|           |        |          | to pick up  | where    |           |
-|           |        |          | the actual  | peak     |           |
-|           |        |          | peak within | usage is |           |
-|           |        |          | the peak    | t        |           |
-|           |        |          | timeslices. | ypically |           |
-|           |        |          |             | higher   |           |
-|           |        |          |             | (or      |           |
-|           |        |          |             | lower)   |           |
-|           |        |          |             | due to   |           |
-|           |        |          |             | coin     |           |
-|           |        |          |             | cidental |           |
-|           |        |          |             | (or      |           |
-|           |        |          |             | n        |           |
-|           |        |          |             | on-coinc |           |
-|           |        |          |             | idental) |           |
-|           |        |          |             | loads at |           |
-|           |        |          |             | the time |           |
-|           |        |          |             | of the   |           |
-|           |        |          |             | peak     |           |
-|           |        |          |             | demand.  |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_SHAR  |        | Decimal  | Direct      | Share of | When the  |
-|           |        | fraction | i           | flow     | commodity |
-| (r,dat    |        |          | nheritance. | c        | is an     |
-| ayear,p,c |        | \        |             | ommodity | input an  |
-| ,cg,s,bd) |        | [0,1\];\ | Weighted    | c based  | EQ(       |
-|           |        | default  | a           | upon the | l)\_INSHR |
-|           |        | value:   | ggregation. | sum of   | equation  |
-|           |        | none     |             | in       | is        |
-|           |        |          | A common    | dividual | g         |
-|           |        | Default  | example of  | flows    | enerated. |
-|           |        | i/e: MIG | using       | defined  |           |
-|           |        | over     | FLO_SHAR is | by the   | When the  |
-|           |        | milesto  | to specify  | c        | commodity |
-|           |        | neyears, | the         | ommodity | is an     |
-|           |        | STD over | po          | group cg | output an |
-|           |        | p        | wer-to-heat | b        | EQ(l      |
-|           |        | astyears | ratio of    | elonging | )\_OUTSHR |
-|           |        |          | CHP plants  | to       | equation  |
-|           |        |          | in the      | process  | is        |
-|           |        |          | b           | p.       | g         |
-|           |        |          | ackpressure |          | enerated. |
-|           |        |          | point. For  |          |           |
-|           |        |          | example,    |          |           |
-|           |        |          | for a heat  |          |           |
-|           |        |          | output of a |          |           |
-|           |        |          | CHP         |          |           |
-|           |        |          | technology, |          |           |
-|           |        |          | the         |          |           |
-|           |        |          | FLO_SHAR    |          |           |
-|           |        |          | parameter   |          |           |
-|           |        |          | would have  |          |           |
-|           |        |          | the value   |          |           |
-|           |        |          | CHP         |          |           |
-|           |        |          | R/(1+CHPR), |          |           |
-|           |        |          | with CHPR   |          |           |
-|           |        |          | being the   |          |           |
-|           |        |          | he          |          |           |
-|           |        |          | at-to-power |          |           |
-|           |        |          | ratio.      |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_SUB   | OBJ    | Monetary | Direct      | Subsidy  | Applied   |
-|           | _FSUB, | unit per | i           | on a     | with a    |
-| (r,d      | CST    | c        | nheritance. | process  | minus     |
-| atayear,p | _FLOX, | ommodity |             | flow.    | sign to   |
-| ,c,s,cur) |        | unit     | Weighted    |          | the flow  |
-|           | C      |          | a           |          | variable  |
-|           | ST_PVP | \[0,∞);\ | ggregation. |          | (VAR_FLO) |
-|           |        | default  |             |          | when      |
-|           |        | value:   |             |          | entering  |
-|           |        | none     |             |          | the       |
-|           |        |          |             |          | objective |
-|           |        | Default  |             |          | function  |
-|           |        | i/e: STD |             |          | (EQ       |
-|           |        |          |             |          | _OBJVAR). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | May       |
-|           |        |          |             |          | appear in |
-|           |        |          |             |          | user      |
-|           |        |          |             |          | co        |
-|           |        |          |             |          | nstraints |
-|           |        |          |             |          | (EQ_UC\*) |
-|           |        |          |             |          | if        |
-|           |        |          |             |          | specified |
-|           |        |          |             |          | in        |
-|           |        |          |             |          | UC_NAME.  |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_SUM   | FLO    | C        | If a        | Mu       | The       |
-|           | _FUNC\ | ommodity | FLO_SUM is  | ltiplier | FLO_SUM   |
-| (r,datay  | FLO    | unit of  | specified   | applied  | m         |
-| ear,p,cg1 | _FUNCX | cg2/c    | and no      | for      | ultiplier |
-| ,c,cg2,s) |        | ommodity | co          | c        | is        |
-|           | COEF_P | unit of  | rresponding | ommodity | applied   |
-|           | TRANS, | c        | FLO_FUNC,   | c of     | along     |
-|           | fs     |          | the         | group    | with      |
-|           | _emis, | \[       | FLO_FUNC is | cg1      | FLO_FUNC  |
-|           | rpc    | open\];\ | set to 1.   | corre    | parameter |
-|           | _emis, | default  |             | sponding | in the    |
-|           | rpc_   | value:   | If FLO_FUNC | to the   | trans     |
-|           | ffunc, | see next | is          | flow     | formation |
-|           | rpcg   | column   | specified   | rate     | co        |
-|           | _ptran |          | for a true  | based    | efficient |
-|           |        | Default  | commodity   | upon the | (COEF     |
-|           |        | i/e: STD | group cg1,  | sum of   | _PTRANS), |
-|           |        |          | and no      | in       | which is  |
-|           |        |          | FLO_SUM is  | dividual | applied   |
-|           |        |          | specified   | flows    | to the    |
-|           |        |          | for the     | defined  | flow      |
-|           |        |          | commodities | by the   | variable  |
-|           |        |          | in cg1,     | c        | (VAR_FLO) |
-|           |        |          | these       | ommodity | in the    |
-|           |        |          | FLO_SUM are | group    | trans     |
-|           |        |          | set to 1.   | cg2 of   | formation |
-|           |        |          |             | process  | equation  |
-|           |        |          | The derived | p. Most  | (EQ       |
-|           |        |          | parameter   | often    | _PTRANS). |
-|           |        |          | COEF_PTRANS | used to  |           |
-|           |        |          | is          | define   |           |
-|           |        |          | inherited   | the      |           |
-|           |        |          | /aggregated | emission |           |
-|           |        |          | to the      | rate, or |           |
-|           |        |          | timeslice   | to       |           |
-|           |        |          | level of    | adjust   |           |
-|           |        |          | the flow    | the      |           |
-|           |        |          | variable of | overall  |           |
-|           |        |          | the         | ef       |           |
-|           |        |          | commodity   | ficiency |           |
-|           |        |          | c.          | of a     |           |
-|           |        |          |             | te       |           |
-|           |        |          |             | chnology |           |
-|           |        |          |             | based    |           |
-|           |        |          |             | upon     |           |
-|           |        |          |             | fuel     |           |
-|           |        |          |             | c        |           |
-|           |        |          |             | onsumed. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| FLO_TAX   | OBJ    | Monetary | Direct      | Tax on a | Applied   |
-|           | _FTAX, | unit per | i           | process  | to the    |
-| (r,d      | CST    | c        | nheritance. | flow.    | flow      |
-| atayear,p | _FLOX, | ommodity |             |          | variable  |
-| ,c,s,cur) |        | unit     | Weighted    |          | (VAR_FLO) |
-|           | C      |          | a           |          | when      |
-|           | ST_PVP | \[0,∞);\ | ggregation. |          | entering  |
-|           |        | default: |             |          | the       |
-|           |        | none     |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        | Default  |             |          | (EQ       |
-|           |        | i/e: STD |             |          | _OBJVAR). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | May       |
-|           |        |          |             |          | appear in |
-|           |        |          |             |          | user      |
-|           |        |          |             |          | co        |
-|           |        |          |             |          | nstraints |
-|           |        |          |             |          | (EQ_UC\*) |
-|           |        |          |             |          | if        |
-|           |        |          |             |          | specified |
-|           |        |          |             |          | in        |
-|           |        |          |             |          | UC_NAME.  |
-+-----------+--------+----------+-------------+----------+-----------+
-| G_CUREX\  | R      | Scalar\  | The target  | Co       | Affects   |
-| (c        | _CUREX | (0,∞)    | currency    | nversion | cost      |
-| ur1,cur2) |        |          | cur2 must   | factor   | coe       |
-|           |        | Default  | have a      | from     | fficients |
-|           |        | value:   | discount    | currency | in EQ_OBJ |
-|           |        | none     | rate        | cur1 to  |           |
-|           |        |          | defined     | currency |           |
-|           |        |          | with        | cur2,    |           |
-|           |        |          | G_DRATE.    | with     |           |
-|           |        |          |             | cur2 to  |           |
-|           |        |          |             | be used  |           |
-|           |        |          |             | in the   |           |
-|           |        |          |             | o        |           |
-|           |        |          |             | bjective |           |
-|           |        |          |             | f        |           |
-|           |        |          |             | unction. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| G_CYCLE\  | TS     | Number   | Not         | Defines  | Affects   |
-| (tslvl)   | _CYCLE | of       | recommended | the      | inter     |
-|           |        | cycles\  | to be       | total    | ­pretation |
-|           |        | \[1,∞);  | changed;    | number   | of        |
-|           |        |          | use         | of       | ava       |
-|           |        | Default  | TS_CYCLE    | cycles   | ilability |
-|           |        | values:  | instead,    | on level | factors   |
-|           |        |          | whenever    | tslvl,   | for the   |
-|           |        | -   1    | the         | in a     | storage   |
-|           |        |     for  | timeslice   | year.    | level,    |
-|           |        |          | cycles are  |          | whenever  |
-|           |        |   ANNUAL | different   | Provides | capacity  |
-|           |        |          | from the    | default  | r         |
-|           |        | -   1    | default,    | values   | epresents |
-|           |        |     for  | because     | for      | the       |
-|           |        |          | changing    | TS_CYCLE | maximum   |
-|           |        |   SEASON | G_CYCLE     | (see     | nominal   |
-|           |        |          | would       | entry    | output    |
-|           |        | -   52   | change the  | for      | level     |
-|           |        |     for  | meaning of  | that).   | (EQ(l)    |
-|           |        |          | storage     |          | \_CAPACT, |
-|           |        |   WEEKLY | a           |          | EQL       |
-|           |        |          | vailability |          | _CAPFLO). |
-|           |        | -   365  | factors.    |          |           |
-|           |        |     for  |             |          |           |
-|           |        |          |             |          |           |
-|           |        |  DAYNITE |             |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| G_DRATE   | OBJ    | Decimal  | A value     | Sys      | The       |
-|           | _DISC, | fraction | must be     | tem-wide | discount  |
-| (r,all    | OBJ_   |          | provided    | discount | rate is   |
-| year,cur) | DCEOH, | (0,1\];\ | for each    | rate in  | taken     |
-|           | NCAP_  | default  | region.     | region r | into      |
-|           | DRATE, | value =  | In          | for each | cons      |
-|           | COR_   | none     | terpolation | time     | ideration |
-|           | SALVI, |          | is dense    | -period. | when      |
-|           | COR_S  | Default  | (all        |          | con       |
-|           | ALVD,\ | i/e: STD | individual  |          | structing |
-|           | COE    |          | years       |          | the       |
-|           | F_PVT\ |          | included).  |          | objective |
-|           | VD     |          |             |          | function  |
-|           | A_DISC |          |             |          | di        |
-|           |        |          |             |          | scounting |
-|           |        |          |             |          | m         |
-|           |        |          |             |          | ultiplier |
-|           |        |          |             |          | (O        |
-|           |        |          |             |          | BJ_DISC), |
-|           |        |          |             |          | which is  |
-|           |        |          |             |          | applied   |
-|           |        |          |             |          | in each   |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | omponents |
-|           |        |          |             |          | of the    |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (E        |
-|           |        |          |             |          | Q_OBJVAR, |
-|           |        |          |             |          | E         |
-|           |        |          |             |          | Q_OBJINV, |
-|           |        |          |             |          | E         |
-|           |        |          |             |          | Q_OBJFIX, |
-|           |        |          |             |          | EQ        |
-|           |        |          |             |          | _OBJSALV, |
-|           |        |          |             |          | EQ        |
-|           |        |          |             |          | _OBJELS). |
-+-----------+--------+----------+-------------+----------+-----------+
-| G_DYEAR   | OB     | Year     |             | Base     | The year  |
-|           | J_DISC |          |             | year for | to which  |
-|           |        | \[B      |             | disc     | all costs |
-|           | CO     | OTIME,EO |             | ounting. | are to be |
-|           | EF_PVT | TIME\];\ |             |          | d         |
-|           |        | default  |             |          | iscounted |
-|           |        | value =  |             |          | is taken  |
-|           |        | M(       |             |          | into      |
-|           |        | MIYR_1), |             |          | cons      |
-|           |        | i.e. the |             |          | ideration |
-|           |        | first    |             |          | when      |
-|           |        | m        |             |          | con       |
-|           |        | ilestone |             |          | structing |
-|           |        | year     |             |          | the       |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | di        |
-|           |        |          |             |          | scounting |
-|           |        |          |             |          | m         |
-|           |        |          |             |          | ultiplier |
-|           |        |          |             |          | (O        |
-|           |        |          |             |          | BJ_DISC), |
-|           |        |          |             |          | which is  |
-|           |        |          |             |          | applied   |
-|           |        |          |             |          | in each   |
-|           |        |          |             |          | of the    |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | omponents |
-|           |        |          |             |          | of the    |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (E        |
-|           |        |          |             |          | Q_OBJVAR, |
-|           |        |          |             |          | E         |
-|           |        |          |             |          | Q_OBJINV, |
-|           |        |          |             |          | E         |
-|           |        |          |             |          | Q_OBJFIX, |
-|           |        |          |             |          | EQ        |
-|           |        |          |             |          | _OBJSALV, |
-|           |        |          |             |          | EQ        |
-|           |        |          |             |          | _OBJELS). |
-+-----------+--------+----------+-------------+----------+-----------+
-| G_RFRIR   | G_     | Decimal  | Optional    | R        | The rate  |
-|           | DRATE, | fraction | parameter.\ | isk-free | is taken  |
-| (r        | NCAP_  |          | If value is | real     | into      |
-| ,allyear) | DRATE, | (0,1\];\ | not         | interest | cons      |
-|           | COR_   | default  | provided,   | rate in  | ideration |
-|           | SALVI, | value =  | G_DRATE is  | region r | when      |
-|           | COR    | none     | assumed as  | for each | con       |
-|           | _SALVD |          | the         | time     | structing |
-|           |        | Default  | risk-free   | -period. | the       |
-|           |        | i/e: STD | rate.       |          | objective |
-|           |        |          |             | Provides | function  |
-|           |        |          | By          | the      | coe       |
-|           |        |          | providing   | r        | fficients |
-|           |        |          | G_RFRIR,    | eference | for       |
-|           |        |          | the         | rate for | i         |
-|           |        |          | technolo    | NCA      | nvestment |
-|           |        |          | gy-specific | P_DRATE, | costs.    |
-|           |        |          | risk        | such     | E         |
-|           |        |          | premiums    | that the | Q_OBJINV, |
-|           |        |          | can be kept | risk     | E         |
-|           |        |          | unchanged   | premium  | Q_OBJSALV |
-|           |        |          | over any    | will be  |           |
-|           |        |          | sensitivity | ca       |           |
-|           |        |          | analyses    | lculated |           |
-|           |        |          | with        | against  |           |
-|           |        |          | different   | the      |           |
-|           |        |          | G_DRATE     | r        |           |
-|           |        |          | values.     | isk-free |           |
-|           |        |          |             | rate.    |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| G_ILEDNO  | NCA    | Decimal  | Only        | If the   | Prevents  |
-|           | P_ILED | fraction | provided    | ratio of | the       |
-|           |        |          | when the    | l        | i         |
-|           |        | \        | costs       | ead-time | nvestment |
-|           |        | [0,1\];\ | associated  | (NC      | costs     |
-|           |        | default  | with the    | AP_ILED) | a         |
-|           |        | value:   | lead-time   | to the   | ssociated |
-|           |        | 0.1      | for new     | period   | with      |
-|           |        |          | capacity    | duration | i         |
-|           |        |          | (NCAP_ILED) | (D) is   | nvestment |
-|           |        |          | are not to  | below    | l         |
-|           |        |          | be included | this     | ead-times |
-|           |        |          | in the      | t        | from      |
-|           |        |          | objective   | hreshold | energy    |
-|           |        |          | function.   | then the | the       |
-|           |        |          |             | l        | i         |
-|           |        |          | Not taken   | ead-time | nvestment |
-|           |        |          | into        | consi    | component |
-|           |        |          | account if  | deration | of the    |
-|           |        |          | the OBLONG  | will be  | objective |
-|           |        |          | switch or   | ignored  | function  |
-|           |        |          | any         | in the   | (EQ       |
-|           |        |          | alternative | o        | _OBJINV). |
-|           |        |          | objective   | bjective |           |
-|           |        |          | formulation | function |           |
-|           |        |          | is used.    | costs.   |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| G         | All    | Binary   | Only        | Switch   |           |
-| _NOINTERP | para   | i        | provide     | for      |           |
-|           | meters | ndicator | when        | g        |           |
-|           | that   |          | in          | enerally |           |
-|           | are    | \[0 or   | terpolation | tu       |           |
-|           | no     | 1\];\    | /           | rning-on |           |
-|           | rmally | default  | ex          | (= 0 )   |           |
-|           | sub    | value =  | trapolation | and      |           |
-|           | jected | 0        | is to be    | tur      |           |
-|           | to     |          | turned off  | ning-off |           |
-|           | i      |          | for all     | (= 1 )   |           |
-|           | nterpo |          | parameters. | sparse   |           |
-|           | lation |          |             | inter- / |           |
-|           | /      |          | In          | extrap   |           |
-|           | e      |          | terpolation | olation. |           |
-|           | xtrapo |          | of cost     |          |           |
-|           | lation |          | parameters  |          |           |
-|           |        |          | is always   |          |           |
-|           |        |          | done.       |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| G_OFFTHD\ | PR     | Scalar\  | Setting     | T        | Affects   |
-| (         | C_NOFF | \[0,1\]  | G_OFFTHD=1  | hreshold | ava       |
-| datayear) |        |          | will make   | for      | ilability |
-|           | PR     | Default  | the \*\_OFF | con      | of        |
-|           | C_AOFF | value: 0 | attributes  | sidering |           |
-|           |        |          | effective   | an       | V         |
-|           | PR     | Default  | only for    | \*\_OFF  | AR_NCAP,\ |
-|           | C_FOFF | i/e: 5   | periods     | a        | VAR_ACT,  |
-|           |        |          | fully       | ttribute | VAR_FLO,  |
-|           | C      |          | included in | d        |           |
-|           | OM_OFF |          | the OFF     | isabling | VAR_C     |
-|           |        |          | range       | a        | OMNET/PRD |
-|           |        |          | specified.  | p        |           |
-|           |        |          |             | rocess/c |           |
-|           |        |          |             | ommodity |           |
-|           |        |          |             | variable |           |
-|           |        |          |             | in       |           |
-|           |        |          |             | period.  |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| G_OVERLAP |        | Scalar\  | Used only   | Overlap  | --        |
-|           |        | \        | when        | of       |           |
-|           |        | [0,100\] | t           | stepped  |           |
-|           |        |          | ime-stepped | s        |           |
-|           |        | Default  | solution is | olutions |           |
-|           |        | value:   | activated   | (in      |           |
-|           |        | TI       | with the    | years).  |           |
-|           |        | MESTEP/2 | TIMESTEP    |          |           |
-|           |        |          | control     |          |           |
-|           |        |          | variable.   |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| G_TLIFE   | NCAP   | Scalar   |             | Default  |           |
-|           | _TLIFE |          |             | value    |           |
-|           |        | \[1,∞);\ |             | for the  |           |
-|           |        | default  |             | t        |           |
-|           |        | value =  |             | echnical |           |
-|           |        | 10       |             | lifetime |           |
-|           |        |          |             | of a     |           |
-|           |        |          |             | process  |           |
-|           |        |          |             | if not   |           |
-|           |        |          |             | provided |           |
-|           |        |          |             | by the   |           |
-|           |        |          |             | user.    |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| G_YRFR    | RTCS   | Fraction | Must be     | Duration | Applied   |
-|           | _TSFR, |          | provided    | of       | to        |
-| (all_r,s) | RS_    | \        | for each    | t        | various   |
-|           | STGPRD | [0,1\];\ | region and  | imeslice | variables |
-|           |        | default  | timeslice.  | s as     | (VAR_NC   |
-|           |        | value:   |             | fraction | AP+PASTI, |
-|           |        | none;    |             | of a     | VAR_COMX, |
-|           |        | only for |             | year.    | VAR_IRE,  |
-|           |        | the      |             | Used for | VAR_FLO,  |
-|           |        | ANNUAL   |             | shaping  | VAR       |
-|           |        | t        |             | the load | _SIN/OUT) |
-|           |        | imeslice |             | curve    | in the    |
-|           |        | a value  |             | and      | commodity |
-|           |        | of 1 is  |             | lining   | balance   |
-|           |        | pr       |             | up       | equation  |
-|           |        | edefined |             | t        | (EQ(l)\   |
-|           |        |          |             | imeslice | _COMBAL). |
-|           |        |          |             | duration |           |
-|           |        |          |             | for      |           |
-|           |        |          |             | inter-   |           |
-|           |        |          |             | regional |           |
-|           |        |          |             | ex       |           |
-|           |        |          |             | changes. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| IRE_BND   | t      | C        | Only        | Bound on | Controls  |
-|           | op_ire | ommodity | applicable  | the      | the       |
-| (         |        | unit     | for         | total    | instances |
-| r,datayea |        |          | int         | import   | for which |
-| r,c,s,all |        | \[0,∞);\ | er-regional | (export) | the trade |
-| _r,ie,bd) |        | default  | exchange    | of       | bound     |
-|           |        | value:   | processes   | c        | c         |
-|           |        | none     | (IRE).      | ommodity | onstraint |
-|           |        |          |             | (c) from | (EQ(l)    |
-|           |        | Default  | If the      | (to)     | \_IREBND) |
-|           |        | i/e: MIG | bound is    | region   | is        |
-|           |        |          | specified   | all_r in | g         |
-|           |        |          | for a       | (out of) | enerated, |
-|           |        |          | timeslice   | region   | and the   |
-|           |        |          | (s) being   | r.       | RHS.      |
-|           |        |          | above the   |          |           |
-|           |        |          | commodity   |          |           |
-|           |        |          | (c)         |          |           |
-|           |        |          | timeslice   |          |           |
-|           |        |          | resolution, |          |           |
-|           |        |          | the bound   |          |           |
-|           |        |          | is applied  |          |           |
-|           |        |          | to the sum  |          |           |
-|           |        |          | of the      |          |           |
-|           |        |          | impo        |          |           |
-|           |        |          | rts/exports |          |           |
-|           |        |          | according   |          |           |
-|           |        |          | to the      |          |           |
-|           |        |          | timeslice   |          |           |
-|           |        |          | tree.       |          |           |
-|           |        |          |             |          |           |
-|           |        |          | Standard    |          |           |
-|           |        |          | a           |          |           |
-|           |        |          | ggregation. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| IRE_CCVT  | IRE_   | Scalar\  | Required    | Co       | The       |
-|           | TSCVT, | (0,∞)    | for mapping | nversion | c         |
-| (r1,c     | t      |          | commodities | factor   | onversion |
-| 1,r2,c2)) | op_ire | Default  | involved in | between  | factor is |
-|           |        | value: 1 | int         | c        | applied   |
-|           |        | if       | er-regional | ommodity | to the    |
-|           |        | c        | exchanges   | units in | flow      |
-|           |        | ommodity | between two | region   | variable  |
-|           |        | names    | regions     | r1 and   | (VAR_IRE) |
-|           |        | are the  | whenever    | region   | in the    |
-|           |        | same in  | commodities | r2.      | inter     |
-|           |        | both     | traded are  | E        | -regional |
-|           |        | regions  | in          | xpresses | balance   |
-|           |        |          | different   | the      | c         |
-|           |        | I/e: N/A | units in    | amount   | onstraint |
-|           |        |          | the         | of       | (EQ_IRE). |
-|           |        |          | regions.    | c        |           |
-|           |        |          |             | ommodity | S         |
-|           |        |          |             | c2 in    | imilarly, |
-|           |        |          |             | region   | applied   |
-|           |        |          |             | r2       | to the    |
-|           |        |          |             | eq       | flow      |
-|           |        |          |             | uivalent | variable  |
-|           |        |          |             | to 1     | (VAR_IRE) |
-|           |        |          |             | unit of  | when an   |
-|           |        |          |             | c        | inter     |
-|           |        |          |             | ommodity | -regional |
-|           |        |          |             | c1 in    | exchange  |
-|           |        |          |             | region   | is        |
-|           |        |          |             | r1.      | bounded   |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | limit     |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | onstraint |
-|           |        |          |             |          | (EQ(l)\   |
-|           |        |          |             |          | _IREBND). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | S         |
-|           |        |          |             |          | imilarly, |
-|           |        |          |             |          | applied   |
-|           |        |          |             |          | to the    |
-|           |        |          |             |          | flow      |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | (VAR_IRE) |
-|           |        |          |             |          | when an   |
-|           |        |          |             |          | exchange  |
-|           |        |          |             |          | with an   |
-|           |        |          |             |          | external  |
-|           |        |          |             |          | region is |
-|           |        |          |             |          | bounded   |
-|           |        |          |             |          | (EQ(l     |
-|           |        |          |             |          | )\_XBND). |
-+-----------+--------+----------+-------------+----------+-----------+
-| IRE_FLO   | t      | C        | Only        | Ef       | Applied   |
-|           | op_ire | ommodity | applicable  | ficiency | to the    |
-| (r1,datay |        | unit     | for         | of       | exchange  |
-| ear,p,c1, |        | c2/c     | int         | exchange | flow      |
-| r2,c2,s2) |        | ommodity | er-regional | process  | variable  |
-|           |        | unit c1  | exchange    | from     | (VAR_IRE) |
-|           |        |          | processes   | c        | in the    |
-|           |        | \[0,∞);\ | (IRE)       | ommodity | inter     |
-|           |        | default  | between two | c1 in    | -regional |
-|           |        | value: 1 | internal    | region   | trade     |
-|           |        |          | regions.    | r1 to    | equation  |
-|           |        | Default  |             | c        | (EQ_IRE). |
-|           |        | i/e: STD | Note that   | ommodity |           |
-|           |        |          | for each    | c2 in    | Applied   |
-|           |        |          | direction   | the      | to the    |
-|           |        |          | of trade a  | region2  | exchange  |
-|           |        |          | separate    | in       | flow      |
-|           |        |          | IRE_FLO     | t        | variable  |
-|           |        |          | needs to be | imeslice | (VAR_IRE) |
-|           |        |          | specified.  | s2; the  | when a    |
-|           |        |          |             | t        | bound on  |
-|           |        |          | Similar to  | imeslice | inter     |
-|           |        |          | FLO_FUNC    | s2       | -regional |
-|           |        |          | for         | refers   | trade is  |
-|           |        |          | standard    | to the   | to be     |
-|           |        |          | processes.  | r2       | applied   |
-|           |        |          |             | region.  | (EQ(l)\   |
-|           |        |          | Direct      |          | _IREBND). |
-|           |        |          | i           |          |           |
-|           |        |          | nheritance. |          |           |
-|           |        |          |             |          |           |
-|           |        |          | Weighted    |          |           |
-|           |        |          | a           |          |           |
-|           |        |          | ggregation. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| I         | t      | C        | Only        | A        | The       |
-| RE_FLOSUM | op_ire | ommodity | applicable  | uxiliary | m         |
-|           |        | unit     | for         | con      | ultiplier |
-| (         |        | c2/c     | int         | sumption | is        |
-| r,datayea |        | ommodity | er-regional | (io =    | applied   |
-| r,p,c1,s, |        | unit c1  | exchange    | IN,      | to the    |
-| ie,c2,io) |        |          | processes   | owing to | flow      |
-|           |        | \[       | (IRE).      | the      | variable  |
-|           |        | open\];\ |             | c        | (VAR_IRE) |
-|           |        | default  | Since the   | ommodity | a         |
-|           |        | value:   | efficiency  | entering | ssociated |
-|           |        | none     | IRE_FLO can | the      | with an   |
-|           |        |          | only be     | process) | inte      |
-|           |        | Default  | used for    | or       | r-reginal |
-|           |        | i/e: STD | exchange    | pro      | exchange  |
-|           |        |          | between     | duction/ | in the    |
-|           |        |          | internal    | emission | commodity |
-|           |        |          | regions,    | (io =    | balance   |
-|           |        |          | IRE_FLOSUM  | OUT,     | c         |
-|           |        |          | may be used | owing to | onstraint |
-|           |        |          | to define   | the      | (EQ(l)\   |
-|           |        |          | an          | c        | _COMBAL). |
-|           |        |          | efficiency  | ommodity |           |
-|           |        |          | for an      | leaving  | If a flow |
-|           |        |          | im          | the      | share     |
-|           |        |          | port/export | process) | (         |
-|           |        |          | with an     | of       | FLO_SHAR) |
-|           |        |          | external    | c        | is        |
-|           |        |          | region by   | ommodity | provided  |
-|           |        |          | specifying  | c2 due   | for an    |
-|           |        |          | the same    | to the   | inter     |
-|           |        |          | commodity   | IMPort / | -regional |
-|           |        |          | for c1 and  | EXPort   | exchange  |
-|           |        |          | c2 and the  | (index   | process   |
-|           |        |          | value       | ie) of   | then the  |
-|           |        |          | 1           | the      | m         |
-|           |        |          | -efficiency | c        | ultiplier |
-|           |        |          | as          | ommodity | is        |
-|           |        |          | auxiliary   | c1 in    | applied   |
-|           |        |          | c           | region   | to the    |
-|           |        |          | onsumption. | r[^30]   | flow      |
-|           |        |          |             |          | variable  |
-|           |        |          | Direct      |          | (VAR_IRE) |
-|           |        |          | i           |          | in the    |
-|           |        |          | nheritance. |          | share     |
-|           |        |          |             |          | c         |
-|           |        |          | Weighted    |          | onstraint |
-|           |        |          | a           |          | (         |
-|           |        |          | ggregation. |          | EQ(l)\_IN |
-|           |        |          |             |          | /OUTSHR). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | If a cost |
-|           |        |          |             |          | is        |
-|           |        |          |             |          | provided  |
-|           |        |          |             |          | for the   |
-|           |        |          |             |          | flow      |
-|           |        |          |             |          | (FLO_COST |
-|           |        |          |             |          | or        |
-|           |        |          |             |          | F         |
-|           |        |          |             |          | LO_DELIV) |
-|           |        |          |             |          | then the  |
-|           |        |          |             |          | factor is |
-|           |        |          |             |          | applied   |
-|           |        |          |             |          | to the    |
-|           |        |          |             |          | flow      |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | (VAR_IRE) |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | component |
-|           |        |          |             |          | of the    |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (EQ       |
-|           |        |          |             |          | _OBJVAR). |
-+-----------+--------+----------+-------------+----------+-----------+
-| IRE_PRICE | OBJ_   | Monetary | Only        | IMPor    | The price |
-|           | IPRIC, | unit /   | applicable  | t/EXPort | of the    |
-| (r,d      | CST    | c        | for         | price    | exchange  |
-| atayear,p | _COMC, | ommodity | int         | (index   | commodity |
-| ,c,s,all_ |        | unit     | er-regional | ie) for  | is        |
-| r,ie,cur) | CS     |          | exchange    | to/from  | applied   |
-|           | T_PVP, | \[0,∞);\ | processes   | an       | to the    |
-|           |        | default  | (IRE).      | internal | trade     |
-|           | t      | value:   |             | region   | flow      |
-|           | op_ire | none     | Ignored if  | of a     | variable  |
-|           |        |          | all_r is an | c        | (VAR_IRE) |
-|           |        | Default  | internal    | ommodity | in the    |
-|           |        | i/e: STD | region.     | (c)      | variable  |
-|           |        |          |             | ori      | costs     |
-|           |        |          | Direct      | ginating | component |
-|           |        |          | i           | from     | of the    |
-|           |        |          | nheritance. | /heading | objective |
-|           |        |          |             | to an    | function  |
-|           |        |          | Weighted    | external | (EQ       |
-|           |        |          | a           | region   | _OBJVAR). |
-|           |        |          | ggregation. | all_r.   |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| IRE_TSCVT | IRE    | Scalar   | Used for    | Matrix   | The       |
-|           | _CCVT, |          | mapping     | for      | c         |
-| (r1,      |        | (0,∞);\  | timeslices  | mapping  | onversion |
-| s1,r2,s2) | t      | default  | in          | tim      | factor is |
-|           | op_ire | value: 1 | different   | eslices; | applied   |
-|           |        | if       | regions.    | the      | to the    |
-|           |        | t        |             | value    | flow      |
-|           |        | imeslice | Required if | for      | variable  |
-|           |        | tree and | timeslice   | (r1,s    | (VAR_IRE) |
-|           |        | names    | definitions | 1,r2,s2) | in the    |
-|           |        | are the  | are         | gives    | inter     |
-|           |        | same in  | different   | the      | -regional |
-|           |        | both     | in the      | fraction | balance   |
-|           |        | regions  | regions.    | of       | c         |
-|           |        |          |             | t        | onstraint |
-|           |        | I/e: N/A |             | imeslice | (EQ_IRE). |
-|           |        |          |             | s2 in    |           |
-|           |        |          |             | region   | S         |
-|           |        |          |             | r2 that  | imilarly, |
-|           |        |          |             | falls in | applied   |
-|           |        |          |             | t        | to the    |
-|           |        |          |             | imeslice | flow      |
-|           |        |          |             | s1 in    | variable  |
-|           |        |          |             | region   | (VAR_IRE) |
-|           |        |          |             | r1.      | when an   |
-|           |        |          |             |          | inter     |
-|           |        |          |             |          | -regional |
-|           |        |          |             |          | exchange  |
-|           |        |          |             |          | is        |
-|           |        |          |             |          | bounded   |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | limit     |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | onstraint |
-|           |        |          |             |          | (EQ(l)\   |
-|           |        |          |             |          | _IREBND). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | S         |
-|           |        |          |             |          | imilarly, |
-|           |        |          |             |          | applied   |
-|           |        |          |             |          | to the    |
-|           |        |          |             |          | flow      |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | (VAR_IRE) |
-|           |        |          |             |          | when an   |
-|           |        |          |             |          | exchange  |
-|           |        |          |             |          | with an   |
-|           |        |          |             |          | external  |
-|           |        |          |             |          | region is |
-|           |        |          |             |          | bounded   |
-|           |        |          |             |          | (EQ(l     |
-|           |        |          |             |          | )\_XBND). |
-+-----------+--------+----------+-------------+----------+-----------+
-| IRE_XBND  | t      | C        | Only        | Bound on | The trade |
-|           | op_ire | ommodity | applicable  | the      | limit     |
-| (         |        | unit     | for         | total    | equation  |
-| all_r,dat |        |          | int         | IMPort   | EQ        |
-| ayear,c,s |        | \[0,∞);\ | er-regional | (EXPort) | (l)\_XBND |
-| ie,bd)    |        | default  | exchange    | (index   | generated |
-|           |        | value:   | processes   | ie) of   | either    |
-|           |        | none     | (IRE).      | c        | sums      |
-|           |        |          |             | ommodity | lower     |
-|           |        | Default  | Provide     | c in     | flow      |
-|           |        | i/e: MIG | whenever a  | region   | variables |
-|           |        |          | trade flow  | all_r    | (VAR_IRE) |
-|           |        |          | is to be    | with all | or splits |
-|           |        |          | c           | sources  | (         |
-|           |        |          | onstrained. | (destin  | according |
-|           |        |          |             | ations). | to the    |
-|           |        |          | Note that   |          | timeslice |
-|           |        |          | the limit   |          | tree)     |
-|           |        |          | is either   |          | coarser   |
-|           |        |          | imposed by  |          | v         |
-|           |        |          | summing     |          | ariables. |
-|           |        |          | lower or    |          |           |
-|           |        |          | splitting   |          |           |
-|           |        |          | higher flow |          |           |
-|           |        |          | variables   |          |           |
-|           |        |          | (VAR_IRE)   |          |           |
-|           |        |          | when        |          |           |
-|           |        |          | specified   |          |           |
-|           |        |          | at other    |          |           |
-|           |        |          | than the    |          |           |
-|           |        |          | actual flow |          |           |
-|           |        |          | level (as   |          |           |
-|           |        |          | determined  |          |           |
-|           |        |          | by the      |          |           |
-|           |        |          | commodity   |          |           |
-|           |        |          | and process |          |           |
-|           |        |          | levels      |          |           |
-|           |        |          | (COM_TSL/   |          |           |
-|           |        |          | PRC_TSL ).  |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| MULTI     | NCA    | Scalar   | Only        | Mu       | *{See     |
-|           | P_AFM, |          | provided    | ltiplier | Related   |
-| (j        | NCAP   | \[       | when the    | table    | Par       |
-| ,allyear) | _FOMM, | open\];\ | related     | used for | ameters}* |
-|           |        | default  | shaping     | any      |           |
-|           | NCAP_  | value:   | parameters  | shaping  |           |
-|           | FSUBM, | none     | are to be   | pa       |           |
-|           |        |          | used.       | rameters |           |
-|           | NCAP   | I/e:     |             | (        |           |
-|           | _FTAXM | Full     |             | \*\_\*M) |           |
-|           |        | dense    |             | to       |           |
-|           |        | inter    |             | adjust   |           |
-|           |        | polation |             | the      |           |
-|           |        | and      |             | corre    |           |
-|           |        | extra    |             | sponding |           |
-|           |        | polation |             | t        |           |
-|           |        |          |             | echnical |           |
-|           |        |          |             | data as  |           |
-|           |        |          |             | function |           |
-|           |        |          |             | of the   |           |
-|           |        |          |             | year;    |           |
-|           |        |          |             | the      |           |
-|           |        |          |             | table    |           |
-|           |        |          |             | contains |           |
-|           |        |          |             | d        |           |
-|           |        |          |             | ifferent |           |
-|           |        |          |             | mu       |           |
-|           |        |          |             | ltiplier |           |
-|           |        |          |             | curves   |           |
-|           |        |          |             | id       |           |
-|           |        |          |             | entified |           |
-|           |        |          |             | by the   |           |
-|           |        |          |             | index j. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_AF   | NCA    | Decimal  | NCAP_AF,    | Avai     | The       |
-|           | P_AFA, | fraction | NCAP_AFA    | lability | corr      |
-| (         | NCA    |          | and         | factor   | esponding |
-| r,datayea | P_AFS, | \        | NCAP_AFS    | relating | capacity  |
-| r,p,s,bd) | NCA    | [0,1\];\ | can be      | a unit   | -activity |
-|           | P_AFM, | default  | applied     | of       | c         |
-|           | NCA    | value: 1 | simu        | pr       | onstraint |
-|           | P_AFX, |          | ltaneously. | oduction | (EQ(l)    |
-|           | C      | Default  |             | (process | \_CAPACT) |
-|           | OEF_AF | i/e: STD | Direct      | a        | will be   |
-|           |        |          | i           | ctivity) | generated |
-|           |        | Remark:  | nheritance. | in       | for any   |
-|           |        | In       |             | t        | timeslice |
-|           |        | special  | Weighted    | imeslice | s.        |
-|           |        | cases    | ag          | s to the |           |
-|           |        | values   | gregation.\ | current  | If the    |
-|           |        | \>1 can  | (Important  | i        | process   |
-|           |        | also be  | remark:\    | nstalled | timeslice |
-|           |        | used     | No          | c        | level     |
-|           |        | (when    | i           | apacity. | (PRC_TSL) |
-|           |        | PR       | nheritance/ |          | is below  |
-|           |        | C_CAPACT | aggregation |          | said      |
-|           |        | does not | if any      |          | level,    |
-|           |        | r        | value is    |          | the       |
-|           |        | epresent | specified   |          | activity  |
-|           |        | the max. | at process  |          | variables |
-|           |        | t        | t           |          | will be   |
-|           |        | echnical | imeslices.) |          | summed.   |
-|           |        | level of |             |          |           |
-|           |        | activity |             |          |           |
-|           |        | per unit |             |          |           |
-|           |        | of       |             |          |           |
-|           |        | ca       |             |          |           |
-|           |        | pacity). |             |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_AFA  | NCA    | Decimal  | Provided    | Annual   | The       |
-|           | P_AFA, | fraction | when        | avai     | corr      |
-| (r,datay  | NCA    |          | 'ANNUAL'    | lability | esponding |
-| ear,p,bd) | P_AFS, | \        | level       | factor   | capacity  |
-|           | NCA    | [0,1\];\ | process     | relating | -activity |
-|           | P_AFM, | default  | operation   | the      | c         |
-|           | NCA    | value:   | is to be    | annual   | onstraint |
-|           | P_AFX, | none     | controlled. | activity | (EQ(l)    |
-|           | C      |          |             | of a     | \_CAPACT) |
-|           | OEF_AF | Default  | NCAP_AF,    | process  | will be   |
-|           |        | i/e: STD | NCAP_AFA    | to the   | generated |
-|           |        |          | and         | i        | for the   |
-|           |        | Remark:  | NCAP_AFS    | nstalled | 'ANNUAL'  |
-|           |        | In       | can be      | c        | t         |
-|           |        | special  | applied     | apacity. | imeslice. |
-|           |        | cases    | simu        |          |           |
-|           |        | values   | ltaneously. |          | If the    |
-|           |        | \>1 can  |             |          | process   |
-|           |        | also be  | NCAP_AFA is |          | timeslice |
-|           |        | used     | always      |          | level     |
-|           |        | (when    | assumed to  |          | (PRC_TSL) |
-|           |        | PR       | be          |          | is below  |
-|           |        | C_CAPACT | non-vintage |          | said      |
-|           |        | has been | dependent,  |          | level,    |
-|           |        | chosen   | even if the |          | the       |
-|           |        | not to   | process is  |          | activity  |
-|           |        | r        | defined as  |          | variables |
-|           |        | epresent | a vintaged  |          | will be   |
-|           |        | the max. | one; for    |          | summed.   |
-|           |        | t        | vintag      |          |           |
-|           |        | echnical | e-dependent |          |           |
-|           |        | level of | annual      |          |           |
-|           |        | activity | a           |          |           |
-|           |        | per unit | vailability |          |           |
-|           |        | of       | NCAP_AFS    |          |           |
-|           |        | ca       | with        |          |           |
-|           |        | pacity). | s='ANNUAL'  |          |           |
-|           |        |          | can be      |          |           |
-|           |        |          | used.       |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_AFC\ | NCA    | Decimal  | If the      | Co       | Generates |
-| (r,       | P_AFCS | fraction | commodities | mmodity- | instances |
-| datayear, |        |          | are in the  | specific | of        |
-| p,cg,tsl) |        | \[0,∞);\ | PCG,        | avai     |           |
-|           |        | default  | constraint  | lability | EQ(l      |
-|           |        | value:   | is applied  | of       | )\_CAFLAC |
-|           |        | none     | to the      | capacity | (thereby  |
-|           |        |          | flows in    | for      | disabling |
-|           |        | Default  | the PCG as  | c        | EQ(l      |
-|           |        | i/e: STD | a whole     | ommodity | )\_CAPACT |
-|           |        |          | (linear     | group    | gen       |
-|           |        |          | combination | cg, at   | eration), |
-|           |        |          | of flows).\ | given    | or        |
-|           |        |          | Independent | t        | EQ        |
-|           |        |          | equations   | imeslice | L_CAPFLO. |
-|           |        |          | are         | level.   |           |
-|           |        |          | generated   |          |           |
-|           |        |          | for         |          |           |
-|           |        |          | commodities |          |           |
-|           |        |          | not in the  |          |           |
-|           |        |          | PCG, or     |          |           |
-|           |        |          | when        |          |           |
-|           |        |          | NCAP_AFC(   |          |           |
-|           |        |          | r,'0',p,'AC |          |           |
-|           |        |          | T',tsl)=--1 |          |           |
-|           |        |          | is also     |          |           |
-|           |        |          | specified.  |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NC     | Decimal  | See         | Co       | See       |
-| CAP_AFCS\ | AP_AFC | fraction | NCAP_AFC.   | mmodity- | NCAP_AFC. |
-| (r        |        |          |             | specific |           |
-| ,datayear |        | \[0,∞);\ | NCAP_AFCS   | avai     |           |
-| ,p,cg,ts) |        | default  | is similar  | lability |           |
-|           |        | value:   | to NCAP_AFC | of       |           |
-|           |        | none     | but is      | capacity |           |
-|           |        |          | defined on  | for      |           |
-|           |        | Default  | individual  | c        |           |
-|           |        | i/e: STD | timeslices. | ommodity |           |
-|           |        |          | Overrides   | group    |           |
-|           |        |          | NCAP_AFC.   | cg,      |           |
-|           |        |          |             | tim      |           |
-|           |        |          |             | eslice-s |           |
-|           |        |          |             | pecific. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_AFM  | NC     | Integer  | Provided    | Period   | *{See     |
-|           | AP_AF, | number   | when        | s        | Related   |
-| (r,da     | NCA    |          | mul         | ensitive | Par       |
-| tayear,p) | P_AFA, | Default  | tiplication | mu       | ameters}* |
-|           | NCA    | value: 0 | of NCAP_AF  | ltiplier |           |
-|           | P_AFS, | (no      | / NCAP_AFS  | curve    |           |
-|           | MULTI, | mu       | based upon  | (MULTI)  |           |
-|           | C      | ltiplier | year is     | to be    |           |
-|           | OEF_AF | applied) | desired.    | applied  |           |
-|           |        |          |             | to the   |           |
-|           |        | Default  | Note:       | avai     |           |
-|           |        | extrap   | Multiplier  | lability |           |
-|           |        | olation: | index 1 is  | factor   |           |
-|           |        | MIG      | reserved    | pa       |           |
-|           |        |          | for         | rameters |           |
-|           |        |          | constant 1. | (        |           |
-|           |        |          |             | NCAP_AF/ |           |
-|           |        |          |             | AFA/AFS) |           |
-|           |        |          |             | of a     |           |
-|           |        |          |             | process. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_AFS  |        | Decimal  | NCAP_AF,    | Avai     | The       |
-|           |        | fraction | NCAP_AFA    | lability | corr      |
-| (         |        |          | and         | factor   | esponding |
-| r,datayea |        | \        | NCAP_AFS    | relating | capacity  |
-| r,p,s,bd) |        | [0,1\];\ | can be      | the      | -activity |
-|           |        | default  | applied     | activity | c         |
-|           |        | value:   | simu        | of a     | onstraint |
-|           |        | none     | ltaneously. | process  | (EQ(l)    |
-|           |        |          |             | in a     | \_CAPACT) |
-|           |        | Default  | NCAP_AFS    | t        | will be   |
-|           |        | i/e: STD | being       | imeslice | generated |
-|           |        |          | specified   | s being  | for a     |
-|           |        | Remark:  | for         | at or    | timeslice |
-|           |        | In       | timeslices  | above    | s being   |
-|           |        | special  | s being     | the      | at or     |
-|           |        | cases    | below the   | process  | above the |
-|           |        | values   | process     | t        | process   |
-|           |        | \>1 can  | timeslice   | imeslice | timeslice |
-|           |        | also be  | level are   | level    | level     |
-|           |        | used (in | ignored.    | (        | (         |
-|           |        | cases    |             | prc_tsl) | prc_tsl). |
-|           |        | where    | No          | to the   |           |
-|           |        | PR       | i           | i        | If the    |
-|           |        | C_CAPACT | nheritance. | nstalled | process   |
-|           |        | has been |             | c        | timeslice |
-|           |        | chosen   | No          | apacity. | level is  |
-|           |        | not to   | a           | If for   | below     |
-|           |        | r        | ggregation. | example  | said      |
-|           |        | epresent |             | the      | level,    |
-|           |        | the      | Can be used | process  | the       |
-|           |        | maximum  | also on the | t        | activity  |
-|           |        | t        | process     | imeslice | variables |
-|           |        | echnical | timeslices, | level is | will be   |
-|           |        | level of | and will    | '        | summed.   |
-|           |        | activity | then        | DAYNITE' |           |
-|           |        | per unit | override    | and      |           |
-|           |        | of       | the         | NCAP_AFS |           |
-|           |        | ca       | levelized   | is       |           |
-|           |        | pacity). | NCAP_AF     | s        |           |
-|           |        |          | a           | pecified |           |
-|           |        |          | vailability | for      |           |
-|           |        |          | factors.    | ti       |           |
-|           |        |          |             | meslices |           |
-|           |        |          |             | on the   |           |
-|           |        |          |             | 'S       |           |
-|           |        |          |             | EASONAL' |           |
-|           |        |          |             | level,   |           |
-|           |        |          |             | the sum  |           |
-|           |        |          |             | of the   |           |
-|           |        |          |             | '        |           |
-|           |        |          |             | DAYNITE' |           |
-|           |        |          |             | ac       |           |
-|           |        |          |             | tivities |           |
-|           |        |          |             | within a |           |
-|           |        |          |             | season   |           |
-|           |        |          |             | are      |           |
-|           |        |          |             | res      |           |
-|           |        |          |             | tricted, |           |
-|           |        |          |             | but not  |           |
-|           |        |          |             | the      |           |
-|           |        |          |             | '        |           |
-|           |        |          |             | DAYNITE' |           |
-|           |        |          |             | ac       |           |
-|           |        |          |             | tivities |           |
-|           |        |          |             | d        |           |
-|           |        |          |             | irectly. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_AFSX | NCA    | Integer  | Provided    | A        | *{See     |
-|           | P_AFS, | number   | when        | ge-based | Related   |
-| (r,datay  | SHAPE, |          | shaping     | shaping  | Par       |
-| ear,p,bd) | C      | Default  | based upon  | curve    | ameters}* |
-|           | OEF_AF | value: 0 | age is      | (SHAPE)  |           |
-|           |        | (no      | desired.    | to be    |           |
-|           |        | shape    |             | applied  |           |
-|           |        | curve    | NCAP_AFSX   | to the   |           |
-|           |        | applied) | is applied  | seasonal |           |
-|           |        |          | to          | avai     |           |
-|           |        | Default  | NCAP_AFS,   | lability |           |
-|           |        | extrap   | but not on  | factor   |           |
-|           |        | olation: | the annual  | pa       |           |
-|           |        | MIG      | level if    | rameters |           |
-|           |        |          | a           | (NCAP\_  |           |
-|           |        |          | vailability | AFS) of  |           |
-|           |        |          | is also     | a        |           |
-|           |        |          | defined by  | process. |           |
-|           |        |          | NCAP_AFA.   |          |           |
-|           |        |          |             |          |           |
-|           |        |          | The SHAPE   |          |           |
-|           |        |          | parameter   |          |           |
-|           |        |          | is applied  |          |           |
-|           |        |          | even for    |          |           |
-|           |        |          | n           |          |           |
-|           |        |          | on-vintaged |          |           |
-|           |        |          | process     |          |           |
-|           |        |          | whenever    |          |           |
-|           |        |          | NCAP_AFSX   |          |           |
-|           |        |          | is          |          |           |
-|           |        |          | specified,  |          |           |
-|           |        |          | i.e.        |          |           |
-|           |        |          | NCAP_AFS    |          |           |
-|           |        |          | ava         |          |           |
-|           |        |          | ilabilities |          |           |
-|           |        |          | will then   |          |           |
-|           |        |          | be          |          |           |
-|           |        |          | vintaged.   |          |           |
-|           |        |          |             |          |           |
-|           |        |          | Note: Shape |          |           |
-|           |        |          | index 1 is  |          |           |
-|           |        |          | reserved    |          |           |
-|           |        |          | for         |          |           |
-|           |        |          | constant 1. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_AFX  | NC     | Integer  | Provided    | A        | *{See     |
-|           | AP_AF, | number   | when        | ge-based | Related   |
-| (r,da     | NCA    |          | shaping     | shaping  | Par       |
-| tayear,p) | P_AFA, | Default  | based upon  | curve    | ameters}* |
-|           | NCA    | value: 0 | age is      | (SHAPE)  |           |
-|           | P_AFS, | (no      | desired.    | to be    |           |
-|           | SHAPE, | shape    |             | applied  |           |
-|           | C      | curve    | NCAP_AFX is | to the   |           |
-|           | OEF_AF | applied) | applied to  | avai     |           |
-|           |        |          | NCAP_AF and | lability |           |
-|           |        | Default  | NCAP_AFS,   | factor   |           |
-|           |        | extrap   | but not the | pa       |           |
-|           |        | olation: | annual      | rameters |           |
-|           |        | MIG      | a           | (        |           |
-|           |        |          | vailability | NCAP_AF/ |           |
-|           |        |          | NCAP_AFA.   | AFA/AFS) |           |
-|           |        |          |             | of a     |           |
-|           |        |          | For         | process. |           |
-|           |        |          | n           |          |           |
-|           |        |          | on-vintaged |          |           |
-|           |        |          | process,    |          |           |
-|           |        |          | the SHAPE   |          |           |
-|           |        |          | parameter   |          |           |
-|           |        |          | is only     |          |           |
-|           |        |          | applied to  |          |           |
-|           |        |          | NCAP_AF,    |          |           |
-|           |        |          | i.e.        |          |           |
-|           |        |          | ava         |          |           |
-|           |        |          | ilabilities |          |           |
-|           |        |          | at process  |          |           |
-|           |        |          | timeslices  |          |           |
-|           |        |          | will be     |          |           |
-|           |        |          | vintaged.   |          |           |
-|           |        |          |             |          |           |
-|           |        |          | Note: Shape |          |           |
-|           |        |          | index 1 is  |          |           |
-|           |        |          | reserved    |          |           |
-|           |        |          | for         |          |           |
-|           |        |          | constant 1. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_BND  |        | Capacity | Provided    | Bound on | Imposes   |
-|           |        | unit     | for each    | the      | an        |
-| (r,datay  |        |          | process to  | p        | indirect  |
-| ear,p,bd) |        | \[0,∞);\ | have its    | ermitted | limit on  |
-|           |        | default  | overall     | level on | the       |
-|           |        | value:   | installed   | in       | capacity  |
-|           |        | none     | capacity    | vestment | transfer  |
-|           |        |          | (VAR_NCAP)  | in new   | equation  |
-|           |        | Default  | limited in  | capacity | (EQ_CPT)  |
-|           |        | i/e: MIG | a period.   |          | by means  |
-|           |        |          |             |          | of a      |
-|           |        |          | Since       |          | direct    |
-|           |        |          | inter-/ex   |          | bound on  |
-|           |        |          | trapolation |          | the new   |
-|           |        |          | default is  |          | in        |
-|           |        |          | MIG, a      |          | vestments |
-|           |        |          | bound must  |          | capacity  |
-|           |        |          | be          |          | variable  |
-|           |        |          | specified   |          | (V        |
-|           |        |          | for each    |          | AR_NCAP). |
-|           |        |          | period      |          |           |
-|           |        |          | desired, if |          |           |
-|           |        |          | no explicit |          |           |
-|           |        |          | inter-/ex   |          |           |
-|           |        |          | trapolation |          |           |
-|           |        |          | option is   |          |           |
-|           |        |          | given, e.g. |          |           |
-|           |        |          | NCAP_B      |          |           |
-|           |        |          | ND(R,'0',P) |          |           |
-|           |        |          | =2.         |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCA    | Decimal  | The         | Back     | Process   |
-| CAP_BPME\ | P_CDME | fraction | parameter   | pressure | trans     |
-| (r,da     |        |          | is only     | mode     | formation |
-| tayear,p) |        | \[0,∞);\ | taken into  | ef       | equation, |
-|           |        | default  | account     | ficiency | either    |
-|           |        | value:   | when the    | (or      |           |
-|           |        | none     | process is  | total    | E         |
-|           |        |          | of type     | ef       | QE_ACTEFF |
-|           |        | Default  | CHP, and    | ficiency | or\       |
-|           |        | i/e: STD | NCAP_CDME   | in full  | EQ_PTRANS |
-|           |        |          | has been    | CHP      |           |
-|           |        |          | also        | mode).   |           |
-|           |        |          | defined.    |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCA    | Decimal  | The         | Co       | Process   |
-| CAP_CDME\ | P_BPME | fraction | parameter   | ndensing | trans     |
-| (r,da     |        |          | can only be | mode     | formation |
-| tayear,p) |        | \[0,∞);\ | used for    | ef       | equation, |
-|           |        | default  | standard    | ficiency | either    |
-|           |        | value:   | process­es   |          |           |
-|           |        | none     | having      |          | E         |
-|           |        |          | electricity |          | QE_ACTEFF |
-|           |        | Default  | output in   |          | or\       |
-|           |        | i/e: STD | the PCG.    |          | EQ_PTRANS |
-|           |        |          | The         |          |           |
-|           |        |          | efficiency  |          |           |
-|           |        |          | is applied  |          |           |
-|           |        |          | between the |          |           |
-|           |        |          | default     |          |           |
-|           |        |          | shadow      |          |           |
-|           |        |          | group and   |          |           |
-|           |        |          | the         |          |           |
-|           |        |          | e           |          |           |
-|           |        |          | lectricity. |          |           |
-|           |        |          | If the      |          |           |
-|           |        |          | process is  |          |           |
-|           |        |          | also        |          |           |
-|           |        |          | defined as  |          |           |
-|           |        |          | a CHP, heat |          |           |
-|           |        |          | efficiency  |          |           |
-|           |        |          | is also     |          |           |
-|           |        |          | included.   |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_CEH\ | NCA    | Decimal  | The         | Coe      | Process   |
-| (r,da     | P_CHPR | fraction | parameter   | fficient | trans     |
-| tayear,p) |        |          | is only     | of       | formation |
-|           | A      | \[       | taken into  | ele      | equation, |
-|           | CT_EFF | --1,∞\]; | account     | ctricity | either    |
-|           |        |          | when the    | to heat  |           |
-|           |        | default  | process is  | along    | E         |
-|           |        | value:   | defined to  | the      | QE_ACTEFF |
-|           |        | none     | be of type  | iso-fuel | or\       |
-|           |        |          | CHP.        | line in  | EQ_PTRANS |
-|           |        | Default  | According   | a        |           |
-|           |        | i/e: STD | to the CEH  | pass-out |           |
-|           |        |          | value, the  | CHP      |           |
-|           |        |          | process     | tec      |           |
-|           |        |          | activity    | hnology. |           |
-|           |        |          | will be     |          |           |
-|           |        |          | defined as: |          |           |
-|           |        |          |             |          |           |
-|           |        |          | CEH ≤ 0:    |          |           |
-|           |        |          | Max.        |          |           |
-|           |        |          | electricity |          |           |
-|           |        |          | output      |          |           |
-|           |        |          | according   |          |           |
-|           |        |          | to CHPR     |          |           |
-|           |        |          |             |          |           |
-|           |        |          | 0           |          |           |
-|           |        |          |  \< CEH ≤1: |          |           |
-|           |        |          | Condensing  |          |           |
-|           |        |          | mode        |          |           |
-|           |        |          | electricity |          |           |
-|           |        |          | output      |          |           |
-|           |        |          |             |          |           |
-|           |        |          | CEH ≥ 1:    |          |           |
-|           |        |          | Total       |          |           |
-|           |        |          | energy      |          |           |
-|           |        |          | output in   |          |           |
-|           |        |          | full CHP    |          |           |
-|           |        |          | mode.       |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | FL     | Decimal  | The         | Heat-    | Activates |
-| CAP_CHPR\ | O_SHAR | fraction | parameter   | to-power | the       |
-| (r,dataye |        |          | is only     | ratio of | g         |
-| ar,p,lim) |        | \[0,∞);  | taken into  | a CHP    | eneration |
-|           |        |          | account     | te       | of output |
-|           |        | default  | when the    | chnology | share     |
-|           |        | value: 1 | process is  | (fixed / | e         |
-|           |        | (only    | defined to  | minimum  | quations, |
-|           |        | when     | be of type  | /        | im        |
-|           |        | process  | CHP. The    | maximum  | plemented |
-|           |        | type is  | defaults    | ratio).  | with      |
-|           |        | CHP, for | can be      | If no    |           |
-|           |        | lim      | disabled by | ratio    | EQ(l      |
-|           |        | =\'UP\') | defining    | e        | )\_OUTSHR |
-|           |        |          | any i/e     | quations |           |
-|           |        | Default  | value with  | should   |           |
-|           |        | i/e: STD | lim=\'N\',  | be       |           |
-|           |        |          | which will  | ge       |           |
-|           |        |          | eliminate   | nerated, |           |
-|           |        |          | the output  | one can  |           |
-|           |        |          | share       | define   |           |
-|           |        |          | equations.  | any I/E  |           |
-|           |        |          |             | value    |           |
-|           |        |          |             | with     |           |
-|           |        |          |             | li       |           |
-|           |        |          |             | m=\'N\'. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCA    | Years    | Provided    | Lagtime  | Applied   |
-| CAP_CLAG\ | P_CLED |          | when there  | of a     | to the    |
-| (         |        | \[       | is a delay  | c        | i         |
-| r,datayea | NC     | open\];\ | in          | ommodity | nvestment |
-| r,p,c,io) | AP_COM | default  | commodity   | after    | variable  |
-|           |        | value:   | output      | new      | (         |
-|           |        | none     | after       | capacity | VAR_NCAP) |
-|           |        |          | co          | is       | in the    |
-|           |        | Default  | mmissioning | in       | commodity |
-|           |        | i/e: STD | new         | stalled. | balance   |
-|           |        |          | capacity.   |          | (EQ(l)    |
-|           |        |          | So, if the  |          | \_COMBAL) |
-|           |        |          | process is  |          | of the    |
-|           |        |          | available   |          | i         |
-|           |        |          | in the year |          | nvestment |
-|           |        |          | K, the      |          | period or |
-|           |        |          | commodity   |          | previous  |
-|           |        |          | is produced |          | periods.  |
-|           |        |          | during the  |          |           |
-|           |        |          | years       |          |           |
-|           |        |          | \[K+CLAG,   |          |           |
-|           |        |          | K+NCAP_     |          |           |
-|           |        |          | TLIFE--1\]. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_CLED | NCA    | Years    | Provided    | Lead     | Applied   |
-|           | P_ICOM |          | when a      | time     | to the    |
-| (r,data   |        | \[       | commodity   | req      | i         |
-| year,p,c) | COE    | open\];\ | must be     | uirement | nvestment |
-|           | F_ICOM | default  | available   | for a    | variable  |
-|           |        | value: = | prior to    | c        | (         |
-|           |        | N        | a           | ommodity | VAR_NCAP) |
-|           |        | CAP_ILED | vailability | during   | in the    |
-|           |        |          | of a        | cons     | commodity |
-|           |        | Default  | process.    | truction | balance   |
-|           |        | i/e: STD | So, if the  | (NCA     | (EQ(l)    |
-|           |        |          | process is  | P_ICOM), | \_COMBAL) |
-|           |        |          | available   | prior to | of the    |
-|           |        |          | in the year | the      | i         |
-|           |        |          | B(v)        | initial  | nvestment |
-|           |        |          | +NC         | avai     | period or |
-|           |        |          | AP_ILED--1, | lability | previous  |
-|           |        |          | the         | of the   | periods.  |
-|           |        |          | commodity   | c        |           |
-|           |        |          | is produced | apacity. |           |
-|           |        |          | during the  |          |           |
-|           |        |          | time span   |          |           |
-|           |        |          | \[B(v)+     |          |           |
-|           |        |          | ILED--CLED, |          |           |
-|           |        |          | B(v)        |          |           |
-|           |        |          | +NCAP       |          |           |
-|           |        |          | _ILED--1\]. |          |           |
-|           |        |          |             |          |           |
-|           |        |          | Usually     |          |           |
-|           |        |          | used when   |          |           |
-|           |        |          | modelling   |          |           |
-|           |        |          | the need    |          |           |
-|           |        |          | for         |          |           |
-|           |        |          | fabrication |          |           |
-|           |        |          | of reactor  |          |           |
-|           |        |          | fuel the    |          |           |
-|           |        |          | period      |          |           |
-|           |        |          | before a    |          |           |
-|           |        |          | reactor     |          |           |
-|           |        |          | goes        |          |           |
-|           |        |          | online.     |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_COM  | rpc_c  | C        | Provided    | Emission | Applied   |
-|           | apflo, | ommodity | when the    | (or      | to the    |
-| (         | rpc    | unit per | consumption | l        | capacity  |
-| r,datayea | _conly | capacity | or          | and-use) | variable  |
-| r,p,c,io) |        | unit     | production  | of       | (VAR_CAP) |
-|           |        |          | of a        | c        | in the    |
-|           |        | \[       | commodity   | ommodity | commodity |
-|           |        | open\];\ | is tied to  | c        | balance   |
-|           |        | default  | the level   | as       | (EQ       |
-|           |        | value:   | of the      | sociated | _COMBAL). |
-|           |        | none     | installed   | with the |           |
-|           |        |          | capacity.   | capacity |           |
-|           |        | Default  |             | of a     |           |
-|           |        | i/e: STD |             | process  |           |
-|           |        |          |             | for each |           |
-|           |        |          |             | year     |           |
-|           |        |          |             | said     |           |
-|           |        |          |             | capacity |           |
-|           |        |          |             | exists.  |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_COST | OBJ_   | Monetary | Provided    | In       | Applied   |
-|           | ICOST, | unit per | whenever    | vestment | to the    |
-| (r,da     | O      | capacity | there is a  | costs of | i         |
-| tayear,p) | BJSCC, | unit     | cost        | new      | nvestment |
-|           | CST    |          | associated  | i        | variable  |
-|           | _INVC, | \[0,∞);\ | with        | nstalled | (         |
-|           |        | default  | putting new | capacity | VAR_NCAP) |
-|           | C      | value:   | capacity in | a        | when      |
-|           | ST_PVP | none     | place.      | ccording | entering  |
-|           |        |          |             | to the   | the       |
-|           |        | Default  |             | inst     | objective |
-|           |        | i/e: STD |             | allation | function  |
-|           |        |          |             | year.    | (E        |
-|           |        |          |             |          | Q_OBJNV). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | May       |
-|           |        |          |             |          | appear in |
-|           |        |          |             |          | user      |
-|           |        |          |             |          | co        |
-|           |        |          |             |          | nstraints |
-|           |        |          |             |          | (EQ_UC\*) |
-|           |        |          |             |          | if        |
-|           |        |          |             |          | specified |
-|           |        |          |             |          | in        |
-|           |        |          |             |          | UC_NAME.  |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_CPX  | CO     | Integer  | Provided    | Defines  | Impacts   |
-|           | EF_CPT | number   | when        | a shape  | all       |
-| (r,data   |        |          | shaping     | index    | cal       |
-| year,prc) |        | Default  | based upon  | for      | culations |
-|           |        | value: 0 | age is      | shaping  |           |
-|           |        |          | desired.    | the      | that are  |
-|           |        | (no      |             | capacity | dependent |
-|           |        | shape    | The SHAPE   | transfer |           |
-|           |        | curve    | index given | coef     | upon the  |
-|           |        | applied) | by NCAP_CPX | ficients | ava       |
-|           |        |          | is applied  | by the   | ilability |
-|           |        | Default  | to the      | age of   | of        |
-|           |        | extrap   | internal    | each     |           |
-|           |        | olation: | capacity    | process  | capacity  |
-|           |        |          | transfer    | vintage. | (V        |
-|           |        | MIG      | parameter   | As a     | AR_NCAP), |
-|           |        |          | (COEF_CPT). | result,  | most      |
-|           |        |          |             | the      | directly  |
-|           |        |          | Note: Shape | capacity | the       |
-|           |        |          | index 1 is  | will     | capacity  |
-|           |        |          | reserved    | have a   | transfer  |
-|           |        |          | for         | survival | (EQ_CPT), |
-|           |        |          | constant 1. | rate as  | and       |
-|           |        |          |             | a        | capacity  |
-|           |        |          |             | function | ava       |
-|           |        |          |             | of age.  | ilability |
-|           |        |          |             |          | equations |
-|           |        |          |             |          |           |
-|           |        |          |             |          | (EQ(l)\   |
-|           |        |          |             |          | _CAPACT). |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP   | Monetary | Provided    | Cost of  | Applied   |
-| CAP_DCOST | _DLAG, | unit per | when there  | dis      | to the    |
-|           | COR_   | capacity | are         | mantling | current   |
-| (r,dataye | SALVD, | unit     | deco        | a        | capacity  |
-| ar,p,cur) | OBJ_   |          | mmissioning | facility | subject   |
-|           | DCOST, | \[0,∞);  | costs       | after    | to        |
-|           | CST    | default  | associated  | the end  | decomm    |
-|           | _DECC, | value:   | with a      | of its   | issioning |
-|           |        | none     | process.    | l        | (VA       |
-|           | C      |          |             | ifetime. | R_NCAP+NC |
-|           | ST_PVP | Default  | Deco        |          | AP_PASTI) |
-|           |        | i/e: STD | mmissioning |          | when      |
-|           |        |          | of a        |          | entering  |
-|           |        |          | process and |          | the       |
-|           |        |          | the payment |          | objective |
-|           |        |          | of          |          | function  |
-|           |        |          | deco        |          | (E        |
-|           |        |          | mmissioning |          | Q_OBJNV). |
-|           |        |          | costs may   |          |           |
-|           |        |          | be delayed  |          |           |
-|           |        |          | by a lag    |          |           |
-|           |        |          | time        |          |           |
-|           |        |          | (           |          |           |
-|           |        |          | NCAP_DLAG). |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP_  | Years    | Provided    | Economic | Applied   |
-| CAP_DELIF | DLIFE, |          | when the    | lifetime | to the    |
-|           | COR_   | (0,∞);\  | timeframe   | of the   | i         |
-| (r,da     | SALVD, | default  | for paying  | decommi  | nvestment |
-| tayear,p) | DU     | value:   | for         | ssioning | variable  |
-|           | R_MAX, | NC       | d           | a        | (         |
-|           | OBJ    | AP_DLIFE | ecommission | ctivity. | VAR_NCAP) |
-|           | _CRFD, |          | is          |          | when      |
-|           | SA     | Default  | different   |          | entering  |
-|           | LV_DEC | i/e: STD | from that   |          | the       |
-|           |        |          | of the      |          | salvage   |
-|           |        |          | actual      |          | portion   |
-|           |        |          | decom       |          | of the    |
-|           |        |          | missioning. |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (EQ_      |
-|           |        |          |             |          | OBJSALV). |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_DISC | rp_d   | Capacity | Used for    | Size of  | Applied   |
-|           | scncap | unit     | lumpy       | capacity | to the    |
-| (         |        |          | i           | units    | lumpy     |
-| r,datayea |        | \[0,∞);\ | nvestments. | that can | i         |
-| r,p,unit) |        | default  |             | be       | nvestment |
-|           |        | value:   | Requires    | added.   | integer   |
-|           |        | none     | MIP.\       |          | variable  |
-|           |        |          | Since       |          | (V        |
-|           |        | Default  | inter-/ex   |          | AR_DNCAP) |
-|           |        | i/e: MIG | trapolation |          | in the    |
-|           |        |          | default is  |          | discrete  |
-|           |        |          | MIG, a      |          | i         |
-|           |        |          | value must  |          | nvestment |
-|           |        |          | be          |          | equation  |
-|           |        |          | specified   |          | (EQ       |
-|           |        |          | for each    |          | _DSCNCAP) |
-|           |        |          | period      |          | to set    |
-|           |        |          | desired, if |          | the       |
-|           |        |          | no explicit |          | corr      |
-|           |        |          | inter-/ex   |          | esponding |
-|           |        |          | trapolation |          | standard  |
-|           |        |          | option is   |          | i         |
-|           |        |          | given.      |          | nvestment |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | level     |
-|           |        |          |             |          | (V        |
-|           |        |          |             |          | AR_NCAP). |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_DLAG | COEF   | Years    | Provided    | Number   | Delay     |
-|           | _OCOM, |          | when there  | of years | applied   |
-| (r,da     | DU     | \[0,∞);\ | is a lag in | delay    | to a      |
-| tayear,p) | R_MAX, | default  | the         | before   | decomm    |
-|           | OBJ    | value:   | deco        | decommi  | issioning |
-|           | _DLAGC | none     | mmissioning | ssioning | flow      |
-|           |        |          | of a        | can      | (VAR_FLO) |
-|           |        | Default  | process     | begin    | in the    |
-|           |        | i/e: STD | (e.g., to   | after    | balance   |
-|           |        |          | allow the   | the      | equation  |
-|           |        |          | nuclear     | lifetime | (EQ(l)    |
-|           |        |          | core to     | of a     | \_COMBAL) |
-|           |        |          | reduce its  | te       | as        |
-|           |        |          | radiation). | chnology | pr        |
-|           |        |          |             | has      | oduction. |
-|           |        |          |             | ended.   |           |
-|           |        |          |             |          | Delay     |
-|           |        |          |             |          | applied   |
-|           |        |          |             |          | to the    |
-|           |        |          |             |          | current   |
-|           |        |          |             |          | capacity  |
-|           |        |          |             |          | subject   |
-|           |        |          |             |          | to        |
-|           |        |          |             |          | decomm    |
-|           |        |          |             |          | issioning |
-|           |        |          |             |          | (VA       |
-|           |        |          |             |          | R_NCAP+NC |
-|           |        |          |             |          | AP_PASTI) |
-|           |        |          |             |          | when      |
-|           |        |          |             |          | entering  |
-|           |        |          |             |          | the       |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | omponents |
-|           |        |          |             |          | (E        |
-|           |        |          |             |          | Q_OBJINV, |
-|           |        |          |             |          | E         |
-|           |        |          |             |          | Q_OBJFIX, |
-|           |        |          |             |          | EQ_       |
-|           |        |          |             |          | OBJSALV). |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP   | Monetary | Provided    | Cost     | Cost      |
-| CAP_DLAGC | _DLAG, | unit per | when there  | o        | during    |
-|           |        | capacity | is a cost   | ccurring | delay     |
-| (r,dataye | OBJ_   | unit     | during any  | during   | applied   |
-| ar,p,cur) | DLAGC, |          | lag in the  | the lag  | to the    |
-|           | CST    | \[0,∞);\ | deco        | time     | current   |
-|           | _DECC, | default  | mmissioning | after    | capacity  |
-|           |        | value:   | (e.g.,      | the      | subject   |
-|           | C      | none     | security).  | t        | to        |
-|           | ST_PVP |          |             | echnical | decomm    |
-|           |        | Default  |             | lifetime | issioning |
-|           |        | i/e: STD |             | of a     | (VA       |
-|           |        |          |             | process  | R_NCAP+NC |
-|           |        |          |             | has      | AP_PASTI) |
-|           |        |          |             | ended    | when      |
-|           |        |          |             | and      | entering  |
-|           |        |          |             | before   | the       |
-|           |        |          |             | its      | objective |
-|           |        |          |             | decommi  | function  |
-|           |        |          |             | ssioning | c         |
-|           |        |          |             | starts.  | omponents |
-|           |        |          |             |          | (E        |
-|           |        |          |             |          | Q_OBJFIX, |
-|           |        |          |             |          | EQ_       |
-|           |        |          |             |          | OBJSALV). |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | D      | Years    | Provided    | T        | Decomm    |
-| CAP_DLIFE | UR_MAX |          | when a      | echnical | issioning |
-|           |        | (0,∞);\  | process has | time for | time      |
-| (r,da     |        | default  | a           | dis      | impacting |
-| tayear,p) |        | value:   | deco        | mantling | (VA       |
-|           |        | none     | mmissioning | a        | R_NCAP+NC |
-|           |        |          | phase.      | facility | AP_PASTI) |
-|           |        | Default  |             | after    | when      |
-|           |        | i/e: STD |             | the end  | entering  |
-|           |        |          |             | its      | the       |
-|           |        |          |             | t        | objective |
-|           |        |          |             | echnical | function  |
-|           |        |          |             | l        | c         |
-|           |        |          |             | ifetime, | omponents |
-|           |        |          |             | plus any | (E        |
-|           |        |          |             | lag time | Q_OBJINV, |
-|           |        |          |             | (NCA     | EQ_       |
-|           |        |          |             | P_DLAG). | OBJSALV). |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | G_     | Percent  | Provided if | Te       | Discount  |
-| CAP_DRATE | DRATE, |          | the cost of | chnology | rate      |
-|           | COR_   | (0,∞);\  | borrowing   | specific | applied   |
-| (r,da     | SALVI, | default  | for a       | discount | to        |
-| tayear,p) | COR    | value:   | process is  | rate.    | in        |
-|           | _SALVD | G_DRATE  | different   |          | vestments |
-|           |        |          | from the    |          | (VA       |
-|           |        | Default  | standard    |          | R_NCAP+NC |
-|           |        | i/e: STD | discount    |          | AP_PASTI) |
-|           |        |          | rate.       |          | when      |
-|           |        |          |             |          | entering  |
-|           |        |          |             |          | the       |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | omponents |
-|           |        |          |             |          | (E        |
-|           |        |          |             |          | Q_OBJINV, |
-|           |        |          |             |          | EQ_       |
-|           |        |          |             |          | OBJSALV). |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP_  | years    | Provided    | Economic | Economic  |
-| CAP_ELIFE | TLIFE, |          | only when   | lifetime | lifetime  |
-|           | COR_   | (0,∞);\  | the         | of a     | of a      |
-| (r,da     | SALVI, | default  | economic    | process. | process   |
-| tayear,p) | O      | value:   | lifetime    |          | when      |
-|           | BJ_CRF | NC       | differs     |          | costing   |
-|           |        | AP_TLIFE | from the    |          | i         |
-|           |        |          | technical   |          | nvestment |
-|           |        | Default  | lifetime    |          | (VA       |
-|           |        | i/e: STD | (N          |          | R_NCAP+NC |
-|           |        |          | CAP_TLIFE). |          | AP_PASTI) |
-|           |        |          |             |          | or        |
-|           |        |          |             |          | capacity  |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | omponents |
-|           |        |          |             |          | (E        |
-|           |        |          |             |          | Q_OBJINV, |
-|           |        |          |             |          | EQ        |
-|           |        |          |             |          | _OBJSALV, |
-|           |        |          |             |          | EQ        |
-|           |        |          |             |          | _OBJFIX). |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_FDR\ | NCA    | Decimal  | Provided    | Defines  | Affects   |
-| (r,data   | P_COST | fraction | when the    | an       | the       |
-| year,prc) |        | (0,∞);\  | effect of   | annual   | salvage   |
-|           |        | default  | functional  | rate of  | value     |
-|           |        | va       | d           | ad       | coe       |
-|           |        | lue:none | epreciation | ditional | fficients |
-|           |        |          | is          | depr     | in        |
-|           |        | Default  | considered  | eciation | E         |
-|           |        | i/e: STD | significant | in the   | Q_OBJSALV |
-|           |        |          | to justify  | salvage  |           |
-|           |        |          | accelerated | value.   |           |
-|           |        |          | decrease in |          |           |
-|           |        |          | salvage     |          |           |
-|           |        |          | value.      |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_FOM  | OB     | Monetary | Provided    | Fixed    | Fixed     |
-|           | J_FOM, | unit per | when there  | o        | operating |
-| (r,dataye | CST_   | capacity | is a fixed  | perating | and       |
-| ar,p,cur) | FIXC,\ | unit     | cost        | and      | ma        |
-|           | C      |          | associated  | mai      | intenance |
-|           | ST_PVP | \[0,∞);\ | with the    | ntenance | costs     |
-|           |        | default  | installed   | cost per | a         |
-|           |        | value:   | capacity.   | unit of  | ssociated |
-|           |        | none     |             | capacity | with      |
-|           |        |          |             | a        | total     |
-|           |        | Default  |             | ccording | installed |
-|           |        | i/e: STD |             | to the   | capacity  |
-|           |        |          |             | inst     | (VA       |
-|           |        |          |             | allation | R_NCAP+NC |
-|           |        |          |             | year.    | AP_PASTI) |
-|           |        |          |             |          | when      |
-|           |        |          |             |          | entering  |
-|           |        |          |             |          | the       |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | omponents |
-|           |        |          |             |          | (EQ       |
-|           |        |          |             |          | _OBJFIX). |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_FOMM | NCA    | Integer  | Provided    | Period   | *{See     |
-|           | P_FOM, | number   | when        | s        | Related   |
-| (r,da     | MULTI  |          | shaping     | ensitive | Par       |
-| tayear,p) |        | Default  | based upon  | mu       | ameters}* |
-|           |        | value: 0 | the period  | ltiplier |           |
-|           |        | (no      | is desired. | curve    |           |
-|           |        | mu       |             | (MULTI)  |           |
-|           |        | ltiplier | Note:       | applied  |           |
-|           |        | curve    | Multiplier  | to the   |           |
-|           |        | applied) | index 1 is  | fixed    |           |
-|           |        |          | reserved    | o        |           |
-|           |        | Default  | for         | perating |           |
-|           |        | i/e: MIG | constant 1. | and      |           |
-|           |        |          |             | mai      |           |
-|           |        |          |             | ntenance |           |
-|           |        |          |             | costs    |           |
-|           |        |          |             | (NC      |           |
-|           |        |          |             | AP_FOM). |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_FOMX | NCA    | Integer  | Provided    | A        | *{See     |
-|           | P_FOM, | number   | when        | ge-based | Related   |
-| (r,da     | SHAPE  |          | shaping     | shaping  | Par       |
-| tayear,p) |        | Default  | based upon  | curve    | ameters}* |
-|           |        | value: 0 | age is      | (SHAPE)  |           |
-|           |        | (no      | desired.    | to be    |           |
-|           |        | shape    |             | applied  |           |
-|           |        | curve    | Note: Shape | to the   |           |
-|           |        | applied) | index 1 is  | fixed    |           |
-|           |        |          | reserved    | o        |           |
-|           |        | Default  | for         | perating |           |
-|           |        | i/e: MIG | constant 1. | and      |           |
-|           |        |          |             | mai      |           |
-|           |        |          |             | ntenance |           |
-|           |        |          |             | cost.    |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_FSUB | OB     | Monetary | Provided    | Subsidy  | Fixed     |
-|           | J_FSB, | unit per | when there  | per unit | subsidy   |
-| (r,dataye | CST    | capacity | is a        | of       | a         |
-| ar,p,cur) | _FIXX, | unit     | subsidy for | i        | ssociated |
-|           |        |          | associated  | nstalled | with      |
-|           | C      | \[0,∞);\ | with the    | c        | total     |
-|           | ST_PVP | default  | level of    | apacity. | installed |
-|           |        | value:   | installed   |          | capacity  |
-|           |        | none     | capacity.   |          | (VA       |
-|           |        |          |             |          | R_NCAP+NC |
-|           |        | Default  |             |          | AP_PASTI) |
-|           |        | i/e: STD |             |          | when      |
-|           |        |          |             |          | entering  |
-|           |        |          |             |          | the       |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | component |
-|           |        |          |             |          | (E        |
-|           |        |          |             |          | Q_OBJFIX) |
-|           |        |          |             |          | with a    |
-|           |        |          |             |          | minus     |
-|           |        |          |             |          | sign.     |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP   | Integer  | Provided    | Period   | *{See     |
-| CAP_FSUBM | _FSUB, | number   | when        | s        | Related   |
-|           | MULTI  |          | shaping     | ensitive | Par       |
-| (r,da     |        | Default  | based upon  | mu       | ameters}* |
-| tayear,p) |        | value: 0 | the period  | ltiplier |           |
-|           |        | (no      | is desired. | curve    |           |
-|           |        | mu       |             | (MULTI)  |           |
-|           |        | ltiplier | Note:       | applied  |           |
-|           |        | curve    | Multiplier  | to the   |           |
-|           |        | applied) | index 1 is  | subsidy  |           |
-|           |        |          | reserved    | (NCA     |           |
-|           |        | Default  | for         | P_FSUB). |           |
-|           |        | i/e: MIG | constant 1. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP   | Integer  | Provided    | A        | *{See     |
-| CAP_FSUBX | _FSUB, | number   | when        | ge-based | Related   |
-|           | SHAPE  |          | shaping     | shaping  | Par       |
-| (r,da     |        | Default  | based upon  | curve    | ameters}* |
-| tayear,p) |        | value: 0 | age is      | (SHAPE)  |           |
-|           |        | (no      | desired.\   | to be    |           |
-|           |        | shape    | Note: Shape | applied  |           |
-|           |        | curve    | index 1 is  | to the   |           |
-|           |        | applied) | reserved    | fixed    |           |
-|           |        |          | for         | subsidy  |           |
-|           |        | Default  | constant 1. | (NCA     |           |
-|           |        | i/e: MIG |             | P_FSUB). |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_FTAX | OB     | monetary | Provided    | Tax per  | Fixed     |
-|           | J_FTX, | unit per | when there  | unit of  | subsidy   |
-| (r,dataye | CST    | capacity | is a fixed  | i        | a         |
-| ar,p,cur) | _FIXX, | unit     | tax based   | nstalled | ssociated |
-|           |        |          | upon the    | c        | with      |
-|           | C      | \[       | level of    | apacity. | total     |
-|           | ST_PVP | open\];\ | the         |          | installed |
-|           |        | default  | installed   |          | capacity  |
-|           |        | value:   | capacity.   |          | (VA       |
-|           |        | none     |             |          | R_NCAP+NC |
-|           |        |          |             |          | AP_PASTI) |
-|           |        | Default  |             |          | when      |
-|           |        | i/e: STD |             |          | entering  |
-|           |        |          |             |          | the       |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | omponents |
-|           |        |          |             |          | (EQ       |
-|           |        |          |             |          | _OBJFIX). |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP   | Integer  | Provided    | Period   | *{See     |
-| CAP_FTAXM | _FTAX, | number   | when        | s        | Related   |
-|           | MULTI  |          | shaping     | ensitive | Par       |
-| (r,da     |        | Default  | based upon  | mu       | ameters}* |
-| tayear,p) |        | value: 0 | the period  | ltiplier |           |
-|           |        | (no      | is desired. | curve    |           |
-|           |        | mu       |             | (MULTI)  |           |
-|           |        | ltiplier | Note:       | applied  |           |
-|           |        | curve    | Multiplier  | to the   |           |
-|           |        | applied) | index 1 is  | tax      |           |
-|           |        |          | reserved    | (NCA     |           |
-|           |        | Default  | for         | P_FTAX). |           |
-|           |        | i/e: MIG | constant 1. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP   | Integer  | Provided    | A        | *{See     |
-| CAP_FTAXX | _FTAX, | number   | when        | ge-based | Related   |
-|           | SHAPE  |          | shaping     | shaping  | Par       |
-| (r,da     |        | Default  | based upon  | curve    | ameters}* |
-| tayear,p) |        | value: 0 | age is      | (SHAPE)  |           |
-|           |        | (no      | desired.    | to be    |           |
-|           |        | shape    |             | applied  |           |
-|           |        | curve    | Note: Shape | to the   |           |
-|           |        | applied) | index 1 is  | fixed    |           |
-|           |        |          | reserved    | tax      |           |
-|           |        | Default  | for         | (NCA     |           |
-|           |        | i/e: MIG | constant 1. | P_FTAX). |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_ICOM | NCAP   | C        | Provided    | Amount   | Applied   |
-|           | _CLED, | ommodity | when a      | of       | to the    |
-| (r,data   | rpc_c  | unit per | commodity   | c        | i         |
-| year,p,c) | apflo, | capacity | is needed   | ommodity | nvestment |
-|           | rpc    | unit     | in the      | (c)      | variable  |
-|           | _conly |          | period in   | required | (         |
-|           |        | \[       | which the   | for the  | VAR_NCAP) |
-|           |        | open\];\ | new         | cons     | in the    |
-|           |        | default  | capacity is | truction | ap        |
-|           |        | value:   | to be       | of new   | propriate |
-|           |        | none     | available,  | c        | commodity |
-|           |        |          | or before   | apacity. | co        |
-|           |        | Default  | NCAP_CLED.  |          | nstraints |
-|           |        | i/e: STD |             |          | (EQ(l)    |
-|           |        |          | If          |          | \_COMBAL) |
-|           |        |          | NCAP_CLED   |          | as part   |
-|           |        |          | is          |          | of        |
-|           |        |          | provided,   |          | con       |
-|           |        |          | the         |          | sumption. |
-|           |        |          | commodity   |          |           |
-|           |        |          | is required |          |           |
-|           |        |          | during the  |          |           |
-|           |        |          | years       |          |           |
-|           |        |          | \[B(v)+NCAP |          |           |
-|           |        |          | _CLED,B(v)+ |          |           |
-|           |        |          | NCAP_ILED-N |          |           |
-|           |        |          | CAP_CLED\]. |          |           |
-|           |        |          | If this     |          |           |
-|           |        |          | time spans  |          |           |
-|           |        |          | more than   |          |           |
-|           |        |          | one period, |          |           |
-|           |        |          | the         |          |           |
-|           |        |          | commodity   |          |           |
-|           |        |          | flow is     |          |           |
-|           |        |          | split up    |          |           |
-|           |        |          | pro         |          |           |
-|           |        |          | portion­ally |          |           |
-|           |        |          | between the |          |           |
-|           |        |          | periods.    |          |           |
-|           |        |          |             |          |           |
-|           |        |          | For the     |          |           |
-|           |        |          | commodity   |          |           |
-|           |        |          | balance the |          |           |
-|           |        |          | commodity   |          |           |
-|           |        |          | requirement |          |           |
-|           |        |          | in a period |          |           |
-|           |        |          | is          |          |           |
-|           |        |          | converted   |          |           |
-|           |        |          | to an       |          |           |
-|           |        |          | average     |          |           |
-|           |        |          | annual      |          |           |
-|           |        |          | commodity   |          |           |
-|           |        |          | flow for    |          |           |
-|           |        |          | the entire  |          |           |
-|           |        |          | period,     |          |           |
-|           |        |          | although    |          |           |
-|           |        |          | the         |          |           |
-|           |        |          | c           |          |           |
-|           |        |          | onstruction |          |           |
-|           |        |          | may take    |          |           |
-|           |        |          | place only  |          |           |
-|           |        |          | for a few   |          |           |
-|           |        |          | years of    |          |           |
-|           |        |          | the period. |          |           |
-|           |        |          |             |          |           |
-|           |        |          | Negative    |          |           |
-|           |        |          | value       |          |           |
-|           |        |          | describes   |          |           |
-|           |        |          | production  |          |           |
-|           |        |          | (e.g.       |          |           |
-|           |        |          | emissions)  |          |           |
-|           |        |          | at the time |          |           |
-|           |        |          | of a new    |          |           |
-|           |        |          | investment. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_ILED | NCAP   | Years    | Provided    | Lead     | Applied   |
-|           | _ICOM, |          | when there  | time     | to the    |
-| (r,t,p)   |        | \[       | is a delay  | between  | i         |
-|           | NCAP   | open\];\ | between     | in       | nvestment |
-|           | _COST, | default  | when the    | vestment | variable  |
-|           |        | value:   | investment  | decision | (         |
-|           | COE    | none     | decision    | and      | VAR_NCAP) |
-|           | F_CPT, |          | occurs and  | actual   | balance   |
-|           | COEF   | Default  | when the    | avai     | co        |
-|           | _ICOM, | i/e: STD | capacity    | lability | nstraints |
-|           | D      |          | (new        | of new   | (EQ(l)    |
-|           | UR_MAX |          | capacity or | capacity | \_COMBAL) |
-|           |        |          | past        | (=       | as part   |
-|           |        |          | investment) | cons     | of        |
-|           |        |          | is          | truction | con       |
-|           |        |          | initially   | time).   | sumption, |
-|           |        |          | available.  |          | if there  |
-|           |        |          | If          |          | is an     |
-|           |        |          | NC          |          | a         |
-|           |        |          | AP_ILED\>0, |          | ssociated |
-|           |        |          | the         |          | flow      |
-|           |        |          | investment  |          | (NC       |
-|           |        |          | decision is |          | AP_ICOM). |
-|           |        |          | assumed to  |          |           |
-|           |        |          | occur at    |          | Used as   |
-|           |        |          | B(v) and    |          | to        |
-|           |        |          | the         |          | di        |
-|           |        |          | capacity    |          | stinguish |
-|           |        |          | becomes     |          | between   |
-|           |        |          | available   |          | small and |
-|           |        |          | at          |          | large     |
-|           |        |          | B(v)        |          | in        |
-|           |        |          | +NCAP-ILED. |          | vestments |
-|           |        |          | If          |          | (         |
-|           |        |          | NC          |          | VAR_NCAP) |
-|           |        |          | AP_ILED\<0, |          | and thus  |
-|           |        |          | the         |          | i         |
-|           |        |          | investment  |          | nfluences |
-|           |        |          | decision is |          | the way   |
-|           |        |          | assumed to  |          | the       |
-|           |        |          | occur at    |          | i         |
-|           |        |          | B(v         |          | nvestment |
-|           |        |          | )-NCAP_ILED |          | and fixed |
-|           |        |          | and the     |          | costs are |
-|           |        |          | capacity    |          | treated   |
-|           |        |          | becomes     |          | in the    |
-|           |        |          | available   |          | objective |
-|           |        |          | at B(v).    |          | function  |
-|           |        |          | Causes an   |          | (E        |
-|           |        |          | IDC         |          | Q_OBJINV, |
-|           |        |          | overhead in |          | E         |
-|           |        |          | the         |          | Q_OBJFIX, |
-|           |        |          | investment  |          | EQ_       |
-|           |        |          | costs       |          | OBJSALV). |
-|           |        |          | accounting. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP_  | Decimal  | Provided    | Unit     | Applied   |
-| CAP_ISPCT | ISUB,\ | fraction | when        | in       | to the    |
-|           | OBJ    |          | defining an | vestment | i         |
-| (r,da     | _ISUB, | (−∞,∞);\ | investment  | subsidy  | nvestment |
-| tayear,p) | CS     | default  | subsidy in  | as a     | variable  |
-|           | T_INVX | value:   | proportion  | fraction | (         |
-|           |        | none     | to the      | of unit  | VAR_NCAP) |
-|           |        |          | investment  | in       | when      |
-|           |        | Default  | cost.\      | vestment | entering  |
-|           |        | i/e: STD | Requires    | costs,   | the       |
-|           |        |          | that        | in the   | objective |
-|           |        |          | NCAP_COST   | same     | function  |
-|           |        |          | is defined. | currency | (         |
-|           |        |          |             | unit,    | EQ_OBJNV) |
-|           |        |          |             | per unit | with a    |
-|           |        |          |             | of new   | minus     |
-|           |        |          |             | c        | sign.     |
-|           |        |          |             | apacity. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_ISUB | OBJ    | monetary | Provided    | Subsidy  | Applied   |
-|           | _ISUB, | unit per | when there  | per unit | to the    |
-| (r,dataye | O      | capacity | is a        | of new   | i         |
-| ar,p,cur) | BJSCC, | unit     | subsidy for | i        | nvestment |
-|           | CST    |          | new         | nstalled | variable  |
-|           | _INVX, | \[0,∞);\ | investments | c        | (         |
-|           | CST    | default  | in a        | apacity. | VAR_NCAP) |
-|           | _SALV, | value:   | period.     |          | when      |
-|           |        | none     |             |          | entering  |
-|           | C      |          |             |          | the       |
-|           | ST_PVP | Default  |             |          | objective |
-|           |        | i/e: STD |             |          | function  |
-|           |        |          |             |          | (         |
-|           |        |          |             |          | EQ_OBJNV) |
-|           |        |          |             |          | with a    |
-|           |        |          |             |          | minus     |
-|           |        |          |             |          | sign.     |
-|           |        |          |             |          |           |
-|           |        |          |             |          | May       |
-|           |        |          |             |          | appear in |
-|           |        |          |             |          | user      |
-|           |        |          |             |          | co        |
-|           |        |          |             |          | nstraints |
-|           |        |          |             |          | (EQ_UC\*) |
-|           |        |          |             |          | if        |
-|           |        |          |             |          | specified |
-|           |        |          |             |          | in        |
-|           |        |          |             |          | UC_NAME.  |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_ITAX | OBJ    | monetary | Provided    | Tax per  | Applied   |
-|           | _ITAX, | unit per | when there  | unit of  | to the    |
-| (r,dataye | O      | capacity | is a tax    | new      | i         |
-| ar,p,cur) | BJSCC, | unit     | associated  | i        | nvestment |
-|           | CST    |          | with new    | nstalled | variable  |
-|           | _INVX, | \[0,∞);\ | investments | capacity | (         |
-|           | CST    | default  | in a        |          | VAR_NCAP) |
-|           | _SALV, | value:   | period.     |          | when      |
-|           |        | none     |             |          | entering  |
-|           | C      |          |             |          | the       |
-|           | ST_PVP | Default  |             |          | objective |
-|           |        | i/e: STD |             |          | function  |
-|           |        |          |             |          | (E        |
-|           |        |          |             |          | Q_OBJNV). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | May       |
-|           |        |          |             |          | appear in |
-|           |        |          |             |          | user      |
-|           |        |          |             |          | co        |
-|           |        |          |             |          | nstraints |
-|           |        |          |             |          | (EQ_UC\*) |
-|           |        |          |             |          | if        |
-|           |        |          |             |          | specified |
-|           |        |          |             |          | in        |
-|           |        |          |             |          | UC_NAME.  |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP   | C        | Provided    | Amount   | Applied   |
-| CAP_OCOM\ | _VALU, | ommodity | when there  | of       | to the    |
-| (r,data   | rpc_c  | unit per | is a        | c        | i         |
-| year,p,c) | apflo, | capacity | commodity   | ommodity | nvestment |
-|           | rpc    | unit     | release     | c per    | variable  |
-|           | _conly |          | associated  | unit of  | (         |
-|           |        | \[       | with the    | capacity | VAR_NCAP) |
-|           |        | open\];\ | decom       | released | in the    |
-|           |        | default  | missioning. | during   | ap        |
-|           |        | value:   |             | the      | propriate |
-|           |        | none     | The year    | dis      | commodity |
-|           |        |          | index of    | mantling | co        |
-|           |        | Default  | the         | of a     | nstraints |
-|           |        | i/e: STD | parameter   | process. | (EQ(l)    |
-|           |        |          | corresponds |          | \_COMBAL) |
-|           |        |          | to the      |          | as part   |
-|           |        |          | vintage     |          | of        |
-|           |        |          | year.       |          | p         |
-|           |        |          |             |          | roduction |
-|           |        |          | If the      |          | in the    |
-|           |        |          | deco        |          | ap        |
-|           |        |          | mmissioning |          | propriate |
-|           |        |          | time        |          | period.   |
-|           |        |          | (           |          |           |
-|           |        |          | NCAP_DLIFE) |          |           |
-|           |        |          | falls in    |          |           |
-|           |        |          | more than   |          |           |
-|           |        |          | one period, |          |           |
-|           |        |          | is split up |          |           |
-|           |        |          | pro         |          |           |
-|           |        |          | portionally |          |           |
-|           |        |          | among the   |          |           |
-|           |        |          | periods.    |          |           |
-|           |        |          |             |          |           |
-|           |        |          | For the     |          |           |
-|           |        |          | commodity   |          |           |
-|           |        |          | balance the |          |           |
-|           |        |          | commodity   |          |           |
-|           |        |          | release in  |          |           |
-|           |        |          | a period is |          |           |
-|           |        |          | converted   |          |           |
-|           |        |          | to an       |          |           |
-|           |        |          | average     |          |           |
-|           |        |          | annual      |          |           |
-|           |        |          | commodity   |          |           |
-|           |        |          | flow for    |          |           |
-|           |        |          | the entire  |          |           |
-|           |        |          | period,     |          |           |
-|           |        |          | although    |          |           |
-|           |        |          | the         |          |           |
-|           |        |          | dismantling |          |           |
-|           |        |          | may take    |          |           |
-|           |        |          | place only  |          |           |
-|           |        |          | for a few   |          |           |
-|           |        |          | years of    |          |           |
-|           |        |          | the period. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NC        | NCAP   | Years    | Requires    | Maximum  | EQL_SCAP  |
-| AP_OLIFE\ | _TLIFE |          | that early  | o        |           |
-| (r,da     |        | (0,∞);\  | retirements | perating |           |
-| tayear,p) |        | default  | are enabled | lifetime |           |
-|           |        | value:   | and the     | of a     |           |
-|           |        | none     | process is  | process, |           |
-|           |        |          | vintaged.   | in terms |           |
-|           |        | Default  |             | of       |           |
-|           |        | i/e: STD |             | f        |           |
-|           |        |          |             | ull-load |           |
-|           |        |          |             | years.   |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP_  | capacity | Past        | In       | EQ(l      |
-| CAP_PASTI | PASTY, | unit     | investment  | vestment | )\_COMBAL |
-|           | OBJ_   |          | can also be | in new   |           |
-| (r,pa     | PASTI, | \[0,∞);\ | specified   | capacity | EQ_CPT    |
-| styear,p) | PAR_   | default  | for         | made     |           |
-|           | PASTI, | value:   | milestone   | before   | E         |
-|           |        | none     | years, e.g. | the      | Q_OBJINV, |
-|           | PRC    |          | if the      | b        | EQ        |
-|           | _RESID | No i/e   | milestone   | eginning | _OBJSALV, |
-|           |        |          | year is a   | of the   | EQ_OBJFIX |
-|           |        |          | historic    | model    |           |
-|           |        |          | year, so    | horizon  |           |
-|           |        |          | that        | (in the  |           |
-|           |        |          | capacity    | year     |           |
-|           |        |          | additions   | s        |           |
-|           |        |          | are known   | pecified |           |
-|           |        |          | or if       | by       |           |
-|           |        |          | planned     | pa       |           |
-|           |        |          | future      | styear). |           |
-|           |        |          | investments |          |           |
-|           |        |          | are already |          |           |
-|           |        |          | known.      |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP   | Years    | Provided to | Number   | *{See     |
-| CAP_PASTY | _PASTI |          | spread a    | of years | NCA       |
-|           |        | \[1      | single past | to go    | P_PASTI}* |
-| (r,pa     |        | ,999\];\ | investment  | back to  |           |
-| styear,p) |        | default  | (           | c        |           |
-|           |        | value:   | NCAP_PASTI) | alculate |           |
-|           |        | none     | back over   | a linear |           |
-|           |        |          | several     | build-up |           |
-|           |        | No i/e   | years       | of past  |           |
-|           |        |          | (e.g., cars | inv      |           |
-|           |        |          | in the      | estments |           |
-|           |        |          | period      |          |           |
-|           |        |          | before the  |          |           |
-|           |        |          | 1^st^       |          |           |
-|           |        |          | milestoneyr |          |           |
-|           |        |          | were bought |          |           |
-|           |        |          | over the    |          |           |
-|           |        |          | previous 15 |          |           |
-|           |        |          | years).     |          |           |
-|           |        |          |             |          |           |
-|           |        |          | If overlaps |          |           |
-|           |        |          | with other  |          |           |
-|           |        |          | past        |          |           |
-|           |        |          | i           |          |           |
-|           |        |          | nvestments, |          |           |
-|           |        |          | the         |          |           |
-|           |        |          | capacity    |          |           |
-|           |        |          | values are  |          |           |
-|           |        |          | added.      |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | com    | Decimal  | If the      | Fraction | Applied   |
-| CAP_PKCNT | _peak, | fraction | indicator   | of       | to        |
-|           | com    |          | PRC_PKAF is | capacity | in        |
-| (r,data   | _pkts, | \        | specified,  | that can | vestments |
-| year,p,s) | prc    | [0,1\];\ | the         | co       | in        |
-|           | _pkaf, | default  | NCAP_PKCNT  | ntribute | capacity  |
-|           | pr     | value: 1 | is set      | to       | (         |
-|           | c_pkno |          | equal to    | peaking  | VAR_NCAP, |
-|           |        | Default  | the         | eq       | NC        |
-|           |        | i/e: STD | ava         | uations. | AP_PASTI) |
-|           |        |          | ilabilities |          | in the    |
-|           |        |          | NCAP_AF.    |          | peaking   |
-|           |        |          |             |          | c         |
-|           |        |          | Direct      |          | onstraint |
-|           |        |          | i           |          | (         |
-|           |        |          | nheritance. |          | EQ_PEAK). |
-|           |        |          |             |          |           |
-|           |        |          | Weighted    |          |           |
-|           |        |          | a           |          |           |
-|           |        |          | ggregation. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_SEMI | NCA    | Capacity | Upper bound | Semi-co  | Applied   |
-| (r,da     | P_DISC | unit     | for the     | ntinuous | to the    |
-| tayear,p) |        |          | capacity    | new      | semi-c    |
-|           |        | (0,∞);   | must be     | c        | ontinuous |
-|           |        |          | defined by  | apacity, | i         |
-|           |        | default  | NCAP_BND;   | lower    | nvestment |
-|           |        | value:   | if not      | bound.   | variable  |
-|           |        | none     | defined,    | (See     | VAR_SNCAP |
-|           |        |          | assumed to  | Section  |           |
-|           |        | Default  | be equal to | 5.9)     | in the    |
-|           |        | i/e: MIG | the lower   |          | discrete  |
-|           |        |          | bound.      |          | i         |
-|           |        |          |             |          | nvestment |
-|           |        |          | Requires    |          | equation  |
-|           |        |          | MIP.        |          | E         |
-|           |        |          |             |          | Q_DSCNCAP |
-+-----------+--------+----------+-------------+----------+-----------+
-| NC        | PR     | Year     | NCAP_S      | Start    | Affects   |
-| AP_START\ | C_NOFF |          | TART(r,p)=y | year for | the       |
-| (r,p)     |        | \[1      |             | new      | ava       |
-|           |        | 000,∞);\ | is          | inv      | ilability |
-|           |        | default  | equivalent  | estments | of        |
-|           |        | value:   | to          |          | i         |
-|           |        | none     |             |          | nvestment |
-|           |        |          | P           |          | variable  |
-|           |        |          | RC_NOFF(r,p |          | (         |
-|           |        |          | ,BOH,y--1). |          | VAR_NCAP) |
-+-----------+--------+----------+-------------+----------+-----------+
-| N         | NCAP_  | Years    | Expected    | T        | Impacts   |
-| CAP_TLIFE | ELIFE, |          | for all     | echnical | all       |
-|           | COE    | (0,∞);\  | t           | lifetime | cal       |
-| (r,da     | F_CPT, | default  | echnologies | of a     | culations |
-| tayear,p) | COEF   | value:   | that have   | process. | that are  |
-|           | _RPTI, | G_TLIFE  | investment  |          | dependent |
-|           | D      |          | costs.\     |          | upon the  |
-|           | UR_MAX | Default  | Values      |          | ava       |
-|           |        | i/e: STD | below 0.5   |          | ilability |
-|           |        |          | cannot be   |          | of        |
-|           |        |          | well        |          | in        |
-|           |        |          | accounted   |          | vestments |
-|           |        |          | in the      |          | (         |
-|           |        |          | objective   |          | VAR_NCAP) |
-|           |        |          | function,   |          | including |
-|           |        |          | and should  |          | capacity  |
-|           |        |          | thus be     |          | transfer  |
-|           |        |          | avoided     |          | (EQ_CPT), |
-|           |        |          | (they are   |          | commodity |
-|           |        |          | au          |          | flow      |
-|           |        |          | tomatically |          | (EQ(l)\   |
-|           |        |          | resetted to |          | _COMBAL), |
-|           |        |          | 1).         |          | costs     |
-|           |        |          |             |          | (E        |
-|           |        |          |             |          | Q_OBJINV, |
-|           |        |          |             |          | E         |
-|           |        |          |             |          | Q_OBJFIX, |
-|           |        |          |             |          | E         |
-|           |        |          |             |          | Q_OBJVAR, |
-|           |        |          |             |          | EQ_       |
-|           |        |          |             |          | OBJSALV). |
-+-----------+--------+----------+-------------+----------+-----------+
-| NCAP_VALU | NCA    | Monetary | Provided    | Value of | Applied   |
-|           | P_OCOM | unit /   | when a      | a        | to the    |
-| (r        |        | c        | released    | c        | i         |
-| ,datayear |        | ommodity | commodity   | ommodity | nvestment |
-| ,p,c,cur) |        | unit     | has a       | released | related   |
-|           |        |          | value.      | at       | (         |
-|           |        | \[0,∞);\ |             | decommi  | VAR_NCAP, |
-|           |        | default  |             | ssioning | NC        |
-|           |        | value:   |             | (NCA     | AP_PASTI) |
-|           |        | none     |             | P_OCOM). | release   |
-|           |        |          |             |          | flow at   |
-|           |        | Default  |             |          | decomm    |
-|           |        | i/e: STD |             |          | issioning |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | objective |
-|           |        |          |             |          | function  |
-|           |        |          |             |          | (EQ_      |
-|           |        |          |             |          | OBJSALV). |
-+-----------+--------+----------+-------------+----------+-----------+
-| P         | PRC_C  | C        | Only        | 1\)      | Applied   |
-| RC_ACTFLO | APACT, | ommodity | (rarely)    | Co       | to the    |
-|           | prc_a  | unit /   | provided    | nversion | primary   |
-| (r,datay  | ctunt, | activity | when either | factor   | commodity |
-| ear,p,cg) | pr     | unit     | the         | from     | (prc_pcg) |
-|           | c_spg, |          | activity    | units of | flow      |
-|           | rp     | (0,∞);\  | and flow    | activity | variables |
-|           | c_aire | default  | variables   | to units | (VAR_FLO, |
-|           |        | value: 1 | of a        | of those | VAR_IRE)  |
-|           |        |          | process are | flow     | to relate |
-|           |        | Default  | in          | v        | overall   |
-|           |        | i/e: STD | different   | ariables | activity  |
-|           |        |          | units, or   | that     | (VAR_ACT  |
-|           |        |          | if there is | define   | in        |
-|           |        |          | a           | the      | EQ        |
-|           |        |          | conversion  | activity | _ACTFLO). |
-|           |        |          | efficiency  | (primary |           |
-|           |        |          | between the | c        | When the  |
-|           |        |          | activity    | ommodity | Reduction |
-|           |        |          | and the     | group),  | algorithm |
-|           |        |          | flow(s) in  |          | activated |
-|           |        |          | the PCG.    | or,      | it is     |
-|           |        |          |             |          | applied   |
-|           |        |          | The group   | 2\)      | to the    |
-|           |        |          | (cg) can be | Co       | activity  |
-|           |        |          | the whole   | nversion | variable  |
-|           |        |          | PCG or any  | mu       | (VAR_ACT) |
-|           |        |          | individual  | ltiplier | in those  |
-|           |        |          | commodity   | repr     | cases     |
-|           |        |          | in the PCG, | esenting | where the |
-|           |        |          | or \'ACT\'  | the      | flow      |
-|           |        |          | (=PCG).     | amount   | variable  |
-|           |        |          |             | of       | (VAR_FLO) |
-|           |        |          |             | flow(s)  | can be    |
-|           |        |          |             | in the   | replaced  |
-|           |        |          |             | cg per 1 | by the    |
-|           |        |          |             | unit of  | activity  |
-|           |        |          |             | a        | variable  |
-|           |        |          |             | ctivity. | (e.g. the |
-|           |        |          |             |          | activity  |
-|           |        |          |             |          | is        |
-|           |        |          |             |          | defined   |
-|           |        |          |             |          | by one    |
-|           |        |          |             |          | commodity |
-|           |        |          |             |          | flow).    |
-+-----------+--------+----------+-------------+----------+-----------+
-| P         | PRC_A  | Activity |             | Co       | Applied   |
-| RC_CAPACT | CTFLO, | unit /   |             | nversion | along     |
-|           | PRC_   | capacity |             | factor   | with the  |
-| (r,p)     | ACTUNT | unit     |             | from     | ava       |
-|           |        |          |             | capacity | ilability |
-|           |        | (0,∞);\  |             | unit to  | factor    |
-|           |        | default  |             | activity | (NCAP_AF) |
-|           |        | value: 1 |             | unit     | to the    |
-|           |        |          |             | assuming | i         |
-|           |        | Default  |             | that the | nvestment |
-|           |        | i/e:     |             | capacity | (V        |
-|           |        | none     |             | is used  | AR_NCAP + |
-|           |        |          |             | for one  | NC        |
-|           |        |          |             | year.    | AP_PASTI) |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | ut        |
-|           |        |          |             |          | ilization |
-|           |        |          |             |          | equations |
-|           |        |          |             |          | (EQ(l)    |
-|           |        |          |             |          | \_CAPACT, |
-|           |        |          |             |          | EQ(l)\    |
-|           |        |          |             |          | _CAFLAC). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | Applied   |
-|           |        |          |             |          | to the    |
-|           |        |          |             |          | i         |
-|           |        |          |             |          | nvestment |
-|           |        |          |             |          | (V        |
-|           |        |          |             |          | AR_NCAP + |
-|           |        |          |             |          | NC        |
-|           |        |          |             |          | AP_PASTI) |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | peak      |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | onstraint |
-|           |        |          |             |          | (         |
-|           |        |          |             |          | EQ_PEAK). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | Applied   |
-|           |        |          |             |          | to the    |
-|           |        |          |             |          | i         |
-|           |        |          |             |          | nvestment |
-|           |        |          |             |          | (V        |
-|           |        |          |             |          | AR_NCAP + |
-|           |        |          |             |          | NC        |
-|           |        |          |             |          | AP_PASTI) |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | capacity  |
-|           |        |          |             |          | ut        |
-|           |        |          |             |          | ilization |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | onstraint |
-|           |        |          |             |          | for CHP   |
-|           |        |          |             |          | plants    |
-|           |        |          |             |          | (E        |
-|           |        |          |             |          | CT_AFCHP) |
-|           |        |          |             |          | and peak  |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | onstraint |
-|           |        |          |             |          | in the    |
-|           |        |          |             |          | IER       |
-|           |        |          |             |          | extension |
-|           |        |          |             |          | (see Part |
-|           |        |          |             |          | III).     |
-+-----------+--------+----------+-------------+----------+-----------+
-| PRC_GMAP\ | GR_    | Dimen    | Provided    | User     | *None*    |
-| (r,       | GENMAP | sionless | when        | -defined |           |
-| prc,item) |        |          | process     | grouping |           |
-|           |        | (∞,∞);\  | groupings   | of       |           |
-|           |        | default  | are needed  | p        |           |
-|           |        | value:   | for custom  | rocesses |           |
-|           |        | none     | processing  | by group |           |
-|           |        |          | e.g. in a   | i        |           |
-|           |        | Default  | TIMES code  | ndicator |           |
-|           |        | i/e:     | extension.  | *        |           |
-|           |        | none     |             | *item**. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| PRC_MARK  | FL     | Decimal  | Combined    | Process  | EQ(l      |
-| (r,dat    | O_MARK | fraction | limit on    | gr       | )\_FLOMRK |
-| ayear,p,i |        |          | commodity   | oup-wise |           |
-| tem,c,bd) |        | \[       | production  | market   | V         |
-|           |        | open\];\ | is derived  | share,   | AR_COMPRD |
-|           |        | default  | as the sum  | which    |           |
-|           |        | value:   | of the      | defines  |           |
-|           |        | none     | proce       | a        |           |
-|           |        |          | ss-specific | co       |           |
-|           |        | Default  | productions | nstraint |           |
-|           |        | i/e: 11  | multiplied  | for the  |           |
-|           |        |          | by the      | combined |           |
-|           |        |          | inverse     | market   |           |
-|           |        |          | values of   | share of |           |
-|           |        |          | PRC_MARK.   | multiple |           |
-|           |        |          | The         | p        |           |
-|           |        |          | constraint  | rocesses |           |
-|           |        |          | is applied  | in the   |           |
-|           |        |          | to the      | total    |           |
-|           |        |          | annual      | c        |           |
-|           |        |          | production  | ommodity |           |
-|           |        |          | of          | pro      |           |
-|           |        |          | commodity.  | duction. |           |
-|           |        |          |             |          |           |
-|           |        |          | Item can be |          |           |
-|           |        |          | a any       |          |           |
-|           |        |          | desired     |          |           |
-|           |        |          | label       |          |           |
-|           |        |          | identifying |          |           |
-|           |        |          | the group.  |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| P         | PR     | Dimen    | Requires    | Defines  | Activates |
-| RC_REFIT\ | C_RCAP | sionless | that early  | a        | g         |
-| (r,prc,p) |        |          | retirements | mapping  | eneration |
-|           |        | \[       | are allowed | of host  | of the    |
-|           |        | --3,3\]; | in the      | process  | r         |
-|           |        |          | model. The  | prc to a | etrofit / |
-|           |        | default  | parameter   | retrofit |  lifetime |
-|           |        | value:   | value       | or       | extension |
-|           |        | none     | determines  | lifetime | equations |
-|           |        |          | the type of | e        | (E        |
-|           |        | Default  | the         | xtension | QL_REFIT) |
-|           |        | i/e: n/a | re          | option p |           |
-|           |        |          | furbishment | in       |           |
-|           |        |          | option as   | region   |           |
-|           |        |          | follows:    | r, where |           |
-|           |        |          |             | p is     |           |
-|           |        |          | -           | another  |           |
-|           |        |          |   Value=(±1 | process  |           |
-|           |        |          |     mod 2): | repr     |           |
-|           |        |          |             | esenting |           |
-|           |        |          |  Technology | the      |           |
-|           |        |          |     p will  | refur    |           |
-|           |        |          |     be a    | bishment |           |
-|           |        |          |             | option.  |           |
-|           |        |          |    lifetime | The      |           |
-|           |        |          |             | value of |           |
-|           |        |          |   extension | the      |           |
-|           |        |          |     option  | p        |           |
-|           |        |          |     (+1),   | arameter |           |
-|           |        |          |     or a    | de       |           |
-|           |        |          |             | termines |           |
-|           |        |          |    retrofit | the type |           |
-|           |        |          |     option  | of the   |           |
-|           |        |          |     (−1),   | refur    |           |
-|           |        |          |     for the | bishment |           |
-|           |        |          |     host    | option   |           |
-|           |        |          |     prc     | (see     |           |
-|           |        |          |             | column   |           |
-|           |        |          | -   Value=2 | on the   |           |
-|           |        |          |     for     | left).   |           |
-|           |        |          |     p=prc:  |          |           |
-|           |        |          |             |          |           |
-|           |        |          |    refitted |          |           |
-|           |        |          |             |          |           |
-|           |        |          |    capacity |          |           |
-|           |        |          |     in each |          |           |
-|           |        |          |     period  |          |           |
-|           |        |          |     is      |          |           |
-|           |        |          |     forced  |          |           |
-|           |        |          |     to be   |          |           |
-|           |        |          |     equal   |          |           |
-|           |        |          |     to the  |          |           |
-|           |        |          |     retired |          |           |
-|           |        |          |             |          |           |
-|           |        |          |    capacity |          |           |
-|           |        |          |     of the  |          |           |
-|           |        |          |     host    |          |           |
-|           |        |          |     prc     |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| P         | NCAP   | Capacity | If only a   | Residual | EQ(l      |
-| RC_RESID\ | _PASTI | unit     | single data | existing | )\_CAPACT |
-| (r,da     |        |          | point is    | capacity |           |
-| tayear,p) |        | \[0,∞);\ | specified,  | stock of | EQ(l      |
-|           |        | default  | linear      | process  | )\_CAFLAC |
-|           |        | value:   | decay of    | (p)      |           |
-|           |        | none     | the         | still    | E         |
-|           |        |          | specified   | a        | QL_CAPFLO |
-|           |        | Default  | residual    | vailable |           |
-|           |        | i/e: 1\  | capacity    | in the   | E         |
-|           |        | (options | over        | year     | Q(l)\_CPT |
-|           |        | 5/15 may | technical   | s        |           |
-|           |        | be used  | lifetime is | pecified | VAR_CAP   |
-|           |        | for      | assumed.    | (dat     |           |
-|           |        | extra    |             | ayear).\ |           |
-|           |        | polation | Used as an  | P        |           |
-|           |        | over     | alternative | RC_RESID |           |
-|           |        | TLIFE,   | to          | is most  |           |
-|           |        | other    | NCAP_PASTI, | useful   |           |
-|           |        | i/e      | not to use  | for      |           |
-|           |        | options  | both for    | de       |           |
-|           |        | are      | the same    | scribing |           |
-|           |        | ignored) | process.    | the      |           |
-|           |        |          |             | stock of |           |
-|           |        |          |             | capacity |           |
-|           |        |          |             | with     |           |
-|           |        |          |             | mixed    |           |
-|           |        |          |             | v        |           |
-|           |        |          |             | intages, |           |
-|           |        |          |             | while    |           |
-|           |        |          |             | NC       |           |
-|           |        |          |             | AP_PASTI |           |
-|           |        |          |             | is       |           |
-|           |        |          |             | suited   |           |
-|           |        |          |             | for      |           |
-|           |        |          |             | ca       |           |
-|           |        |          |             | pacities |           |
-|           |        |          |             | of a     |           |
-|           |        |          |             | certain  |           |
-|           |        |          |             | v        |           |
-|           |        |          |             | intages, |           |
-|           |        |          |             | such as  |           |
-|           |        |          |             | an       |           |
-|           |        |          |             | in       |           |
-|           |        |          |             | dividual |           |
-|           |        |          |             | power    |           |
-|           |        |          |             | plants.  |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| R_CUREX\  | G      | Scalar\  | The target  | Co       | Affects   |
-| (r,c      | _CUREX | (0,∞)    | currency    | nversion | cost      |
-| ur1,cur2) |        |          | cur2 must   | factor   | coe       |
-|           |        | Default  | have a      | from     | fficients |
-|           |        | value:   | discount    | currency | in EQ_OBJ |
-|           |        | none     | rate        | cur1 to  |           |
-|           |        |          | defined     | currency |           |
-|           |        | Default  | with        | cur2 in  |           |
-|           |        | i/e: N/A | G_DRATE.    | region   |           |
-|           |        |          |             | r, in    |           |
-|           |        |          |             | order to |           |
-|           |        |          |             | use cur2 |           |
-|           |        |          |             | in the   |           |
-|           |        |          |             | o        |           |
-|           |        |          |             | bjective |           |
-|           |        |          |             | f        |           |
-|           |        |          |             | unction. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| RCAP_BLK\ | PR     | Capacity | Only        | Re       | EQ_DSCRET |
-| (r,da     | C_RCAP | unit     | effective   | tirement |           |
-| tayear,p) |        |          | when lumpy  | block    | VAR_DRCAP |
-|           | RC     | \[0,∞);\ | early       | size.    |           |
-|           | AP_BND | default  | capacity    |          | VAR_SCAP  |
-|           |        | value:   | retirements |          |           |
-|           |        | none     | are active  |          |           |
-|           |        |          | (R          |          |           |
-|           |        | Default  | ETIRE=MIP). |          |           |
-|           |        | i/e: STD | Requires    |          |           |
-|           |        |          | MIP.        |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| RCAP_BND\ | PR     | Capacity | Unless the  | Bound on | VAR_RCAP  |
-| (r,datay  | C_RCAP | unit     | control     | the      |           |
-| ear,p,bd) |        |          | variable    | retired  | VAR_SCAP  |
-|           | RC     | \[0,∞);\ | D           | amount   |           |
-|           | AP_BLK | default  | SCAUTO=YES, | of       |           |
-|           |        | value:   | requires    | capacity |           |
-|           |        | none     | that        | in a     |           |
-|           |        |          | PRC_RCAP is | period   |           |
-|           |        | Default  | defined for | (same    |           |
-|           |        | i/e: STD | process p.  | bound    |           |
-|           |        |          |             | for all  |           |
-|           |        |          |             | vi       |           |
-|           |        |          |             | ntages). |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| RE        | RE     | Year     | Only taken  | Defines  | VAR_NCAP  |
-| G_BDNCAP\ | G_FIXT |          | into        | the year |           |
-| (         |        | \[       | account     | up to    |           |
-| all_r,bd) |        | 1000,∞); | when a      | which    |           |
-|           |        |          | previous    | ca       |           |
-|           |        | default  | solution is | pacities |           |
-|           |        | value:   | loaded by   | are to   |           |
-|           |        | none     | using the   | be       |           |
-|           |        |          | LPOINT      | bounded  |           |
-|           |        |          | control     | by       |           |
-|           |        |          | variable.   | previous |           |
-|           |        |          |             | so       |           |
-|           |        |          | If several  | lution,\ |           |
-|           |        |          | bound types | by model |           |
-|           |        |          | are         | region.  |           |
-|           |        |          | specified,  | One can  |           |
-|           |        |          | one can use | choose   |           |
-|           |        |          | NCAP_B      | FX/UP/LO |           |
-|           |        |          | ND(r,\'0\', | bounds,  |           |
-|           |        |          | p,\'N\')=±1 | as well  |           |
-|           |        |          | for         | as lower |           |
-|           |        |          | assigning   | bounds   |           |
-|           |        |          | only an     | only for |           |
-|           |        |          | UP/LO bound | selected |           |
-|           |        |          | for any     | pr       |           |
-|           |        |          | process p.  | ocesses. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| RE        | REG_   | Monetary | The cost    | Bound on | EQ_BNDCST |
-| G_BNDCST\ | CUMCST | unit     | a           | regional |           |
-| (r,da     |        |          | ggregations | costs by | V         |
-| tayear,ag |        | \[0,∞);\ | (agg)       | type of  | AR_CUMCST |
-| g,cur,bd) |        | default  | supported   | cost     |           |
-|           |        | value:   | are listed  | aggr     |           |
-|           |        | none     | in the set  | egation. |           |
-|           |        |          | COSTAGG     |          |           |
-|           |        | Default  | (see Table  |          |           |
-|           |        | i/e: MIG | 1).         |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| R         | REG_   | Monetary | The cost    | Cu       | EQ_BNDCST |
-| EG_CUMCST | BNDCST | unit     | a           | mulative | V         |
-| (r        |        |          | ggregations | bound on | AR_CUMCST |
-| ,y1,y2,ag |        | \[0,∞);\ | (agg)       | regional |           |
-| g,cur,bd) |        | default  | supported   | costs by |           |
-|           |        | value:   | are listed  | type of  |           |
-|           |        | none     | in the set  | cost     |           |
-|           |        |          | COSTAGG     | aggr     |           |
-|           |        | Default  | (see Table  | egation. |           |
-|           |        | i/e: N/A | 1).         |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| REG_FIXT\ |        | Year     | Only taken  | Defines  | --        |
-| (all_r)   |        |          | into        | the year |           |
-|           |        | \[       | account     | up to    |           |
-|           |        | 1000,∞); | when the    | which    |           |
-|           |        |          | first       | periods  |           |
-|           |        | default  | periods are | are      |           |
-|           |        | value:   | fixed by    | fixed to |           |
-|           |        | none     | using the   | previous |           |
-|           |        |          | FIXBOH      | s        |           |
-|           |        |          | control     | olution, |           |
-|           |        |          | variable.   | by       |           |
-|           |        |          |             | region   |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| RPT_OPT\  |        | Integer  | See Part    | Misce    | --        |
-| (item,j)  |        | value    | III, Table  | llaneous |           |
-|           |        |          | 15 for a    | r        |           |
-|           |        | \        | list and    | eporting |           |
-|           |        | [open\]; | d           | options  |           |
-|           |        |          | escriptions |          |           |
-|           |        | default  | of          |          |           |
-|           |        | value:   | available   |          |           |
-|           |        | none     | options.    |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| SHAPE     | FLO    | Scalar   | Provided    | Mu       | *{See     |
-|           | _FUNC, |          | for each    | ltiplier | Related   |
-| (j,age)   | FL     | \[       | age         | table    | Par       |
-|           | O_SUM, | open\];\ | dependent   | used for | ameters}* |
-|           | NCA    | default  | shaping     | any      |           |
-|           | P_AFX, | value:   | curve that  | shaping  |           |
-|           | NCAP   | none     | is to be    | pa       |           |
-|           | _FOMX, |          | applied.    | rameters |           |
-|           | NCAP_  | I/e:     |             | (        |           |
-|           | FSUBX, | Full     |             | \*\_\*X) |           |
-|           | NCAP   | dense    |             | to       |           |
-|           | _FTAXX | inter    |             | adjust   |           |
-|           |        | polation |             | the      |           |
-|           |        | and      |             | corre    |           |
-|           |        | extra    |             | sponding |           |
-|           |        | polation |             | t        |           |
-|           |        |          |             | echnical |           |
-|           |        |          |             | data as  |           |
-|           |        |          |             | function |           |
-|           |        |          |             | of the   |           |
-|           |        |          |             | age; the |           |
-|           |        |          |             | table    |           |
-|           |        |          |             | can      |           |
-|           |        |          |             | contain  |           |
-|           |        |          |             | d        |           |
-|           |        |          |             | ifferent |           |
-|           |        |          |             | mu       |           |
-|           |        |          |             | ltiplier |           |
-|           |        |          |             | curves   |           |
-|           |        |          |             | that are |           |
-|           |        |          |             | id       |           |
-|           |        |          |             | entified |           |
-|           |        |          |             | by the   |           |
-|           |        |          |             | index j. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| STG_CHRG  | prc_   | Scalar   | Only        | Annual   | Exogenous |
-|           | nstts, |          | applicable  | e        | charging  |
-| (r,data   | prc_s  | \[0,∞);\ | to storage  | xogenous | of        |
-| year,p,s) | tgips, | default  | processes   | charging | storage   |
-|           | prc_   | value:   | (STG):      | of a     | enters    |
-|           | stgtss | none     | timeslice   | storage  | storage   |
-|           |        |          | storage,    | te       | equations |
-|           |        | Default  | i           | chnology | (E        |
-|           |        | i/e: STD | nter-period | in a     | Q_STGTSS, |
-|           |        |          | storage or  | pa       | E         |
-|           |        |          | night       | rticular | Q_STGIPS) |
-|           |        |          | storage     | t        | as        |
-|           |        |          | devices.    | imeslice | r         |
-|           |        |          |             | s.       | ight-hand |
-|           |        |          |             |          | side      |
-|           |        |          |             |          | constant. |
-+-----------+--------+----------+-------------+----------+-----------+
-| STG_EFF   | prc_   | Decimal  | Only        | Ef       | Applied   |
-|           | nstts, | fraction | applicable  | ficiency | to the    |
-| (r,da     | prc_s  |          | to storage  | of       | storage   |
-| tayear,p) | tgips, | \[0,∞);\ | processes   | storage  | output    |
-|           | prc_   | default  | (STG):      | process. | flow      |
-|           | stgtss | value: 1 | timeslice   |          | (         |
-|           |        |          | storage,    |          | VAR_SOUT) |
-|           |        | Default  | i           |          | in the    |
-|           |        | i/e: STD | nter-period |          | commodity |
-|           |        |          | storage or  |          | balance   |
-|           |        |          | night       |          | (EQ(l)    |
-|           |        |          | storage     |          | \_COMBAL) |
-|           |        |          | devices.    |          | for the   |
-|           |        |          |             |          | stored    |
-|           |        |          |             |          | c         |
-|           |        |          |             |          | ommodity. |
-+-----------+--------+----------+-------------+----------+-----------+
-| STG_LOSS  | prc_   | Scalar   | Only        | Annual   | Timeslice |
-|           | nstts, |          | applicable  | loss of  | storage   |
-| (r,data   | prc_s  | \[       | to storage  | a        | process   |
-| year,p,s) | tgips, | open\];\ | processes   | storage  | (EQ       |
-|           | prc_   | default  | (STG):      | process  | _STGTSS): |
-|           | stgtss | value:   | timeslice   | per unit | applied   |
-|           |        | none     | storage,    | of       | to the    |
-|           |        |          | i           | average  | average   |
-|           |        | Default  | nter-period | energy   | storage   |
-|           |        | i/e: STD | storage or  | stored.  | level     |
-|           |        |          | night       |          | (VAR_ACT) |
-|           |        |          | storage     |          | between   |
-|           |        |          | devices.    |          | two       |
-|           |        |          |             |          | co        |
-|           |        |          | STG_LOSS\>0 |          | nsecutive |
-|           |        |          | defines the |          | ti        |
-|           |        |          | loss in     |          | meslices. |
-|           |        |          | proportion  |          |           |
-|           |        |          | to the      |          | Int       |
-|           |        |          | initial     |          | er-period |
-|           |        |          | storage     |          | storage   |
-|           |        |          | level       |          | process   |
-|           |        |          | during one  |          | (EQ       |
-|           |        |          | year's      |          | _STGIPS): |
-|           |        |          | storage     |          | applied   |
-|           |        |          | time.       |          | to the    |
-|           |        |          |             |          | average   |
-|           |        |          | STG_LOSS\<0 |          | storage   |
-|           |        |          | defines an  |          | level     |
-|           |        |          | equilibrium |          | from the  |
-|           |        |          | loss, i.e.  |          | p         |
-|           |        |          | how much    |          | re-period |
-|           |        |          | the annual  |          | (VAR_ACT) |
-|           |        |          | losses      |          | and the   |
-|           |        |          | would be if |          | net       |
-|           |        |          | the storage |          | inflow    |
-|           |        |          | level is    |          | (VAR_SIN- |
-|           |        |          | kept        |          | VAR_SOUT) |
-|           |        |          | constant.   |          | of the    |
-|           |        |          |             |          | current   |
-|           |        |          |             |          | period.   |
-+-----------+--------+----------+-------------+----------+-----------+
-| ST        | N      | Number   | Can only be | Defines  | Activates |
-| G_MAXCYC\ | CAP_AF | of       | used for    | the      | g         |
-| (r,da     |        | cycles\  | genuine     | maximum  | eneration |
-| tayear,p) |        | \[0,∞);  | storage     | number   | of the    |
-|           |        |          | processes.  | of       | cycle     |
-|           |        | default  | The limit   | storage  | limi      |
-|           |        | value:   | can be      | cycles   | t/penalty |
-|           |        | none     | exceeded by | over the | equations |
-|           |        |          | paying for  | l        | (EQL      |
-|           |        | Default  | additional  | ifetime. | _STGCCL). |
-|           |        | i/e: STD | replacement | Sets a   |           |
-|           |        |          | capacity,   | limit    |           |
-|           |        |          | with a      | for the  |           |
-|           |        |          | penalty     | total    |           |
-|           |        |          | cost equal  | d        |           |
-|           |        |          | to the      | ischarge |           |
-|           |        |          | investment  | divided  |           |
-|           |        |          | annuity.    | by       |           |
-|           |        |          |             | storage  |           |
-|           |        |          |             | c        |           |
-|           |        |          |             | apacity. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| STG_SIFT\ | AC     | Decimal  | Can only be | Defines  | Activates |
-| (r,da     | T_TIME | fraction | used for a  | process  | g         |
-| tayear,pr |        |          | timeslice   | prc as a | eneration |
-| c,com,ts) |        | \[0,∞);\ | storage     | load-    | of load   |
-|           |        | default  | process.    | shifting | shifting  |
-|           |        | value:   | Levelized   | process, | co        |
-|           |        | none     | to the      | and      | nstraints |
-|           |        |          | timeslice   | limits   | (EQ(l)\   |
-|           |        | Default  | level of    | the load | _SLSIFT). |
-|           |        | i/e: STD | the process | shifting |           |
-|           |        |          | flow.       | of       |           |
-|           |        |          |             | demand   |           |
-|           |        |          | Direct      | com in   |           |
-|           |        |          | i           | t        |           |
-|           |        |          | nheritance. | imeslice |           |
-|           |        |          |             | ts to at |           |
-|           |        |          | By          | most the |           |
-|           |        |          | specifying  | fraction |           |
-|           |        |          | com=\'ACT\' | s        |           |
-|           |        |          | one can     | pecified |           |
-|           |        |          | define a    | by the   |           |
-|           |        |          | limit in    | p        |           |
-|           |        |          | total       | arameter |           |
-|           |        |          | shifting    | value.   |           |
-|           |        |          | over a      |          |           |
-|           |        |          | season, in  |          |           |
-|           |        |          | proportion  |          |           |
-|           |        |          | to demand.  |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| STGIN_BND | prc_   | C        | Only        | Bound on | Storage   |
-|           | nstts, | ommodity | applicable  | the      | input     |
-| (r,       | prc_s  | unit     | to storage  | input    | bound     |
-| datayear, | tgips, |          | processes   | flow of  | c         |
-| p,c,s,bd) | prc_   | \[0,∞);\ | (STG):      | a        | onstraint |
-|           | stgtss | default  | timeslice   | storage  | (EQ(l     |
-|           |        | value:   | storage,    | process  | )\_STGIN) |
-|           |        | none     | i           | in a     | when s is |
-|           |        |          | nter-period | t        | above     |
-|           |        | Default  | storage or  | imeslice | prc_tsl   |
-|           |        | i/e: MIG | night       | s.       | of the    |
-|           |        |          | storage     |          | storage   |
-|           |        |          | devices.    |          | process.  |
-|           |        |          |             |          |           |
-|           |        |          |             |          | Direct    |
-|           |        |          |             |          | bound on  |
-|           |        |          |             |          | storage   |
-|           |        |          |             |          | input     |
-|           |        |          |             |          | flow      |
-|           |        |          |             |          | (VAR_SIN) |
-|           |        |          |             |          | when at   |
-|           |        |          |             |          | the       |
-|           |        |          |             |          | prc_tsl   |
-|           |        |          |             |          | level.    |
-+-----------+--------+----------+-------------+----------+-----------+
-| S         | prc_   | C        | Only        | Bound on | Storage   |
-| TGOUT_BND | nstts, | ommodity | applicable  | the      | output    |
-|           | prc_s  | unit     | to storage  | output   | bound     |
-| (r,       | tgips, |          | processes   | flow of  | c         |
-| datayear, | prc_   | \[0,∞);\ | (STG):      | a        | onstraint |
-| p,c,s,bd) | stgtss | default  | timeslice   | storage  | (EQ(l     |
-|           |        | value:   | storage,    | process  | )\_STGIN) |
-|           |        | none     | i           | in a     | when s is |
-|           |        |          | nter-period | t        | above     |
-|           |        | Default  | storage or  | imeslice | prc_tsl   |
-|           |        | i/e: MIG | night       | s.       | of the    |
-|           |        |          | storage     |          | storage   |
-|           |        |          | devices.    |          | process.  |
-|           |        |          |             |          |           |
-|           |        |          |             |          | Direct    |
-|           |        |          |             |          | bound on  |
-|           |        |          |             |          | storage   |
-|           |        |          |             |          | output    |
-|           |        |          |             |          | flow      |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | (         |
-|           |        |          |             |          | VAR_SOUT) |
-|           |        |          |             |          | when at   |
-|           |        |          |             |          | the       |
-|           |        |          |             |          | prc_tsl   |
-|           |        |          |             |          | level.    |
-+-----------+--------+----------+-------------+----------+-----------+
-| TL_CCAP0  | (      | Capacity | Requires    | Initial  | C         |
-|           | Alias: | unit     | using ETL.  | cu       | umulative |
-| (r,teg)   | CCAP0) |          |             | mulative | i         |
-|           |        | \[       | For         | capacity | nvestment |
-|           | PAT,\  | open\];\ | learning    | of a     | c         |
-|           | CCOST0 | default  | t           | learning | onstraint |
-|           |        | value:   | echnologies | tec      | (         |
-|           |        | none     | teg when    | hnology. | EQ_CUINV) |
-|           |        |          | ETL is      |          | and       |
-|           |        |          | used.       |          | c         |
-|           |        |          |             |          | umulative |
-|           |        |          |             |          | capacity  |
-|           |        |          |             |          | variable  |
-|           |        |          |             |          | (         |
-|           |        |          |             |          | VAR_CCAP) |
-|           |        |          |             |          | in        |
-|           |        |          |             |          | e         |
-|           |        |          |             |          | ndogenous |
-|           |        |          |             |          | tech      |
-|           |        |          |             |          | nological |
-|           |        |          |             |          | learning  |
-|           |        |          |             |          | for       |
-|           |        |          |             |          | mulation. |
-+-----------+--------+----------+-------------+----------+-----------+
-| TL_CCAPM  | (      | Capacity | Requires    | Maximum  | Core ETL  |
-|           | Alias: | unit     | using ETL.  | cu       | e         |
-| (r,teg)   | CCAPM) |          |             | mulative | quations. |
-|           |        | \[       | For         | c        |           |
-|           | CCOSTM | open\];\ | learning    | apacity. |           |
-|           |        | default  | t           |          |           |
-|           |        | value:   | echnologies |          |           |
-|           |        | none     | teg when    |          |           |
-|           |        |          | ETL is      |          |           |
-|           |        |          | used.       |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| TL        | (      | Decimal  | Requires    | I        | EQ_CLU    |
-| _CLUSTER\ | Alias: | f        | using ETL   | ndicator |           |
-| (r        | CL     | raction. | (MIP).      | that a   |           |
-| ,teg,prc) | USTER) |          |             | te       |           |
-|           |        | \[0-1\]; | • Provided  | chnology |           |
-|           | TL_M   |          | to model    | (teg) is |           |
-|           | RCLUST | default  | clustered   | a        |           |
-|           |        | value:   | endogenous  | learning |           |
-|           |        | none     | technology  | c        |           |
-|           |        |          | learning.   | omponent |           |
-|           |        |          |             | that is  |           |
-|           |        |          | • Each of   | part of  |           |
-|           |        |          | the         | another  |           |
-|           |        |          | learning    | te       |           |
-|           |        |          | parameters  | chnology |           |
-|           |        |          | must also   | (prc) in |           |
-|           |        |          | be          | region   |           |
-|           |        |          | specified   | r; teg   |           |
-|           |        |          | for the key | is also  |           |
-|           |        |          | learning    | called   |           |
-|           |        |          | technology. | key      |           |
-|           |        |          |             | co       |           |
-|           |        |          |             | mponent. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| TL        | TL_C   | Decimal  | Requires    | Mapping  | EQ_MRCLU  |
-| _MRCLUST\ | LUSTER | f        | using ETL   | for      |           |
-| (r,t      |        | raction. | (MIP).      | mult     |           |
-| eg,reg,p) |        |          |             | i-region |           |
-|           |        | \[0-1\]; | • Provided  | cl       |           |
-|           |        |          | to model    | ustering |           |
-|           |        | default  | clustered   | between  |           |
-|           |        | value:   | endogenous  | learning |           |
-|           |        | none     | technology  | key      |           |
-|           |        |          | learning.   | co       |           |
-|           |        |          |             | mponents |           |
-|           |        |          | • Each of   | (teg)    |           |
-|           |        |          | the         | and      |           |
-|           |        |          | learning    | p        |           |
-|           |        |          | parameters  | rocesses |           |
-|           |        |          | must also   | (p) that |           |
-|           |        |          | be          | utilize  |           |
-|           |        |          | specified   | the key  |           |
-|           |        |          | for the key | co       |           |
-|           |        |          | learning    | mponent. |           |
-|           |        |          | technology. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| TL_PRAT   | (      | Scalar   | Requires    | Progress | Fu        |
-|           | Alias: |          | using ETL.  | ratio    | ndamental |
-| (r,teg)   | PRAT)  | \        |             | in       | factor to |
-|           |        | [0,1\];\ | Provided    | dicating | describe  |
-|           | ALPH   | default  | for         | the drop | the       |
-|           |        | value    | learning    | in the   | learning  |
-|           | BETA   | none     | t           | in       | curve and |
-|           |        |          | echnologies | vestment | thus      |
-|           | CCAPK  |          | (teg) when  | cost     | effects   |
-|           |        |          | ETL is      | each     | nearly    |
-|           | CCOST0 |          | used.       | time     | all       |
-|           |        |          |             | there is | equations |
-|           | PAT    |          |             | a        | and       |
-|           |        |          |             | doubling | variables |
-|           | PBT    |          |             | of the   | related   |
-|           |        |          |             | i        | to        |
-|           |        |          |             | nstalled | e         |
-|           |        |          |             | c        | ndogenous |
-|           |        |          |             | apacity. | t         |
-|           |        |          |             |          | echnology |
-|           |        |          |             |          | learning  |
-|           |        |          |             |          | (ETL).    |
-+-----------+--------+----------+-------------+----------+-----------+
-| TL_SC0    | (      | Monetary | Requires    | Initial  | Defines   |
-|           | Alias: | unit /   | using ETL.  | specific | together  |
-| (r,teg)   | SC0)   | capacity |             | in       | with      |
-|           |        | unit     | For         | vestment | CCAP0     |
-|           |        |          | learning    | costs.   | initial   |
-|           |        | \[       | t           |          | point of  |
-|           |        | open\];\ | echnologies |          | learning  |
-|           |        | default  | teg when    |          | curve and |
-|           |        | value:   | ETL is      |          | affects   |
-|           |        | none     | used.       |          | thus the  |
-|           |        |          |             |          | core      |
-|           |        |          |             |          | equations |
-|           |        |          |             |          | and       |
-|           |        |          |             |          | variables |
-|           |        |          |             |          | of        |
-|           |        |          |             |          | e         |
-|           |        |          |             |          | ndogenous |
-|           |        |          |             |          | tech      |
-|           |        |          |             |          | nological |
-|           |        |          |             |          | learning  |
-|           |        |          |             |          | (ETL).    |
-+-----------+--------+----------+-------------+----------+-----------+
-| TL_SEG    | (      | Integer  | Requires    | Number   | I         |
-|           | Alias: |          | using ETL.  | of       | nfluences |
-| (r,teg)   | SEG)   | \        |             | s        | the       |
-|           |        | [open\]; | For         | egments. | piecewise |
-|           |        |          | learning    |          | linear    |
-|           |        |          | t           |          | appr      |
-|           |        |          | echnologies |          | oximation |
-|           |        |          | teg when    |          | of the    |
-|           |        |          | ETL is      |          | c         |
-|           |        |          | used.       |          | umulative |
-|           |        |          |             |          | cost      |
-|           |        |          | Currently   |          | curve     |
-|           |        |          | limited to  |          | (EQ_COS,  |
-|           |        |          | six         |          | EQ_LA1,   |
-|           |        |          | segments by |          | EQ_LA2).  |
-|           |        |          | set kp.     |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| TS_CYCLE\ | G      | Number   | Recommended | Defines  | Affects   |
-| (r,ts)    | _CYCLE | of days\ | to be used  | the      | the       |
-|           |        | \[1,∞);  | whenever    | length   | ca        |
-|           |        |          | timeslice   | of the   | lculation |
-|           |        | Default  | cycles are  | t        | of actual |
-|           |        | values:  | different   | imeslice | timeslice |
-|           |        |          | from the    | cycles   | lengths   |
-|           |        | -   365  | default,    | under    | and       |
-|           |        |     for  | instead of  | t        | number of |
-|           |        |     t    | changing    | imeslice | timeslice |
-|           |        | s=ANNUAL | G_CYCLE.    | ts, in   | cycles in |
-|           |        |          | Does not    | days,    | various   |
-|           |        | -   7    | affect      | and      | e         |
-|           |        |     for  | int         | thereby  | quations, |
-|           |        |     any  | erpretation | also the | notably   |
-|           |        |     ts   | of          | number   | storage   |
-|           |        |          | a           | of       | and       |
-|           |        |    above | vailability | t        | di        |
-|           |        |     the  | factors for | imeslice | spatching |
-|           |        |          | storage     | cycles   | e         |
-|           |        |   WEEKLY | level,      | under    | quations. |
-|           |        |          | which thus  | each     |           |
-|           |        |    level | remain to   | parent.  |           |
-|           |        |          | be          |          |           |
-|           |        | -   1    | according   |          |           |
-|           |        |     for  | to G_CYCLE. |          |           |
-|           |        |     any  |             |          |           |
-|           |        |     ts   |             |          |           |
-|           |        |          |             |          |           |
-|           |        |    above |             |          |           |
-|           |        |     the  |             |          |           |
-|           |        |          |             |          |           |
-|           |        |  DAYNITE |             |          |           |
-|           |        |          |             |          |           |
-|           |        |    level |             |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_ACT    | uc_n,  | None     | Used in     | Coe      | EQ(       |
-|           | uc_    |          | user        | fficient | l)\_UCXXX |
-| (uc_n,si  | gmap_p | \[       | c           | of the   |           |
-| de,r,data |        | open\];\ | onstraints. | activity |           |
-| year,p,s) |        | default  |             | variable |           |
-|           |        | value:   | Direct      | VAR_ACT  |           |
-|           |        | none     | i           | in a     |           |
-|           |        |          | nheritance. | user     |           |
-|           |        | Default: |             | con      |           |
-|           |        | i/e: STD | Weighted    | straint. |           |
-|           |        |          | a           |          |           |
-|           |        |          | ggregation. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_CAP    | uc_n,  | None     | Used in     | Coe      | EQ(       |
-|           | uc_    |          | user        | fficient | l)\_UCXXX |
-| (uc_n,    | gmap_p | \[       | c           | of the   |           |
-| side,r,da |        | open\];\ | onstraints. | activity |           |
-| tayear,p) |        | default  |             | variable |           |
-|           |        | value:   |             | VAR_CAP  |           |
-|           |        | none     |             | in a     |           |
-|           |        |          |             | user     |           |
-|           |        | Default: |             | con      |           |
-|           |        | i/e: STD |             | straint. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_CLI    |        | Dimen    | Used in     | Mu       | EQ(       |
-|           |        | sionless | user        | ltiplier | l)\_UCXXX |
-| (uc_n     |        |          | c           | of       |           |
-| ,side,r,d |        | \        | onstraints. | climate  |           |
-| atayear,\ |        | [open\]; |             | variable |           |
-| item)     |        |          | Climate     | in user  |           |
-|           |        | default  | variable    | co       |           |
-|           |        | value:   | can be at   | nstraint |           |
-|           |        | none     | least any   |          |           |
-|           |        |          | of CO2-GTC, |          |           |
-|           |        | Default  | CO2-ATM,    |          |           |
-|           |        | i/e: STD | CO2-UP,     |          |           |
-|           |        |          | CO2-LO,     |          |           |
-|           |        |          | FORCING,    |          |           |
-|           |        |          | DELTA-ATM,  |          |           |
-|           |        |          |             |          |           |
-|           |        |          | DELTA-LO    |          |           |
-|           |        |          | (for        |          |           |
-|           |        |          | carbon).    |          |           |
-|           |        |          |             |          |           |
-|           |        |          | See         |          |           |
-|           |        |          | Appendix on |          |           |
-|           |        |          | Climate     |          |           |
-|           |        |          | Module for  |          |           |
-|           |        |          | details.    |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_COMCON | uc_n,  | None     | Used in     | Coe      | EQ(       |
-|           | uc_    |          | user        | fficient | l)\_UCXXX |
-| (uc_n,si  | gmap_c | \[       | c           | of the   |           |
-| de,r,data |        | open\];\ | onstraints. | c        |           |
-| year,c,s) |        | default  |             | ommodity |           |
-|           |        | value:   | No          | con      |           |
-|           |        | none     | i           | sumption |           |
-|           |        |          | nheritance/ | variable |           |
-|           |        | Default: | aggregation | VA       |           |
-|           |        | i/e: STD | (might be   | R_COMCON |           |
-|           |        |          | changed in  | in a     |           |
-|           |        |          | the         | user     |           |
-|           |        |          | future).    | con      |           |
-|           |        |          |             | straint. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_COMNET | uc_n,  | None     | Used in     | Coe      | EQ(       |
-|           | uc_    |          | user        | fficient | l)\_UCXXX |
-| (uc_n,si  | gmap_c | \[       | c           | of the   |           |
-| de,r,data |        | open\];\ | onstraints. | net      |           |
-| year,c,s) |        | default  |             | c        |           |
-|           |        | value:   | No          | ommodity |           |
-|           |        | none     | i           | pr       |           |
-|           |        |          | nheritance/ | oduction |           |
-|           |        | Default: | aggregation | variable |           |
-|           |        | i/e: STD | (might be   | VA       |           |
-|           |        |          | changed in  | R_COMNET |           |
-|           |        |          | the         | in a     |           |
-|           |        |          | future).    | user     |           |
-|           |        |          |             | con      |           |
-|           |        |          |             | straint. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_COMPRD | uc_n,  | None     | Used in     | Coe      | EQ(       |
-|           | uc_    |          | user        | fficient | l)\_UCXXX |
-| (uc_n,si  | gmap_c | \[       | c           | of the   |           |
-| de,r,data |        | open\];\ | onstraints. | total    |           |
-| year,c,s) |        | default  |             | c        |           |
-|           |        | value:   | No          | ommodity |           |
-|           |        | none     | i           | pr       |           |
-|           |        |          | nheritance/ | oduction |           |
-|           |        | Default: | aggregation | variable |           |
-|           |        | i/e: STD | (might be   | VA       |           |
-|           |        |          | changed in  | R_COMPRD |           |
-|           |        |          | the         | in a     |           |
-|           |        |          | future).    | user     |           |
-|           |        |          |             | con      |           |
-|           |        |          |             | straint. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_CUMACT | A      | Dimen    | Used in     | Mu       | EQ(l)\_UC |
-| (uc_n,r   | CT_CUM | sionless | cumulative  | ltiplier |           |
-| ,p,y1,y2) |        |          | user        | of       | E         |
-|           |        | \        | constraints | cu       | Q(l)\_UCR |
-|           |        | [open\]; | only.       | mulative |           |
-|           |        |          |             | process  | V         |
-|           |        | default  |             | activity | AR_CUMFLO |
-|           |        | value:   |             | variable |           |
-|           |        | none     |             | in user  |           |
-|           |        |          |             | con      |           |
-|           |        | I/e: N/A |             | straint. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_CUMCOM | COM_   | Dimen    | Used in     | Mu       | EQ(l)\_UC |
-| (uc       | CUMNET | sionless | cumulative  | ltiplier |           |
-| _n,r,type |        |          | user        | of       | E         |
-| ,c,y1,y2) | COM_   | \        | constraints | cu       | Q(l)\_UCR |
-|           | CUMPRD | [open\]; | only.\      | mulative |           |
-|           |        |          | T           | c        | V         |
-|           |        | default  | ype=NET/PRD | ommodity | AR_CUMCOM |
-|           |        | value:   | determines  | variable |           |
-|           |        | none     | the         | in user  |           |
-|           |        |          | variable    | con      |           |
-|           |        | I/e: N/A | referred to | straint. |           |
-|           |        |          | (CUMNET/    |          |           |
-|           |        |          | CUMPRD).    |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_CUMFLO | F      | Dimen    | Used in     | Mu       | EQ(l)\_UC |
-| (uc_n,r,p | LO_CUM | sionless | cumulative  | ltiplier |           |
-| ,c,y1,y2) |        |          | user        | of       | E         |
-|           |        | \        | constraints | cu       | Q(l)\_UCR |
-|           |        | [open\]; | only.       | mulative |           |
-|           |        |          |             | process  | V         |
-|           |        | default  |             | flow     | AR_CUMFLO |
-|           |        | value:   |             | variable |           |
-|           |        | none     |             | in user  |           |
-|           |        |          |             | con      |           |
-|           |        | I/e: N/A |             | straint. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_FLO    | uc_n   | None     | Used in     | Coe      | EQ(       |
-|           |        |          | user        | fficient | l)\_UCXXX |
-| (         |        | \[       | c           | of the   |           |
-| uc_n,side |        | open\];\ | onstraints. | flow     |           |
-| ,r,dataye |        | default  |             | VAR_FLO  |           |
-| ar,p,c,s) |        | value:   | Direct      | variable |           |
-|           |        | none     | i           | in a     |           |
-|           |        |          | nheritance. | user     |           |
-|           |        | Default: |             | con      |           |
-|           |        | i/e: STD | Weighted    | straint. |           |
-|           |        |          | a           |          |           |
-|           |        |          | ggregation. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_IRE    | uc_n   | None     | Used in     | Coe      | EQ(       |
-|           |        |          | user        | fficient | l)\_UCXXX |
-| (         |        | \[       | c           | of the   |           |
-| uc_n,side |        | open\];\ | onstraints. | trade    |           |
-| ,r,dataye |        | default  |             | variable |           |
-| ar,p,c,s) |        | value:   | Direct      | VAR_IRE  |           |
-|           |        | none     | i           | in a     |           |
-|           |        |          | nheritance. | user     |           |
-|           |        | Default: |             | con      |           |
-|           |        | i/e: STD | Weighted    | straint. |           |
-|           |        |          | a           |          |           |
-|           |        |          | ggregation. |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_NCAP   | uc_n,  | None     | Used in     | Coe      | EQ(       |
-|           | uc_    |          | user        | fficient | l)\_UCXXX |
-| (uc_n,    | gmap_p | \[       | c           | of the   |           |
-| side,r,da |        | open\];\ | onstraints. | activity |           |
-| tayear,p) |        | default  |             | variable |           |
-|           |        | value:   |             | VAR_NCAP |           |
-|           |        | none     |             | in a     |           |
-|           |        |          |             | user     |           |
-|           |        | Default: |             | con      |           |
-|           |        | i/e: STD |             | straint. |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_RHS    | uc_n,  | None     | Used in     | RHS      | RHS       |
-|           | uc_    |          | user        | constant | (r        |
-| (         | r_sum, | \[       | co          | with     | ight-hand |
-| uc_n,lim) | uc_    | open\];\ | nstraints.\ | bound    | side)     |
-|           | t_sum, | default  | Binding     | type of  | constant  |
-|           | uc_    | value:   | user        | bd of a  | of a user |
-|           | ts_sum | none     | constraints | user     | co        |
-|           |        |          | are defined | con      | nstraint, |
-|           |        | Default  | using bound | straint. | which is  |
-|           |        | i/e:     | types       |          | summing   |
-|           |        | none     | lim         |          | over      |
-|           |        |          | =UP/LO/FX.\ |          | regions   |
-|           |        |          | Non-binding |          | (u        |
-|           |        |          | (free) user |          | c_r_sum), |
-|           |        |          | constraints |          | periods   |
-|           |        |          | can be      |          | (         |
-|           |        |          | defined     |          | uc_t_sum) |
-|           |        |          | using the   |          | and       |
-|           |        |          | lim type    |          | t         |
-|           |        |          | lim=N.      |          | imeslices |
-|           |        |          |             |          | (u        |
-|           |        |          |             |          | c_ts_sum) |
-|           |        |          |             |          | (EQ       |
-|           |        |          |             |          | (l)\_UC). |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_RHSR   | uc_n,  | None     | Used in     | RHS      | RHS       |
-|           | uc_r   |          | user        | constant | constant  |
-| (r,       | _each, | \[       | c           | with     | of user   |
-| uc_n,lim) | uc_    | open\];\ | onstraints. | bound    | con       |
-|           | t_sum, | default  |             | type of  | straints, |
-|           | uc_    | value:   | Binding     | bd of a  | which are |
-|           | ts_sum | none     | user        | user     | generated |
-|           |        |          | constraints | con      | for each  |
-|           |        | Default  | are defined | straint. | region    |
-|           |        | i/e:     | using bound |          | (u        |
-|           |        | none     | types       |          | c_r_each) |
-|           |        |          | lim         |          | and are   |
-|           |        |          | =UP/LO/FX.\ |          | summing   |
-|           |        |          | Non-binding |          | over      |
-|           |        |          | (free) user |          | periods   |
-|           |        |          | constraints |          | (         |
-|           |        |          | can be      |          | uc_t_sum) |
-|           |        |          | defined     |          | and       |
-|           |        |          | using the   |          | t         |
-|           |        |          | lim type    |          | imeslices |
-|           |        |          | lim=N.      |          | (u        |
-|           |        |          |             |          | c_ts_sum) |
-|           |        |          |             |          | (EQ(      |
-|           |        |          |             |          | l)\_UCR). |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_RHSRT  | uc_n,  | None     | Used in     | RHS      | RHS       |
-|           | uc_r   |          | user        | constant | constant  |
-| (r,       | _each, | \[       | co          | with     | of user   |
-| uc_n,data | uc_t   | open\];\ | nstraints.\ | bound    | con       |
-| year,lim) | _each, | default  | \           | type of  | straints, |
-|           | uc_t   | value:   | Binding     | bd of a  | which are |
-|           | _succ, | none     | user        | user     | generated |
-|           | uc_    |          | constraints | con      | for each  |
-|           | ts_sum | Default  | are defined | straint. | region    |
-|           |        | i/e: MIG | using bound |          | (u        |
-|           |        |          | types       |          | c_r_each) |
-|           |        |          | lim         |          | and       |
-|           |        |          | =UP/LO/FX.\ |          | period    |
-|           |        |          | Non-binding |          | (u        |
-|           |        |          | (free) user |          | c_t_each) |
-|           |        |          | constraints |          | and are   |
-|           |        |          | can be      |          | summing   |
-|           |        |          | defined     |          | over      |
-|           |        |          | using the   |          | t         |
-|           |        |          | lim type    |          | imeslices |
-|           |        |          | lim=N.      |          | (u        |
-|           |        |          |             |          | c_ts_sum) |
-|           |        |          |             |          | (EQ(l     |
-|           |        |          |             |          | )\_UCRT). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | If        |
-|           |        |          |             |          | dynamic,  |
-|           |        |          |             |          | co        |
-|           |        |          |             |          | nstraints |
-|           |        |          |             |          | will be   |
-|           |        |          |             |          | generated |
-|           |        |          |             |          | between   |
-|           |        |          |             |          | two       |
-|           |        |          |             |          | s         |
-|           |        |          |             |          | uccessive |
-|           |        |          |             |          | periods   |
-|           |        |          |             |          | (EQ(l)    |
-|           |        |          |             |          | \_UCRSU). |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_RHSRTS | uc_n,  | None     | Used in     | RHS      | RHS       |
-|           | uc_r   |          | user        | constant | constant  |
-| (r,uc     | _each, | \[       | c           | with     | of user   |
-| _n,dataye | uc_t   | open\];\ | onstraints. | bound    | con       |
-| ar,s,lim) | _each, | default  |             | type of  | straints, |
-|           | uc_t   | value:   | No          | bd of a  | which are |
-|           | _succ, | none     | inheritance | user     | generated |
-|           | uc_t   |          | /           | con      | for each  |
-|           | s_each | Default  | a           | straint. | specified |
-|           |        | i/e: MIG | ggregation, |          | region    |
-|           |        |          | unless the  |          | (uc       |
-|           |        |          | target      |          | _r_each), |
-|           |        |          | timeslice   |          | period    |
-|           |        |          | level is    |          | (u        |
-|           |        |          | specified   |          | c_t_each) |
-|           |        |          | by UC_TSL.\ |          | and       |
-|           |        |          | Direct      |          | timeslice |
-|           |        |          | i           |          | (uc       |
-|           |        |          | nheritance, |          | _ts_each) |
-|           |        |          | if the      |          | (EQ(l)    |
-|           |        |          | target      |          | \_UCRTS). |
-|           |        |          | timeslice   |          |           |
-|           |        |          | level is    |          | If        |
-|           |        |          | specified   |          | dynamic,  |
-|           |        |          | by UC_TSL.\ |          | co        |
-|           |        |          | Binding     |          | nstraints |
-|           |        |          | user        |          | will be   |
-|           |        |          | constraints |          | generated |
-|           |        |          | are defined |          | between   |
-|           |        |          | using bound |          | two       |
-|           |        |          | types       |          | s         |
-|           |        |          | lim         |          | uccessive |
-|           |        |          | =UP/LO/FX.\ |          | periods   |
-|           |        |          | Non-binding |          | (EQ(l)\   |
-|           |        |          | (free) user |          | _UCRSUS). |
-|           |        |          | constraints |          |           |
-|           |        |          | can be      |          |           |
-|           |        |          | defined     |          |           |
-|           |        |          | using the   |          |           |
-|           |        |          | lim type    |          |           |
-|           |        |          | lim=N.      |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_RHST   | uc_n,  | None     | Used in     | RHS      | RHS       |
-|           | uc_    |          | user        | constant | constant  |
-| (         | r_sum, | \[       | co          | with     | of user   |
-| uc_n,data | uc_t   | open\];\ | nstraints.\ | bound    | con       |
-| year,lim) | _each, | default  | \           | type of  | straints, |
-|           | uc_t   | value:   | Binding     | bd of a  | which are |
-|           | _succ, | none     | user        | user     | generated |
-|           | uc_    |          | constraints | con      | for each  |
-|           | ts_sum | Default  | are defined | straint. | specified |
-|           |        | i/e: MIG | using bound |          | period    |
-|           |        |          | types       |          | (u        |
-|           |        |          | lim         |          | c_t_each) |
-|           |        |          | =UP/LO/FX.\ |          | and are   |
-|           |        |          | Non-binding |          | summing   |
-|           |        |          | (free) user |          | over      |
-|           |        |          | constraints |          | regions   |
-|           |        |          | can be      |          | (         |
-|           |        |          | defined     |          | uc_r_sum) |
-|           |        |          | using the   |          | and       |
-|           |        |          | lim type    |          | t         |
-|           |        |          | lim=N.      |          | imeslices |
-|           |        |          |             |          | (u        |
-|           |        |          |             |          | c_ts_sum) |
-|           |        |          |             |          | (EQ(      |
-|           |        |          |             |          | l)\_UCT). |
-|           |        |          |             |          |           |
-|           |        |          |             |          | If        |
-|           |        |          |             |          | dynamic,  |
-|           |        |          |             |          | co        |
-|           |        |          |             |          | nstraints |
-|           |        |          |             |          | will be   |
-|           |        |          |             |          | generated |
-|           |        |          |             |          | between   |
-|           |        |          |             |          | two       |
-|           |        |          |             |          | s         |
-|           |        |          |             |          | uccessive |
-|           |        |          |             |          | periods   |
-|           |        |          |             |          | (EQ(l     |
-|           |        |          |             |          | )\_UCSU). |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_RHSTS  | uc_n,  | None     | Used in     | RHS      | RHS       |
-|           | uc_    |          | user        | constant | constant  |
-| (uc       | r_sum, | \[       | c           | with     | of user   |
-| _n,dataye | uc_t   | open\];\ | onstraints. | bound    | con       |
-| ar,s,lim) | _each, | default  |             | type of  | straints, |
-|           | uc_t   | value:   | No          | bd of a  | which are |
-|           | _succ, | none     | in          | user     | generated |
-|           | uc_t   |          | heritance/a | con      | for each  |
-|           | s_each | Default  | ggregation. | straint. | period    |
-|           |        | i/e: MIG |             |          | (u        |
-|           |        |          | Binding     |          | c_t_each) |
-|           |        |          | user        |          | and       |
-|           |        |          | constraints |          | timeslice |
-|           |        |          | are defined |          | (uc       |
-|           |        |          | using bound |          | _ts_each) |
-|           |        |          | types       |          | and are   |
-|           |        |          | lim         |          | summing   |
-|           |        |          | =UP/LO/FX.\ |          | over      |
-|           |        |          | Non-binding |          | regions   |
-|           |        |          | (free) user |          | (         |
-|           |        |          | constraints |          | uc_r_sum) |
-|           |        |          | can be      |          | (EQ(l     |
-|           |        |          | defined     |          | )\_UCTS). |
-|           |        |          | using the   |          |           |
-|           |        |          | lim type    |          | If        |
-|           |        |          | lim=N.      |          | dynamic,  |
-|           |        |          |             |          | co        |
-|           |        |          |             |          | nstraints |
-|           |        |          |             |          | will be   |
-|           |        |          |             |          | generated |
-|           |        |          |             |          | between   |
-|           |        |          |             |          | two       |
-|           |        |          |             |          | s         |
-|           |        |          |             |          | uccessive |
-|           |        |          |             |          | periods   |
-|           |        |          |             |          | (EQ(l)    |
-|           |        |          |             |          | \_UCSUS). |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_TIME   |        | Dimen    | Used in     | Mu       | EQ(       |
-| (uc_n,r,  |        | sionless | user        | ltiplier | l)\_UCXXX |
-| datayear) |        |          | c           | for the  |           |
-|           |        | \        | onstraints. | number   |           |
-|           |        | [open\]; |             | of years |           |
-|           |        |          | Adds a time | in model |           |
-|           |        | default  | constant to | periods  |           |
-|           |        | value:   | the RHS     | (static  |           |
-|           |        | none     | side.       | UCs), or |           |
-|           |        |          |             | between  |           |
-|           |        | Default  |             | m        |           |
-|           |        | i/e: STD |             | ilestone |           |
-|           |        |          |             | years    |           |
-|           |        |          |             | (dynamic |           |
-|           |        |          |             | UCs)     |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| UC_UCN    | UC     | Dimen    | Only taken  | Mu       | EQ(       |
-| (uc_n     | _RHSRT | sionless | into        | ltiplier | l)\_UCRSU |
-| ,side,r,d |        |          | account if  | of user  |           |
-| atayear,\ |        | \        | the user    | co       | VAR_UCRT  |
-| ucn)      |        | [open\]; | constraint  | nstraint |           |
-|           |        |          | is by       | variable |           |
-|           |        | default  | region &    | in       |           |
-|           |        | value:   | period, and | another  |           |
-|           |        | none     | summing     | user     |           |
-|           |        |          | over        | con      |           |
-|           |        | Default  | timeslices  | straint. |           |
-|           |        | i/e: STD | and the RHS |          |           |
-|           |        |          | side is     |          |           |
-|           |        |          | activated   |          |           |
-|           |        |          | (EQ(        |          |           |
-|           |        |          | l)\_UCRSU). |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
-| VDA_EMCB\ | FL     | Emission | Available   | E        | EQ_PTRANS |
-| (r,dataye | O_EMIS | units    | in the VEDA | missions |           |
-| ar,c,com) |        | per flow | shell.      | (com)    |           |
-|           | F      | units    |             | from the |           |
-|           | LO_EFF |          | Any         | co       |           |
-|           |        | default  | proce       | mbustion |           |
-|           |        | value:   | ss-specific | of       |           |
-|           |        | none     | FLO_EMIS /  | c        |           |
-|           |        |          | FLO_EFF     | ommodity |           |
-|           |        | Default  | with the    | (c) in   |           |
-|           |        | i/e: STD | commodities | region   |           |
-|           |        |          | c and com   | (r).     |           |
-|           |        |          | will        |          |           |
-|           |        |          | override    |          |           |
-|           |        |          | VDA_EMCB.   |          |           |
-+-----------+--------+----------+-------------+----------+-----------+
+* - Input parameter (Indexes)[^23]
+  - Related sets / parameters[^24]
+  - Units / Ranges & Default values & Default inter-/extrapolation[^25]
+  - Instances[^26] (Required / Omit / Special conditions)
+  - Description
+  - Affected equations or variables[^27]
+* - ACT_BND 
+  <br>(r,datayear,p,s,bd)
+  - 
+  - Units of activity
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e[^28]: MIG
+  - Since inter-/extrapolation default is MIG, the bound must be explicitly specified for each period, unless an inter-/extrapolation option is set.
+  <br>If the bound is specified for a timeslice s above the process timeslice resolution (prc_tsl), the bound is applied to the sum of the activity variables according to the timeslice tree.
+  <br>Standard aggregation.
+  - Bound on the overall activity a process.
+  - Activity limit constraint (EQ(l)\_ACTBND) when s is above prc_tsl.
+  <br>Direct bound on activity variable (VAR_ACT) when at the prc_tsl level.
+* - ACT_COST 
+  <br>(r,datayear,p,cur)
+  - OBJ_ACOST, CST_ACTC, CST_PVP
+  - Monetary unit per unit of activity
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - 
+  - Variable costs associated with the activity of a process.
+  - Applied to the activity variable (VAR_ACT) as a component of the objective function (EQ_OBJVAR).
+  <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
+* - ACT_CSTPL 
+  <br>(r,datayear,p,cur)
+  - ACT_MINLD, ACT_LOSPL
+  - Monetary unit per unit of activity
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Used as an alternative or supplement to using ACT_LOSPL(r,y,p,\'FX\'). When used as an alternative, the fuel increase at the minimum operating level that should be included in the cost penalty must be embedded in the ACT_CSTPL coefficient.
+  - Partial load cost penalty, defined as an additional cost per activity at the minimum operating level, corresponding to the efficiency loss at that load level.
+  <br>Added as an extra term to variable costs in the objective and reporting.
+  - Generates an additional term in EQ_OBJVAR for the increase in operating cost.
+* - ACT_CSTRMP 
+  <br>(r,datayear,p,bd,cur)
+  - ACT_UPS
+  - Corrency unit per unit of capacity (change in load)
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Can be used for standard processes in basic, advanced and discrete unit commitment extensions.
+  <br>Can also be used for load-shifting processes for defining the cost of shifting loads per unit of demand load by one hour.
+  - Defines ramp-up (L=UP) or ramp-down (L=LO) cost per unit of load change (in capacity units).
+  <br>For **load-shifting** processes defines the cost of shifting one unit of load by one hour, forward (UP) or backward (LO).
+  - Activates generation of EQ_ACTRMPC.
+  <br>Generates an additional term in EQ_OBJVAR for the increase in operating cost.
+* - ACT_CSTSD 
+  <br>(r,datayear,p,upt,bd,cur)
+  - ACT_CSTUP, ACT_SDTIME, ACT_MAXNON
+  - Currency units per unit of started-up capacity
+  <br>\[0,∞);
+  <br>Default value: none
+  <br>Default i/e: STD
+  - Activates the advanced unit commitment option.
+  <br>In the case of the shut-down costs, only the tuple (upt, bd) = (HOT, LO) is a valid instance for this parameter.
+  <br>Requires the parameter ACT_MAXNON to be defined as well.
+  - Defines start-up (bd=UP) and shutdown costs (bd=LO) per unit of started-up capacity, differentiated by start-up type (upt).
+  <br>The start-up type of a power plant depends on its non-operational time after shut-down, as defined by using ACT_MAXNON.
+  - Generates an additional term in EQ_OBJVAR for the increase in operating cost.
+* - ACT_CSTUP 
+  <br>(r,datayear,p,tslvl,cur)
+  - ACT_MINLD, ACT_UPS
+  - Monetary unit per unit of capacity
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - The tslvl level refers to the timeslice cycle for which the start-up cost is defined.
+  <br>Only applicable when the min. stable operating level has been defined with ACT_MINLD.
+  - Cost of process start-up per unit of started-up capacity.
+  <br>Added as an extra term to variable costs in the objective and reporting.
+  - Activates generation of EQL_ACTUPS eqs.
+  <br>Generates an additional term in the variable operating costs included in EQ_OBJVAR.
+* - ACT_CUM 
+  <br>(r,p,y1,y2,bd)
+  - FLO_CUM
+  - Activity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: N/A
+  - The years y1 and y2 may be any years of the set allyear; where y1 may also be \'BOH\' for first year of first period and y2 may be \'EOH\' for last year of last period.
+  - Bound on the cumulative amount of annual process activity between the years y1 and y2, within a region.
+  - Generates an instance of the cumulative constraint (EQ_CUMFLO)
+* - ACT_EFF 
+  <br>(r,datayear,p,cg,s)
+  - 
+  - Activity unit per flow unit
+  <br>\[0,∞);
+  <br>Default value: none
+  <br>Default group efficiency =1 when values are specified only for individual commodities.
+  <br>Default i/e: STD
+  - The group cg may be a single commodity, group, or commodity type on the shadow side, or a single commodity in the PCG; cg=\'ACT\' refers to the default shadow group. If no group efficiency is defined, shadow group is assumed to be the commodity type. Individual commodity efficiencies are multiplied with the shadow group efficiency (default=1).
+  <br>Levelized to the timeslice level of the flow variables in the shadow group.
+  <br>Direct inheritance. Weighted aggregation.
+  - Activity efficiency for process, i.e. amount of activity per unit of commodity flows in the group cg.
+  <br>For more information on usage, see Section 6.3 for details about EQE_ACTEFF.
+  - Generates instances of the activity efficiency constraint (EQE_ACTEFF)
+* - ACT_FLO 
+  <br>(r,datayear,p,cg,s)
+  - 
+  - Flow unit per activity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Inherited/aggregated to the timeslice levels of the the process flow (cg=com) or the process activity (when cg=genuine group).
+  <br>Direct inheritance.
+  <br>Weighted aggregation.
+  - Flow of commodities in cg in proportion to the process activity, in timeslice s.
+  <br>Non-vintaged variant available for vintaged processes by using a negative FLO_FUNCX.
+  - Establishes a transformation relationship (EQ_PTRANS) between the flows in the PCG and one or more input (or output) commodities.
+* - ACT_LOSPL 
+  <br>(r,datayear,p,bd)
+  - ACT_MINLD, ACT_CSTPL
+  - Decimal fraction
+  <br>\[0,∞);
+  <br>default values:
+  <br>FX: none
+  <br>LO: default value is ACT_MINLD or 0.1
+  <br>if that is not defined
+  <br>UP: 0.6
+  <br>Default i/e: STD
+  - Endogenous partial load modeling can only be used for processes that have their efficiency modelled by the ACT_EFF parameter, which must be defined on the shadow side of the process.
+  <br>For other processes, the ACT_CSTPL parameter can be used for modeling a cost penalty at partial loads.
+  - Partial load efficiency parameters.
+  <br>1\) (bd=\'FX\'): Proportional increase in specific fuel consumption at minimum operating level
+  <br>2) (bd=\'LO\'):
+  <br>Minimum operating level of partial load operation
+  <br>3) (bd=\'UP\'):
+  <br>Fraction of feasible load range above the minimum operating level, below which the efficiency losses are assumed to occur.
+  - Generates instances of the partial load efficiency constraint EQ_ACTPL.
+* - ACT_LOSSD 
+  <br>(r,datayear,p,upt,bd)
+  - ACT_LOSPL, ACT_MINLD, ACT_SDTIME, ACT_EFF
+  - Dimensionless
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Can only be used when the advanced unit commitment option is used for the process (therefore, defining both ACT_CSTSD and ACT_MAXNON is required)
+  <br>Requires also that ACT_EFF has been used for defining the process efficiency (on the shadow side of the process).
+  - Used for modeling endogenous partial load efficiency losses during the start-up and shut-down phase.
+  <br>- With bd=UP defines increase in specific fuel consumption at the start up load level defined by the ratio ACT_MINLD / ACT_SDTIME(upt,\'UP\') for start-up type upt;
+  <br>- With bd=LO defines the increase in
+  <br>specific fuel consumption at the start up load level defined by the ratio ACT_MINLD / ACT_SDTIME(\'HOT\', \'LO\').
+  - Activates generation of EQ_SUDPLL
+* - ACT_MAXNON 
+  <br>(r,datayear,p,upt)
+  - ACT_CSTSD, ACT_SDTIME
+  - hours
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Can only be used when the advanced unit commitment option is used for the process (thus defining ACT_CSTSD is required)
+  - Max. non-operational time before transition to next stand-by condition, by start-up type, in hours
+  <br>- Defines the max. non-operational time before a subsequent start-up of type upt.
+  - Activates generation of EQ_SUDUPT
+* - ACT_MINLD 
+  <br>(r,datayear,p)
+  - ACT_UPS, ACT_CSTUP, ACT_CSTPL, ACT_LOSPL
+  - Decimal fraction
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Can only be used for standard processes (not IRE or STG). Must be defined if ACT_CSTUP or ACT_TIME is specified.
+  - Minimum stable operating level of a dispatchable process.
+  - Generates instances of equations EQ_CAPLOAD and EQE_ACTUPS.
+* - ACT_SDTIME 
+  <br>(r,datayear,p,upt,bd)
+  - ACT_CSTSD, ACT_MAXNON
+  - hours
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Can only be used when ACT_CSTSD is specified for the process (advanced unit commitment option)
+  <br>When specifying the duration of the shut-down phase, only the tuple (upt,bd)=(HOT,LO) is valid
+  - Defines the duration of start-up (bd=UP) and shut-down (bd=LO) phases, by start-up type, in hours.
+  - Activates generation of EQ_SUDTIME, and used also in the equations EQ_ACTPL, EQ_SDSLANT, EQ_SDMINON, EQ_SUDPLL
+* - ACT_TIME 
+  <br>(r,datayear,p,lim)
+  - ACT_MINLD, ACT_CSTUP, ACT_UPS, STG_SIFT
+  - Hours
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Can be used for standard processes when start-up costs have been modeled, using both ACT_MINLD and
+  <br>ACT_CSTUP at the
+  <br>DAYNITE/WEEKLY level.
+  <br>The lim type \'FX\' is not supported for this use, and is ignored.
+  <br>Can also be used for load-shifting storage processes, for defining the maximum delay/advance of load shift, or the time-window for load balancing (cf. Sect. 4.3.9).
+  - 1\) Minimum online
+  <br>(UP) / offline (LO)
+  <br>hours of a process
+  <br>with start-up costs
+  <br>modeled (lim=LO/UP)
+  <br>2\) Maximum number
+  <br>of start-up cycles
+  <br>within process timeslice cycles (lim=N).
+  <br>3\) Maximum delay or advance of load shift (lim=UP/LO/FX) or load balancing time (lim=N) for a load-shifting storage.
+  - Generates instances of EQL_ACTUPC.
+  <br>For load-shifting storage processes, generates instances of EQ_SLSIFT.
+* - ACT_UPS 
+  <br>(r,datayear,p,s,bd)
+  - ACT_MINLD, ACT_CSTUP, ACT_CSTPL, ACT_LOSPL
+  - Decimal fraction
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Inherited/aggregated to the timeslice levels of the process activity.
+  <br>Direct inheritance.
+  <br>Weighted aggregation.
+  <br>The ramp rates can only be specified with bd=LO/UP.
+  - Maximum ramp-rate (down/up) of process activity as a fraction of nominal on-line capacity per hour.
+  - Generates instances of equation EQ_ACTRAMP.
+* - B 
+  <br>\(t)
+  - M, D, E, COEF_CPT, rtp_vintyr
+  - 
+  - Required for each milestone year, but is auto-generated if not specified
+  - Beginning year of period t.
+  - 
+* - BS_BNDPRS 
+  <br>(r,datayear,p,b,s,lim)
+  - 
+  - Unit: Capacity unit of the process
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Not levelized (inherited or aggregated), but applied only directly on the timeslice s specified.
+  <br>See the ABS documentation for details
+  - Absolute bound on the reserve provision **b** from process **p**.
+  - EQ_BS27
+* - BS_CAPACT 
+  <br>\(r\)
+  - PRC_CAPACT
+  - Flow unit / capacity unit;
+  <br>(0,∞); default value: PRC_CAPACT
+  <br>Default i/e: none
+  - Applied also for the reporting of reserves in terms of power levels.
+  <br>See the ABS documentation for details
+  - Conversion factor from exogenous reserve demand from capacity to activity / commodity flow units
+  - EQ_BS04
+* - BS_DELTA 
+  <br>(r,datayear,b,s)
+  - 
+  - Unit: dimensionless
+  <br>\[0,∞);
+  <br>default value: 1
+  <br>Default i/e: STD
+  - Levelized to COM_TSL of **b**.
+  <br>See the ABS documentation for details
+  - Calibration parameters for probabilistic reserve demand **b**, in region **r**, and timeslice **s**.
+  - EQ_BS03
+* - BS_DEMDET 
+  <br>(r,datayear,rsp,b,s)
+  - 
+  - Unit for EXOGEN: capacity unit
+  <br>Unit for WMAXSI: dimensionless (fraction of capacity)
+  <br>Default value: none
+  <br>Default i/e: STD
+  - - rsp=\'EXOGEN\': Exogenous reserve demand for reserve **b**, in region **r**, timeslice **s**.
+  <br>- rsp=\'WMAXSI\': Weight of the contribution of the largest system element in deterministic reserve demand **b**, in region **r**, timeslice **s**.
+  <br>See the ABS documentation for details
+  - Parameters for deterministic demands of reserves (rsp = EXOGEN or WMAXSI)
+  - EQ_BS04
+* - BS_DETWT 
+  <br>(r,datayear,b)
+  - 
+  - Unit: dimensionless
+  <br>\[0,1\];
+  <br>Default value: none
+  <br>Default i/e: STD
+  - See the ABS documentation for details.
+  - Weight of the deterministic component in the formulation for endogenous requirements of reserve **b** in region **r**
+  - EQ_BS03
+* - BS_LAMBDA 
+  <br>(r,datayear,b)
+  - BS_DELTA
+  - Unit: dimensionless
+  <br>(0,1\];
+  <br>Default value: none
+  <br>Default i/e: STD
+  - Required. If not defined, then the demand for reserve **b** cannot be calculated.
+  <br>See the ABS documentation for details.
+  - Fudge factors for dependencies in the reserve requirements
+  <br>calculated for reserve **b** in region **r**, in year datayear
+  - EQ_BS03
+* - BS_MAINT 
+  <br>(r,datayear,p,s)
+  - 
+  - Unit: hours
+  <br>(if over 24 hours, continuous over whole season)
+  <br>(0, ∞);
+  <br>Default value: none
+  <br>Default i/e: STD
+  - Levelized to PRC_TSL.
+  <br>If defined on DAYNITE or WEEKLY level, requires start-ups explicitly enabled on that level (using ACT_CSTUP/ACT_CSTSD).
+  <br>See the ABS documentation for details.
+  - For endogenous maintenance scheduling, defines minimum continuous maintenance time of process **p**, vintage **v**, timeslice **s**, in hours (**s** can be a process timeslice, or more usefully above it, to allow for optimized maintenance period)
+  - EQ_BS27, EQ_BS28
+* - BS_OMEGA 
+  <br>(r,datayear,b,s)
+  - BS_DELTA, BS_LAMBDA
+  - Unit: dimensionless
+  <br>ω ϵ {1,2,3};
+  <br>Default value: none
+  <br>Default i/e: STD
+  - Required for enabling reserve provision formulation.
+  <br>Levelized to COM_TSL of **b**.
+  <br>See the ABS documentation for details
+  - Indicator denoting if the demand for reserve **b** is the weighted sum of the deterministic and probabilistic component (ω=2), the maximum of the two (ω=1), or their difference (ω=3)
+  - EQ_BS03
+* - BS_RMAX 
+  <br>(r,datayear,p,c,s)
+  - 
+  - Unit: dimensionless (fraction of capacity)
+  <br>\[0, 1\];
+  <br>Default value: none
+  <br>Default i/e: STD
+  - Required for enabling reserve provision from any non-storage processes.
+  <br>Levelized to PRC_TSL.
+  <br>See the ABS documentation for details
+  - Maximum contribution of process **p**, vintage **v**, in timeslice **s** to the provision of reserve commodity **b**.
+  - EQ_BS11, EQ_BS19
+* - BS_RTYPE 
+  <br>(r,b)
+  - 
+  - Unit: dimensionless
+  <br>{±1, ±2, ±3, ±4};
+  <br>Default value: none
+  <br>Default i/e: none
+  - Required for enabling reserve provision calculations.
+  <br>See the ABS documentation for details
+  - Type of reserve commodity **b**, positive or negative ± 1--4:
+  <br>±1 : FCR reserve
+  <br>±2 : AFRR reserve
+  <br>±3 : MFRR reserve
+  <br>±4 : RR reserve
+  - EQ_BS00, EQ_BS01, EQ_BS11, EQ_BS18, EQ_BS19, EQ_BS26
+* - BS_SHARE 
+  <br>(r,datayear,b,grp,lim)
+  - BS_OMEGA
+  - Unit: dimensionless
+  <br>\[0, 1\];
+  <br>Default value: none
+  <br>Default i/e: STD
+  - The group **grp** can be defined by GR_GENMAP, or implicitly for any single process prc=grp.
+  <br>See the ABS documentation for details
+  - Maximum (bd=UP) or minimum (bd=LO) share of process group **grp** in the demand for reserve **b**, in region **r**, where demand is measured as defined by BS_OMEGA
+  - EQ_BS01
+* - BS_SIGMA 
+  <br>(r,datayear,b,grp,s)
+  - 
+  - Unit: dimensionless
+  <br>(0, ∞);
+  <br>Default value: none
+  <br>Default i/e: STD
+  - Levelized to finest ts-level.
+  <br>See the ABS documentation for details
+  - Standard deviation of forecast error for the imbalance source **grp**, in region **r**, timeslice **s**, used for calculating the demand for reserve **b**
+  - EQ_BS03
+* - BS_STIME 
+  <br>(r,p,b,bd)
+  - 
+  - Unit: hours
+  <br>(0, ∞);
+  <br>Default value: none
+  <br>Default i/e: none
+  - Required that \'UP\' ≥ \'LO\'.
+  <br>See the ABS documentation for details
+  - Defines the times for reserve provision from storage process **p** for reserve **b** in region **r** (in hours):
+  <br>- bd=\'LO\': Time required to ramp up in order to provide reserve **b**
+  <br>- bd=\'UP\': Duration of provision for reserve **b** including time to ramp up
+  - EQ_BS22, EQ_BS23
+* - CAP_BND 
+  <br>(r,datayear,p,bd)
+  - PAR_CAPLO, PAR_CAPUP
+  - Capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Since inter-/extrapolation is default is MIG, a bound must be specified for each period desired, if no explicit inter-/extrapolation option is given. Relaxed if upper bound less than existing non-retirable capacity.
+  - Bound on investment in new capacity.
+  - Imposes an indirect limit on the capacity transfer equation (EQ_CPT) by means of a direct bound on the capacity variable (VAR_CAP).
+* - CM_CONST 
+  <br>(item)
+  - 
+  - Constant specific unit
+  <br>\[open\];
+  <br>default value: See Appendix
+  <br>Default i/e: N/A
+  - See Appendix on Climate Module for details.
+  - Various climate module constants, e.g. phi and sigma values between reservoirs.
+  - EQ_CLITOT, EQ_CLICONC, EQ_CLITEMP, EQ_CLIBEOH
+* - CM_EXOFORC 
+  <br>(year)
+  - 
+  - Forcing unit
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Default values are provided. See Appendix on Climate Module for details.
+  - Radiative forcing from exogenous sources
+  - EQ_CLITOT
+* - CM_GHGMAP 
+  <br>(r,c,cm_var)
+  - 
+  - Units of climate module emissions per units of regional emissions
+  <br>\[0, ∞);
+  <br>default value: none
+  - The global emissions in the climate module (cm_var) are \'CO2-GtC\' (GtC), \'CH4-Mt\' (Mt) and \'N2O-Mt\' (Mt). See Appendix on Climate Module for details.
+  - Mapping and conversion of regional GHG emissions to global emissions in the climate module
+  - EQ_CLITOT
+* - CM_HISTORY 
+  <br>(year,item)
+  - 
+  - Climate variable unit
+  <br>\[0, ∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Default values are provided until 2010. See Appendix on Climate Module for details.
+  - Calibration values for CO2 and forcing
+  - EQ_CLITOT, EQ_CLICONC, EQ_CLITEMP, EQ_CLIBEOH
+* - CM_LINFOR 
+  <br>(datayear,item,lim)
+  - 
+  - Forcing unit per concentration unit
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - With lim types LO/UP, CO2 forcing function can be automatically linearized between the concentration levels given. For CH4 and N2O, lim types FX/N must be used (N=concentration multiplier, FX=constant term). See Appendix on Climate Module for details.
+  - Parameters of linearized forcing functions
+  - EQ_CLITOT
+* - CM_MAXC 
+  <br>(datayear,item)
+  - 
+  - Climate variable unit
+  <br>\[0, ∞);
+  <br>default value: none
+  <br>Default i/e: none
+  - Since no default inter-/extrapolation, bounds must be explicitly specified for each desired year, unless an explicit inter-/extrapolation option is set.
+  <br>See Appendix on Climate Module for details.
+  - Maximum level of climate variable
+  - EQ_CLIMAX
+* - COM_AGG 
+  <br>(r,dayayear,c1,c2)
+  - 
+  - Commodity units
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - When commodity lim_type is LO and commodity type is not DEM, VAR_COMNET of c1 is aggregated to c2;
+  <br>When commodity lim_type is FX/N or commodity type is DEM, VAR_COMPRD of c1 is aggregated to c2.
+  - Aggregation of commodity NET/PRD production to the production side of the balance of another commodity.
+  - Adds a term in EQ(l)\_COMBAL and EQ(l)\_COMPRD.
+* - COM_BNDNET 
+  <br>(r,datayear,c,s,bd)
+  - rhs_combal, rcs_combal
+  - Commodity unit
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: MIG
+  <br>Remark: All VAR_COMNET variables are by default non-negative, i.e. have lower bounds of zero
+  - Since inter-/extrapolation default is MIG, a bound must be specified for each period desired, if no explicit inter-/extrapolation option is given.
+  <br>If the bound is specified for a timeslice s above the commodity timeslice resolution (com_tsl), the bound is applied to the sum of the net commodity variables (VAR_COMNET) below it, according to the timeslice tree.
+  <br>Standard aggregation.
+  - Limit on the net amount of a commodity (variable
+  <br>VAR_COMNET) within a region for a particular timeslice.
+  - The balance constraint is set to an equality (EQE_COMBAL).
+  <br>Either the finer timeslice variables are summed (EQ(l)\_BNDNET) or the bound applied direct to the commodity net variable(VAR_COMNET) when at the commodity level (com_tsl).
+* - COM_BNDPRD 
+  <br>(r,datayear,c,s,bd)
+  - rhs_comprd, rcs_comprd
+  - Commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: MIG
+  <br>Remark: All VAR_COMPRD variables are by default non-negative, i.e. have lower bounds of zero
+  - Since inter-/extrapolation default is MIG, a bound must be specified for each period desired, if no explicit inter-/extrapolation option is given.
+  <br>If the bound is specified for a timeslice s being above the commodity timeslice resolution (com_tsl), the bound is applied to the sum of the commodity production variables (VAR_COMPRD) below it, according to the timeslice tree.
+  <br>Standard aggregation.
+  - Limit on the amount of a commodity produced (variable
+  <br>VAR_COMPRD)
+  <br>within a region for a particular timeslice.
+  - The balance constraint is set to an equality (EQE_COMBAL).
+  <br>Finer timeslice variables summed (EQ(l)\_BNDPRD).
+  <br>or the bound is applied direct to the commodity production variable (VAR_COMPRD) when at the commodity level (com_tsl).
+* - COM_BPRICE 
+  <br>(r,t,c,s,cur)
+  - COM_ELAST, COM_STEP, COM_VOC
+  - Monetary unit per commodity unit
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: none
+  - The control parameter \$SET TIMESED 'YES' to activate elastic demands must be set.
+  - Base price of a demand commodity for the elastic demand formulation.
+  - Controls the inclusion of the elastic demand variable (VAR_ELAST) in the commodity balance equation(EQ(l)\_COMBAL)
+  <br>Applied to the elastic demand variable (VAR_ELAST) in the objective function (EQ_OBJELS).
+* - COM_CSTNET 
+  <br>(r,datayear,c,s,cur)
+  - OBJ_COMNT, CST_COMC, CST_PVC, rhs_combal, rcs_combal
+  - Monetary unit per commodity unit
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Direct inheritance.
+  <br>Weighted aggregation.
+  - Cost on the net amount of a commodity within a region for a particular timeslice.
+  - Forces the net commodity variable (VAR_COMNET) to be included in the equality balance constraint (EQE_COMBAL).
+  <br>Applied to said variable in the cost component of the objective function (EQ_OBJVAR).
+* - COM_CSTPRD 
+  <br>(r,datayear,c,s,cur)
+  - OBJ_COMPD, CST_COMC, CST_PVC, rhs_comprd, rcs_comprd
+  - Monetary unit per commodity unit
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Direct inheritance.
+  <br>Weighted aggregation.
+  - Cost on the production of a commodity, within a region for a particular timeslice.
+  - Forces the commodity production variable (VAR_COMPRD) to be included in the equality balance constraint (EQE_COMBAL).
+  <br>Applied to said variable in the cost component of the objective function (EQ_OBJVAR).
+* - COM_CUMNET 
+  <br>(r,y1,y2,bd)
+  - bohyear, eohyear, rhs_combal, rcs_combal, rtc_cumnet
+  - Commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: not possible
+  - The years y1 and y2 may be any years of the set allyear; where y1 may also be 'BOH' for first year of first period and y2 may be 'EOH' for last year of last period.
+  - Bound on the cumulative net amount of a commodity between the years y1 and y2, within a region over timeslices.
+  - Forces the net commodity variable (VAR_COMNET) to be included in the equality balance constraint (EQE_COMBAL).
+  <br>Generates the cumulative commodity constraint (EQ(l)\_CUMNET).
+* - COM_CUMPRD 
+  <br>(r,y1,y2,bd)
+  - bohyear, eohyear, rhs_comprd, rcs_comprd, rtc_cumprd
+  - Commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: not possible
+  - The years y1 and y2 may be any years of the set allyear; where y1 may also be 'BOH' for first year of first period and y2 may be 'EOH' for last year of last period.
+  - Bound on the cumulative production of a commodity between the years y1 and y2 within a region over timeslices.
+  - Forces the net commodity variable (VAR_COMPRD) to be included in the balance equation (EQE_COMBAL).
+  <br>The cumulative constraint is generated (EQ(l)\_CUMPRD).
+* - COM_ELAST 
+  <br>(r,datayear,c,s,lim)
+  - COM_BPRICE, COM_STEP, COM_VOC, COM_AGG
+  - Dimensionless
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - The control parameter
+  <br>\$SET TIMESED YES must be set to activate elastic demands.
+  <br>An elasticity is required for each direction the demand is permitted to move.
+  <br>The index lim = \'LO\' corresponds to demand decrease, while lim = \'UP\' denotes the direction for demand increase.
+  <br>A different value may be provided for each direction, thus curves may be asymmetric.
+  <br>Substitution elasticities can be defined with lim=\'N\', among a group of demands aggregated by COM_AGG.
+  - Elasticity of demand indicating how much the demand rises/falls in response to a unit change in the marginal cost of meeting a demand that is elastic.
+  <br>See also Appendix D for additional details on defining demand functions.
+  - Controls the inclusion of the elastic demand variable (VAR_ELAST) in the commodity balance equation(EQ(l)\_COMBAL)
+  <br>Applied to the elastic demand variable (VAR_ELAST) in the objective function costs (EQ_OBJELS).
+* - COM_ELASTX 
+  <br>(r,datayear,c,bd)
+  - COM_ELAST
+  - Integer scalar
+  <br>\[1,999\];
+  <br>default value: none
+  <br>Default extrapolation: MIG
+  - Provided when shaping of elasticity based upon demand level is desired.
+  <br>Note: Shape index 1 is reserved for constant 1.
+  - Shape index for the elasticity of demand
+  - Affects the demand elasticities applied in EQ_OBJELS
+* - COM_FR 
+  <br>(r,datayear,c,s)
+  - COM_PROJ, com_ts, com_tsl, RTCS_TSFR
+  - Decimal fraction
+  <br>\[0,1\];
+  <br>default value: timeslice duration (G_YRFR)
+  <br>Default i/e: STD
+  - Normally defined only for demand commodities (com_type = \'DEM\'), but can be applied to any commodity for defining load profiles.
+  <br>Affects timeslice resolution at which a commodity is tracked (RTCS_TSFR), and thereby may affect when a process cannot operate (rtps_off).
+  <br>Weighted inheritance.
+  <br>Weighted aggregation.
+  - Fraction of the annual demand (COM_PROJ) or commodity flow occurring in timeslice s; describes the shape of the load curve.
+  - Applied to the annual demand (COM_PROJ) as the RHS of the balance equation (EQ(l)\_COMBAL).
+  <br>Enters the peaking equation (EQ_PEAK), if a peaking commodity.
+  <br>Applied to the bounds of elastic demand step variables (VAR_ELAST).
+  <br>Applied via RTFCS_FR in all equations to flows having a timeslice level coarser than target level.
+* - COM_IE 
+  <br>(r,datayear,c,s)
+  - 
+  - Decimal fraction
+  <br>(0,∞);
+  <br>default value: 1
+  <br>Default i/e: STD
+  - Direct inheritance.
+  <br>Weighted aggregation.
+  - Infrastructure or transmission efficiency of a commodity.
+  - Overall efficiency applied to the total production of a commodity in the commodity balance equation (EQ(l)\_COMBAL).
+* - COM_MSHGV 
+  <br>(r,datayear,c)
+  - NCAP_MSPRF
+  - Unit: dimensionless
+  <br>(0, ∞);
+  <br>Default value: none
+  <br>Default i/e: STD
+  - Required for all markets modeled with the logit market sharing mechanism
+  - In the logit market sharing mechanism, defines heterogeneity value for market **c** in region **r**, between the investment choices
+  - EQ_MSNCAPB
+* - COM_PKFLX 
+  <br>(r,datayear,c,s)
+  - com_peak, com_pkts, COM_PKRSV, FLO_PKCOI
+  - Scalar
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Direct inheritance.
+  <br>Weighted aggregation.
+  - Difference between the average demand and the peak demand in timeslice s, expressed as fraction of the average demand.
+  - Applied to the total consumption of a commodity to raise the capacity needed to satisfy the peaking constraint (EQ_PEAK).
+* - COM_PKRSV 
+  <br>(r,datayear,c)
+  - com_peak, com_pkts, COM_PKFLX, FLO_PKCOI
+  - Scalar
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Requires that commodity c is also requested to have peaking constraints, by defining COM_PEAK or COM_PKTS
+  - Peak reserve margin as fraction of peak demand, e.g. if COM_PKRSV = 0.2, the total installed capacity must exceed the peak load by 20%.
+  - Applied to the total consumption of a commodity to raise the capacity needed to satisfy the peaking constraint (EQ_PEAK).
+* - COM_PROJ 
+  <br>(r,datayear,c)
+  - COM_FR
+  - Commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - In standard usage, only applicable to demand commodities (com_type = 'DEM').
+  <br>In advanced usage, may also be specified for other commodities for defining an exogenous demand.
+  <br>Demand is allocated to sub-annual timeslices according to COM_FR.
+  - Projected annual demand for a commodity.
+  - Serves as the RHS (after COM_FR applied) of the commodity balance constraint (EQ(l)\_COMBAL).
+  <br>Enters the peaking equation (EQ_PEAK), if a peaking commodity.
+  <br>Applied when setting the upper bound of an elastic demand step (VAR_ELAST).
+* - COM_STEP 
+  <br>(r,c,bd)
+  - COM_BPRICE, COM_ELAST, COM_VOC, rcj
+  - Integer number
+  <br>\[1,∞);
+  <br>default value: none
+  - The control parameter \$SET TIMESED 'YES' must be set to activate elastic demands. The number of steps is required for each direction the demand is permitted to move.
+  <br>The index bd=LO denotes the direction of demand decrease, bd=UP increase, and bd=FX is a shortcut for both. A different value may be provided for each direction, thus curves may be asymmetric.
+  - Number of steps to use for the approximation of change of producer/consumer surplus when using the linearized elastic demand formulations.
+  - Controls the instance of the elastic demand variable (VAR_ELAST) in:
+  <br>the commodity balance equation (EQ(l)\_COMBAL);
+  <br>setting of the step limit for the elastic demand variable (VAR_ELAST);
+  <br>enters the objective function costs (EQ_OBJELS).
+* - COM_SUBNET 
+  <br>(r,datayear,c,s,cur)
+  - OBJ_COMNT, CST_COMX, CST_PVC, rhs_combal, rcs_combal
+  - Monetary unit per commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Direct inheritance.
+  <br>Weighted aggregation.
+  - Subsidy on the net amount of a commodity within a region for a particular timeslice.
+  - Forces the net commodity variable (VAR_COMNET) to be included in the equality balance constraint (EQE_COMBAL).
+  <br>Applied (-) to said variable in the cost component of the objective function (EQ_OBJVAR).
+* - COM_SUBPRD 
+  <br>(r,datayear,c,s,cur)
+  - OBJ_COMPD, CST_COMX, CST_PVC, rhs_comprd, rcs_comprd
+  - Monetary unit per commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Direct inheritance.
+  <br>Weighted aggregation.
+  - Subsidy on the production of a commodity within a region for a particular timeslice.
+  - Forces the commodity production variable (VAR_COMPRD) to be included in the equality balance constraint (EQE_COMBAL).
+  <br>Applied (-) to said variable in the cost component of the objective function (EQ_OBJVAR).
+* - COM_TAXNET 
+  <br>(r,datayear,c,s,cur)
+  - OBJ_COMNT, CST_COMX, CST_PVC, rhs_combal, rcs_combal
+  - Monetary unit per commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Direct inheritance.
+  <br>Weighted aggregation.
+  - Tax on the net amount of a commodity within a region for a particular timeslice.
+  - Forces the net commodity variable (VAR_COMNET) to be included in the equality balance constraint (EQE_COMBAL).
+  <br>Applied to said variable in the cost component of the objective function (EQ_OBJVAR).
+* - COM_TAXPRD 
+  <br>(r,datayear,c,s,cur)
+  - OBJ_COMPD, CST_COMX, CST_PVC, rhs_comprd, rcs_comprd
+  - Monetary unit per commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Direct inheritance.
+  <br>Weighted aggregation.
+  - Tax on the production of a commodity within a region for a particular timeslice.
+  - Forces the commodity production variable (VAR_COMPRD) to be included in the equality balance constraint (EQE_COMBAL).
+  <br>Applied to said variable in the cost component of the objective function (EQ_OBJVAR).
+* - COM_VOC 
+  <br>(r,datayear,c,bd)
+  - COM_BPRICE, COM_STEP, COM_ELAST
+  - Dimensionless
+  <br>\[0,∞);
+  <br>default: none
+  <br>Default i/e: STD
+  - The control parameter \$SET TIMESED 'YES' to activate elastic demands must be set.
+  <br>A number is required for each direction the demand is permitted to move.
+  <br>The index bd = LO corresponds to the direction of decreasing the demand, while bd = UP denotes the direction for demand increase.
+  <br>A different value may be provided for each direction, thus curves may be asymmetric.
+  - Possible variation of demand in both directions when using the elastic demand formulation.
+  - Applied when setting the bound of an elastic demand step (VAR_ELAST).
+  <br>Applied to the elasticity variable in the objective function costs (EQ_OBJELS).
+* - DAM_BQTY 
+  <br>(r,c)
+  - DAM_COST
+  - Commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: N/A
+  - Only effective when DAM_COST has been defined for commodity c.
+  - Base quantity of emissions for damage cost accounting
+  - EQ_DAMAGE, EQ_OBJDAM
+* - DAM_COST 
+  <br>(r,datayear,c,cur)
+  - DAM_BQTY
+  - Monetary unit per commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Damage costs are by default endogenous (included in the objective).
+  <br>To set them exogenous, use \$SET DAMAGE NO
+  - Marginal damage cost of emissions at Base quantity.
+  - EQ_DAMAGE, EQ_OBJDAM
+* - DAM_ELAST 
+  <br>(r,c,lim)
+  - DAM_COST, DAM_BQTY
+  - Dimensionless
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: N/A
+  - Only effective when DAM_COST has been defined for commodity c.
+  - Elasticity of damage cost in the lower or upper direction from Base quantity.
+  - EQ_OBJDAM
+* - DAM_STEP 
+  <br>(r,c,lim)
+  - DAM_COST, DAM_BQTY
+  - Integer number
+  <br>\[1,∞);
+  <br>default value: none
+  <br>Default i/e: N/A
+  - Only effective when DAM_COST has been defined for commodity c.
+  - Number of steps for linearizing damage costs in the lower or upper direction from Base quantity.
+  - EQ_DAMAGE, EQ_OBJDAM
+* - DAM_VOC 
+  <br>(r,c,lim)
+  - DAM_COST, DAM_BQTY
+  - Decimal fraction
+  <br>LO: \[0,1\]; UP: \[0,∞);
+  <br>default value: none
+  <br>Default i/e: N/A
+  - Only effective when DAM_COST is defined for c. Step sizes proportional to the Base quantity can be defined with lim=\'N\'.
+  - Variance of emissions in the lower or upper direction from Base quantity as a fraction of Base quantity.
+  - EQ_OBJDAM
+* - E 
+  <br>(t)
+  - B, D, M, COEF_CPT, rtp_vintyr
+  - 
+  - For each modelyear period
+  - End year of period t, used in determining the length of each period
+  - The amount of new investment (VAR_NCAP) carried over in the capacity transfer constraint (EQ(l)\_CPT).
+  <br>Amount of investments (VAR_NCAP) remaining past the modelling horizon that needs to be credited back to the objective function (EQ_OBJINV).
+* - FLO_BND 
+  <br>(r,datayear,p,cg,s,bd)
+  - 
+  - Commodity unit
+  <br>\[0,∞);
+  <br>default: none
+  <br>Default i/e: MIG
+  - If the bound is specified for a timeslice s being above the flow timeslice resolution (rtpcs_varf), the bound is applied to the sum of the flow variables (VAR_FLO) according to the timeslice tree, otherwise directly to the flow variable.
+  <br>No aggregation.[^29]
+  - Bound on the flow of a commodity or the sum of flows within a commodity group.
+  - Flow activity limit constraint (EQ(l)\_FLOBND) when s is above rtpcs_varf
+  <br>Direct bound on activity variable (VAR_FLO) when at the rtpcs_varf level.
+* - FLO_COST 
+  <br>(r,datayear,p,c,s,cur)
+  - OBJ_FCOST, CST_FLOC, CST_PVP
+  - Monetary unit per commodity unit
+  <br>\[open\];
+  <br>default: none
+  <br>Default i/e: STD
+  - Direct inheritance
+  <br>Weighted aggregation
+  - Variable cost of a process associated with the production/ consumption of a commodity.
+  - Applied to the flow variable (VAR_FLO) when entering the objective function (EQ_OBJVAR).
+  <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
+* - FLO_CUM 
+  <br>(r,p,c,y1,y2,bd)
+  - ACT_CUM
+  - Flow unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: N/A
+  - The years y1 and y2 may be any years of the set allyear; where y1 may also be \'BOH\' for first year of first period and y2 may be \'EOH\' for last year of last period.
+  - Bound on the cumulative amount of annual process activity between the years y1 and y2, within a region.
+  - Generates an instance of the cumulative constraint (EQ_CUMFLO)
+* - FLO_DELIV 
+  <br>(r,datayear,p,c,s,cur)
+  - OBJ_FDELV, CST_FLOC, CST_PVP
+  - Monetary unit per commodity unit
+  <br>\[open\];
+  <br>default: none
+  <br>Default i/e: STD
+  - Direct inheritance.
+  <br>Weighted aggregation.
+  - Cost of a delivering (consuming) a commodity to a process.
+  - Applied to the flow variable (VAR_FLO) when entering the objective function (EQ_OBJVAR).
+  <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
+* - FLO_EFF 
+  <br>(r,datayear,p,cg,c,s)
+  - FLO_EMIS, PRC_ACTFLO
+  - Commodity unit of c / commodity unit of cg
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Inherited/aggregated to the timeslice levels of the flow variables of the commodities in group cg. All parameters with the same process (p) and target commodity (c) are combined in the same transformation equation.
+  <br>By using cg=\'ACT\', the attribute will be defined per unit of activity, by applying it on all PCG flows with the value divided by any user-defined PRC_ACTFLO.
+  <br>FLO_EFF defined for an individual flow will override any value for a group.
+  - Defines the amount of commodity flow of commodity (c) per unit of other process flow(s) or activity (cg).
+  - Generates process transformation equation (EQ_PTRANS) between one or more input (or output) commodities and one output (or input) commodities.
+* - FLO_EMIS 
+  <br>(r,datayear,p,cg,com,s)
+  - FLO_EFF (alias)
+  - Commodity unit of c / commodity unit of cg
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - See FLO_EFF.
+  <br>If com is of type ENV and is not in the process topology, it is added to it as an output flow.
+  - Defines the amount of emissions (c) per unit of process flow(s) or activity (cg).
+  - See FLO_EFF.
+* - FLO_FR 
+  <br>(r,datayear,p,c,s,bd)
+  - 
+  - Decimal fraction
+  <br>\[0,1\] / \[0,∞);
+  <br>default value: none
+  <br>Default i/e: MIG
+  - FLO_FR may be specified as lower, upper or fixed bounds, in contrast to COM_FR.
+  <br>Can be specified for any flow variable having a subannual timeslice resolution.
+  <br>Weighted aggregation.
+  <br>Direct inheritance, if defined at the ANNUAL level.
+  - 1\) Bounds the flow of commodity (c) entering or leaving process (p) in a timeslice, in proportion to annual flow.
+  <br>2\) If specified also at the ANNUAL level, bounds the flow **level** in proportion to the average level under the parent timeslice
+  - A share equation (EQ(l)\_FLOFR) limiting the amount of commodity (c) is generated according to the bound type (bd = l indicator).
+* - FLO_FUNC 
+  <br>(r,datayear,p,cg1,cg2,s)
+  - FLO_SUM, FLO_FUNCX, COEF_PTRAN, rpc_ffunc, rpcg_ptran
+  - Commodity unit of cg2/commodity unit of cg1
+  <br>\[open\];
+  <br>default value: see next column
+  <br>Default i/e: STD
+  - If for the same indexes the parameter FLO_SUM is specified but no FLO_FUNC, the FLO_FUNC is set to 1.
+  <br>Important factor in determining the level at which a process operates in that the derived transformation parameter (COEF_PTRAN) is inherited/aggregated to the timeslice levels of the flow variables associated with the commodities in the group cg1.
+  - A key parameter describing the basic operation of or within a process. Sets the ratio between the sum of flows in commodity group cg2 to the sum of flows in commodity group cg1, thereby defining the efficiency of producing cg2 from cg1 (subject to any FLO_SUM). cg1 and cg2 may be also single commodities.
+  - Establishes the basic transformation relationship (EQ_PTRANS) between one or more input (or output) commodities and one or more output (or input) commodities.
+  <br>Establishes the relationship between storage charging / discharging and a related commodity flow (VAR_FLO) in the auxiliary storage flow equation (EQ_STGAUX).
+* - FLO_FUNCX 
+  <br>(r,datayear,p,cg1,cg2)
+  - FLO_FUNC, FLO_SUM, COEF_PTRAN
+  - Integer scalar
+  <br>\[1,999\];
+  <br>default value: none
+  <br>Default extrapolation: MIG
+  - Provided when shaping based upon age is desired.
+  <br>Vintaged processes only
+  <br>(or for NCAP_COM flows).
+  <br>Note: Shape index 1 is reserved for constant 1.
+  <br>ACT_EFF(cg): cg1=cg, cg2=\'ACT\'
+  <br>ACT_FLO(cg): cg1=\'ACT\', cg2=cg
+  <br>FLO_EMIS(cg,c): cg1=cg2=c
+  <br>FLO_EFF(cg,c): cg1=cg2=c
+  <br>FLO_FUNC(cg1,cg2): cgN=cgN
+  <br>NCAP_COM(com): cg1=\'CAPFLO\', cg2=com
+  - Age-based shaping curve (SHAPE) to be applied to the flow parameters (ACT_EFF/ACT_FLO/ FLO_FUNC/FLO_SUM/FLO_EMIS/FLO_EFF/ NCAP_COM)
+  - Applied to the flow variable (VAR_FLO) in a transformation equation (EQ_PTRANS / EQE_ACTEFF) to account for changes in the transformation efficiency according to the age of each process vintage.
+* - FLO_MARK 
+  <br>(r,datayear,p,c,bd)
+  - PRC_MARK
+  - Decimal fraction
+  <br>\[0,1\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - The same given fraction is applied to all timeslices of the commodity (this could be generalized to allow time-slice-specific fractions, if deemed useful).
+  <br>If an ANNUAL level market-share is desired for a timesliced commodity, PRC_MARK can be used instead.
+  - Process-wise market share in total commodity production.
+  - The individual process flow variables (VAR_FLO, VAR_IN, VAR_STGIN/OUT) are constrained (EQ(l)\_FLOMRK) to a fraction of the total production of a commodity (VAR_COMPRD).
+  <br>Forces the commodity production variable (VAR_COMPRD) to be included in the equality balance constraint (EQE_COMBAL).
+* - FLO_PKCOI 
+  <br>(r,datayear,p,c,s)
+  - COM_PKRSV, COM_PKFLX, com_peak, com_pkts
+  - Scalar
+  <br>\[open\];
+  <br>default value: 1
+  <br>Default i/e: STD
+  - FLO_PKCOI is specified for individual processes p consuming the peak commodity c.
+  <br>Direct inheritance.
+  <br>Weighted aggregation.
+  <br>Used when the timeslices are not necessarily fine enough to pick up the actual peak within the peak timeslices.
+  - Factor that permits attributing more (or less) demand to the peaking equation (EQ_PEAK) than the average demand calculated by the model, to handle the situation where peak usage is typically higher (or lower) due to coincidental (or non-coincidental) loads at the time of the peak demand.
+  - Applied to the flow variable (VAR_FLO) to adjust the amount of a commodity consumed when considering the average demand contributing to the peaking constraint (EQ_PEAK).
+* - FLO_SHAR 
+  <br>(r,datayear,p,c,cg,s,bd)
+  - 
+  - Decimal fraction
+  <br>\[0,1\];
+  <br>default value: none
+  <br>Default i/e: MIG over milestoneyears, STD over pastyears
+  - Direct inheritance.
+  <br>Weighted aggregation.
+  <br>A common example of using FLO_SHAR is to specify the power-to-heat ratio of CHP plants in the backpressure point. For example, for a heat output of a CHP technology, the FLO_SHAR parameter would have the value CHPR/(1+CHPR), with CHPR being the heat-to-power ratio.
+  - Share of flow commodity c based upon the sum of individual flows defined by the commodity group cg belonging to process p.
+  - When the commodity is an input an EQ(l)\_INSHR equation is generated.
+  <br>When the commodity is an output an EQ(l)\_OUTSHR equation is generated.
+* - FLO_SUB 
+  <br>(r,datayear,p,c,s,cur)
+  - OBJ_FSUB, CST_FLOX, CST_PVP
+  - Monetary unit per commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Direct inheritance.
+  <br>Weighted aggregation.
+  - Subsidy on a process flow.
+  - Applied with a minus sign to the flow variable (VAR_FLO) when entering the objective function (EQ_OBJVAR).
+  <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
+* - FLO_SUM 
+  <br>(r,datayear,p,cg1,c,cg2,s)
+  - FLO_FUNC, FLO_FUNCX, COEF_PTRANS, fs_emis, rpc_emis, rpc_ffunc, rpcg_ptran
+  - Commodity unit of cg2/commodity unit of c
+  <br>\[open\];
+  <br>default value: see next column
+  <br>Default i/e: STD
+  - If a FLO_SUM is specified and no corresponding FLO_FUNC, the FLO_FUNC is set to 1.
+  <br>If FLO_FUNC is specified for a true commodity group cg1, and no FLO_SUM is specified for the commodities in cg1, these FLO_SUM are set to 1.
+  <br>The derived parameter COEF_PTRANS is inherited/aggregated to the timeslice level of the flow variable of the commodity c.
+  - Multiplier applied for commodity c of group cg1 corresponding to the flow rate based upon the sum of individual flows defined by the commodity group cg2 of process p. Most often used to define the emission rate, or to adjust the overall efficiency of a technology based upon fuel consumed.
+  - The FLO_SUM multiplier is applied along with FLO_FUNC parameter in the transformation coefficient (COEF_PTRANS), which is applied to the flow variable (VAR_FLO) in the transformation equation (EQ_PTRANS).
+* - FLO_TAX 
+  <br>(r,datayear,p,c,s,cur)
+  - OBJ_FTAX, CST_FLOX, CST_PVP
+  - Monetary unit per commodity unit
+  <br>\[0,∞);
+  <br>default: none
+  <br>Default i/e: STD
+  - Direct inheritance.
+  <br>Weighted aggregation.
+  - Tax on a process flow.
+  - Applied to the flow variable (VAR_FLO) when entering the objective function (EQ_OBJVAR).
+  <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
+* - G_CUREX 
+  <br>(cur1,cur2)
+  - R_CUREX
+  - Scalar
+  <br>(0,∞)
+  <br>Default value: none
+  - The target currency cur2 must have a discount rate defined with G_DRATE.
+  - Conversion factor from currency cur1 to currency cur2, with cur2 to be used in the objective function.
+  - Affects cost coefficients in EQ_OBJ
+* - G_CYCLE 
+  <br>(tslvl)
+  - TS_CYCLE
+  - Number of cycles
+  <br>\[1,∞);
+  <br>Default values:
+  <br>- 1 for ANNUAL
+  <br>- 1 for SEASON
+  <br>- 52 for WEEKLY
+  <br>- 365 for DAYNITE
+  - Not recommended to be changed; use TS_CYCLE instead, whenever the timeslice cycles are different from the default, because changing G_CYCLE would change the meaning of storage availability factors.
+  - Defines the total number of cycles on level tslvl, in a year.
+  <br>Provides default values for TS_CYCLE (see entry for that).
+  - Affects interpretation of availability factors for the storage level, whenever capacity represents the maximum nominal output level (EQ(l)\_CAPACT, EQL_CAPFLO).
+* - G_DRATE 
+  <br>(r,allyear,cur)
+  - OBJ_DISC, OBJ_DCEOH, NCAP_DRATE, COR_SALVI, COR_SALVD, COEF_PVT, VDA_DISC
+  - Decimal fraction
+  <br>(0,1\];
+  <br>default value = none
+  <br>Default i/e: STD
+  - A value must be provided for each region. Interpolation is dense (all individual years included).
+  - System-wide discount rate in region r for each time-period.
+  - The discount rate is taken into consideration when constructing the objective function discounting multiplier (OBJ_DISC), which is applied in each components of the objective function (EQ_OBJVAR, EQ_OBJINV, EQ_OBJFIX, EQ_OBJSALV, EQ_OBJELS).
+* - G_DYEAR
+  - OBJ_DISC, COEF_PVT
+  - Year
+  <br>\[BOTIME,EOTIME\];
+  <br>default value = M(MIYR_1), i.e. the first milestone year
+  - 
+  - Base year for discounting.
+  - The year to which all costs are to be discounted is taken into consideration when constructing the objective function discounting multiplier (OBJ_DISC), which is applied in each of the components of the objective function (EQ_OBJVAR, EQ_OBJINV, EQ_OBJFIX, EQ_OBJSALV, EQ_OBJELS).
+* - G_RFRIR 
+  <br>(r,allyear)
+  - G_DRATE, NCAP_DRATE, COR_SALVI, COR_SALVD
+  - Decimal fraction
+  <br>(0,1\];
+  <br>default value = none
+  <br>Default i/e: STD
+  - Optional parameter.
+  <br>If value is not provided, G_DRATE is assumed as the risk-free rate.
+  <br>By providing G_RFRIR, the technology-specific risk premiums can be kept unchanged over any sensitivity analyses with different G_DRATE values.
+  - Risk-free real interest rate in region r for each time-period.
+  <br>Provides the reference rate for NCAP_DRATE, such that the risk premium will be calculated against the risk-free rate.
+  - The rate is taken into consideration when constructing the objective function coefficients for investment costs. EQ_OBJINV, EQ_OBJSALV
+* - G_ILEDNO
+  - NCAP_ILED
+  - Decimal fraction
+  <br>\[0,1\];
+  <br>default value: 0.1
+  - Only provided when the costs associated with the lead-time for new capacity (NCAP_ILED) are not to be included in the objective function.
+  <br>Not taken into account if the OBLONG switch or any alternative objective formulation is used.
+  - If the ratio of lead-time (NCAP_ILED) to the period duration (D) is below this threshold then the lead-time consideration will be ignored in the objective function costs.
+  - Prevents the investment costs associated with investment lead-times from energy the investment component of the objective function (EQ_OBJINV).
+* - G_NOINTERP
+  - All parameters that are normally subjected to interpolation / extrapolation
+  - Binary indicator
+  <br>\[0 or 1\];
+  <br>default value = 0
+  - Only provide when interpolation / extrapolation is to be turned off for all parameters.
+  <br>Interpolation of cost parameters is always done.
+  - Switch for generally turning-on (= 0 ) and turning-off (= 1 ) sparse inter- / extrapolation.
+  - 
+* - G_OFFTHD 
+  <br>(datayear)
+  - PRC_NOFF, PRC_AOFF, PRC_FOFF, COM_OFF
+  - Scalar
+  <br>\[0,1\]
+  <br>Default value: 0
+  <br>Default i/e: 5
+  - Setting G_OFFTHD=1 will make the \*\_OFF attributes effective only for periods fully included in the OFF range specified.
+  - Threshold for considering an \*\_OFF attribute disabling a process/commodity variable in period.
+  - Affects availability of VAR_NCAP, VAR_ACT, VAR_FLO, VAR_COMNET/PRD
+* - G_OVERLAP
+  - 
+  - Scalar
+  <br>\[0,100\]
+  <br>Default value: TIMESTEP/2
+  - Used only when time-stepped solution is activated with the TIMESTEP control variable.
+  - Overlap of stepped solutions (in years).
+  - --
+* - G_TLIFE
+  - NCAP_TLIFE
+  - Scalar
+  <br>\[1,∞);
+  <br>default value = 10
+  - 
+  - Default value for the technical lifetime of a process if not provided by the user.
+  - 
+* - G_YRFR 
+  <br>(all_r,s)
+  - RTCS_TSFR, RS_STGPRD
+  - Fraction
+  <br>\[0,1\];
+  <br>default value: none; only for the ANNUAL timeslice a value of 1 is predefined
+  - Must be provided for each region and timeslice.
+  - Duration of timeslice s as fraction of a year. Used for shaping the load curve and lining up timeslice duration for inter-regional exchanges.
+  - Applied to various variables (VAR_NCAP+PASTI, VAR_COMX, VAR_IRE, VAR_FLO, VAR_SIN/OUT) in the commodity balance equation (EQ(l)\_COMBAL).
+* - IRE_BND 
+  <br>(r,datayear,c,s,all_r,ie,bd)
+  - top_ire
+  - Commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Only applicable for inter-regional exchange processes (IRE).
+  <br>If the bound is specified for a timeslice (s) being above the commodity (c) timeslice resolution, the bound is applied to the sum of the imports/exports according to the timeslice tree.
+  <br>Standard aggregation.
+  - Bound on the total import (export) of commodity (c) from (to) region all_r in (out of) region r.
+  - Controls the instances for which the trade bound constraint (EQ(l)\_IREBND) is generated, and the RHS.
+* - IRE_CCVT 
+  <br>(r1,c1,r2,c2))
+  - IRE_TSCVT, top_ire
+  - Scalar
+  <br>(0,∞)
+  <br>Default value: 1 if commodity names are the same in both regions
+  <br>I/e: N/A
+  - Required for mapping commodities involved in inter-regional exchanges between two regions whenever commodities traded are in different units in the regions.
+  - Conversion factor between commodity units in region r1 and region r2. Expresses the amount of commodity c2 in region r2 equivalent to 1 unit of commodity c1 in region r1.
+  - The conversion factor is applied to the flow variable (VAR_IRE) in the inter-regional balance constraint (EQ_IRE).
+  <br>Similarly, applied to the flow variable (VAR_IRE) when an inter-regional exchange is bounded in the limit constraint (EQ(l)\_IREBND).
+  <br>Similarly, applied to the flow variable (VAR_IRE) when an exchange with an external region is bounded (EQ(l)\_XBND).
+* - IRE_FLO 
+  <br>(r1,datayear,p,c1,r2,c2,s2)
+  - top_ire
+  - Commodity unit c2/commodity unit c1
+  <br>\[0,∞);
+  <br>default value: 1
+  <br>Default i/e: STD
+  - Only applicable for inter-regional exchange processes (IRE) between two internal regions.
+  <br>Note that for each direction of trade a separate IRE_FLO needs to be specified.
+  <br>Similar to FLO_FUNC for standard processes.
+  <br>Direct inheritance.
+  <br>Weighted aggregation.
+  - Efficiency of exchange process from commodity c1 in region r1 to commodity c2 in the region2 in timeslice s2; the timeslice s2 refers to the r2 region.
+  - Applied to the exchange flow variable (VAR_IRE) in the inter-regional trade equation (EQ_IRE).
+  <br>Applied to the exchange flow variable (VAR_IRE) when a bound on inter-regional trade is to be applied (EQ(l)\_IREBND).
+* - IRE_FLOSUM 
+  <br>(r,datayear,p,c1,s,ie,c2,io)
+  - top_ire
+  - Commodity unit c2/commodity unit c1
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Only applicable for inter-regional exchange processes (IRE).
+  <br>Since the efficiency IRE_FLO can only be used for exchange between internal regions, IRE_FLOSUM may be used to define an efficiency for an import/export with an external region by specifying the same commodity for c1 and c2 and the value 1-efficiency as auxiliary consumption.
+  <br>Direct inheritance.
+  <br>Weighted aggregation.
+  - Auxiliary consumption (io = IN, owing to the commodity entering the process) or production/ emission (io = OUT, owing to the commodity leaving the process) of commodity c2 due to the IMPort / EXPort (index ie) of the commodity c1 in region r[^30]
+  - The multiplier is applied to the flow variable (VAR_IRE) associated with an inter-reginal exchange in the commodity balance constraint (EQ(l)\_COMBAL).
+  <br>If a flow share (FLO_SHAR) is provided for an inter-regional exchange process then the multiplier is applied to the flow variable (VAR_IRE) in the share constraint (EQ(l)\_IN/OUTSHR).
+  <br>If a cost is provided for the flow (FLO_COST or FLO_DELIV) then the factor is applied to the flow variable (VAR_IRE) in the variable component of the objective function (EQ_OBJVAR).
+* - IRE_PRICE 
+  <br>(r,datayear,p,c,s,all_r,ie,cur)
+  - OBJ_IPRIC, CST_COMC, CST_PVP, top_ire
+  - Monetary unit / commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Only applicable for inter-regional exchange processes (IRE).
+  <br>Ignored if all_r is an internal region.
+  <br>Direct inheritance.
+  <br>Weighted aggregation.
+  - IMPort/EXPort price (index ie) for to/from an internal region of a commodity (c) originating from/heading to an external region all_r.
+  - The price of the exchange commodity is applied to the trade flow variable (VAR_IRE) in the variable costs component of the objective function (EQ_OBJVAR).
+* - IRE_TSCVT 
+  <br>(r1,s1,r2,s2)
+  - IRE_CCVT, top_ire
+  - Scalar
+  <br>(0,∞);
+  <br>default value: 1 if timeslice tree and names are the same in both regions
+  <br>I/e: N/A
+  - Used for mapping timeslices in different regions.
+  <br>Required if timeslice definitions are different in the regions.
+  - Matrix for mapping timeslices; the value for (r1,s1,r2,s2) gives the fraction of timeslice s2 in region r2 that falls in timeslice s1 in region r1.
+  - The conversion factor is applied to the flow variable (VAR_IRE) in the inter-regional balance constraint (EQ_IRE).
+  <br>Similarly, applied to the flow variable (VAR_IRE) when an inter-regional exchange is bounded in the limit constraint (EQ(l)\_IREBND).
+  <br>Similarly, applied to the flow variable (VAR_IRE) when an exchange with an external region is bounded (EQ(l)\_XBND).
+* - IRE_XBND 
+  <br>(all_r,datayear,c,s ie,bd)
+  - top_ire
+  - Commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Only applicable for inter-regional exchange processes (IRE).
+  <br>Provide whenever a trade flow is to be constrained.
+  <br>Note that the limit is either imposed by summing lower or splitting higher flow variables (VAR_IRE) when specified at other than the actual flow level (as determined by the commodity and process levels (COM_TSL/ PRC_TSL ).
+  - Bound on the total IMPort (EXPort) (index ie) of commodity c in region all_r with all sources (destinations).
+  - The trade limit equation EQ(l)\_XBND generated either sums lower flow variables (VAR_IRE) or splits (according to the timeslice tree) coarser variables.
+* - MULTI 
+  <br>(j,allyear)
+  - NCAP_AFM, NCAP_FOMM, NCAP_FSUBM, NCAP_FTAXM
+  - Scalar
+  <br>\[open\];
+  <br>default value: none
+  <br>I/e: Full dense interpolation and extrapolation
+  - Only provided when the related shaping parameters are to be used.
+  - Multiplier table used for any shaping parameters (\*\_\*M) to adjust the corresponding technical data as function of the year; the table contains different multiplier curves identified by the index j.
+  - *{See Related Parameters}*
+* - NCAP_AF 
+  <br>(r,datayear,p,s,bd)
+  - NCAP_AFA, NCAP_AFS, NCAP_AFM, NCAP_AFX, COEF_AF
+  - Decimal fraction
+  <br>\[0,1\];
+  <br>default value: 1
+  <br>Default i/e: STD
+  <br>Remark: In special cases values \>1 can also be used (when PRC_CAPACT does not represent the max. technical level of activity per unit of capacity).
+  - NCAP_AF, NCAP_AFA and NCAP_AFS can be applied simultaneously.
+  <br>Direct inheritance.
+  <br>Weighted aggregation.
+  <br>(Important remark: No inheritance/aggregation if any value is specified at process timeslices.)
+  - Availability factor relating a unit of production (process activity) in timeslice s to the current installed capacity.
+  - The corresponding capacity-activity constraint (EQ(l)\_CAPACT) will be generated for any timeslice s.
+  <br>If the process timeslice level (PRC_TSL) is below said level, the activity variables will be summed.
+* - NCAP_AFA 
+  <br>(r,datayear,p,bd)
+  - NCAP_AFA, NCAP_AFS, NCAP_AFM, NCAP_AFX, COEF_AF
+  - Decimal fraction
+  <br>\[0,1\];
+  <br>default value: none
+  <br>Default i/e: STD
+  <br>Remark: In special cases values \>1 can also be used (when PRC_CAPACT has been chosen not to represent the max. technical level of activity per unit of capacity).
+  - Provided when 'ANNUAL' level process operation is to be controlled.
+  <br>NCAP_AF, NCAP_AFA and NCAP_AFS can be applied simultaneously.
+  <br>NCAP_AFA is always assumed to be non-vintage dependent, even if the process is defined as a vintaged one; for vintage-dependent annual availability NCAP_AFS with s='ANNUAL' can be used.
+  - Annual availability factor relating the annual activity of a process to the installed capacity.
+  - The corresponding capacity-activity constraint (EQ(l)\_CAPACT) will be generated for the 'ANNUAL' timeslice.
+  <br>If the process timeslice level (PRC_TSL) is below said level, the activity variables will be summed.
+* - NCAP_AFC 
+  <br>(r,datayear,p,cg,tsl)
+  - NCAP_AFCS
+  - Decimal fraction
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - If the commodities are in the PCG, constraint is applied to the flows in the PCG as a whole (linear combination of flows).
+  <br>Independent equations are generated for commodities not in the PCG, or when NCAP_AFC(r,'0',p,'ACT',tsl)=--1 is also specified.
+  - Commodity-specific availability of capacity for commodity group cg, at given timeslice level.
+  <br>Applies also matching NCAP_AF / AFS / AFA as a multiplier, unless the independent option is used.
+  - Generates instances of
+  <br>EQ(l)\_CAFLAC (thereby disabling EQ(l)\_CAPACT generation), or EQL_CAPFLO.
+* - NCAP_AFCS 
+  <br>(r,datayear,p,cg,ts)
+  - NCAP_AFC
+  - Decimal fraction
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - See NCAP_AFC.
+  <br>NCAP_AFCS is similar to NCAP_AFC but is defined on individual timeslices. Overrides NCAP_AFC.
+  - Commodity-specific availability of capacity for commodity group cg, timeslice-specific.
+  - See NCAP_AFC.
+* - NCAP_AFM 
+  <br>(r,datayear,p)
+  - NCAP_AF, NCAP_AFA, NCAP_AFS, MULTI, COEF_AF
+  - Integer number
+  <br>Default value: 0 (no multiplier applied)
+  <br>Default extrapolation: MIG
+  - Provided when multiplication of NCAP_AF / NCAP_AFS based upon year is desired.
+  <br>Note: Multiplier index 1 is reserved for constant 1.
+  - Period sensitive multiplier curve (MULTI) to be applied to the availability factor parameters (NCAP_AF/AFA/AFS) of a process.
+  - *{See Related Parameters}*
+* - NCAP_AFS 
+  <br>(r,datayear,p,s,bd)
+  - 
+  - Decimal fraction
+  <br>\[0,1\];
+  <br>default value: none
+  <br>Default i/e: STD
+  <br>Remark: In special cases values \>1 can also be used (in cases where PRC_CAPACT has been chosen not to represent the maximum technical level of activity per unit of capacity).
+  - NCAP_AF, NCAP_AFA and NCAP_AFS can be applied simultaneously.
+  <br>NCAP_AFS being specified for timeslices s being below the process timeslice level are ignored.
+  <br>No inheritance.
+  <br>No aggregation.
+  <br>Can be used also on the process timeslices, and will then override the levelized NCAP_AF availability factors.
+  - Availability factor relating the activity of a process in a timeslice s being at or above the process timeslice level (prc_tsl) to the installed capacity. If for example the process timeslice level is 'DAYNITE' and NCAP_AFS is specified for timeslices on the 'SEASONAL' level, the sum of the 'DAYNITE' activities within a season are restricted, but not the 'DAYNITE' activities directly.
+  - The corresponding capacity-activity constraint (EQ(l)\_CAPACT) will be generated for a timeslice s being at or above the process timeslice level (prc_tsl).
+  <br>If the process timeslice level is below said level, the activity variables will be summed.
+* - NCAP_AFSX 
+  <br>(r,datayear,p,bd)
+  - NCAP_AFS, SHAPE, COEF_AF
+  - Integer number
+  <br>Default value: 0 (no shape curve applied)
+  <br>Default extrapolation: MIG
+  - Provided when shaping based upon age is desired.
+  <br>NCAP_AFSX is applied to NCAP_AFS, but not on the annual level if availability is also defined by NCAP_AFA.
+  <br>The SHAPE parameter is applied even for non-vintaged process whenever NCAP_AFSX is specified, i.e. NCAP_AFS availabilities will then be vintaged.
+  <br>Note: Shape index 1 is reserved for constant 1.
+  - Age-based shaping curve (SHAPE) to be applied to the seasonal availability factor parameters (NCAP\_ AFS) of a process.
+  - *{See Related Parameters}*
+* - NCAP_AFX 
+  <br>(r,datayear,p)
+  - NCAP_AF, NCAP_AFA, NCAP_AFS, SHAPE, COEF_AF
+  - Integer number
+  <br>Default value: 0 (no shape curve applied)
+  <br>Default extrapolation: MIG
+  - Provided when shaping based upon age is desired.
+  <br>NCAP_AFX is applied to NCAP_AF and NCAP_AFS, but not the annual availability NCAP_AFA.
+  <br>For non-vintaged process, the SHAPE parameter is only applied to NCAP_AF, i.e. availabilities at process timeslices will be vintaged.
+  <br>Note: Shape index 1 is reserved for constant 1.
+  - Age-based shaping curve (SHAPE) to be applied to the availability factor parameters (NCAP_AF/AFA/AFS) of a process.
+  - *{See Related Parameters}*
+* - NCAP_BND 
+  <br>(r,datayear,p,bd)
+  - 
+  - Capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Provided for each process to have its overall installed capacity (VAR_NCAP) limited in a period.
+  <br>Since inter-/extrapolation default is MIG, a bound must be specified for each period desired, if no explicit inter-/extrapolation option is given, e.g. NCAP_BND(R,'0',P) =2.
+  - Bound on the permitted level on investment in new capacity
+  - Imposes an indirect limit on the capacity transfer equation (EQ_CPT) by means of a direct bound on the new investments capacity variable (VAR_NCAP).
+* - NCAP_BPME 
+  <br>(r,datayear,p)
+  - NCAP_CDME
+  - Decimal fraction
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - The parameter is only taken into account when the process is of type CHP, and NCAP_CDME has been also defined.
+  - Back pressure mode efficiency (or total efficiency in full CHP mode).
+  - Process transformation equation, either EQE_ACTEFF or EQ_PTRANS
+* - NCAP_CDME 
+  <br>(r,datayear,p)
+  - NCAP_BPME
+  - Decimal fraction
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - The parameter can only be used for standard processes having electricity output in the PCG. The efficiency is applied between the default shadow group and the electricity. If the process is also defined as a CHP, heat efficiency is also included.
+  - Condensing mode efficiency
+  - Process transformation equation, either EQE_ACTEFF or EQ_PTRANS
+* - NCAP_CEH 
+  <br>(r,datayear,p)
+  - NCAP_CHPR, ACT_EFF
+  - Decimal fraction
+  <br>\[--1,∞\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - The parameter is only taken into account when the process is defined to be of type CHP. According to the CEH value, the process activity will be defined as:
+  <br>CEH ≤ 0: Max. electricity output according to CHPR
+  <br>0 \< CEH ≤1: Condensing mode electricity output
+  <br>CEH ≥ 1: Total energy output in full CHP mode.
+  - Coefficient of electricity to heat along the iso-fuel line in a pass-out CHP technology.
+  - Process transformation equation, either EQE_ACTEFF or EQ_PTRANS
+* - NCAP_CHPR 
+  <br>(r,datayear,p,lim)
+  - FLO_SHAR
+  - Decimal fraction
+  <br>\[0,∞);
+  <br>default value: 1 (only when process type is CHP, for lim=\'UP\')
+  <br>Default i/e: STD
+  - The parameter is only taken into account when the process is defined to be of type CHP. The defaults can be disabled by defining any i/e value with lim=\'N\', which will eliminate the output share equations.
+  - Heat-to-power ratio of a CHP technology (fixed / minimum / maximum ratio). If no ratio equations should be generated, one can define any I/E value with lim=\'N\'.
+  - Activates the generation of output share equations, implemented with EQ(l)\_OUTSHR
+* - NCAP_CLAG 
+  <br>(r,datayear,p,c,io)
+  - NCAP_CLED, NCAP_COM
+  - Years
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when there is a delay in commodity output after commissioning new capacity. So, if the process is available in the year K, the commodity is produced during the years \[K+CLAG, K+NCAP_TLIFE--1\].
+  - Lagtime of a commodity after new capacity is installed.
+  - Applied to the investment variable (VAR_NCAP) in the commodity balance (EQ(l)\_COMBAL) of the investment period or previous periods.
+* - NCAP_CLED 
+  <br>(r,datayear,p,c)
+  - NCAP_ICOM, COEF_ICOM
+  - Years
+  <br>\[open\];
+  <br>default value: = NCAP_ILED
+  <br>Default i/e: STD
+  - Provided when a commodity must be available prior to availability of a process. So, if the process is available in the year B(v) +NCAP_ILED--1, the commodity is produced during the time span \[B(v)+ILED--CLED, B(v) +NCAP_ILED--1\].
+  <br>Usually used when modelling the need for fabrication of reactor fuel the period before a reactor goes online.
+  - Lead time requirement for a commodity during construction (NCAP_ICOM), prior to the initial availability of the capacity.
+  - Applied to the investment variable (VAR_NCAP) in the commodity balance (EQ(l)\_COMBAL) of the investment period or previous periods.
+* - NCAP_COM 
+  <br>(r,datayear,p,c,io)
+  - rpc_capflo, rpc_conly
+  - Commodity unit per capacity unit
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when the consumption or production of a commodity is tied to the level of the installed capacity.
+  - Emission (or land-use) of commodity c associated with the capacity of a process for each year said capacity exists.
+  - Applied to the capacity variable (VAR_CAP) in the commodity balance (EQ_COMBAL).
+* - NCAP_COST 
+  <br>(r,datayear,p)
+  - OBJ_ICOST, OBJSCC, CST_INVC, CST_PVP
+  - Monetary unit per capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided whenever there is a cost associated with putting new capacity in place.
+  - Investment costs of new installed capacity according to the installation year.
+  - Applied to the investment variable (VAR_NCAP) when entering the objective function (EQ_OBJNV).
+  <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
+* - NCAP_CPX 
+  <br>(r,datayear,prc)
+  - COEF_CPT
+  - Integer number
+  <br>Default value: 0
+  <br>(no shape curve applied)
+  <br>Default extrapolation:
+  <br>MIG
+  - Provided when shaping based upon age is desired.
+  <br>The SHAPE index given by NCAP_CPX is applied to the internal capacity transfer parameter (COEF_CPT).
+  <br>Note: Shape index 1 is reserved for constant 1.
+  - Defines a shape index for shaping the capacity transfer coefficients by the age of each process vintage. As a result, the capacity will have a survival rate as a function of age.
+  - Impacts all calculations that are dependent upon the availability of capacity (VAR_NCAP), most directly the capacity transfer (EQ_CPT), and capacity availability equations (EQ(l)\_CAPACT).
+* - NCAP_DCOST 
+  <br>(r,datayear,p,cur)
+  - NCAP_DLAG, COR_SALVD, OBJ_DCOST, CST_DECC, CST_PVP
+  - Monetary unit per capacity unit
+  <br>\[0,∞); default value: none
+  <br>Default i/e: STD
+  - Provided when there are decommissioning costs associated with a process.
+  <br>Decommissioning of a process and the payment of decommissioning costs may be delayed by a lag time (NCAP_DLAG).
+  - Cost of dismantling a facility after the end of its lifetime.
+  - Applied to the current capacity subject to decommissioning (VAR_NCAP+NCAP_PASTI) when entering the objective function (EQ_OBJNV).
+* - NCAP_DELIF 
+  <br>(r,datayear,p)
+  - NCAP_DLIFE, COR_SALVD, DUR_MAX, OBJ_CRFD, SALV_DEC
+  - Years
+  <br>(0,∞);
+  <br>default value: NCAP_DLIFE
+  <br>Default i/e: STD
+  - Provided when the timeframe for paying for decommission is different from that of the actual decommissioning.
+  - Economic lifetime of the decommissioning activity.
+  - Applied to the investment variable (VAR_NCAP) when entering the salvage portion of the objective function (EQ_OBJSALV).
+* - NCAP_DISC 
+  <br>(r,datayear,p,unit)
+  - rp_dscncap
+  - Capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Used for lumpy investments.
+  <br>Requires MIP.
+  <br>Since inter-/extrapolation default is MIG, a value must be specified for each period desired, if no explicit inter-/extrapolation option is given.
+  - Size of capacity units that can be added.
+  - Applied to the lumpy investment integer variable (VAR_DNCAP) in the discrete investment equation (EQ_DSCNCAP) to set the corresponding standard investment variable level (VAR_NCAP).
+* - NCAP_DLAG 
+  <br>(r,datayear,p)
+  - COEF_OCOM, DUR_MAX, OBJ_DLAGC
+  - Years
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when there is a lag in the decommissioning of a process (e.g., to allow the nuclear core to reduce its radiation).
+  - Number of years delay before decommissioning can begin after the lifetime of a technology has ended.
+  - Delay applied to a decommissioning flow (VAR_FLO) in the balance equation (EQ(l)\_COMBAL) as production.
+  <br>Delay applied to the current capacity subject to decommissioning (VAR_NCAP+NCAP_PASTI) when entering the objective function components (EQ_OBJINV, EQ_OBJFIX, EQ_OBJSALV).
+* - NCAP_DLAGC 
+  <br>(r,datayear,p,cur)
+  - NCAP_DLAG, OBJ_DLAGC, CST_DECC, CST_PVP
+  - Monetary unit per capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when there is a cost during any lag in the decommissioning (e.g., security).
+  - Cost occurring during the lag time after the technical lifetime of a process has ended and before its decommissioning starts.
+  - Cost during delay applied to the current capacity subject to decommissioning (VAR_NCAP+NCAP_PASTI) when entering the objective function components (EQ_OBJFIX, EQ_OBJSALV).
+* - NCAP_DLIFE 
+  <br>(r,datayear,p)
+  - DUR_MAX
+  - Years
+  <br>(0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when a process has a decommissioning phase.
+  - Technical time for dismantling a facility after the end its technical lifetime, plus any lag time (NCAP_DLAG).
+  - Decommissioning time impacting (VAR_NCAP+NCAP_PASTI) when entering the objective function components (EQ_OBJINV, EQ_OBJSALV).
+* - NCAP_DRATE 
+  <br>(r,datayear,p)
+  - G_DRATE, COR_SALVI, COR_SALVD
+  - Percent
+  <br>(0,∞);
+  <br>default value: G_DRATE
+  <br>Default i/e: STD
+  - Provided if the cost of borrowing for a process is different from the standard discount rate.
+  - Technology specific discount rate.
+  - Discount rate applied to investments (VAR_NCAP+NCAP_PASTI) when entering the objective function components (EQ_OBJINV, EQ_OBJSALV).
+* - NCAP_ELIFE 
+  <br>(r,datayear,p)
+  - NCAP_TLIFE, COR_SALVI, OBJ_CRF
+  - years
+  <br>(0,∞);
+  <br>default value: NCAP_TLIFE
+  <br>Default i/e: STD
+  - Provided only when the economic lifetime differs from the technical lifetime (NCAP_TLIFE).
+  - Economic lifetime of a process.
+  - Economic lifetime of a process when costing investment (VAR_NCAP+NCAP_PASTI) or capacity in the objective function components (EQ_OBJINV, EQ_OBJSALV, EQ_OBJFIX).
+* - NCAP_FDR 
+  <br>(r,datayear,prc)
+  - NCAP_COST
+  - Decimal fraction (0,∞);
+  <br>default value:none
+  <br>Default i/e: STD
+  - Provided when the effect of functional depreciation is considered significant to justify accelerated decrease in salvage value.
+  - Defines an annual rate of additional depreciation in the salvage value.
+  - Affects the salvage value coefficients in EQ_OBJSALV
+* - NCAP_FOM 
+  <br>(r,datayear,p,cur)
+  - OBJ_FOM, CST_FIXC, CST_PVP
+  - Monetary unit per capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when there is a fixed cost associated with the installed capacity.
+  - Fixed operating and maintenance cost per unit of capacity according to the installation year.
+  - Fixed operating and maintenance costs associated with total installed capacity (VAR_NCAP+NCAP_PASTI) when entering the objective function components (EQ_OBJFIX).
+* - NCAP_FOMM 
+  <br>(r,datayear,p)
+  - NCAP_FOM, MULTI
+  - Integer number
+  <br>Default value: 0 (no multiplier curve applied)
+  <br>Default i/e: MIG
+  - Provided when shaping based upon the period is desired.
+  <br>Note: Multiplier index 1 is reserved for constant 1.
+  - Period sensitive multiplier curve (MULTI) applied to the fixed operating and maintenance costs (NCAP_FOM).
+  - *{See Related Parameters}*
+* - NCAP_FOMX 
+  <br>(r,datayear,p)
+  - NCAP_FOM, SHAPE
+  - Integer number
+  <br>Default value: 0 (no shape curve applied)
+  <br>Default i/e: MIG
+  - Provided when shaping based upon age is desired.
+  <br>Note: Shape index 1 is reserved for constant 1.
+  - Age-based shaping curve (SHAPE) to be applied to the fixed operating and maintenance cost.
+  - *{See Related Parameters}*
+* - NCAP_FSUB 
+  <br>(r,datayear,p,cur)
+  - OBJ_FSB, CST_FIXX, CST_PVP
+  - Monetary unit per capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when there is a subsidy for associated with the level of installed capacity.
+  - Subsidy per unit of installed capacity.
+  - Fixed subsidy associated with total installed capacity (VAR_NCAP+NCAP_PASTI) when entering the objective function component (EQ_OBJFIX) with a minus sign.
+* - NCAP_FSUBM 
+  <br>(r,datayear,p)
+  - NCAP_FSUB, MULTI
+  - Integer number
+  <br>Default value: 0 (no multiplier curve applied)
+  <br>Default i/e: MIG
+  - Provided when shaping based upon the period is desired.
+  <br>Note: Multiplier index 1 is reserved for constant 1.
+  - Period sensitive multiplier curve (MULTI) applied to the subsidy (NCAP_FSUB).
+  - *{See Related Parameters}*
+* - NCAP_FSUBX 
+  <br>(r,datayear,p)
+  - NCAP_FSUB, SHAPE
+  - Integer number
+  <br>Default value: 0 (no shape curve applied)
+  <br>Default i/e: MIG
+  - Provided when shaping based upon age is desired.
+  <br>Note: Shape index 1 is reserved for constant 1.
+  - Age-based shaping curve (SHAPE) to be applied to the fixed subsidy (NCAP_FSUB).
+  - *{See Related Parameters}*
+* - NCAP_FTAX 
+  <br>(r,datayear,p,cur)
+  - OBJ_FTX, CST_FIXX, CST_PVP
+  - monetary unit per capacity unit
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when there is a fixed tax based upon the level of the installed capacity.
+  - Tax per unit of installed capacity.
+  - Fixed subsidy associated with total installed capacity (VAR_NCAP+NCAP_PASTI) when entering the objective function components (EQ_OBJFIX).
+* - NCAP_FTAXM 
+  <br>(r,datayear,p)
+  - NCAP_FTAX, MULTI
+  - Integer number
+  <br>Default value: 0 (no multiplier curve applied)
+  <br>Default i/e: MIG
+  - Provided when shaping based upon the period is desired.
+  <br>Note: Multiplier index 1 is reserved for constant 1.
+  - Period sensitive multiplier curve (MULTI) applied to the tax (NCAP_FTAX).
+  - *{See Related Parameters}*
+* - NCAP_FTAXX 
+  <br>(r,datayear,p)
+  - NCAP_FTAX, SHAPE
+  - Integer number
+  <br>Default value: 0 (no shape curve applied)
+  <br>Default i/e: MIG
+  - Provided when shaping based upon age is desired.
+  <br>Note: Shape index 1 is reserved for constant 1.
+  - Age-based shaping curve (SHAPE) to be applied to the fixed tax (NCAP_FTAX).
+  - *{See Related Parameters}*
+* - NCAP_ICOM 
+  <br>(r,datayear,p,c)
+  - NCAP_CLED, rpc_capflo, rpc_conly
+  - Commodity unit per capacity unit
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when a commodity is needed in the period in which the new capacity is to be available, or before NCAP_CLED.
+  <br>If NCAP_CLED is provided, the commodity is required during the years \[B(v)+NCAP_CLED,B(v)+NCAP_ILED-NCAP_CLED\]. If this time spans more than one period, the commodity flow is split up proportionally between the periods.
+  <br>For the commodity balance the commodity requirement in a period is converted to an average annual commodity flow for the entire period, although the construction may take place only for a few years of the period.
+  <br>Negative value describes production (e.g. emissions) at the time of a new investment.
+  - Amount of commodity (c) required for the construction of new capacity.
+  - Applied to the investment variable (VAR_NCAP) in the appropriate commodity constraints (EQ(l)\_COMBAL) as part of consumption.
+* - NCAP_ILED 
+  <br>(r,t,p)
+  - NCAP_ICOM, NCAP_COST, COEF_CPT, COEF_ICOM, DUR_MAX
+  - Years
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when there is a delay between when the investment decision occurs and when the capacity (new capacity or past investment) is initially available. If NCAP_ILED\>0, the investment decision is assumed to occur at B(v) and the capacity becomes available at B(v)+NCAP-ILED. If NCAP_ILED\<0, the investment decision is assumed to occur at B(v)-NCAP_ILED and the capacity becomes available at B(v). Causes an IDC overhead in the investment costs accounting.
+  - Lead time between investment decision and actual availability of new capacity (= construction time).
+  - Applied to the investment variable (VAR_NCAP) balance constraints (EQ(l)\_COMBAL) as part of consumption, if there is an associated flow (NCAP_ICOM).
+  <br>Used as to distinguish between small and large investments (VAR_NCAP) and thus influences the way the investment and fixed costs are treated in the objective function (EQ_OBJINV, EQ_OBJFIX, EQ_OBJSALV).
+* - NCAP_ISPCT 
+  <br>(r,datayear,p)
+  - NCAP_ISUB, OBJ_ISUB, CST_INVX
+  - Decimal fraction
+  <br>(−∞,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when defining an investment subsidy in proportion to the investment cost.
+  <br>Requires that NCAP_COST is defined.
+  - Unit investment subsidy as a fraction of unit investment costs, in the same currency unit, per unit of new capacity.
+  - Applied to the investment variable (VAR_NCAP) when entering the objective function (EQ_OBJNV) with a minus sign.
+* - NCAP_ISUB 
+  <br>(r,datayear,p,cur)
+  - OBJ_ISUB, OBJSCC, CST_INVX, CST_SALV, CST_PVP
+  - monetary unit per capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when there is a subsidy for new investments in a period.
+  - Subsidy per unit of new installed capacity.
+  - Applied to the investment variable (VAR_NCAP) when entering the objective function (EQ_OBJNV) with a minus sign.
+  <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
+* - NCAP_ITAX 
+  <br>(r,datayear,p,cur)
+  - OBJ_ITAX, OBJSCC, CST_INVX, CST_SALV, CST_PVP
+  - monetary unit per capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when there is a tax associated with new investments in a period.
+  - Tax per unit of new installed capacity
+  - Applied to the investment variable (VAR_NCAP) when entering the objective function (EQ_OBJNV).
+  <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
+* - NCAP_MSPRF 
+  <br>(r,datayear,c,p,lim)
+  - COM_MSHGV
+  - Unit: dimensionless
+  <br>(0, ∞);
+  <br>Default value: none
+  <br>Default i/e: STD
+  - Optional parameter for the logit market sharing mechanism, for process p supplying market c.
+  - In the logit market sharing mechanism, defines preference weights (lim=\'N\') and intangible costs (lim=\'LO\')
+  - EQ_MSNCAPB
+* - NCAP_OCOM 
+  <br>(r,datayear,p,c)
+  - NCAP_VALU, rpc_capflo, rpc_conly
+  - Commodity unit per capacity unit
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when there is a commodity release associated with the decommissioning.
+  <br>The year index of the parameter corresponds to the vintage year.
+  <br>If the decommissioning time (NCAP_DLIFE) falls in more than one period, is split up proportionally among the periods.
+  <br>For the commodity balance the commodity release in a period is converted to an average annual commodity flow for the entire period, although the dismantling may take place only for a few years of the period.
+  - Amount of commodity c per unit of capacity released during the dismantling of a process.
+  - Applied to the investment variable (VAR_NCAP) in the appropriate commodity constraints (EQ(l)\_COMBAL) as part of production in the appropriate period.
+* - NCAP_OLIFE 
+  <br>(r,datayear,p)
+  - NCAP_TLIFE
+  - Years
+  <br>(0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Requires that early retirements are enabled and the process is vintaged.
+  - Maximum operating lifetime of a process, in terms of full-load years.
+  - EQL_SCAP
+* - NCAP_PASTI 
+  <br>(r,pastyear,p)
+  - NCAP_PASTY, OBJ_PASTI, PAR_PASTI, PRC_RESID
+  - capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>No i/e
+  - Past investment can also be specified for milestone years, e.g. if the milestone year is a historic year, so that capacity additions are known or if planned future investments are already known.
+  - Investment in new capacity made before the beginning of the model horizon (in the year specified by pastyear).
+  - EQ(l)\_COMBAL, EQ_CPT, EQ_OBJINV, EQ_OBJSALV, EQ_OBJFIX
+* - NCAP_PASTY 
+  <br>(r,pastyear,p)
+  - NCAP_PASTI
+  - Years
+  <br>\[1,999\];
+  <br>default value: none
+  <br>No i/e
+  - Provided to spread a single past investment (NCAP_PASTI) back over several years (e.g., cars in the period before the 1^st^ milestoneyr were bought over the previous 15 years).
+  <br>If overlaps with other past investments, the capacity values are added.
+  - Number of years to go back to calculate a linear build-up of past investments
+  - *{See NCAP_PASTI}*
+* - NCAP_PKCNT 
+  <br>(r,datayear,p,s)
+  - com_peak, com_pkts, prc_pkaf, prc_pkno
+  - Decimal fraction
+  <br>\[0,1\];
+  <br>default value: 1
+  <br>Default i/e: STD
+  - If the indicator PRC_PKAF is specified, the NCAP_PKCNT is set equal to the availabilities NCAP_AF.
+  <br>Direct inheritance.
+  <br>Weighted aggregation.
+  - Fraction of capacity that can contribute to peaking equations.
+  - Applied to investments in capacity (VAR_NCAP, NCAP_PASTI) in the peaking constraint (EQ_PEAK).
+* - NCAP_SEMI 
+  <br>(r,datayear,p)
+  - NCAP_DISC
+  - Capacity unit
+  <br>(0,∞);
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Upper bound for the capacity must be defined by NCAP_BND; if not defined, assumed to be equal to the lower bound.
+  <br>Requires MIP.
+  - Semi-continuous new capacity, lower bound. (See Section 5.9)
+  - Applied to the semi-continuous investment variable VAR_SNCAP in the discrete investment equation EQ_DSCNCAP
+* - NCAP_START 
+  <br>(r,p)
+  - PRC_NOFF
+  - Year
+  <br>\[1000,∞);
+  <br>default value: none
+  - NCAP_START(r,p)=y
+  <br>is equivalent to
+  <br>PRC_NOFF(r,p,BOH,y--1).
+  - Start year for new investments
+  - Affects the availability of investment variable (VAR_NCAP)
+* - NCAP_TLIFE 
+  <br>(r,datayear,p)
+  - NCAP_ELIFE, COEF_CPT, COEF_RPTI, DUR_MAX
+  - Years
+  <br>(0,∞);
+  <br>default value: G_TLIFE
+  <br>Default i/e: STD
+  - Expected for all technologies that have investment costs.
+  <br>Values below 0.5 cannot be well accounted in the objective function, and should thus be avoided (they are automatically resetted to 1).
+  - Technical lifetime of a process.
+  - Impacts all calculations that are dependent upon the availability of investments (VAR_NCAP) including capacity transfer (EQ_CPT), commodity flow (EQ(l)\_COMBAL), costs (EQ_OBJINV, EQ_OBJFIX, EQ_OBJVAR, EQ_OBJSALV).
+* - NCAP_VALU 
+  <br>(r,datayear,p,c,cur)
+  - NCAP_OCOM
+  - Monetary unit / commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Provided when a released commodity has a value.
+  - Value of a commodity released at decommissioning (NCAP_OCOM).
+  - Applied to the investment related (VAR_NCAP, NCAP_PASTI) release flow at decommissioning in the objective function (EQ_OBJSALV).
+* - PRC_ACTFLO 
+  <br>(r,datayear,p,cg)
+  - PRC_CAPACT, prc_actunt, prc_spg, rpc_aire
+  - Commodity unit / activity unit
+  <br>(0,∞);
+  <br>default value: 1
+  <br>Default i/e: STD
+  - Only (rarely) provided when either the activity and flow variables of a process are in different units, or if there is a conversion efficiency between the activity and the flow(s) in the PCG.
+  <br>The group (cg) can be the whole PCG or any individual commodity in the PCG, or \'ACT\' (=PCG).
+  - 1\) Conversion factor from units of activity to units of those flow variables that define the activity (primary commodity group),
+  <br>or,
+  <br>2\) Conversion multiplier representing the amount of flow(s) in the cg per 1 unit of activity.
+  - Applied to the primary commodity (prc_pcg) flow variables (VAR_FLO, VAR_IRE) to relate overall activity (VAR_ACT in EQ_ACTFLO).
+  <br>When the Reduction algorithm activated it is applied to the activity variable (VAR_ACT) in those cases where the flow variable (VAR_FLO) can be replaced by the activity variable (e.g. the activity is defined by one commodity flow).
+* - PRC_CAPACT 
+  <br>(r,p)
+  - PRC_ACTFLO, PRC_ACTUNT
+  - Activity unit / capacity unit
+  <br>(0,∞);
+  <br>default value: 1
+  <br>Default i/e: none
+  - 
+  - Conversion factor from capacity unit to activity unit assuming that the capacity is used for one year.
+  - Applied along with the availability factor (NCAP_AF) to the investment (VAR_NCAP + NCAP_PASTI) in the utilization equations (EQ(l)\_CAPACT, EQ(l)\_CAFLAC).
+  <br>Applied to the investment (VAR_NCAP + NCAP_PASTI) in the peak constraint (EQ_PEAK).
+  <br>Applied to the investment (VAR_NCAP + NCAP_PASTI) in the capacity utilization constraint for CHP plants (ECT_AFCHP) and peak constraint in the IER extension (see Part III).
+* - PRC_GMAP 
+  <br>(r,prc,item)
+  - GR_GENMAP
+  - Dimensionless
+  <br>(∞,∞);
+  <br>default value: none
+  <br>Default i/e: none
+  - Provided when process groupings are needed for custom processing e.g. in a TIMES code extension.
+  - User-defined grouping of processes by group indicator **item**.
+  - *None*
+* - PRC_MARK 
+  <br>(r,datayear,p,item,c,bd)
+  - FLO_MARK
+  - Decimal fraction
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: 11
+  - Combined limit on commodity production is derived as the sum of the process-specific productions multiplied by the inverse values of PRC_MARK. The constraint is applied to the annual production of commodity.
+  <br>Item can be a any desired label identifying the group.
+  - Process group-wise market share, which defines a constraint for the combined market share of multiple processes in the total commodity production.
+  - EQ(l)\_FLOMRK, VAR_COMPRD
+* - PRC_REFIT 
+  <br>(r,prc,p)
+  - PRC_RCAP
+  - Dimensionless
+  <br>\[--3,3\];
+  <br>default value: none
+  <br>Default i/e: n/a
+  - Requires that early retirements are allowed in the model. The parameter value determines the type of the refurbishment option as follows:
+  <br>- Value=(±1 mod 2): Technology p will be a lifetime extension option (+1), or a retrofit option (−1), for the host prc
+  <br>- Value=2 for p=prc: refitted capacity in each period is forced to be equal to the retired capacity of the host prc
+  - Defines a mapping of host process prc to a retrofit or lifetime extension option p in region r, where p is another process representing the refurbishment option. The value of the parameter determines the type of the refurbishment option (see column on the left).
+  - Activates generation of the retrofit / lifetime extension equations (EQL_REFIT)
+* - PRC_RESID 
+  <br>(r,datayear,p)
+  - NCAP_PASTI
+  - Capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: 1
+  <br>(options 5/15 may be used for extrapolation over TLIFE, other i/e options are ignored)
+  - If only a single data point is specified, linear decay of the specified residual capacity over technical lifetime is assumed.
+  <br>Used as an alternative to NCAP_PASTI, not to use both for the same process.
+  - Residual existing capacity stock of process (p) still available in the year specified (datayear).
+  <br>PRC_RESID is most useful for describing the stock of capacity with mixed vintages, while NCAP_PASTI is suited for capacities of a certain vintages, such as an individual power plants.
+  - EQ(l)\_CAPACT, EQ(l)\_CAFLAC, EQL_CAPFLO, EQ(l)\_CPT, VAR_CAP
+* - R_CUREX 
+  <br>(r,cur1,cur2)
+  - G_CUREX
+  - Scalar
+  <br>(0,∞)
+  <br>Default value: none
+  <br>Default i/e: N/A
+  - The target currency cur2 must have a discount rate defined with G_DRATE.
+  - Conversion factor from currency cur1 to currency cur2 in region r, in order to use cur2 in the objective function.
+  - Affects cost coefficients in EQ_OBJ
+* - RCAP_BLK 
+  <br>(r,datayear,p)
+  - PRC_RCAP, RCAP_BND
+  - Capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Only effective when lumpy early capacity retirements are active (RETIRE=MIP). Requires MIP.
+  - Retirement block size.
+  - EQ_DSCRET, VAR_DRCAP, VAR_SCAP
+* - RCAP_BND 
+  <br>(r,datayear,p,bd)
+  - PRC_RCAP, RCAP_BLK
+  - Capacity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Unless the control variable DSCAUTO=YES, requires that PRC_RCAP is defined for process p.
+  - Bound on the retired amount of capacity in a period (same bound for all vintages).
+  - VAR_RCAP, VAR_SCAP
+* - REG_BDNCAP 
+  <br>(all_r,bd)
+  - REG_FIXT
+  - Year
+  <br>\[1000,∞);
+  <br>default value: none
+  - Only taken into account when a previous solution is loaded by using the LPOINT control variable.
+  <br>If several bound types are specified, one can use NCAP_BND(r,\'0\',p,\'N\')=±1 for assigning only an UP/LO bound for any process p.
+  - Defines the year up to which capacities are to be bounded by previous solution,
+  <br>by model region. One can choose FX/UP/LO bounds, as well as lower bounds only for selected processes.
+  - VAR_NCAP
+* - REG_BNDCST 
+  <br>(r,datayear,agg,cur,bd)
+  - REG_CUMCST
+  - Monetary unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: MIG
+  - The cost aggregations (agg) supported are listed in the set COSTAGG (see Table 1).
+  - Bound on regional costs by type of cost aggregation.
+  - EQ_BNDCST, VAR_CUMCST
+* - REG_CUMCST 
+  <br>(r,y1,y2,agg,cur,bd)
+  - REG_BNDCST
+  - Monetary unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: N/A
+  - The cost aggregations (agg) supported are listed in the set COSTAGG (see Table 1).
+  - Cumulative bound on regional costs by type of cost aggregation.
+  - EQ_BNDCST VAR_CUMCST
+* - REG_FIXT 
+  <br>(all_r)
+  - 
+  - Year
+  <br>\[1000,∞);
+  <br>default value: none
+  - Only taken into account when the first periods are fixed by using the FIXBOH control variable.
+  - Defines the year up to which periods are fixed to previous solution, by region
+  - --
+* - RPT_OPT 
+  <br>(item,j)
+  - 
+  - Integer value
+  <br>\[open\];
+  <br>default value: none
+  - See Part III, Table 15 for a list and descriptions of available options.
+  - Miscellaneous reporting options
+  - --
+* - SHAPE 
+  <br>(j,age)
+  - FLO_FUNC, FLO_SUM, NCAP_AFX, NCAP_FOMX, NCAP_FSUBX, NCAP_FTAXX
+  - Scalar
+  <br>\[open\];
+  <br>default value: none
+  <br>I/e: Full dense interpolation and extrapolation
+  - Provided for each age dependent shaping curve that is to be applied.
+  - Multiplier table used for any shaping parameters (\*\_\*X) to adjust the corresponding technical data as function of the age; the table can contain different multiplier curves that are identified by the index j.
+  - *{See Related Parameters}*
+* - STG_CHRG 
+  <br>(r,datayear,p,s)
+  - prc_nstts, prc_stgips, prc_stgtss
+  - Scalar
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Only applicable to storage processes (STG): timeslice storage, inter-period storage or night storage devices.
+  - Annual exogenous charging of a storage technology in a particular timeslice s.
+  - Exogenous charging of storage enters storage equations (EQ_STGTSS, EQ_STGIPS) as right-hand side constant.
+* - STG_EFF 
+  <br>(r,datayear,p)
+  - prc_nstts, prc_stgips, prc_stgtss
+  - Decimal fraction
+  <br>\[0,∞);
+  <br>default value: 1
+  <br>Default i/e: STD
+  - Only applicable to storage processes (STG): timeslice storage, inter-period storage or night storage devices.
+  - Efficiency of storage process.
+  - Applied to the storage output flow (VAR_SOUT) in the commodity balance (EQ(l)\_COMBAL) for the stored commodity.
+* - STG_LOSS 
+  <br>(r,datayear,p,s)
+  - prc_nstts, prc_stgips, prc_stgtss
+  - Scalar
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Only applicable to storage processes (STG): timeslice storage, inter-period storage or night storage devices.
+  <br>STG_LOSS\>0 defines the loss in proportion to the initial storage level during one year's storage time.
+  <br>STG_LOSS\<0 defines an equilibrium loss, i.e. how much the annual losses would be if the storage level is kept constant.
+  - Annual loss of a storage process per unit of average energy stored.
+  - Timeslice storage process (EQ_STGTSS): applied to the average storage level (VAR_ACT) between two consecutive timeslices.
+  <br>Inter-period storage process (EQ_STGIPS): applied to the average storage level from the pre-period (VAR_ACT) and the net inflow (VAR_SIN-VAR_SOUT) of the current period.
+* - STG_MAXCYC 
+  <br>(r,datayear,p)
+  - NCAP_AF
+  - Number of cycles
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Can only be used for genuine storage processes. The limit can be exceeded by paying for additional replacement capacity, with a penalty cost equal to the investment annuity.
+  - Defines the maximum number of storage cycles over the lifetime. Sets a limit for the total discharge divided by storage capacity.
+  - Activates generation of the cycle limit/penalty equations (EQL_STGCCL).
+* - STG_SIFT 
+  <br>(r,datayear,prc,com,ts)
+  - ACT_TIME
+  - Decimal fraction
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: STD
+  - Can only be used for a timeslice storage process. Levelized to the timeslice level of the process flow.
+  <br>Direct inheritance.
+  <br>By specifying com=\'ACT\' one can define a limit in total shifting over a season, in proportion to demand.
+  - Defines process prc as a load-shifting process, and limits the load shifting of demand com in timeslice ts to at most the fraction specified by the parameter value.
+  - Activates generation of load shifting constraints (EQ(l)\_SLSIFT).
+* - STGIN_BND 
+  <br>(r,datayear,p,c,s,bd)
+  - prc_nstts, prc_stgips, prc_stgtss
+  - Commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Only applicable to storage processes (STG): timeslice storage, inter-period storage or night storage devices.
+  - Bound on the input flow of a storage process in a timeslice s.
+  - Storage input bound constraint (EQ(l)\_STGIN) when s is above prc_tsl of the storage process.
+  <br>Direct bound on storage input flow (VAR_SIN) when at the prc_tsl level.
+* - STGOUT_BND 
+  <br>(r,datayear,p,c,s,bd)
+  - prc_nstts, prc_stgips, prc_stgtss
+  - Commodity unit
+  <br>\[0,∞);
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Only applicable to storage processes (STG): timeslice storage, inter-period storage or night storage devices.
+  - Bound on the output flow of a storage process in a timeslice s.
+  - Storage output bound constraint (EQ(l)\_STGIN) when s is above prc_tsl of the storage process.
+  <br>Direct bound on storage output flow variable (VAR_SOUT) when at the prc_tsl level.
+* - TL_CCAP0 
+  <br>(r,teg)
+  - (Alias: CCAP0), PAT, CCOST0
+  - Capacity unit
+  <br>\[open\];
+  <br>default value: none
+  - Requires using ETL.
+  <br>For learning technologies teg when ETL is used.
+  - Initial cumulative capacity of a learning technology.
+  - Cumulative investment constraint (EQ_CUINV) and cumulative capacity variable (VAR_CCAP) in endogenous technological learning formulation.
+* - TL_CCAPM 
+  <br>(r,teg)
+  - (Alias: CCAPM), CCOSTM
+  - Capacity unit
+  <br>\[open\];
+  <br>default value: none
+  - Requires using ETL.
+  <br>For learning technologies teg when ETL is used.
+  - Maximum cumulative capacity.
+  - Core ETL equations.
+* - TL_CLUSTER 
+  <br>(r,teg,prc)
+  - (Alias: CLUSTER), TL_MRCLUST
+  - Decimal fraction.
+  <br>\[0-1\];
+  <br>default value: none
+  - Requires using ETL (MIP).
+  <br>Provided to model clustered endogenous technology learning.
+  <br>Each of the learning parameters must also be specified for the key learning technology.
+  - Indicator that a technology (teg) is a learning component that is part of another technology (prc) in region r; teg is also called key component.
+  - EQ_CLU
+* - TL_MRCLUST 
+  <br>(r,teg,reg,p)
+  - TL_CLUSTER
+  - Decimal fraction.
+  <br>\[0-1\];
+  <br>default value: none
+  - Requires using ETL (MIP).
+  <br>Provided to model clustered endogenous technology learning.
+  <br>Each of the learning parameters must also be specified for the key learning technology.
+  - Mapping for multi-region clustering between learning key components (teg) and processes (p) that utilize the key component.
+  - EQ_MRCLU
+* - TL_PRAT 
+  <br>(r,teg)
+  - (Alias: PRAT), ALPH, BETA, CCAPK, CCOST0, PAT, PBT
+  - Scalar
+  <br>\[0,1\];
+  <br>default value none
+  - Requires using ETL.
+  <br>Provided for learning technologies (teg) when ETL is used.
+  - Progress ratio indicating the drop in the investment cost each time there is a doubling of the installed capacity.
+  - Fundamental factor to describe the learning curve and thus effects nearly all equations and variables related to endogenous technology learning (ETL).
+* - TL_SC0 
+  <br>(r,teg)
+  - (Alias: SC0)
+  - Monetary unit / capacity unit
+  <br>\[open\];
+  <br>default value: none
+  - Requires using ETL.
+  <br>For learning technologies teg when ETL is used.
+  - Initial specific investment costs.
+  - Defines together with CCAP0 initial point of learning curve and affects thus the core equations and variables of endogenous technological learning (ETL).
+* - TL_SEG 
+  <br>(r,teg)
+  - (Alias: SEG)
+  - Integer
+  <br>\[open\];
+  - Requires using ETL.
+  <br>For learning technologies teg when ETL is used.
+  <br>Currently limited to six segments by set kp.
+  - Number of segments.
+  - Influences the piecewise linear approximation of the cumulative cost curve (EQ_COS, EQ_LA1, EQ_LA2).
+* - TS_CYCLE 
+  <br>(r,ts)
+  - G_CYCLE
+  - Number of days
+  <br>\[1,∞);
+  <br>Default values:
+  <br>- 365 for ts=ANNUAL
+  <br>- 7 for any ts above the WEEKLY level
+  <br>- 1 for any ts above the DAYNITE level
+  - Recommended to be used whenever timeslice cycles are different from the default, instead of changing G_CYCLE. Does not affect interpretation of availability factors for storage level, which thus remain to be according to G_CYCLE.
+  - Defines the length of the timeslice cycles under timeslice ts, in days, and thereby also the number of timeslice cycles under each parent.
+  - Affects the calculation of actual timeslice lengths and number of timeslice cycles in various equations, notably storage and dispatching equations.
+* - UC_ACT 
+  <br>(uc_n,side,r,datayear,p,s)
+  - uc_n, uc_gmap_p
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default: i/e: STD
+  - Used in user constraints.
+  <br>Direct inheritance.
+  <br>Weighted aggregation.
+  - Coefficient of the activity variable VAR_ACT in a user constraint.
+  - EQ(l)\_UCXXX
+* - UC_CAP 
+  <br>(uc_n,side,r,datayear,p)
+  - uc_n, uc_gmap_p
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default: i/e: STD
+  - Used in user constraints.
+  - Coefficient of the activity variable VAR_CAP in a user constraint.
+  - EQ(l)\_UCXXX
+* - UC_CLI 
+  <br>(uc_n,side,r,datayear,item)
+  - 
+  - Dimensionless
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Used in user constraints.
+  <br>Climate variable can be at least any of CO2-GTC, CO2-ATM, CO2-UP, CO2-LO, FORCING, DELTA-ATM,
+  <br>DELTA-LO (for carbon).
+  <br>See Appendix on Climate Module for details.
+  - Multiplier of climate variable in user constraint
+  - EQ(l)\_UCXXX
+* - UC_COMCON 
+  <br>(uc_n,side,r,datayear,c,s)
+  - uc_n, uc_gmap_c
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default: i/e: STD
+  - Used in user constraints.
+  <br>No inheritance/aggregation (might be changed in the future).
+  - Coefficient of the commodity consumption variable VAR_COMCON in a user constraint.
+  - EQ(l)\_UCXXX
+* - UC_COMNET 
+  <br>(uc_n,side,r,datayear,c,s)
+  - uc_n, uc_gmap_c
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default: i/e: STD
+  - Used in user constraints.
+  <br>No inheritance/aggregation (might be changed in the future).
+  - Coefficient of the net commodity production variable VAR_COMNET in a user constraint.
+  - EQ(l)\_UCXXX
+* - UC_COMPRD 
+  <br>(uc_n,side,r,datayear,c,s)
+  - uc_n, uc_gmap_c
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default: i/e: STD
+  - Used in user constraints.
+  <br>No inheritance/aggregation (might be changed in the future).
+  - Coefficient of the total commodity production variable VAR_COMPRD in a user constraint.
+  - EQ(l)\_UCXXX
+* - UC_CUMACT 
+  <br>(uc_n,r,p,y1,y2)
+  - ACT_CUM
+  - Dimensionless
+  <br>\[open\];
+  <br>default value: none
+  <br>I/e: N/A
+  - Used in cumulative user constraints only.
+  - Multiplier of cumulative process activity variable in user constraint.
+  - EQ(l)\_UC, EQ(l)\_UCR, VAR_CUMFLO
+* - UC_CUMCOM 
+  <br>(uc_n,r,type,c,y1,y2)
+  - COM_CUMNET, COM_CUMPRD
+  - Dimensionless
+  <br>\[open\];
+  <br>default value: none
+  <br>I/e: N/A
+  - Used in cumulative user constraints only.
+  <br>Type=NET/PRD determines the variable referred to (CUMNET/ CUMPRD).
+  - Multiplier of cumulative commodity variable in user constraint.
+  - EQ(l)\_UC, EQ(l)\_UCR, VAR_CUMCOM
+* - UC_CUMFLO 
+  <br>(uc_n,r,p,c,y1,y2)
+  - FLO_CUM
+  - Dimensionless
+  <br>\[open\];
+  <br>default value: none
+  <br>I/e: N/A
+  - Used in cumulative user constraints only.
+  - Multiplier of cumulative process flow variable in user constraint.
+  - EQ(l)\_UC, EQ(l)\_UCR, VAR_CUMFLO
+* - UC_FLO 
+  <br>(uc_n,side,r,datayear,p,c,s)
+  - uc_n
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default: i/e: STD
+  - Used in user constraints.
+  <br>Direct inheritance.
+  <br>Weighted aggregation.
+  - Coefficient of the flow VAR_FLO variable in a user constraint.
+  - EQ(l)\_UCXXX
+* - UC_IRE 
+  <br>(uc_n,side,r,datayear,p,c,s)
+  - uc_n
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default: i/e: STD
+  - Used in user constraints.
+  <br>Direct inheritance.
+  <br>Weighted aggregation.
+  - Coefficient of the trade variable VAR_IRE in a user constraint.
+  - EQ(l)\_UCXXX
+* - UC_NCAP 
+  <br>(uc_n,side,r,datayear,p)
+  - uc_n, uc_gmap_p
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default: i/e: STD
+  - Used in user constraints.
+  - Coefficient of the activity variable VAR_NCAP in a user constraint.
+  - EQ(l)\_UCXXX
+* - UC_RHS 
+  <br>(uc_n,lim)
+  - uc_n, uc_r_sum, uc_t_sum, uc_ts_sum
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: none
+  - Used in user constraints.
+  <br>Binding user constraints are defined using bound types lim=UP/LO/FX.
+  <br>Non-binding (free) user constraints can be defined using the lim type lim=N.
+  - RHS constant with bound type of bd of a user constraint.
+  - RHS (right-hand side) constant of a user constraint, which is summing over regions (uc_r_sum), periods (uc_t_sum) and timeslices (uc_ts_sum) (EQ(l)\_UC).
+* - UC_RHSR 
+  <br>(r,uc_n,lim)
+  - uc_n, uc_r_each, uc_t_sum, uc_ts_sum
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: none
+  - Used in user constraints.
+  <br>Binding user constraints are defined using bound types lim=UP/LO/FX.
+  <br>Non-binding (free) user constraints can be defined using the lim type lim=N.
+  - RHS constant with bound type of bd of a user constraint.
+  - RHS constant of user constraints, which are generated for each region (uc_r_each) and are summing over periods (uc_t_sum) and timeslices (uc_ts_sum) (EQ(l)\_UCR).
+* - UC_RHSRT 
+  <br>(r,uc_n,datayear,lim)
+  - uc_n, uc_r_each, uc_t_each, uc_t_succ, uc_ts_sum
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Used in user constraints.
+  <br>Binding user constraints are defined using bound types lim=UP/LO/FX.
+  <br>Non-binding (free) user constraints can be defined using the lim type lim=N.
+  - RHS constant with bound type of bd of a user constraint.
+  - RHS constant of user constraints, which are generated for each region (uc_r_each) and period (uc_t_each) and are summing over timeslices (uc_ts_sum) (EQ(l)\_UCRT).
+  <br>If dynamic, constraints will be generated between two successive periods (EQ(l)\_UCRSU).
+* - UC_RHSRTS 
+  <br>(r,uc_n,datayear,s,lim)
+  - uc_n, uc_r_each, uc_t_each, uc_t_succ, uc_ts_each
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Used in user constraints.
+  <br>No inheritance / aggregation, unless the target timeslice level is specified by UC_TSL.
+  <br>Direct inheritance, if the target timeslice level is specified by UC_TSL.
+  <br>Binding user constraints are defined using bound types lim=UP/LO/FX.
+  <br>Non-binding (free) user constraints can be defined using the lim type lim=N.
+  - RHS constant with bound type of bd of a user constraint.
+  - RHS constant of user constraints, which are generated for each specified region (uc_r_each), period (uc_t_each) and timeslice (uc_ts_each) (EQ(l)\_UCRTS).
+  <br>If dynamic, constraints will be generated between two successive periods (EQ(l)\_UCRSUS).
+* - UC_RHST 
+  <br>(uc_n,datayear,lim)
+  - uc_n, uc_r_sum, uc_t_each, uc_t_succ, uc_ts_sum
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Used in user constraints.
+  <br>Binding user constraints are defined using bound types lim=UP/LO/FX.
+  <br>Non-binding (free) user constraints can be defined using the lim type lim=N.
+  - RHS constant with bound type of bd of a user constraint.
+  - RHS constant of user constraints, which are generated for each specified period (uc_t_each) and are summing over regions (uc_r_sum) and timeslices (uc_ts_sum) (EQ(l)\_UCT).
+  <br>If dynamic, constraints will be generated between two successive periods (EQ(l)\_UCSU).
+* - UC_RHSTS 
+  <br>(uc_n,datayear,s,lim)
+  - uc_n, uc_r_sum, uc_t_each, uc_t_succ, uc_ts_each
+  - None
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: MIG
+  - Used in user constraints.
+  <br>No inheritance/aggregation.
+  <br>Binding user constraints are defined using bound types lim=UP/LO/FX.
+  <br>Non-binding (free) user constraints can be defined using the lim type lim=N.
+  - RHS constant with bound type of bd of a user constraint.
+  - RHS constant of user constraints, which are generated for each period (uc_t_each) and timeslice (uc_ts_each) and are summing over regions (uc_r_sum) (EQ(l)\_UCTS).
+  <br>If dynamic, constraints will be generated between two successive periods (EQ(l)\_UCSUS).
+* - UC_TIME 
+  <br>(uc_n,r,datayear)
+  - 
+  - Dimensionless
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Used in user constraints.
+  <br>Adds a time constant to the RHS side.
+  - Multiplier for the number of years in model periods (static UCs), or between milestone years (dynamic UCs)
+  - EQ(l)\_UCXXX
+* - UC_UCN 
+  <br>(uc_n,side,r,datayear, ucn)
+  - UC_RHSRT
+  - Dimensionless
+  <br>\[open\];
+  <br>default value: none
+  <br>Default i/e: STD
+  - Only taken into account if the user constraint is by region & period, and summing over timeslices and the RHS side is activated (EQ(l)\_UCRSU).
+  - Multiplier of user constraint variable in another user constraint.
+  - EQ(l)\_UCRSU, VAR_UCRT
+* - VDA_EMCB 
+  <br>(r,datayear,c,com)
+  - FLO_EMIS, FLO_EFF
+  - Emission units per flow units
+  <br>default value: none
+  <br>Default i/e: STD
+  - Available in the VEDA shell.
+  <br>Any process-specific FLO_EMIS / FLO_EFF with the commodities c and com will override VDA_EMCB.
+  - Emissions (com) from the combustion of commodity (c) in region (r).
+  - EQ_PTRANS
 ```
 
 ##  Internal parameters

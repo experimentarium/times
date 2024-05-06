@@ -25,8 +25,7 @@ In both approaches, a number of assumptions are made:
 - Damages in a given time period are linked to emissions in that same period only (damages are not delayed, nor are they cumulative); and 
 - Damages due to several pollutants are the sum of damages due to each pollutant (no cross impacts).
 
-In a given time period, and for a given pollutant, the damage cost is
-modeled as follows:
+In a given time period, and for a given pollutant, the damage cost is modeled as follows:
 
 $$DAM(EM) = \alpha \cdot EM^{\beta + 1}$$                      \(1\)
 
@@ -115,82 +114,51 @@ The input parameters are listed in {numref}`dam-input-parameters`.
 :name: dam-input-parameters
 :header-rows: 1
 
-+---------+--------+-----------+----------+--------------+-----------+
-| **Input | **R    | **Units / | **       | **D          | *         |
-| para    | elated | Ranges &  | Instance | escription** | *Affected |
-| meter** | param  | Default   | s**[^51] |              | equations |
-|         | eters* | values &  |          |              | or        |
-| **(I    | *[^49] | Default   | **(      |              | variabl   |
-| ndexes) |        | inter-/ex | Required |              | es**[^52] |
-| **[^48] |        | trapolati | / Omit / |              |           |
-|         |        | on**[^50] | Special  |              |           |
-|         |        |           | condi    |              |           |
-|         |        |           | tions)** |              |           |
-+=========+========+===========+==========+==============+===========+
-| D       | DAM_   | TIMES     | Required | Marginal     | EQ_OBJDAM |
-| AM_COST | BQTY,\ | cost unit | for each | damage cost  |           |
-|         | DAM_   |           | c        | of emission  |           |
-| (r,d    | ELAST, | \[0,      | ommodity | c at         |           |
-| atayear | DAM    | INF);     | for      | refe­rence    |           |
-| ,c,cur) | \      | default   | which    | emission     |           |
-|         | _STEP, | value:    | damage   | level.       |           |
-|         | DAM    | none      | costs    |              |           |
-|         | \_VOC  |           | are to   |              |           |
-|         |        | Default   | be       |              |           |
-|         |        | i/e[^53]: | ac       |              |           |
-|         |        | standard  | counted. |              |           |
-+---------+--------+-----------+----------+--------------+-----------+
-| DA      | See    | TIMES     | Only     | Reference    | EQ_DAMAGE |
-| M_BQTY\ | above  | emission  | taken    | level of     |           |
-| (r,c)   |        | unit      | into     | emissions c  | EQ_OBJDAM |
-|         |        |           | account  |              |           |
-|         |        | \[0,      | if       |              |           |
-|         |        | INF);     | DAM_COST |              |           |
-|         |        | default   | has been |              |           |
-|         |        | value: 0  | s        |              |           |
-|         |        |           | pecified |              |           |
-+---------+--------+-----------+----------+--------------+-----------+
-| DAM     | See    | Dime      | Only     | Elasticity   | EQ_OBJDAM |
-| _ELAST\ | above  | nsionless | taken    | of marginal  |           |
-| (       |        |           | into     | damage cost  |           |
-| r,c,bd) |        | \[0,      | account  | to emissions |           |
-|         |        | INF);     | if       | on the lower |           |
-|         |        | default   | DAM_COST | and upper    |           |
-|         |        | value: 0  | has been | side of the  |           |
-|         |        |           | s        | reference    |           |
-|         |        |           | pecified | level        |           |
-+---------+--------+-----------+----------+--------------+-----------+
-| DA      | See    | Dime      | Only     | Number of    | EQ_DAMAGE |
-| M_STEP\ | above  | nsionless | taken    | emission     |           |
-| (       |        |           | into     | steps for    | EQ_OBJDAM |
-| r,c,bd) |        | \[0,      | account  | the          |           |
-|         |        | INF),     | if       | linearized   |           |
-|         |        | integer;  | DAM_COST | cost         |           |
-|         |        | default   | is       | function in  |           |
-|         |        | value: 0  | sp       | the          |           |
-|         |        |           | ecified. | lower/upper  |           |
-|         |        |           | Non-zero | direction.   |           |
-|         |        |           | \'N\'    | Can also be  |           |
-|         |        |           | value    | used for     |           |
-|         |        |           | excludes | excluding    |           |
-|         |        |           | costs    | the costs    |           |
-|         |        |           | from the | from the     |           |
-|         |        |           | ob       | objective.   |           |
-|         |        |           | jective. |              |           |
-+---------+--------+-----------+----------+--------------+-----------+
-| D       | See    | TIMES     | Only     | Variation in | EQ_DAMAGE |
-| AM_VOC\ | above  | emission  | taken    | emissions    |           |
-| (       |        | unit      | into     | covered by   | EQ_OBJDAM |
-| r,c,lim) |        |           | account  | the emission |           |
-|         |        | (0, INF); | if       | steps in the |           |
-|         |        | ≤ D       | DAM_COST | lower/upper  |           |
-|         |        | AM_BQTY;\ | has been | direction. A |           |
-|         |        | default   | s        | threshold    |           |
-|         |        | value:    | pecified | emission     |           |
-|         |        | DAM_BQTY  |          | level can be |           |
-|         |        |           |          | defined with |           |
-|         |        |           |          | bd=\'LO\'.   |           |
-+---------+--------+-----------+----------+--------------+-----------+
+* - Input parameter(Indexes)[^48]
+  - Related parameters[^49]
+  - Units / Ranges & Default values & Default inter-/extrapolation[^50]
+  - Instances[^51] (Required / Omit / Special conditions)
+  - Description
+  - Affected equations or variables[^52] |
+* - DAM_COST (r,datayear,c,cur)
+  - DAM_BQTY, DAM_ELAST, DAM_STEP, DAM_VOC
+  - TIMES cost unit
+  <br>[0,INF); default value: none
+  <br>Default i/e[^53]: standard
+  - Required for each commodity for which damage costs are to be accounted.
+  - Marginal damage cost of emission c at reference emission level.
+  - EQ_OBJDAM
+* - DAM_BQTY (r,c)
+  - See above
+  - TIMES emission unit
+  <br>[0,INF); default value: 0
+  - Only taken into account if DAM_COST has been specified
+  - Reference level of emissions c
+  - EQ_DAMAGE
+  <br>EQ_OBJDAM
+* - DAM_ELAST (r,c,bd)
+  - See above
+  - Dimensionless
+  <br>[0,INF); default value: 0
+  - Only taken into account if DAM_COST has been specified
+  - Elasticity of marginal damage cost to emissions on the lower and upper side of the reference level
+  - EQ_OBJDAM
+* - DAM_STEP(r,c,bd)
+  - See above
+  - Dimensionless
+  <br>[0,INF), integer; default value: 0
+  - Only taken into account if DAM_COST is specified. Non-zero \'N\' value excludes costs from the objective.
+  - Number of emission steps for the linearized cost function in the lower/upper direction. Can also be used for excluding the costs from the objective.
+  - EQ_DAMAGE
+  <br>EQ_OBJDAM
+* - DAM_VOC(r,c,lim)
+  - See above
+  - TIMES emission unit
+  <br>(0,INF); ≤ DAM_BQTY; default value: DAM_BQTY
+  - Only taken into account if DAM_COST has been specified
+  - Variation in emissions covered by the emission steps in the lower/upper direction. A threshold emission level can be defined with bd=\'LO\', and proportional variation can be defined with lim=\'N\'.
+  - EQ_DAMAGE
+  <br>EQ_OBJDAM
 ```
 
 ### Reporting parameters
@@ -443,7 +411,7 @@ Nemhauser, G.L., Rinnooy Kan, A.H.G. & Todd, M.J. (eds.) 1989. Handbooks in Oper
 
 [^48]: The first row contains the parameter name, the second row contains in brackets the index domain over which the parameter is defined.
 
-[^49]: This column gives references to related input parameters or sets being used in the context of this parameter as well as internal parameters/sets or result parameters being derived from the input parameter.
+[^49]: This column mentions related input parameters or sets being used in the context of the headword parameter.
 
 [^50]: This column lists the unit of the parameter, the possible range of its numeric value \[in square brackets\] and the inter-/extrapolation rules that apply.
 
