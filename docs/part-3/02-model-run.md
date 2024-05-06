@@ -34,96 +34,93 @@ For the ETSAP Runtime GAMS license, which does not allow for adjustments to the 
 
 ## The TIMES source code
 
-The TIMES model generator is comprised of a host of GAMS source code routines, which are simple text files that reside in the user\'s \\VEDA\\VEDA-FE\\GAMS_SrcTIMESv### folder, as discussed in Section 1.3 (or \\AnswerTIMESv6\\GAMS_SrcTI). Careful naming conventions are employed for all the source code routines. These conventions are characterized, for the most part, by prefixes and extensions corresponding to collections of files handling each aspect of the code (e.g., set bounds, prepare coefficients, specify equations), as summarized in Table 2.
+The TIMES model generator is comprised of a host of GAMS source code routines, which are simple text files that reside in the user\'s \\VEDA\\VEDA-FE\\GAMS_SrcTIMESv### folder, as discussed in Section 1.3 (or \\AnswerTIMESv6\\GAMS_SrcTI). Careful naming conventions are employed for all the source code routines. These conventions are characterized, for the most part, by prefixes and extensions corresponding to collections of files handling each aspect of the code (e.g., set bounds, prepare coefficients, specify equations), as summarized in {numref}`times-routines-naming`.
 
-  ----------------------------------------------------------------------------
-  **Type**        **Nature of the Routine**
-  --------------- ------------------------------------------------------------
-  **Prefix**      
+```{list-table} TIMES Routines Naming Conventions
+:name: times-routines-naming
+:header-rows: 1
 
-  **ans**         ANSWER TIMES specific pre-processor code
-
-  **bnd**         set bounds on model variables
-
-  **cal**         calculations performed in support of the preprocessor and
-                  report writer
-
-  **coef**        prepare the actual matrix intersection coefficients
-
-  **eq**          equations specification (the actual assembling of the
-                  coefficients of the matrix)
-
-  **err**         Error trapping and handling
-
-  **fil**         handles the fundamental
-                  interpolation/extrapolation/normalization of the original
-                  input data
-
-  **init**        initialize all sets and parameters potentially involved in
-                  assembling a TIMES model
-
-  **main**        Top level routines according to the model variant to be
-                  solved
-
-  **mod**         the declaration of the equations and variables for each model variant
-
-  **pp**          preprocess routines responsible for preparing the TIMES internal parameters by assembling, interpolating, levelizing, normalizing, and processing the input data to prepare the data structures needed to produce the model coefficients
-
-  **qa**          Quality assurance checking and reporting
-
-  **rpt**         main reporting components performing the calculations needed and assembling the relevant parameters from the model results
-
-  **sol**         components of the results report writer that prepares the solution for outputting
-
-  **solve**       manage the actual call to solve the model (that is the call to invoke the optimizer)
-
-  **uc**          handles the user constraints
-
-  **Extension**   
-
-  **ABS**         Ancillary Balancing Services routines
-
-  **ANS**         ANSWER specific code
-
-  **CLI**         climate module routines
-
-  **CMD**         Windows command scripts to invoke GAMS/GDX2VEDA in order to solve and afterwards dump the model results
-
-  **DEF**         setting of defaults
-
-  **DSC**         discrete (lumpy) investment routines
-
-  **ETL**         endogenous technology learning routines
-
-  **GMS**         lower level GAMS routines to perform interpolation, apply shaping of input parameters, etc.
-
-  **RUN/GEN**     VEDA-FE/ANSWER specific GAMS TIMES command templates for dynamic substitution of the switches and parameters needed at run submission to identify the model variant and other options that will guide the current model run
-
-  **IER**         routines and extensions prepared by the University of Stuttgart (Institute for the Rational Use of Energy, IER) (e.g., for more advanced modeling of CHPs)
-
-  **LIN**         routines related to the alternative objective formulations
-
-  **MOD**         core TIMES routines preparing the actual model
-
-  **MLF**         code related to the MLF implementation of TIMES-MACRO
-
-  **MSA**         code related to the MSA implementation of decomposed TIMES-MACRO
-
-  **RED**         reduction algorithm routines
-
-  **RPT**         report writer routines
-
-  **STC**         code related to stochastics
-  **STP**         code related to time-stepped or partially fixed-horizon solution
-
-  **TM**          the core TIMES MACRO code
-
-  **VDA**         routines related to new TIMES features implemented under the VDA extension
-
-  **VDD**         directives for the VEDA-BE result analysis software
-  ----------------------------------------------------------------------------
-
-  : Table 2: TIMES Routines Naming Conventions
+* - **Type**
+  - **Nature of the Routine**
+* - **Prefix**
+  - 
+* - **ans**
+  - ANSWER TIMES specific pre-processor code
+* - **bnd**
+  - set bounds on model variables
+* - **cal**
+  - calculations performed in support of the preprocessor and report writer
+* - **coef**
+  - prepare the actual matrix intersection coefficients
+* - **eq**
+  - equations specification (the actual assembling of the coefficients of the matrix)
+* - **err**
+  - Error trapping and handling
+* - **fil**
+  - handles the fundamental interpolation/extrapolation/normalization of the original input data
+* - **init**
+  - initialize all sets and parameters potentially involved in assembling a TIMES model
+* - **main**
+  - Top level routines according to the model variant to be solved
+* - **mod**
+  - the declaration of the equations and variables for each model variant
+* - **pp**
+  - preprocess routines responsible for preparing the TIMES internal parameters by assembling, interpolating, levelizing, normalizing, and processing the input data to prepare the data structures needed to produce the model coefficients
+* - **qa**
+  - Quality assurance checking and reporting
+* - **rpt**
+  - main reporting components performing the calculations needed and assembling the relevant parameters from the model results
+* - **sol**
+  - components of the results report writer that prepares the solution for outputting
+* - **solve**
+  - manage the actual call to solve the model (that is the call to invoke the optimizer)
+* - **uc**
+  - handles the user constraints
+* - **Extension**
+  - 
+* - **ABS**
+  - Ancillary Balancing Services routines
+* - **ANS**
+  - ANSWER specific code
+* - **CLI**
+  - climate module routines
+* - **CMD**
+  - Windows command scripts to invoke GAMS/GDX2VEDA in order to solve and afterwards dump the model results
+* - **DEF**
+  - setting of defaults
+* - **DSC**
+  - discrete (lumpy) investment routines
+* - **ETL**
+  - endogenous technology learning routines
+* - **GMS**
+  - lower level GAMS routines to perform interpolation, apply shaping of input parameters, etc.
+* - **RUN/GEN**
+  - VEDA-FE/ANSWER specific GAMS TIMES command templates for dynamic substitution of the switches and parameters needed at run submission to identify the model variant and other options that will guide the current model run
+* - **IER**
+  - routines and extensions prepared by the University of Stuttgart (Institute for the Rational Use of Energy, IER) (e.g., for more advanced modeling of CHPs)
+* - **LIN**
+  - routines related to the alternative objective formulations
+* - **MOD**
+  - core TIMES routines preparing the actual model
+* - **MLF**
+  - code related to the MLF implementation of TIMES-MACRO
+* - **MSA**
+  - code related to the MSA implementation of decomposed TIMES-MACRO
+* - **RED**
+  - reduction algorithm routines
+* - **RPT**
+  - report writer routines
+* - **STC**
+  - code related to stochastics
+* - **STP**
+  - code related to time-stepped or partially fixed-horizon solution
+* - **TM**
+  - the core TIMES MACRO code
+* - **VDA**
+  - routines related to new TIMES features implemented under the VDA extension
+* - **VDD**
+  - directives for the VEDA-BE result analysis software
+```
 
 Note that these don't cover every single routine in the TIMES source code folder, but do cover most all of the core routines involved in the construction and reporting of the model. They guide the steps of the run process as follows:
 - **GAMS Compile:** As mentioned above, GAMS operates as a two-phase compile then execute system. As such it first reads and assembles all the control, data, and code files into a ready executable; substituting user and/or shell provided values for all GAMS environment switches and subroutine parameter references (the %EnvVar% and %Param% references in the source code) that determine the path through the code for the requested model instance and options desired. If there are inconsistencies in input data they may result in compile-time errors (e.g., \$170 for a domain definition error), causing a run to stop. See Section for more on identifying the source of such errors.
@@ -138,44 +135,40 @@ Note that these don't cover every single routine in the TIMES source code folder
 
 ## Files produced during the run process
 
-Several files are produced by the run process. These include the files produced by the shell for model initiation, the .LST listing file, which echoes the GAMS compilation and execution process and reports on any errors encountered during solve, results files, and the QAcheck.log file. These files are summarized in Table 3 and discussed in this section.
+Several files are produced by the run process. These include the files produced by the shell for model initiation, the .LST listing file, which echoes the GAMS compilation and execution process and reports on any errors encountered during solve, results files, and the QAcheck.log file. These files are summarized in {numref}`files-produced-by-times-run` and discussed in this section.
 
-  ------------------------------------------------------------------------------
-  **Extension**   **Produced By**     **Nature of the Output**
-  --------------- ------------------- ------------------------------------------
-  ant             TIMES report writer ANSWER model results dump
+```{list-table} Files Produced by a TIMES Model Run
+:name: files-produced-by-times-run
+:header-rows: 1
 
-  gdx             GAMS                Internal (binary) GAMS Data eXchange file
-                                      with all the information associated with a
-                                      model run
-
-  log             TIMES quality check List of quality assurance checks (warnings
-                  routine             and possible errors)
-
-  lst             GAMS                The basic echo of the model run, including
-                                      indication of the version of TIMES being
-                                      run, the compilation and execution steps,
-                                      model summary statistics and error (if
-                                      encountered), along with optionally an
-                                      equation listing and/or solution print
-
-  vd              GDX2VEDA utility    The core model results dump of the
-                                      solution including the variable/equations
-                                      levels/slack and marginals, along with
-                                      cost and other post-processing
-                                      calculations
-
-  vde             GDX2VEDA utility    The elements of the model sets (and the
-                                      definition of the attributes)
-
-  vds             GDX2VEDA utility    The set membership of the elements of the
-                                      model
-
-  vdt             VEDA-FE or ANSWER   The RES topology information for the model
-  ------------------------------------------------------------------------------
-
-  : Table 3: Files Produced by a TIMES Model
-  Run
+* - Extension
+  - Produced By
+  - Nature of the Output
+* - ant
+  - TIMES report writer
+  - ANSWER model results dump
+* - gdx
+  - GAMS
+  - Internal (binary) GAMS Data eXchange file with all the information associated with a model run
+* - log
+  - TIMES quality check routine
+  - List of quality assurance checks (warnings and possible errors)
+* - lst
+  - GAMS
+  - The basic echo of the model run, including indication of the version of TIMES being run, the compilation and execution steps, model summary statistics and error (if encountered), along with optionally an equation listing and/or solution print
+* - vd
+  - GDX2VEDA utility
+  - The core model results dump of the solution including the variable/equations levels/slack and marginals, along with cost and other post-processing calculations
+* - vde
+  - GDX2VEDA utility
+  - The elements of the model sets (and the definition of the attributes)
+* - vds
+  - GDX2VEDA utility
+  - The set membership of the elements of the model
+* - vdt
+  - VEDA-FE or ANSWER
+  - The RES topology information for the model
+```
 
 ### Files produced by model initiation
 
@@ -208,7 +201,7 @@ After the basic control switches, the definition of the set of all timeslices is
 ```{figure} assets/image6.png
 :name: example-veda-fe-times
 :align: center
- Example of a VEDA-FE TIMES \<case\>.RUN file[^16]
+Example of a VEDA-FE TIMES \<case\>.RUN file[^16]
 ```
 
 The line containing the include command for the file initmty.mod can be supplemented by calls for additional user extensions that trigger the use of additional special equations or report routines. The use of these extension options are described in more detail in Section 0.
@@ -335,384 +328,279 @@ Note that for both ANSWER and VEDA-BE, for the most part low-level (that is comm
 
 In addition, as discussed in Section 3.10, there are a number of switches that control the report writer itself in terms of how it calculates certain outputs and prepares the results as part of the post-processing. Collectively these mechanisms provide the user with a wide range of reporting results and tools for dissecting and assembling the modeling results as part of effectively using TIMES to conduct energy policy analyses.
 
-### QA check report (LOG) 
+### QA check report (LOG)
 
-In order to assist the user with identifying accidental modelling errors, a number of sanity checks are done by the model generator. If incorrect or suspicious specifications are found in these checks, a message is written in a text file named QA_CHECK.LOG, in the working folder. The checks implemented in TIMES Version 3.9.3 are listed in Table 5. The "Log entry" column shows the identification given for each suspicious specification.
+In order to assist the user with identifying accidental modelling errors, a number of sanity checks are done by the model generator. If incorrect or suspicious specifications are found in these checks, a message is written in a text file named QA_CHECK.LOG, in the working folder. The checks implemented in TIMES Version 3.9.3 are listed in {numref}`times-qa-checks`. The "Log entry" column shows the identification given for each suspicious specification.
 
-+----+------------------------------------------------+------+--------+
-| *  | **Message / Description**                      | **Se | **Log  |
-| *T |                                                | veri | e      |
-| yp |                                                | ty** | ntry** |
-| e* |                                                |      |        |
-| *[ |                                                |      |        |
-| ^1 |                                                |      |        |
-| 8] |                                                |      |        |
-+====+================================================+======+========+
-| S  | User-provided G_YRFR values are not valid year | war  | re     |
-| TD | fractions:                                     | ning | gion,\ |
-|    |                                                |      | ts-l   |
-|    | The sum of year fractions over timeslices does |      | evel,\ |
-|    | not sum up correctly. The fractions are        |      | tim    |
-|    | normalized so that they sum up to 1 over the   |      | eslice |
-|    | full year.                                     |      |        |
-+----+------------------------------------------------+------+--------+
-| S  | Delayed Process but PAST Investment:\          | war  | r      |
-| TD | Process availability has been delayed by using | ning | egion, |
-|    | PRC_NOFF or NCAP_START, but also has existing  |      | p      |
-|    | capacity.                                      |      | rocess |
-+----+------------------------------------------------+------+--------+
-| S  | Commodities/processes defined at non-existing  | sev  | number |
-| TD | TSLVL:                                         | ere\ | of     |
-|    |                                                | e    | C      |
-|    | PRC_TSL or COM_TSL has been specified on a     | rror | OM/PRC |
-|    | timeslice level not used in the model.         |      | reset  |
-|    |                                                |      | to     |
-|    |                                                |      | ANNUAL |
-+----+------------------------------------------------+------+--------+
-| S  | NCAP_TLIFE out of feasible range:\             | war  | r      |
-| TD | NCAP_TLIFE specified has a value of either     | ning | egion, |
-|    | less than 0.5 or greater than 200. Values less |      | pr     |
-|    | than 0.5 are reset to 1.                       |      | ocess, |
-|    |                                                |      | v      |
-|    |                                                |      | intage |
-+----+------------------------------------------------+------+--------+
-| S  | Inconsistent CAP_BND(UP/FX) defined for        | war  | r      |
-| TD | process capacity:                              | ning | egion, |
-|    |                                                |      | pro    |
-|    | CAP_BND(UP/FX) value specified has a value     |      | cess,\ |
-|    | lower than the residual capacity remaining     |      | period |
-|    | available in the period, and retirements are   |      |        |
-|    | disabled.                                      |      |        |
-+----+------------------------------------------------+------+--------+
-| S  | Flow OFF TS level below variable TS level:     | war  | r      |
-| TD |                                                | ning | egion, |
-|    | A PRC_FOFF attribute with a timeslice below    |      | pr     |
-|    | the flow level has been specified; the OFF     |      | ocess, |
-|    | specification is ignored.                      |      | comm   |
-|    |                                                |      | odity, |
-|    |                                                |      | tim    |
-|    |                                                |      | eslice |
-+----+------------------------------------------------+------+--------+
-| S  | COM_FR does not sum to unity (T=first year):\  | war  | r      |
-| TD | The sum of COM_FR over all timeslices at the   | ning | egion, |
-|    | COM_TSL level is not equal to 1, and is        |      | comm   |
-|    | therefore normalized to 1.                     |      | odity, |
-|    |                                                |      | mil    |
-|    |                                                |      | estone |
-+----+------------------------------------------------+------+--------+
-| S  | Unsupported diverging trade topology:\         | e    | r      |
-| TD | The model generator detects an unsupported     | rror | egion, |
-|    | complex topology of an IRE process, which      |      | p      |
-|    | cannot be properly handled                     |      | rocess |
-+----+------------------------------------------------+------+--------+
-| S  | FLO_EMIS with no members of source group in    | sev  | r      |
-| TD | process:\                                      | ere\ | egion, |
-|    | A FLO_EMIS with a source group that has no     | e    | pr     |
-|    | members for the process has been specified.    | rror | ocess, |
-|    | The parameter is ignored.                      |      | group, |
-|    |                                                |      | com    |
-|    |                                                |      | modity |
-+----+------------------------------------------------+------+--------+
-| S  | Unsupported FLO_SHAR: C not in RPC or CG:\     | e    | r      |
-| TD | The commodity in FLO_SHAR is either not in the | rror | egion, |
-|    | process topology or not a member of the group  |      | pr     |
-|    | specified                                      |      | ocess, |
-|    |                                                |      | comm   |
-|    |                                                |      | odity, |
-|    |                                                |      | group  |
-+----+------------------------------------------------+------+--------+
-| S  | FLO_SHAR conflict: Both FX + LO/UP specified,  | war  | r      |
-| TD | latter ignored:\                               | ning | egion, |
-|    | Too many FLO_SHAR bounds are specified, if     |      | pr     |
-|    | both FX and LO/UP are specified at the same    |      | ocess, |
-|    | time.                                          |      | vi     |
-|    |                                                |      | ntage, |
-|    |                                                |      | comm   |
-|    |                                                |      | odity, |
-|    |                                                |      | group  |
-+----+------------------------------------------------+------+--------+
-| S  | Inconsistent sum of fixed FLO_SHARs in Group:\ | war  | r      |
-| TD | All flows in a group have a fixed share, but   | ning | egion, |
-|    | the sum of the fixed FLO_SHAR values is not    |      | pr     |
-|    | equal to 1.                                    |      | ocess, |
-|    |                                                |      | vi     |
-|    |                                                |      | ntage, |
-|    |                                                |      | group  |
-+----+------------------------------------------------+------+--------+
-| S  | Defective sum of FX and UP FLO_SHARs in Group: | war  | r      |
-| TD |                                                | ning | egion, |
-|    | All flows in a group have either a fixed or an |      | pr     |
-|    | upper share, but the sum of the FLO_SHAR       |      | ocess, |
-|    | values is less than 1.                         |      | vi     |
-|    |                                                |      | ntage, |
-|    |                                                |      | group  |
-+----+------------------------------------------------+------+--------+
-| S  | Excessive sum of FX and LO FLO_SHARs in        | war  | r      |
-| TD | Group:\                                        | ning | egion, |
-|    | All flows in a group have either a fixed or a  |      | pr     |
-|    | lower share, but the sum of the FLO_SHAR       |      | ocess, |
-|    | values is greater than 1.                      |      | vi     |
-|    |                                                |      | ntage, |
-|    |                                                |      | group  |
-+----+------------------------------------------------+------+--------+
-| S  | NCAP_AF/ACT_BND Bounds conflict:\              | war  | r      |
-| TD | Value at PRC_TS level and below, latter        | ning | egion, |
-|    | ignored                                        |      | pr     |
-|    |                                                |      | ocess, |
-|    |                                                |      | vi     |
-|    |                                                |      | ntage, |
-|    |                                                |      | tim    |
-|    |                                                |      | eslice |
-+----+------------------------------------------------+------+--------+
-| S  | NCAP_AF Bounds conflict:\                      | war  | r      |
-| TD | FX + LO/UP at same TS-level, latter ignored    | ning | egion, |
-|    |                                                |      | pr     |
-|    |                                                |      | ocess, |
-|    |                                                |      | vi     |
-|    |                                                |      | ntage, |
-|    |                                                |      | tim    |
-|    |                                                |      | eslice |
-+----+------------------------------------------------+------+--------+
-| S  | FLO_SHAR/FLO_FR Bounds conflict:\              | war  | r      |
-| TD | Value at RPCS_VAR level and below, latter      | ning | egion, |
-|    | ignored                                        |      | pr     |
-|    |                                                |      | ocess, |
-|    |                                                |      | vi     |
-|    |                                                |      | ntage, |
-|    |                                                |      | tim    |
-|    |                                                |      | eslice |
-+----+------------------------------------------------+------+--------+
-| S  | FLO_SHAR Bounds conflict:\                     | war  | r      |
-| TD | FX + LO/UP at same TS-level, latter ignored    | ning | egion, |
-|    |                                                |      | pr     |
-|    |                                                |      | ocess, |
-|    |                                                |      | vi     |
-|    |                                                |      | ntage, |
-|    |                                                |      | comm   |
-|    |                                                |      | odity, |
-|    |                                                |      | group  |
-+----+------------------------------------------------+------+--------+
-| S  | COM_BNDNET/COM_BNDPRD/IRE_BND Bounds           | war  | r      |
-| TD | conflict:\                                     | ning | egion, |
-|    | Value at COM_TS level and below, latter        |      | mile   |
-|    | ignored                                        |      | stone, |
-|    |                                                |      | comm   |
-|    |                                                |      | odity, |
-|    |                                                |      | tim    |
-|    |                                                |      | eslice |
-+----+------------------------------------------------+------+--------+
-| S  | IRE_FLO import commodity not in TOP_IRE:\      | e    | r      |
-| TD | An invalid IRE_FLO with the imported commodity | rror | egion, |
-|    | not in the process topology has been specified |      | pr     |
-|    |                                                |      | ocess, |
-|    |                                                |      | com    |
-|    |                                                |      | modity |
-+----+------------------------------------------------+------+--------+
-| S  | CHP process with zero CEH but only upper bound | e    | r      |
-| TD | on CHPR:\                                      | rror | egion, |
-|    | A CHP process has only an upper bound on       |      | p      |
-|    | NCAP_CHPR, but a zero or missing NCAP_CEH,     |      | rocess |
-|    | which indicates a modelling error              |      |        |
-+----+------------------------------------------------+------+--------+
-| S  | Year Fraction G_YRFR is ZERO!\                 | f    | r      |
-| TD | A timeslice with G_YRFR is within the          | atal | egion, |
-|    | timeslice tree. This should actually never     |      | tim    |
-|    | happen, because TIMES automatically removes    |      | eslice |
-|    | timeslices with a zero year fraction from the  |      |        |
-|    | active timeslices.                             |      |        |
-+----+------------------------------------------------+------+--------+
-| S  | Illegal system commodity in topology:\         | f    | r      |
-| TD | ACT / ACTGRP is a reserved name which should   | atal | egion, |
-|    | never be used as a commodity in the model      |      | p      |
-|    | topology.                                      |      | rocess |
-+----+------------------------------------------------+------+--------+
-| S  | Commodity in CG of process P but not in        | se   | r      |
-| TD | topology:\                                     | vere | egion, |
-|    | A commodity group assigned to a process        | e    | pr     |
-|    | contains members not in the process topology   | rror | ocess, |
-|    | (or no members in the process topology).       |      | comm   |
-|    |                                                |      | .group |
-+----+------------------------------------------------+------+--------+
-| S  | Elastic Demand but either COM_BPRICE/ELAST/VOC | war  | r      |
-| TD | missing:\                                      | ning | egion, |
-|    | Either a demand that has COM_ELAST or COM_STEP |      | comm   |
-|    | defined but does not have COM_BPRICE,          |      | odity, |
-|    | COM_ELAST, or COM_VOC, defined.                |      | LO/UP  |
-+----+------------------------------------------------+------+--------+
-| S  | Commodity type is also a commodity:\           | f    | r      |
-| TD | Commodity types are reserved names that cannot | atal | egion, |
-|    | be used as commodity names.                    |      | com    |
-|    |                                                |      | modity |
-|    |                                                |      | type   |
-+----+------------------------------------------------+------+--------+
-| S  | Commodity has ambiguous base type:\            | se   | r      |
-| TD | The base type for some commodity is not        | vere | egion, |
-|    | uniquely defined. All commodi­ties should have  | e    | com    |
-|    | a unique base type defined                     | rror | modity |
-|    | (NRG/MAT/DEM/ENV/FIN).                         |      |        |
-+----+------------------------------------------------+------+--------+
-| S  | Demand: DEM commodity with missing COM_PROJ    | war  | r      |
-| TD | Projection:\                                   | ning | egion, |
-|    | A demand commodity without any demand          |      | com    |
-|    | projection is found.                           |      | modity |
-+----+------------------------------------------------+------+--------+
-| S  | Demand: COM_PROJ specified for non-DEM         | war  | r      |
-| TD | commodity:\                                    | ning | egion, |
-|    | Demand is projected for a non-demand           |      | com    |
-|    | commodity.                                     |      | modity |
-+----+------------------------------------------------+------+--------+
-| S  | Phantom entries found in topology              | f    | r      |
-| TD | (process/commodity not in SET PRC/COM):\       | atal | egion, |
-|    | This error is usually triggered when a GAMS    |      | pr     |
-|    | domain violation has occurred, which may cause |      | ocess, |
-|    | unexpected behaviour of the GAMS code.         |      | com    |
-|    |                                                |      | modity |
-+----+------------------------------------------------+------+--------+
-| S  | Process with missing or mismatched             | f    | r      |
-| TD | CG/PRC_ACTUNIT:\                               | atal | egion, |
-|    | Process with missing or several PRC_ACTUNT     |      | p      |
-|    | entries.                                       |      | rocess |
-+----+------------------------------------------------+------+--------+
-| S  | Illegal dependency of substituted auxiliary    | f    | r      |
-| TD | commodities C1 and C2 in FLO_SUM:\             | atal | egion, |
-|    | This error should not occur, because the GAMS  |      | pr     |
-|    | code should make sure that C1 and C2 are not   |      | ocess, |
-|    | both substituted. If this error is issued,     |      | commo  |
-|    | contact TIMES maintenance.                     |      | dity1, |
-|    |                                                |      | comm   |
-|    |                                                |      | odity2 |
-+----+------------------------------------------------+------+--------+
-| S  | NCAP_AFX defined for NON-vintaged dispatchable | war  | r      |
-| TD | process with ACT_MINLD:\                       | ning | egion, |
-|    | Shaping of NCAP_AF is not supported for        |      | p      |
-|    | non-vintaged processes having ACT_MINLD        |      | rocess |
-|    | defined.                                       |      |        |
-+----+------------------------------------------------+------+--------+
-| S  | Active currency but not member of set CUR:\    | f    | cu     |
-| TD | Currency referred to in some attributes is not | atal | rrency |
-|    | defined in the set CUR.                        |      |        |
-+----+------------------------------------------------+------+--------+
-| S  | Internal Region without Discount Rate:\        | f    | region |
-| TD | TIMES requires a discount rate defined for all | atal |        |
-|    | internal regions.                              |      |        |
-+----+------------------------------------------------+------+--------+
-| S  | Active Currency without Discount Rate:\        | f    | r      |
-| TD | A currency is being used without discount      | atal | egion, |
-|    | rate, or conversion to another currency that   |      | cu     |
-|    | has a discount rate.                           |      | rrency |
-+----+------------------------------------------------+------+--------+
-| S  | Process with zero PRC_ACTFLO for C in PG:      | f    | r      |
-| TD |                                                | atal | egion, |
-|    | A zero PRC_ACTFLO has been specified for a     |      | pr     |
-|    | commodity in the primary group.                |      | ocess, |
-|    |                                                |      | com    |
-|    |                                                |      | modity |
-+----+------------------------------------------------+------+--------+
-| X  | Same Commodity IN and OUT of non-STG process:\ | se   | r      |
-| TD | A process has been defined to have the same    | vere | egion, |
-|    | commodity as an input and an output, and it is | e    | pr     |
-|    | not a storage process; that is not supported.  | rror | ocess, |
-|    |                                                |      | com    |
-|    |                                                |      | modity |
-+----+------------------------------------------------+------+--------+
-| X  | IRE Process with invalid Parameters:\          | e    | r      |
-| TD | Some FLO_FUNC, FLO_SUM, FLO_SHAR or UC_FLO     | rror | egion, |
-|    | parameter not supported for IRE processes has  |      | pro    |
-|    | been specified.                                |      | cess,\ |
-|    |                                                |      | com    |
-|    |                                                |      | -group |
-+----+------------------------------------------------+------+--------+
-| X  | Invalid Commodity / Group used in ACT_EFF -    | e    | r      |
-| TD | parameter ignored:\                            | rror | egion, |
-|    | An invalid ACT_EFF attribute with a CG not     |      | pro    |
-|    | containing members on the shadow side or in    |      | cess,\ |
-|    | the PG has been specified.                     |      | group  |
-+----+------------------------------------------------+------+--------+
-| X  | FLO_SUM Commodity Not in RPC - parameter       | e    | r      |
-| TD | ignored:                                       | rror | egion, |
-|    |                                                |      | pro    |
-|    | An invalid FLO_SUM has been defined where the  |      | cess,\ |
-|    | commodity is not in the process topology.      |      | group, |
-|    |                                                |      | com    |
-|    |                                                |      | modity |
-+----+------------------------------------------------+------+--------+
-| X  | FLO_SUM Commodity Not in CG1 - parameter       | e    | r      |
-| TD | ignored:\                                      | rror | egion, |
-|    | An invalid FLO_SUM has been defined where the  |      | pro    |
-|    | commodity is not a member of the first group,  |      | cess,\ |
-|    | CG1.                                           |      | group, |
-|    |                                                |      | com    |
-|    |                                                |      | modity |
-+----+------------------------------------------------+------+--------+
-| X  | PTRANS between CG1 and CG2 in both             | se   | r      |
-| TD | directions:\                                   | vere | egion, |
-|    | A FLO_FUNC or FLO_SUM between groups CG1 and   | e    | pro    |
-|    | CG2 has been specified in both directions.     | rror | cess,\ |
-|    |                                                |      | g      |
-|    |                                                |      | roup1, |
-|    |                                                |      | group2 |
-+----+------------------------------------------------+------+--------+
-| X  | RPC in TOP not found in any ACTFLO / FLO_SHAR  | war  | r      |
-| TD | / FLO_FUNC / FLO_SUM:\                         | ning | egion, |
-|    | Some commodity in the topology does not seem   |      | pro    |
-|    | to be tied to anything, at least by means of   |      | cess,\ |
-|    | any of the most common attributes; the user is |      | comm   |
-|    | advised to check that this is not a modelling  |      | odity, |
-|    | error.                                         |      | IN/OUT |
-+----+------------------------------------------------+------+--------+
-| X  | Empty Group in FLO_SUM/FLO_FUNC/FLO_SHAR:      | se   | r      |
-| TD |                                                | vere | egion, |
-|    | A group that has no members in the process     | e    | pro    |
-|    | topology has been used for a process           | rror | cess,\ |
-|    | attribute. Detects also an empty primary       |      | group  |
-|    | group.                                         |      |        |
-+----+------------------------------------------------+------+--------+
-| X  | Both NCAP_AF and NCAP_AFA specified for same   | war  | r      |
-| TD | process:\                                      | ning | egion, |
-|    | Specifying both NCAP_AF(bd) and NCAP_AFA(bd)   |      | pr     |
-|    | for an ANNUAL level process is ambiguous and   |      | ocess, |
-|    | should be avoided.                             |      | v      |
-|    |                                                |      | intage |
-+----+------------------------------------------------+------+--------+
-| X  | Too Long Commodity Lead Time:\                 | war  | r      |
-| TD | A value of NCAP_CLED \> NCAP_ILED has been     | ning | egion, |
-|    | specified                                      |      | pr     |
-|    |                                                |      | ocess, |
-|    |                                                |      | com    |
-|    |                                                |      | modity |
-+----+------------------------------------------------+------+--------+
-| X  | CHP parameter specified for Non-CHP process:   | e    | r      |
-| TD |                                                | rror | egion, |
-|    | An NCAP_BPME, NCAP_CHPR or NCAP_CEH parameter  |      | pr     |
-|    | has been specified for a process that is not   |      | ocess, |
-|    | defined to be CHP.                             |      | v      |
-|    |                                                |      | intage |
-+----+------------------------------------------------+------+--------+
-| X  | PG of CHP process consists of single commodity | war  | r      |
-| TD | yet has a CHP-ratio:\                          | ning | egion, |
-|    | A CHP process has a NCAP_CHPR specified but    |      | p      |
-|    | has only a single commodity in the primary     |      | rocess |
-|    | group.                                         |      |        |
-+----+------------------------------------------------+------+--------+
-| X  | Found CHP processes without CHP-ratio defined: | war  | number |
-| TD |                                                | ning | of     |
-|    | A CHP process has no NCAP_CHPR defined         |      | such   |
-|    |                                                |      | pro    |
-|    |                                                |      | cesses |
-+----+------------------------------------------------+------+--------+
-| X  | Found CHP processes with PG commodity          | war  | r      |
-| TD | efficiencies - unsupported:\                   | ning | egion, |
-|    | Specifying ACT_EFF on some flow(s) in the PG   |      | p      |
-|    | is not supported for CHP processes, and may    |      | rocess |
-|    | lead to unexpected results.                    |      |        |
-+----+------------------------------------------------+------+--------+
-| X  | Found CHP processes without electricity in the | war  | r      |
-| TD | PG:\                                           | ning | egion, |
-|    | A CHP process is found with no electricity     |      | p      |
-|    | commodity in the PG.                           |      | rocess |
-+----+------------------------------------------------+------+--------+
+```{list-table} TIMES Quality Assurance Checks (as of Version 4.4.0)
+:name: times-qa-checks
+:header-rows: 1
 
-: Table 4: TIMES Quality Assurance Checks (as of Version 4.4.0)
+* - Type[^18]
+  - Message / Description
+  - Severity
+  - Log entry
+* - STD
+  - User-provided G_YRFR values are not valid year fractions:
+  <br>The sum of year fractions over timeslices does  not sum up correctly. The fractions are normalized so that they sum up to 1 over the  full year.
+  - warning
+  - region, ts-level, timeslice
+* - STD
+  - Delayed Process but PAST Investment:
+  <br>Process availability has been delayed by using PRC_NOFF or NCAP_START, but also has existing capacity.
+  - warning
+  - region, process
+* - STD
+  - Commodities/processes defined at non-existing TSLVL:
+  <br>PRC_TSL or COM_TSL has been specified on a timeslice level not used in the model.
+  - severe error
+  - number of COM/PRC reset to ANNUAL
+* - STD
+  - NCAP_TLIFE out of feasible range:
+  <br>NCAP_TLIFE specified has a value of either less than 0.5 or greater than 200. Values less than 0.5 are reset to 1.
+  - warning
+  - region, process, vintage
+* - STD
+  - Inconsistent CAP_BND(UP/FX) defined for process capacity:
+  <br>CAP_BND(UP/FX) value specified has a value lower than the residual capacity remaining available in the period, and retirements are disabled.
+  - warning
+  - region, process, period
+* - STD
+  - Flow OFF TS level below variable TS level:
+  <br>A PRC_FOFF attribute with a timeslice below the flow level has been specified; the OFF specification is ignored.
+  - warning
+  - region, process, commodity, timeslice
+* - STD
+  - COM_FR does not sum to unity (T=first year):
+  <br>The sum of COM_FR over all timeslices at the COM_TSL level is not equal to 1, and is therefore normalized to 1.
+  - warning
+  - region, commodity, milestone
+* - STD
+  - Unsupported diverging trade topology:
+  <br>The model generator detects an unsupported complex topology of an IRE process, which cannot be properly handled
+  - error
+  - region, process
+* - STD
+  - FLO_EMIS with no members of source group in process:
+  <br>A FLO_EMIS with a source group that has no members for the process has been specified. The parameter is ignored.
+  - severe error
+  - region, process, group, commodity
+* - STD
+  - Unsupported FLO_SHAR: C not in RPC or CG:
+  <br>The commodity in FLO_SHAR is either not in the process topology or not a member of the group specified
+  - error
+  - region, process, commodity, group
+* - STD
+  - FLO_SHAR conflict: Both FX + LO/UP specified, latter ignored:
+  <br>Too many FLO_SHAR bounds are specified, if both FX and LO/UP are specified at the same time.
+  - warning
+  - region, process, vintage, commodity, group
+* - STD
+  - Inconsistent sum of fixed FLO_SHARs in Group:
+  <br>All flows in a group have a fixed share, but the sum of the fixed FLO_SHAR values is not equal to 1.
+  - warning
+  - region, process, vintage, group
+* - STD
+  - Defective sum of FX and UP FLO_SHARs in Group:
+  <br>All flows in a group have either a fixed or an upper share, but the sum of the FLO_SHAR values is less than 1.
+  - warning
+  - region, process, vintage, group
+* - STD
+  - Excessive sum of FX and LO FLO_SHARs in Group:
+  <br>All flows in a group have either a fixed or a lower share, but the sum of the FLO_SHAR values is greater than 1.
+  - warning
+  - region, process, vintage, group
+* - STD
+  - NCAP_AF/ACT_BND Bounds conflict:
+  <br>Value at PRC_TS level and below, latter ignored
+  - warning
+  - region, process, vintage, timeslice
+* - STD
+  - NCAP_AF Bounds conflict:
+  <br>FX + LO/UP at same TS-level, latter ignored
+  - warning
+  - region, process, vintage, timeslice
+* - STD
+  - FLO_SHAR/FLO_FR Bounds conflict:
+  <br>Value at RPCS_VAR level and below, latter ignored
+  - warning
+  - region, process, vintage, timeslice
+* - STD
+  - FLO_SHAR Bounds conflict:
+  <br>FX + LO/UP at same TS-level, latter ignored
+  - warning
+  - region, process, vintage, commodity, group
+* - STD
+  - COM_BNDNET/COM_BNDPRD/IRE_BND Bounds conflict:
+  <br>Value at COM_TS level and below, latter ignored
+  - warning
+  - region, milestone, commodity, timeslice
+* - STD
+  - IRE_FLO import commodity not in TOP_IRE:
+  <br>An invalid IRE_FLO with the imported commodity not in the process topology has been specified
+  - error
+  - region, process, commodity
+* - STD
+  - CHP process with zero CEH but only upper bound on CHPR:
+  <br>A CHP process has only an upper bound on NCAP_CHPR, but a zero or missing NCAP_CEH, which indicates a modelling error
+  - error
+  - region, process
+* - STD
+  - Year Fraction G_YRFR is ZERO:
+  <br>A timeslice with G_YRFR is within the timeslice tree. This should actually never happen, because TIMES automatically removes timeslices with a zero year fraction from the active timeslices.
+  - fatal
+  - region, timeslice
+* - STD
+  - Illegal system commodity in topology:
+  <br>ACT / ACTGRP is a reserved name which should never be used as a commodity in the model topology.
+  - fatal
+  - region, process
+* - STD
+  - Commodity in CG of process P but not in topology:
+  <br>A commodity group assigned to a process contains members not in the process topology (or no members in the process topology).
+  - severe error
+  - region, process, comm.group
+* - STD
+  - Elastic Demand but either COM_BPRICE/ELAST/VOC missing:
+  <br>Either a demand that has COM_ELAST or COM_STEP defined but does not have COM_BPRICE, COM_ELAST, or COM_VOC, defined.
+  - warning
+  - region, commodity, LO/UP
+* - STD
+  - Commodity type is also a commodity:
+  <br>Commodity types are reserved names that cannot be used as commodity names.
+  - fatal
+  - region, commodity type
+* - STD
+  - Commodity has ambiguous base type:
+  <br>The base type for some commodity is not uniquely defined. All commodities should have a unique base type defined (NRG/MAT/DEM/ENV/FIN).
+  - severe error
+  - region, commodity
+* - STD
+  - Demand: DEM commodity with missing COM_PROJ Projection:
+  <br>A demand commodity without any demand projection is found.
+  - warning
+  - region, commodity
+* - STD
+  - Demand: COM_PROJ specified for non-DEM commodity:
+  <br>Demand is projected for a non-demand commodity.
+  - warning
+  - region, commodity
+* - STD
+  - Phantom entries found in topology (process/commodity not in SET PRC/COM):
+  <br>This error is usually triggered when a GAMSTD domain violation has occurred, which may cause unexpected behaviour of the GAMS code.
+  - fatal
+  - region, process, commodity
+* - STD
+  - Process with missing or mismatched CG/PRC_ACTUNIT:
+  <br>Process with missing or several PRC_ACTUNT entries.
+  - fatal
+  - region, process
+* - STD
+  - Illegal dependency of substituted auxiliary commodities C1 and C2 in FLO_SUM:
+  <br>This error should not occur, because the GAMSTD code should make sure that C1 and C2 are not both substituted. If this error is issued, contact TIMES maintenance.
+  - fatal
+  - region, process, commodity1, commodity2
+* - STD
+  - NCAP_AFX defined for NON-vintaged dispatchable process with ACT_MINLD:
+  <br>Shaping of NCAP_AF is not supported for non-vintaged processes having ACT_MINLD defined.
+  - warning
+  - region, process
+* - STD
+  - Active currency but not member of set CUR:
+  <br>Currency referred to in some attributes is not defined in the set CUR.
+  - fatal
+  - currency
+* - STD
+  - Internal Region without Discount Rate:
+  <br>TIMES requires a discount rate defined for all internal regions.
+  - fatal
+  - region
+* - STD
+  - Active Currency without Discount Rate:
+  <br>A currency is being used without discount rate, or conversion to another currency that has a discount rate.
+  - fatal
+  - region, currency
+* - STD
+  - Process with zero PRC_ACTFLO for C in PG:
+  <br>A zero PRC_ACTFLO has been specified for a commodity in the primary group.
+  - fatal
+  - region, process, commodity
+* - XTD
+  - Same Commodity IN and OUT of non-STG process:
+  <br>A process has been defined to have the same commodity as an input and an output, and it is not a storage process; that is not supported.
+  - severe error
+  - region, process, commodity
+* - XTD
+  - IRE Process with invalid Parameters:
+  <br>Some FLO_FUNC, FLO_SUM, FLO_SHAR or UC_FLO parameter not supported for IRE processes has been specified.
+  - error
+  - region, process, com-group
+* - XTD
+  - Invalid Commodity / Group used in ACT_EFF - parameter ignored:
+  <br>An invalid ACT_EFF attribute with a CG not containing members on the shadow side or in the PG has been specified.
+  - error
+  - region, process, group
+* - XTD
+  - FLO_SUM Commodity Not in RPC - parameter ignored:
+  <br>An invalid FLO_SUM has been defined where the commodity is not in the process topology.
+  - error
+  - region, process, group, commodity
+* - XTD
+  - FLO_SUM Commodity Not in CG1 - parameter ignored:
+  <br>An invalid FLO_SUM has been defined where the commodity is not a member of the first group, CG1.
+  - error
+  - region, process, group, commodity
+* - XTD
+  - PTRANS between CG1 and CG2 in both directions:
+  <br>A FLO_FUNC or FLO_SUM between groups CG1 and CG2 has been specified in both directions.
+  - severe error
+  - region, process, group1, group2
+* - XTD
+  - RPC in TOP not found in any ACTFLO / FLO_SHAR / FLO_FUNC / FLO_SUM:
+  <br>Some commodity in the topology does not seem to be tied to anything, at least by means of any of the most common attributes; the user is advised to check that this is not a modelling error.
+  - warning
+  - region, process, commodity, IN/OUT
+* - XTD
+  - Empty Group in FLO_SUM/FLO_FUNC/FLO_SHAR:
+  <br>A group that has no members in the process topology has been used for a process attribute. Detects also an empty primary group.
+  - severe error
+  - region, process, group
+* - XTD
+  - Both NCAP_AF and NCAP_AFA specified for same process:
+  <br>Specifying both NCAP_AF(bd) and NCAP_AFA(bd) for an ANNUAL level process is ambiguous and should be avoided.
+  - warning
+  - region, process, vintage
+* - XTD
+  - Too Long Commodity Lead Time:
+  <br>A value of NCAP_CLED \> NCAP_ILED has been specified
+  - warning
+  - region, process, commodity
+* - XTD
+  - CHP parameter specified for Non-CHP process:
+  <br>An NCAP_BPME, NCAP_CHPR or NCAP_CEH parameter has been specified for a process that is not defined to be CHP.
+  - error
+  - region, process, vintage
+* - XTD
+  - PG of CHP process consists of single commodity yet has a CHP-ratio:
+  <br>A CHP process has a NCAP_CHPR specified but has only a single commodity in the primary group.
+  - warning
+  - region, process
+* - XTD
+  - Found CHP processes without CHP-ratio defined:
+  <br>A CHP process has no NCAP_CHPR defined
+  - warning
+  - number of such processes
+* - XTD
+  - Found CHP processes with PG commodity efficiencies - unsupported:
+  <br>Specifying ACT_EFF on some flow(s) in the PG is not supported for CHP processes, and may lead to unexpected results.
+  - warning
+  - region, process
+* - XTD
+  - Found CHP processes without electricity in the PG:
+  <br>A CHP process is found with no electricity commodity in the PG.
+  - warning
+  - region, process
+```
 
 ## Errors and their resolution
 
@@ -740,3 +628,13 @@ This helps with tracking down the culprit, but the user still needs to figure ou
 
 As a last resort, the model can be run with the equation listing turned on by setting LIMROW/LIMCOL to, say, 1000 in the \<case\>.RUN (via the Case Manager) / GEN (via Edit the GEN from the Run form) file, although the equations in this form can be challenging to interpret.
 
+
+[^14]: For simplicity, it has been assumed in this description that the name of the \<case\>.run/gen (for VEDA-FE/ANSWER respectively) file and the \*.dd files are the same (\<case_name\>). The names of the two files can be different, and usually are with BASE.dd the main dataset with non-Base scenarios included in a run having \<scenario\>.dd/dds names (for VEDA-FE/ANSWER respectively). The listing file generated by GAMS always has the same name of the \<case\>.run/gen file. The name of the gdx files can be chosen by the user on the command line calling GAMS (e.g. gams mymodel.run gdx = myresults will result in a file called myresults.gdx), however, out of VEDA-FE/ANSWER the files are \<case\>.gdx.
+
+[^15]: The basics of the TIMES2VEDA.VDD control file and the use of the result analysis software VEDA-BE are described in Part V.
+
+[^16]: The ANSWER GEN file will have similar content though with some syntax and perhaps slightly augmented scripts.
+
+[^17]: The basics of the TIMES2VEDA.VDD control file and the use of the result analysis software VEDA-BE are described in Part V.
+
+[^18]: STD=standard QA check (always done), XTD=extended QA check (activate with XTQA)

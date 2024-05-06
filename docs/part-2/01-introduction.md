@@ -19,3 +19,6 @@ Furthermore, by nature of its underlying design philosophy, the GAMS code is ver
 The standard TIMES formulation has optional features, such as lumpy investments and endogenous technology learning. The organization and layout of the TIMES code, along with how it is processed by GAMS during a model run, is discussed in detail in PART III. In addition, a modeller experienced in GAMS programming and the details of the TIMES implementation could define additional equation modules or report routine modules based on this organization, which allows the linkage of these modules to the standard TIMES code in a flexible way. However, any thoughts of modifying the core TIMES code should be discussed and coordinated with ETSAP.
 
 To build, run, and analyse a TIMES model, several software tools have been developed in the past or are currently under development, so that the modeller does not need to provide the input information needed to build a TIMES model directly in GAMS. These tools are the model interfaces VEDA-FE and ANSWER-TIMES, as well as the reporting and analysing tool VEDA-BE.
+
+
+[^1]: *GAMS A User's Guide*, A. Brooke, D. Kendrick, A. Meeraus, R. Raman, GAMS Development Corporation, December 1998.

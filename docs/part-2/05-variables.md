@@ -2,196 +2,196 @@
 
 This chapter describes each variable name, definition, and role in the TIMES Linear Program. To facilitate identification of the variables when examining the model's source code, all variable names start with the prefix VAR\_. The value assigned to each variable indexed by some time period, represents the average value in that time period, but the case of VAR_NCAP(v) is an exception, since that variable represents a point-wise investment decided at time period **v**. VAR_NCAP is discussed in detail below.
 
-Table 23 is a list of TIMES variables by category, with brief description of each variable.
+{numref}`times-variables-by-category` is a list of TIMES variables by category, with brief description of each variable.
 
-**Remarks on Table 23:**
+**Remarks on {numref}`times-variables-by-category`:**
 - Many variables that are related to a process have two period indexes: **t** represents the current period, and **v** represents the vintage of a process, i.e. the period when the investment in that process was decided. For the VAR_NCAP variable, **t** is by definition equal to **v**. For other variables, **t** ≥ **v**, if the process is vintaged (**prc_vint**), i.e., the characteristics of the process depend on the vintage year. If the process is non-vintaged, the characteristics of the capacity of a process are not differentiated by its vintage structure, so that the vintage index is actually not needed for the variables of a non-vintaged process. In these cases, the vintage index **v** is by convention set equal to the period index **t**.
-- In Table 23, the variables are listed according to five categories, depending on what TIMES entity they represent. In the rest of the chapter, the variables are listed and fully described in alphabetical order.
-- Table 23 does not list the variables used in the Climate Module, Damage Cost and ETL extensions of TIMES, which are fully documented in Appendices A, B, and C, respectively.
+- In {numref}`times-variables-by-category`, the variables are listed according to five categories, depending on what TIMES entity they represent. In the rest of the chapter, the variables are listed and fully described in alphabetical order.
+- {numref}`times-variables-by-category` does not list the variables used in the Climate Module, Damage Cost and ETL extensions of TIMES, which are fully documented in Appendices A, B, and C, respectively.
 - In the Objective function category, also lists several parameters that stand for certain portions of the objective functions. These are not bona fide GAMS variables, but mostly serve as convenient placeholders for this documentation, and also as useful parameters that may be reported in the solution.
 
-    **Table 23. List of TIMES variables by category**
+```{list-table} List of TIMES variables by category
+:name: times-variables-by-category
+:header-rows: 1
 
-  -----------------------------------------------------------------------------------------
-  **Category**        **Variable     **Brief description**                       **DT\***
-                      name**                                                     
-  ------------------- -------------- ------------------------------------------- ----------
-  **Region related**                                                             
-
-                      VAR_CUMCST     Cumulative amount of regional               ≥0
-                                     cost/tax/subsidy                            
-
-  **Process related**                                                            
-
-                      VAR_ACT        Annual activity of a process                ≥0
-
-                      VAR_CAP        Current capacity of a process, all vintages ≥0
-                                     together                                    
-
-                      VAR_NCAP       Investment (new capacity) in a process      ≥0
-
-                      VAR_DNCAP\     Binary variable (VAR_DNCAP) and             ≥0
-                      VAR_SNCAP      semi-continuous variable (VAR_SNCAP) used   
-                                     with the discrete investment option (see    
-                                     EQ_DSCNCAP)                                 
-
-                      VAR_RCAP       Retired capacity of a process in a period   ≥0
-                                     by vintage                                  
-
-                      VAR_SCAP       Cumulative retired capacity of a process in ≥0
-                                     a period                                    
-
-                      VAR_DRCAP      Binary variable for discrete capacity       ≥0
-                                     retirements                                 
-
-                      VAR_UPS        Started-up, shut-down, and off-line         ≥0
-                                     capacities                                  
-
-                      VAR_UDP        Capacity unit dispatching load level        ≥0
-                                     variables                                   
-
-  **Commodity                                                                    
-  related**                                                                      
-
-                      VAR_BLND       Blending variable (for oil refining)        ≥0
-
-                      VAR_COMNET     Net amount of a commodity                   ≥0
-
-                      VAR_COMPRD     Gross production of a commodity (COM_IE     ≥0
-                                     applied)                                    
-
-                      VAR_CUMCOM     Cumulative gross/net production of          ≥0
-                                     commodity                                   
-
-                      VAR_ELAST      Variables used to linearize elastic demand  ≥0
-                                     curves                                      
-
-                      VAR_GRIDELC    Transfer of power between grid nodes and    ≥0
-                                     demand nodes in the add-on grid formulation 
-
-                      VAR_COMAUX     Phase angles in the DC power flow           ≥0
-                                     formulation                                 
-
-  **Flow (Process and                                                            
-  Commodity)                                                                     
-  related**                                                                      
-
-                      VAR_FLO        Flow of a commodity in or out of a process  ≥0
-
-                      VAR_CUMFLO     Cumulative amount of process flow/activity  ≥0
-
-                      VAR_IRE        Flow of a commodity in or out of an         ≥0
-                                     exchange process (trade variable)           
-
-                      VAR_SIN/OUT    Flow of a commodity in or out of a storage  ≥0
-                                     process                                     
-
-  **Objective                                                                    
-  function related**                                                             
-
-                      OBJZ           Variable representing the overall objective free
-                                     function (all regions together)             
-
-                      VAR_OBJ        Variable representing objective function by ≥0
-                                     region and main type (OBJINV, OBJFIX,       
-                                     OBJVAR, OBJSAL)                             
-
-  *The following 10 parameters are not true variables of the LP matrix*                                                                 
-
-                      OBJR           Parameter representing a regional component 
-                                     of the objective function.                  
-
-                      INVCOST        Parameter representing the investments      
-                                     portion of a regional component of the      
-                                     objective function                          
-
-                      INVTAXSUB      Parameter representing the taxes and        
-                                     subsidies attached to the investments       
-                                     portion of a regional component of the      
-                                     objective function                          
-
-                      INVDECOM       Parameter representing the capital cost     
-                                     attached to the dismantling                 
-                                     (decommissioning) portion of a regional     
-                                     component of the objective function         
-
-                      FIXCOST        Parameter representing the fixed annual     
-                                     costs portion of a regional component of    
-                                     the objective function                      
-
-                      FIXTAXSUB      Parameter representing the taxes and        
-                                     subsidies attached to fixed annual costs of 
-                                     a regional component of the objective       
-                                     function                                    
-
-                      VARCOST        Parameter representing the variable annual  
-                                     cost portion of a regional component of the 
-                                     objective function                          
-
-                      VARTAXSUB      Parameter representing the variable taxes   
-                                     and subsidies of a regional component of    
-                                     the objective function                      
-
-                      ELASTCOST      Variable representing the demand loss       
-                                     portion of a regional component of the      
-                                     objective function                          
-
-                      LATEREVENUES   Parameter representing the late revenue     
-                                     portion of a regional component of the      
-                                     objective function.                         
-
-                      SALVAGE        Parameter representing the salvage value    
-                                     portion of a regional component of the      
-                                     objective function                          
-
-  **User Constraint                                                              
-  related**[^38]                                                                 
-
-                      VAR_UC         Variable representing the LHS expression of free
-                                     a user constraint summing over regions      
-                                     (**uc_r_sum**), periods (**uc_t_sum**) and  
-                                     timeslices (**uc_ts_sum**).                 
-
-                      VAR_UCR        Variable representing the LHS expression of free
-                                     a user constraint summing over periods      
-                                     (**uc_t_sum**) and timeslices               
-                                     (**uc_ts_sum**) and being generated for the 
-                                     regions specified in **uc_r_each**.         
-
-                      VAR_UCT        Variable representing the LHS expression of free
-                                     a user constraint summing over regions      
-                                     (**uc_r_sum**) and timeslices               
-                                     (**uc_ts_sum**) and being generated for the 
-                                     periods specified in **uc_t_each**.         
-
-                      VAR_UCRT       Variable representing the LHS expression of free
-                                     a user constraint summing over timeslices   
-                                     (**uc_ts_sum**) and being generated for the 
-                                     regions specified in **uc_r_each** and      
-                                     periods in **uc_t_each**.                   
-
-                      VAR_UCTS       Variable representing the LHS expression of free
-                                     a user constraint summing over regions      
-                                     (**uc_r_sum**) and being generated for the  
-                                     periods specified in **uc_t_each** and      
-                                     timeslices in **uc_ts_each**.               
-
-                      VAR_UCRTS      Variable representing the LHS expression of free
-                                     a user constraint summing over periods      
-                                     being generated for the regions specified   
-                                     in **uc_r_each**, the periods in            
-                                     **uc_t_each** and timeslices in             
-                                     **uc_ts_each**.                             
-
-  **Miscellaneous**                                                              
-
-  Load levels         VAR_RLD        Power load levels by user-defined supply    ≥0
-                                     category.\                                  
-                                     Used in the residual load and ABS           
-                                     extensions.                                 
-  -----------------------------------------------------------------------------------------
-
-  : Table A-1. Definition of Climate Module user input parameters.
+* - Category
+  - Variable name
+  - Brief description
+  - DT\*
+* - Region related
+  - VAR_CUMCST
+  - Cumulative amount of regional cost/tax/subsidy
+  - ≥0
+* - Process related
+  - VAR_ACT
+  - Annual activity of a process
+  - ≥0
+* - 
+  - VAR_CAP
+  - Current capacity of a process, all vintages together
+  - ≥0
+* - 
+  - VAR_NCAP
+  - Investment (new capacity) in a process
+  - ≥0
+* - 
+  - VAR_DNCAP
+  <br>VAR_SNCAP
+  - Binary variable (VAR_DNCAP) and semi-continuous variable (VAR_SNCAP) used with the discrete investment option (see EQ_DSCNCAP)
+  - ≥0
+* - 
+  - VAR_RCAP
+  - Retired capacity of a process in a period by vintage
+  - ≥0
+* - 
+  - VAR_SCAP
+  - Cumulative retired capacity of a process in a period
+  - ≥0
+* - 
+  - VAR_DRCAP
+  - Binary variable for discrete capacity retirements
+  - ≥0
+* - 
+  - VAR_UPS
+  - Started-up, shut-down, and off-line capacities
+  - ≥0
+* - 
+  - VAR_UDP
+  - Capacity unit dispatching load level variables
+  - ≥0
+* - Commodity related
+  - VAR_BLND
+  - Blending variable (for oil refining)
+  - ≥0
+* - 
+  - VAR_COMNET
+  - Net amount of a commodity
+  - ≥0
+* - 
+  - VAR_COMPRD
+  - Gross production of a commodity (COM_IE applied)
+  - ≥0
+* - 
+  - VAR_CUMCOM
+  - Cumulative gross/net production of commodity
+  - ≥0
+* - 
+  - VAR_ELAST
+  - Variables used to linearize elastic demand curves
+  - ≥0
+* - 
+  - VAR_GRIDELC
+  - Transfer of power between grid nodes and demand nodes in the add-on grid formulation
+  - ≥0
+* - 
+  - VAR_COMAUX
+  - Phase angles in the DC power flow formulation
+  - ≥0
+* - Flow (Process and Commodity) related
+  - VAR_FLO
+  - Flow of a commodity in or out of a process
+  - ≥0
+* - 
+  - VAR_CUMFLO
+  - Cumulative amount of process flow/activity
+  - ≥0
+* - 
+  - VAR_IRE
+  - Flow of a commodity in or out of an exchange process (trade variable)
+  - ≥0
+* - 
+  - VAR_SIN/OUT
+  - Flow of a commodity in or out of a storage process
+  - ≥0
+* - Objective function related
+  - OBJZ
+  - Variable representing the overall objective function (all regions together)
+  - free
+* - 
+  - VAR_OBJ
+  - Variable representing objective function by region and main type (OBJINV, OBJFIX, OBJVAR, OBJSAL)
+  - ≥0
+* - 
+  - 
+  - *The following 10 parameters are not true variables of the LP matrix*
+  - 
+* - 
+  - OBJR
+  - Parameter representing a regional component of the objective function.
+  - 
+* - 
+  - INVCOST
+  - Parameter representing the investments portion of a regional component of the objective function
+  - 
+* - 
+  - INVTAXSUB
+  - Parameter representing the taxes and subsidies attached to the investments portion of a regional component of the objective function
+  - 
+* - 
+  - INVDECOM
+  - Parameter representing the capital cost attached to the dismantling (decommissioning) portion of a regional component of the objective function
+  - 
+* - 
+  - FIXCOST
+  - Parameter representing the fixed annual costs portion of a regional component of the objective function
+  - 
+* - 
+  - FIXTAXSUB
+  - Parameter representing the taxes and subsidies attached to fixed annual costs of a regional component of the objective function
+  - 
+* - 
+  - VARCOST
+  - Parameter representing the variable annual cost portion of a regional component of the objective function
+  - 
+* - 
+  - VARTAXSUB
+  - Parameter representing the variable taxes and subsidies of a regional component of the objective function
+  - 
+* - 
+  - ELASTCOST
+  - Variable representing the demand loss portion of a regional component of the objective function
+  - 
+* - 
+  - LATEREVENUES
+  - Parameter representing the late revenue portion of a regional component of the objective function.
+  - 
+* - 
+  - SALVAGE
+  - Parameter representing the salvage value portion of a regional component of the objective function
+  - 
+* - User Constraint related[^38]
+  - VAR_UC
+  - Variable representing the LHS expression of a user constraint summing over regions (**uc_r_sum**), periods (**uc_t_sum**) and timeslices (**uc_ts_sum**).
+  - free
+* - 
+  - VAR_UCR
+  - Variable representing the LHS expression of a user constraint summing over periods (**uc_t_sum**) and timeslices (**uc_ts_sum**) and being generated for the regions specified in **uc_r_each**.
+  - free
+* - 
+  - VAR_UCT
+  - Variable representing the LHS expression of a user constraint summing over regions (**uc_r_sum**) and timeslices (**uc_ts_sum**) and being generated for the periods specified in **uc_t_each**.
+  - free
+* - 
+  - VAR_UCRT
+  - Variable representing the LHS expression of a user constraint summing over timeslices (**uc_ts_sum**) and being generated for the regions specified in **uc_r_each** and periods in **uc_t_each**.
+  - free
+* - 
+  - VAR_UCTS
+  - Variable representing the LHS expression of a user constraint summing over regions (**uc_r_sum**) and being generated for the periods specified in **uc_t_each** and timeslices in **uc_ts_each**.
+  - free
+* - 
+  - VAR_UCRTS
+  - Variable representing the LHS expression of a user constraint summing over periods being generated for the regions specified in **uc_r_each**, the periods in **uc_t_each** and timeslices in **uc_ts_each**.
+  - free
+* - Miscellaneous
+  - 
+  - 
+  - 
+* - Load levels
+  - VAR_RLD
+  - Power load levels by user-defined supply category. Used in the residual load and ABS extensions.
+  - ≥0
+```
 
 > \* DT = Default Type of variable: either ≥0 or free
 
@@ -511,3 +511,6 @@ Variable representing the LHS expression of the user constraint EQE_UCTS(uc_n,t,
 ### $VAR\_UCRTS(uc\_n,r,t,s)$
 
 Variable representing the LHS expression of the user constraint EQE_UCRTS(r,uc_n,t,s) and the combined LHS--RHS expression of the user constraint EQE_UCRSUS(r,uc_n,t,s), being generated for the regions speci­fied in **uc_r_each**, the periods in **uc_t_each/uc_t_succ** and the timeslices in **uc_ts_each**.
+
+
+[^38]: In case the dollar control parameter VAR_UC is set to YES, the user constraints are always strict equalities (***l***=E) with the RHS constants replaced by the user constraint variables given in the table. The RHS bound parameter (UC_RHS(R)(T)(S)) are then applied to these user constraint related variables. See Section 5.20.

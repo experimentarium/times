@@ -100,7 +100,6 @@ In a minimization problem (such as the usual formulation of TIMES), the differen
 
 The reduced costs/surpluses may thus be used to rank all technologies, *including those that are not selected by the model.*
 
-------------
 
 [^48]: Their proofs may be found in the textbooks on Linear Programming already referenced.
 

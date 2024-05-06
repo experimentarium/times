@@ -170,10 +170,6 @@ The objective function is the sum of all regional objectives, all of them discou
   $$VAR\_ OBJ(z) = \sum_{r \in REG}^{}{REG\_ OBJ(z,r)}$$             *(A)*
   ------------------------------------------------------------------ -------
 
-  --------------------------------------------------------------------------
-
-  : Table A-2. Parameters of the climatic module (default values)
-
 Each regional objective *OBJ(z,r)* is decomposed into the sum of nine components, to facilitate exposition, as per expression (B) below.
 
 *EQ_OBJ(z,r)* $\ni z \in ALLYEARS,r \in REG$
@@ -187,10 +183,6 @@ Each regional objective *OBJ(z,r)* is decomposed into the sum of nine components
   \end{aligned} \right\}}                                                                              
   }{- SALVAGE(z)}$$                                                                                    
   ---------------------------------------------------------------------------------------------------- -------
-
-  ------------------------------------------------------------------------------------------------------------
-
-  : Table A-4. Model variables specific to the Climate Module.
 
 The regional index *r* is omitted from the nine components for simplicity of notation.
 
@@ -732,7 +724,6 @@ Finally, another correction must be made to these expressions, whenever the user
 +=======================================================================+
 +-----------------------------------------------------------------------+
 
-: Table A-5. Climate Module specific constraints (all in the GAMS file equ_ext.cli).
 
 Note: the time indexes have been omitted for clarity of the expression.
 
@@ -766,7 +757,6 @@ period)**
 | Note that *SAL(v)* = 0 whenever  *v*+*TLIFE~t~*  ≤  *EOH *+ 1         |
 +-----------------------------------------------------------------------+
 
-: Table B-1. Input parameters for the TIMES Damage Cost Functions.
 
 **(VIII.1.a)**
 
@@ -782,7 +772,6 @@ $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  : Table B-3. Model variables specific to the Damage Cost Functions.
 
 (**VIII.1.b)**
 
@@ -1008,253 +997,157 @@ Accordingly, we should correct the definition of the *CRF proper* by assuming th
 | > (1+*d~S~*(*T*(*y*)))^0.5^                                 |        |
 +-------------------------------------------------------------+--------+
 
-: Table B-4. Constraints specific to damage costs (in the GAMS file eqdamage.mod).
 
-Consequently, in both cases the annualized investment payments are then assumed to occur at the mid-point of each fiscal year starting at the time of the lump-sum investment, and the annual pay­ments are equiva­lent to the lump-sum investment when discounted back to that point by the tech­nology-specific discount rate. The imple­mentation of the optional corrections for mid-year dis­counting corresponds to equations (XI.1 to XI.3). To be consistent, the expression (XI.3) for *CRF~2,mid~* should also be used for decommissioning costs.
+Consequently, in both cases the annualized investment payments are then assumed to occur at the mid-point of each fiscal year starting at the time of the lump-sum investment, and the annual payments are equivalent to the lump-sum investment when discounted back to that point by the technology-specific discount rate. The implementation of the optional corrections for mid-year discounting corresponds to equations (XI.1 to XI.3). To be consistent, the expression (XI.3) for *CRF~2,mid~* should also be used for decommissioning costs.
 
 ## Constraints
 
-The constraints available in standard TIMES are shown in Table 23 below, and later fully described in the following subsections. The constraints related to the Climate Module (CLI), Damage Cost Functions (DAM) and Endogenous Technology Learning (ETL) are shown and described in three separate chapters (Appendices A, B and C respectively). The constraints related to the advanced unit commitment formulation are described in detail in a separate document \"*Dispatching and Unit Commitment in TIMES*\", and the constraints related to the balancing services extension are described in a separate document \"*Enhancing the flexibility in TIMES: Introducing Ancillary Services Markets*\".
+The constraints available in standard TIMES are shown in {numref}`times-equations`, and later fully described in the following subsections. The constraints related to the Climate Module (CLI), Damage Cost Functions (DAM) and Endogenous Technology Learning (ETL) are shown and described in three separate chapters (Appendices A, B and C respectively). The constraints related to the advanced unit commitment formulation are described in detail in a separate document \"*Dispatching and Unit Commitment in TIMES*\", and the constraints related to the balancing services extension are described in a separate document \"*Enhancing the flexibility in TIMES: Introducing Ancillary Services Markets*\".
 
-**Table 24. List of TIMES equations**
+```{list-table} List of TIMES equations.
+:name: times-equations
+:header-rows: 1
 
-+------------+---------------------------------------------------------+
-| **Equation | **Short description**                                   |
-| Name**     |                                                         |
-+============+=========================================================+
-| BND_ELAST  | Upper bound on each of the step variables used to       |
-|            | linearize the demand function when elastic demand       |
-|            | feature is used                                         |
-+------------+---------------------------------------------------------+
-| EQ(        | Bound on the activity of a process                      |
-| l)\_ACTBND |                                                         |
-+------------+---------------------------------------------------------+
-| EQE_ACTEFF | Equality relationship that defines the activity         |
-|            | efficiency of a process                                 |
-+------------+---------------------------------------------------------+
-| EQ_ACTFLO  | Equality relationship that defines the activity of a    |
-|            | process in terms of its flow variables                  |
-+------------+---------------------------------------------------------+
-| EQ_ACTPL   | Defines the efficiency deterioration of a process at    |
-|            | partial loads                                           |
-+------------+---------------------------------------------------------+
-| EQ_ACTRAMP | Defines bounds on the ramping of process activity, in   |
-|            | proportion to its online capacity, in either direction  |
-|            | (LO/UP)                                                 |
-+------------+---------------------------------------------------------+
-| EQ_ACTRMPC | Defines the change in the load by ramping up or down in |
-|            | the dispatching phase, for which ramping costs are to   |
-|            | be applied (ACT_CSTRMP).                                |
-+------------+---------------------------------------------------------+
-| EQL_ACTUPC | Sets a lower limit on the successive on-line / off-line |
-|            | hours of capacity                                       |
-+------------+---------------------------------------------------------+
-| EQE_ACTUPS | Expresses that the change in process on-line capacity   |
-|            | between successive timeslices must be equal to the      |
-|            | capacity started-up -- shut-down                        |
-+------------+---------------------------------------------------------+
-| EQL_ACTUPS | Expresses that the sum of process started-up capacity   |
-|            | over a cycle must be at least equal to the max. amount  |
-|            | of capacity put off-line in the cycle                   |
-+------------+---------------------------------------------------------+
-| EQ         | Establishes advanced share constraints between process  |
-| (l)\_ASHAR | flows                                                   |
-+------------+---------------------------------------------------------+
-| E          | Special blending constraints used to specify the        |
-| Q(l)\_BLND | composition of refined oil products                     |
-+------------+---------------------------------------------------------+
-| EQ_BNDCST  | Establishes a variable representing the cumulative      |
-|            | amount of process costs, taxes and/or subsidies over a  |
-|            | time interval, for defining a bound                     |
-+------------+---------------------------------------------------------+
-| EQ(        | Bound on the net amount (production minus consumption)  |
-| l)\_BNDNET | of a commodity                                          |
-+------------+---------------------------------------------------------+
-| EQ(        | Bound on the total production of a commodity            |
-| l)\_BNDPRD |                                                         |
-+------------+---------------------------------------------------------+
-| EQ(        | Relates the flows in the primary group of a process to  |
-| l)\_CAFLAC | its available capacity; may be rigid (=) or flexible    |
-|            | (≤)                                                     |
-+------------+---------------------------------------------------------+
-| EQ(        | Relates the activity of a process to its available      |
-| l)\_CAPACT | capacity; may be rigid (=) or flexible (≤,≥)            |
-+------------+---------------------------------------------------------+
-| EQL_CAPFLO | Relates a flow not in the primary group of a process to |
-|            | its available capacity; only an upper bound for the     |
-|            | flow ≤ is supported                                     |
-+------------+---------------------------------------------------------+
-| EQ_CAPLOAD | Relates the activity of a process to its available      |
-|            | on-line capacity in each timeslice; only for processes  |
-|            | with flexible availability (≤,≥)                        |
-+------------+---------------------------------------------------------+
-| EQ(l)\_CPT | Calculates the current capacity of a process in terms   |
-|            | of all past and current investments in that process     |
-+------------+---------------------------------------------------------+
-| EQ(        | Balance equation of a commodity                         |
-| l)\_COMBAL |                                                         |
-+------------+---------------------------------------------------------+
-| EQE_COMPRD | Definition of the total production of a commodity       |
-+------------+---------------------------------------------------------+
-| EQ_CUMFLO  | Bound on the cumulative flow or activity of a process   |
-|            | over a time interval                                    |
-+------------+---------------------------------------------------------+
-| EQ_CUMNET  | Bound on the cumulative production of a commodity over  |
-|            | a time interval                                         |
-+------------+---------------------------------------------------------+
-| EQ_CUMPRD  | Bound on the cumulative net quantity of a commodity     |
-|            | over a time interval                                    |
-+------------+---------------------------------------------------------+
-| EQ_CUMRET  | Establishes a variable representing the cumulative      |
-|            | amount of retired capacity of a process                 |
-+------------+---------------------------------------------------------+
-| EQ_DSCNCAP | These two constraints ensure that some investments may  |
-| and        | only be made in certain discrete sizes                  |
-|            |                                                         |
-| EQ_DSCONE  |                                                         |
-+------------+---------------------------------------------------------+
-| EQ_DSCRET  | Ensures that early capacity retirements may only be     |
-|            | made in multiples of a certain discrete block size      |
-+------------+---------------------------------------------------------+
-| EQ(        | Bound on the sum over a commodity group, of the         |
-| l)\_FLOBND | commodity flows of a process                            |
-+------------+---------------------------------------------------------+
-| EQ         | Relationship between a flow in one timeslice and the    |
-| (l)\_FLOFR | annual flow, for a given process                        |
-+------------+---------------------------------------------------------+
-| EQ(        | Expresses for a given commodity that the amount         |
-| l)\_FLOMRK | produced/consumed by a process is tied to the total     |
-|            | amount produced/consumed of that commodity              |
-+------------+---------------------------------------------------------+
-| EQ_IRE     | Expresses that imports of a commodity by region r must  |
-|            | be equal to all exports by other regions to region r    |
-+------------+---------------------------------------------------------+
-| EQ_IREBND  | Bound on exchange of a commodity between two regions    |
-+------------+---------------------------------------------------------+
-| EQ_XBND    | Bound on total exchanges of a commodity by one region   |
-+------------+---------------------------------------------------------+
-| EQ         | For a given process, expresses that the inflow of a     |
-| (l)\_INSHR | commodity is tied to the total inflows of all           |
-|            | commodities in a certain group                          |
-+------------+---------------------------------------------------------+
-| EQ(        | For a given process, expresses that the outflow of a    |
-| l)\_OUTSHR | commodity is tied to the total outflows of all          |
-|            | commodities in a certain group                          |
-+------------+---------------------------------------------------------+
-| EQ_PEAK    | Expresses that capacity available must exceed demand of |
-|            | a selected commodity in any time slice by a certain     |
-|            | margin                                                  |
-+------------+---------------------------------------------------------+
-| EQ_PTRANS  | Establishes an equality relationship between (groups    |
-|            | of) inputs and certain (groups of) outputs of a process |
-+------------+---------------------------------------------------------+
-| EQL_REFIT  | Implements the retrofit and life extension constraints, |
-|            | such that the capacity of the retrofit/life-extension   |
-|            | options is, when commissioned, at most equal to the     |
-|            | available remaining capacity of the host process.       |
-+------------+---------------------------------------------------------+
-| EQL_SCAP   | Bounds the amount of capacity salvaged if early         |
-|            | retirements are active.                                 |
-+------------+---------------------------------------------------------+
-| EQ_SLSIFT  | Implements the load shifting constraints (see 6.3.37    |
-|            | EQ_SLSIFT).                                             |
-+------------+---------------------------------------------------------+
-| EQ_STGAUX  | Establishes an equality relationship between storage    |
-|            | main flows or activity and an auxiliary storage flow    |
-+------------+---------------------------------------------------------+
-| EQL_STGCCL | Defines an upper bound for storage cycling, by imposing |
-|            | a replacement cost if the annual output divided by      |
-|            | storage capacity exceeds the average number of storage  |
-|            | cycles in a year, as calculated from STG_MAXCYC.        |
-+------------+---------------------------------------------------------+
-| EQ_STGIPS  | Ensures the storage of a commodity between two time     |
-|            | periods                                                 |
-+------------+---------------------------------------------------------+
-| EQ_STGTSS  | Ensures the storage of a commodity between two          |
-|            | timeslices                                              |
-+------------+---------------------------------------------------------+
-| EQ         | Bounds the input into a storage process                 |
-| (l)\_STGIN |                                                         |
-+------------+---------------------------------------------------------+
-| EQ(        | Bounds the output of a storage process                  |
-| l)\_STGOUT |                                                         |
-+------------+---------------------------------------------------------+
-| EQ_STSBAL  | Defines balances between timeslice levels in a general  |
-|            | timeslice storage                                       |
-+------------+---------------------------------------------------------+
-| EQ_SDLOGIC | Logical relationship between decision variables in the  |
-|            | advanced unit commitment formulation (see separate      |
-|            | documentation).                                         |
-+------------+---------------------------------------------------------+
-| EQ_SUDUPT  | Selection of start up type a according to               |
-|            | non-operational time in the advanced unit commitment    |
-|            | formulation (see separate documentation).               |
-+------------+---------------------------------------------------------+
-| EQ_SDSLANT | Slanting equation for start-up and shut-down phase in   |
-|            | the advanced unit commitment formulation (see separate  |
-|            | documentation).                                         |
-+------------+---------------------------------------------------------+
-| EQ_SDMINON | Minimum on-line capacity constraints in the advanced    |
-|            | unit commitment formulation (see separate               |
-|            | documentation).                                         |
-+------------+---------------------------------------------------------+
-| EQ_SUDLOAD | Load during start-up/shut down phase of the unit        |
-|            | (linear growth) in the advanced unit commitment         |
-|            | formulation (see separate documentation).               |
-+------------+---------------------------------------------------------+
-| EQ_SUDTIME | Minimum on-line / off-line time constraint in the       |
-|            | advanced unit commitment formulation (see separate      |
-|            | documentation).                                         |
-+------------+---------------------------------------------------------+
-| EQ_SUDPLL  | Efficiency losses due to start-up/shut-down of the unit |
-|            | in the advanced unit commitment formulation (see        |
-|            | separate documentation).                                |
-+------------+---------------------------------------------------------+
-| EQ         | Defines a dynamic bound on the growth / decay in the    |
-| (l)\_UCRTP | installed capacity, new capacity or activity of a       |
-|            | process over successive periods                         |
-+------------+---------------------------------------------------------+
-| EQ         | Defines a dynamic bound on the growth / decay in        |
-| (l)\_UCRTC | commodity production (NET or PRD) over successive       |
-|            | periods                                                 |
-+------------+---------------------------------------------------------+
-| EQ(l)\_UC\ | User Constraints of the LHS type                        |
-| E          |                                                         |
-| Q(l)\_UCR\ | Static user-defined constraints that have a user        |
-| E          | defined constant RHS                                    |
-| Q(l)\_UCT\ |                                                         |
-| EQ         |                                                         |
-| (l)\_UCRT\ |                                                         |
-| EQ         |                                                         |
-| (l)\_UCTS\ |                                                         |
-| EQ         |                                                         |
-| (l)\_UCRTS |                                                         |
-+------------+---------------------------------------------------------+
-| E          | Timeslice-dynamic User Constraints\                     |
-| Q(l)\_UCRS | User-defined constraints that involve only a single     |
-|            | region r and period t but both timeslice s and the      |
-|            | preceding timeslice s--rs_stg(r,s)                      |
-+------------+---------------------------------------------------------+
-| EQ         | User Constraints of dynamic type (t,t+1)\               |
-| (l)\_UCSU\ | User-defined constraints that involve both period t and |
-| EQ(        | the succeeding period t+1                               |
-| l)\_UCSUS\ |                                                         |
-| EQ(        |                                                         |
-| l)\_UCRSU\ |                                                         |
-| EQ(        |                                                         |
-| l)\_UCRSUS |                                                         |
-+------------+---------------------------------------------------------+
-| EQ         | User Constraints of dynamic type (t,t--1)\              |
-| (l)\_UCSU\ | User-defined constraints that involve both period t and |
-| EQ(        | the preceding period t--1                               |
-| l)\_UCSUS\ |                                                         |
-| EQ(        |                                                         |
-| l)\_UCRSU\ |                                                         |
-| EQ(        |                                                         |
-| l)\_UCRSUS |                                                         |
-+------------+---------------------------------------------------------+
-
-: Table C-1. Definition of ETL user input parameters
+* - Equation Name
+  - Short description
+* - BND_ELAST
+  - Upper bound on each of the step variables used to linearize the demand function when elastic demand feature is used
+* - EQ(l)\_ACTBND
+  - Bound on the activity of a process
+* - EQE_ACTEFF
+  - Equality relationship that defines the activity efficiency of a process
+* - EQ_ACTFLO
+  - Equality relationship that defines the activity of a process in terms of its flow variables
+* - EQ_ACTPL
+  - Defines the efficiency deterioration of a process at partial loads
+* - EQ_ACTRAMP
+  - Defines bounds on the ramping of process activity, in proportion to its online capacity, in either direction (LO/UP)
+* - EQ_ACTRMPC
+  - Defines the change in the load by ramping up or down in the dispatching phase, for which ramping costs are to be applied (ACT_CSTRMP).
+* - EQL_ACTUPC
+  - Sets a lower limit on the successive on-line / off-line hours of capacity
+* - EQE_ACTUPS
+  - Expresses that the change in process on-line capacity between successive timeslices must be equal to the capacity started-up -- shut-down
+* - EQL_ACTUPS
+  - Expresses that the sum of process started-up capacity over a cycle must be at least equal to the max. amount of capacity put off-line in the cycle
+* - EQ(l)\_ASHAR
+  - Establishes advanced share constraints between process flows
+* - EQ(l)\_BLND
+  - Special blending constraints used to specify the composition of refined oil products
+* - EQ_BNDCST
+  - Establishes a variable representing the cumulative amount of process costs, taxes and/or subsidies over a time interval, for defining a bound
+* - EQ(l)\_BNDNET
+  - Bound on the net amount (production minus consumption) of a commodity
+* - EQ(l)\_BNDPRD
+  - Bound on the total production of a commodity
+* - EQ(l)\_CAFLAC
+  - Relates the flows in the primary group of a process to its available capacity; may be rigid (=) or flexible (≤)
+* - EQ(l)\_CAPACT
+  - Relates the activity of a process to its available capacity; may be rigid (=) or flexible (≤,≥)
+* - EQL_CAPFLO
+  - Relates a flow not in the primary group of a process to its available capacity; only an upper bound for the flow ≤ is supported
+* - EQ_CAPLOAD
+  - Relates the activity of a process to its available on-line capacity in each timeslice; only for processes with flexible availability (≤,≥)
+* - EQ(l)\_CPT
+  - Calculates the current capacity of a process in terms of all past and current investments in that process
+* - EQ(l)\_COMBAL
+  - Balance equation of a commodity
+* - EQE_COMPRD
+  - Definition of the total production of a commodity
+* - EQ_CUMFLO
+  - Bound on the cumulative flow or activity of a process over a time interval
+* - EQ_CUMNET
+  - Bound on the cumulative production of a commodity over a time interval
+* - EQ_CUMPRD
+  - Bound on the cumulative net quantity of a commodity over a time interval
+* - EQ_CUMRET
+  - Establishes a variable representing the cumulative amount of retired capacity of a process
+* - EQ_DSCNCAP and EQ_DSCONE
+  - These two constraints ensure that some investments may only be made in certain discrete sizes
+* - EQ_DSCRET
+  - Ensures that early capacity retirements may only be made in multiples of a certain discrete block size
+* - EQ(l)\_FLOBND
+  - Bound on the sum over a commodity group, of the commodity flows of a process
+* - EQ(l)\_FLOFR
+  - Relationship between a flow in one timeslice and the annual flow, for a given process
+* - EQ(l)\_FLOMRK
+  - Expresses for a given commodity that the amount produced/consumed by a process is tied to the total amount produced/consumed of that commodity
+* - EQ_IRE
+  - Expresses that imports of a commodity by region r must be equal to all exports by other regions to region r
+* - EQ_IREBND
+  - Bound on exchange of a commodity between two regions
+* - EQ_XBND
+  - Bound on total exchanges of a commodity by one region
+* - EQ(l)\_INSHR
+  - For a given process, expresses that the inflow of a commodity is tied to the total inflows of all commodities in a certain group
+* - EQ(l)\_OUTSHR
+  - For a given process, expresses that the outflow of a commodity is tied to the total outflows of all commodities in a certain group
+* - EQ_PEAK
+  - Expresses that capacity available must exceed demand of a selected commodity in any time slice by a certain margin
+* - EQ_PTRANS
+  - Establishes an equality relationship between (groups of) inputs and certain (groups of) outputs of a process
+* - EQL_REFIT
+  - Implements the retrofit and life extension constraints, such that the capacity of the retrofit/life-extension options is, when commissioned, at most equal to the available remaining capacity of the host process.
+* - EQL_SCAP
+  - Bounds the amount of capacity salvaged if early retirements are active.
+* - EQ_SLSIFT
+  - Implements the load shifting constraints (see 6.3.37 EQ_SLSIFT).
+* - EQ_STGAUX
+  - Establishes an equality relationship between storage main flows or activity and an auxiliary storage flow
+* - EQL_STGCCL
+  - Defines an upper bound for storage cycling, by imposing a replacement cost if the annual output divided by storage capacity exceeds the average number of storage cycles in a year, as calculated from STG_MAXCYC.
+* - EQ_STGIPS
+  - Ensures the storage of a commodity between two time periods
+* - EQ_STGTSS
+  - Ensures the storage of a commodity between two timeslices
+* - EQ(l)\_STGIN
+  - Bounds the input into a storage process
+* - EQ(l)\_STGOUT
+  - Bounds the output of a storage process
+* - EQ_STSBAL
+  - Defines balances between timeslice levels in a general timeslice storage
+* - EQ_SDLOGIC
+  - Logical relationship between decision variables in the advanced unit commitment formulation (see separate documentation).
+* - EQ_SUDUPT
+  - Selection of start up type a according to non-operational time in the advanced unit commitment formulation (see separate documentation).
+* - EQ_SDSLANT
+  - Slanting equation for start-up and shut-down phase in the advanced unit commitment formulation (see separate documentation).
+* - EQ_SDMINON
+  - Minimum on-line capacity constraints in the advanced unit commitment formulation (see separate documentation).
+* - EQ_SUDLOAD
+  - Load during start-up/shut down phase of the unit (linear growth) in the advanced unit commitment formulation (see separate documentation).
+* - EQ_SUDTIME
+  - Minimum on-line / off-line time constraint in the advanced unit commitment formulation (see separate documentation).
+* - EQ_SUDPLL
+  - Efficiency losses due to start-up/shut-down of the unit in the advanced unit commitment formulation (see separate documentation).
+* - EQ(l)\_UCRTP
+  - Defines a dynamic bound on the growth / decay in the installed capacity, new capacity or activity of a process over successive periods
+* - EQ(l)\_UCRTC
+  - Defines a dynamic bound on the growth / decay in commodity production (NET or PRD) over successive periods
+* - EQ(l)\_UC
+  <br>EQ(l)\_UCR
+  <br>EQ(l)\_UCT
+  <br>EQ(l)\_UCRT
+  <br>EQ(l)\_UCTS
+  <br>EQ(l)\_UCRTS
+  - User Constraints of the LHS type
+  <br>Static user-defined constraints that have a user defined constant RHS
+* - EQ(l)\_UCRS
+  - Timeslice-dynamic User Constraints
+  <br>User-defined constraints that involve only a single region r and period t but both timeslice s and the preceding timeslice s--rs_stg(r,s)
+* - EQ(l)\_UCSU
+  <br>EQ(l)\_UCSUS
+  <br>EQ(l)\_UCRSU
+  <br>EQ(l)\_UCRSUS
+  - User Constraints of dynamic type (t,t+1)
+  <br>User-defined constraints that involve both period t and the succeeding period t+1
+* - EQ(l)\_UCSU
+  <br>EQ(l)\_UCSUS
+  <br>EQ(l)\_UCRSU
+  <br>EQ(l)\_UCRSUS
+  - User Constraints of dynamic type (t,t--1)
+  <br>User-defined constraints that involve both period t and the preceding period t--1
+```
 
 ### Bound: BND_ELAST
 
@@ -1747,64 +1640,39 @@ $${EQ(l)\_ BLND_{r,t,ble,spe} \ni bl\_ type_{r,ble,spe}
 
 **Remarks**:
 
-- The available cost aggergations that can be bounded are listed in the table below.
+- The available cost aggregations that can be bounded are listed in the table below.
 - All the cost components related to investments are expressed in terms of annualized capital costs, i.e. as annuities paid in the year(s) in question. These components thus include interest during both construction and payback time. 
 - In all combined cost aggregations, subsidies are treated as negative costs when summed up with other cost/taxes, but when bounded alone they are treated as positive.
 
-  -----------------------------------------------------------------------
-  **Cost aggregation    **Description**
-  ID**                  
-  --------------------- -------------------------------------------------
-  INV                   investment costs (annuities)
+:::{table}
 
-  INVTAX                investment taxes (annuities)
-
-  INVSUB                investment subsidies (annuities)
-
-  INVTAXSUB             investment taxes-subsidies (annuities)
-
-  INVALL                = INV+INVTAXSUB (annuities)
-
-  FOM                   fixed OM costs
-
-  FOMTAX                fixed operating taxes
-
-  FOMSUB                fixed operating subsidies
-
-  FOMTAXSUB             fixed operating taxes-subsidies
-
-  FOMALL                = FOM+FOMTAXSUB
-
-  FIX                   = INV+FOM
-
-  FIXTAX                = INVTAX+FOMTAX
-
-  FIXSUB                = INVSUB+FOMSUB
-
-  FIXTAXSUB             = FIXTAX-FIXSUB
-
-  FIXALL                = FIX+FIXTAXSUB
-
-  COMTAX                commodity taxes
-
-  COMSUB                commodity subsidies
-
-  COMTAXSUB             commodity taxes-subsidies
-
-  FLOTAX                process commodity flow taxes
-
-  FLOSUB                process commodity flow subsidies
-
-  FLOTAXSUB             process commodity flow taxes-subsidies
-
-  ALLTAX                = FIXTAX+COMTAX+FLOTAX
-
-  ALLSUB                = FIXSUB+COMSUB+FLOSUB
-
-  ALLTAXSUB             = ALLTAX-ALLSUB
-  -----------------------------------------------------------------------
-
-  : Table C-2*.* ETL-specific matrix coefficient and internal model parameters[^42]
+| Cost aggregation ID | Description                            |
+| ------------------- | -------------------------------------- |
+| INV                 | investment costs (annuities)           |
+| INVTAX              | investment taxes (annuities)           |
+| INVSUB              | investment subsidies (annuities)       |
+| INVTAXSUB           | investment taxes-subsidies (annuities) |
+| INVALL              | = INV+INVTAXSUB (annuities)            |
+| FOM                 | fixed OM costs                         |
+| FOMTAX              | fixed operating taxes                  |
+| FOMSUB              | fixed operating subsidies              |
+| FOMTAXSUB           | fixed operating taxes-subsidies        |
+| FOMALL              | = FOM+FOMTAXSUB                        |
+| FIX                 | = INV+FOM                              |
+| FIXTAX              | = INVTAX+FOMTAX                        |
+| FIXSUB              | = INVSUB+FOMSUB                        |
+| FIXTAXSUB           | = FIXTAX-FIXSUB                        |
+| FIXALL              | = FIX+FIXTAXSUB                        |
+| COMTAX              | commodity taxes                        |
+| COMSUB              | commodity subsidies                    |
+| COMTAXSUB           | commodity taxes-subsidies              |
+| FLOTAX              | process commodity flow taxes           |
+| FLOSUB              | process commodity flow subsidies       |
+| FLOTAXSUB           | process commodity flow taxes-subsidies |
+| ALLTAX              | = FIXTAX+COMTAX+FLOTAX                 |
+| ALLSUB              | = FIXSUB+COMSUB+FLOSUB                 |
+| ALLTAXSUB           | = ALLTAX-ALLSUB                        |
+:::
 
 **Notation:**
 
@@ -3892,10 +3760,6 @@ Timeslice-dynamic user constraints establish a relationship between two successi
   {LHS_{r,t,s}\quad\left\{ = / \geq / \leq \right\}\sum_{\mathbf{uc}\_\mathbf{tsl}(r,ucn,'RHS',tsl)}^{}{RHS_{r,t,s - RS\_ STG(r,s)}} + \overset{}{UC\_ RHS(R)T(S)_{(r),uc\_ n,t,(s),bd}}}$$
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-  : Table C-3*.* ETL-specific model variables
-
 Timeslice-dynamic user constraints are always specific to a single region and period. To build a timeslice-dynamic user constraint, the modeller must identify the desired timeslice level of the constraint, by using the set **uc_tsl***~r,uc_n,side,tsl~*, and the RHS constants must be defined by using the UC_RHSRTS parameter. As an alternative to using **uc_tsl**, **uc_attr***~r,uc_n,side,uc_grptype,tslvl~* can also be used, with any **uc_grptype** (**ucn** recommended). The constraint will be genuinely dynamic only if **uc_tsl** is specified on the RHS. This is the only type of user constraint for which the RHS constant parameter is levelized, according the timeslice level identified by **uc_tsl**. That can make the RHS specification much easier.
 
 *[Dynamic user constraints]{.underline}*
@@ -5257,9 +5121,9 @@ $$VAR\_ UCTS.FX_{uc\_ n,t,s} = UC\_ RHSTS_{uc\_ n,t,s,'FX'}$$
 
 #### Overview
 
-The user constraint facility in TIMES provides a very powerful tool for specifying a large variety of custom user constraints in a TIMES model. Such constraints can refer to practically any combination of individual variables. Moreover, the constraint definitions can be optionally refined by specifying additional modifier attributes that are applied to specific components (variable terms) of the constraints. The modifier attributes available in the current version are listed in Table 25. The note \"DYN only\" in the table means that the attribute is valid for dynamic constraints only (the constraint is in those cases automatically defined as dynamic if the attribute is used).
+The user constraint facility in TIMES provides a very powerful tool for specifying a large variety of custom user constraints in a TIMES model. Such constraints can refer to practically any combination of individual variables. Moreover, the constraint definitions can be optionally refined by specifying additional modifier attributes that are applied to specific components (variable terms) of the constraints. The modifier attributes available in the current version are listed in {numref}`uc-modifier-attributes`. The note \"DYN only\" in the table means that the attribute is valid for dynamic constraints only (the constraint is in those cases automatically defined as dynamic if the attribute is used).
 
-As indicated in Table 25, one can easily specify, for example, that the FLO coefficients of the user constraint should apply to the sum of all annual flows in each period, by using the PERIOD attribute. In addition, as cumulative user constraints (summed over periods) are typically almost always meant to be applied also to the sum of the annual flows/activities in each period, the PERIOD modifier is now by default applied to the FLO, ACT, IRE, COMPRD and COMCON components of all cumulative constraints (this can be overridden by the explicit use of the input set **uc_ts_sum** for the constraint). The specification of various kinds of cumulative constraints is thus possible quite easily.
+As indicated in {numref}`uc-modifier-attributes`, one can easily specify, for example, that the FLO coefficients of the user constraint should apply to the sum of all annual flows in each period, by using the PERIOD attribute. In addition, as cumulative user constraints (summed over periods) are typically almost always meant to be applied also to the sum of the annual flows/activities in each period, the PERIOD modifier is now by default applied to the FLO, ACT, IRE, COMPRD and COMCON components of all cumulative constraints (this can be overridden by the explicit use of the input set **uc_ts_sum** for the constraint). The specification of various kinds of cumulative constraints is thus possible quite easily.
 
 #### Cost modifiers (COST, TAX, SUB, DELIV)
 
@@ -5275,80 +5139,77 @@ values):
 
 The annuity modifiers are applied to the variable terms by summing the VAR_NACP variables over all vintage periods tt ≤ t that have an annual investment payment in period t, and multiplying these with the annual cost coefficient. The INVCOST modifier applies the investment cost payments, the INVTAX modifier the tax payments, and the INVSUB modifier the subsidy payments (taken as negative values). By combining several of these modifiers, the payments are summed together.
 
-  --------------- ---------------------------------------------- ---------------
-  **Attribute**   **Description**                                **Applicable UC
-                                                                 components**
+```{list-table} User constraint modifier attributes available in TIMES.
+:name: uc-modifier-attributes
+:header-rows: 1
 
-  COST            Multiple by primary cost attribute (summing    NCAP,ACT,\
-                  together with other cost attributes requested) FLO,COMPRD,\
-                                                                 COMCON
-
-  TAX             Multiple by tax attribute (summing together    NCAP,FLO
-                  with other cost attributes requested)          
-
-  SUB             Multiple by subsidy attribute (summing         NCAP,FLO
-                  together with other cost attributes requested, 
-                  SUB as a negative term)                        
-
-  DELIV           Multiple by delivery cost attribute (summing   FLO
-                  together with other cost attributes requested) 
-
-  INVCOST         Multiply by investment cost annuities; implies NCAP
-                  CUMSUM                                         
-
-  INVTAX          Multiply by investment tax annuities; implies  NCAP
-                  CUMSUM                                         
-
-  INVSUB          Multiply by investment subsidy annuities       NCAP
-                  (taken as a negative term), implies CUMSUM     
-
-  BUILDUP         Divide by the lead time from previous          NCAP
-                  milestone year to current, for getting the     
-                  annual build-up of capacity                    
-
-  CAPACT          Multiply by PRC_CAPACT                         CAP
-
-  CAPFLO          Apply coefficients also to any                 FLO
-                  capacity-related flows                         
-
-  CUMSUM          Sum over all periods up to current or previous All
-                  period\                                        
-                  (DYN only)                                     
-
-  EFF             Multiply by COM_IE (UC_COMPRD), divide by      COMPRD,\
-                  COM_IE (UC_COMCON)                             COMCON
-
-  GROWTH          Interpret coefficients as annual change        All
-                  coefficients (DYN only)                        
-
-  NET             Apply to *net* production (UC_COMPRD) or       COMPRD,\
-                  consumption UC_COMCON)                         COMCON
-
-  NEWFLO          Apply coefficient to the flows of the new      ACT, FLO, IRE
-                  vintage only                                   
-
-  ONLINE          Apply coefficient to the on-line capacity only CAP
-                  (assumed equal to the full capacity if         
-                  ACT_MINLD has not been defined).               
-
-  PERDISC         Multiply by the NPV of period to get a         ACT,FLO,IRE,\
-                  discounted value                               COM\*
-
-  PERIOD          Multiply by period length (all but NCAP) or    All but CAP
-                  COEF_RPTI (NCAP)                               
-
-  SYNC            Synchronize LHS and RHS sides to refer to the  All\
-                  same period                                    (RHS only)
-
-  \<TSLVL\>       Defines the timeslice level of the constraint, All
-                  equivalent to UC_TSL(r,uc_n,side,tslvl). Works 
-                  only under VEDA.                               
-
-  YES             Declares the constraint to be dynamic, of type All\
-                  (t--1, t)                                      (RHS only)
-  --------------- ---------------------------------------------- ---------------
-
-  : Table C-4. ETL-specific model constraints
+* - Attribute
+  - Description
+  - Applicable UC components
+* - COST
+  - Multiple by primary cost attribute (summingtogether with other cost attributes requested)
+  - NCAP, ACT, FLO, COMPRD, COMCON
+* - TAX
+  - Multiple by tax attribute (summing togetherwith other cost attributes requested)
+  - NCAP,FLO
+* - SUB
+  - Multiple by subsidy attribute (summingtogether with other cost attributes requested,SUB as a negative term)
+  - NCAP,FLO
+* - DELIV
+  - Multiple by delivery cost attribute (summingtogether with other cost attributes requested)
+  - FLO
+* - INVCOST
+  - Multiply by investment cost annuities; impliesCUMSUM
+  - NCAP
+* - INVTAX
+  - Multiply by investment tax annuities; impliesCUMSUM
+  - NCAP
+* - INVSUB
+  - Multiply by investment subsidy annuities(taken as a negative term), implies CUMSUM
+  - NCAP
+* - BUILDUP
+  - Divide by the lead time from previousmilestone year to current, for getting theannual build-up of capacity
+  - NCAP
+* - CAPACT
+  - Multiply by PRC_CAPACT
+  - CAP
+* - CAPFLO
+  - Apply coefficients also to anycapacity-related flows
+  - FLO
+* - CUMSUM
+  - Sum over all periods up to current or previousperiod\(DYN only)
+  - All
+* - EFF
+  - Multiply by COM_IE (UC_COMPRD), divide byCOM_IE (UC_COMCON)
+  - COMPRD, COMCON
+* - GROWTH
+  - Interpret coefficients as annual changecoefficients (DYN only)
+  - All
+* - NET
+  - Apply to *net* production (UC_COMPRD) orconsumption UC_COMCON)
+  - COMPRD, COMCON
+* - NEWFLO
+  - Apply coefficient to the flows of the newvintage only
+  - ACT, FLO, IRE
+* - ONLINE
+  - Apply coefficient to the on-line capacity only(assumed equal to the full capacity ifACT_MINLD has not been defined).
+  - CAP
+* - PERDISC
+  - Multiply by the NPV of period to get adiscounted value
+  - ACT, FLO, IRE, COM\*
+* - PERIOD
+  - Multiply by period length (all but NCAP) orCOEF_RPTI (NCAP)
+  - All but CAP
+* - SYNC
+  - Synchronize LHS and RHS sides to refer to thesame period
+  - All (RHS only)
+* - \<TSLVL\>
+  - Defines the timeslice level of the constraint,equivalent to UC_TSL(r,uc_n,side,tslvl). Worksonly under VEDA.
+  - All
+* - YES
+  - Declares the constraint to be dynamic, of type(t--1,t)
+  - All (RHS only)
+```
 
 #### BUILDUP modifier
 
@@ -5409,3 +5270,16 @@ The only function of the YES modifier is to declare the user constraint to be dy
 ### Non-binding user constraints
 
 Non-binding user constraints of any type (intoduced for reporting purposes) can be defined in the same way as binding constraints, but using the \'N\' lim type when specifying the UC_RHSxxx constant, with any value defined for it (--1 is recommended). Non-binding user constraints can only be defined when user constraint variables are enabled (i.e. when using the option \$SET VAR_UC YES). The levels of the non-ninding constraints (i.e. the levels of the slack variables) are reported in the PAR_UCSL reporting attribute (see Section 3.3).
+
+
+[^39]: The actual implementation of OBJ in the GAMS program is different from the one described in the documentation, since the annualizing of the various cost components is not performed in the GAMS code of the OBJ equation, but rather in the reporting section of the program, for improved code performance. However, despite the simplification, the GAMS code results in an objective function that is fully equivalent to the one in this documentation.
+
+[^40]: This is the default definition adopted for *CRF*, corresponding to beginning-of-year discounting. For other discounting options, see Section .
+
+[^41]: Ideally, it would be desirable that cases 1 be used only for those investments that have no lead time (and thus no interest during construction). However, if cases 1 are employed even for projects with significant IDC's, these should have their IDC included in the investment cost.
+
+[^43]: GAMS moves all constants (e.g. past investments) on the RHS and the variables on the LHS of the equation. In the listing file the primal value of the equation can be found in the solution report under the LEVEL column. The RHS value is given under the column UPPER column in case of a \<= inequality and in the LOWER column for a \>= inequality. For an equality LOWER, LEVEL and UPPER value are the same.
+
+[^44]: The primal value and the RHS constant of an equation can be found in the GAMS listing file in solution report part. The LEVEL value column corresponds to the primal value, the LOWER level value equals the RHS of a constraint of type \>= and the UPPER level value equals the RHS of a constraint of a type \<=.
+
+[^45]: If the coefficient UC_ACT, UC_FLO, etc. is greater than one, it represents an annual growth rate, while a coefficient smaller than one describes an annual decay rate.

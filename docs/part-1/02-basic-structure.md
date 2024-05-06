@@ -26,7 +26,7 @@ The net result of these conditions is that the deployment in time of the various
 
 ```{figure} assets/image1.png
 :name: timeslice-tree
-:align: center
+
 Example of a time-slice tree.
 ```
 
@@ -56,6 +56,7 @@ It is helpful to picture the relationships among these various entities using a 
 ```{figure} assets/image2.png
 :name: part-view-res
 :align: center
+
 Partial view of a Reference Energy System (links are oriented left to right).
 ```
 

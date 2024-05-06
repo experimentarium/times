@@ -19,9 +19,11 @@ Typically, the modeling of a lumpy investment involves Integer Variables, i.e. v
 $VAR\_ NCAP(p,t) = \sum_{i = 1}^{N}{S_{i}(p,t) \times}Z_{i}(p,t)$ for each $⥂ t = 1,..,T$
 
 with:
-$Z_{i}(p,t) = 0$ or $Z_{i}(p,t) = 1$
+$
+Z_{i}(p,t) = 0$ or $Z_{i}(p,t) = 1$
 
 and:
+
 $\sum_{i = 1}^{N}Z_{i}(p,t) \leq 1$
 
 The second and third constraints taken together imply that at most one of the $Z$ variables is equal to 1 and all others are equal to zero. Therefore, the first constraint now means that $NCAP$ is equal to one of the preset sizes or is equal to 0, which is the desired result.
@@ -40,7 +42,5 @@ Using MIP rather than LP has an important impact on the interpretation of the TI
 
 In conclusion, when using MIP, only the primal solution is fully reliable. In spite of this major caveat, modeling lumpy investments may be of paramount importance in some instances, and may thus justify the extra computing time and the partial loss of dual information.
 
-
-------------
 
 [^36]: A TIMES LP program of a given size tends to have fairly constant solution time, even if the database is modified. In contrast, a TIMES MIP may show some erratic solution times. One may observe reasonable solution times (although significantly longer than LP solution times) for most instances, with an occasional *very* long solution time for some instances. This phenomenon is predicted by the theory of complexity as applied to MIP, see Papadimitriou and Stieglitz (1982).

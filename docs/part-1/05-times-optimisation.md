@@ -325,96 +325,67 @@ Note that the sign of the constraint may also be of the \"larger than or equal t
 
 With this new TIMES feature the user may allow the model to retire some technologies before the end of their technical lives. The retirement may be continuous or discrete. In the former case, the model may retire any amount of the remaining capacity (if any) at each period. In the latter case, the retirement may be effected by the model either in a single block (i.e. the remaining capacity is completely retired) or in multiples of a user chosen block. Please refer to chapter 10 of this document *The lumpy investment option*, for additional discussion of the mathematical formulation of MIP problems.
 
-This feature requires the definition of three new constraints, as listed and briefly described in table 5.1, as well as the alteration of many existing constraints and the objective function, as described in table 5.2 Part II and the special separate note *TIMES Early Retirement of Capacity* provide additional detail.
+This feature requires the definition of three new constraints, as listed and briefly described in {numref}`new-early-retirement-constraints`, as well as the alteration of many existing constraints and the objective function, as described in {numref}`retirement-affected-constraints`. Part II and the special separate note *TIMES Early Retirement of Capacity* provide additional detail.
 
 The user is advised to use the discrete early retirement feature sparingly, as it implies the use of mixed integer programming optimizer, rather than the computationally much more efficient linear programming optimizer. The user should also be aware that using the discrete option voids some of the economic properties of the equilibrium, as discussed in section 10.3.
 
-+--------------------------+-------------------------------------------+
-| **New Equation**         | **Description**                           |
-+==========================+===========================================+
-| EQ_DSCRET(r,v,t,p)       | Discrete retirement equation for process  |
-|                          | **p** and vintage **v** in region **r**   |
-|                          | and period **t**.                         |
-|                          |                                           |
-|                          | Plays an analogous role to equation       |
-|                          | EQ_DSCNCAP in the Discrete Capacity       |
-|                          | Investment Extension.                     |
-+--------------------------+-------------------------------------------+
-| EQ_CUMRET(r,v,t,p)       | Cumulative retirement equation for        |
-|                          | process **p** and vintage **v** in region |
-|                          | **r** and period **t**.                   |
-+--------------------------+-------------------------------------------+
-| EQL_SCAP(r,t,p,ips)      | Maximum salvage capacity constraint for   |
-|                          | process **p** in region **r** and period  |
-|                          | **t**, defined for **ips** = N (unless    |
-|                          | NCAP_OLIFE is specified).                 |
-+--------------------------+-------------------------------------------+
+```{list-table} The new constraints required to implement early retirement of capacity.
+:name: new-early-retirement-constraints
+:header-rows: 1
 
-*Table 5.1. The new constraints required to implement early retirement of capacity*
+* - New Equation
+  - Description
+* - EQ_DSCRET(r,v,t,p) 
+  - Discrete retirement equation for process **p** and vintage **v** in region **r** and period **t**.
+  <br>Plays an analogous role to equation EQ_DSCNCAP in the Discrete Capacity Investment Extension.
+* - EQ_CUMRET(r,v,t,p) 
+  - Cumulative retirement equation for process **p** and vintage **v** in region **r** and period **t**.
+* - EQL_SCAP(r,t,p,ips)
+  - Maximum salvage capacity constraint for process **p** in region **r** and period **t**, defined for **ips** = N (unless NCAP_OLIFE is specified).
 
-+---------------+----------------------+-------------------------------+
-| **Existing    | **Equation           | **Purpose of Modification**   |
-| Equation**    | Description**        |                               |
-+===============+======================+===============================+
-| EQ_OBJFIX     | Fixed cost component | To credit back the fixed      |
-|               | of objective         | costs of the capacity that is |
-|               | function             | retired early                 |
-+---------------+----------------------+-------------------------------+
-| EQ_OBJVAR     | Variable cost        | To reflect the effect of      |
-|               | component of         | capacity that is retired      |
-|               | objective function   | early in the costs of         |
-|               |                      | capacity-related flows        |
-+---------------+----------------------+-------------------------------+
-| EQ_OBJSALV    | Salvage cost         | To subtract the salvage value |
-|               | component of         | (if any) of capacity that is  |
-|               | objective function   | retired early                 |
-+---------------+----------------------+-------------------------------+
-| E             | Capacity transfer    | To reflect the effect of      |
-| Q(**l**)\_CPT | equation             | capacity that is retired      |
-|               |                      | early                         |
-| for **l** =   |                      |                               |
-| L, E, G       |                      |                               |
-+---------------+----------------------+-------------------------------+
-| EQ(*          | Capacity utilization | To reflect the effect of      |
-| *l**)\_CAPACT | equation             | capacity that is retired      |
-|               |                      | early                         |
-| for **l** =   |                      |                               |
-| L, E, G       |                      |                               |
-+---------------+----------------------+-------------------------------+
-| EQ(*          | Commodity based      | To reflect the effect of      |
-| *l**)\_CAFLAC | availability         | capacity that is retired      |
-|               | constraint           | early                         |
-| for **l** =   |                      |                               |
-| L, E          |                      |                               |
-+---------------+----------------------+-------------------------------+
-| EQ(**         | Commodity balance    | To reflect the effect of      |
-| l**)\_COMBAL\ | equation             | capacity that is retired      |
-| for **l** =   |                      | early in capacity-related     |
-| G, E          |                      | flows                         |
-+---------------+----------------------+-------------------------------+
-| EQ_PEAK       | Commodity peaking    | To subtract the peak          |
-|               | constraint           | contribution of capacity that |
-|               |                      | is retired early              |
-+---------------+----------------------+-------------------------------+
-| EQ(           | The FLO component of | To reflect the effect of      |
-| **l**)\_UC\*\ | all user constraints | capacity that is retired      |
-| for **l** =   |                      | early in capacity-related     |
-| L, E, G       |                      | flows                         |
-+---------------+----------------------+-------------------------------+
-| EQ(*          | Market share of flow | To reflect the effect of      |
-| *l**)\_MRKCON | in the consumption   | capacity that is retired      |
-|               | of a commodity       | early in capacity-related     |
-| for **l** =   |                      | flows                         |
-| L, E, G       |                      |                               |
-+---------------+----------------------+-------------------------------+
-| EQ(*          | Market share of flow | To reflect the effect of      |
-| *l**)\_MRKPRD | in the production of | capacity that is retired      |
-|               | a commodity          | early in capacity-related     |
-| for **l** =   |                      | flows                         |
-| L, E, G       |                      |                               |
-+---------------+----------------------+-------------------------------+
+```
 
-*Table 5.2. List of existing constraints that are affected by the early retirement option.*
+```{list-table} List of existing constraints that are affected by the early retirement option.
+:name: retirement-affected-constraints
+:header-rows: 1
+
+* - Existing Equation
+  - Equation Description
+  - Purpose of Modification
+* - EQ_OBJFIX
+  - Fixed cost component of objective function
+  - To credit back the fixed costs of the capacity that is retired early
+* - EQ_OBJVAR
+  - Variable cost component of objective function
+  - To reflect the effect of capacity that is retired early in the costs of capacity-related flows
+* - EQ_OBJSALV
+  - Salvage cost component of objective function
+  - To subtract the salvage value (if any) of capacity that is retired early
+* - EQ(**l**)\_CPT for **l** = L, E, G
+  - Capacity transfer equation
+  - To reflect the effect of capacity that is retired early
+* - EQ(**l**)\_CAPACT for **l** = L, E, G
+  - Capacity utilization equation
+  - To reflect the effect of capacity that is retired  early
+* - EQ(**l**)\_CAFLAC for **l** = L, E
+  - Commodity based availability constraint
+  - To reflect the effect of capacity that is retired early
+* - EQ(**l**)\_COMBAL for **l** = G, E
+  - Commodity balance equation
+  - To reflect the effect of capacity that is retired early in capacity-related flows
+* - EQ_PEAK
+  - Commodity peaking constraint
+  - To subtract the peak contribution of capacity that is retired early
+* - EQ(**l**)\_UC\* for **l** = L, E, G
+  - The FLO component of all user constraints
+  - To reflect the effect of capacity that is retired early in capacity-related flows
+* - EQ(**l**)\_MRKCON for **l** = L, E, G
+  - Market share of flow in the consumption of a commodity
+  - To reflect the effect of capacity that is retired early in capacity-related flows
+* - EQ(**l**)\_MRKPRD for **l** = L, E, G
+  - Market share of flow in the production of a commodity 
+  - To reflect the effect of capacity that is retired early in capacity-related flows
+```
 
 ### Electricity grid modeling
 
@@ -431,6 +402,7 @@ The traditional way to represent the nodes and arcs of a grid is shown in {numre
 ```{figure} assets/image17.png
 :name: grid-connection-nodes
 :align: center
+
 Connection of a grid node with other nodes.
 ```
 The basic energy conservation equation of a grid is as follows:

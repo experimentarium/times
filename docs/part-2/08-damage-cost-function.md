@@ -25,10 +25,9 @@ In both approaches, a number of assumptions are made:
 - Damages in a given time period are linked to emissions in that same period only (damages are not delayed, nor are they cumulative); and 
 - Damages due to several pollutants are the sum of damages due to each pollutant (no cross impacts).
 
-In a given time period, and for a given pollutant, the damage cost is
-modeled as follows:
+In a given time period, and for a given pollutant, the damage cost is modeled as follows:
 
-$$DAM(EM) = \alpha \cdot EM^{\beta + 1}$$                      \(1\)
+$$DAM(EM) = \alpha \cdot EM^{\beta + 1}$$   (1)
 
 where:
 
@@ -39,15 +38,15 @@ where:
 
 If we denote the marginal cost at the reference level MC~0~, the following holds:
 
-$$MC_{0} = \alpha \cdot (\beta + 1) \cdot EM_{0}^{\beta}$$     \(2\)
+$$MC_{0} = \alpha \cdot (\beta + 1) \cdot EM_{0}^{\beta}$$   (2)
 
 where EM~0~ is the reference amount of emissions. Therefore expression (1) may be re-written as:
 
-$$DAM(EM) = MC_{0} \cdot \frac{EM^{\beta + 1}}{(\beta + 1) \cdot EM_{0}^{\beta}}$$   \(3\)
+$$DAM(EM) = MC_{0} \cdot \frac{EM^{\beta + 1}}{(\beta + 1) \cdot EM_{0}^{\beta}}$$   (3)
 
 The marginal damage cost is therefore given by the following expression:
 
-$$MC(EM) = MC_{0} \cdot \frac{EM^{\beta}}{EM_{0}^{\beta}}$$    \(4\)
+$$MC(EM) = MC_{0} \cdot \frac{EM^{\beta}}{EM_{0}^{\beta}}$$   (4)
 
 The approach to damage costs described in this section applies more particularly to local pollutants. Extension to global emissions such GHG emissions requires the use of a global TIMES model and a reinterpretation of the equations discussed above.
 
@@ -55,11 +54,11 @@ The modeling of damage costs via equation (3) introduces a non-linear term in th
 
 The linearization can be done by choosing a suitable range of emissions, and dividing that range into *m* intervals below the reference level, and *n* intervals above the reference level. We also assume a middle interval centered at the reference emission level. To each interval corresponds one step variable *S*. Thus, we have for emissions:
 
-  $$EM = \sum_{i = 1}^{m}S_{i}^{lo} + S^{mid} + \sum_{i = 1}^{n}S_{i}^{up}$$   \(5\)
+  $$EM = \sum_{i = 1}^{m}S_{i}^{lo} + S^{mid} + \sum_{i = 1}^{n}S_{i}^{up}$$   (5)
 
 The damage cost can then be written as follows:
 
-  $$DAM(EM) = \sum_{i = 1}^{m}{MC_{i}^{lo} \cdot S_{i}^{lo}} + MC_{0} \cdot S^{mid} + \sum_{i = 1}^{n}{MC_{i}^{up} \cdot S_{i}^{up}}$$   \(6\)
+  $$DAM(EM) = \sum_{i = 1}^{m}{MC_{i}^{lo} \cdot S_{i}^{lo}} + MC_{0} \cdot S^{mid} + \sum_{i = 1}^{n}{MC_{i}^{up} \cdot S_{i}^{up}}$$   (6)
 
 where:
 
@@ -68,7 +67,7 @@ where:
 
 The approximate marginal costs at each step can be assumed to be the marginal costs at the center of each step. If all the steps intervals are of equal size, the marginal costs for the steps below the reference level are obtained by the following formula:
 
-  $$MC_{i}^{lo} = MC_{0} \cdot \left( \frac{(i - 0.5)}{(m + 0.5)} \right)^{\beta}$$   \(7\)
+  $$MC_{i}^{lo} = MC_{0} \cdot \left( \frac{(i - 0.5)}{(m + 0.5)} \right)^{\beta}$$   (7)
 
 Formulas for the marginal costs of the other steps can be derived similarly.
 
@@ -109,84 +108,58 @@ All the parameters for describing damage functions are available in the VEDA-FE 
 4. The parameter **DAM_STEP** can be used for specifying the number of emission steps below and above the reference level of emissions. The last step above the reference level will always have an infinite bound. If the number of steps is not provided in either direction, but the elasticity is, one step is assumed in that direction. If a non-zero **DAM_STEP**(r,c,\'N\') is specified, the damage costs for commodity **c** in region **r** are not included in the objective. If the NLP formulation is used (DAMAGE=NLP), all **DAM_STEP** parameters will be ignored.
 5. The parameter **DAM_VOC** can be used for specifying the variation in emissions covered by the emission steps, both in the lower an upper direction. The variation in the lower direction should be less than or equal to the reference level of emissions. If the lower variation is smaller than **DAM_BQTY**, the damage costs are zero for emissions below the difference. The lower variance can thus be used for defining a threshold level for the damage costs. If **DAM_VOC** is not specified in the lower direction, it is assumed to be equal to **DAM_BQTY**. If **DAM_VOC** is not specified in the upper direction, the emission step size in the upper direction is assumed to be equal to that in the lower direction. The limtype 'N' can be used for defining step sizes in proportion to the reference level. If the NLP formulation is used (DAMAGE\=\=NLP), any **DAM_VOC** parameters specified in the upper direction will be ignored.  However, even in the NLP formulation the lower **DAM_VOC** can be used for defining a threshold emission level for the costs.
 
-The input parameters are listed in Table B-1. 
+The input parameters are listed in {numref}`dam-input-parameters`. 
 
-+---------+--------+-----------+----------+--------------+-----------+
-| **Input | **R    | **Units / | **       | **D          | *         |
-| para    | elated | Ranges &  | Instance | escription** | *Affected |
-| meter** | param  | Default   | s**[^51] |              | equations |
-|         | eters* | values &  |          |              | or        |
-| **(I    | *[^49] | Default   | **(      |              | variabl   |
-| ndexes) |        | inter-/ex | Required |              | es**[^52] |
-| **[^48] |        | trapolati | / Omit / |              |           |
-|         |        | on**[^50] | Special  |              |           |
-|         |        |           | condi    |              |           |
-|         |        |           | tions)** |              |           |
-+=========+========+===========+==========+==============+===========+
-| D       | DAM_   | TIMES     | Required | Marginal     | EQ_OBJDAM |
-| AM_COST | BQTY,\ | cost unit | for each | damage cost  |           |
-|         | DAM_   |           | c        | of emission  |           |
-| (r,d    | ELAST, | \[0,      | ommodity | c at         |           |
-| atayear | DAM    | INF);     | for      | refe­rence    |           |
-| ,c,cur) | \      | default   | which    | emission     |           |
-|         | _STEP, | value:    | damage   | level.       |           |
-|         | DAM    | none      | costs    |              |           |
-|         | \_VOC  |           | are to   |              |           |
-|         |        | Default   | be       |              |           |
-|         |        | i/e[^53]: | ac       |              |           |
-|         |        | standard  | counted. |              |           |
-+---------+--------+-----------+----------+--------------+-----------+
-| DA      | See    | TIMES     | Only     | Reference    | EQ_DAMAGE |
-| M_BQTY\ | above  | emission  | taken    | level of     |           |
-| (r,c)   |        | unit      | into     | emissions c  | EQ_OBJDAM |
-|         |        |           | account  |              |           |
-|         |        | \[0,      | if       |              |           |
-|         |        | INF);     | DAM_COST |              |           |
-|         |        | default   | has been |              |           |
-|         |        | value: 0  | s        |              |           |
-|         |        |           | pecified |              |           |
-+---------+--------+-----------+----------+--------------+-----------+
-| DAM     | See    | Dime      | Only     | Elasticity   | EQ_OBJDAM |
-| _ELAST\ | above  | nsionless | taken    | of marginal  |           |
-| (       |        |           | into     | damage cost  |           |
-| r,c,bd) |        | \[0,      | account  | to emissions |           |
-|         |        | INF);     | if       | on the lower |           |
-|         |        | default   | DAM_COST | and upper    |           |
-|         |        | value: 0  | has been | side of the  |           |
-|         |        |           | s        | reference    |           |
-|         |        |           | pecified | level        |           |
-+---------+--------+-----------+----------+--------------+-----------+
-| DA      | See    | Dime      | Only     | Number of    | EQ_DAMAGE |
-| M_STEP\ | above  | nsionless | taken    | emission     |           |
-| (       |        |           | into     | steps for    | EQ_OBJDAM |
-| r,c,bd) |        | \[0,      | account  | the          |           |
-|         |        | INF),     | if       | linearized   |           |
-|         |        | integer;  | DAM_COST | cost         |           |
-|         |        | default   | is       | function in  |           |
-|         |        | value: 0  | sp       | the          |           |
-|         |        |           | ecified. | lower/upper  |           |
-|         |        |           | Non-zero | direction.   |           |
-|         |        |           | \'N\'    | Can also be  |           |
-|         |        |           | value    | used for     |           |
-|         |        |           | excludes | excluding    |           |
-|         |        |           | costs    | the costs    |           |
-|         |        |           | from the | from the     |           |
-|         |        |           | ob       | objective.   |           |
-|         |        |           | jective. |              |           |
-+---------+--------+-----------+----------+--------------+-----------+
-| D       | See    | TIMES     | Only     | Variation in | EQ_DAMAGE |
-| AM_VOC\ | above  | emission  | taken    | emissions    |           |
-| (       |        | unit      | into     | covered by   | EQ_OBJDAM |
-| r,c,lim) |        |           | account  | the emission |           |
-|         |        | (0, INF); | if       | steps in the |           |
-|         |        | ≤ D       | DAM_COST | lower/upper  |           |
-|         |        | AM_BQTY;\ | has been | direction. A |           |
-|         |        | default   | s        | threshold    |           |
-|         |        | value:    | pecified | emission     |           |
-|         |        | DAM_BQTY  |          | level can be |           |
-|         |        |           |          | defined with |           |
-|         |        |           |          | bd=\'LO\'.   |           |
-+---------+--------+-----------+----------+--------------+-----------+
+```{list-table} Input parameters for the TIMES Damage Cost Functions.
+:name: dam-input-parameters
+:header-rows: 1
+
+* - Input parameter(Indexes)[^48]
+  - Related parameters[^49]
+  - Units / Ranges & Default values & Default inter-/extrapolation[^50]
+  - Instances[^51] (Required / Omit / Special conditions)
+  - Description
+  - Affected equations or variables[^52] |
+* - DAM_COST (r,datayear,c,cur)
+  - DAM_BQTY, DAM_ELAST, DAM_STEP, DAM_VOC
+  - TIMES cost unit
+  <br>[0,INF); default value: none
+  <br>Default i/e[^53]: standard
+  - Required for each commodity for which damage costs are to be accounted.
+  - Marginal damage cost of emission c at reference emission level.
+  - EQ_OBJDAM
+* - DAM_BQTY (r,c)
+  - See above
+  - TIMES emission unit
+  <br>[0,INF); default value: 0
+  - Only taken into account if DAM_COST has been specified
+  - Reference level of emissions c
+  - EQ_DAMAGE
+  <br>EQ_OBJDAM
+* - DAM_ELAST (r,c,bd)
+  - See above
+  - Dimensionless
+  <br>[0,INF); default value: 0
+  - Only taken into account if DAM_COST has been specified
+  - Elasticity of marginal damage cost to emissions on the lower and upper side of the reference level
+  - EQ_OBJDAM
+* - DAM_STEP(r,c,bd)
+  - See above
+  - Dimensionless
+  <br>[0,INF), integer; default value: 0
+  - Only taken into account if DAM_COST is specified. Non-zero \'N\' value excludes costs from the objective.
+  - Number of emission steps for the linearized cost function in the lower/upper direction. Can also be used for excluding the costs from the objective.
+  - EQ_DAMAGE
+  <br>EQ_OBJDAM
+* - DAM_VOC(r,c,lim)
+  - See above
+  - TIMES emission unit
+  <br>(0,INF); ≤ DAM_BQTY; default value: DAM_BQTY
+  - Only taken into account if DAM_COST has been specified
+  - Variation in emissions covered by the emission steps in the lower/upper direction. A threshold emission level can be defined with bd=\'LO\', and proportional variation can be defined with lim=\'N\'.
+  - EQ_DAMAGE
+  <br>EQ_OBJDAM
+```
 
 ### Reporting parameters
 
@@ -201,23 +174,17 @@ These parameters are included in the .vdd files that describe the parameters to 
 
 The damage costs are always reported by using the accurate non-linear expressions, even if the linearized formulation is chosen for the augmented objective function.
 
-+-----------------+----------------------------------------------------+
-| Table           |                                                    |
-|                 |                                                    |
-|  B-2. Reporting |                                                    |
-| parameters for  |                                                    |
-| the TIMES       |                                                    |
-| Damage cost     |                                                    |
-| functions.      |                                                    |
-+-----------------+----------------------------------------------------+
-| **Parameter**   | **Description**                                    |
-+-----------------+----------------------------------------------------+
-| CST_DAM(r,t,c)  | Damage costs by region, period and emission        |
-|                 | (standard TIMES)                                   |
-+-----------------+----------------------------------------------------+
-| SCST_DAM        | Damage costs by region, period and emission        |
-| (w,r,t,c)       | (stochastic TIMES)                                 |
-+-----------------+----------------------------------------------------+
+```{list-table} Reporting parameters for the TIMES Damage cost functions.
+:name: dam-reporting-parameters
+:header-rows: 1
+
+* - Parameter
+  - Description
+* - CST_DAM (r,t,c)
+  - Damage costs by region, period and emission(standard TIMES)
+* - SCST_DAM (w,r,t,c)
+  - Damage costs by region, period and emission (stochastic TIMES)
+```
 
 ## Examples
 
@@ -238,6 +205,7 @@ PARAMETER DAM_ELAST / REG.EM.LO 1, REG.EM.UP 0.7 /;
  ```{figure} assets/image34.png
 :name: example-linearized-function-111
 :align: center
+
 Example of a linearized damage function with 1+1+1 steps (1 lower step, 1 middle step, 1 upper step).
 ```
 
@@ -271,21 +239,21 @@ Example of a linearized damage function with 1+5+1+3 steps (one zero cost step, 
 
 ## Variables
 
-There are only two sets of new variables in the damage cost formulation, VAR_DAM and VAR_OBJDAM, which are shown below in Table B-3. The variables VAR_DAM represent the steps in the emissions in each period. In the linearized formulation, there are DAM_STEP(\...,\'LO\') number of step variables on the lower side and DAM_STEP(\...\'UP\') number of step variables on the higher side of emissions. In addition, one step variable of type \'FX\' corresponds to the middle step that includes the reference level of emissions, and an optional additional step variable of type \'FX\' corresponds to the zero-damage fraction of emissions, as defined by the difference between DAM_BQTY(..) and DAM_VOC(\...,\'LO\').
+There are only two sets of new variables in the damage cost formulation, VAR_DAM and VAR_OBJDAM, which are shown below in {numref}`dam-variables`. The variables VAR_DAM represent the steps in the emissions in each period. In the linearized formulation, there are DAM_STEP(\...,\'LO\') number of step variables on the lower side and DAM_STEP(\...\'UP\') number of step variables on the higher side of emissions. In addition, one step variable of type \'FX\' corresponds to the middle step that includes the reference level of emissions, and an optional additional step variable of type \'FX\' corresponds to the zero-damage fraction of emissions, as defined by the difference between DAM_BQTY(..) and DAM_VOC(\...,\'LO\').
 
 The variables VAR_OBJDAM represent the total discounted damage costs by region. The undiscounted costs in each period described in Section 2 are discounted and summed over all periods and emissions in each region. As emissions are in TIMES assumed to be constant within each period, damage costs are likewise assumed to be constant within each period.
 
-  -----------------------------------------------------------------------------
-  **Variable           **Variable Description**
-  (Indexes)**          
-  -------------------- --------------------------------------------------------
-  VAR_DAM\             The emission step variable for the damage function of
-  (r,t,c,bd,j)         commodity **c** in region **r**, for each step **j** in
-                       each direction **bd**.
+```{list-table} Model variables specific to the Damage Cost Functions.
+:name: dam-variables
+:header-rows: 1
 
-  VAR_OBJ\             The variable is equal to the sum of the total discounted
-  (r,\'OBJDAM\',cur)   damage costs in each region **r** with currency **cur**.
-  -----------------------------------------------------------------------------
+* - Variable (Indexes)
+  - Variable Description
+* - VAR_DAM (r,t,c,bd,j)
+  - The emission step variable for the damage function of commodity **c** in region **r**, for each step **j** in each direction **bd**.
+* - VAR_OBJ (r,\'OBJDAM\',cur)
+  - The variable is equal to the sum of the total discounted damage costs in each region **r** with currency **cur**.
+```
 
 ### VAR_DAMAGE(r,t,c,bd,j)
 
@@ -313,22 +281,23 @@ The variables VAR_OBJDAM represent the total discounted damage costs by region. 
 
 ## Equations
 
-There are two blocks of equations generated for damage cost functions, whenever they are included in the objective function. The two equations related to the damage functions are listed and briefly described below in Table B-4. The equations include the balance of stepped emissions, the objective component for damage costs, and the augmented total objective function.
+There are two blocks of equations generated for damage cost functions, whenever they are included in the objective function. The two equations related to the damage functions are listed and briefly described below in {numref}`dam-constraints`. The equations include the balance of stepped emissions, the objective component for damage costs, and the augmented total objective function.
 
 In addition, the standard TIMES objective function, **EQ_OBJ**, is augmented by the present value of the damage costs, as defined by the equation EQ_OBJDAM.
 
 We now give the formulations of these constraints.
 
-  -------------------------------------------------------------------------
-  **Constraints   **Constraint Description**
-  (Indexes)**     
-  --------------- ---------------------------------------------------------
-  EQ_DAMAGE\      The balance equation between the stepped emission
-  (r,t,c)         variables and the total emissions in each period.
+```{list-table} Constraints specific to damage costs (in the GAMS file eqdamage.mod).
+:name: dam-constraints
+:header-rows: 1
 
-  EQ_OBJDAM\      The total discounted damage costs by region, which will
-  (r,cur)         be added as a component to the objective function.
-  -------------------------------------------------------------------------
+* - Constraints (Indexes)
+  - Constraint Description
+* - EQ_DAMAGE (r,t,c)
+  - The balance equation between the stepped emission variables and the total emissions in each period.
+* - EQ_OBJDAM (r,cur) 
+  - The total discounted damage costs by region, which will be added as a component to the objective function.
+```
 
 ### EQ_DAMAGE(r,t,c)
 
@@ -430,7 +399,7 @@ $${\sum_{(t,c) \in \left\{ \mathbf{rt}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{
 }{\left\{ = \right\}
 }{VAR\_ OBJ_{r,'OBJDAM',cur}}$$
 
-## References {#references-1 .unnumbered}
+## References
 
 Goldstein, G., Noble, K. & Van Regemorter, D. 2001. *Adaptation to MARKAL for including environmental damages*. MARKAL User Information Note.
 
@@ -439,3 +408,16 @@ Loulou, R., Goldstein, G. & Noble, K. 2004. *Documentation for the MARKAL Family
 Loulou, R., Remme, U., Kanudia, A., Lehtilä, A. & Goldstein, G. 2005. *Documentation for the TIMES Model*. Energy Technology Systems Ananlysis Programme (ETSAP), April 2005. <http://www.iea-etsap.org/web/Documentation.asp>
 
 Nemhauser, G.L., Rinnooy Kan, A.H.G. & Todd, M.J. (eds.) 1989. Handbooks in Operations Research and Management Science, Vol I: Optimization. North-Holland.
+
+
+[^48]: The first row contains the parameter name, the second row contains in brackets the index domain over which the parameter is defined.
+
+[^49]: This column mentions related input parameters or sets being used in the context of the headword parameter.
+
+[^50]: This column lists the unit of the parameter, the possible range of its numeric value \[in square brackets\] and the inter-/extrapolation rules that apply.
+
+[^51]: An indication of circumstances for which the parameter is to be provided or omitted.
+
+[^52]: Equations or variables that are directly affected by the parameter.
+
+[^53]: Abbreviation i/e = inter-/extrapolation

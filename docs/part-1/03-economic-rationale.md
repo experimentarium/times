@@ -156,11 +156,12 @@ The fact that the price of a commodity is equal to its marginal value is an impo
 
 It is important to reiterate that marginal value pricing *does not imply that suppliers have zero profit*. Profit is exactly equal to the suppliers' surplus, and is generally positive. Only the last few units produced may have zero profit, if, and when, their production cost equals the equilibrium price.
 
-In TIMES the shadow prices of commodities play a very important diagnostic role. If some shadow price is clearly out of line (i.e. if it seems much too small or too large compared to the anticipated market prices), this indicates that the model's database may contain some errors. The examination of shadow prices is just as important as the analysis of the quantities produced and consumed of each commodity and of the technological investments. 
+In TIMES the shadow prices of commodities play a very important diagnostic role. If some shadow price is clearly out of line (i.e. if it seems much too small or too large compared to the anticipated market prices), this indicates that the model's database may contain some errors. The examination of shadow prices is just as important as the analysis of the quantities produced and consumed of each commodity and of the technological investments.
 
 ```{figure} assets/image9.png
 :name: eq-price-different-marginal-cost
 :align: center
+
 Case where the equilibrium price is not equal to any marginal supply cost.
 ```
 

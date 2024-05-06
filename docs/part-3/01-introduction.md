@@ -75,17 +75,53 @@ The basic procedure for installing GAMS is:
 If you are using a non-default solver (e.g., CPLEX is the default for LP and MIP models and CONOPT for NLP) then there is one further step that must be carried out to complete the setup procedure:
 4. If using a non-default solver, upon completion use Windows Explorer to go to the GAMS system folder and run the GAMSINST program to set the default solver for each type to the solvers supported by your license GAMSLICE file by entering the associated number in the list and hitting return or just hitting return (if your solver is the default or not listed).
 
-Which solver to use is a function of the TIMES model variant to be solved and the solver(s) purchased by the user with GAMS. Basically the solvers used for TIMES fall into three categories, linear (LP), mixed integer (MIP) and non-linear (NLP), where Table 1 provides a partial list of the GAMS solvers generally used with TIMES for each main model variant. For a complete list of the solvers available refer to the GAMS website. The various Model Instances mentioned in the table are discussed further in Section , as well as in Parts I and II.
+Which solver to use is a function of the TIMES model variant to be solved and the solver(s) purchased by the user with GAMS. Basically the solvers used for TIMES fall into three categories, linear (LP), mixed integer (MIP) and non-linear (NLP), where {numref}`times-model-variants-and-solvers` provides a partial list of the GAMS solvers generally used with TIMES for each main model variant. For a complete list of the solvers available refer to the GAMS website. The various Model Instances mentioned in the table are discussed further in Section , as well as in Parts I and II.
 
-| Model Instance                                                                                               | Nature of Model     | Viable Solvers                                                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Basic TIMES (including Elastic Demand, Climate, Stochastic, etc.)                                            | Linear (LP)         | For full-blown TIMES models power solvers are recommended (CPLEX/XPRESS/GUROBI). For modest size models MINOS or the "free" public solvers may suffice |
-| Discrete Investment, Discrete Retirement, Discrete Dispatching and Endogenous Technology Learning Extensions | Mixed Integer (MIP) | Power solvers are recommended (CPLEX/XPRESS/GUROBI).  For modest size models the "free" public CBC solvers may suffice                                 |
-| MACRO (integrated or MSA/CSA), Micro (NLP option), Damage (NLP option)                                       | Non-linear (NLP)    | CONOPT recommended, MINOS an option (but no longer being developed)                                                                                    |
+```{list-table} TIMES Model Variants and GAMS Solvers
+:name: times-model-variants-and-solvers
+:header-rows: 1
 
-: Table 1: TIMES Model Variants and GAMS Solvers
+* - Model Instance
+  - Nature of Model
+  - Viable Solvers
+* - Basic TIMES (including Elastic Demand, Climate, Stochastic, etc.)
+  - Linear (LP)
+  - For full-blown TIMES models power solvers are recommended (CPLEX/XPRESS/GUROBI). For modest size models MINOS or the "free" public solvers may suffice
+* - Discrete Investment, Discrete Retirement, Discrete Dispatching and Endogenous Technology Learning Extensions
+  - Mixed Integer (MIP)
+  - Power solvers are recommended (CPLEX/XPRESS/GUROBI).  For modest size models the "free" public CBC solvers may suffice
+* - MACRO (integrated or MSA/CSA), Micro (NLP option), Damage (NLP option)
+  - Non-linear (NLP)
+  - CONOPT recommended, MINOS an option (but no longer being developed)
+```
 
 ## Organization of Part III
 
 Section 2 lays out more specifically how the various components of the TIMES modeling platform interact and accomplish their tasks. Following an overview of the run process, the routines comprising the TIMES source code are described, discussing how they guide the model through compilation, execution, solve, and reporting. Section 2.3 then describes the various files produced by the run process and their use. Finally, Section 2.4 discusses identifying and resolving errors that may occur during the run process. Section 3 then details the various switches that control the execution of the TIMES code.
 
+
+[^1]: MARKAL is the legacy ETSAP model generator superseded by its advanced TIMES successor.
+
+[^2]: <https://iea-etsap.org/index.php/etsap-tools/acquiring-etsap-tools>
+
+[^3]: <http://www.iea.org/etp/etpmodel/>
+
+[^4]: <https://iea-etsap.org/index.php/applications/global>
+
+[^5]: <https://www.euro-fusion.org/wpcms/wp-content/uploads/2015/02/EFDA-TIMES_Global.pdf>
+
+[^6]: <https://iea-etsap.org/index.php/applications/regional>
+
+[^7]: <http://www.kanors-emr.org/Website/Models/PET/Mod_PET.asp>
+
+[^8]: <http://facets-model.com/overview/>
+
+[^9]: <https://iea-etsap.org/index.php/applications/national>
+
+[^10]: <https://iea-etsap.org/index.php/applications>
+
+[^11]: Note that as of December 2016 ANSWER will no longer be actively developed and only limited support will be provided, so although mentioned here in Part III, users should carefully consider their longer-term needs when considering using ANSWER as their TIMES model management platform going forward.
+
+[^12]: Anthony Brooke, David Kendrick, Alexander Meeraus, and Ramesh Raman, GAMS -- A User's Guide, December 1998, [www.gams.com](http://www.gams.com).
+
+[^13]: Instructions for installing VEDA are available at <http://support.kanors-emr.org/VEDAInstallation>. Instructions for ANSWER can be obtained from Noble-Soft Systems.
