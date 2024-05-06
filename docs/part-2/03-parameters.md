@@ -327,7 +327,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Instances[^26] (Required / Omit / Special conditions)
   - Description
   - Affected equations or variables[^27]
-* - ACT_BND 
+* - ACT_BND
   <br>(r,datayear,p,s,bd)
   - 
   - Units of activity
@@ -340,7 +340,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Bound on the overall activity a process.
   - Activity limit constraint (EQ(l)\_ACTBND) when s is above prc_tsl.
   <br>Direct bound on activity variable (VAR_ACT) when at the prc_tsl level.
-* - ACT_COST 
+* - ACT_COST
   <br>(r,datayear,p,cur)
   - OBJ_ACOST, CST_ACTC, CST_PVP
   - Monetary unit per unit of activity
@@ -351,7 +351,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Variable costs associated with the activity of a process.
   - Applied to the activity variable (VAR_ACT) as a component of the objective function (EQ_OBJVAR).
   <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
-* - ACT_CSTPL 
+* - ACT_CSTPL
   <br>(r,datayear,p,cur)
   - ACT_MINLD, ACT_LOSPL
   - Monetary unit per unit of activity
@@ -362,7 +362,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Partial load cost penalty, defined as an additional cost per activity at the minimum operating level, corresponding to the efficiency loss at that load level.
   <br>Added as an extra term to variable costs in the objective and reporting.
   - Generates an additional term in EQ_OBJVAR for the increase in operating cost.
-* - ACT_CSTRMP 
+* - ACT_CSTRMP
   <br>(r,datayear,p,bd,cur)
   - ACT_UPS
   - Corrency unit per unit of capacity (change in load)
@@ -375,7 +375,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>For **load-shifting** processes defines the cost of shifting one unit of load by one hour, forward (UP) or backward (LO).
   - Activates generation of EQ_ACTRMPC.
   <br>Generates an additional term in EQ_OBJVAR for the increase in operating cost.
-* - ACT_CSTSD 
+* - ACT_CSTSD
   <br>(r,datayear,p,upt,bd,cur)
   - ACT_CSTUP, ACT_SDTIME, ACT_MAXNON
   - Currency units per unit of started-up capacity
@@ -388,7 +388,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Defines start-up (bd=UP) and shutdown costs (bd=LO) per unit of started-up capacity, differentiated by start-up type (upt).
   <br>The start-up type of a power plant depends on its non-operational time after shut-down, as defined by using ACT_MAXNON.
   - Generates an additional term in EQ_OBJVAR for the increase in operating cost.
-* - ACT_CSTUP 
+* - ACT_CSTUP
   <br>(r,datayear,p,tslvl,cur)
   - ACT_MINLD, ACT_UPS
   - Monetary unit per unit of capacity
@@ -401,7 +401,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Added as an extra term to variable costs in the objective and reporting.
   - Activates generation of EQL_ACTUPS eqs.
   <br>Generates an additional term in the variable operating costs included in EQ_OBJVAR.
-* - ACT_CUM 
+* - ACT_CUM
   <br>(r,p,y1,y2,bd)
   - FLO_CUM
   - Activity unit
@@ -411,7 +411,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The years y1 and y2 may be any years of the set allyear; where y1 may also be \'BOH\' for first year of first period and y2 may be \'EOH\' for last year of last period.
   - Bound on the cumulative amount of annual process activity between the years y1 and y2, within a region.
   - Generates an instance of the cumulative constraint (EQ_CUMFLO)
-* - ACT_EFF 
+* - ACT_EFF
   <br>(r,datayear,p,cg,s)
   - 
   - Activity unit per flow unit
@@ -425,7 +425,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Activity efficiency for process, i.e. amount of activity per unit of commodity flows in the group cg.
   <br>For more information on usage, see Section 6.3 for details about EQE_ACTEFF.
   - Generates instances of the activity efficiency constraint (EQE_ACTEFF)
-* - ACT_FLO 
+* - ACT_FLO
   <br>(r,datayear,p,cg,s)
   - 
   - Flow unit per activity unit
@@ -438,7 +438,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Flow of commodities in cg in proportion to the process activity, in timeslice s.
   <br>Non-vintaged variant available for vintaged processes by using a negative FLO_FUNCX.
   - Establishes a transformation relationship (EQ_PTRANS) between the flows in the PCG and one or more input (or output) commodities.
-* - ACT_LOSPL 
+* - ACT_LOSPL
   <br>(r,datayear,p,bd)
   - ACT_MINLD, ACT_CSTPL
   - Decimal fraction
@@ -458,7 +458,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>3) (bd=\'UP\'):
   <br>Fraction of feasible load range above the minimum operating level, below which the efficiency losses are assumed to occur.
   - Generates instances of the partial load efficiency constraint EQ_ACTPL.
-* - ACT_LOSSD 
+* - ACT_LOSSD
   <br>(r,datayear,p,upt,bd)
   - ACT_LOSPL, ACT_MINLD, ACT_SDTIME, ACT_EFF
   - Dimensionless
@@ -472,7 +472,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>- With bd=LO defines the increase in
   <br>specific fuel consumption at the start up load level defined by the ratio ACT_MINLD / ACT_SDTIME(\'HOT\', \'LO\').
   - Activates generation of EQ_SUDPLL
-* - ACT_MAXNON 
+* - ACT_MAXNON
   <br>(r,datayear,p,upt)
   - ACT_CSTSD, ACT_SDTIME
   - hours
@@ -483,7 +483,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Max. non-operational time before transition to next stand-by condition, by start-up type, in hours
   <br>- Defines the max. non-operational time before a subsequent start-up of type upt.
   - Activates generation of EQ_SUDUPT
-* - ACT_MINLD 
+* - ACT_MINLD
   <br>(r,datayear,p)
   - ACT_UPS, ACT_CSTUP, ACT_CSTPL, ACT_LOSPL
   - Decimal fraction
@@ -493,7 +493,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Can only be used for standard processes (not IRE or STG). Must be defined if ACT_CSTUP or ACT_TIME is specified.
   - Minimum stable operating level of a dispatchable process.
   - Generates instances of equations EQ_CAPLOAD and EQE_ACTUPS.
-* - ACT_SDTIME 
+* - ACT_SDTIME
   <br>(r,datayear,p,upt,bd)
   - ACT_CSTSD, ACT_MAXNON
   - hours
@@ -504,7 +504,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>When specifying the duration of the shut-down phase, only the tuple (upt,bd)=(HOT,LO) is valid
   - Defines the duration of start-up (bd=UP) and shut-down (bd=LO) phases, by start-up type, in hours.
   - Activates generation of EQ_SUDTIME, and used also in the equations EQ_ACTPL, EQ_SDSLANT, EQ_SDMINON, EQ_SUDPLL
-* - ACT_TIME 
+* - ACT_TIME
   <br>(r,datayear,p,lim)
   - ACT_MINLD, ACT_CSTUP, ACT_UPS, STG_SIFT
   - Hours
@@ -527,7 +527,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>3\) Maximum delay or advance of load shift (lim=UP/LO/FX) or load balancing time (lim=N) for a load-shifting storage.
   - Generates instances of EQL_ACTUPC.
   <br>For load-shifting storage processes, generates instances of EQ_SLSIFT.
-* - ACT_UPS 
+* - ACT_UPS
   <br>(r,datayear,p,s,bd)
   - ACT_MINLD, ACT_CSTUP, ACT_CSTPL, ACT_LOSPL
   - Decimal fraction
@@ -540,14 +540,14 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>The ramp rates can only be specified with bd=LO/UP.
   - Maximum ramp-rate (down/up) of process activity as a fraction of nominal on-line capacity per hour.
   - Generates instances of equation EQ_ACTRAMP.
-* - B 
+* - B
   <br>\(t)
   - M, D, E, COEF_CPT, rtp_vintyr
   - 
   - Required for each milestone year, but is auto-generated if not specified
   - Beginning year of period t.
   - 
-* - BS_BNDPRS 
+* - BS_BNDPRS
   <br>(r,datayear,p,b,s,lim)
   - 
   - Unit: Capacity unit of the process
@@ -558,7 +558,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>See the ABS documentation for details
   - Absolute bound on the reserve provision **b** from process **p**.
   - EQ_BS27
-* - BS_CAPACT 
+* - BS_CAPACT
   <br>\(r\)
   - PRC_CAPACT
   - Flow unit / capacity unit;
@@ -568,7 +568,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>See the ABS documentation for details
   - Conversion factor from exogenous reserve demand from capacity to activity / commodity flow units
   - EQ_BS04
-* - BS_DELTA 
+* - BS_DELTA
   <br>(r,datayear,b,s)
   - 
   - Unit: dimensionless
@@ -579,7 +579,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>See the ABS documentation for details
   - Calibration parameters for probabilistic reserve demand **b**, in region **r**, and timeslice **s**.
   - EQ_BS03
-* - BS_DEMDET 
+* - BS_DEMDET
   <br>(r,datayear,rsp,b,s)
   - 
   - Unit for EXOGEN: capacity unit
@@ -591,7 +591,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>See the ABS documentation for details
   - Parameters for deterministic demands of reserves (rsp = EXOGEN or WMAXSI)
   - EQ_BS04
-* - BS_DETWT 
+* - BS_DETWT
   <br>(r,datayear,b)
   - 
   - Unit: dimensionless
@@ -601,7 +601,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - See the ABS documentation for details.
   - Weight of the deterministic component in the formulation for endogenous requirements of reserve **b** in region **r**
   - EQ_BS03
-* - BS_LAMBDA 
+* - BS_LAMBDA
   <br>(r,datayear,b)
   - BS_DELTA
   - Unit: dimensionless
@@ -613,7 +613,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Fudge factors for dependencies in the reserve requirements
   <br>calculated for reserve **b** in region **r**, in year datayear
   - EQ_BS03
-* - BS_MAINT 
+* - BS_MAINT
   <br>(r,datayear,p,s)
   - 
   - Unit: hours
@@ -626,7 +626,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>See the ABS documentation for details.
   - For endogenous maintenance scheduling, defines minimum continuous maintenance time of process **p**, vintage **v**, timeslice **s**, in hours (**s** can be a process timeslice, or more usefully above it, to allow for optimized maintenance period)
   - EQ_BS27, EQ_BS28
-* - BS_OMEGA 
+* - BS_OMEGA
   <br>(r,datayear,b,s)
   - BS_DELTA, BS_LAMBDA
   - Unit: dimensionless
@@ -638,7 +638,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>See the ABS documentation for details
   - Indicator denoting if the demand for reserve **b** is the weighted sum of the deterministic and probabilistic component (ω=2), the maximum of the two (ω=1), or their difference (ω=3)
   - EQ_BS03
-* - BS_RMAX 
+* - BS_RMAX
   <br>(r,datayear,p,c,s)
   - 
   - Unit: dimensionless (fraction of capacity)
@@ -650,7 +650,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>See the ABS documentation for details
   - Maximum contribution of process **p**, vintage **v**, in timeslice **s** to the provision of reserve commodity **b**.
   - EQ_BS11, EQ_BS19
-* - BS_RTYPE 
+* - BS_RTYPE
   <br>(r,b)
   - 
   - Unit: dimensionless
@@ -665,7 +665,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>±3 : MFRR reserve
   <br>±4 : RR reserve
   - EQ_BS00, EQ_BS01, EQ_BS11, EQ_BS18, EQ_BS19, EQ_BS26
-* - BS_SHARE 
+* - BS_SHARE
   <br>(r,datayear,b,grp,lim)
   - BS_OMEGA
   - Unit: dimensionless
@@ -676,7 +676,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>See the ABS documentation for details
   - Maximum (bd=UP) or minimum (bd=LO) share of process group **grp** in the demand for reserve **b**, in region **r**, where demand is measured as defined by BS_OMEGA
   - EQ_BS01
-* - BS_SIGMA 
+* - BS_SIGMA
   <br>(r,datayear,b,grp,s)
   - 
   - Unit: dimensionless
@@ -687,7 +687,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>See the ABS documentation for details
   - Standard deviation of forecast error for the imbalance source **grp**, in region **r**, timeslice **s**, used for calculating the demand for reserve **b**
   - EQ_BS03
-* - BS_STIME 
+* - BS_STIME
   <br>(r,p,b,bd)
   - 
   - Unit: hours
@@ -700,7 +700,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>- bd=\'LO\': Time required to ramp up in order to provide reserve **b**
   <br>- bd=\'UP\': Duration of provision for reserve **b** including time to ramp up
   - EQ_BS22, EQ_BS23
-* - CAP_BND 
+* - CAP_BND
   <br>(r,datayear,p,bd)
   - PAR_CAPLO, PAR_CAPUP
   - Capacity unit
@@ -710,7 +710,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Since inter-/extrapolation is default is MIG, a bound must be specified for each period desired, if no explicit inter-/extrapolation option is given. Relaxed if upper bound less than existing non-retirable capacity.
   - Bound on investment in new capacity.
   - Imposes an indirect limit on the capacity transfer equation (EQ_CPT) by means of a direct bound on the capacity variable (VAR_CAP).
-* - CM_CONST 
+* - CM_CONST
   <br>(item)
   - 
   - Constant specific unit
@@ -720,7 +720,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - See Appendix on Climate Module for details.
   - Various climate module constants, e.g. phi and sigma values between reservoirs.
   - EQ_CLITOT, EQ_CLICONC, EQ_CLITEMP, EQ_CLIBEOH
-* - CM_EXOFORC 
+* - CM_EXOFORC
   <br>(year)
   - 
   - Forcing unit
@@ -730,7 +730,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Default values are provided. See Appendix on Climate Module for details.
   - Radiative forcing from exogenous sources
   - EQ_CLITOT
-* - CM_GHGMAP 
+* - CM_GHGMAP
   <br>(r,c,cm_var)
   - 
   - Units of climate module emissions per units of regional emissions
@@ -739,7 +739,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The global emissions in the climate module (cm_var) are \'CO2-GtC\' (GtC), \'CH4-Mt\' (Mt) and \'N2O-Mt\' (Mt). See Appendix on Climate Module for details.
   - Mapping and conversion of regional GHG emissions to global emissions in the climate module
   - EQ_CLITOT
-* - CM_HISTORY 
+* - CM_HISTORY
   <br>(year,item)
   - 
   - Climate variable unit
@@ -749,7 +749,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Default values are provided until 2010. See Appendix on Climate Module for details.
   - Calibration values for CO2 and forcing
   - EQ_CLITOT, EQ_CLICONC, EQ_CLITEMP, EQ_CLIBEOH
-* - CM_LINFOR 
+* - CM_LINFOR
   <br>(datayear,item,lim)
   - 
   - Forcing unit per concentration unit
@@ -759,7 +759,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - With lim types LO/UP, CO2 forcing function can be automatically linearized between the concentration levels given. For CH4 and N2O, lim types FX/N must be used (N=concentration multiplier, FX=constant term). See Appendix on Climate Module for details.
   - Parameters of linearized forcing functions
   - EQ_CLITOT
-* - CM_MAXC 
+* - CM_MAXC
   <br>(datayear,item)
   - 
   - Climate variable unit
@@ -770,7 +770,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>See Appendix on Climate Module for details.
   - Maximum level of climate variable
   - EQ_CLIMAX
-* - COM_AGG 
+* - COM_AGG
   <br>(r,dayayear,c1,c2)
   - 
   - Commodity units
@@ -781,7 +781,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>When commodity lim_type is FX/N or commodity type is DEM, VAR_COMPRD of c1 is aggregated to c2.
   - Aggregation of commodity NET/PRD production to the production side of the balance of another commodity.
   - Adds a term in EQ(l)\_COMBAL and EQ(l)\_COMPRD.
-* - COM_BNDNET 
+* - COM_BNDNET
   <br>(r,datayear,c,s,bd)
   - rhs_combal, rcs_combal
   - Commodity unit
@@ -796,7 +796,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>VAR_COMNET) within a region for a particular timeslice.
   - The balance constraint is set to an equality (EQE_COMBAL).
   <br>Either the finer timeslice variables are summed (EQ(l)\_BNDNET) or the bound applied direct to the commodity net variable(VAR_COMNET) when at the commodity level (com_tsl).
-* - COM_BNDPRD 
+* - COM_BNDPRD
   <br>(r,datayear,c,s,bd)
   - rhs_comprd, rcs_comprd
   - Commodity unit
@@ -813,7 +813,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The balance constraint is set to an equality (EQE_COMBAL).
   <br>Finer timeslice variables summed (EQ(l)\_BNDPRD).
   <br>or the bound is applied direct to the commodity production variable (VAR_COMPRD) when at the commodity level (com_tsl).
-* - COM_BPRICE 
+* - COM_BPRICE
   <br>(r,t,c,s,cur)
   - COM_ELAST, COM_STEP, COM_VOC
   - Monetary unit per commodity unit
@@ -824,7 +824,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Base price of a demand commodity for the elastic demand formulation.
   - Controls the inclusion of the elastic demand variable (VAR_ELAST) in the commodity balance equation(EQ(l)\_COMBAL)
   <br>Applied to the elastic demand variable (VAR_ELAST) in the objective function (EQ_OBJELS).
-* - COM_CSTNET 
+* - COM_CSTNET
   <br>(r,datayear,c,s,cur)
   - OBJ_COMNT, CST_COMC, CST_PVC, rhs_combal, rcs_combal
   - Monetary unit per commodity unit
@@ -836,7 +836,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Cost on the net amount of a commodity within a region for a particular timeslice.
   - Forces the net commodity variable (VAR_COMNET) to be included in the equality balance constraint (EQE_COMBAL).
   <br>Applied to said variable in the cost component of the objective function (EQ_OBJVAR).
-* - COM_CSTPRD 
+* - COM_CSTPRD
   <br>(r,datayear,c,s,cur)
   - OBJ_COMPD, CST_COMC, CST_PVC, rhs_comprd, rcs_comprd
   - Monetary unit per commodity unit
@@ -848,7 +848,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Cost on the production of a commodity, within a region for a particular timeslice.
   - Forces the commodity production variable (VAR_COMPRD) to be included in the equality balance constraint (EQE_COMBAL).
   <br>Applied to said variable in the cost component of the objective function (EQ_OBJVAR).
-* - COM_CUMNET 
+* - COM_CUMNET
   <br>(r,y1,y2,bd)
   - bohyear, eohyear, rhs_combal, rcs_combal, rtc_cumnet
   - Commodity unit
@@ -859,7 +859,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Bound on the cumulative net amount of a commodity between the years y1 and y2, within a region over timeslices.
   - Forces the net commodity variable (VAR_COMNET) to be included in the equality balance constraint (EQE_COMBAL).
   <br>Generates the cumulative commodity constraint (EQ(l)\_CUMNET).
-* - COM_CUMPRD 
+* - COM_CUMPRD
   <br>(r,y1,y2,bd)
   - bohyear, eohyear, rhs_comprd, rcs_comprd, rtc_cumprd
   - Commodity unit
@@ -870,7 +870,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Bound on the cumulative production of a commodity between the years y1 and y2 within a region over timeslices.
   - Forces the net commodity variable (VAR_COMPRD) to be included in the balance equation (EQE_COMBAL).
   <br>The cumulative constraint is generated (EQ(l)\_CUMPRD).
-* - COM_ELAST 
+* - COM_ELAST
   <br>(r,datayear,c,s,lim)
   - COM_BPRICE, COM_STEP, COM_VOC, COM_AGG
   - Dimensionless
@@ -887,7 +887,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>See also Appendix D for additional details on defining demand functions.
   - Controls the inclusion of the elastic demand variable (VAR_ELAST) in the commodity balance equation(EQ(l)\_COMBAL)
   <br>Applied to the elastic demand variable (VAR_ELAST) in the objective function costs (EQ_OBJELS).
-* - COM_ELASTX 
+* - COM_ELASTX
   <br>(r,datayear,c,bd)
   - COM_ELAST
   - Integer scalar
@@ -898,7 +898,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Note: Shape index 1 is reserved for constant 1.
   - Shape index for the elasticity of demand
   - Affects the demand elasticities applied in EQ_OBJELS
-* - COM_FR 
+* - COM_FR
   <br>(r,datayear,c,s)
   - COM_PROJ, com_ts, com_tsl, RTCS_TSFR
   - Decimal fraction
@@ -914,7 +914,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Enters the peaking equation (EQ_PEAK), if a peaking commodity.
   <br>Applied to the bounds of elastic demand step variables (VAR_ELAST).
   <br>Applied via RTFCS_FR in all equations to flows having a timeslice level coarser than target level.
-* - COM_IE 
+* - COM_IE
   <br>(r,datayear,c,s)
   - 
   - Decimal fraction
@@ -925,7 +925,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Weighted aggregation.
   - Infrastructure or transmission efficiency of a commodity.
   - Overall efficiency applied to the total production of a commodity in the commodity balance equation (EQ(l)\_COMBAL).
-* - COM_MSHGV 
+* - COM_MSHGV
   <br>(r,datayear,c)
   - NCAP_MSPRF
   - Unit: dimensionless
@@ -935,7 +935,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Required for all markets modeled with the logit market sharing mechanism
   - In the logit market sharing mechanism, defines heterogeneity value for market **c** in region **r**, between the investment choices
   - EQ_MSNCAPB
-* - COM_PKFLX 
+* - COM_PKFLX
   <br>(r,datayear,c,s)
   - com_peak, com_pkts, COM_PKRSV, FLO_PKCOI
   - Scalar
@@ -946,7 +946,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Weighted aggregation.
   - Difference between the average demand and the peak demand in timeslice s, expressed as fraction of the average demand.
   - Applied to the total consumption of a commodity to raise the capacity needed to satisfy the peaking constraint (EQ_PEAK).
-* - COM_PKRSV 
+* - COM_PKRSV
   <br>(r,datayear,c)
   - com_peak, com_pkts, COM_PKFLX, FLO_PKCOI
   - Scalar
@@ -956,7 +956,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Requires that commodity c is also requested to have peaking constraints, by defining COM_PEAK or COM_PKTS
   - Peak reserve margin as fraction of peak demand, e.g. if COM_PKRSV = 0.2, the total installed capacity must exceed the peak load by 20%.
   - Applied to the total consumption of a commodity to raise the capacity needed to satisfy the peaking constraint (EQ_PEAK).
-* - COM_PROJ 
+* - COM_PROJ
   <br>(r,datayear,c)
   - COM_FR
   - Commodity unit
@@ -970,7 +970,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Serves as the RHS (after COM_FR applied) of the commodity balance constraint (EQ(l)\_COMBAL).
   <br>Enters the peaking equation (EQ_PEAK), if a peaking commodity.
   <br>Applied when setting the upper bound of an elastic demand step (VAR_ELAST).
-* - COM_STEP 
+* - COM_STEP
   <br>(r,c,bd)
   - COM_BPRICE, COM_ELAST, COM_VOC, rcj
   - Integer number
@@ -983,7 +983,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>the commodity balance equation (EQ(l)\_COMBAL);
   <br>setting of the step limit for the elastic demand variable (VAR_ELAST);
   <br>enters the objective function costs (EQ_OBJELS).
-* - COM_SUBNET 
+* - COM_SUBNET
   <br>(r,datayear,c,s,cur)
   - OBJ_COMNT, CST_COMX, CST_PVC, rhs_combal, rcs_combal
   - Monetary unit per commodity unit
@@ -995,7 +995,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Subsidy on the net amount of a commodity within a region for a particular timeslice.
   - Forces the net commodity variable (VAR_COMNET) to be included in the equality balance constraint (EQE_COMBAL).
   <br>Applied (-) to said variable in the cost component of the objective function (EQ_OBJVAR).
-* - COM_SUBPRD 
+* - COM_SUBPRD
   <br>(r,datayear,c,s,cur)
   - OBJ_COMPD, CST_COMX, CST_PVC, rhs_comprd, rcs_comprd
   - Monetary unit per commodity unit
@@ -1007,7 +1007,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Subsidy on the production of a commodity within a region for a particular timeslice.
   - Forces the commodity production variable (VAR_COMPRD) to be included in the equality balance constraint (EQE_COMBAL).
   <br>Applied (-) to said variable in the cost component of the objective function (EQ_OBJVAR).
-* - COM_TAXNET 
+* - COM_TAXNET
   <br>(r,datayear,c,s,cur)
   - OBJ_COMNT, CST_COMX, CST_PVC, rhs_combal, rcs_combal
   - Monetary unit per commodity unit
@@ -1019,7 +1019,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Tax on the net amount of a commodity within a region for a particular timeslice.
   - Forces the net commodity variable (VAR_COMNET) to be included in the equality balance constraint (EQE_COMBAL).
   <br>Applied to said variable in the cost component of the objective function (EQ_OBJVAR).
-* - COM_TAXPRD 
+* - COM_TAXPRD
   <br>(r,datayear,c,s,cur)
   - OBJ_COMPD, CST_COMX, CST_PVC, rhs_comprd, rcs_comprd
   - Monetary unit per commodity unit
@@ -1031,7 +1031,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Tax on the production of a commodity within a region for a particular timeslice.
   - Forces the commodity production variable (VAR_COMPRD) to be included in the equality balance constraint (EQE_COMBAL).
   <br>Applied to said variable in the cost component of the objective function (EQ_OBJVAR).
-* - COM_VOC 
+* - COM_VOC
   <br>(r,datayear,c,bd)
   - COM_BPRICE, COM_STEP, COM_ELAST
   - Dimensionless
@@ -1045,7 +1045,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Possible variation of demand in both directions when using the elastic demand formulation.
   - Applied when setting the bound of an elastic demand step (VAR_ELAST).
   <br>Applied to the elasticity variable in the objective function costs (EQ_OBJELS).
-* - DAM_BQTY 
+* - DAM_BQTY
   <br>(r,c)
   - DAM_COST
   - Commodity unit
@@ -1055,7 +1055,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Only effective when DAM_COST has been defined for commodity c.
   - Base quantity of emissions for damage cost accounting
   - EQ_DAMAGE, EQ_OBJDAM
-* - DAM_COST 
+* - DAM_COST
   <br>(r,datayear,c,cur)
   - DAM_BQTY
   - Monetary unit per commodity unit
@@ -1066,7 +1066,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>To set them exogenous, use \$SET DAMAGE NO
   - Marginal damage cost of emissions at Base quantity.
   - EQ_DAMAGE, EQ_OBJDAM
-* - DAM_ELAST 
+* - DAM_ELAST
   <br>(r,c,lim)
   - DAM_COST, DAM_BQTY
   - Dimensionless
@@ -1076,7 +1076,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Only effective when DAM_COST has been defined for commodity c.
   - Elasticity of damage cost in the lower or upper direction from Base quantity.
   - EQ_OBJDAM
-* - DAM_STEP 
+* - DAM_STEP
   <br>(r,c,lim)
   - DAM_COST, DAM_BQTY
   - Integer number
@@ -1086,7 +1086,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Only effective when DAM_COST has been defined for commodity c.
   - Number of steps for linearizing damage costs in the lower or upper direction from Base quantity.
   - EQ_DAMAGE, EQ_OBJDAM
-* - DAM_VOC 
+* - DAM_VOC
   <br>(r,c,lim)
   - DAM_COST, DAM_BQTY
   - Decimal fraction
@@ -1096,7 +1096,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Only effective when DAM_COST is defined for c. Step sizes proportional to the Base quantity can be defined with lim=\'N\'.
   - Variance of emissions in the lower or upper direction from Base quantity as a fraction of Base quantity.
   - EQ_OBJDAM
-* - E 
+* - E
   <br>(t)
   - B, D, M, COEF_CPT, rtp_vintyr
   - 
@@ -1104,7 +1104,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - End year of period t, used in determining the length of each period
   - The amount of new investment (VAR_NCAP) carried over in the capacity transfer constraint (EQ(l)\_CPT).
   <br>Amount of investments (VAR_NCAP) remaining past the modelling horizon that needs to be credited back to the objective function (EQ_OBJINV).
-* - FLO_BND 
+* - FLO_BND
   <br>(r,datayear,p,cg,s,bd)
   - 
   - Commodity unit
@@ -1116,7 +1116,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Bound on the flow of a commodity or the sum of flows within a commodity group.
   - Flow activity limit constraint (EQ(l)\_FLOBND) when s is above rtpcs_varf
   <br>Direct bound on activity variable (VAR_FLO) when at the rtpcs_varf level.
-* - FLO_COST 
+* - FLO_COST
   <br>(r,datayear,p,c,s,cur)
   - OBJ_FCOST, CST_FLOC, CST_PVP
   - Monetary unit per commodity unit
@@ -1128,7 +1128,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Variable cost of a process associated with the production/ consumption of a commodity.
   - Applied to the flow variable (VAR_FLO) when entering the objective function (EQ_OBJVAR).
   <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
-* - FLO_CUM 
+* - FLO_CUM
   <br>(r,p,c,y1,y2,bd)
   - ACT_CUM
   - Flow unit
@@ -1138,7 +1138,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The years y1 and y2 may be any years of the set allyear; where y1 may also be \'BOH\' for first year of first period and y2 may be \'EOH\' for last year of last period.
   - Bound on the cumulative amount of annual process activity between the years y1 and y2, within a region.
   - Generates an instance of the cumulative constraint (EQ_CUMFLO)
-* - FLO_DELIV 
+* - FLO_DELIV
   <br>(r,datayear,p,c,s,cur)
   - OBJ_FDELV, CST_FLOC, CST_PVP
   - Monetary unit per commodity unit
@@ -1150,7 +1150,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Cost of a delivering (consuming) a commodity to a process.
   - Applied to the flow variable (VAR_FLO) when entering the objective function (EQ_OBJVAR).
   <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
-* - FLO_EFF 
+* - FLO_EFF
   <br>(r,datayear,p,cg,c,s)
   - FLO_EMIS, PRC_ACTFLO
   - Commodity unit of c / commodity unit of cg
@@ -1162,7 +1162,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>FLO_EFF defined for an individual flow will override any value for a group.
   - Defines the amount of commodity flow of commodity (c) per unit of other process flow(s) or activity (cg).
   - Generates process transformation equation (EQ_PTRANS) between one or more input (or output) commodities and one output (or input) commodities.
-* - FLO_EMIS 
+* - FLO_EMIS
   <br>(r,datayear,p,cg,com,s)
   - FLO_EFF (alias)
   - Commodity unit of c / commodity unit of cg
@@ -1173,7 +1173,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>If com is of type ENV and is not in the process topology, it is added to it as an output flow.
   - Defines the amount of emissions (c) per unit of process flow(s) or activity (cg).
   - See FLO_EFF.
-* - FLO_FR 
+* - FLO_FR
   <br>(r,datayear,p,c,s,bd)
   - 
   - Decimal fraction
@@ -1187,7 +1187,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - 1\) Bounds the flow of commodity (c) entering or leaving process (p) in a timeslice, in proportion to annual flow.
   <br>2\) If specified also at the ANNUAL level, bounds the flow **level** in proportion to the average level under the parent timeslice
   - A share equation (EQ(l)\_FLOFR) limiting the amount of commodity (c) is generated according to the bound type (bd = l indicator).
-* - FLO_FUNC 
+* - FLO_FUNC
   <br>(r,datayear,p,cg1,cg2,s)
   - FLO_SUM, FLO_FUNCX, COEF_PTRAN, rpc_ffunc, rpcg_ptran
   - Commodity unit of cg2/commodity unit of cg1
@@ -1199,7 +1199,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - A key parameter describing the basic operation of or within a process. Sets the ratio between the sum of flows in commodity group cg2 to the sum of flows in commodity group cg1, thereby defining the efficiency of producing cg2 from cg1 (subject to any FLO_SUM). cg1 and cg2 may be also single commodities.
   - Establishes the basic transformation relationship (EQ_PTRANS) between one or more input (or output) commodities and one or more output (or input) commodities.
   <br>Establishes the relationship between storage charging / discharging and a related commodity flow (VAR_FLO) in the auxiliary storage flow equation (EQ_STGAUX).
-* - FLO_FUNCX 
+* - FLO_FUNCX
   <br>(r,datayear,p,cg1,cg2)
   - FLO_FUNC, FLO_SUM, COEF_PTRAN
   - Integer scalar
@@ -1218,7 +1218,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>NCAP_COM(com): cg1=\'CAPFLO\', cg2=com
   - Age-based shaping curve (SHAPE) to be applied to the flow parameters (ACT_EFF/ACT_FLO/ FLO_FUNC/FLO_SUM/FLO_EMIS/FLO_EFF/ NCAP_COM)
   - Applied to the flow variable (VAR_FLO) in a transformation equation (EQ_PTRANS / EQE_ACTEFF) to account for changes in the transformation efficiency according to the age of each process vintage.
-* - FLO_MARK 
+* - FLO_MARK
   <br>(r,datayear,p,c,bd)
   - PRC_MARK
   - Decimal fraction
@@ -1230,7 +1230,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Process-wise market share in total commodity production.
   - The individual process flow variables (VAR_FLO, VAR_IN, VAR_STGIN/OUT) are constrained (EQ(l)\_FLOMRK) to a fraction of the total production of a commodity (VAR_COMPRD).
   <br>Forces the commodity production variable (VAR_COMPRD) to be included in the equality balance constraint (EQE_COMBAL).
-* - FLO_PKCOI 
+* - FLO_PKCOI
   <br>(r,datayear,p,c,s)
   - COM_PKRSV, COM_PKFLX, com_peak, com_pkts
   - Scalar
@@ -1243,7 +1243,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Used when the timeslices are not necessarily fine enough to pick up the actual peak within the peak timeslices.
   - Factor that permits attributing more (or less) demand to the peaking equation (EQ_PEAK) than the average demand calculated by the model, to handle the situation where peak usage is typically higher (or lower) due to coincidental (or non-coincidental) loads at the time of the peak demand.
   - Applied to the flow variable (VAR_FLO) to adjust the amount of a commodity consumed when considering the average demand contributing to the peaking constraint (EQ_PEAK).
-* - FLO_SHAR 
+* - FLO_SHAR
   <br>(r,datayear,p,c,cg,s,bd)
   - 
   - Decimal fraction
@@ -1256,7 +1256,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Share of flow commodity c based upon the sum of individual flows defined by the commodity group cg belonging to process p.
   - When the commodity is an input an EQ(l)\_INSHR equation is generated.
   <br>When the commodity is an output an EQ(l)\_OUTSHR equation is generated.
-* - FLO_SUB 
+* - FLO_SUB
   <br>(r,datayear,p,c,s,cur)
   - OBJ_FSUB, CST_FLOX, CST_PVP
   - Monetary unit per commodity unit
@@ -1268,7 +1268,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Subsidy on a process flow.
   - Applied with a minus sign to the flow variable (VAR_FLO) when entering the objective function (EQ_OBJVAR).
   <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
-* - FLO_SUM 
+* - FLO_SUM
   <br>(r,datayear,p,cg1,c,cg2,s)
   - FLO_FUNC, FLO_FUNCX, COEF_PTRANS, fs_emis, rpc_emis, rpc_ffunc, rpcg_ptran
   - Commodity unit of cg2/commodity unit of c
@@ -1280,7 +1280,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>The derived parameter COEF_PTRANS is inherited/aggregated to the timeslice level of the flow variable of the commodity c.
   - Multiplier applied for commodity c of group cg1 corresponding to the flow rate based upon the sum of individual flows defined by the commodity group cg2 of process p. Most often used to define the emission rate, or to adjust the overall efficiency of a technology based upon fuel consumed.
   - The FLO_SUM multiplier is applied along with FLO_FUNC parameter in the transformation coefficient (COEF_PTRANS), which is applied to the flow variable (VAR_FLO) in the transformation equation (EQ_PTRANS).
-* - FLO_TAX 
+* - FLO_TAX
   <br>(r,datayear,p,c,s,cur)
   - OBJ_FTAX, CST_FLOX, CST_PVP
   - Monetary unit per commodity unit
@@ -1292,7 +1292,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Tax on a process flow.
   - Applied to the flow variable (VAR_FLO) when entering the objective function (EQ_OBJVAR).
   <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
-* - G_CUREX 
+* - G_CUREX
   <br>(cur1,cur2)
   - R_CUREX
   - Scalar
@@ -1301,7 +1301,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The target currency cur2 must have a discount rate defined with G_DRATE.
   - Conversion factor from currency cur1 to currency cur2, with cur2 to be used in the objective function.
   - Affects cost coefficients in EQ_OBJ
-* - G_CYCLE 
+* - G_CYCLE
   <br>(tslvl)
   - TS_CYCLE
   - Number of cycles
@@ -1315,7 +1315,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Defines the total number of cycles on level tslvl, in a year.
   <br>Provides default values for TS_CYCLE (see entry for that).
   - Affects interpretation of availability factors for the storage level, whenever capacity represents the maximum nominal output level (EQ(l)\_CAPACT, EQL_CAPFLO).
-* - G_DRATE 
+* - G_DRATE
   <br>(r,allyear,cur)
   - OBJ_DISC, OBJ_DCEOH, NCAP_DRATE, COR_SALVI, COR_SALVD, COEF_PVT, VDA_DISC
   - Decimal fraction
@@ -1333,7 +1333,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - 
   - Base year for discounting.
   - The year to which all costs are to be discounted is taken into consideration when constructing the objective function discounting multiplier (OBJ_DISC), which is applied in each of the components of the objective function (EQ_OBJVAR, EQ_OBJINV, EQ_OBJFIX, EQ_OBJSALV, EQ_OBJELS).
-* - G_RFRIR 
+* - G_RFRIR
   <br>(r,allyear)
   - G_DRATE, NCAP_DRATE, COR_SALVI, COR_SALVD
   - Decimal fraction
@@ -1364,7 +1364,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Interpolation of cost parameters is always done.
   - Switch for generally turning-on (= 0 ) and turning-off (= 1 ) sparse inter- / extrapolation.
   - 
-* - G_OFFTHD 
+* - G_OFFTHD
   <br>(datayear)
   - PRC_NOFF, PRC_AOFF, PRC_FOFF, COM_OFF
   - Scalar
@@ -1381,7 +1381,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Default value: TIMESTEP/2
   - Used only when time-stepped solution is activated with the TIMESTEP control variable.
   - Overlap of stepped solutions (in years).
-  - --
+  - <span>--</span>
 * - G_TLIFE
   - NCAP_TLIFE
   - Scalar
@@ -1390,7 +1390,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - 
   - Default value for the technical lifetime of a process if not provided by the user.
   - 
-* - G_YRFR 
+* - G_YRFR
   <br>(all_r,s)
   - RTCS_TSFR, RS_STGPRD
   - Fraction
@@ -1399,7 +1399,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Must be provided for each region and timeslice.
   - Duration of timeslice s as fraction of a year. Used for shaping the load curve and lining up timeslice duration for inter-regional exchanges.
   - Applied to various variables (VAR_NCAP+PASTI, VAR_COMX, VAR_IRE, VAR_FLO, VAR_SIN/OUT) in the commodity balance equation (EQ(l)\_COMBAL).
-* - IRE_BND 
+* - IRE_BND
   <br>(r,datayear,c,s,all_r,ie,bd)
   - top_ire
   - Commodity unit
@@ -1411,7 +1411,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Standard aggregation.
   - Bound on the total import (export) of commodity (c) from (to) region all_r in (out of) region r.
   - Controls the instances for which the trade bound constraint (EQ(l)\_IREBND) is generated, and the RHS.
-* - IRE_CCVT 
+* - IRE_CCVT
   <br>(r1,c1,r2,c2))
   - IRE_TSCVT, top_ire
   - Scalar
@@ -1423,7 +1423,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The conversion factor is applied to the flow variable (VAR_IRE) in the inter-regional balance constraint (EQ_IRE).
   <br>Similarly, applied to the flow variable (VAR_IRE) when an inter-regional exchange is bounded in the limit constraint (EQ(l)\_IREBND).
   <br>Similarly, applied to the flow variable (VAR_IRE) when an exchange with an external region is bounded (EQ(l)\_XBND).
-* - IRE_FLO 
+* - IRE_FLO
   <br>(r1,datayear,p,c1,r2,c2,s2)
   - top_ire
   - Commodity unit c2/commodity unit c1
@@ -1438,7 +1438,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Efficiency of exchange process from commodity c1 in region r1 to commodity c2 in the region2 in timeslice s2; the timeslice s2 refers to the r2 region.
   - Applied to the exchange flow variable (VAR_IRE) in the inter-regional trade equation (EQ_IRE).
   <br>Applied to the exchange flow variable (VAR_IRE) when a bound on inter-regional trade is to be applied (EQ(l)\_IREBND).
-* - IRE_FLOSUM 
+* - IRE_FLOSUM
   <br>(r,datayear,p,c1,s,ie,c2,io)
   - top_ire
   - Commodity unit c2/commodity unit c1
@@ -1453,7 +1453,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The multiplier is applied to the flow variable (VAR_IRE) associated with an inter-reginal exchange in the commodity balance constraint (EQ(l)\_COMBAL).
   <br>If a flow share (FLO_SHAR) is provided for an inter-regional exchange process then the multiplier is applied to the flow variable (VAR_IRE) in the share constraint (EQ(l)\_IN/OUTSHR).
   <br>If a cost is provided for the flow (FLO_COST or FLO_DELIV) then the factor is applied to the flow variable (VAR_IRE) in the variable component of the objective function (EQ_OBJVAR).
-* - IRE_PRICE 
+* - IRE_PRICE
   <br>(r,datayear,p,c,s,all_r,ie,cur)
   - OBJ_IPRIC, CST_COMC, CST_PVP, top_ire
   - Monetary unit / commodity unit
@@ -1466,7 +1466,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Weighted aggregation.
   - IMPort/EXPort price (index ie) for to/from an internal region of a commodity (c) originating from/heading to an external region all_r.
   - The price of the exchange commodity is applied to the trade flow variable (VAR_IRE) in the variable costs component of the objective function (EQ_OBJVAR).
-* - IRE_TSCVT 
+* - IRE_TSCVT
   <br>(r1,s1,r2,s2)
   - IRE_CCVT, top_ire
   - Scalar
@@ -1479,7 +1479,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The conversion factor is applied to the flow variable (VAR_IRE) in the inter-regional balance constraint (EQ_IRE).
   <br>Similarly, applied to the flow variable (VAR_IRE) when an inter-regional exchange is bounded in the limit constraint (EQ(l)\_IREBND).
   <br>Similarly, applied to the flow variable (VAR_IRE) when an exchange with an external region is bounded (EQ(l)\_XBND).
-* - IRE_XBND 
+* - IRE_XBND
   <br>(all_r,datayear,c,s ie,bd)
   - top_ire
   - Commodity unit
@@ -1491,7 +1491,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Note that the limit is either imposed by summing lower or splitting higher flow variables (VAR_IRE) when specified at other than the actual flow level (as determined by the commodity and process levels (COM_TSL/ PRC_TSL ).
   - Bound on the total IMPort (EXPort) (index ie) of commodity c in region all_r with all sources (destinations).
   - The trade limit equation EQ(l)\_XBND generated either sums lower flow variables (VAR_IRE) or splits (according to the timeslice tree) coarser variables.
-* - MULTI 
+* - MULTI
   <br>(j,allyear)
   - NCAP_AFM, NCAP_FOMM, NCAP_FSUBM, NCAP_FTAXM
   - Scalar
@@ -1501,7 +1501,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Only provided when the related shaping parameters are to be used.
   - Multiplier table used for any shaping parameters (\*\_\*M) to adjust the corresponding technical data as function of the year; the table contains different multiplier curves identified by the index j.
   - *{See Related Parameters}*
-* - NCAP_AF 
+* - NCAP_AF
   <br>(r,datayear,p,s,bd)
   - NCAP_AFA, NCAP_AFS, NCAP_AFM, NCAP_AFX, COEF_AF
   - Decimal fraction
@@ -1516,7 +1516,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Availability factor relating a unit of production (process activity) in timeslice s to the current installed capacity.
   - The corresponding capacity-activity constraint (EQ(l)\_CAPACT) will be generated for any timeslice s.
   <br>If the process timeslice level (PRC_TSL) is below said level, the activity variables will be summed.
-* - NCAP_AFA 
+* - NCAP_AFA
   <br>(r,datayear,p,bd)
   - NCAP_AFA, NCAP_AFS, NCAP_AFM, NCAP_AFX, COEF_AF
   - Decimal fraction
@@ -1530,7 +1530,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Annual availability factor relating the annual activity of a process to the installed capacity.
   - The corresponding capacity-activity constraint (EQ(l)\_CAPACT) will be generated for the 'ANNUAL' timeslice.
   <br>If the process timeslice level (PRC_TSL) is below said level, the activity variables will be summed.
-* - NCAP_AFC 
+* - NCAP_AFC
   <br>(r,datayear,p,cg,tsl)
   - NCAP_AFCS
   - Decimal fraction
@@ -1543,7 +1543,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Applies also matching NCAP_AF / AFS / AFA as a multiplier, unless the independent option is used.
   - Generates instances of
   <br>EQ(l)\_CAFLAC (thereby disabling EQ(l)\_CAPACT generation), or EQL_CAPFLO.
-* - NCAP_AFCS 
+* - NCAP_AFCS
   <br>(r,datayear,p,cg,ts)
   - NCAP_AFC
   - Decimal fraction
@@ -1554,7 +1554,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>NCAP_AFCS is similar to NCAP_AFC but is defined on individual timeslices. Overrides NCAP_AFC.
   - Commodity-specific availability of capacity for commodity group cg, timeslice-specific.
   - See NCAP_AFC.
-* - NCAP_AFM 
+* - NCAP_AFM
   <br>(r,datayear,p)
   - NCAP_AF, NCAP_AFA, NCAP_AFS, MULTI, COEF_AF
   - Integer number
@@ -1564,7 +1564,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Note: Multiplier index 1 is reserved for constant 1.
   - Period sensitive multiplier curve (MULTI) to be applied to the availability factor parameters (NCAP_AF/AFA/AFS) of a process.
   - *{See Related Parameters}*
-* - NCAP_AFS 
+* - NCAP_AFS
   <br>(r,datayear,p,s,bd)
   - 
   - Decimal fraction
@@ -1580,7 +1580,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Availability factor relating the activity of a process in a timeslice s being at or above the process timeslice level (prc_tsl) to the installed capacity. If for example the process timeslice level is 'DAYNITE' and NCAP_AFS is specified for timeslices on the 'SEASONAL' level, the sum of the 'DAYNITE' activities within a season are restricted, but not the 'DAYNITE' activities directly.
   - The corresponding capacity-activity constraint (EQ(l)\_CAPACT) will be generated for a timeslice s being at or above the process timeslice level (prc_tsl).
   <br>If the process timeslice level is below said level, the activity variables will be summed.
-* - NCAP_AFSX 
+* - NCAP_AFSX
   <br>(r,datayear,p,bd)
   - NCAP_AFS, SHAPE, COEF_AF
   - Integer number
@@ -1592,7 +1592,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Note: Shape index 1 is reserved for constant 1.
   - Age-based shaping curve (SHAPE) to be applied to the seasonal availability factor parameters (NCAP\_ AFS) of a process.
   - *{See Related Parameters}*
-* - NCAP_AFX 
+* - NCAP_AFX
   <br>(r,datayear,p)
   - NCAP_AF, NCAP_AFA, NCAP_AFS, SHAPE, COEF_AF
   - Integer number
@@ -1604,7 +1604,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Note: Shape index 1 is reserved for constant 1.
   - Age-based shaping curve (SHAPE) to be applied to the availability factor parameters (NCAP_AF/AFA/AFS) of a process.
   - *{See Related Parameters}*
-* - NCAP_BND 
+* - NCAP_BND
   <br>(r,datayear,p,bd)
   - 
   - Capacity unit
@@ -1615,7 +1615,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Since inter-/extrapolation default is MIG, a bound must be specified for each period desired, if no explicit inter-/extrapolation option is given, e.g. NCAP_BND(R,'0',P) =2.
   - Bound on the permitted level on investment in new capacity
   - Imposes an indirect limit on the capacity transfer equation (EQ_CPT) by means of a direct bound on the new investments capacity variable (VAR_NCAP).
-* - NCAP_BPME 
+* - NCAP_BPME
   <br>(r,datayear,p)
   - NCAP_CDME
   - Decimal fraction
@@ -1625,7 +1625,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The parameter is only taken into account when the process is of type CHP, and NCAP_CDME has been also defined.
   - Back pressure mode efficiency (or total efficiency in full CHP mode).
   - Process transformation equation, either EQE_ACTEFF or EQ_PTRANS
-* - NCAP_CDME 
+* - NCAP_CDME
   <br>(r,datayear,p)
   - NCAP_BPME
   - Decimal fraction
@@ -1635,7 +1635,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The parameter can only be used for standard processes having electricity output in the PCG. The efficiency is applied between the default shadow group and the electricity. If the process is also defined as a CHP, heat efficiency is also included.
   - Condensing mode efficiency
   - Process transformation equation, either EQE_ACTEFF or EQ_PTRANS
-* - NCAP_CEH 
+* - NCAP_CEH
   <br>(r,datayear,p)
   - NCAP_CHPR, ACT_EFF
   - Decimal fraction
@@ -1648,7 +1648,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>CEH ≥ 1: Total energy output in full CHP mode.
   - Coefficient of electricity to heat along the iso-fuel line in a pass-out CHP technology.
   - Process transformation equation, either EQE_ACTEFF or EQ_PTRANS
-* - NCAP_CHPR 
+* - NCAP_CHPR
   <br>(r,datayear,p,lim)
   - FLO_SHAR
   - Decimal fraction
@@ -1658,7 +1658,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The parameter is only taken into account when the process is defined to be of type CHP. The defaults can be disabled by defining any i/e value with lim=\'N\', which will eliminate the output share equations.
   - Heat-to-power ratio of a CHP technology (fixed / minimum / maximum ratio). If no ratio equations should be generated, one can define any I/E value with lim=\'N\'.
   - Activates the generation of output share equations, implemented with EQ(l)\_OUTSHR
-* - NCAP_CLAG 
+* - NCAP_CLAG
   <br>(r,datayear,p,c,io)
   - NCAP_CLED, NCAP_COM
   - Years
@@ -1668,7 +1668,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided when there is a delay in commodity output after commissioning new capacity. So, if the process is available in the year K, the commodity is produced during the years \[K+CLAG, K+NCAP_TLIFE--1\].
   - Lagtime of a commodity after new capacity is installed.
   - Applied to the investment variable (VAR_NCAP) in the commodity balance (EQ(l)\_COMBAL) of the investment period or previous periods.
-* - NCAP_CLED 
+* - NCAP_CLED
   <br>(r,datayear,p,c)
   - NCAP_ICOM, COEF_ICOM
   - Years
@@ -1679,7 +1679,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Usually used when modelling the need for fabrication of reactor fuel the period before a reactor goes online.
   - Lead time requirement for a commodity during construction (NCAP_ICOM), prior to the initial availability of the capacity.
   - Applied to the investment variable (VAR_NCAP) in the commodity balance (EQ(l)\_COMBAL) of the investment period or previous periods.
-* - NCAP_COM 
+* - NCAP_COM
   <br>(r,datayear,p,c,io)
   - rpc_capflo, rpc_conly
   - Commodity unit per capacity unit
@@ -1689,7 +1689,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided when the consumption or production of a commodity is tied to the level of the installed capacity.
   - Emission (or land-use) of commodity c associated with the capacity of a process for each year said capacity exists.
   - Applied to the capacity variable (VAR_CAP) in the commodity balance (EQ_COMBAL).
-* - NCAP_COST 
+* - NCAP_COST
   <br>(r,datayear,p)
   - OBJ_ICOST, OBJSCC, CST_INVC, CST_PVP
   - Monetary unit per capacity unit
@@ -1700,7 +1700,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Investment costs of new installed capacity according to the installation year.
   - Applied to the investment variable (VAR_NCAP) when entering the objective function (EQ_OBJNV).
   <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
-* - NCAP_CPX 
+* - NCAP_CPX
   <br>(r,datayear,prc)
   - COEF_CPT
   - Integer number
@@ -1713,7 +1713,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Note: Shape index 1 is reserved for constant 1.
   - Defines a shape index for shaping the capacity transfer coefficients by the age of each process vintage. As a result, the capacity will have a survival rate as a function of age.
   - Impacts all calculations that are dependent upon the availability of capacity (VAR_NCAP), most directly the capacity transfer (EQ_CPT), and capacity availability equations (EQ(l)\_CAPACT).
-* - NCAP_DCOST 
+* - NCAP_DCOST
   <br>(r,datayear,p,cur)
   - NCAP_DLAG, COR_SALVD, OBJ_DCOST, CST_DECC, CST_PVP
   - Monetary unit per capacity unit
@@ -1723,7 +1723,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Decommissioning of a process and the payment of decommissioning costs may be delayed by a lag time (NCAP_DLAG).
   - Cost of dismantling a facility after the end of its lifetime.
   - Applied to the current capacity subject to decommissioning (VAR_NCAP+NCAP_PASTI) when entering the objective function (EQ_OBJNV).
-* - NCAP_DELIF 
+* - NCAP_DELIF
   <br>(r,datayear,p)
   - NCAP_DLIFE, COR_SALVD, DUR_MAX, OBJ_CRFD, SALV_DEC
   - Years
@@ -1733,7 +1733,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided when the timeframe for paying for decommission is different from that of the actual decommissioning.
   - Economic lifetime of the decommissioning activity.
   - Applied to the investment variable (VAR_NCAP) when entering the salvage portion of the objective function (EQ_OBJSALV).
-* - NCAP_DISC 
+* - NCAP_DISC
   <br>(r,datayear,p,unit)
   - rp_dscncap
   - Capacity unit
@@ -1745,7 +1745,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Since inter-/extrapolation default is MIG, a value must be specified for each period desired, if no explicit inter-/extrapolation option is given.
   - Size of capacity units that can be added.
   - Applied to the lumpy investment integer variable (VAR_DNCAP) in the discrete investment equation (EQ_DSCNCAP) to set the corresponding standard investment variable level (VAR_NCAP).
-* - NCAP_DLAG 
+* - NCAP_DLAG
   <br>(r,datayear,p)
   - COEF_OCOM, DUR_MAX, OBJ_DLAGC
   - Years
@@ -1756,7 +1756,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Number of years delay before decommissioning can begin after the lifetime of a technology has ended.
   - Delay applied to a decommissioning flow (VAR_FLO) in the balance equation (EQ(l)\_COMBAL) as production.
   <br>Delay applied to the current capacity subject to decommissioning (VAR_NCAP+NCAP_PASTI) when entering the objective function components (EQ_OBJINV, EQ_OBJFIX, EQ_OBJSALV).
-* - NCAP_DLAGC 
+* - NCAP_DLAGC
   <br>(r,datayear,p,cur)
   - NCAP_DLAG, OBJ_DLAGC, CST_DECC, CST_PVP
   - Monetary unit per capacity unit
@@ -1766,7 +1766,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided when there is a cost during any lag in the decommissioning (e.g., security).
   - Cost occurring during the lag time after the technical lifetime of a process has ended and before its decommissioning starts.
   - Cost during delay applied to the current capacity subject to decommissioning (VAR_NCAP+NCAP_PASTI) when entering the objective function components (EQ_OBJFIX, EQ_OBJSALV).
-* - NCAP_DLIFE 
+* - NCAP_DLIFE
   <br>(r,datayear,p)
   - DUR_MAX
   - Years
@@ -1776,7 +1776,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided when a process has a decommissioning phase.
   - Technical time for dismantling a facility after the end its technical lifetime, plus any lag time (NCAP_DLAG).
   - Decommissioning time impacting (VAR_NCAP+NCAP_PASTI) when entering the objective function components (EQ_OBJINV, EQ_OBJSALV).
-* - NCAP_DRATE 
+* - NCAP_DRATE
   <br>(r,datayear,p)
   - G_DRATE, COR_SALVI, COR_SALVD
   - Percent
@@ -1786,7 +1786,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided if the cost of borrowing for a process is different from the standard discount rate.
   - Technology specific discount rate.
   - Discount rate applied to investments (VAR_NCAP+NCAP_PASTI) when entering the objective function components (EQ_OBJINV, EQ_OBJSALV).
-* - NCAP_ELIFE 
+* - NCAP_ELIFE
   <br>(r,datayear,p)
   - NCAP_TLIFE, COR_SALVI, OBJ_CRF
   - years
@@ -1796,7 +1796,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided only when the economic lifetime differs from the technical lifetime (NCAP_TLIFE).
   - Economic lifetime of a process.
   - Economic lifetime of a process when costing investment (VAR_NCAP+NCAP_PASTI) or capacity in the objective function components (EQ_OBJINV, EQ_OBJSALV, EQ_OBJFIX).
-* - NCAP_FDR 
+* - NCAP_FDR
   <br>(r,datayear,prc)
   - NCAP_COST
   - Decimal fraction (0,∞);
@@ -1805,7 +1805,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided when the effect of functional depreciation is considered significant to justify accelerated decrease in salvage value.
   - Defines an annual rate of additional depreciation in the salvage value.
   - Affects the salvage value coefficients in EQ_OBJSALV
-* - NCAP_FOM 
+* - NCAP_FOM
   <br>(r,datayear,p,cur)
   - OBJ_FOM, CST_FIXC, CST_PVP
   - Monetary unit per capacity unit
@@ -1815,7 +1815,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided when there is a fixed cost associated with the installed capacity.
   - Fixed operating and maintenance cost per unit of capacity according to the installation year.
   - Fixed operating and maintenance costs associated with total installed capacity (VAR_NCAP+NCAP_PASTI) when entering the objective function components (EQ_OBJFIX).
-* - NCAP_FOMM 
+* - NCAP_FOMM
   <br>(r,datayear,p)
   - NCAP_FOM, MULTI
   - Integer number
@@ -1825,7 +1825,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Note: Multiplier index 1 is reserved for constant 1.
   - Period sensitive multiplier curve (MULTI) applied to the fixed operating and maintenance costs (NCAP_FOM).
   - *{See Related Parameters}*
-* - NCAP_FOMX 
+* - NCAP_FOMX
   <br>(r,datayear,p)
   - NCAP_FOM, SHAPE
   - Integer number
@@ -1835,7 +1835,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Note: Shape index 1 is reserved for constant 1.
   - Age-based shaping curve (SHAPE) to be applied to the fixed operating and maintenance cost.
   - *{See Related Parameters}*
-* - NCAP_FSUB 
+* - NCAP_FSUB
   <br>(r,datayear,p,cur)
   - OBJ_FSB, CST_FIXX, CST_PVP
   - Monetary unit per capacity unit
@@ -1845,7 +1845,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided when there is a subsidy for associated with the level of installed capacity.
   - Subsidy per unit of installed capacity.
   - Fixed subsidy associated with total installed capacity (VAR_NCAP+NCAP_PASTI) when entering the objective function component (EQ_OBJFIX) with a minus sign.
-* - NCAP_FSUBM 
+* - NCAP_FSUBM
   <br>(r,datayear,p)
   - NCAP_FSUB, MULTI
   - Integer number
@@ -1855,7 +1855,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Note: Multiplier index 1 is reserved for constant 1.
   - Period sensitive multiplier curve (MULTI) applied to the subsidy (NCAP_FSUB).
   - *{See Related Parameters}*
-* - NCAP_FSUBX 
+* - NCAP_FSUBX
   <br>(r,datayear,p)
   - NCAP_FSUB, SHAPE
   - Integer number
@@ -1865,7 +1865,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Note: Shape index 1 is reserved for constant 1.
   - Age-based shaping curve (SHAPE) to be applied to the fixed subsidy (NCAP_FSUB).
   - *{See Related Parameters}*
-* - NCAP_FTAX 
+* - NCAP_FTAX
   <br>(r,datayear,p,cur)
   - OBJ_FTX, CST_FIXX, CST_PVP
   - monetary unit per capacity unit
@@ -1875,7 +1875,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided when there is a fixed tax based upon the level of the installed capacity.
   - Tax per unit of installed capacity.
   - Fixed subsidy associated with total installed capacity (VAR_NCAP+NCAP_PASTI) when entering the objective function components (EQ_OBJFIX).
-* - NCAP_FTAXM 
+* - NCAP_FTAXM
   <br>(r,datayear,p)
   - NCAP_FTAX, MULTI
   - Integer number
@@ -1885,7 +1885,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Note: Multiplier index 1 is reserved for constant 1.
   - Period sensitive multiplier curve (MULTI) applied to the tax (NCAP_FTAX).
   - *{See Related Parameters}*
-* - NCAP_FTAXX 
+* - NCAP_FTAXX
   <br>(r,datayear,p)
   - NCAP_FTAX, SHAPE
   - Integer number
@@ -1895,7 +1895,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Note: Shape index 1 is reserved for constant 1.
   - Age-based shaping curve (SHAPE) to be applied to the fixed tax (NCAP_FTAX).
   - *{See Related Parameters}*
-* - NCAP_ICOM 
+* - NCAP_ICOM
   <br>(r,datayear,p,c)
   - NCAP_CLED, rpc_capflo, rpc_conly
   - Commodity unit per capacity unit
@@ -1908,7 +1908,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Negative value describes production (e.g. emissions) at the time of a new investment.
   - Amount of commodity (c) required for the construction of new capacity.
   - Applied to the investment variable (VAR_NCAP) in the appropriate commodity constraints (EQ(l)\_COMBAL) as part of consumption.
-* - NCAP_ILED 
+* - NCAP_ILED
   <br>(r,t,p)
   - NCAP_ICOM, NCAP_COST, COEF_CPT, COEF_ICOM, DUR_MAX
   - Years
@@ -1919,7 +1919,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Lead time between investment decision and actual availability of new capacity (= construction time).
   - Applied to the investment variable (VAR_NCAP) balance constraints (EQ(l)\_COMBAL) as part of consumption, if there is an associated flow (NCAP_ICOM).
   <br>Used as to distinguish between small and large investments (VAR_NCAP) and thus influences the way the investment and fixed costs are treated in the objective function (EQ_OBJINV, EQ_OBJFIX, EQ_OBJSALV).
-* - NCAP_ISPCT 
+* - NCAP_ISPCT
   <br>(r,datayear,p)
   - NCAP_ISUB, OBJ_ISUB, CST_INVX
   - Decimal fraction
@@ -1930,7 +1930,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Requires that NCAP_COST is defined.
   - Unit investment subsidy as a fraction of unit investment costs, in the same currency unit, per unit of new capacity.
   - Applied to the investment variable (VAR_NCAP) when entering the objective function (EQ_OBJNV) with a minus sign.
-* - NCAP_ISUB 
+* - NCAP_ISUB
   <br>(r,datayear,p,cur)
   - OBJ_ISUB, OBJSCC, CST_INVX, CST_SALV, CST_PVP
   - monetary unit per capacity unit
@@ -1941,7 +1941,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Subsidy per unit of new installed capacity.
   - Applied to the investment variable (VAR_NCAP) when entering the objective function (EQ_OBJNV) with a minus sign.
   <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
-* - NCAP_ITAX 
+* - NCAP_ITAX
   <br>(r,datayear,p,cur)
   - OBJ_ITAX, OBJSCC, CST_INVX, CST_SALV, CST_PVP
   - monetary unit per capacity unit
@@ -1952,7 +1952,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Tax per unit of new installed capacity
   - Applied to the investment variable (VAR_NCAP) when entering the objective function (EQ_OBJNV).
   <br>May appear in user constraints (EQ_UC\*) if specified in UC_NAME.
-* - NCAP_MSPRF 
+* - NCAP_MSPRF
   <br>(r,datayear,c,p,lim)
   - COM_MSHGV
   - Unit: dimensionless
@@ -1962,7 +1962,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Optional parameter for the logit market sharing mechanism, for process p supplying market c.
   - In the logit market sharing mechanism, defines preference weights (lim=\'N\') and intangible costs (lim=\'LO\')
   - EQ_MSNCAPB
-* - NCAP_OCOM 
+* - NCAP_OCOM
   <br>(r,datayear,p,c)
   - NCAP_VALU, rpc_capflo, rpc_conly
   - Commodity unit per capacity unit
@@ -1975,7 +1975,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>For the commodity balance the commodity release in a period is converted to an average annual commodity flow for the entire period, although the dismantling may take place only for a few years of the period.
   - Amount of commodity c per unit of capacity released during the dismantling of a process.
   - Applied to the investment variable (VAR_NCAP) in the appropriate commodity constraints (EQ(l)\_COMBAL) as part of production in the appropriate period.
-* - NCAP_OLIFE 
+* - NCAP_OLIFE
   <br>(r,datayear,p)
   - NCAP_TLIFE
   - Years
@@ -1985,7 +1985,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Requires that early retirements are enabled and the process is vintaged.
   - Maximum operating lifetime of a process, in terms of full-load years.
   - EQL_SCAP
-* - NCAP_PASTI 
+* - NCAP_PASTI
   <br>(r,pastyear,p)
   - NCAP_PASTY, OBJ_PASTI, PAR_PASTI, PRC_RESID
   - capacity unit
@@ -1995,7 +1995,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Past investment can also be specified for milestone years, e.g. if the milestone year is a historic year, so that capacity additions are known or if planned future investments are already known.
   - Investment in new capacity made before the beginning of the model horizon (in the year specified by pastyear).
   - EQ(l)\_COMBAL, EQ_CPT, EQ_OBJINV, EQ_OBJSALV, EQ_OBJFIX
-* - NCAP_PASTY 
+* - NCAP_PASTY
   <br>(r,pastyear,p)
   - NCAP_PASTI
   - Years
@@ -2006,7 +2006,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>If overlaps with other past investments, the capacity values are added.
   - Number of years to go back to calculate a linear build-up of past investments
   - *{See NCAP_PASTI}*
-* - NCAP_PKCNT 
+* - NCAP_PKCNT
   <br>(r,datayear,p,s)
   - com_peak, com_pkts, prc_pkaf, prc_pkno
   - Decimal fraction
@@ -2018,7 +2018,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Weighted aggregation.
   - Fraction of capacity that can contribute to peaking equations.
   - Applied to investments in capacity (VAR_NCAP, NCAP_PASTI) in the peaking constraint (EQ_PEAK).
-* - NCAP_SEMI 
+* - NCAP_SEMI
   <br>(r,datayear,p)
   - NCAP_DISC
   - Capacity unit
@@ -2029,7 +2029,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Requires MIP.
   - Semi-continuous new capacity, lower bound. (See Section 5.9)
   - Applied to the semi-continuous investment variable VAR_SNCAP in the discrete investment equation EQ_DSCNCAP
-* - NCAP_START 
+* - NCAP_START
   <br>(r,p)
   - PRC_NOFF
   - Year
@@ -2040,7 +2040,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>PRC_NOFF(r,p,BOH,y--1).
   - Start year for new investments
   - Affects the availability of investment variable (VAR_NCAP)
-* - NCAP_TLIFE 
+* - NCAP_TLIFE
   <br>(r,datayear,p)
   - NCAP_ELIFE, COEF_CPT, COEF_RPTI, DUR_MAX
   - Years
@@ -2051,7 +2051,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Values below 0.5 cannot be well accounted in the objective function, and should thus be avoided (they are automatically resetted to 1).
   - Technical lifetime of a process.
   - Impacts all calculations that are dependent upon the availability of investments (VAR_NCAP) including capacity transfer (EQ_CPT), commodity flow (EQ(l)\_COMBAL), costs (EQ_OBJINV, EQ_OBJFIX, EQ_OBJVAR, EQ_OBJSALV).
-* - NCAP_VALU 
+* - NCAP_VALU
   <br>(r,datayear,p,c,cur)
   - NCAP_OCOM
   - Monetary unit / commodity unit
@@ -2061,7 +2061,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided when a released commodity has a value.
   - Value of a commodity released at decommissioning (NCAP_OCOM).
   - Applied to the investment related (VAR_NCAP, NCAP_PASTI) release flow at decommissioning in the objective function (EQ_OBJSALV).
-* - PRC_ACTFLO 
+* - PRC_ACTFLO
   <br>(r,datayear,p,cg)
   - PRC_CAPACT, prc_actunt, prc_spg, rpc_aire
   - Commodity unit / activity unit
@@ -2075,7 +2075,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>2\) Conversion multiplier representing the amount of flow(s) in the cg per 1 unit of activity.
   - Applied to the primary commodity (prc_pcg) flow variables (VAR_FLO, VAR_IRE) to relate overall activity (VAR_ACT in EQ_ACTFLO).
   <br>When the Reduction algorithm activated it is applied to the activity variable (VAR_ACT) in those cases where the flow variable (VAR_FLO) can be replaced by the activity variable (e.g. the activity is defined by one commodity flow).
-* - PRC_CAPACT 
+* - PRC_CAPACT
   <br>(r,p)
   - PRC_ACTFLO, PRC_ACTUNT
   - Activity unit / capacity unit
@@ -2087,7 +2087,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Applied along with the availability factor (NCAP_AF) to the investment (VAR_NCAP + NCAP_PASTI) in the utilization equations (EQ(l)\_CAPACT, EQ(l)\_CAFLAC).
   <br>Applied to the investment (VAR_NCAP + NCAP_PASTI) in the peak constraint (EQ_PEAK).
   <br>Applied to the investment (VAR_NCAP + NCAP_PASTI) in the capacity utilization constraint for CHP plants (ECT_AFCHP) and peak constraint in the IER extension (see Part III).
-* - PRC_GMAP 
+* - PRC_GMAP
   <br>(r,prc,item)
   - GR_GENMAP
   - Dimensionless
@@ -2097,7 +2097,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided when process groupings are needed for custom processing e.g. in a TIMES code extension.
   - User-defined grouping of processes by group indicator **item**.
   - *None*
-* - PRC_MARK 
+* - PRC_MARK
   <br>(r,datayear,p,item,c,bd)
   - FLO_MARK
   - Decimal fraction
@@ -2108,7 +2108,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Item can be a any desired label identifying the group.
   - Process group-wise market share, which defines a constraint for the combined market share of multiple processes in the total commodity production.
   - EQ(l)\_FLOMRK, VAR_COMPRD
-* - PRC_REFIT 
+* - PRC_REFIT
   <br>(r,prc,p)
   - PRC_RCAP
   - Dimensionless
@@ -2120,7 +2120,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>- Value=2 for p=prc: refitted capacity in each period is forced to be equal to the retired capacity of the host prc
   - Defines a mapping of host process prc to a retrofit or lifetime extension option p in region r, where p is another process representing the refurbishment option. The value of the parameter determines the type of the refurbishment option (see column on the left).
   - Activates generation of the retrofit / lifetime extension equations (EQL_REFIT)
-* - PRC_RESID 
+* - PRC_RESID
   <br>(r,datayear,p)
   - NCAP_PASTI
   - Capacity unit
@@ -2133,7 +2133,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Residual existing capacity stock of process (p) still available in the year specified (datayear).
   <br>PRC_RESID is most useful for describing the stock of capacity with mixed vintages, while NCAP_PASTI is suited for capacities of a certain vintages, such as an individual power plants.
   - EQ(l)\_CAPACT, EQ(l)\_CAFLAC, EQL_CAPFLO, EQ(l)\_CPT, VAR_CAP
-* - R_CUREX 
+* - R_CUREX
   <br>(r,cur1,cur2)
   - G_CUREX
   - Scalar
@@ -2143,7 +2143,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The target currency cur2 must have a discount rate defined with G_DRATE.
   - Conversion factor from currency cur1 to currency cur2 in region r, in order to use cur2 in the objective function.
   - Affects cost coefficients in EQ_OBJ
-* - RCAP_BLK 
+* - RCAP_BLK
   <br>(r,datayear,p)
   - PRC_RCAP, RCAP_BND
   - Capacity unit
@@ -2153,7 +2153,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Only effective when lumpy early capacity retirements are active (RETIRE=MIP). Requires MIP.
   - Retirement block size.
   - EQ_DSCRET, VAR_DRCAP, VAR_SCAP
-* - RCAP_BND 
+* - RCAP_BND
   <br>(r,datayear,p,bd)
   - PRC_RCAP, RCAP_BLK
   - Capacity unit
@@ -2163,7 +2163,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Unless the control variable DSCAUTO=YES, requires that PRC_RCAP is defined for process p.
   - Bound on the retired amount of capacity in a period (same bound for all vintages).
   - VAR_RCAP, VAR_SCAP
-* - REG_BDNCAP 
+* - REG_BDNCAP
   <br>(all_r,bd)
   - REG_FIXT
   - Year
@@ -2174,7 +2174,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Defines the year up to which capacities are to be bounded by previous solution,
   <br>by model region. One can choose FX/UP/LO bounds, as well as lower bounds only for selected processes.
   - VAR_NCAP
-* - REG_BNDCST 
+* - REG_BNDCST
   <br>(r,datayear,agg,cur,bd)
   - REG_CUMCST
   - Monetary unit
@@ -2184,7 +2184,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The cost aggregations (agg) supported are listed in the set COSTAGG (see Table 1).
   - Bound on regional costs by type of cost aggregation.
   - EQ_BNDCST, VAR_CUMCST
-* - REG_CUMCST 
+* - REG_CUMCST
   <br>(r,y1,y2,agg,cur,bd)
   - REG_BNDCST
   - Monetary unit
@@ -2194,7 +2194,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - The cost aggregations (agg) supported are listed in the set COSTAGG (see Table 1).
   - Cumulative bound on regional costs by type of cost aggregation.
   - EQ_BNDCST VAR_CUMCST
-* - REG_FIXT 
+* - REG_FIXT
   <br>(all_r)
   - 
   - Year
@@ -2202,8 +2202,8 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>default value: none
   - Only taken into account when the first periods are fixed by using the FIXBOH control variable.
   - Defines the year up to which periods are fixed to previous solution, by region
-  - --
-* - RPT_OPT 
+  - <span>--</span>
+* - RPT_OPT
   <br>(item,j)
   - 
   - Integer value
@@ -2211,8 +2211,8 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>default value: none
   - See Part III, Table 15 for a list and descriptions of available options.
   - Miscellaneous reporting options
-  - --
-* - SHAPE 
+  - <span>--</span>
+* - SHAPE
   <br>(j,age)
   - FLO_FUNC, FLO_SUM, NCAP_AFX, NCAP_FOMX, NCAP_FSUBX, NCAP_FTAXX
   - Scalar
@@ -2222,7 +2222,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Provided for each age dependent shaping curve that is to be applied.
   - Multiplier table used for any shaping parameters (\*\_\*X) to adjust the corresponding technical data as function of the age; the table can contain different multiplier curves that are identified by the index j.
   - *{See Related Parameters}*
-* - STG_CHRG 
+* - STG_CHRG
   <br>(r,datayear,p,s)
   - prc_nstts, prc_stgips, prc_stgtss
   - Scalar
@@ -2232,7 +2232,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Only applicable to storage processes (STG): timeslice storage, inter-period storage or night storage devices.
   - Annual exogenous charging of a storage technology in a particular timeslice s.
   - Exogenous charging of storage enters storage equations (EQ_STGTSS, EQ_STGIPS) as right-hand side constant.
-* - STG_EFF 
+* - STG_EFF
   <br>(r,datayear,p)
   - prc_nstts, prc_stgips, prc_stgtss
   - Decimal fraction
@@ -2242,7 +2242,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Only applicable to storage processes (STG): timeslice storage, inter-period storage or night storage devices.
   - Efficiency of storage process.
   - Applied to the storage output flow (VAR_SOUT) in the commodity balance (EQ(l)\_COMBAL) for the stored commodity.
-* - STG_LOSS 
+* - STG_LOSS
   <br>(r,datayear,p,s)
   - prc_nstts, prc_stgips, prc_stgtss
   - Scalar
@@ -2255,7 +2255,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Annual loss of a storage process per unit of average energy stored.
   - Timeslice storage process (EQ_STGTSS): applied to the average storage level (VAR_ACT) between two consecutive timeslices.
   <br>Inter-period storage process (EQ_STGIPS): applied to the average storage level from the pre-period (VAR_ACT) and the net inflow (VAR_SIN-VAR_SOUT) of the current period.
-* - STG_MAXCYC 
+* - STG_MAXCYC
   <br>(r,datayear,p)
   - NCAP_AF
   - Number of cycles
@@ -2265,7 +2265,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Can only be used for genuine storage processes. The limit can be exceeded by paying for additional replacement capacity, with a penalty cost equal to the investment annuity.
   - Defines the maximum number of storage cycles over the lifetime. Sets a limit for the total discharge divided by storage capacity.
   - Activates generation of the cycle limit/penalty equations (EQL_STGCCL).
-* - STG_SIFT 
+* - STG_SIFT
   <br>(r,datayear,prc,com,ts)
   - ACT_TIME
   - Decimal fraction
@@ -2277,7 +2277,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>By specifying com=\'ACT\' one can define a limit in total shifting over a season, in proportion to demand.
   - Defines process prc as a load-shifting process, and limits the load shifting of demand com in timeslice ts to at most the fraction specified by the parameter value.
   - Activates generation of load shifting constraints (EQ(l)\_SLSIFT).
-* - STGIN_BND 
+* - STGIN_BND
   <br>(r,datayear,p,c,s,bd)
   - prc_nstts, prc_stgips, prc_stgtss
   - Commodity unit
@@ -2288,7 +2288,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Bound on the input flow of a storage process in a timeslice s.
   - Storage input bound constraint (EQ(l)\_STGIN) when s is above prc_tsl of the storage process.
   <br>Direct bound on storage input flow (VAR_SIN) when at the prc_tsl level.
-* - STGOUT_BND 
+* - STGOUT_BND
   <br>(r,datayear,p,c,s,bd)
   - prc_nstts, prc_stgips, prc_stgtss
   - Commodity unit
@@ -2299,7 +2299,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Bound on the output flow of a storage process in a timeslice s.
   - Storage output bound constraint (EQ(l)\_STGIN) when s is above prc_tsl of the storage process.
   <br>Direct bound on storage output flow variable (VAR_SOUT) when at the prc_tsl level.
-* - TL_CCAP0 
+* - TL_CCAP0
   <br>(r,teg)
   - (Alias: CCAP0), PAT, CCOST0
   - Capacity unit
@@ -2309,7 +2309,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>For learning technologies teg when ETL is used.
   - Initial cumulative capacity of a learning technology.
   - Cumulative investment constraint (EQ_CUINV) and cumulative capacity variable (VAR_CCAP) in endogenous technological learning formulation.
-* - TL_CCAPM 
+* - TL_CCAPM
   <br>(r,teg)
   - (Alias: CCAPM), CCOSTM
   - Capacity unit
@@ -2319,7 +2319,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>For learning technologies teg when ETL is used.
   - Maximum cumulative capacity.
   - Core ETL equations.
-* - TL_CLUSTER 
+* - TL_CLUSTER
   <br>(r,teg,prc)
   - (Alias: CLUSTER), TL_MRCLUST
   - Decimal fraction.
@@ -2330,7 +2330,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Each of the learning parameters must also be specified for the key learning technology.
   - Indicator that a technology (teg) is a learning component that is part of another technology (prc) in region r; teg is also called key component.
   - EQ_CLU
-* - TL_MRCLUST 
+* - TL_MRCLUST
   <br>(r,teg,reg,p)
   - TL_CLUSTER
   - Decimal fraction.
@@ -2341,7 +2341,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Each of the learning parameters must also be specified for the key learning technology.
   - Mapping for multi-region clustering between learning key components (teg) and processes (p) that utilize the key component.
   - EQ_MRCLU
-* - TL_PRAT 
+* - TL_PRAT
   <br>(r,teg)
   - (Alias: PRAT), ALPH, BETA, CCAPK, CCOST0, PAT, PBT
   - Scalar
@@ -2351,7 +2351,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Provided for learning technologies (teg) when ETL is used.
   - Progress ratio indicating the drop in the investment cost each time there is a doubling of the installed capacity.
   - Fundamental factor to describe the learning curve and thus effects nearly all equations and variables related to endogenous technology learning (ETL).
-* - TL_SC0 
+* - TL_SC0
   <br>(r,teg)
   - (Alias: SC0)
   - Monetary unit / capacity unit
@@ -2361,7 +2361,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>For learning technologies teg when ETL is used.
   - Initial specific investment costs.
   - Defines together with CCAP0 initial point of learning curve and affects thus the core equations and variables of endogenous technological learning (ETL).
-* - TL_SEG 
+* - TL_SEG
   <br>(r,teg)
   - (Alias: SEG)
   - Integer
@@ -2371,7 +2371,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Currently limited to six segments by set kp.
   - Number of segments.
   - Influences the piecewise linear approximation of the cumulative cost curve (EQ_COS, EQ_LA1, EQ_LA2).
-* - TS_CYCLE 
+* - TS_CYCLE
   <br>(r,ts)
   - G_CYCLE
   - Number of days
@@ -2383,7 +2383,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Recommended to be used whenever timeslice cycles are different from the default, instead of changing G_CYCLE. Does not affect interpretation of availability factors for storage level, which thus remain to be according to G_CYCLE.
   - Defines the length of the timeslice cycles under timeslice ts, in days, and thereby also the number of timeslice cycles under each parent.
   - Affects the calculation of actual timeslice lengths and number of timeslice cycles in various equations, notably storage and dispatching equations.
-* - UC_ACT 
+* - UC_ACT
   <br>(uc_n,side,r,datayear,p,s)
   - uc_n, uc_gmap_p
   - None
@@ -2395,7 +2395,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Weighted aggregation.
   - Coefficient of the activity variable VAR_ACT in a user constraint.
   - EQ(l)\_UCXXX
-* - UC_CAP 
+* - UC_CAP
   <br>(uc_n,side,r,datayear,p)
   - uc_n, uc_gmap_p
   - None
@@ -2405,7 +2405,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Used in user constraints.
   - Coefficient of the activity variable VAR_CAP in a user constraint.
   - EQ(l)\_UCXXX
-* - UC_CLI 
+* - UC_CLI
   <br>(uc_n,side,r,datayear,item)
   - 
   - Dimensionless
@@ -2418,7 +2418,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>See Appendix on Climate Module for details.
   - Multiplier of climate variable in user constraint
   - EQ(l)\_UCXXX
-* - UC_COMCON 
+* - UC_COMCON
   <br>(uc_n,side,r,datayear,c,s)
   - uc_n, uc_gmap_c
   - None
@@ -2429,7 +2429,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>No inheritance/aggregation (might be changed in the future).
   - Coefficient of the commodity consumption variable VAR_COMCON in a user constraint.
   - EQ(l)\_UCXXX
-* - UC_COMNET 
+* - UC_COMNET
   <br>(uc_n,side,r,datayear,c,s)
   - uc_n, uc_gmap_c
   - None
@@ -2440,7 +2440,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>No inheritance/aggregation (might be changed in the future).
   - Coefficient of the net commodity production variable VAR_COMNET in a user constraint.
   - EQ(l)\_UCXXX
-* - UC_COMPRD 
+* - UC_COMPRD
   <br>(uc_n,side,r,datayear,c,s)
   - uc_n, uc_gmap_c
   - None
@@ -2451,7 +2451,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>No inheritance/aggregation (might be changed in the future).
   - Coefficient of the total commodity production variable VAR_COMPRD in a user constraint.
   - EQ(l)\_UCXXX
-* - UC_CUMACT 
+* - UC_CUMACT
   <br>(uc_n,r,p,y1,y2)
   - ACT_CUM
   - Dimensionless
@@ -2461,7 +2461,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Used in cumulative user constraints only.
   - Multiplier of cumulative process activity variable in user constraint.
   - EQ(l)\_UC, EQ(l)\_UCR, VAR_CUMFLO
-* - UC_CUMCOM 
+* - UC_CUMCOM
   <br>(uc_n,r,type,c,y1,y2)
   - COM_CUMNET, COM_CUMPRD
   - Dimensionless
@@ -2472,7 +2472,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Type=NET/PRD determines the variable referred to (CUMNET/ CUMPRD).
   - Multiplier of cumulative commodity variable in user constraint.
   - EQ(l)\_UC, EQ(l)\_UCR, VAR_CUMCOM
-* - UC_CUMFLO 
+* - UC_CUMFLO
   <br>(uc_n,r,p,c,y1,y2)
   - FLO_CUM
   - Dimensionless
@@ -2482,7 +2482,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Used in cumulative user constraints only.
   - Multiplier of cumulative process flow variable in user constraint.
   - EQ(l)\_UC, EQ(l)\_UCR, VAR_CUMFLO
-* - UC_FLO 
+* - UC_FLO
   <br>(uc_n,side,r,datayear,p,c,s)
   - uc_n
   - None
@@ -2494,7 +2494,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Weighted aggregation.
   - Coefficient of the flow VAR_FLO variable in a user constraint.
   - EQ(l)\_UCXXX
-* - UC_IRE 
+* - UC_IRE
   <br>(uc_n,side,r,datayear,p,c,s)
   - uc_n
   - None
@@ -2506,7 +2506,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Weighted aggregation.
   - Coefficient of the trade variable VAR_IRE in a user constraint.
   - EQ(l)\_UCXXX
-* - UC_NCAP 
+* - UC_NCAP
   <br>(uc_n,side,r,datayear,p)
   - uc_n, uc_gmap_p
   - None
@@ -2516,7 +2516,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Used in user constraints.
   - Coefficient of the activity variable VAR_NCAP in a user constraint.
   - EQ(l)\_UCXXX
-* - UC_RHS 
+* - UC_RHS
   <br>(uc_n,lim)
   - uc_n, uc_r_sum, uc_t_sum, uc_ts_sum
   - None
@@ -2528,7 +2528,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Non-binding (free) user constraints can be defined using the lim type lim=N.
   - RHS constant with bound type of bd of a user constraint.
   - RHS (right-hand side) constant of a user constraint, which is summing over regions (uc_r_sum), periods (uc_t_sum) and timeslices (uc_ts_sum) (EQ(l)\_UC).
-* - UC_RHSR 
+* - UC_RHSR
   <br>(r,uc_n,lim)
   - uc_n, uc_r_each, uc_t_sum, uc_ts_sum
   - None
@@ -2540,7 +2540,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Non-binding (free) user constraints can be defined using the lim type lim=N.
   - RHS constant with bound type of bd of a user constraint.
   - RHS constant of user constraints, which are generated for each region (uc_r_each) and are summing over periods (uc_t_sum) and timeslices (uc_ts_sum) (EQ(l)\_UCR).
-* - UC_RHSRT 
+* - UC_RHSRT
   <br>(r,uc_n,datayear,lim)
   - uc_n, uc_r_each, uc_t_each, uc_t_succ, uc_ts_sum
   - None
@@ -2553,7 +2553,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - RHS constant with bound type of bd of a user constraint.
   - RHS constant of user constraints, which are generated for each region (uc_r_each) and period (uc_t_each) and are summing over timeslices (uc_ts_sum) (EQ(l)\_UCRT).
   <br>If dynamic, constraints will be generated between two successive periods (EQ(l)\_UCRSU).
-* - UC_RHSRTS 
+* - UC_RHSRTS
   <br>(r,uc_n,datayear,s,lim)
   - uc_n, uc_r_each, uc_t_each, uc_t_succ, uc_ts_each
   - None
@@ -2568,7 +2568,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - RHS constant with bound type of bd of a user constraint.
   - RHS constant of user constraints, which are generated for each specified region (uc_r_each), period (uc_t_each) and timeslice (uc_ts_each) (EQ(l)\_UCRTS).
   <br>If dynamic, constraints will be generated between two successive periods (EQ(l)\_UCRSUS).
-* - UC_RHST 
+* - UC_RHST
   <br>(uc_n,datayear,lim)
   - uc_n, uc_r_sum, uc_t_each, uc_t_succ, uc_ts_sum
   - None
@@ -2581,7 +2581,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - RHS constant with bound type of bd of a user constraint.
   - RHS constant of user constraints, which are generated for each specified period (uc_t_each) and are summing over regions (uc_r_sum) and timeslices (uc_ts_sum) (EQ(l)\_UCT).
   <br>If dynamic, constraints will be generated between two successive periods (EQ(l)\_UCSU).
-* - UC_RHSTS 
+* - UC_RHSTS
   <br>(uc_n,datayear,s,lim)
   - uc_n, uc_r_sum, uc_t_each, uc_t_succ, uc_ts_each
   - None
@@ -2595,7 +2595,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - RHS constant with bound type of bd of a user constraint.
   - RHS constant of user constraints, which are generated for each period (uc_t_each) and timeslice (uc_ts_each) and are summing over regions (uc_r_sum) (EQ(l)\_UCTS).
   <br>If dynamic, constraints will be generated between two successive periods (EQ(l)\_UCSUS).
-* - UC_TIME 
+* - UC_TIME
   <br>(uc_n,r,datayear)
   - 
   - Dimensionless
@@ -2606,7 +2606,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Adds a time constant to the RHS side.
   - Multiplier for the number of years in model periods (static UCs), or between milestone years (dynamic UCs)
   - EQ(l)\_UCXXX
-* - UC_UCN 
+* - UC_UCN
   <br>(uc_n,side,r,datayear, ucn)
   - UC_RHSRT
   - Dimensionless
@@ -2616,7 +2616,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Only taken into account if the user constraint is by region & period, and summing over timeslices and the RHS side is activated (EQ(l)\_UCRSU).
   - Multiplier of user constraint variable in another user constraint.
   - EQ(l)\_UCRSU, VAR_UCRT
-* - VDA_EMCB 
+* - VDA_EMCB
   <br>(r,datayear,c,com)
   - FLO_EMIS, FLO_EFF
   - Emission units per flow units
