@@ -170,9 +170,6 @@ The objective function is the sum of all regional objectives, all of them discou
   $$VAR\_ OBJ(z) = \sum_{r \in REG}^{}{REG\_ OBJ(z,r)}$$             *(A)*
   ------------------------------------------------------------------ -------
 
-  --------------------------------------------------------------------------
-
-
 Each regional objective *OBJ(z,r)* is decomposed into the sum of nine components, to facilitate exposition, as per expression (B) below.
 
 *EQ_OBJ(z,r)* $\ni z \in ALLYEARS,r \in REG$
@@ -186,9 +183,6 @@ Each regional objective *OBJ(z,r)* is decomposed into the sum of nine components
   \end{aligned} \right\}}                                                                              
   }{- SALVAGE(z)}$$                                                                                    
   ---------------------------------------------------------------------------------------------------- -------
-
-  ------------------------------------------------------------------------------------------------------------
-
 
 The regional index *r* is omitted from the nine components for simplicity of notation.
 
@@ -3765,9 +3759,6 @@ Timeslice-dynamic user constraints establish a relationship between two successi
   }
   {LHS_{r,t,s}\quad\left\{ = / \geq / \leq \right\}\sum_{\mathbf{uc}\_\mathbf{tsl}(r,ucn,'RHS',tsl)}^{}{RHS_{r,t,s - RS\_ STG(r,s)}} + \overset{}{UC\_ RHS(R)T(S)_{(r),uc\_ n,t,(s),bd}}}$$
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 Timeslice-dynamic user constraints are always specific to a single region and period. To build a timeslice-dynamic user constraint, the modeller must identify the desired timeslice level of the constraint, by using the set **uc_tsl***~r,uc_n,side,tsl~*, and the RHS constants must be defined by using the UC_RHSRTS parameter. As an alternative to using **uc_tsl**, **uc_attr***~r,uc_n,side,uc_grptype,tslvl~* can also be used, with any **uc_grptype** (**ucn** recommended). The constraint will be genuinely dynamic only if **uc_tsl** is specified on the RHS. This is the only type of user constraint for which the RHS constant parameter is levelized, according the timeslice level identified by **uc_tsl**. That can make the RHS specification much easier.
 

@@ -42,6 +42,7 @@ $TC_t$ is a concave function of $C_t$, with a shape as shown in {numref}`cumulat
 ```{figure} assets/image26.png
 :name: cumulative-learning-curve
 :align: center
+
 Example of a cumulative learning curve.
 ```
 
@@ -65,6 +66,7 @@ With the Mixed Integer Programming approach implemented in TIMES, the cumulative
 ```{figure} assets/image27.png
 :name: approx-cumulative-learning-curve
 :align: center
+
 Example of a 4-segment approximation of the cumulative cost curve.
 ```
 
@@ -101,6 +103,7 @@ $a_{i} = TC_{i - 1} - b_{i} \cdot C_{i - 1}i = 1,2,...,N$
 ```{figure} assets/image30.png
 :name: i-approx-learning-curve
 :align: center
+
 The i^th^ segment of the step-wise approximation.
 ```
 
@@ -186,7 +189,6 @@ In view of the preceding discussion, a fundamental question arises: is it worthw
 
 However, given the above caveat, a possible alternative to ETL would consist in using exogenous learning trajectories. To do so, the same sequence of 'realistic' upper bounds on capacity would be selected by the modeler, and the values of the unit investment costs ($INVCOST$) would be externally computed by plugging these upper bounds into the learning formula (11-1). This approach makes use of the same exogenous upper bounds as the ETL approach, but avoids the MIP computational burden of ETL. Of course, the running of exogenous learning scenarios is not entirely foolproof, since there is no absolute guarantee that the capacity of a learning technology will turn out to be exactly equal to its exogenous upper bound. If that were not the case, a modified scenario would have to be run, with upper bounds adjusted downward. This trial-and-error approach may seem inelegant, but it should be remembered that it (or some other heuristic approach) might prove to be necessary in those cases where the number of learning technologies and the model size are both large (thus making the rigorous ETL formulation computationally intractable).
 
-------------
 
 [^37]: The notation in this chapter is sometimes different from the standard notation for parameters and variables, in order to conform to the more detailed technical note on the subject.
 

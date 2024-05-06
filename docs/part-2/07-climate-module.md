@@ -79,9 +79,6 @@ a\) The relationship between CO2 accumulation and increased radiative forcing, *
   *∆F~CO2~(y) = γ ×* $\frac{\ln\frac{(M_{atm}(y)}{M_{0}})}{\ln 2}$  (4a)
   ----------------------------------------------------------------- ------
 
-  ------------------------------------------------------------------------
-
-
 where:
 
 - M~0~ (i.e.CO2ATM_PRE_IND) is the pre-industrial (circa 1750) reference atmospheric concentration of CO2 = 596.4 GtC

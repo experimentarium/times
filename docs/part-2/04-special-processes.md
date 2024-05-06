@@ -38,10 +38,10 @@ The core TIMES parameters for modeling the CHP attributes are listed in {numref}
 
 :::
 
-\* Only taken into account for processes defined to be of type CHP with the set .     
+\* Only taken into account for processes defined to be of type CHP with the set .
 
 ```{figure} assets/image11.png
-:name: cph-characteristics
+:name: chp-characteristics
 :align: center
 
 Illustration of basic CHP characteristics supported in TIMES.
@@ -71,7 +71,7 @@ For modelling a flexible pass-out turbine system in TIMES, the following approac
 - Define the PCG of the process to consist of both the electricity and heat output commodities (using the set $prc\_actunt$);
 - Define the process type to be CHP (using the set $prc\_map$);
 - Use the maximum electrical output as the basis of the process activity, and choose the capacity unit accordingly (using the parameter $PRC\_CAPACT$). [^35]
-- Define the process electrical efficiency according to the maximum electrical efficiency (at point D in {numref}`cph-characteristics`), by using the parameter $ACT\_EFF$;
+- Define the process electrical efficiency according to the maximum electrical efficiency (at point D in {numref}`chp-characteristics`), by using the parameter $ACT\_EFF$;
 - Define the process cost parameters accordingly, for example, specify the investment and fixed O&M costs per unit of electrical capacity;
 - Define the maximum heat-to-power ratio (excluding any reduction operation), and optionally also the minimum heat-to-power ratio (using the parameter $NCAP\_CHPR$);
 - Define the slope $S$ of the iso-fuel line (the line B--F in {numref}`chp-characteristics`) by specifying $NCAP\_CEH=S$ (where $-1< S< 0$, as in {numref}`chp-characteristics`);

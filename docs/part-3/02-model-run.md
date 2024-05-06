@@ -38,7 +38,7 @@ The TIMES model generator is comprised of a host of GAMS source code routines, w
 
 ```{list-table} TIMES Routines Naming Conventions
 :name: times-routines-naming
-:row-headers: 1
+:header-rows: 1
 
 * - **Type**
   - **Nature of the Routine**
@@ -139,7 +139,7 @@ Several files are produced by the run process. These include the files produced 
 
 ```{list-table} Files Produced by a TIMES Model Run
 :name: files-produced-by-times-run
-:row-headers: 1
+:header-rows: 1
 
 * - Extension
   - Produced By
@@ -334,7 +334,7 @@ In order to assist the user with identifying accidental modelling errors, a numb
 
 ```{list-table} TIMES Quality Assurance Checks (as of Version 4.4.0)
 :name: times-qa-checks
-:row-headers: 1
+:header-rows: 1
 
 * - Type[^18]
   - Message / Description

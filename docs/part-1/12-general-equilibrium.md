@@ -15,6 +15,7 @@ As was already discussed in chapter 4, the main physical link between a TIMES mo
 ```{figure} assets/image32.png
 :name: energy-labor-monetary-flows
 :align: center
+
 Energy, Labor, and Monetary flows between TIMES and MACRO.
 ```
 
@@ -196,7 +197,6 @@ and is subject to the conservation constraint: $\sum_{r}^{}{NTX_{r,t}\  = \text{
 
 The adaptation of Rutherford algorithm to TIMES-MACRO was formalized by Kypreos (2006) and implemented by Kypreos and Lettila as the above-mentioned technical note.
 
-------------
 
 [^39]: The concrete implementation in the TIMES-MACRO model differs in some points, e.g. the consumption variable in the utility function is substituted by equations (12-2) and (12-3).
 

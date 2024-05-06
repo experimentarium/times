@@ -30,8 +30,6 @@ Consider then a utility function of the general CES form:
   $$U_{k} = \left( \sum_{i}^{}{\alpha_{i}^{\frac{1}{\sigma}}x_{i}^{\frac{\sigma - 1}{\sigma}}} \right)^{\frac{\sigma}{\sigma - 1}}$$   \(4\)
   ------------------------------------------------------------------------------------------------------------------------------------ -------
 
-  --------------------------------------------------------------------------------------------------------------------------------------------
-
 where:
 
 - *U~k~* is the total aggregate utility of demand *k*
@@ -45,15 +43,11 @@ The demand functions for *x~i~* can be derived from the utility function in term
   $$x_{i} = \frac{\alpha_{i}m}{p_{i}^{\sigma}}\left( \sum_{i}^{}{\alpha_{i}p_{i}^{1 - \sigma}} \right)^{- 1} = \frac{\alpha_{i}m}{p_{u}}\left( \frac{p_{u}}{p_{i}} \right)^{\sigma}$$   \(5\)
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------
 
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 where *m* is the income level, and *p~u~* is the aggregate price, or unit cost, of the utility, can be given in terms of the individual prices *p~i~* of the demands *i*:
 
   -----------------------------------------------------------------------------------------------------
   $$p_{u} = \left( \sum_{i}^{}{\alpha_{i}p_{i}^{1 - \sigma}} \right)^{\frac{1}{1 - \sigma}}$$   \(6\)
   --------------------------------------------------------------------------------------------- -------
-
-  -----------------------------------------------------------------------------------------------------
 
 The share parameters *α~i~* can be derived from the expenditure shares, as shown in Eq. (7) below. In the objective function, the utility change can then be calculated by the expression shown in Eq. (9) below.
 

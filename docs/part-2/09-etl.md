@@ -146,13 +146,13 @@ Besides the basic data described in Table the user controls whether or not the E
   - I
   - The parameter NTCHTEG is only relevant when modeling clustered endogenous technology learning. If TEG is an ETL technology, then NTCHTEG(R,TEG) is the number of clustered technologies that are attached to key technology TEG. NTCHTEG is calculated in COEF_ETL.ETL from the "cluster mapping and coupling factor" (CLUSTER). It occurs in the special ETL cluster equation EQ_CLU.
 * - PBT (r,p)
- -
+  - 
   - The learning index PBT is an internal parameter calculated in COEF_ETL.ETL. It is derived from the progress ratio PRAT using the formula: PBT(r,p) = -log(PRAT(r,p))/log(2). PBT does not occur directly in the equations, but is used in the calculation of equation coefficients.
 * - PAT (r,p)
- -
+  - 
   - The internal parameter PAT describes the specific investment costs of the first unit. It is derived in COEF_ETL.ETL using PBT, SC0 and CCAP0. PAT does not occur directly in the equations, but is used in the calculation of equation coefficients.
 * - K
- -
+  - 
   - The set K has the members '1'-'6' and is used as indicator for the kink points of the piecewise linear approximation of the cumulative cost curve. The number of elements can be changed in the \*run file if desired.
 * - WEIG (r,k,prc)
   - I

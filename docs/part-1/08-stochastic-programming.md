@@ -28,6 +28,7 @@ For the example shown in {numref}`stochastic-TIMES-tree`, in 2000 and 2010 there
 ```{figure} assets/image23.png
 :name: stochastic-TIMES-tree
 :align: center
+
 Event Tree for a three-stage stochastic TIMES Example.
 ```
 
@@ -92,9 +93,9 @@ S(2040) = 1,2,3,4; S(2050) = 1,2,3,4; S(2060) = 1,2,3,4;
 **Subject to:**
 
   ----------------------------------------------------------------------------------- -----------
-  $$A(t,s) \times X(t,s) \geq b(t,s) \forall t, for all s$$ (8-2)        
+  $$A(t,s) \times X(t,s) \geq b(t,s) \forall t, for all s$$ (8-2)
 
-  $$\sum_{t \in T}^{}{D(t,s) \times X(t,s)} \geq e(s) \forall t, \forall s$$ (8-3)                                          
+  $$\sum_{t \in T}^{}{D(t,s) \times X(t,s)} \geq e(s) \forall t, \forall s$$ (8-3)
   ----------------------------------------------------------------------------------- -----------
 
 Of course, in this approach we need to add equality constraints to express the fact that some scenarios are identical at some periods. In the example of {numref}`stochastic-TIMES-tree`, we would have:

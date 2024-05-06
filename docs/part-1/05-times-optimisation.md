@@ -402,6 +402,7 @@ The traditional way to represent the nodes and arcs of a grid is shown in {numre
 ```{figure} assets/image17.png
 :name: grid-connection-nodes
 :align: center
+
 Connection of a grid node with other nodes.
 ```
 The basic energy conservation equation of a grid is as follows:
