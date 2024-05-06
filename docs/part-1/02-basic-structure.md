@@ -26,7 +26,6 @@ The net result of these conditions is that the deployment in time of the various
 
 ```{figure} assets/image1.png
 :name: timeslice-tree
-:align: 
 
 Example of a time-slice tree.
 ```
