@@ -314,7 +314,7 @@ A TIMES model is structured by regions ($all\_r$). One can distinguish between e
 
 All components of the energy system, as well as nearly the entire input information, are identified by a region index. It is therefore possible to use the same process name in different regions with different numerical data (and description if desired), or even completely different commodities associated with the process.
 
-```{figure} assets/image1.png
+```{figure} assets/ie-regions.svg
 :name: inter-external-regions
 :align: center
 Example of internal and external regions in TIMES.
@@ -347,7 +347,7 @@ The topology of a standard process is specified by the set $top(r,p,c,io)$ of al
 
 The activity variable ($VAR\_ACT$) of a standard process is in most cases equal to the sum of one or several commodity flows on either the input or the output side of a process. The activity of a process is limited by the available capacity, so that the activity variable establishes a link between the installed capacity of a process and the maximum possible commodity flows entering or leaving the process during a year or a subdivision of a year. The commodity flows that define the process activity are specified by the set $prc\_actunt(r,p,cg,u)$ where the commodity index $cg$ may be a single commodity or a user-defined commodity group, and $u$ is the activity unit. The commodity group defining the activity of a process is also called **P**rimary **C**ommodity **G**roup (PCG).
 
-```{figure} assets/image2.png
+```{figure} assets/cg-definition-example.svg
 :name: cg-activity
 :align: center
 Example of the definition of a commodity group and the activity of a normal process.
@@ -359,7 +359,7 @@ An example for the definition of the activity of a process is shown in {numref}`
 
 In addition to the activity of a process, one has to define the capacity unit of the process. This is done by means of the set $prc\_capunt(r,p,cg,u)$, where the index **cg** denotes the primary commodity group. In the example in {numref}`cap-unit-def` the capacity of the refinery process is defined in mtoe/a (megatonne oil equivalent). Since the capacity and activity units are different (mtoe for the capacity and PJ for the activity), the user has to supply the conversion factor from the energy unit embedded in the capacity unit to the activity unit. This is done by specifying the parameter $prc\_capact(r,p)$. In the example $prc\_capact$ has the value 41.868.
 
-```{figure} assets/image3.png
+```{figure} assets/cap-unit-definition-example.svg
 :name: cap-unit-def
 :align: center
 Example of the definition of the capacity unit.
@@ -367,7 +367,7 @@ Example of the definition of the capacity unit.
 
 It might occur that the unit in which the commodity(ies) of the primary commodity group are measured, is different from the activity unit. An example is shown in {numref}`different-cap-unit-def`. The activity of the transport technology CAR is defined by commodity TX1, which is measured in passenger kilometres PKM. The activity of the process is, however, defined in vehicle kilometres VKM, while the capacity of the process CAR is defined as number of cars NOC.
 
-```{figure} assets/image4.png
+```{figure} assets/diff-cap-and-act-units-example.svg
 :name: different-cap-unit-def
 :align: center
 Example of different activity and commodity units.
@@ -405,7 +405,7 @@ The time horizon for which the energy system is analysed may range from one year
 
 To describe capacity installations that took place before the beginning of the model horizon, and still exist during the modeling horizon, TIMES uses additional years, the so-called past years ($pastyear(allyear)$), which identify the construction completion year of the already existing technologies. The amount of capacity that has been installed in a past year is specified by the parameter $NCAP\_PASTI(r,allyear,p)$, also called *past investment*. For a process, an arbitrary number of past investments may be specified to reflect the age structure in the existing capacity stock. The union of the sets $milestonyr$ and $pastyear$ is called $modelyear$ (or $v$). The years for which input data is provided by the user are called data years ($datayear(allyear)$). The data years do not have to coincide with model years, since the preprocessor will interpolate or extrapolate the data internally to the model years. All past years are by default included in data years, but, as a general rule, any other years for which input data is provided should be explicitly included in the set $datayear$ or that information will not be seen by the model. Apart from a few exceptions (see {numref}`datayear-independent-parameters`), all parameter values defined for years other than data years (or past years) are ignored by the model generator. Due to the distinction between model years and data years, the definition of the model horizon, e.g., the duration and number of the periods, may be changed without having to adjust the input data to the new periods. The rules and options of the inter- and extrapolation routine are described in more detail in subection 3.1.1.
 
-```{figure} assets/image5.png
+```{figure} assets/time-horizon-and-year-types.svg
 :name: time-horizon-year-type
 :align: center
 
@@ -454,7 +454,7 @@ The definition of a timeslice tree is region-specific.[^13] When different times
 
 The original design of TIMES assumes that within each region, the definition of the timeslice tree applies to all model periods, such that one cannot employ different subsets of timeslices in different periods. In fact, allowing dynamically changing timeslice trees would tend to make both the model pre-processing and equation formulations substantially more complex, and therefore this design decision may be considered well justified. However, an experimental \"light-weight\" implementation has been made in view of supporting also dynamic timeslice trees (see Appendix E).
 
-```{figure} assets/image6.png
+```{figure} assets/timeslice-tree-example.svg
 :name: timeslice-tree
 :align: center
 Example of a timeslice tree.
@@ -470,7 +470,7 @@ If a TIMES model consists of several internal regions, it is called a multi-regi
 
 Bi-lateral trade takes place between specific pairs of regions. A pair of regions together with an exchange process and the direction of the commodity flow are first identified, where the model ensures that trade through the exchange process is balanced between these two regions (whatever amount is exported from region A to region B must be imported by region B from region A, possibly adjusted for transportation losses). The basic structure is shown in {numref}`bilateral-trade`. Bi-lateral trading may be fully described in TIMES by defining an inter-regional exchange process and by specifying the two pair-wise connections by indicating the regions and commodities be traded via the set $top\_ire(r,c,reg,com,p)$. If trade should occur only in one direction then only that direction is provided in the set $top\_ire$ (export from region $r$ into region $reg$). The process capacity and the process related costs (e.g. activity costs, investment costs) of the exchange process can be described individually for both regions by specifying the corresponding parameters in each regions. If for example the investment costs for an electricity line between two regions A and B are 1000 monetary units (MU) per MW and 60 % of these investment costs should be allocated to region A and the remaining 40 % to region B, the investment costs for the exchange process have to be set to 600 MU/MW in region A and to 400 MU/MW in region B.
 
-```{figure} assets/image7.png
+```{figure} assets/bilateral-trade-in-times.svg
 :name: bilateral-trade
 :align: center
 Bilateral trade in TIMES.
@@ -480,7 +480,7 @@ Bi-lateral trade is the most detailed way to specify trade between regions. Howe
 
 The following example illustrates the modelling of a marketplace in TIMES. Assume that we want to set up a market-based trading where the commodity CRUD can be exported by regions A, B, C, and D, and that it can be imported by regions C, D, E and F ({numref}`multilateral-trade`).
 
-```{figure} assets/image8.png
+```{figure} assets/multilateral-trade-in-times.svg
 :name: multilateral-trade
 :align: center
 Example of multi-lateral trade in TIMES.
@@ -553,7 +553,7 @@ $$EXPRESSION2_{c,io} = \sum_{r,p,c,io \in top}^{}{B(r)\sum_{p}^{}{A(r,p)}}$$
   - User defined list of all commodities in all regions; subset of **cg**.
 * - cg
   - com_grp, cg1, cg2, cg3, cg4
-  - User defined list of all commodities and commodity groups (see []{.mark}Figure 2) in all regions.
+  - User defined list of all commodities and commodity groups (see {numref}`cg-activity`) in all regions.
 * - clu (p)
   - 
   - Set of cluster technologies in endogenous technology learning.
@@ -679,7 +679,7 @@ $$EXPRESSION2_{c,io} = \sum_{r,p,c,io \in top}^{}{B(r)\sum_{p}^{}{A(r,p)}}$$
   - Set of triplets {**all_r,tslvl,s**} such that timeslice **s** belongs to the timeslice level **tslvl** in region **r**; needed for the definition of the timeslice tree; only default is that the \'ANNUAL\' timeslice belongs to the \'ANNUAL\' timeslice level.
 * - ts_map (all_r,s,ts)
   - 
-  - Set of triplets {**all_r,s,ts**} such that s is an intermediate node **s** of the timeslice tree (neither \'ANNUAL\' nor the lowest level), and **ts** is a node directly under **s** in region **r**; the set is further extended by allowing **ts** = **s** (see figure 1).
+  - Set of triplets {**all_r,s,ts**} such that s is an intermediate node **s** of the timeslice tree (neither \'ANNUAL\' nor the lowest level), and **ts** is a node directly under **s** in region **r**; the set is further extended by allowing **ts** = **s** (see {numref}`inter-external-regions`).
 * - ts_off (r,ts,y1,y2)
   - 
   - Set of quadruples {**r,ts,y1,y2**} such that the timeslice branch consisting of the timeslice **ts** and all the timeslices below it will not be taken into account in the model between the years **y1** and **y2** in region **r**; note that **y1** may be \'BOH\' for first year of first period and **y2** may be \'EOH\' for last year of last period. The timeslice **ts** specified in **ts_off** must be directly below ANNUAL in the timeslice tree specified (usually at the SEASON level).

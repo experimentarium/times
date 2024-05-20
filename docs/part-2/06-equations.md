@@ -217,7 +217,7 @@ $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf
 
 Here, we make what appears to be the most natural assumption, i.e. that the investment occurs in small yearly increments spread linearly over *D(t)* years. Precisely, the capacity additions start at year *M(t)-D(t)+1,* and end at year M*(t),* which means that payments start earlier than the beginning of the period, and end at the middle of the period, see example. This seems a more realistic compromise than starting the payments at the beginning of the period and stopping them at the end, since that would mean that during the whole period, the paid for capacity would actually not be sufficient to cover the capacity selected by the model for that period.
 
-![](media/image16.png){width="5.75in" height="3.125in"}
+![](assets/case-1a-example.svg)
 
 *EQ_INVCOST(y)*
 
@@ -240,12 +240,12 @@ $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf
 
 Note that in this case the investment is repeated as many times as necessary to cover the period length (see figure). In this case, the assumption that the investment is spread over *D(t)* years is not realistic. It is much more natural to spread the investment over the technical life of the process being invested in, because this ensures a smooth, constant stream of small investments during the whole period (any other choice of the time span over which investment is spread, would lead to an uneven stream of incremental investments). The number of re-investments in the period is called *C*, and is easily computed so as to cover the entire period. As a result of this discussion, the first investment cycle starts at year $\left\langle B(t) - TLIFE_{t}/2 \right\rangle$ (meaning the smallest integer not less than the operand), and ends *TLIFE* years later, when the second cycle starts, etc, as many times as necessary to cover the entire period. The last cycle extends over the next period(s), and that is taken into account in the capacity transfer equations of the model. As before, each capacity increment results in a stream of *ELIFE* payments at years *v, v*+1, etc.
 
-![](media/image17.png){width="5.614583333333333in" height="3.15625in"}
+![](assets/case-1b-example.svg)
 
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 Relevant range for *y*:
@@ -253,7 +253,7 @@ Relevant range for *y*:
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 **(I.1.b)**
@@ -267,7 +267,7 @@ $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\te
 
 Here, it is assumed that construction is spread over the lead-time (a very realistic assumption for large projects), and capacity becomes available at the end of the lead time, **in a lump quantity** (see figure).
 
-![](media/image19.png){width="5.75in" height="3.3229166666666665in"}
+![](assets/case-2a-example.svg)
 
 $${INVCOST(y) = 
 }{\sum_{\begin{aligned}
@@ -288,7 +288,7 @@ $\mathbf{ILE}\mathbf{D}_{}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     an
 
 **(Large, indivisible Projects, repeated investments in period)**
 
-![](media/image20.png){width="5.59375in" height="3.5416666666666665in"}
+![](assets/case-2b-example.svg)
 
 This case is similar to case I.2.a, but the investment is repeated more than once over the period, each cycle being *TLIFE* years long. As in case I.2.a, each construction is spread over one lead time, *ILED*. In this case, the exact pattern of yearly investments is complex, so that we have to use an algorithm instead of a closed form summation.
 
@@ -298,7 +298,7 @@ each year y, due to *VAR_NCAP~t~*)
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}**[Step 0:]{.underline}** Initialization
 (*NI(u)* represents the amount of new investment made in year *u*)
 
@@ -307,7 +307,7 @@ height="7.507655293088364e-3in"}**[Step 0:]{.underline}** Initialization
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 **[Step 2:]{.underline}** for each year *u* in range:
@@ -315,11 +315,11 @@ height="7.507655293088364e-3in"}
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}Compute:
 
 **[Step 3:]{.underline}** Compute payments incurred in year *y*, and
@@ -330,13 +330,13 @@ For each *y* in range:
 > **(I.2.b)**![{\"mathml\":\"\<math
 > style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 > for Microsoft
-> Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+> Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 > height="7.507655293088364e-3in"}
 
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}Compute:
 
 **[END ALGORITHM]{.underline}**
@@ -381,7 +381,7 @@ $${INVDECOM(y) =
 
 *Comment:* Note that the cost attribute is indexed at the year when the investment started to operate. We have adopted this convention throughout the objective function.
 
-![](media/image21.png){width="5.75in" height="3.3333333333333335in"}
+![](assets/case-1a-example-3.svg)
 
 **Case 1.b)** if
 $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
@@ -392,12 +392,12 @@ This cost expression is similar to I.1.b, but with payments shifted to the right
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 > **(III.1.b)**
 
-![](media/image22.png){width="5.625in" height="3.625in"}
+![](assets/case-1b-example-3.svg)
 
 **Case 2.a:**
 $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
@@ -419,7 +419,7 @@ $${INVDECOM(y) =
 $${UsefulRangefory:
 }\left\{ B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} - 1,same + DELIF_{t} - 1 \right\}$$
 
-![](media/image23.png){width="5.25in" height="3.8125in"}
+![](assets/case-2a-example-2.svg)
 
 **Case 2.b:**
 $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
@@ -454,7 +454,7 @@ $${ForI = 1toC
 $INVDECOM(y) = \sum_{t \in MILESTONES,t \leq T(y)}^{}{INDIC(III.2.b) \times P_{t}(y)} \times VAR\_ NCAP_{t} \times CRF$
 **III.2.b**
 
-![](media/image24.png){width="5.875in" height="4.28125in"}
+![](assets/case-2b-example-3.svg)
 
 ### Fixed annual costs: FIXCOST(y), SURVCOST(y) 
 
@@ -469,7 +469,7 @@ In TIMES, any capacity may also be retired before the end of its technical lifet
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 Here, *CF~r,v,p,y~* is the compound fixed cost coefficient for each capacity vintage in year *y*, as obtained from the original expressions for *FIXCOST(y)*. Recalling that fixed costs are accounted only within the model horizon, these expressions can be adjusted as follows:
@@ -477,7 +477,7 @@ Here, *CF~r,v,p,y~* is the compound fixed cost coefficient for each capacity vin
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 As one can see, the expressions for *FIXCOST(r,y)* can be augmented in a straightforward manner, obtaining the expressions *FIXCOST°(r,y)* that take into account early capacity retirements of each vintage, represented by the *VAR_SCAP~r,v,t,p~* variables.
@@ -490,7 +490,7 @@ $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf
 *EQ\_*![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"} , *y ≤ EOH*
 
 The figure of the example shows that payments made in year *y* may come from investments made at periods before *T(y),* at *T(y)* itself, or at periods after *T(y).* Note that the cost attribute is multiplied by two factors: the *SHAPE*, which takes into account the vintage and age of the technology, and the *MULTI* parameter, which takes into account the pure time at which the cost is paid (the notation below for *SHAPE* and *MULTI* is simplified: it should also specify that these two parameters are those pertaining to the *FOM* attribute).
@@ -506,7 +506,7 @@ $${FIXCOST(y) =
 
 Example:
 
-> ![](media/image25.png){width="5.75in" height="3.3541666666666665in"}
+![](assets/case-1a-example-4.svg)
 > **\
 > Case 1.b,** if
 > $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
@@ -522,12 +522,12 @@ $${FIXCOST(y) = \sum_{t \in MILESTONYR}^{}{INDIC(1.b)} \times \sum_{v = Max\left
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}where
 
 Example:
 
-![](media/image26.png){width="5.625in" height="3.125in"}
+![](assets/case-1b-example-4.svg)
 
 **Case 2.a:**
 $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
@@ -547,13 +547,13 @@ $${FIXCOST(y) = \sum_{t \in MILESTONYR,t \leq T(y)}^{}{INDIC(2.a)} \times \left(
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}**(IV.2.a)**
 
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}*Useful Range for y:*
 
 *ii) SURVCOST (Surveillance cost for same case 2.a. See same example)*
@@ -561,7 +561,7 @@ height="7.507655293088364e-3in"}*Useful Range for y:*
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 $$
@@ -574,10 +574,10 @@ $$
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}**(IV.2.a')**
 
-![](media/image27.png){width="5.25in" height="3.8125in"}
+![](assets/case-2a-example-4.svg)
 
 **Remark**: again here, the cost attribute is indexed by the year when investment started its life. Also, note that, by choice, we have not defined the *SHAPE* or *MULTI* parameters for surveillance costs.
 
@@ -594,7 +594,7 @@ The cost expression takes into account the vintage and the age of the *FIXOM* be
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 $
@@ -609,7 +609,7 @@ $$$
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 **(IV.2.b)**
@@ -635,7 +635,7 @@ $${where:
 
 (**IV.2.b')**
 
-![](media/image28.png){width="5.375in" height="4.104166666666667in"}
+![](assets/case-2b-example-4.svg)
 
 *Remark*: same as precedently regarding the indexing of the cost
 attribute *NCAP_DLAGC*
@@ -929,7 +929,7 @@ Late revenues consist of revenues from any materials and energy which had been e
 
 The late revenues come *only* from the resale at dismantling time, of materials and/or energy that were sunk at construction time. Therefore, the *LATEREVENUES* expressions are identical to the decommissioning cost expressions, with the NCAP_DCOST attribute replaced by
 
-![](media/image29.png)
+![](assets/image29.png)
 
 where the summation extends over all commodities *c* for which an *NCAP_OCOM* attribute is defined (defaults to zero if undefined)
 
@@ -983,15 +983,15 @@ However, one could additionally argue that the Capital Recovery Factor *CRF~beg~
 Accordingly, we should correct the definition of the *CRF proper* by assuming that the annualized payments occur *half a year forward* in time with respect to the lump-sum investment, which means that we must increase the nominal size of the payments by the corresponding interest for the half-year\'s time. Combining these corrections together, the general discount rate *d*(*y*) should be simply replaced by the **tech­nology-specific discount rate** *d~S~*(*T*(*y*)) in the expression above, because in addition to the nominal change in the *CRF*, the time of the annualized payments has been restored back to original. However, to maintain consistency bet­ween Cases 1 and 2, the same basic correction to the *CRF proper* should be applied to all cases. Therefore, the total adjust­ments needed when taking into account the correction to the *CRF proper* are the following:
 
 +-------------------------------------------------------------+--------+
-| > ![](media/image30.png){width="0.75in" height="0.3125in"}  | (XI.1) |
+| > ![](assets/image30.png){width="0.75in" height="0.3125in"}  | (XI.1) |
 | > =  *CRF~beg~* × (1+*d~S~*(*T*(*y*)))^0.5^                 |        |
 +-------------------------------------------------------------+--------+
-| > *CRF~1,mid~* = ![](media/image30.png){width="0.75in"      | (XI.2) |
+| > *CRF~1,mid~* = ![](assets/image30.png){width="0.75in"      | (XI.2) |
 | > height="0.3125in"}× (1+*d*(*T*(*y*)))^0.5^ ×              |        |
 | > (1+*d*(*T*(*y*)))^--0.5^ =\                               |        |
 | > *CRF~beg~* × (1+*d~S~*(*T*(*y*)))^0.5^                    |        |
 +-------------------------------------------------------------+--------+
-| > *CRF~2,mid~*  =  ![](media/image30.png){width="0.75in"    | (XI.3) |
+| > *CRF~2,mid~*  =  ![](assets/image30.png){width="0.75in"    | (XI.3) |
 | > height="0.3125in"}× (1+*d*(*T*(*y*)))^--0.5^ =  \         |        |
 | > *CRF~beg~* × (1+*d*(*T*(*y*)))^--0.5^ ×                   |        |
 | > (1+*d~S~*(*T*(*y*)))^0.5^                                 |        |
@@ -1599,7 +1599,7 @@ $${\sum_{\mathbf{rps\_ s}\mathbf{2}_{\mathbf{r,p,sl}}}^{}{\mathbf{FLO\_ ASHA}\ma
 -   *l* = 'G' for a value of 2 yields ![{\"mathml\":\"\<math
     style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
     for Microsoft
-    Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+    Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
     height="7.507655293088364e-3in"}.
 
 -   *l* = 'E' for a value of 3 yields $=$.
@@ -1975,7 +1975,7 @@ $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathb
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 where:
@@ -2045,8 +2045,7 @@ $${\left( \begin{aligned}
 - Star-ups/shut-downs of capacity are by default only allowed on the SEASON level, and without costs. More general dispatchability features can be activated by defining start-up costs, with the parameter ACT_CSTUP. Start-up costs can be optionally defined even on the SEASON level, if desired (see the Table below). 
 - Start-ups and shut-downs will always occur in pairs, and therefore any shut-down costs can be directly included in the ACT_CSTUP parameter. If start-ups on some level can be assumed without additional costs, it is advisable to leave ACT_CSTUP unspecified at that level. If the start-up costs are assumed zero on some timeslice level, they must be zero also on any higher levels.
 
-![](media/image31.png){width="6.395833333333333in"
-height="2.5520833333333335in"}
+![](assets/image31.png)
 
 **Notation:**
 
@@ -2263,7 +2262,7 @@ We now show the detailed calculation of the Right-hand-side
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 **Flow Coefficients related to process activity (VAR_FLO)**
@@ -2293,7 +2292,7 @@ The parameter RTCS_TSFR is used to match the timeslice resolution of flow variab
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 **\
@@ -2304,7 +2303,7 @@ height="7.507655293088364e-3in"}
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"} Beginning year of commodity flow
 
 $ECF = B(v) + NCAP\_ ILED - 1$ Ending year of commodity flow
@@ -2318,7 +2317,7 @@ $${COEF\_ ICOM:
 }{= Max\left( \frac{1 + Min\left( ECF,E(t) \right) - Max\left( BCF,B(t) \right)}{D(t)} \times \frac{NCAP\_ ICOM_{v}}{NCAP\_ CLED_{v}},0 \right)
 }{endif}$$
 
-![](media/image32.png)
+![](assets/cases-1-2-3-4.svg)
 
 **\
 ****Dismantling Related Flow Coefficients**
@@ -2328,7 +2327,7 @@ $${COEF\_ ICOM:
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"} Start year of commodity flow.
 
 $ECF = B(v) + NCAP\_ ILED + NCAP\_ TLIFE + NCAP\_ DLAG + NCAP\_ DLIFE - 1$
@@ -2612,7 +2611,7 @@ Dual: The dual value describes for a lower/upper bound the cost increase/decreas
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
 ###  Equation: EQ(*l*)\_FLOFR
@@ -3205,7 +3204,7 @@ Dual: Due to the flexibility of the transformation equation the interpretation o
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}**.**
 
 **Equation:**
@@ -3670,7 +3669,7 @@ $${\mathbf{EQ(l)\_ UCRT}\mathbf{P}_{\mathbf{uc\_ n,r,t,p,'NCAP',bd}}\mathbf{\qua
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
-Add-in\"}](media/image18.png "blank"){width="7.50754593175853e-2in"
+Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}$\sum_{\mathbf{v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}}^{}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{prc\_ ts}}^{}{\mathbf{VAR\_ AC}\mathbf{T}_{\mathbf{r,t,p,s}}}}\mathbf{\quad}\left\{ \mathbf{\leq}\mathbf{; = ;}\mathbf{\geq} \right\}
 $$${\sum_{\mathbf{v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}}^{}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{prc\_ ts}}^{}{\mathbf{VAR\_ AC}\mathbf{T}_{\mathbf{r,t}\mathbf{-}\mathbf{1,p,s}}}\mathbf{\times}\left( \mathbf{UC\_ AC}\mathbf{T}_{\mathbf{uc\_ n,}\mathbf{'}\mathbf{LHS}\mathbf{'}\mathbf{,r,t,p,}\mathbf{'}\mathbf{ANNYAL}\mathbf{'}} \right)^{\mathbf{(M(t)}\mathbf{-}\mathbf{M(t}\mathbf{-}\mathbf{1))}}}
 }{\mathbf{+ UC\_ AC}\mathbf{T}_{\mathbf{uc\_ n,}\mathbf{'}\mathbf{RHS}\mathbf{'}\mathbf{,r,t,p,}\mathbf{'}\mathbf{ANNUAL}\mathbf{'}}\mathbf{\times}\mathbf{(M(t)}\mathbf{-}\mathbf{M(t}\mathbf{-}\mathbf{1))}}$$
@@ -3721,12 +3720,14 @@ To identify the user constraint, the modeller has to give it a unique name **uc_
 
 With respect to region **r**, time period **t** and timeslice **s**, the user constraint is either specified for specific regions, periods or timeslices or the expression within the user constraint is summed over subsets of regions, periods and timeslices. In the first case, the regions, periods or timeslices for which the user constraint should be generated are given by the sets **uc_r_each**, **uc_t_each** or **uc_ts_each**, while in the latter case, summation sets are specified by the sets **uc_r_sum**, **uc_t_sum** and **uc_ts_sum**. The corresponding sets **uc_x_each/sum** are exclusive, so that for example, if **uc_t_each** has been specified, the set **uc_t_sum** cannot be specified and vice versa. By choosing **uc_x_each/sum** also the name and the index domain of the user constraint are specified, e.g. if **uc_r_each**, **uc_t_each** and **uc_ts_sum** are given, the user constraint has the name and index domain *EQ(l)\_UCRT~r,uc_n,t~*. It is generated for each region and period specified by **uc_r_each** and **uc_t_each**, respectively, and is summing within the user constraint over the timeslices given in **uc_ts_each**. The name of the RHS constraint depends in the same way on the choice of **uc_x_each/sum**. In the previous example, the RHS constant has the name and index domain *UC_RHSRT~r,uc_n,t,bd~*. The knowledge of these naming rules is **important**, since the modeller has to give the correct RHS parameter names depending on the choice of **uc_x_each/sum** when defining a user constraint.
 
-Since for each of the three dimensions (region, period, timeslice), two options (EACH or SUM) exist, this would result in 8 possible combinations of user constraint equations (Figure 5.6). However, the combinations EQ(l)\_UCS and EQ(l)\_UCRS, which would lead to a constraint being generated for specific timeslices while summing over time periods at the same time, have been considered unrealistic, so that 6 variants remain. It should be noted that the sets **uc_r_each/sum**, **uc_t_each/sum** and **uc_ts_each/sum** can contain an arbitrary combination of elements, e.g. the periods specified in **uc_t_each/sum** do not have to be consecutive.
+Since for each of the three dimensions (region, period, timeslice), two options (EACH or SUM) exist, this would result in 8 possible combinations of user constraint equations ({numref}`allowed-combinations-of-rts`). However, the combinations EQ(l)\_UCS and EQ(l)\_UCRS, which would lead to a constraint being generated for specific timeslices while summing over time periods at the same time, have been considered unrealistic, so that 6 variants remain. It should be noted that the sets **uc_r_each/sum**, **uc_t_each/sum** and **uc_ts_each/sum** can contain an arbitrary combination of elements, e.g. the periods specified in **uc_t_each/sum** do not have to be consecutive.
 
-![](media/image33.png){width="5.895833333333333in"
-height="4.760416666666667in"}
+```{figure} assets/allowed-combinations-of-rts.svg
+:name: allowed-combinations-of-rts
+:align: center
 
-Figure 14: The allowed combinations of region, period and timeslice for user constraints.
+The allowed combinations of region, period and timeslice for user constraints.
+```
 
 The RHS (right hand side) of this category of user constraint consists of a constant $UC\_ RHS(R)(T)(S)_{(r),uc\_ n,(t),(s),bd}$ which is provided by the modeller. The RHS constant also defines the equation type of the user constraint. If the RHS constant has the index FX, the user constraint is generated as strict equality (=). If the RHS index is LO (respectively UP), the constraint has $\geq$ (respectively $\leq$) inequality sign. It should be noted that a RHS user constraint is only generated when a RHS constant is specified (this feature may be used to easily turn-on/off user constraints between different scenarios).
 

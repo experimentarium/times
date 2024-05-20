@@ -11,7 +11,7 @@ Back-pressure turbines are systems where the ratio of heat production to electri
 However, both types of CHP systems often additionally support so-called reduction operation, where the turbine can be by-passed, whereby all the steam is directed to a heat exchanger for producing heat. As a result, in a back-pressure turbine system, the ratio of heat production to
 electricity production may in such systems vary from the fixed value to infinity, and in a pass-out turbine system it may vary from zero to infinity.
 
-All these different cases are illustrated in {numref}`chp-characteristics` below, which shows the relations between heat and electricity production in different modes of a flexible CHP system, of which the back-pressure turbine system is a special case. Taking into account that thermal power plants usually have a minimum stable operation level, the operating area of the fixed back-pressure turbine system is represented by the line E--F in the Figure. The corresponding operating area of a pass-out turbine system (without reduction operation) is represented by the polygon A--B--F--E. In some cases the turbine characteristics require a minimum level of heat production in proportion to electricity, and with such a constraint the feasible operating area is reduced to C--D--F--E. Finally, with a reduction operation the feasible operating area is expanded to the polygon C--D--F--H--G--E in the Figure. Similarly, the operating area of a back-pressure turbine system with a reduction operation capability would be expanded to E--F--H--G.
+All these different cases are illustrated in {numref}`chp-characteristics` below, which shows the relations between heat and electricity production in different modes of a flexible CHP system, of which the back-pressure turbine system is a special case. Taking into account that thermal power plants usually have a minimum stable operation level, the operating area of the fixed back-pressure turbine system is represented by the line E--F in {numref}`chp-characteristics`. The corresponding operating area of a pass-out turbine system (without reduction operation) is represented by the polygon A--B--F--E. In some cases the turbine characteristics require a minimum level of heat production in proportion to electricity, and with such a constraint the feasible operating area is reduced to C--D--F--E. Finally, with a reduction operation the feasible operating area is expanded to the polygon C--D--F--H--G--E in {numref}`chp-characteristics`. Similarly, the operating area of a back-pressure turbine system with a reduction operation capability would be expanded to E--F--H--G.
 
 Denoting the electrical efficiency in the full condensing mode (point B) by $η_B$, the total efficiency in the full CHP mode (point F) by $η_F$, the heat-to-power ratio (inverse slope of line E--F) by $R$, and the slope of the iso-fuel line (B--F) by $S$, we can easily write the relations between these as follows:
 
@@ -40,7 +40,7 @@ The core TIMES parameters for modeling the CHP attributes are listed in {numref}
 
 \* Only taken into account for processes defined to be of type CHP with the set .
 
-```{figure} assets/image11.png
+```{figure} assets/basic-chp-characteristics.svg
 :name: chp-characteristics
 :align: center
 
@@ -152,7 +152,7 @@ The {numref}`chp-efficiencies-modelling-alternatives` summarizes the different o
 
 In TIMES, the inter-regional trading structure of a given commodity basically consists of one or several exchange processes (called IRE processes), each of which defines a portion of the trading network for the commodity. The individual sub-networks can be linked together through common intermediating regions. As an example, electricity trade can be conveniently described by bi-lateral exchange processes (see {numref}`bilateral-trade`). But bi-lateral trading between all pairs of regions may become onerous in terms of data and model size. It is therefore useful to consider the other trade structure of TIMES, called multi-lateral trade, where regions trade with a common market ({numref}`trading-subnetwork-exchange`). For either structure, the topology of the trading possibilities are all defined via the set $top\_ire$ of quintuples $\{r1,c1,r2,c2,p\}$, where $r1$, $r2$ are the exporting and importing regions respectively; $c1$, $c2$ are the names of the traded commodity in regions $r1$ and $r2$ respectively; and $p$ is the process identifier. Process $p$ is a process in both regions. It has to be defined only once, but one can add parameters to it in both regions (e.g. costs, bounds, etc.). Nearly every piece of data in TIMES has to be assigned to a region.
 
-```{figure} assets/image12.png
+```{figure} assets/trading-subnetwork.svg
 :name: trading-subnetwork-exchange
 :align: center
 
@@ -167,7 +167,7 @@ The general structure allowed for the trading sub-networks can be further divide
 - Case 3: Multi-directional trade from a single export region to several importing regions
 - Case 4: General multi-lateral trading structure
 
-```{figure} assets/image13.png
+```{figure} assets/case-1-bilateral-trade.svg
 :name: bilateral-trade
 :align: center
 
@@ -186,7 +186,7 @@ In general, there are many different possibilities for defining the multi-latera
 
 The timeslice levels of the traded commodity may be different in each region (as well as the commodity name). However, some appropriate common timeslice level must be chosen for writing the market balance equation. *That common level is the level attached to the exchange process in the market region*. In all other respects, ***the market region is not treated in any way differently*** from the other regions participating in the market. Nevertheless, the user can of course provide different data for the different regions, for example investment costs or efficiencies for the exchange process can be differentiated by region.
 
-```{figure} assets/image14.png
+```{figure} assets/case-2-and-3-trade.svg
 :name: case2-case3-trade
 :align: center
 
@@ -537,6 +537,6 @@ The following types of costs can be modelled for load-shifting processes:
 
 [^35]: The activity remains constant over the iso-fuel line, but the electricity output varies when moving along it. Maximum electrical output is thus usually the most convenient quantity along this line for defining the basis of the process activity and capacity. This choice should then be consistently reflected in the input data (see Table 18).
 
-[^36]: The indexing of auxiliary consumption flows or emissions of inter-regional exchange processes is illustrated in the figure below.
+[^36]: The indexing of auxiliary consumption flows or emissions of inter-regional exchange processes is illustrated in {numref}`indexing-aux-consumption`.
 
 [^37]: The equation EQ(l)\_XBND may have an external regional as region index (bounding the import from one external regions to all other regions).
