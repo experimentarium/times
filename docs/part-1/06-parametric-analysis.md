@@ -72,9 +72,10 @@ $$Min\ OBJZ + \alpha \times RISK$$
 
 where α is a user chosen coefficient that may be varied within a range to explore an entire trade-off curve such as illustrated in {numref}`trade-off-risk-cost`, where the vertical axis represents the values of the cost objective function, and the horizontal axis the risk measure.
 
-```{figure} assets/image18.png
+```{figure} assets/risk-cost-trade-off.svg
 :name: trade-off-risk-cost
 :align: center
+
 Trade-off between Risk and Cost.
 ```
 

@@ -96,9 +96,10 @@ The *total surplus* of an economy is the sum of the suppliers' and the consumers
 
 It is customary in microeconomics to represent the set of suppliers of a commodity by their *inverse production function*, that plots the marginal production cost of the commodity (vertical axis) as a function of the quantity supplied (horizontal axis). In TIMES, as in other linear optimization models, the supply curve of a commodity, with the exception of end-use demands, is entirely determined endogenously by the model. It is a standard result of Linear Programming theory that the inverse supply function is step-wise constant and increasing in each factor (see {numref}`eq-supply-demand-endogenous` and {numref}`eq-fixed-energy-service` for the case of a single commodity[^18]). Each horizontal step of the inverse supply function indicates that the commodity is produced by a certain technology or set of technologies in a strictly linear fashion. As the quantity produced increases, one or more resources in the mix (either a technological potential or some resource's availability) is exhausted, and therefore the system must start using a different (more expensive) technology or set of technologies in order to produce additional units of the commodity, albeit at higher unit cost. Thus, each change in production mix generates one step of the staircase production function with a value higher than the preceding step. The width of any particular step depends upon the technological potential and/or resource availability associated with the set of technologies represented by that step.
 
-```{figure} assets/image3.png
+```{figure} assets/supply-demand-equilibrium.svg
 :name: eq-supply-demand-endogenous
 :align: center
+
 Equilibrium in the case of an energy form: the model implicitly constructs both the supply and the demand curves (note that the equilibrium is multiple in this configuration).
 ```
 
@@ -124,18 +125,20 @@ In the case of commodities that are end-use energy services, these conditions ar
 
 In summary, the equivalence principle guarantees that the TIMES supply-demand equilibrium maximizes total surplus. The total surplus concept has long been a mainstay of social welfare economics because it takes into account both the surpluses of consumers and of producers.[^22]
 
-```{figure} assets/image7.png
+```{figure} assets/energy-service-elastic-demand.svg
 :name: eq-demand-curve
 :align: center
+
 Equilibrium in the case of an energy service: the user explicitly provides the demand curve, usually using a simple functional form (see text for details).
 ```
 
-*Remark:* In older versions of MARKAL, and in several other least-cost bottom-up models, energy service demands are exogenously specified by the modeler, and only the cost of supplying these energy services is minimized. Such a case is illustrated in {numref}`eq-demand-curve` where the "inverse demand curve" is a vertical line. The objective of such models was simply the minimization of the total cost of meeting exogenously specified levels of energy service.
+*Remark:* In older versions of MARKAL, and in several other least-cost bottom-up models, energy service demands are exogenously specified by the modeler, and only the cost of supplying these energy services is minimized. Such a case is illustrated in {numref}`eq-fixed-energy-service` where the "inverse demand curve" is a vertical line. The objective of such models was simply the minimization of the total cost of meeting exogenously specified levels of energy service.
 
-```{figure} assets/image7.png
+```{figure} assets/energy-service-inelastic-demand.svg
 :name: eq-fixed-energy-service
 :align: center
-Equilibrium in the case of an energy service: the user explicitly provides the demand curve, usually using a simple functional form (see text for details).
+
+Equilibrium when an energy service demand is fixed.
 ```
 
 #### Competitive energy markets with perfect foresight
@@ -158,7 +161,7 @@ It is important to reiterate that marginal value pricing *does not imply that su
 
 In TIMES the shadow prices of commodities play a very important diagnostic role. If some shadow price is clearly out of line (i.e. if it seems much too small or too large compared to the anticipated market prices), this indicates that the model's database may contain some errors. The examination of shadow prices is just as important as the analysis of the quantities produced and consumed of each commodity and of the technological investments.
 
-```{figure} assets/image9.png
+```{figure} assets/intermediate-equilibrium-price.svg
 :name: eq-price-different-marginal-cost
 :align: center
 
