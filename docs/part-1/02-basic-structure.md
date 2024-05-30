@@ -24,7 +24,7 @@ An additional reason for defining sub yearly time slices is the requirement of a
 
 The net result of these conditions is that the deployment in time of the various production technologies may be very different in different time slices, and furthermore that specific investment decisions will be taken to insure adequate reserve capacity at peak.
 
-```{figure} assets/image1.png
+```{figure} assets/timeslice-tree-example.svg
 :name: timeslice-tree
 
 Example of a time-slice tree.
