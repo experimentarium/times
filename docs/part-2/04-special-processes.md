@@ -150,7 +150,7 @@ The {numref}`chp-efficiencies-modelling-alternatives` summarizes the different o
 
 ### Structure and types of endogenous trade
 
-In TIMES, the inter-regional trading structure of a given commodity basically consists of one or several exchange processes (called IRE processes), each of which defines a portion of the trading network for the commodity. The individual sub-networks can be linked together through common intermediating regions. As an example, electricity trade can be conveniently described by bi-lateral exchange processes (see {numref}`bilateral-trade`). But bi-lateral trading between all pairs of regions may become onerous in terms of data and model size. It is therefore useful to consider the other trade structure of TIMES, called multi-lateral trade, where regions trade with a common market ({numref}`trading-subnetwork-exchange`). For either structure, the topology of the trading possibilities are all defined via the set $top\_ire$ of quintuples $\{r1,c1,r2,c2,p\}$, where $r1$, $r2$ are the exporting and importing regions respectively; $c1$, $c2$ are the names of the traded commodity in regions $r1$ and $r2$ respectively; and $p$ is the process identifier. Process $p$ is a process in both regions. It has to be defined only once, but one can add parameters to it in both regions (e.g. costs, bounds, etc.). Nearly every piece of data in TIMES has to be assigned to a region.
+In TIMES, the inter-regional trading structure of a given commodity basically consists of one or several exchange processes (called IRE processes), each of which defines a portion of the trading network for the commodity. The individual sub-networks can be linked together through common intermediating regions. As an example, electricity trade can be conveniently described by bi-lateral exchange processes (see {numref}`case-1-bilateral-trade`). But bi-lateral trading between all pairs of regions may become onerous in terms of data and model size. It is therefore useful to consider the other trade structure of TIMES, called multi-lateral trade, where regions trade with a common market ({numref}`trading-subnetwork-exchange`). For either structure, the topology of the trading possibilities are all defined via the set $top\_ire$ of quintuples $\{r1,c1,r2,c2,p\}$, where $r1$, $r2$ are the exporting and importing regions respectively; $c1$, $c2$ are the names of the traded commodity in regions $r1$ and $r2$ respectively; and $p$ is the process identifier. Process $p$ is a process in both regions. It has to be defined only once, but one can add parameters to it in both regions (e.g. costs, bounds, etc.). Nearly every piece of data in TIMES has to be assigned to a region.
 
 ```{figure} assets/trading-subnetwork.svg
 :name: trading-subnetwork-exchange
@@ -168,7 +168,7 @@ The general structure allowed for the trading sub-networks can be further divide
 - Case 4: General multi-lateral trading structure
 
 ```{figure} assets/case-1-bilateral-trade.svg
-:name: bilateral-trade
+:name: case-1-bilateral-trade
 :align: center
 
 Case 1: Bi-lateral trade (both R_1 and R_2 qualify as R_M).
@@ -176,7 +176,7 @@ Case 1: Bi-lateral trade (both R_1 and R_2 qualify as R_M).
 
 <ins>Trading without need for explicit marketplace definition:</ins>
 
-Cases 1, 2 and 3 fall in this category. Bi-lateral trade takes place between pairs of regions. An ordered pair of regions together with an exchange process is first identified, and the trade through the exchange process is balanced between these two regions. Whatever amount is exported from region $i$ to region $j$ is imported by region $j$ from region $i$ (possibly with an adjustment for transportation losses). The basic structure is shown in {numref}`bilateral-trade`. Bi-lateral trading can be fully described in TIMES by specifying the two pair-wise connections in $top\_ire$. The capacity and investment costs of the exchange process can be described individually for both regions. For Cases 2 and 3, the general structure of the trade relationships is shown in {numref}`case2-case3-trade`. Also in these cases the definition of the trading structure is easy, because the relationships can be unambiguously described by pair-wise $top\_ire$ specifications between two regions.
+Cases 1, 2 and 3 fall in this category. Bi-lateral trade takes place between pairs of regions. An ordered pair of regions together with an exchange process is first identified, and the trade through the exchange process is balanced between these two regions. Whatever amount is exported from region $i$ to region $j$ is imported by region $j$ from region $i$ (possibly with an adjustment for transportation losses). The basic structure is shown in {numref}`case-1-bilateral-trade`. Bi-lateral trading can be fully described in TIMES by specifying the two pair-wise connections in $top\_ire$. The capacity and investment costs of the exchange process can be described individually for both regions. For Cases 2 and 3, the general structure of the trade relationships is shown in {numref}`case2-case3-trade`. Also in these cases the definition of the trading structure is easy, because the relationships can be unambiguously described by pair-wise $top\_ire$ specifications between two regions.
 
 <ins>Trading based on marketplace:</ins>
 

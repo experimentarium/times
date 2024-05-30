@@ -16,10 +16,10 @@ As a generalization to the basic scheme described above, the user can also reque
 
 The purpose of the TIMESTEP option is to run the model in a stepwise manner with limited foresight. The TIMESTEP control variable specifies the number of years that should be optimized in each solution step. The total model horizon will be solved by a series of successive steps, so that in each step the periods to be optimized are advanced further in the future, and all periods before them are fixed to the solution of the previous step (using the FIXBOH feature). It is important that any two successive steps have one or more overlapping period(s), in order to insure overall continuity of the decisions between the two steps (in the absence of the overlap, decisions taken at step ***n*** would have no initial conditions and would be totally disconnected from step $n-1$ decisions.)
 
-{numref}`periods-in-time-stepped-sol` illustrates the step-wise solution approach with a horizon of 8 periods and 6 successive optimization steps. Each step has a 2 period sub-horizon, and there is also an overlap of one period between a step and the next. More explicitly: at step 2, all period 2 variables are frozen at the values indicated in the solution of step 1, and period 3 is free to be optimized. At step 3, period 3 variables are frozen and period 4 is optimized, etc.
+{numref}`p1-periods-in-time-stepped-solution` illustrates the step-wise solution approach with a horizon of 8 periods and 6 successive optimization steps. Each step has a 2 period sub-horizon, and there is also an overlap of one period between a step and the next. More explicitly: at step 2, all period 2 variables are frozen at the values indicated in the solution of step 1, and period 3 is free to be optimized. At step 3, period 3 variables are frozen and period 4 is optimized, etc.
 
 ```{figure} ../assets/periods-in-stepped-solution.svg
-:name: periods-in-time-stepped-sol
+:name: p1-periods-in-time-stepped-solution
 :align: center
 
 Sequence of optimized periods in the stepped TIMES solution approach.
