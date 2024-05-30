@@ -76,9 +76,10 @@ Since the $A_{j,i,t}$ terms have decreasing values (due to the concavity of the 
 
 *Remark:* Instead of maximizing the linearized objective function, TIMES minimizes its negative, which then has the dimension of a cost. The portion of that cost representing the negative of the consumer surplus is akin to a *welfare loss.*
 
-```{figure} assets/image14.png
+```{figure} assets/step-wise-approximation-in-obj.svg
 :name: approx-non-linear-obj-function
 :align: center
+
 Step-wise constant approximation of the non-linear terms in the objective function.
 ```
 

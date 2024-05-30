@@ -18,14 +18,14 @@ The initial period is usually considered a past period, over which the model has
 
 In TIMES, years preceding the first period also play a role. Although no explicit variables are defined for these years, data may be provided by the modeler on past investments. Note carefully that the specification of past investments influences not only the initial period's calibration, but also partially determines the model's behavior over several future periods, since the past investments provide residual capacity in several years within the modeling horizon proper.
 
-In addition to time-periods (which may be of variable length), there are time divisions within a year, also called *time-slices,* which may be defined at will by the user (see {numref}`timeslice-tree`). For instance, the user may want to define seasons, portions of the day/night, and/or weekdays/weekends. Time-slices are especially important whenever the mode and cost of production of an energy carrier at different times of the year are significantly different. This is the case for instance when the some energy commodity is expensive to store so that the matching of production and consumption of that commodity is itself an issue to be resolved by the model. The production technologies for the commodity may themselves have different characteristics depending on the time of year (e.g. wind turbines or run-of-the-river hydro plants). In such cases, the matching of supply and demand requires that the activities of the technologies producing and consuming the commodity be tracked for each time slice. Examples of commodities requiring time-slicing may include electricity, district heat, natural gas, industrial steam, and hydrogen.
+In addition to time-periods (which may be of variable length), there are time divisions within a year, also called *time-slices,* which may be defined at will by the user (see {numref}`p1-timeslice-tree`). For instance, the user may want to define seasons, portions of the day/night, and/or weekdays/weekends. Time-slices are especially important whenever the mode and cost of production of an energy carrier at different times of the year are significantly different. This is the case for instance when the some energy commodity is expensive to store so that the matching of production and consumption of that commodity is itself an issue to be resolved by the model. The production technologies for the commodity may themselves have different characteristics depending on the time of year (e.g. wind turbines or run-of-the-river hydro plants). In such cases, the matching of supply and demand requires that the activities of the technologies producing and consuming the commodity be tracked for each time slice. Examples of commodities requiring time-slicing may include electricity, district heat, natural gas, industrial steam, and hydrogen.
 
 An additional reason for defining sub yearly time slices is the requirement of an expensive infrastructure whose capacity should be sufficient to allow the peak demand for the commodity to be satisfied. Technologies that store a commodity in one time slice, at a cost, for discharge in another time slice, may also be defined and modeled.
 
 The net result of these conditions is that the deployment in time of the various production technologies may be very different in different time slices, and furthermore that specific investment decisions will be taken to insure adequate reserve capacity at peak.
 
-```{figure} assets/image1.png
-:name: timeslice-tree
+```{figure} ../assets/timeslice-tree-example.svg
+:name: p1-timeslice-tree
 
 Example of a time-slice tree.
 ```
@@ -53,7 +53,7 @@ It is helpful to picture the relationships among these various entities using a 
 
 {numref}`part-view-res` depicts a small portion of a hypothetical RES containing a single energy service demand, namely residential space heating. There are three end-use space heating technologies using the gas, electricity, and heating oil energy carriers (commodities), respectively. These energy carriers in turn are produced by other technologies, represented in the diagram by one gas plant, three electricity-generating plants (gas fired, coal fired, oil fired), and one oil refinery.
 
-```{figure} assets/image2.png
+```{figure} assets/res-example.svg
 :name: part-view-res
 :align: center
 

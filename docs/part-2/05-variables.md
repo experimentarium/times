@@ -339,9 +339,10 @@ This chapter describes each variable name, definition, and role in the TIMES Lin
 
 > **Definition:** the amount of new capacity (or what has traditionally been called "investment" in new capacity, or capacity build-up) at period **v**. As will be explained in Section 6.2.2, VAR_NCAP represents the total investment in technology **p** at period **v** only when ILED+TLIFE ≥ D(v), where D(v) is the period length. And, as discussed further in that Section, when ILED+TLIFE \< D(v), the model assumes that the investment is repeated as many times as necessary within the period so that the life of the last repetition is beyond the end of period **v**. In this case VAR_NCAP represents the capacity level of the single investments. {numref}`repeated-investment-same-period` illustrates a case where the investment is made twice in period **v** (and some capacity still remains after period **v**). The average capacity in period **v** resulting from the investment VAR_NCAP(v) is less than VAR_NCAP(v), due to the delay ILED (it is equal to VAR_NCAP(v)\* D(v)/TLIFE). The average capacity in period **v+1** due to VAR_NCAP(v) is also less than VAR_NCAP(v) because the end of life of the second round of investment occurs before the end of period **v+1**. These adjustments are made in every equation involving VAR_NCAP by the internal parameter COEF_CPT.
 
- ```{figure} assets/image15.png
+ ```{figure} assets/repeated-investment-example.svg
 :name: repeated-investment-same-period
 :align: center
+
 Example of a repeated investment in same period.
 ```
 

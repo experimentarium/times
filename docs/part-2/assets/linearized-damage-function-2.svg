@@ -1,0 +1,1806 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="559"
+   height="377"
+   overflow="hidden"
+   version="1.1"
+   id="svg191"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs191" />
+  <g
+     id="g191"
+     transform="translate(-18.5,-20.5)">
+    <rect
+       x="19"
+       y="21"
+       width="558"
+       height="376"
+       fill="#ffffff"
+       id="rect2"
+       style="stroke:#000000;stroke-opacity:1" />
+    <rect
+       x="77"
+       y="38"
+       width="431"
+       height="294"
+       fill="#ffffff"
+       id="rect3" />
+    <path
+       d="M 77.5001,303.5 H 508.5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path3"
+       style="stroke-width:1;stroke-dasharray:6,6;stroke-dashoffset:0" />
+    <path
+       d="M 77.5001,273.5 H 508.5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path4"
+       style="stroke-width:1;stroke-dasharray:6,6;stroke-dashoffset:0" />
+    <path
+       d="M 77.5001,244.5 H 508.5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path5"
+       style="stroke-width:1;stroke-dasharray:6,6;stroke-dashoffset:0" />
+    <path
+       d="M 77.5001,215.5 H 508.5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path6"
+       style="stroke-width:1;stroke-dasharray:6,6;stroke-dashoffset:0" />
+    <path
+       d="M 77.5001,185.5 H 508.5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path7"
+       style="stroke-width:1;stroke-dasharray:6,6;stroke-dashoffset:0" />
+    <path
+       d="M 77.5001,156.5 H 508.5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path8"
+       style="stroke-width:1;stroke-dasharray:6,6;stroke-dashoffset:0" />
+    <path
+       d="M 77.5001,126.5 H 508.5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path9"
+       style="stroke-width:1;stroke-dasharray:6,6;stroke-dashoffset:0" />
+    <path
+       d="M 77.5001,97.5001 508.5,97.5002"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path10"
+       style="stroke-width:1;stroke-dasharray:6,6;stroke-dashoffset:0" />
+    <path
+       d="M 77.5001,68.5001 508.5,68.5002"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path11"
+       style="stroke-width:1;stroke-dasharray:6,6;stroke-dashoffset:0" />
+    <path
+       d="M 77.5001,38.5001 508.5,38.5002"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path12" />
+    <rect
+       x="77.500099"
+       y="38.500099"
+       width="431"
+       height="294"
+       stroke="#808080"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect12" />
+    <path
+       d="M 77.5001,38.5001 77.5002,332.5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path13" />
+    <path
+       d="m 73.5001,332.5 h 4"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path14"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 73.5001,303.5 h 4"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path15"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 73.5001,273.5 h 4"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path16"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 73.5001,244.5 h 4"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path17"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 73.5001,215.5 h 4"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path18"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 73.5001,185.5 h 4"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path19"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 73.5001,156.5 h 4"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path20"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 73.5001,126.5 h 4"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path21"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 73.5001,97.5001 4,1e-4"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path22"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 73.5001,68.5001 4,1e-4"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path23"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 73.5001,38.5001 4,10e-5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path24"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="M 77.5001,332.5 H 508.5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path25" />
+    <path
+       d="M 0,0 1.04987e-4,5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,77.5001,337.5)"
+       id="path26"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="M 0,0 1.04987e-4,5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,185.5,337.5)"
+       id="path27"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="M 0,0 1.04987e-4,5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,293.5,337.5)"
+       id="path28"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="M 0,0 1.04987e-4,5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,401.5,337.5)"
+       id="path29"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="M 0,0 1.04987e-4,5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,508.5,337.5)"
+       id="path30"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="M 77.5001,332.5 H 120.5"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path31" />
+    <path
+       d="M 0,0 1.04987e-4,46"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,120.5,332.5)"
+       id="path32" />
+    <path
+       d="m 120.5,286.5 h 22"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path33" />
+    <path
+       d="M 0,0 1.04987e-4,18"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,142.5,286.5)"
+       id="path34" />
+    <path
+       d="m 142.5,268.5 h 21"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path35" />
+    <path
+       d="M 0,0 1.04987e-4,18"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,163.5,268.5)"
+       id="path36" />
+    <path
+       d="m 163.5,250.5 h 22"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path37" />
+    <path
+       d="M 0,0 1.04987e-4,19"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,185.5,250.5)"
+       id="path38" />
+    <path
+       d="m 185.5,231.5 h 22"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path39" />
+    <path
+       d="M 0,0 1.04987e-4,18"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,207.5,231.5)"
+       id="path40" />
+    <path
+       d="m 207.5,213.5 h 21"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path41" />
+    <path
+       d="M 0,0 1.04987e-4,28"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,228.5,213.5)"
+       id="path42" />
+    <path
+       d="m 228.5,185.5 h 43"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path43" />
+    <path
+       d="M 0,0 1.04987e-4,31"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,271.5,185.5)"
+       id="path44" />
+    <path
+       d="m 271.5,154.5 h 65"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path45" />
+    <path
+       d="M 0,0 1.04987e-4,34"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,336.5,154.5)"
+       id="path46" />
+    <path
+       d="m 336.5,120.5 h 65"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path47" />
+    <path
+       d="M 0,0 1.04987e-4,32"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,401.5,120.5)"
+       id="path48" />
+    <path
+       d="m 401.5,88.5001 64,1e-4"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path49" />
+    <path
+       d="m 465.5,88.5001 43,1e-4"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path50" />
+    <path
+       d="m 77.5001,329.5 3,2.958 -3,3.042 -3,-3.042 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path51" />
+    <path
+       d="m 120.5,329.5 3,2.958 -3,3.042 -3,-3.042 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path52" />
+    <path
+       d="m 120.5,283.5 3,2.958 -3,3.042 -3,-3.042 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path53" />
+    <path
+       d="m 142.542,283.5 2.958,2.958 -2.958,3.042 -3.042,-3.042 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path54" />
+    <path
+       d="m 142.542,265.5 2.958,3.042 -2.958,2.958 -3.042,-2.958 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path55" />
+    <path
+       d="m 164,265.5 2.5,3.042 -2.5,2.958 -2.5,-2.958 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path56" />
+    <path
+       d="m 164,247.5 2.5,3 -2.5,3 -2.5,-3 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path57" />
+    <path
+       d="m 185.458,247.5 3.042,3 -3.042,3 -2.958,-3 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path58" />
+    <path
+       d="m 185.458,228.5 3.042,2.958 -3.042,3.042 -2.958,-3.042 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path59" />
+    <path
+       d="m 207.035,228.5 2.465,2.958 -2.465,3.042 -2.535,-3.042 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path60" />
+    <path
+       d="m 207.035,210.5 2.465,3.042 -2.465,2.958 -2.535,-2.958 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path61" />
+    <path
+       d="m 228.5,210.5 3,3.042 -3,2.958 -3,-2.958 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path62" />
+    <path
+       d="m 228.5,182.5 3,3 -3,3 -3,-3 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path63" />
+    <path
+       d="m 271.5,182.5 3,3 -3,3 -3,-3 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path64" />
+    <path
+       d="m 271.5,152.5 3,2.465 -3,2.535 -3,-2.535 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path65" />
+    <path
+       d="m 336.5,152.5 3,2.465 -3,2.535 -3,-2.535 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path66" />
+    <path
+       d="m 336.5,117.5 3,2.958 -3,3.042 -3,-3.042 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path67" />
+    <path
+       d="m 401.035,117.5 2.465,2.958 -2.465,3.042 -2.535,-3.042 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path68" />
+    <path
+       d="m 401.035,85.5001 2.465,3 -2.465,3 -2.535,-3 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path69" />
+    <path
+       d="m 465.542,85.5001 2.958,3 -2.958,3 -3.042,-3 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path70" />
+    <path
+       d="m 508.542,85.5001 2.958,3 -2.958,3 -3.042,-3 z"
+       stroke="#000080"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="#000080"
+       fill-rule="evenodd"
+       id="path71" />
+    <path
+       d="M 508.5,38.5001 V 332.5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path72" />
+    <path
+       d="m 504.5,332.5 h 9"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path73"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 504.5,303.5 h 9"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path74"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 504.5,273.5 h 9"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path75"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 504.5,244.5 h 9"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path76"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 504.5,215.5 h 9"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path77"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 504.5,185.5 h 9"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path78"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 504.5,156.5 h 9"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path79"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 504.5,126.5 h 9"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path80"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 504.5,97.5001 9,1e-4"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path81"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 504.5,68.5001 9,1e-4"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path82"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 504.5,38.5001 9,10e-5"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path83"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <path
+       d="m 120.5,332.5 v 0"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path84" />
+    <path
+       d="M 0,0 22,4"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,120.5,332.5)"
+       id="path85" />
+    <path
+       d="m 142.5,328.5 v 0"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path86" />
+    <path
+       d="M 0,0 21,7"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,142.5,328.5)"
+       id="path87" />
+    <path
+       d="m 163.5,321.5 v 0"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path88" />
+    <path
+       d="M 0,0 22,8"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,163.5,321.5)"
+       id="path89" />
+    <path
+       d="m 185.5,313.5 v 0"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path90" />
+    <path
+       d="M 0,0 22,10"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,185.5,313.5)"
+       id="path91" />
+    <path
+       d="m 207.5,303.5 v 0"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path92" />
+    <path
+       d="M 0,0 21,12"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,207.5,303.5)"
+       id="path93" />
+    <path
+       d="m 228.5,291.5 v 0"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path94" />
+    <path
+       d="M 0,0 43,29"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,228.5,291.5)"
+       id="path95" />
+    <path
+       d="m 271.5,262.5 v 0"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path96" />
+    <path
+       d="M 0,0 65,54"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,271.5,262.5)"
+       id="path97" />
+    <path
+       d="m 336.5,208.5 v 0"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path98" />
+    <path
+       d="M 0,0 65,63"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,336.5,208.5)"
+       id="path99" />
+    <path
+       d="m 401.5,145.5 v 0"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path100" />
+    <path
+       d="M 0,0 64,74"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,401.5,145.5)"
+       id="path101" />
+    <path
+       d="M 0,0 32,36"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,465.5,71.5001)"
+       id="path102" />
+    <path
+       d="M 0,0 1.04987e-4,294"
+       stroke="#000000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,250.5,332.5)"
+       id="path103" />
+    <path
+       d="M 0,0 11,2"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,131.5,330.5)"
+       id="path104" />
+    <path
+       d="M 0,0 11,3"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,142.5,328.5)"
+       id="path105" />
+    <path
+       d="M 0,0 10,4"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,153.5,325.5)"
+       id="path106" />
+    <path
+       d="M 0,0 11,4"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,163.5,321.5)"
+       id="path107" />
+    <path
+       d="M 0,0 11,4"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,174.5,317.5)"
+       id="path108" />
+    <path
+       d="M 0,0 11,5"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,185.5,313.5)"
+       id="path109" />
+    <path
+       d="M 0,0 11,5"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,196.5,308.5)"
+       id="path110" />
+    <path
+       d="M 0,0 10,6"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,207.5,303.5)"
+       id="path111" />
+    <path
+       d="M 0,0 11,6"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,217.5,297.5)"
+       id="path112" />
+    <path
+       d="M 0,0 11,7"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,228.5,291.5)"
+       id="path113" />
+    <path
+       d="M 0,0 11,7"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,239.5,284.5)"
+       id="path114" />
+    <path
+       d="M 0,0 10,7"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,250.5,277.5)"
+       id="path115" />
+    <path
+       d="M 0,0 11,8"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,260.5,270.5)"
+       id="path116" />
+    <path
+       d="M 0,0 11,8"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,271.5,262.5)"
+       id="path117" />
+    <path
+       d="M 0,0 11,9"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,282.5,254.5)"
+       id="path118" />
+    <path
+       d="M 0,0 11,8"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,293.5,245.5)"
+       id="path119" />
+    <path
+       d="M 0,0 10,10"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,304.5,237.5)"
+       id="path120" />
+    <path
+       d="M 0,0 11,9"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,314.5,227.5)"
+       id="path121" />
+    <path
+       d="M 0,0 11,9"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,325.5,218.5)"
+       id="path122" />
+    <path
+       d="M 0,0 11,10"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,336.5,209.5)"
+       id="path123" />
+    <path
+       d="M 0,0 10,11"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,347.5,199.5)"
+       id="path124" />
+    <path
+       d="M 0,0 11,10"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,357.5,188.5)"
+       id="path125" />
+    <path
+       d="M 0,0 11,11"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,368.5,178.5)"
+       id="path126" />
+    <path
+       d="M 0,0 11,11"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,379.5,167.5)"
+       id="path127" />
+    <path
+       d="M 0,0 11,11"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,390.5,156.5)"
+       id="path128" />
+    <path
+       d="M 0,0 10,12"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,401.5,145.5)"
+       id="path129" />
+    <path
+       d="M 0,0 11,11"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,411.5,133.5)"
+       id="path130" />
+    <path
+       d="M 0,0 11,13"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,422.5,122.5)"
+       id="path131" />
+    <path
+       d="M 0,0 11,12"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,433.5,109.5)"
+       id="path132" />
+    <path
+       d="M 0,0 11,12"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,444.5,97.5001)"
+       id="path133" />
+    <path
+       d="M 0,0 10,13"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,455.5,85.5001)"
+       id="path134" />
+    <path
+       d="M 0,0 11,13"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,465.5,72.5001)"
+       id="path135" />
+    <path
+       d="M 0,0 11,14"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,476.5,59.5001)"
+       id="path136" />
+    <path
+       d="M 0,0 8,10"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       transform="matrix(1,0,0,-1,487.5,45.5001)"
+       id="path137" />
+    <rect
+       x="117.5"
+       y="329.5"
+       width="6"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect138" />
+    <rect
+       x="139.5"
+       y="325.5"
+       width="6"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect139" />
+    <rect
+       x="139.5"
+       y="325.5"
+       width="6"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect140" />
+    <rect
+       x="161.5"
+       y="318.5"
+       width="5"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect141" />
+    <rect
+       x="161.5"
+       y="318.5"
+       width="5"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect142" />
+    <rect
+       x="182.5"
+       y="310.5"
+       width="6"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect143" />
+    <rect
+       x="182.5"
+       y="310.5"
+       width="6"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect144" />
+    <rect
+       x="204.5"
+       y="300.5"
+       width="5"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect145" />
+    <rect
+       x="204.5"
+       y="300.5"
+       width="5"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect146" />
+    <rect
+       x="225.5"
+       y="288.5"
+       width="6"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect147" />
+    <rect
+       x="225.5"
+       y="288.5"
+       width="6"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect148" />
+    <rect
+       x="268.5"
+       y="259.5"
+       width="6"
+       height="5"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect149" />
+    <rect
+       x="268.5"
+       y="259.5"
+       width="6"
+       height="5"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect150" />
+    <rect
+       x="333.5"
+       y="205.5"
+       width="6"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect151" />
+    <rect
+       x="333.5"
+       y="205.5"
+       width="6"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect152" />
+    <rect
+       x="398.5"
+       y="142.5"
+       width="5"
+       height="5"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect153" />
+    <rect
+       x="398.5"
+       y="142.5"
+       width="5"
+       height="5"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect154" />
+    <rect
+       x="462.5"
+       y="68.500099"
+       width="6"
+       height="6"
+       stroke="#ff00ff"
+       stroke-width="1.16672"
+       stroke-miterlimit="8"
+       fill="#ff00ff"
+       id="rect155" />
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="700"
+       font-size="15px"
+       transform="translate(236.381,347)"
+       id="text155">Ref.</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="700"
+       font-size="15px"
+       transform="translate(234.048,364)"
+       id="text156">level</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(58.7143,338)"
+       id="text157">0</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(58.7143,309)"
+       id="text158">2</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(58.7143,279)"
+       id="text159">4</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(58.7143,250)"
+       id="text160">6</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(58.7143,221)"
+       id="text161">8</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(50.8809,191)"
+       id="text162">10</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(50.8809,162)"
+       id="text163">12</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(50.8809,132)"
+       id="text164">14</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(50.8809,103)"
+       id="text165">16</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(50.8809,74)"
+       id="text166">18</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(50.8809,44)"
+       id="text167">20</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="700"
+       font-size="15px"
+       transform="translate(73.2143,359)"
+       id="text168">0</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="700"
+       font-size="15px"
+       transform="translate(177.214,359)"
+       id="text169">50</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="700"
+       font-size="15px"
+       transform="translate(281.048,359)"
+       id="text170">100</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="700"
+       font-size="15px"
+       transform="translate(388.714,359)"
+       id="text171">150</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="700"
+       font-size="15px"
+       transform="translate(496.548,359)"
+       id="text172">200</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="700"
+       font-size="15px"
+       transform="translate(246.048,390)"
+       id="text173">Emission level</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="700"
+       font-size="15px"
+       transform="rotate(-90,136.1071,93.8929)"
+       id="text174">Marginal cost</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(519.048,338)"
+       id="text175">0</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(519.048,309)"
+       id="text176">200</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(519.048,279)"
+       id="text177">400</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(519.048,250)"
+       id="text178">600</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(519.048,221)"
+       id="text179">800</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(519.048,191)"
+       id="text180">1000</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(519.048,162)"
+       id="text181">1200</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(519.048,132)"
+       id="text182">1400</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(519.048,103)"
+       id="text183">1600</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(519.048,74)"
+       id="text184">1800</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="15px"
+       transform="translate(519.048,44)"
+       id="text185">2000</text>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="700"
+       font-size="15px"
+       transform="rotate(90,201.982,355.982)"
+       id="text186">Total cost</text>
+    <rect
+       x="370.5"
+       y="261.5"
+       width="117"
+       height="51"
+       stroke="#000000"
+       stroke-width="0"
+       stroke-miterlimit="8"
+       fill="#ffffff"
+       id="rect186"
+       style="stroke-width:1;stroke-dasharray:none" />
+    <g
+       id="g193">
+      <path
+         d="m 378.5,269.5 h 24"
+         stroke="#000080"
+         stroke-width="1.16672"
+         stroke-linejoin="round"
+         stroke-miterlimit="10"
+         fill="none"
+         fill-rule="evenodd"
+         id="path186" />
+      <path
+         d="m 390.458,266.5 3.042,2.958 -3.042,3.042 -2.958,-3.042 z"
+         stroke="#000080"
+         stroke-width="1.16672"
+         stroke-linejoin="round"
+         stroke-miterlimit="10"
+         fill="#000080"
+         fill-rule="evenodd"
+         id="path187" />
+    </g>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="13px"
+       transform="translate(404.548,275)"
+       id="text187">Marginal cost</text>
+    <g
+       id="g192">
+      <path
+         d="m 378.5,286.5 h 24"
+         stroke="#ff00ff"
+         stroke-width="1.16672"
+         stroke-linejoin="round"
+         stroke-miterlimit="10"
+         fill="none"
+         fill-rule="evenodd"
+         id="path188" />
+      <rect
+         x="387.5"
+         y="283.5"
+         width="6"
+         height="6"
+         stroke="#ff00ff"
+         stroke-width="1.16672"
+         stroke-miterlimit="8"
+         fill="#ff00ff"
+         id="rect188" />
+    </g>
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="13px"
+       transform="translate(404.548,292)"
+       id="text188">Total cost</text>
+    <path
+       d="m 378.5,303.5 h 24"
+       stroke="#ff0000"
+       stroke-width="1.16672"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path189" />
+    <text
+       font-family="Arial, Arial_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="13px"
+       transform="translate(404.548,309)"
+       id="text189"
+       style="-inkscape-font-specification:'Arial, Arial_MSFontService, sans-serif, Normal';font-family:Arial, Arial_MSFontService, sans-serif;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:13px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+         id="tspan191">Non-linear</tspan></text>
+  </g>
+</svg>

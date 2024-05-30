@@ -202,7 +202,7 @@ PARAMETER DAM_BQTY / REG.EM 80 /;
 
 PARAMETER DAM_ELAST / REG.EM.LO 1, REG.EM.UP 0.7 /;
 
- ```{figure} assets/image34.png
+ ```{figure} assets/linearized-damage-function.svg
 :name: example-linearized-function-111
 :align: center
 
@@ -231,7 +231,7 @@ PARAMETER DAM_VOC / REG.EM.LO 60, REG.EM.UP 100 /;
 
 The resulting damage cost function is illustrated in {numref}`example-linearized-function-1513`. The cost function follows now very closely the accurate non-linear function. Note that the step sizes derived from the VOC specifications are 10 units for the lower steps, 20 for the middle step, and 30 units for the upper steps. However, the last step of course has no upper bound.
 
- ```{figure} assets/image35.png
+ ```{figure} assets/linearized-damage-function-2.svg
 :name: example-linearized-function-1513
 :align: center
 Example of a linearized damage function with 1+5+1+3 steps (one zero cost step, 5 lower steps, one middle step, 3 upper steps).

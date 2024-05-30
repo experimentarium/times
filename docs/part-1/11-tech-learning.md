@@ -39,7 +39,7 @@ $$TC_{t} = \int_{0}^{C_{t}}{a \times y^{- b}*dy} = \frac{a}{1 - b} \times {C_{t}
 
 $TC_t$ is a concave function of $C_t$, with a shape as shown in {numref}`cumulative-learning-curve`.
 
-```{figure} assets/image26.png
+```{figure} assets/cumulative-learning-curve.svg
 :name: cumulative-learning-curve
 :align: center
 
@@ -63,7 +63,7 @@ With the Mixed Integer Programming approach implemented in TIMES, the cumulative
 
 3. The model automatically selects appropriate values for the $N$ step lengths, and then proceeds to generate the required new variables and constraints, and the new objective function coefficients for each learning technology. The detailed formulae are shown and briefly commented on below.
 
-```{figure} assets/image27.png
+```{figure} assets/4-segment-approximation.svg
 :name: approx-cumulative-learning-curve
 :align: center
 
@@ -100,11 +100,11 @@ $${b_{i} = \frac{TC_{i} - TC_{i - 1}}{C_{i} - C_{i - 1}}i = 1,2,...,N}$$(11 - 5)
 
 $a_{i} = TC_{i - 1} - b_{i} \cdot C_{i - 1}i = 1,2,...,N$
 
-```{figure} assets/image30.png
+```{figure} assets/step-wise-approximation-segment.svg
 :name: i-approx-learning-curve
 :align: center
 
-The i^th^ segment of the step-wise approximation.
+The i<sup>th</sup> segment of the step-wise approximation.
 ```
 
 ### New constraints
