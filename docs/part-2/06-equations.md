@@ -210,8 +210,7 @@ f) Since the model has the capability to represent *sunk* materials and energy c
 
 As mentioned above, the timing of the various types of payments and revenues is made as realistic and as smooth as possible. All investment decisions result in increments and/or decrements in the capacity of a process, at various times. These increments or decrements may occur, in some cases, in one large lump, for instance in the case of a large project (hydroelectric plant, aluminum plant, etc.), and, in other cases, in small additions or subtractions to capacity (e.g. buying or retiring cars, or heating devices). Depending on which case is considered, the assumption regarding the corresponding streams of payments (or revenues) differs markedly. Therefore, the distinction between small and large projects (called cases 1 and 2 below) will be crucial for writing the capital cost components of the objective function. A second distinction comes from the relative length of a project's technical life vs. that of the period when the investment occurs. Namely, if the life of an investment is less than the length of the period, then it is clear that the investment must be repeated all along the period. This is not so when the technical life extends beyond the period's end. Altogether, these two distinctions result in four mutually exclusive cases, each of which is treated separately. In what follows, we present the mathematical expression for the INVCOST component and one graphical example for each case.
 
-**Case 1.a** If
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{   and   }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
+**Case 1.a:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} \geq {D(t)}$
 
 **(Small divisible projects, non-repetitive, progressive investment in period)**
 
@@ -233,8 +232,7 @@ $$$
 
 The outer summation is over all periods (note that periods later than *T(y)* are relevant, because when *y* falls near the end of a period, the next period's investment may have already started). The inner summation is over a span of *D(t)* centered at *B(t),* but truncated at year *y*. Also, the lower summation bound ensures that an investment increment which occurred in year *v* has a payment in year *y* only if *y* and *v* are less than *ELIFE* years apart.
 
-**Case 1.b** if
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
+**Case 1.b:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED} < {D(t)}$
 
 **Small projects, repeated investments in period**
 
@@ -248,7 +246,7 @@ for Microsoft
 Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
-Relevant range for *y*:
+Relevant range for $y$:
 
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
@@ -260,8 +258,7 @@ height="7.507655293088364e-3in"}
 
 *Comments:* the expression is similar to that in case **1.a**., except that i) the investment is spread over the technical life rather than the period length, and ii) the investment cycle is repeated more than once.
 
-**Case 2.a:**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
+**Case 2.a:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${ILED}_{t} + {TLIFE}_{t} \geq {D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
@@ -269,22 +266,27 @@ Here, it is assumed that construction is spread over the lead-time (a very reali
 
 ![](assets/case-2a-example.svg)
 
-$${INVCOST(y) = 
-}{\sum_{\begin{aligned}
+$$
+INVCOST(y) = 
+\sum_{\begin{aligned}
  & t \in MILESTONEYEARS \\
  & t \leq T(y)
 \end{aligned}}^{}{INDIC(2.a)} \times \sum_{k = Max\{ B(t) + Min(0,ILED_{t}),y - ELIFE_{t} + 1\}}^{Min(B(t) + Max( - \text{1,}Min(\text{0,}ILED_{t}),ILED_{t} - 1),y)}\left( \frac{VAR\_ NCAP_{t}}{ILED_{t}} \right) \times CRF_{s} \times NCAP\_ COST_{B(t) + Max(0,ILED_{t})} + 
-}$$$\sum_{v \in PASTYEARS}^{}{INDIC(2.a)} \times \sum_{k = Max\{ B(v) + Min(0,ILED_{v}),y - ELIFE_{v} + 1\}}^{Min(B(v) + Max( - 1,Min(0,ILED_{v}),ILED_{v} - 1),y)}{}\left( \frac{NCAP\_ PASTI_{v}}{ILED_{v}} \right) \times CRF_{s} \times NCAP\_ COST_{B(v) + Max(0,ILED_{v})}$
+\sum_{v \in PASTYEARS}^{}{INDIC(2.a)} \times \sum_{k = Max\{ B(v) + Min(0,ILED_{v}),y - ELIFE_{v} + 1\}}^{Min(B(v) + Max( - 1,Min(0,ILED_{v}),ILED_{v} - 1),y)}{}\left( \frac{NCAP\_ PASTI_{v}}{ILED_{v}} \right) \times CRF_{s} \times NCAP\_ COST_{B(v) + Max(0,ILED_{v})}
+$$
 
-$${UsefulRangefory:
-}{\{ B(t),B(t) + ILED_{t} + ELIFE_{t} - 2\}\quad forILED_{t} \geq 1
-}$$$\{ B(t) + ILED_{t},B(t) + ELIFE_{t} - 2\}\quad forILED_{t} \leq - 1$
+Useful Range for $y$:
+$$
+{\{ B(t),B(t) + ILED_{t} + ELIFE_{t} - 2\} \quad for \space ILED_{t} \geq 1}
+$$
+$$
+{\{ B(t) + ILED_{t},B(t) + ELIFE_{t} - 2\} \quad for \space ILED_{t} \leq -1}
+$$
 (**I.2.a**)
 
-*Comments:* The main difference with case I.1.a) is that the investment's construction starts at year *B(t)* and ends at year *B(t)+ILED~t~--1* (see example). As before, payments for each year's construction spread over *ELIFE* years. Equation I.2.a also shows the impact of negative *ILED*s, which is simply a shift of the lead-time *ILED* years backwards.
+*Comments:* The main difference with case I.1.a) is that the investment's construction starts at year *B(t)* and ends at year $B(t)+ILED_t-1$ (see example). As before, payments for each year's construction spread over *ELIFE* years. Equation I.2.a also shows the impact of negative *ILED*s, which is simply a shift of the lead-time *ILED* years backwards.
 
-**Case 2.b:**
-$\mathbf{ILE}\mathbf{D}_{}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
+**Case 2.b:** ${ILED} > {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} < {D(t)}$
 
 **(Large, indivisible Projects, repeated investments in period)**
 
@@ -292,15 +294,13 @@ $\mathbf{ILE}\mathbf{D}_{}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     an
 
 This case is similar to case I.2.a, but the investment is repeated more than once over the period, each cycle being *TLIFE* years long. As in case I.2.a, each construction is spread over one lead time, *ILED*. In this case, the exact pattern of yearly investments is complex, so that we have to use an algorithm instead of a closed form summation.
 
-**[ALGORITHM]{.underline}** (Output: the vector of payments *P~t~(y)* at
-each year y, due to *VAR_NCAP~t~*)
+**[ALGORITHM]{.underline}** (Output: the vector of payments $P_t(y)$ at each year $y$, due to $VAR\_NCAP_t$)
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}**[Step 0:]{.underline}** Initialization
-(*NI(u)* represents the amount of new investment made in year *u*)
+**[Step 0:]{.underline}** Initialization ($NI(u)$ represents the amount of new investment made in year $u$)
+
+$$
+NI_t(u):=0 \quad \forall B(t) \leq u \leq B(t) + ILED_t + (C-1) \times TLIFE_t-1 
+$$
 
 **[Step 1:]{.underline}** Compute number of repetitions of investment
 
@@ -310,7 +310,7 @@ for Microsoft
 Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
-**[Step 2:]{.underline}** for each year *u* in range:
+**[Step 2:]{.underline}** for each year $u$ in range:
 
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
@@ -322,10 +322,9 @@ for Microsoft
 Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}Compute:
 
-**[Step 3:]{.underline}** Compute payments incurred in year *y*, and
-resulting from variable *VAR_NCAP~t~*
+**[Step 3:]{.underline}** Compute payments incurred in year $y$, and resulting from variable $VAR\_NCAP_t$
 
-For each *y* in range:
+For each $y$ in range:
 
 > **(I.2.b)**![{\"mathml\":\"\<math
 > style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
@@ -361,34 +360,35 @@ g) Decommissioning activities may also receive taxes or subsidies which are prop
 
 $$EQ\_ COSTDECOM(y) \ni y \in ALLYEARS$$
 
-**Case 1.a)** If
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{   and   }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
+**Case 1.a:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} \geq {D(t)}$
 
-**(Small divisible projects, non-repetitive, progressive investment in
-period)**
+**(Small divisible projects, non-repetitive, progressive investment in period)**
 
-In this case, decommissioning occurs exactly *TLIFE+DLAG* years after investment. For small projects (cases **1.a** and **1.b**), it is assumed that decommissioning takes exactly one year, and also that its cost is paid that same year (this is the same as saying that *DLIFE=DELIF=1*). Any user-defined DLIFE/DELIF is in this case thus ignored. This is a normal assumption for small projects. As shown in the example below, also payments made at year *y* come from investments made at period *T(y)* or earlier. Hence the summation stops at *T(y).*
+In this case, decommissioning occurs exactly $TLIFE+DLAG$ years after investment. For small projects (cases **1.a** and **1.b**), it is assumed that decommissioning takes exactly one year, and also that its cost is paid that same year (this is the same as saying that $DLIFE=DELIF=1$). Any user-defined DLIFE/DELIF is in this case thus ignored. This is a normal assumption for small projects. As shown in the example below, also payments made at year $y$ come from investments made at period $T(y)$ or earlier. Hence the summation stops at $T(y)$.
 
-$${INVDECOM(y) = 
-}{\sum_{\begin{aligned}
+$$
+INVDECOM(y) = 
+\sum_{\begin{aligned}
  & t \in MILESTONES \cup PASTYEARS \\
  & t \leq T(y)
-\end{aligned}}^{}{INDIC(1.a) \times \left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right) \times NCAP\_ DCOST_{y - TLIFE_{t}}}
-}$$$\times \left\{ \begin{aligned}
- & 1ifM(t) - D(t) + 1 + TLIFE_{t} + DLAG_{t} \leq y \leq M(t) + TLIFE_{t} + DLAG_{t} \\
- & 0otherwise
-\end{aligned} \right.\ $ **(III.1.a)**
+\end{aligned}}^{}{INDIC(1.a) \times \left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right) \times NCAP\_ DCOST_{y - TLIFE_{t}}}
+\times \left\{ \begin{aligned}
+ & 1 \quad if \space M(t) - D(t) + 1 + TLIFE_{t} + DLAG_{t} \leq y \leq M(t) + TLIFE_{t} + DLAG_{t} \\
+ & 0 \quad otherwise
+\end{aligned} \right.\ 
+$$ 
+**(III.1.a)**
 
 *Comment:* Note that the cost attribute is indexed at the year when the investment started to operate. We have adopted this convention throughout the objective function.
 
 ![](assets/case-1a-example-3.svg)
 
-**Case 1.b)** if
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
+**Case 1.b:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED} < {D(t)}$
 
 **(Small projects, repeated investments in period)**
 
-This cost expression is similar to I.1.b, but with payments shifted to the right by *TLIFE* (see example). The inner summation disappears because of the assumption that *DELIF=1*. Note also that past investments have no effect in this case, because this case does not arise *when D(t)=1,* which is always the case for past periods. 
+This cost expression is similar to I.1.b, but with payments shifted to the right by *TLIFE* (see example). The inner summation disappears because of the assumption that $DELIF=1$. Note also that past investments have no effect in this case, because this case does not arise when $D(t)=1$, which is always the case for past periods.
+
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
@@ -399,8 +399,7 @@ height="7.507655293088364e-3in"}
 
 ![](assets/case-1b-example-3.svg)
 
-**Case 2.a:**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
+**Case 2.a:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${ILED}_{t} + {TLIFE}_{t} \geq {D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
@@ -416,19 +415,21 @@ $${INVDECOM(y) =
 
 > **(III.2.a)**
 
-$${UsefulRangefory:
-}\left\{ B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} - 1,same + DELIF_{t} - 1 \right\}$$
+Useful Range for $y$:
+
+$$
+{B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} - 1, \space same + DELIF_{t} - 1}
+$$
 
 ![](assets/case-2a-example-2.svg)
 
-**Case 2.b:**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
+**Case 2.b:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} < {D(t)}$
 
 **(Big projects, repeated investments in period)**
 
 Here too, the decommissioning takes place over *DLIFE*, but now, contrary to case 2.a, the process is repeated more than once in the period. The last investment has life extending over following periods, as in all similar cases. The resulting stream of yearly payments is complex, and therefore, we are forced to use an algorithm rather than a closed form summation. See also example below.
 
-**[ALGORITHM]{.underline}** (apply to each *t* such that *t≤T(y)* )
+**[ALGORITHM]{.underline}** (apply to each *t* such that $t \leq T(y)$)
 
 [Step 0]{.underline}: Initialization
 
@@ -440,14 +441,16 @@ $$C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle$$
 
 [Step 1]{.underline}: Compute payment vector
 
-$${ForI = 1toC
-}{ForJ ⥂ ⥂ = ⥂ 1toDLIFE_{t}
-}{ForL = 1toDELIF_{t}
+$$
+{For \space I = 1 \space to \space C}
+{For \space J = 1 \space to \space DLIFE_{t}
+}{For \space L = 1 \space to \space DELIF_{t}
 }{P_{t}\left( B(t) + ILED_{t} + I \times TLIFE_{t} + DLAG_{t} + J + L - 2 \right): = 
 }{same + \frac{NCAP\_ DCOST_{B(t) + ILED_{t} + (I - 1) \times TLIFE_{t}}}{DLIFE_{t}}
-}{NextL
-}{NextJ
-}{NextI}$$
+}{Next \space L
+}{Next \space J
+}{Next \space I}
+$$
 
 **[END ALGORITHM]{.underline}**
 
@@ -482,18 +485,15 @@ height="7.507655293088364e-3in"}
 
 As one can see, the expressions for *FIXCOST(r,y)* can be augmented in a straightforward manner, obtaining the expressions *FIXCOST°(r,y)* that take into account early capacity retirements of each vintage, represented by the *VAR_SCAP~r,v,t,p~* variables.
 
-**Case 1.a)** If
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{   and   }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
+**Case 1.a:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} \geq {D(t)}$
 
 **(Small projects, single investment in period)**
 
-*EQ\_*![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"} , *y ≤ EOH*
+$$
+EQ\_FIXCOST(y), \quad y \leq EOH
+$$
 
-The figure of the example shows that payments made in year *y* may come from investments made at periods before *T(y),* at *T(y)* itself, or at periods after *T(y).* Note that the cost attribute is multiplied by two factors: the *SHAPE*, which takes into account the vintage and age of the technology, and the *MULTI* parameter, which takes into account the pure time at which the cost is paid (the notation below for *SHAPE* and *MULTI* is simplified: it should also specify that these two parameters are those pertaining to the *FOM* attribute).
+The figure of the example shows that payments made in year *y* may come from investments made at periods before $T(y)$, at $T(y)$ itself, or at periods after $T(y)$. Note that the cost attribute is multiplied by two factors: the *SHAPE*, which takes into account the vintage and age of the technology, and the *MULTI* parameter, which takes into account the pure time at which the cost is paid (the notation below for *SHAPE* and *MULTI* is simplified: it should also specify that these two parameters are those pertaining to the *FOM* attribute).
 
 $${FIXCOST(y) = 
 }{\sum_{t \in MILESTONYR \cup PASTYEARS}^{}{INDIC(1.a)} \times \sum_{v = Max\left\{ M(t) - D(t) + 1,y - TLIFE_{t} + 1 \right\}}^{Min(M(t),y)}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)
@@ -501,19 +501,19 @@ $${FIXCOST(y) =
 }
 {Theusefulrangeforyis:
 }{\{ M(t) - D(t) + 1,M(t) + TLIFE_{t} - 1\}
-}{and
-}$$$y \leq EOH\quad(\mathbf{IV}.\mathbf{1}.\mathbf{a})$
+}
+$$
+and $y \leq EOH$ **(IV.1.a)**
 
 Example:
 
 ![](assets/case-1a-example-4.svg)
-> **\
-> Case 1.b,** if
-> $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
+
+**Case 1.b:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED} < {D(t)}$
 
 **(Small projects, repeated investments in period)**
 
-The figure shows that payments made at year *y* may come from investments made at, before, or after period *T(y)*. Note that our expression takes into account the vintage and age of the *FOM* being paid, via the *SHAPE* parameter, and also the pure time via *MULTI*, both pertaining to the *FOM* attribute.
+The figure shows that payments made at year $y$ may come from investments made at, before, or after period $T(y)$. Note that our expression takes into account the vintage and age of the *FOM* being paid, via the *SHAPE* parameter, and also the pure time via *MULTI*, both pertaining to the *FOM* attribute.
 
 $${FIXCOST(y) = \sum_{t \in MILESTONYR}^{}{INDIC(1.b)} \times \sum_{v = Max\left\{ \left\langle B(t) - TLIFE_{t}/2 \right\rangle,y - TLIFE_{t} + 1 \right\}}^{Min(y,\left\langle B(t) - TLIFE_{t}/2 \right\rangle + C \times TLIFE_{t} - 1\}}\left( \frac{VAR\_ NCAP_{t}}{TLIFE_{t}} \right) \times NCAP\_ FOM_{v}
 }{
@@ -529,14 +529,13 @@ Example:
 
 ![](assets/case-1b-example-4.svg)
 
-**Case 2.a:**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
+**Case 2.a:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${ILED}_{t} + {TLIFE}_{t} \geq {D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
-i)  *FIXCOST(y)*
+i)  $FIXCOST(y)$
 
-The figure of the example shows that payments made in year *y* may come from investments made at period *T(y)* or earlier, but not later. Again here the *SHAPE* has the correct vintage year and age, as its two parameters, whereas *MULTI* has the current year as its parameter. Both pertain to *FOM*.
+The figure of the example shows that payments made in year $y$ may come from investments made at period $T(y)$ or earlier, but not later. Again here the *SHAPE* has the correct vintage year and age, as its two parameters, whereas *MULTI* has the current year as its parameter. Both pertain to *FOM*.
 
 $${FIXCOST(y) = \sum_{t \in MILESTONYR,t \leq T(y)}^{}{INDIC(2.a)} \times \left( VAR\_ NCAP_{t} \right) \times NCAP\_ FOM_{B(t) + ILED_{t}}
 }{\times \begin{Bmatrix}
@@ -554,9 +553,11 @@ height="7.507655293088364e-3in"}**(IV.2.a)**
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
 Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}*Useful Range for y:*
+height="7.507655293088364e-3in"}
 
-*ii) SURVCOST (Surveillance cost for same case 2.a. See same example)*
+*Useful Range for y:*
+
+ii) $SURVCOST$ (Surveillance cost for same case 2.a. See same example)
 
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
@@ -575,21 +576,21 @@ $$
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
 for Microsoft
 Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}**(IV.2.a')**
+height="7.507655293088364e-3in"}
+
+**(IV.2.a')**
 
 ![](assets/case-2a-example-4.svg)
 
 **Remark**: again here, the cost attribute is indexed by the year when investment started its life. Also, note that, by choice, we have not defined the *SHAPE* or *MULTI* parameters for surveillance costs.
 
-**\
-Case 2.b:**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
+**Case 2.b:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} < {D(t)}$
 
 **(Big projects, repeated investments in period)**
 
 *i. Fixed O&M cost*
 
-The cost expression takes into account the vintage and the age of the *FIXOM* being paid at any given year *y.* See note in formula and figure for an explanation.
+The cost expression takes into account the vintage and the age of the *FIXOM* being paid at any given year $y$. See note in formula and figure for an explanation.
 
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
@@ -597,12 +598,13 @@ for Microsoft
 Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
-$
-$$$
-{where:
-}{I = \left\lbrack \frac{y - B(t) - ILED_{t}}{TLIFE_{t}} \right\rbrack
-}{and
-}{C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle}$$
+where:
+
+$$
+{I = \left\lbrack \frac{y - B(t) - ILED_{t}}{TLIFE_{t}} \right\rbrack
+} \space and \space
+{C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle}
+$$
 
 *Range for y:*
 
@@ -616,7 +618,7 @@ height="7.507655293088364e-3in"}
 
 *Remark:* same as above, concerning the indexing of the cost attribute
 
-*ii. SURVCOST(y) (surveillance cost for same case; the same example applies)*
+*ii. $SURVCOST(y)$ (surveillance cost for same case; the same example applies)*
 
 $${SURVCOST(y) = \sum_{\begin{aligned}
  & t \in MILESTONES \\
@@ -627,18 +629,20 @@ $${SURVCOST(y) = \sum_{\begin{aligned}
 0otherwise
 \end{matrix} \right.\ }$$
 
-$${where:
-}{I = \left\lbrack \frac{y - B(t) - ILED_{t} - TLIFE_{t}}{TLIFE_{t}} \right\rbrack
+where:
+
+$$
+{I = \left\lbrack \frac{y - B(t) - ILED_{t} - TLIFE_{t}}{TLIFE_{t}} \right\rbrack
 }{and
 }{C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle
-}{NotethatymayexceedEOH}$$
+}{NotethatymayexceedEOH}
+$$
 
 (**IV.2.b')**
 
 ![](assets/case-2b-example-4.svg)
 
-*Remark*: same as precedently regarding the indexing of the cost
-attribute *NCAP_DLAGC*
+*Remark*: same as precedingly regarding the indexing of the cost attribute *NCAP_DLAGC*
 
 ### Annual taxes/subsidies on capacity: FIXTAXSUB(Y) 
 
@@ -654,9 +658,12 @@ Finally, the expressions are written only for the years within horizon, since pa
 
 As stated in the introduction, the payment of variable costs is constant over each period. Therefore, the expressions below are particularly simple.
 
-$${VARCOST(y) = VAR\_ XXX_{v,T(y)} \times XXX\_ COST_{y}
+$$
+{VARCOST(y) = VAR\_ XXX_{v,T(y)} \times XXX\_ COST_{y}
 }{VARTAXSUB(y) = VAR\_ XXX_{v,T(y)} \times (XXX\_ TAX_{y} - XXX\_ SUB_{y})
-}$$$y \leq EOH$ **(VI)**
+}
+$$
+$y \leq EOH$ **(VI)**
 
 ### Cost of demand reductions ELASTCOST(y) 
 
@@ -712,18 +719,15 @@ Since we want to calculate all salvages at the single year *(EOH+1)*, the above 
 
 Finally, another correction must be made to these expressions, whenever the user chooses to utilize a technology specific discount rate. The correction factor which must multiply every investment (and of course every salvage value) is:
 
-+-----------------------------------------------------------------------+
-| $$\frac{CRF_{s}}{CRF}                                                 |
-|  = \frac{\left( 1 - \frac{1}{1 + i_{s}} \right) \times \left( 1 - \fr |
-| ac{1}{(1 + i)^{ELIFE}} \right)}{\left( 1 - \frac{1}{1 + i} \right) \t |
-| imes \left( 1 - \frac{1}{\left( 1 + i_{s} \right)^{ELIFE}} \right)}$$ |
-|                                                                       |
-| > where *i* is the general discount rate,\                            |
-| > *i~s~* is the technology specific discount rate\                    |
-| > and *ELIFE* is the economic life of the investment                  |
-+=======================================================================+
-+-----------------------------------------------------------------------+
-
+$$
+\frac{CRF_{s}}{CRF}
+=
+\frac{\left( 1 - \frac{1}{1 + i_{s}} \right) \times
+\left( 1 - \frac{1}{(1 + i)^{ELIFE}} \right)}
+{\left( 1 - \frac{1}{1 + i} \right) \times
+\left( 1 - \frac{1}{\left( 1 + i_{s} \right)^{ELIFE}} \right)}
+$$ 
+where $i$ is the general discount rate, $i_s$ is the technology specific discount rate and $ELIFE$ is the economic life of the investment.
 
 Note: the time indexes have been omitted for clarity of the expression.
 
@@ -731,37 +735,34 @@ The final result of these expressions is *Result 2* expressing the salvage value
 
 *Result 2*
 
-$${SAL(k,TL) = 0if\overset{\underset{}{}}{k} + TL \leq EOH
+$$
+{SAL(k,TL) = 0if\overset{\underset{}{}}{k} + TL \leq EOH
 }{SAL(k,TL) = \frac{CRF_{s}}{CRF}if\overset{\underset{}{}}{k} \geq EOH + 1
-}{SAL(k,TL) = \frac{1 - (1 + d)^{EOH + 1 - k - TL}}{1 - (1 + d)^{- TL}} \times \frac{CRF_{s}}{CRF} \times \frac{S(k,TL,FDR)}{S(k,TL,0)}\quad otherwise}$$
+}{SAL(k,TL) = \frac{1 - (1 + d)^{EOH + 1 - k - TL}}{1 - (1 + d)^{- TL}} \times \frac{CRF_{s}}{CRF} \times \frac{S(k,TL,FDR)}{S(k,TL,0)}\quad otherwise}
+$$
 
-where d is the general discount rate, *CRF~s~* is the technology-specific capital recovery factor and FDR is the functional depreciation rate
 
-These expressions may now be adapted to each case of investment (and taxes/subsidies on investments). We enumerate these cases below. Note that to simplify the equations, we have omitted the second argument in *SAL* (it is always *TLIFE~t~* in the expressions).
+where $d$ is the general discount rate, $CRF_s$ is the technology-specific capital recovery factor and $FDR$ is the functional depreciation rate.
 
-**Case 1.a**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{   and   }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
+These expressions may now be adapted to each case of investment (and taxes/subsidies on investments). We enumerate these cases below. Note that to simplify the equations, we have omitted the second argument in $SAL$ (it is always $TLIFE_t$ in the expressions).
 
-**(Small divisible projects, non-repetitive, progressive investment in
-period)**
+**Case 1.a:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} \geq {D(t)}$
 
-+-----------------------------------------------------------------------+
-| $${SALVINV(EOH + 1) =                                                 |
-| }{\sum_{t}^{}{INDIC(I.1.a) \tim                                       |
-| es \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_ NCAP_{t}}{D(t) |
-| } + NCAP\_ PASTI_{t} \right)} \times NCAP\_ COST_{v} \times SAL(v)}$$ |
-+=======================================================================+
-| Where *SAL*(*v*) is equal to *SAL*(*v,TLIFE~t~*) defined in *Result*  |
-| 2.                                                                    |
-|                                                                       |
-| Note that *SAL(v)* = 0 whenever  *v*+*TLIFE~t~*  ≤  *EOH *+ 1         |
-+-----------------------------------------------------------------------+
+**(Small divisible projects, non-repetitive, progressive investment in period)**
 
+$$
+{SALVINV(EOH + 1)
+=
+}{\sum_{t}^{}{INDIC(I.1.a) \times \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_ NCAP_{t}}{D(t)
+} + NCAP\_ PASTI_{t} \right)} \times NCAP\_ COST_{v} \times SAL(v)}
+$$ 
+Where $SAL(v)$ is equal to $SAL(v,TLIFE_t)$ defined in *Result*  2.
+
+Note that $SAL(v) = 0$ whenever  $v + TLIFE_t  ≤  EOH + 1$
 
 **(VIII.1.a)**
 
-**Case 1.b**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
+**Case 1.b:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED} < {D(t)}$
 
 **Small Projects, repeated investments in period**
 
@@ -775,18 +776,18 @@ $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf
 
 (**VIII.1.b)**
 
-**Case 2.a:**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
+**Case 2.a:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${ILED}_{t} + {TLIFE}_{t} \geq {D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
-$${\mathbf{SALVINV(EOH + 1) =}\sum_{\mathbf{t}\mathbf{\in}\mathbf{MILESTONESYEARS}}^{}{\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}\mathbf{NCAP\_ COS}\mathbf{T}_{\mathbf{B(t) + ILE}\mathbf{D}_{\mathbf{t}}}\mathbf{\times}\mathbf{SAL(B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{)}}
+$$
+{\mathbf{SALVINV(EOH + 1) =}\sum_{\mathbf{t}\mathbf{\in}\mathbf{MILESTONESYEARS}}^{}{\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}\mathbf{NCAP\_ COS}\mathbf{T}_{\mathbf{B(t) + ILE}\mathbf{D}_{\mathbf{t}}}\mathbf{\times}\mathbf{SAL(B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{)}}
 }{
-\mathbf{NotethatSAL(B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{) = 0}\mathbf{wheneverB(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\leq}\mathbf{EOH + 1}}$$
+\mathbf{NotethatSAL(B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{) = 0}\mathbf{wheneverB(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\leq}\mathbf{EOH + 1}}
+$$
 (**VIII.2.a)**
 
-**Case 2.b:**
-$\mathbf{ILE}\mathbf{D}_{}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
+**Case 2.b:** ${ILED} > {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} < {D(t)}$
 
 **(Large, indivisible Projects, repeated investments in period)**
 
@@ -834,25 +835,24 @@ $${\text{Result 3}
 {\text{where }d\ \text{is the general discountrate}
 }{\text{and}d_{s}\text{isthetechnologyspecificdiscountrate}}$$
 
-We are now ready to write the salvage values of decommissioning cost in
-each case.
+We are now ready to write the salvage values of decommissioning cost in each case.
 
-**Case 1.a**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{   and   }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
+**Case 1.a:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} \geq {D(t)}$
 
-**(Small divisible projects, non-repetitive, progressive investment in
-period)**
+**(Small divisible projects, non-repetitive, progressive investment in period)**
 
-> $${SALVDECOM(EOH + 1) = 
-> }{\sum_{t}^{}{INDIC(1.a) \times \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)} \times 
-> }{NCAP\_ DCOST_{v} \times SAL(v,v + TLIFE_{t})
-> }
-> {\text{where }SAL(k,l)\ \text{is}\ \text{defined in}\ \text{Result }3.
-> }
-> {\text{Note  that }SAL(v,x)\ \text{is always 0 whenever}\ v + TLIFE \leq EOH + 1(IX.1.a)}$$
->
-> **Case 1.b**
-> $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{}\mathbf{< D(t)}$
+$${SALVDECOM(EOH + 1) = 
+ }{\sum_{t}^{}{INDIC(1.a) \times \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)} \times 
+ }{NCAP\_ DCOST_{v} \times SAL(v,v + TLIFE_{t})
+ }
+ {\text{where }SAL(k,l)\ \text{is}\ \text{defined in}\ \text{Result }3.
+ }
+ {\text{Note  that }SAL(v,x)\ \text{is always 0 whenever}\ v + TLIFE \leq EOH + 1
+ }$$
+ 
+ (IX.1.a)
+ 
+**Case 1.b:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED} < {D(t)}$
 
 **(Small Projects, repeated investments in period)**
 
@@ -862,8 +862,7 @@ $${SALVDECOM(EOH + 1) =
 Noteagain here thatSAL(k,l)equals0ifk + TLIFE \leq EOH + 1}$$
 **(IX.1.b)**
 
-**Case 2.a:**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
+**Case 2.a:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${ILED}_{t} + {TLIFE}_{t} \geq {D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
@@ -873,8 +872,7 @@ $${\mathbf{SALVDECOM(EOH + 1) =}
 \mathbf{NotethatSALis}\mathbf{0}\mathbf{⥂ ⥂}\mathbf{wheneverB(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\leq}\mathbf{EOH + 1}}$$
 (**IX.2.a)**
 
-**Case 2.b:**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
+**Case 2.b:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} < {D(t)}$
 
 **(Large, indivisible Projects, repeated investments in period)**
 
@@ -891,8 +889,7 @@ $${\mathbf{SALVDECOM(EOH + 1) =}\sum_{\mathbf{t}\mathbf{\in}\mathbf{MILESTONYEAR
 
 Similarly to the salvaging of decommissioning costs, the basic salvage value fractions *S(k,m)* defined in *Result 1* at the beginning of Section 6.2.9 are used as the basis for the salvage value of surveillance costs. However, unlike with decommissioning costs, there is no need to make corrections for technology-specific discount rates, as the costs do not represent capital costs. In addition, the discounting to *EOH+1* must be made separately for each surveillance year. Note that only Cases 2 have surveillance costs.
 
-**Case 2.a:**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\geq}\mathbf{D(t)}$
+**Case 2.a:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${ILED}_{t} + {TLIFE}_{t} \geq {D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
@@ -903,8 +900,7 @@ $${\mathbf{SALVSURV(EOH + 1) =}
 \text{Notethat}\mathbf{S}\mathbf{(}\mathbf{k}\mathbf{,}\mathbf{m}\mathbf{) = 0}\mathbf{⥂ ⥂}\text{whenever}\mathbf{k}\mathbf{+}\mathbf{m}\mathbf{\leq}\mathbf{EOH}\mathbf{+ 1.}}$$
 (**X.2.a)**
 
-**Case 2.b:**
-$\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{> ILE}\mathbf{D}_{\mathbf{Min,t}}\text{     and     }\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{< D(t)}$
+**Case 2.b:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} < {D(t)}$
 
 **(Large, indivisible projects, repeated investments in period)**
 
@@ -919,7 +915,7 @@ $${\mathbf{SALVSURV(EOH + 1) =}
 
 **(X.2.b)**
 
-###  Late revenues from endogenous commodity recycling after EOH LATEREVENUE(y)
+### Late revenues from endogenous commodity recycling after EOH LATEREVENUE(y)
 
 Late revenues consist of revenues from any materials and energy which had been embedded in some processes, and which are released after *EOH*. Such revenues exist only if an exogenous salvage value was declared by the user for the sunk material.
 
