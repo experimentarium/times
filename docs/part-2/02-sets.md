@@ -454,7 +454,7 @@ The definition of a timeslice tree is region-specific.[^13] When different times
 
 The original design of TIMES assumes that within each region, the definition of the timeslice tree applies to all model periods, such that one cannot employ different subsets of timeslices in different periods. In fact, allowing dynamically changing timeslice trees would tend to make both the model pre-processing and equation formulations substantially more complex, and therefore this design decision may be considered well justified. However, an experimental \"light-weight\" implementation has been made in view of supporting also dynamic timeslice trees (see Appendix E).
 
-```{figure} assets/timeslice-tree-example.svg
+```{figure} ../assets/timeslice-tree-example.svg
 :name: timeslice-tree
 :align: center
 Example of a timeslice tree.

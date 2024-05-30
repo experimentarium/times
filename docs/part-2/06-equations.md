@@ -217,7 +217,7 @@ $\mathbf{ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{ILE}\mathbf{D}_{\mathbf
 
 Here, we make what appears to be the most natural assumption, i.e. that the investment occurs in small yearly increments spread linearly over *D(t)* years. Precisely, the capacity additions start at year *M(t)-D(t)+1,* and end at year M*(t),* which means that payments start earlier than the beginning of the period, and end at the middle of the period, see example. This seems a more realistic compromise than starting the payments at the beginning of the period and stopping them at the end, since that would mean that during the whole period, the paid for capacity would actually not be sufficient to cover the capacity selected by the model for that period.
 
-![](assets/case-1a-example.svg)
+![](../assets/case-1a-example.svg)
 
 *EQ_INVCOST(y)*
 

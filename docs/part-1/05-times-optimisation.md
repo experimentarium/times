@@ -102,7 +102,7 @@ As already mentioned, in TIMES, special care is taken to precisely track the cas
 
 To illustrate the above complexities, we present a diagram taken from Part II that pictures the yearly investments and yearly outlays of capital in one particular instance where there is no lead time and no dismantling of the technology, and the technical life of the technology does not exceed the period length. There are 4 distinct such instances, discussed in detail in section 6.2 of Part II.
 
-```{figure} assets/case-1a-example.svg
+```{figure} ../assets/case-1a-example.svg
 :name: year-inv-tracking-case
 :align: center
 Illustration of yearly investments and payments for one of four investment tracking cases.
