@@ -126,7 +126,7 @@ with
 
 - $ΔT_{up}$ globally averaged surface temperature increase above pre-industrial level,
 
-```{figure} assets/image22.png
+```{figure} assets/radiative-forcing-linearisation.svg
 :name: linearization-CO2-radiation-function
 :align: center
  Illustration of the linearization of the CO2 radiative forcing function.

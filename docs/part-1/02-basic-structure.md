@@ -53,7 +53,7 @@ It is helpful to picture the relationships among these various entities using a 
 
 {numref}`part-view-res` depicts a small portion of a hypothetical RES containing a single energy service demand, namely residential space heating. There are three end-use space heating technologies using the gas, electricity, and heating oil energy carriers (commodities), respectively. These energy carriers in turn are produced by other technologies, represented in the diagram by one gas plant, three electricity-generating plants (gas fired, coal fired, oil fired), and one oil refinery.
 
-```{figure} assets/image2.png
+```{figure} assets/res-example.svg
 :name: part-view-res
 :align: center
 

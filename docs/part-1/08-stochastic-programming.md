@@ -25,7 +25,7 @@ The **key observation** is that prior to resolution time, the decision maker (an
 
 For the example shown in {numref}`stochastic-TIMES-tree`, in 2000 and 2010 there can be only one set of decisions, whereas in 2020 there will be two sets of decisions, contingent on which of the mitigation outcomes (High or Low) has occurred, and in 2030, 2040, 2050 and 2060, there will be four sets of contingent decisions.
 
-```{figure} assets/image23.png
+```{figure} assets/event-tree.svg
 :name: stochastic-TIMES-tree
 :align: center
 

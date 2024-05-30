@@ -35,7 +35,7 @@ The main kinds of decision variables in a TIMES model are:
 
 $VAR\_NCAP(r,v,p)$: new capacity addition (investment) for technology $p$, in period $v$ and region $r$. For all technologies the $v$ value corresponds to the vintage of the process, i.e. year in which it is invested in. For vintaged technologies (declared as such by the user) the vintage ($v$) information is reflected in other process variables, discussed below. Typical units are PJ/year for most energy technologies, Million tonnes per year (for steel, aluminum, and paper industries), Billion vehicle-kilometers per year (B-vkm/year) or million cars for road vehicles, and GW for electricity equipment (1GW=31.536 PJ/year), etc.
 
-```{figure} assets/image15.png
+```{figure} assets/process-activity-in-times-variants.svg
 :name: process-act-original-TIMES-linear-variant
 :align: center
 Process activity in the original TIMES formulation (top) and Linear variant (bottom)
@@ -399,7 +399,7 @@ The purpose of this section is to indicate the broad principles and characterist
 
 The traditional way to represent the nodes and arcs of a grid is shown in {numref}`grid-connection-nodes`, where each node is shown as a horizontal segment, and the nodes are connected via bi-directional arcs.
 
-```{figure} assets/image17.png
+```{figure} assets/grid-node-connection.png
 :name: grid-connection-nodes
 :align: center
 

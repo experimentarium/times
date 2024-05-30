@@ -18,7 +18,7 @@ The purpose of the TIMESTEP option is to run the model in a stepwise manner with
 
 {numref}`periods-in-time-stepped-sol` illustrates the step-wise solution approach with a horizon of 8 periods and 6 successive optimization steps. Each step has a 2 period sub-horizon, and there is also an overlap of one period between a step and the next. More explicitly: at step 2, all period 2 variables are frozen at the values indicated in the solution of step 1, and period 3 is free to be optimized. At step 3, period 3 variables are frozen and period 4 is optimized, etc.
 
-```{figure} assets/image24.png
+```{figure} ../assets/periods-in-stepped-solution.svg
 :name: periods-in-time-stepped-sol
 :align: center
 
