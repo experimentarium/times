@@ -475,7 +475,7 @@ for Microsoft
 Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
-Here, *CF~r,v,p,y~* is the compound fixed cost coefficient for each capacity vintage in year *y*, as obtained from the original expressions for *FIXCOST(y)*. Recalling that fixed costs are accounted only within the model horizon, these expressions can be adjusted as follows:
+Here, $CF_{r,v,p,y}$ is the compound fixed cost coefficient for each capacity vintage in year $y$, as obtained from the original expressions for $FIXCOST(y)$. Recalling that fixed costs are accounted only within the model horizon, these expressions can be adjusted as follows:
 
 ![{\"mathml\":\"\<math
 style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
@@ -483,7 +483,7 @@ for Microsoft
 Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
 height="7.507655293088364e-3in"}
 
-As one can see, the expressions for *FIXCOST(r,y)* can be augmented in a straightforward manner, obtaining the expressions *FIXCOST°(r,y)* that take into account early capacity retirements of each vintage, represented by the *VAR_SCAP~r,v,t,p~* variables.
+As one can see, the expressions for $FIXCOST(r,y)$ can be augmented in a straightforward manner, obtaining the expressions $FIXCOST°(r,y)$ that take into account early capacity retirements of each vintage, represented by the $VAR\_SCAP_{r,v,t,p}$ variables.
 
 **Case 1.a:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} \geq {D(t)}$
 
@@ -493,7 +493,7 @@ $$
 EQ\_FIXCOST(y), \quad y \leq EOH
 $$
 
-The figure of the example shows that payments made in year *y* may come from investments made at periods before $T(y)$, at $T(y)$ itself, or at periods after $T(y)$. Note that the cost attribute is multiplied by two factors: the *SHAPE*, which takes into account the vintage and age of the technology, and the *MULTI* parameter, which takes into account the pure time at which the cost is paid (the notation below for *SHAPE* and *MULTI* is simplified: it should also specify that these two parameters are those pertaining to the *FOM* attribute).
+The figure of the example shows that payments made in year $y$ may come from investments made at periods before $T(y)$, at $T(y)$ itself, or at periods after $T(y)$. Note that the cost attribute is multiplied by two factors: the *SHAPE*, which takes into account the vintage and age of the technology, and the *MULTI* parameter, which takes into account the pure time at which the cost is paid (the notation below for *SHAPE* and *MULTI* is simplified: it should also specify that these two parameters are those pertaining to the *FOM* attribute).
 
 $${FIXCOST(y) = 
 }{\sum_{t \in MILESTONYR \cup PASTYEARS}^{}{INDIC(1.a)} \times \sum_{v = Max\left\{ M(t) - D(t) + 1,y - TLIFE_{t} + 1 \right\}}^{Min(M(t),y)}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)
@@ -515,15 +515,26 @@ Example:
 
 The figure shows that payments made at year $y$ may come from investments made at, before, or after period $T(y)$. Note that our expression takes into account the vintage and age of the *FOM* being paid, via the *SHAPE* parameter, and also the pure time via *MULTI*, both pertaining to the *FOM* attribute.
 
-$${FIXCOST(y) = \sum_{t \in MILESTONYR}^{}{INDIC(1.b)} \times \sum_{v = Max\left\{ \left\langle B(t) - TLIFE_{t}/2 \right\rangle,y - TLIFE_{t} + 1 \right\}}^{Min(y,\left\langle B(t) - TLIFE_{t}/2 \right\rangle + C \times TLIFE_{t} - 1\}}\left( \frac{VAR\_ NCAP_{t}}{TLIFE_{t}} \right) \times NCAP\_ FOM_{v}
+$$
+{FIXCOST(y) = \sum_{t \in MILESTONYR}^{}{INDIC(1.b)} \times \sum_{v = Max\left\{ \left\langle B(t) - TLIFE_{t}/2 \right\rangle,y - TLIFE_{t} + 1 \right\}}^{Min(y,\left\langle B(t) - TLIFE_{t}/2 \right\rangle + C \times TLIFE_{t} - 1\}}\left( \frac{VAR\_ NCAP_{t}}{TLIFE_{t}} \right) \times NCAP\_ FOM_{v}
 }{
- \times SHAPE(t,y - v) \times MULTI(y)}$$ **(IV.1.b)**
+ \times SHAPE(t,y - v) \times MULTI(y)}
+ $$ 
+ **(IV.1.b)**
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}where
+Where:
+
+$$C = \left\langle \frac{D(t)}{TLIFE_{t}} \right\rangle$$
+
+Useful range for $y$:
+
+$$
+\left \{ \left \langle B(t) - \frac{TLIFE_t}{2} \right \rangle, \left \langle B(t) - \frac{TLIFE_t}{2} \right \rangle + (C + 1) \times TLIFE_{t} \right \}                                                                              
+$$
+
+and
+
+$$y \leq EOH$$
 
 Example:
 
@@ -652,7 +663,7 @@ It is assumed that these taxes (subsidies) are paid (accrued) at exactly the sam
 
 Variable operations costs are treated in a straightforward manner (the same as in MARKAL), assuming that each activity has a constant activity over a given period.
 
-In this subsection, the symbol *VAR_XXX~t~* is any variable of the model that represents an activity at period *t*. Therefore, *XXX* may be *ACT, FLO, COMX, COMT,* etc. Note that, if and when the technology is vintaged, the variable has an index *v* indicating the vintage year, whereas *T(y)* indicates the period when the activity takes place. Similarly, the symbol *XXX_COST~k~* represents the value in year *k* of any cost attribute that applies to variable *VAR_XXX*.
+In this subsection, the symbol *VAR_XXX<sub>t</sub>* is any variable of the model that represents an activity at period *t*. Therefore, *XXX* may be *ACT, FLO, COMX, COMT,* etc. Note that, if and when the technology is vintaged, the variable has an index *v* indicating the vintage year, whereas *T(y)* indicates the period when the activity takes place. Similarly, the symbol *XXX_COST<sub>k</sub>* represents the value in year *k* of any cost attribute that applies to variable *VAR_XXX*.
 
 Finally, the expressions are written only for the years within horizon, since past years do not have a direct impact on variable costs, and since no variable cost payments occur after EOH. Note also that the SHAPE and MULTI parameters are not applicable to variable costs.
 
@@ -667,7 +678,7 @@ $y \leq EOH$ **(VI)**
 
 ### Cost of demand reductions ELASTCOST(y) 
 
-When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See PART I for a theoretical justification, and Appendex D for formulations involving more generalized demand fuctions.
+When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See PART I for a theoretical justification, and Appendix D for formulations involving more generalized demand functions.
 
 $${ELASTCOST(y) = 
 }{\quad\sum_{j = 1}^{COM\_ STEP_{lo}}{COM\_ BPRICE_{T(y)} \times \left\{ \left( 1 - \frac{(j - 1/2) \times COM\_ VOC_{lo,T(y)}}{COM\_ STEP_{lo}} \right)^{\frac{1}{COM\_ ELAST_{lo,T(y)}}} \right\}} \times VAR\_ ELAST_{lo,j,T(y)}}$$
