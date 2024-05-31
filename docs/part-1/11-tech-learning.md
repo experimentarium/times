@@ -12,11 +12,11 @@ Whereas exogenous technological learning does not require any additional modelin
 
 ## The basic ETL challenge
 
-Empirical studies of unit investment costs of several technologies have been undertaken in several countries. Many of these studies find an empirical relationship between the unit investment cost of a technology at time $t$ $INVCOST_{t}$, and the cumulative investment in that technology up to time $t$, $C_{t} = \sum_{j = - 1}^{t}{VAR\_ NCAP_{j}}$.
+Empirical studies of unit investment costs of several technologies have been undertaken in several countries. Many of these studies find an empirical relationship between the unit investment cost of a technology at time $t$, $INVCOST_{t}$, and the cumulative investment in that technology up to time $t$, $C_{t} = \sum_{j = - 1}^{t}{VAR\_ NCAP_{j}}$.
 
 A typical relationship between unit investment cost and cumulative investments is of the form:
 
-$$INVCOST_{t} = a \times C_{t}^{- b}$$ (11 - 1)
+$$INVCOST_{t} = a \times C_{t}^{- b}$$ (11-1)
 
 where
 - $INVCOST$ [^37] is the unit cost of creating one unit of the technology, which is no longer a constant, but evolves as more units of the technology are produced;
@@ -25,7 +25,7 @@ where
 
 As experience builds up, the unit investment cost decreases, potentially rendering investments in the technology more attractive. It should be clear that near-sighted investors will not be able to detect the advantage of investing early in learning technologies, since they will only observe the high initial investment cost and, being near-sighted, will not anticipate the future drop in investment cost resulting from early investments. In other words, tapping the full potential of technological learning requires far-sighted agents who accept making initially non-profitable investments in order to later benefit from the investment cost reduction.
 
-With regard to actual implementation, simply using {numref}`(11-1)` as the objective function coefficient of $VAR\_NCAP_t$ will yield a non-linear, non-convex expression. Therefore, the resulting mathematical optimization is no longer linear, and requires special techniques for its solution. In TIMES, a Mixed Integer Programming (MIP) formulation is used, that we now describe.
+With regard to actual implementation, simply using {eq}`11-1` as the objective function coefficient of $VAR\_NCAP_t$ will yield a non-linear, non-convex expression. Therefore, the resulting mathematical optimization is no longer linear, and requires special techniques for its solution. In TIMES, a Mixed Integer Programming (MIP) formulation is used, that we now describe.
 
 ## The TIMES formulation of ETL
 
@@ -33,9 +33,9 @@ With regard to actual implementation, simply using {numref}`(11-1)` as the objec
 
 We follow the basic approach described in Barreto, 2001.
 
-The first step of the formulation is to express the total investment cost, i.e. the quantity that should appear in the objective function. The cumulative investment cost $TC_t$ of a learning technology in period $t$ is obtained by integrating expression {numref}`(11-1)`:
+The first step of the formulation is to express the total investment cost, i.e. the quantity that should appear in the objective function. The cumulative investment cost $TC_t$ of a learning technology in period $t$ is obtained by integrating expression {eq}`11-1`:
 
-$$TC_{t} = \int_{0}^{C_{t}}{a \cdot y^{- b}*dy} = \frac{a}{1 - b} \cdot {C_{t}}^{- b + 1}$$ (11 - 2)
+$$TC_{t} = \int_{0}^{C_{t}}{a \cdot y^{- b}*dy} = \frac{a}{1 - b} \cdot {C_{t}}^{- b + 1}$$ (11-2)
 
 $TC_t$ is a concave function of $C_t$, with a shape as shown in {numref}`cumulative-learning-curve`.
 
@@ -78,7 +78,7 @@ $$TC_{i} = TC_{i - 1} + 2^{i - N - 1}(T{Co^{N}}_{\max}$$
 
 Note that $TC_{max}$ is equal to $TC_N$.
 
-The break points on the horizontal axis are obtained by plugging the $TC_i$'s into expression {numref}`(11-2)`, yielding:
+The break points on the horizontal axis are obtained by plugging the $TC_i$'s into expression {eq}`11-2`, yielding:
 
 $$C_{i} = \left( \frac{(1 - b)}{a}\left( TC_{i} \right) \right)^{\frac{1}{1 - b}}, \space i = 1,2,...,N$$
 
@@ -96,7 +96,7 @@ $$TC = {\sum^{N}_{i=1} a_i z_i + b_i x_i}$$ (11-4)
 
 where $b_i$ is the slope of the $i^{th}$ line segment, and $a_i$ is the value of the intercept of that segment with the vertical axis, as shown in {numref}`i-approx-learning-curve`. The precise expressions for $a_i$ and $b_i$ are:
 
-$${b_{i} = \frac{TC_{i} - TC_{i - 1}}{C_{i} - C_{i - 1}}, \space i = 1,2,...,N}$$(11 - 5)
+$${b_{i} = \frac{TC_{i} - TC_{i - 1}}{C_{i} - C_{i - 1}}, \space i = 1,2,...,N}$$(11-5)
 
 $$a_{i} = TC_{i - 1} - b_{i} \cdot C_{i - 1}, \space i = 1,2,...,N$$
 
@@ -109,7 +109,7 @@ The i<sup>th</sup> segment of the step-wise approximation.
 
 ### New constraints
 
-For {numref}`(11-4)` to be valid we must make sure that exactly one $z_i$ is equal to 1, and the others equal to 0. This is done (recalling that the $z_i$ variables are 0-1) via:
+For {eq}`11-4` to be valid we must make sure that exactly one $z_i$ is equal to 1, and the others equal to 0. This is done (recalling that the $z_i$ variables are 0-1) via:
 
 $$\sum_{i = 1}^{N}{z_{i} = 1}$$
 
@@ -193,7 +193,7 @@ ETL modelers are well aware of this phenomenon, and they use additional constrai
 
 In view of the preceding discussion, a fundamental question arises: is it worthwhile for the modeler to go to the trouble of modeling *endogenous* learning (with all the attendant computational burdens) when the results are to a large extent conditioned by *exogenous* upper bounds? We do not have a clear and unambiguous answer to this question; that is left for each modeler to evaluate.
 
-However, given the above caveat, a possible alternative to ETL would consist in using exogenous learning trajectories. To do so, the same sequence of 'realistic' upper bounds on capacity would be selected by the modeler, and the values of the unit investment costs ($INVCOST$) would be externally computed by plugging these upper bounds into the learning formula {numref}`(11-1)`. This approach makes use of the same exogenous upper bounds as the ETL approach, but avoids the MIP computational burden of ETL. Of course, the running of exogenous learning scenarios is not entirely foolproof, since there is no absolute guarantee that the capacity of a learning technology will turn out to be exactly equal to its exogenous upper bound. If that were not the case, a modified scenario would have to be run, with upper bounds adjusted downward. This trial-and-error approach may seem inelegant, but it should be remembered that it (or some other heuristic approach) might prove to be necessary in those cases where the number of learning technologies and the model size are both large (thus making the rigorous ETL formulation computationally intractable).
+However, given the above caveat, a possible alternative to ETL would consist in using exogenous learning trajectories. To do so, the same sequence of 'realistic' upper bounds on capacity would be selected by the modeler, and the values of the unit investment costs ($INVCOST$) would be externally computed by plugging these upper bounds into the learning formula {eq}`11-1`. This approach makes use of the same exogenous upper bounds as the ETL approach, but avoids the MIP computational burden of ETL. Of course, the running of exogenous learning scenarios is not entirely foolproof, since there is no absolute guarantee that the capacity of a learning technology will turn out to be exactly equal to its exogenous upper bound. If that were not the case, a modified scenario would have to be run, with upper bounds adjusted downward. This trial-and-error approach may seem inelegant, but it should be remembered that it (or some other heuristic approach) might prove to be necessary in those cases where the number of learning technologies and the model size are both large (thus making the rigorous ETL formulation computationally intractable).
 
 
 [^37]: The notation in this chapter is sometimes different from the standard notation for parameters and variables, in order to conform to the more detailed technical note on the subject.
