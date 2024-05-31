@@ -23,7 +23,12 @@ a) CO<sub>2</sub> accumulation is represented as the linear three-reservoir mode
 
 $$M_{atm}(y) = E(y) + (1 - \phi_{atm-up})M_{atm}(y-1) + \phi_{up-atm}M_{up}(y-1)$$ (7-1)
 
-$$M_{up}(y) = (1 - \phi_{up-atm} - \phi_{up-lo})M_{up}(y-1) +\phi_{atm-up}M_{atm}(y-1) + \phi_{lo-up}M_{lo}(y-1)$$ (7-2)
+$$
+\begin{split}
+M_{up}(y) = & (1 - \phi_{up-atm} - \phi_{up-lo})M_{up}(y-1) + \\
+& \phi_{atm-up}M_{atm}(y-1) + \phi_{lo-up}M_{lo}(y-1)
+\end{split}
+$$ (7-2)
 
 $$M_{lo} = (1 - \phi_{lo-ip})M_{lo}(y-1) + \phi_{up-lo}M_{up}(y-1)$$ (7-3)
 
@@ -79,11 +84,21 @@ where:
 
 b) The radiative forcing due to atmospheric CH<sub>4</sub> is given by the following expression (IPCC 2007), where the subscript tot has been omitted
 
-$$\Delta F_{CH_4}(y) = 0.036 \times (\sqrt{CH4_y}-\sqrt{CH4_0}) - (f(CH4_y,N2O_0) - f(CH4_0,N2O_0))$$ (7-8)
+$$
+\begin{split}
+\Delta F_{CH_4}(y) = & 0.036 \times (\sqrt{CH4_y}-\sqrt{CH4_0}) - \\
+& (f(CH4_y,N2O_0) - f(CH4_0,N2O_0))
+\end{split}
+$$ (7-8)
 
 c) The radiative forcing due to atmospheric N<sub>2</sub>O is given by the following expression (IPCC, 2007)
 
-$$\Delta F_{N_2O}(y) = 0.12 \times (\sqrt{N2O_y}-\sqrt{N2O_0}) - (f(CH4_0,N2O_y) - f(CH4_0,N2O_0))$$ (7-9)
+$$
+\begin{split}
+\Delta F_{N_2O}(y) = & 0.12 \times (\sqrt{N2O_y}-\sqrt{N2O_0}) - \\
+& (f(CH4_0,N2O_y) - f(CH4_0,N2O_0))
+\end{split}
+$$ (7-9)
 
 where:
 
@@ -127,7 +142,12 @@ By denoting the pre-industrial concentration level as $M_0$, the general formula
 
 In the TIMES Climate Module as in many other integrated models, climate change is represented by the global mean surface temperature. The idea behind the two-reservoir model is that a higher radiative forcing warms the atmospheric layer, which then quickly warms the upper ocean. In this model, the atmosphere and upper ocean form a single layer, which slowly warms the second layer consisting of the deep ocean.
 
-$$ΔT_{up}(y) = ΔT_{up}(y-1) +σ_1(F(y) - λΔT_{up}(y-1) - σ~2(ΔT_{up}(y-1) - ΔT_{low}(y-1)))$$ (7-11)
+$$
+\begin{split}
+ΔT_{up}(y) = & ΔT_{up}(y-1) + \\
+& σ_1(F(y) - λΔT_{up}(y-1) - σ~2(ΔT_{up}(y-1) - ΔT_{low}(y-1)))
+\end{split}
+$$ (7-11)
 
 $$ΔT_{low}(y) = ΔT_{low}(y-1) + σ_3(ΔT_{up}(y-1) - ΔT_{low}(y-1))$$ (7-12)
 
