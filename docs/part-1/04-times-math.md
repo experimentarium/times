@@ -32,43 +32,50 @@ where the superscript '0' indicates the reference case, and the elasticity $E_i$
 
 With inelastic demands (i.e. pure cost minimization), the TIMES model may be written as the following Linear Program:
 
-$Min\ c \bullet X$ (4 -- 2)
+$$Min \space c \cdot X$$ (4-2)
 
-$s.t\ \sum_{k}^{}{{VAR_{ACT}}_{k,j}(t) \geq {DM}_{i}(t)\ \ \ \ \ i = 1,2,\ldots.,I;t = 1,..,T}$
-(4 -- 3)
+$$s.t.\space \sum_{k}{VAR\_ACT_{k,j}}(t) \geq {DM}_{i}(t) \quad i = 1,2,\ldots,I; \space t = 1,\ldots,T$$ (4-3)
 
-$and\ \ \ B\  \bullet X\  \geq b$ (4 -- 4)
+$$and \quad B \cdot X \geq b$$ (4-4)
 
 where $X$ is the vector of all TIMES variables and $I$ is the number of demand categories. In words:
-- (4-2) expresses the total discounted cost to be minimized. See chapter 5 for details on the list of TIMES variables $X$, and on the cost vector $c$.
-- (4-3) is the set of demand satisfaction constraints (where the $VAR_{ACT}$ variables are the activity levels of end-use technologies, and the $DM$ right-hand-sides are the exogenous demands to satisfy).
-- (4-4) is the set of all other TIMES constraints, which need not be explicated here, and are presented in chapter 5.
+- {eq}`4-2` expresses the total discounted cost to be minimized. See chapter 5 for details on the list of TIMES variables $X$, and on the cost vector $c$.
+- {eq}`4-3` is the set of demand satisfaction constraints (where the $VAR_{ACT}$ variables are the activity levels of end-use technologies, and the $DM$ right-hand-sides are the exogenous demands to satisfy).
+- {eq}`4-4` is the set of all other TIMES constraints, which need not be explicated here, and are presented in chapter 5.
 
-When demand are elastic, TIMES must compute a supply/demand equilibrium of the optimization problem (4-2) through (4-4), where the demand side adjusts to changes in prices, and the prevailing demand prices are the marginal costs of the demand categories (i.e. $p_i$ is the marginal cost of producing demand $DM_i$). *A priori* this seems to be a difficult task, because the demand prices are computed as part of the dual solution to that optimization problem. The Equivalence Theorem, however, states that the equilibrium is reached as the solution of the following mathematical program, where the objective is to maximize the net total surplus:
+When demand are elastic, TIMES must compute a supply/demand equilibrium of the optimization problem {eq}`4-2` through {eq}`4-4`, where the demand side adjusts to changes in prices, and the prevailing demand prices are the marginal costs of the demand categories (i.e. $p_i$ is the marginal cost of producing demand $DM_i$). *A priori* this seems to be a difficult task, because the demand prices are computed as part of the dual solution to that optimization problem. The Equivalence Theorem, however, states that the equilibrium is reached as the solution of the following mathematical program, where the objective is to maximize the net total surplus:
 
-![](assets/image10.png)
+$$Max \sum_i \sum_t \left( p^0_i(t) \cdot [DM^0_i(t)]^{-1/E_i} \cdot \int^{DM_i(t)}_{a} q^{1/E_i} \cdot dq \right) - c \cdot X $$ (4-5)
 
-where $X$ is the vector of all TIMES variables, (4-5) expresses the total net surplus, and $DM(t)$ is now a vector of *variables* in (4-6), rather than fixed demands. The integral in (4-5) is easily computed, yielding the following maximization program:
+$$s.t.\space \sum_{k}{VAR\_ACT_{k,i}}(t) - {DM}_{i}(t) \geq 0 \quad i = 1,\ldots,I; \space t = 1,\ldots,T$$ (4-6)
 
-![](assets/image11.png)
+$$and \quad B \cdot X \geq b$$ (4-7)
+
+where $X$ is the vector of all TIMES variables, {eq}`4-5` expresses the total net surplus, and $DM(t)$ is now a vector of *variables* in {eq}`4-6`, rather than fixed demands. The integral in {eq}`4-5` is easily computed, yielding the following maximization program:
+
+$$Max \sum_i \sum_t \left( p^0_i(t) \cdot [DM^0_i(t)]^{-1/E_i} \cdot {DM_i(t)}^{1+1/E_i} / (1 + 1 / E_i) \right) - c \cdot X $$ (4-5')
+
+$$s.t.\space \sum_{k}{VAR\_ACT_{k,i}}(t) \geq {DM}_{i}(t) \quad i = 1,\ldots,I; \space t = 1,\ldots,T$$ (4-6')
+
+$$and \quad B \cdot X \geq b$$ (4-7')
 
 We are almost there, but not quite, since the $[DM_i(t)]^{-1/E_i}$ are non linear expressions and thus not directly usable in an LP.
 
 ### Linearization of the Mathematical Program
 
-The Mathematical Program embodied in (4-5)', (4-6)' and (4-7)' has a non-linear objective function. Because the latter is separable (i.e. does not include cross terms) and concave in the $DM_i$ variables, each of its terms is easily linearized by piece-wise linear functions which approximate the integrals in (4-5). This is the same as saying that the inverse demand curves are approximated by staircase functions, as illustrated in {numref}`approx-non-linear-obj-function`. By so doing, the resulting optimization problem becomes linear again. The linearization proceeds as follows.
+The Mathematical Program embodied in {eq}`4-5'`, {eq}`4-6'` and {eq}`4-7'` has a non-linear objective function. Because the latter is separable (i.e. does not include cross terms) and concave in the $DM_i$ variables, each of its terms is easily linearized by piece-wise linear functions which approximate the integrals in {eq}`4-5`. This is the same as saying that the inverse demand curves are approximated by staircase functions, as illustrated in {numref}`approx-non-linear-obj-function`. By so doing, the resulting optimization problem becomes linear again. The linearization proceeds as follows.
 
 a) For each demand category $i$ and each time period $t$, the user selects a range $R_i(t)$, i.e. the distance between some values $DM_i(t)_{min}$ and $DM_i(t)_{max}$. The user estimates that the demand value $DM_i(t)$ will always remain within such a range, even after adjustment for price effects (for instance the range could be equal to the reference demand $DM^0_i(t)$ plus or minus 50%).
 
 b) Select a grid that divides each range into a number $n$ of equal width intervals. Let $\beta_i(t)$ be the resulting common width of the grid, $\beta_i(t) = R_i(t)/n$. See {numref}`approx-non-linear-obj-function` for a sketch of the non-linear expression and of its step-wise constant approximation. The number of steps, $n$, should be chosen so that the step-wise constant approximation remains close to the exact value of the function.
 
-c) For each demand segment $DM_i(t)$ define $n$ step-variables (one per grid interval), denoted $s_{1,i}(t)$, $s_{2,i}(t)$, ...,$s_{n,i}(t)$. Each $s$ variable is bounded below by 0 and above by $\beta_i(t)$. One may now replace in equations (4-5)' and (4-6)' each $DM_i(t)$ variable by the sum of the $n$-step variables, and each non-linear term in the objective function by a weighted sum of the $n$-step-variables, as follows:
+c) For each demand segment $DM_i(t)$ define $n$ step-variables (one per grid interval), denoted $s_{1,i}(t)$, $s_{2,i}(t)$, ...,$s_{n,i}(t)$. Each $s$ variable is bounded below by 0 and above by $\beta_i(t)$. One may now replace in equations {eq}`4-5'` and {eq}`4-6'` each $DM_i(t)$ variable by the sum of the $n$-step variables, and each non-linear term in the objective function by a weighted sum of the $n$-step-variables, as follows:
 
-![](assets/image12.png)
+$$DM_i(t) = DM(t)_{min} + \sum^{n}_{j=1}{s_{j,i}(t)}$$ (4-8)
 
-> and
+and
 
-![](assets/image13.png)
+$$DM_t(t)^{1+1/E_i} \cong DM(t)^{1+1/E_i}_{min} + \sum^{n}_{j=1} {A_{j,s,i}(t) \cdot s_{j,i}(t)}$$ (4-9)
 
 The $A_{j,i,t}$ term is equal to the value of the inverse demand function of the $j^{th}$ demand at the mid-point of the $i^{th}$ interval. The resulting Mathematical Program is now fully linearized.
 
@@ -85,7 +92,7 @@ Step-wise constant approximation of the non-linear terms in the objective functi
 
 ### Calibration of the demand functions
 
-Besides selecting elasticities for the various demand categories, the user must evaluate each constant $K_i(t)$. To do so, we have seen that one needs to know one point on each demand function in each time period,$\{p^0_i(t),DM^0_i(t)\}$. To determine such a point, we perform a single preliminary run of the inelastic TIMES model (with exogenous $DM^0_i(t)$), and use the resulting shadow prices $p^0_i(t)$ for all demand constraints, in all time periods for each region.
+Besides selecting elasticities for the various demand categories, the user must evaluate each constant $K_i(t)$. To do so, we have seen that one needs to know one point on each demand function in each time period, $\{p^0_i(t),DM^0_i(t)\}$. To determine such a point, we perform a single preliminary run of the inelastic TIMES model (with exogenous $DM^0_i(t)$), and use the resulting shadow prices $p^0_i(t)$ for all demand constraints, in all time periods for each region.
 
 ### Computational considerations
 
@@ -93,6 +100,6 @@ Each demand segment that is elastic to its own price requires the definition of 
 
 ### Interpreting TIMES costs, surplus, and prices
 
-It is important to note that, instead of maximizing the net total surplus, TIMES minimizes its negative (plus a constant), obtained by changing the signs in expression (4-5). For this and other reasons, it is inappropriate to pay too much attention to the meaning of the *absolute* objective function values. Rather, examining the difference between the objective function values of two scenarios is a far more useful exercise. That difference is of course, the negative of the difference between the net total surpluses of the two scenario runs.
+It is important to note that, instead of maximizing the net total surplus, TIMES minimizes its negative (plus a constant), obtained by changing the signs in expression {eq}`4-5`. For this and other reasons, it is inappropriate to pay too much attention to the meaning of the *absolute* objective function values. Rather, examining the difference between the objective function values of two scenarios is a far more useful exercise. That difference is of course, the negative of the difference between the net total surpluses of the two scenario runs.
 
 Note again that the popular interpretation of shadow prices as the *marginal costs* of model constraints is inaccurate. Rather, the shadow price of a constraint is, by definition, the incremental value of the objective function per unit of that constraint's right hand side (RHS). The interpretation is that of an amount of *surplus loss* per unit of the constraint's RHS. The difference is subtle but nevertheless important. For instance, the shadow price of the electricity balance constraint is not necessarily the marginal cost of producing electricity. Indeed, when the RHS of the balanced constraint is increased by one unit, one of two things may occur: either the system *produces* one more unit of electricity, or else the system *consumes* one unit less of electricity (perhaps by choosing more efficient end-use devices or by reducing an electricity-intensive energy service, etc.) It is therefore correct to speak of shadow prices as the marginal *system value* of a resource, rather than the marginal *cost* of procuring that resource.
