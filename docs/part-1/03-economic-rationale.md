@@ -199,7 +199,7 @@ This property is important inasmuch as it provides an alternative justification 
 
 [^20]: As may be seen in {numref}`eq-supply-demand-endogenous`, the equilibrium is not necessarily unique. In the case shown, any point on the vertical segment containing the equilibrium is also an equilibrium, with the same quantity $Q_E$ but a different price. In other situations, the multiple equilibria may have a single price but multiple quantities.
 
-[^21]: This results from the fact that in TIMES each price $P_i$ is the shadow price of a balance constraint (see section 5.4.4), and may thus be (loosely) expressed as the derivative of the objective function $F$ with respect to the right-hand-side of a balance constraint, i.e. $\partial F/\partial Q_i$. When that price is further differentiated with respect to another quantity $Q_j$, one gets $\partial^2 F/(\partial Q_i . \partial Q_j)$, which, under mild conditions is always equal to $\partial^2 F/(\partial Q_j . \partial Q_i)$, as desired.
+[^21]: This results from the fact that in TIMES each price $P_i$ is the shadow price of a balance constraint (see section 5.4.4), and may thus be (loosely) expressed as the derivative of the objective function $F$ with respect to the right-hand-side of a balance constraint, i.e. $\partial F/\partial Q_i$. When that price is further differentiated with respect to another quantity $Q_j$, one gets $\partial^2 F/(\partial Q_i \cdot \partial Q_j)$, which, under mild conditions is always equal to $\partial^2 F/(\partial Q_j \cdot \partial Q_i)$, as desired.
 
 [^22]: See e.g. Samuelson and Nordhaus (1977)
 

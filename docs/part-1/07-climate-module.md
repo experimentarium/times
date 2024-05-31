@@ -64,8 +64,7 @@ $$
 
 We assume, as is routinely done in atmospheric science, that the atmospheric radiative forcings caused by the various gases are additive (IPCC, 2007). Thus:
 
-$$\Delta F(y) = \Delta F_{CO_2}(y) + \Delta F_{CH_4}(y) + \Delta F_{N_2O}(y) + EXOFOR(y) $$
-(7-7)
+$$\Delta F(y) = \Delta F_{CO_2}(y) + \Delta F_{CH_4}(y) + \Delta F_{N_2O}(y) + EXOFOR(y)$$ (7-7)
 
 We now explain these four terms.
 
@@ -80,8 +79,7 @@ where:
 
 b) The radiative forcing due to atmospheric CH<sub>4</sub> is given by the following expression (IPCC 2007), where the subscript tot has been omitted
 
-$$\Delta F_{CH_4}(y) = 0.036 \times (\sqrt{CH4_y}-\sqrt{CH4_0}) - (f(CH4_y,N2O_0) - f(CH4_0,N2O_0))$$
-(7-8)
+$$\Delta F_{CH_4}(y) = 0.036 \times (\sqrt{CH4_y}-\sqrt{CH4_0}) - (f(CH4_y,N2O_0) - f(CH4_0,N2O_0))$$ (7-8)
 
 c) The radiative forcing due to atmospheric N<sub>2</sub>O is given by the following expression (IPCC, 2007)
 
@@ -117,7 +115,8 @@ By denoting the pre-industrial concentration level as $M_0$, the general formula
 
   *Underestimate:*    
   
-  $$F_{2}(M) = \gamma \times \ln(M_{1}/M_{0})/\ln 2 + slope \times (M - M_{1})$$                                                                                                                           
+  $$F_{2}(M) = \gamma \times \ln(M_{1}/M_{0})/\ln 2 + slope \times (M - M_{1})$$
+  
   where: $slope = \gamma \times \frac{\ln(M_{2}/M_{1})/\ln 2}{(M_{2} - M_{1})}$                                                                      
 
   *Final approximation*: 
