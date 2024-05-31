@@ -192,4 +192,4 @@ However, given the above caveat, a possible alternative to ETL would consist in 
 
 [^37]: The notation in this chapter is sometimes different from the standard notation for parameters and variables, in order to conform to the more detailed technical note on the subject.
 
-[^38]: It is usual to define, instead of $b$, another parameter, $pr$ called the *progress ratio*, which is related to $b$ via the following relationship:![](assets/image25.png). Hence, $1-pr$ is the cost reduction incurred when cumulative investment is doubled. Typical observed $pr$ values are in a range of 0.75 to 0.95.
+[^38]: It is usual to define, instead of $b$, another parameter, $pr$ called the *progress ratio*, which is related to $b$ via the following relationship: $pr=2^{-b}$. Hence, $1-pr$ is the cost reduction incurred when cumulative investment is doubled. Typical observed $pr$ values are in a range of 0.75 to 0.95.
