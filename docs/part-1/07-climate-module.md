@@ -43,7 +43,7 @@ $${CH4}_{tot}(y) = {CH4}_{atm}(y) + {CH4}_{up}(y)$$ (7-6)
 
 where
 
-- $CH4_{atm}$, $CH4_{up}$, $CH4_{tot}$, and $EA_{CH_4}$ are respectively: the anthropogenic atmospheric concentration, the natural atmospheric concentration[^34], the total atmospheric concentration (all three expressed in $Mt$), and the anthropogenic emission of CH<sub>4</sub> (expressed in $Mt/yr$). The anthropogenic emissions $EA_{CH_4}$ are generated within the model and enter the dynamic equation (7-4) in order to derive the anthropogenic concentration. Note that the natural concentration $CH4_{up}$ is constant at all times. (See initial values for these and other parameters in Part II, Appendix A.)
+- $CH4_{atm}$, $CH4_{up}$, $CH4_{tot}$, and $EA_{CH_4}$ are respectively: the anthropogenic atmospheric concentration, the natural atmospheric concentration[^34], the total atmospheric concentration (all three expressed in $Mt$), and the anthropogenic emission of CH<sub>4</sub> (expressed in $Mt/yr$). The anthropogenic emissions $EA_{CH_4}$ are generated within the model and enter the dynamic equation {eq}`7-4` in order to derive the anthropogenic concentration. Note that the natural concentration $CH4_{up}$ is constant at all times. (See initial values for these and other parameters in Part II, Appendix A.)
 - $CH4_{tot}$ is then reported and used in the forcing equations. All quantities are indexed by year.
 - $1 - \Phi_{CH_4}$ is the one-year retention rate of CH<sub>4</sub> in the atmosphere.
 - $d_{CH_4} = 2.84$ (the density of CH<sub>4</sub>, expressed in $Mt/ppbv$) is then used to convert concentration in $Mt$ into $ppbv$ for reporting purposes.
@@ -93,7 +93,7 @@ Note that the $f(x,y)$ function, which quantifies the cross-effects on forcing o
 
 d) $EXOFOR(y)$ is the increase in total radiative forcing at period t relative to pre-industrial level due to GHG's that are not represented explicitly in the model. Units = $W/m^2$. In Nordhaus and Boyer (1999), only emissions of CO<sub>2</sub> were explicitly modeled, and therefore $EXOFOR(y)$ accounted for all other GHG's. In TIMES, N<sub>2</sub>O and CH<sub>4</sub> are fully accounted for, but some other substances are not (e.g. CFC's, aerosols, ozone, volcanic activity, etc.). Therefore, the values for $EXOFOR(y)$ will differ from those in Nordhaus and Boyer (1999). It is the modeler's responsibility to include in the calculation of $EXOFOR(y)$ the forcing from only those gases and other causes that are not modeled. The careful modeler may also want to adapt the $EXOFOR$ trajectory to particular scenarios. This has been done using alternative trajectories for $EXOFOR$ provided by other models, as was done in a multi-model, multi-scenario study conducted at the Energy Modeling Forum (Clarke et al., 2009)
 
-The parameterization of the three forcing equations (7-8, 7-9, and 7-10) is not controversial and relies on the results reported by Working Group I of the IPCC. IPCC (2001, Table 6.2, p.358) provides a value of 3.7 for $γ$, smaller than the one used by Nordhaus and Boyer ($γ = 4.1$). We have adopted this lower value of 3.7 $W/m^2$ as default in TIMES. Users are free to experiment with other values of the γ parameter. The same reference provides the entire expressions for all three forcing equations.
+The parameterization of the three forcing equations ({eq}`7-8`, {eq}`7-9`, and {eq}`7-10`) is not controversial and relies on the results reported by Working Group I of the IPCC. IPCC (2001, Table 6.2, p.358) provides a value of 3.7 for $γ$, smaller than the one used by Nordhaus and Boyer ($γ = 4.1$). We have adopted this lower value of 3.7 $W/m^2$ as default in TIMES. Users are free to experiment with other values of the γ parameter. The same reference provides the entire expressions for all three forcing equations.
 
 ## Linear approximations of the three forcings
 
@@ -149,7 +149,6 @@ with
 
 For more details on the implementation of the Climate Module in TIMES, including parameters, variables, and equations, as represented in the TIMES code, see Appendix A of Part II.
 
-------------
 
 [^32]: Other important GHG's such as CH<sub>4</sub> and N<sub>2</sub>O may either be expressed in CO<sub>2</sub>-equivalent, or a special exogenous forcing term may be added to CO<sub>2</sub> forcing. The latter approach is not attractive as it keeps two major GHG's fully exogenous.
 
