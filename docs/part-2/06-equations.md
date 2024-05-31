@@ -4,7 +4,7 @@ This chapter is divided into four sections: the first section describes the main
 
 Each equation has a unique name and is described in a separate subsection. The equations are listed in alphabetical order in each section. Each subsection contains successively the name, list of indices, and type of the equation, the related variables and other equations, the purpose of the equation, any particular remarks applying to it, and finally the mathematical expression of the constraint or objective function.
 
-The mathematical formulation of an equation starts with the name of the equation in the format: *EQ_XXX~i,j,k,l~* , where *XXX* is a unique equation identifier, and *i,j,k,..,* are the *equation indexes*, among those described in chapter 2. Some equation names also include an index *l* controlling the sense of the equation. Next to the equation name is a *logical condition* that the equation indexes must satisfy. That condition constitutes the *domain of definition* of the equation. It is useful to remember that the equation is created in multiple instances, one for each combination of the equation indexes that satisfies the logical condition, and that each index in the equation's index list remains *fixed* in the expressions constituting each instance of the equation.
+The mathematical formulation of an equation starts with the name of the equation in the format: $EQ\_XXX_{i,j,k,l}$, where $XXX$ is a unique equation identifier, and $i,j,k,..,$ are the *equation indexes*, among those described in chapter 2. Some equation names also include an index *l* controlling the sense of the equation. Next to the equation name is a *logical condition* that the equation indexes must satisfy. That condition constitutes the *domain of definition* of the equation. It is useful to remember that the equation is created in multiple instances, one for each combination of the equation indexes that satisfies the logical condition, and that each index in the equation's index list remains *fixed* in the expressions constituting each instance of the equation.
 
 ## Notational conventions 
 
@@ -18,17 +18,17 @@ However, in order to improve the writing and legibility of all expressions, we u
 
 ### Notation for summations 
 
-When an expression *A(i,j,k,...)* is summed, the summation must specify the range over which the indexes are allowed to run. Our notational conventions are as follows:
+When an expression $A(i,j,k,...)$ is summed, the summation must specify the range over which the indexes are allowed to run. Our notational conventions are as follows:
 
 When a single index j runs over a one-dimensional set A, the usual notation is used, as in: $\sum_{j \in A}^{}{Expression_{j}}$ where *A* is a single dimensional set. 
 
 When a summation must be done over a subset of a multi-dimensional set, we use a simplified notation where some of the running indexes are omitted, if they are not active for this summation.
 
-[Example]{.underline}: consider the 3-dimensional set *top* consisting of all quadruples *{r,p,c,io}* such that process *p* in region *r*, has a flow of commodity *c* with orientation *io* (see table 3 of chapter 2). If is it desired to sum an expression *A~r,p,c,io~* over all commodities c, keeping the region (r), process (p) and orientation (io) fixed respectively at *r~1~*, *p~1~* and 'IN', we will write, by a slight abuse of notation: $\sum_{c \in top(r_{1},p_{1},'IN')}^{}{A(r_{1},p_{1},c,'IN')}$ , or even more simply:
+[Example]{.underline}: consider the 3-dimensional set *top* consisting of all quadruples $\{r,p,c,io\}$ such that process $p$ in region $r$, has a flow of commodity $c$ with orientation $io$ (see table 3 of chapter 2). If is it desired to sum an expression $A_{r,p,c,io}$ over all commodities $c$, keeping the region ($r$), process ($p$) and orientation ($io$) fixed respectively at $r_1$, $p_1$ and 'IN', we will write, by a slight abuse of notation: $\sum_{c \in top(r_{1},p_{1},'IN')}^{}{A(r_{1},p_{1},c,'IN')}$ , or even more simply:
 
-$\sum_{c \in top}^{}{A(r_{1},p_{1},c,'IN')}$, if the context is unambiguous. Either of these notations clearly indicates that *r, p* and *io* are fixed and that the only active running index is *c*.
+$\sum_{c \in top}^{}{A(r_{1},p_{1},c,'IN')}$, if the context is unambiguous. Either of these notations clearly indicates that $r$, $p$ and $io$ are fixed and that the only active running index is $c$.
 
-(The traditional mathematical notation would have been: $\sum_{\{ r_{1},p_{1},c,'IN'\} \in top}^{}{A(r_{1},p,c_{1},'IN')}$, but this may have hidden the fact that *c* is the only running index active in the sum).
+(The traditional mathematical notation would have been: $\sum_{\{ r_{1},p_{1},c,'IN'\} \in top}^{}{A(r_{1},p,c_{1},'IN')}$, but this may have hidden the fact that $c$ is the only running index active in the sum).
 
 ### Notation for logical conditions 
 
@@ -220,13 +220,16 @@ Here, we make what appears to be the most natural assumption, i.e. that the inve
 
 *EQ_INVCOST(y)*
 
-$INVCOST(y) = \sum_{t \in MILESTONE \cup PASTYRS}^{}{INDIC(1.a)} \times \sum_{v = Max\{ M(t) - D(t) + 1,y - ELIFE_{t} + 1\}}^{Min\{ M(t),y\}}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)
-$$$
-{\times CRF_{s} \times NCAP\_ COST_{v}
-}
-{UsefulRangefory:
-}{
-\left\{ M(t) - D(t) + 1,M(t) + ELIFE_{t} - 1 \right\}}$$ **(I.1.a)**
+$$
+INVCOST(y) = \sum_{t \in MILESTONE \cup PASTYRS}^{}{INDIC(1.a)} \times \sum_{v = Max\{ M(t) - D(t) + 1,y - ELIFE_{t} + 1\}}^{Min\{ M(t),y\}}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)
+\times CRF_{s} \times NCAP\_COST_{v}
+$$
+
+Useful range for $y$:
+
+$$\left \{ M(t) - D(t) + 1, M(t) + ELIFE_{t} - 1 \right \}$$
+
+**(I.1.a)**
 
 *Comments*: The summand represents the payment effected in year *y,* due to the investment increment that occurred in year *v* (recall that investment payments are spread over *ELIFE*). The summand consists of three factors: the first is the amount of investment in year *v*, the second is the capital recovery factor, and the third is the unit investment cost.
 
@@ -236,7 +239,7 @@ The outer summation is over all periods (note that periods later than *T(y)* are
 
 **Small projects, repeated investments in period**
 
-Note that in this case the investment is repeated as many times as necessary to cover the period length (see figure). In this case, the assumption that the investment is spread over *D(t)* years is not realistic. It is much more natural to spread the investment over the technical life of the process being invested in, because this ensures a smooth, constant stream of small investments during the whole period (any other choice of the time span over which investment is spread, would lead to an uneven stream of incremental investments). The number of re-investments in the period is called *C*, and is easily computed so as to cover the entire period. As a result of this discussion, the first investment cycle starts at year $\left\langle B(t) - TLIFE_{t}/2 \right\rangle$ (meaning the smallest integer not less than the operand), and ends *TLIFE* years later, when the second cycle starts, etc, as many times as necessary to cover the entire period. The last cycle extends over the next period(s), and that is taken into account in the capacity transfer equations of the model. As before, each capacity increment results in a stream of *ELIFE* payments at years *v, v*+1, etc.
+Note that in this case the investment is repeated as many times as necessary to cover the period length (see figure). In this case, the assumption that the investment is spread over $D(t)$ years is not realistic. It is much more natural to spread the investment over the technical life of the process being invested in, because this ensures a smooth, constant stream of small investments during the whole period (any other choice of the time span over which investment is spread, would lead to an uneven stream of incremental investments). The number of re-investments in the period is called $C$, and is easily computed so as to cover the entire period. As a result of this discussion, the first investment cycle starts at year $\langle B(t) - TLIFE_{t}/2 \rangle$ (meaning the smallest integer not less than the operand), and ends *TLIFE* years later, when the second cycle starts, etc, as many times as necessary to cover the entire period. The last cycle extends over the next period(s), and that is taken into account in the capacity transfer equations of the model. As before, each capacity increment results in a stream of *ELIFE* payments at years $v$, $v+1$, etc.
 
 ![](assets/case-1b-example.svg)
 
@@ -248,11 +251,7 @@ height="7.507655293088364e-3in"}
 
 Relevant range for $y$:
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$\{ \langle B(t) - TLIFE_{t}/2 \rangle, \langle B(t) - TLIFE_{t}/2 \rangle + C \times TLIFE_{t} + ELIFE_{t}-2\}$$
 
 **(I.1.b)**
 
@@ -276,12 +275,15 @@ INVCOST(y) =
 $$
 
 Useful Range for $y$:
+
 $$
 {\{ B(t),B(t) + ILED_{t} + ELIFE_{t} - 2\} \quad for \space ILED_{t} \geq 1}
 $$
+
 $$
 {\{ B(t) + ILED_{t},B(t) + ELIFE_{t} - 2\} \quad for \space ILED_{t} \leq -1}
 $$
+
 (**I.2.a**)
 
 *Comments:* The main difference with case I.1.a) is that the investment's construction starts at year *B(t)* and ends at year $B(t)+ILED_t-1$ (see example). As before, payments for each year's construction spread over *ELIFE* years. Equation I.2.a also shows the impact of negative *ILED*s, which is simply a shift of the lead-time *ILED* years backwards.
@@ -811,22 +813,19 @@ $${\mathbf{SALVINV(EOH + 1) =}\sum_{\mathbf{t}}^{}{\mathbf{VAR\_ NCA}\mathbf{P}_
 
 **B). Savage value of decommissioning costs (from subsection 6.2.4)**
 
-For decommissioning costs, it should be clear that the triggering of salvage is still the fact that some residual life of the *investment itself* exists at *EOH+1*. What matters is *not* that the decommissioning occurs after EOH, but that some of the investment life extends beyond EOH. Therefore, Result 1 derived above for investment costs, still applies to decommissioning. Furthermore, the correction factor due to the use of technology specific discount rates is also still applicable (with *ELIFE* replaced by *DELIF*).
+For decommissioning costs, it should be clear that the triggering of salvage is still the fact that some residual life of the *investment itself* exists at $EOH+1$. What matters is *not* that the decommissioning occurs after EOH, but that some of the investment life extends beyond EOH. Therefore, Result 1 derived above for investment costs, still applies to decommissioning. Furthermore, the correction factor due to the use of technology specific discount rates is also still applicable (with *ELIFE* replaced by *DELIF*).
 
-However, the further discounting of the salvage to bring it to *EOH+1* is now different from the one used for investments. The discounting depends on the year *l* when the decommissioning occurred and is thus equal to:
+However, the further discounting of the salvage to bring it to $EOH+1$ is now different from the one used for investments. The discounting depends on the year *l* when the decommissioning occurred and is thus equal to:
 
-(1+*d*)^*EOH*+1--*l*^  where  *l*  is the year when decommissioning
-occurs.
+$(1+d)^{EOH+1-l}$  where $l$ is the year when decommissioning occurs.
 
-*l* depends on each case and will be computed below:
+$l$ depends on each case and will be computed below:
 
-In cases 1.a and 1.b, *l=TLIFE + k*
+In cases 1.a and 1.b, $l=TLIFE + k$
 
-In case 2.a *k* is fixed at *B(t)+ILED*, but *l* varies from *(B(t)+ILED+TLIFE+DLAG)* to *(same +DLIFE--1)*
+In case 2.a $k$ is fixed at $B(t)+ILED$, but $l$ varies from $(B(t)+ILED+TLIFE+DLAG)$ to $(same +DLIFE-1)$
 
-In case 2.b *k* is fixed at *B(t)+ILED+(C--1)*×*TLIFE*, but *l* varies from *(B(t)+ILED+C*×*TLIFE+DLAG)* *to*
-
-> *(same + DLIFE--1)*
+In case 2.b $k$ is fixed at $B(t) + ILED + (C - 1) \times TLIFE$, but $l$ varies from $(B(t) + ILED + C \times TLIFE + DLAG)$ to $(same + DLIFE-1)$
 
 It is helpful to look at the examples for each case in order to understand these expressions.
 
@@ -898,7 +897,7 @@ $${\mathbf{SALVDECOM(EOH + 1) =}\sum_{\mathbf{t}\mathbf{\in}\mathbf{MILESTONYEAR
 
 **C) Salvage Value of Surveillance Costs**
 
-Similarly to the salvaging of decommissioning costs, the basic salvage value fractions *S(k,m)* defined in *Result 1* at the beginning of Section 6.2.9 are used as the basis for the salvage value of surveillance costs. However, unlike with decommissioning costs, there is no need to make corrections for technology-specific discount rates, as the costs do not represent capital costs. In addition, the discounting to *EOH+1* must be made separately for each surveillance year. Note that only Cases 2 have surveillance costs.
+Similarly to the salvaging of decommissioning costs, the basic salvage value fractions $S(k,m)$ defined in *Result 1* at the beginning of Section 6.2.9 are used as the basis for the salvage value of surveillance costs. However, unlike with decommissioning costs, there is no need to make corrections for technology-specific discount rates, as the costs do not represent capital costs. In addition, the discounting to $EOH+1$ must be made separately for each surveillance year. Note that only Cases 2 have surveillance costs.
 
 **Case 2.a:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${ILED}_{t} + {TLIFE}_{t} \geq {D(t)}$
 
@@ -945,10 +944,10 @@ selected base year.
 
 ### Known issues in the standard objective function formulation
 
-There are a few known issues in the standard objective function formulation that may cause small distortions in the cost accounting and, subsequently, in the relative competitiveness of technologies. The distortions only occur when using period lengths D(t) \> 1. The issues can be briefly summarized as follows:
+There are a few known issues in the standard objective function formulation that may cause small distortions in the cost accounting and, subsequently, in the relative competitiveness of technologies. The distortions only occur when using period lengths $D(t) > 1$. The issues can be briefly summarized as follows:
 
 - In the investment cases 1.a and 1.b, the timing of the annual payments for the investment costs and fixed operation and maintenance costs are not fully in sync with the assumed amounts of available capacity. Although the effective difference is usually quite small, with longer periods having an even number of years, the distortion may become considerable.
-- In the investment cases 1.a and 1.b, the spreading of the investment cost over D(t) or TLIFE(p) years causes some distortions in the salvage value accounting, which are at the highest in cases where B(v)+TLIFE = EOH+1, (capacity is retired exactly at the end of the horizon), because in such cases the capacity is assumed fully available within the model horizon, but it still has a salvage value according to the standard formulation.
+- In the investment cases 1.a and 1.b, the spreading of the investment cost over $D(t)$ or $TLIFE(p)$ years causes some distortions in the salvage value accounting, which are at the highest in cases where $B(v)+TLIFE = EOH+1$, (capacity is retired exactly at the end of the horizon), because in such cases the capacity is assumed fully available within the model horizon, but it still has a salvage value according to the standard formulation.
 - In all investment cases, the capacity is assumed to be available in each period according to the proportion of the period being covered by the years \[B(v)+ILED(v),B(v)+ILED(v)+TLIFE(v)--1\]. If all periods contain only a single year, this is quite accurate, but, due to discounting, it is no longer accurate with longer periods. That is because any capacity available in year y has a larger value than the same capacity available in year y+1. But again, this causes only a small distortion in the cost accounting.
 - With variable period lengths, investments for period t can start even before the previous milestone year t--1. If the investment costs are changing over time, in such cases the costs are not accounted in a fully consistent way, because the investment cost data is taken from the start year of each investment step.
 
@@ -981,31 +980,26 @@ hold for step 2:
 - Decommissioning costs in Cases 1 can be assumed to be paid in the mid-point of the year, because in these cases decommissioning is assumed to take exactly one year, and one may assume that, on the average, the costs occur at the mid-point. 
 - The lump-sum decommissioning costs in Cases 2 *(NCAP_DCOST/DLIFE)* can be assumed to occur at the mid-point of each year within the decommissioning lifetime. Therefore, no change is needed in the discounting of the annualized payments.
 
-Consequently, the initial overall conclusion is that the only correction needed in the discounting of various cost components is related to the investment costs in Cases 1. If we assume that the Capital Recovery Factor used in the beginning-of-year discounting (*CRF~beg~*) is still valid for mid-year discounting, we should simply shift the position of both the lump-sum investment and the annualized payments half a year backwards. In terms of discounting, this means that in Cases 1 the annualized investment payments should be multiplied by the factor (1+*d(y)*)^0.5^, where *d(y)* is the **general discount rate**. Perhaps the simplest way to apply this correction in the objective function is to make the adjustment to the Capital Recovery Factor. Thus, for Cases 1 we could define a \'CRF corrected for mid-year discounting\' (*CRF~1,mid~*) as follows:
+Consequently, the initial overall conclusion is that the only correction needed in the discounting of various cost components is related to the investment costs in Cases 1. If we assume that the Capital Recovery Factor used in the beginning-of-year discounting ($CRF_{beg}$) is still valid for mid-year discounting, we should simply shift the position of both the lump-sum investment and the annualized payments half a year backwards. In terms of discounting, this means that in Cases 1 the annualized investment payments should be multiplied by the factor $(1+d(y))^{0.5}$, where $d(y)$ is the **general discount rate**. Perhaps the simplest way to apply this correction in the objective function is to make the adjustment to the Capital Recovery Factor. Thus, for Cases 1 we could define a \'CRF corrected for mid-year discounting\' (*CRF~1,mid~*) as follows:
 
-> *CRF~1,mid~* = *CRF~beg~* × *(*1+*d*(*T*(y)))^0.5^
+$$CRF_{1,mid} = CRF_{beg} \times (1+d(T(y)))^{0.5}$$
 
-However, one could additionally argue that the Capital Recovery Factor *CRF~beg~* is no longer valid for mid-year discounting. The annualized investment payments can also be assumed to represent a continuous stream of costs, which should thus be assumed to be paid at the mid-point of each year. The shortcoming of the original *CRF~beg~* can be seen by calculating its value for an investment with an economic lifetime of just one year. The value of *CRF~beg~* is in this case exactly 1, although it seems obvious that some interest should be involved as well. Assu­ming that the single payment represents a continuous stream of costs, the payment can be as­sumed to occur at the mid-point of the year, and would thus include interest for half-year\'s time.
+However, one could additionally argue that the Capital Recovery Factor $CRF_{beg}$ is no longer valid for mid-year discounting. The annualized investment payments can also be assumed to represent a continuous stream of costs, which should thus be assumed to be paid at the mid-point of each year. The shortcoming of the original $CRF_{beg}$ can be seen by calculating its value for an investment with an economic lifetime of just one year. The value of $CRF_{beg}$ is in this case exactly 1, although it seems obvious that some interest should be involved as well. Assu­ming that the single payment represents a continuous stream of costs, the payment can be as­sumed to occur at the mid-point of the year, and would thus include interest for half-year\'s time.
 
-Accordingly, we should correct the definition of the *CRF proper* by assuming that the annualized payments occur *half a year forward* in time with respect to the lump-sum investment, which means that we must increase the nominal size of the payments by the corresponding interest for the half-year\'s time. Combining these corrections together, the general discount rate *d*(*y*) should be simply replaced by the **tech­nology-specific discount rate** *d~S~*(*T*(*y*)) in the expression above, because in addition to the nominal change in the *CRF*, the time of the annualized payments has been restored back to original. However, to maintain consistency bet­ween Cases 1 and 2, the same basic correction to the *CRF proper* should be applied to all cases. Therefore, the total adjust­ments needed when taking into account the correction to the *CRF proper* are the following:
+Accordingly, we should correct the definition of the *CRF proper* by assuming that the annualized payments occur *half a year forward* in time with respect to the lump-sum investment, which means that we must increase the nominal size of the payments by the corresponding interest for the half-year\'s time. Combining these corrections together, the general discount rate $d(y)$ should be simply replaced by the **tech­nology-specific discount rate** $d_S(T(y))$ in the expression above, because in addition to the nominal change in the *CRF*, the time of the annualized payments has been restored back to original. However, to maintain consistency bet­ween Cases 1 and 2, the same basic correction to the *CRF proper* should be applied to all cases. Therefore, the total adjust­ments needed when taking into account the correction to the *CRF proper* are the following:
 
-+-------------------------------------------------------------+--------+
-| > ![](assets/image30.png){width="0.75in" height="0.3125in"}  | (XI.1) |
-| > =  *CRF~beg~* × (1+*d~S~*(*T*(*y*)))^0.5^                 |        |
-+-------------------------------------------------------------+--------+
-| > *CRF~1,mid~* = ![](assets/image30.png){width="0.75in"      | (XI.2) |
-| > height="0.3125in"}× (1+*d*(*T*(*y*)))^0.5^ ×              |        |
-| > (1+*d*(*T*(*y*)))^--0.5^ =\                               |        |
-| > *CRF~beg~* × (1+*d~S~*(*T*(*y*)))^0.5^                    |        |
-+-------------------------------------------------------------+--------+
-| > *CRF~2,mid~*  =  ![](assets/image30.png){width="0.75in"    | (XI.3) |
-| > height="0.3125in"}× (1+*d*(*T*(*y*)))^--0.5^ =  \         |        |
-| > *CRF~beg~* × (1+*d*(*T*(*y*)))^--0.5^ ×                   |        |
-| > (1+*d~S~*(*T*(*y*)))^0.5^                                 |        |
-+-------------------------------------------------------------+--------+
+$$CFR_{mid}^{proper} = CRF_{beg} \times (1 + d_S(T(y)))^{0.5}$$
 
+(XI.1)
 
-Consequently, in both cases the annualized investment payments are then assumed to occur at the mid-point of each fiscal year starting at the time of the lump-sum investment, and the annual payments are equivalent to the lump-sum investment when discounted back to that point by the technology-specific discount rate. The implementation of the optional corrections for mid-year discounting corresponds to equations (XI.1 to XI.3). To be consistent, the expression (XI.3) for *CRF~2,mid~* should also be used for decommissioning costs.
+$$CRF_{1,mid} = CFR_{mid}^{proper} \times (1+d(T(y)))^{0.5} \times (1+d(T(y)))^{-0.5} = CRF_{beg} \times (1+d_S(T(y)))^{0.5}$$
+
+(XI.2)
+
+$$CRF_{2,mid} = CFR_{mid}^{proper} \times (1+d(T(y)))^{-0.5} = CRF_{beg} \times (1+d(T(y)))^{-0.5} \times (1+d_S(T(y)))^{0.5}$$
+(XI.3)
+
+Consequently, in both cases the annualized investment payments are then assumed to occur at the mid-point of each fiscal year starting at the time of the lump-sum investment, and the annual payments are equivalent to the lump-sum investment when discounted back to that point by the technology-specific discount rate. The implementation of the optional corrections for mid-year discounting corresponds to equations (XI.1 to XI.3). To be consistent, the expression (XI.3) for $CRF_{2,mid}$ should also be used for decommissioning costs.
 
 ## Constraints
 
