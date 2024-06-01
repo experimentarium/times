@@ -243,11 +243,12 @@ Note that in this case the investment is repeated as many times as necessary to 
 
 ![](assets/case-1b-example.svg)
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$
+\begin{multline}
+INVCOST(y) = \sum_{t \in MILESTONE} INDIC(1.b) \times \\
+\sum_{v=Max \{ \langle B(t) - TLIFE_t / 2\rangle, y-ELIFE_t+1\}}^{Min\{y,\langle B(t) - TLIFE_t / 2\rangle + C \times TLIFE_t-1\}} \frac{VAR\_NCAP_t}{TLIFE_t} \times CRF_s \times NCAP\_COST_v
+\end{multline}
+$$
 
 Relevant range for $y$:
 
@@ -306,39 +307,31 @@ $$
 
 **[Step 1:]{.underline}** Compute number of repetitions of investment
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$C = \left\langle \frac{D(t)-ILED_t}{TLIFE_t} \right\rangle$$
 
 **[Step 2:]{.underline}** for each year $u$ in range:
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}Compute:
+$$B(t) \leq u \leq B(t) + ILED_t + (C-1) \cdot TLIFE_t - 1$$
+
+Compute:
+
+$For \space I=1 \space to \space C$
+     $For \space u=B(t)+(I-1) \cdot TLIFE_t \space to \space B(t) + (I-1) \cdot TLIFE_t + ILED_t -1$
+           $NI_t(t):=NI_t(u)+\frac{NCAP\_COST_{B(t)+(I-1)\times TLIFE_t + ILED_t}}{ILED_t}$
+     $Next \space u$
+$Next \space I$
 
 **[Step 3:]{.underline}** Compute payments incurred in year $y$, and resulting from variable $VAR\_NCAP_t$
 
 For each $y$ in range:
 
-> **(I.2.b)**![{\"mathml\":\"\<math
-> style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-> for Microsoft
-> Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-> height="7.507655293088364e-3in"}
+$$B(t) \leq y \leq B(t) + (C-1) \cdot TLIFE_t + ILED_t + ELIFE_t - 2$$
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}Compute:
+**(I.2.b)**
+
+Compute:
+
+$$P_t(y) = \sum_{u=Max\{B(t), y-ELIFE_t+1\}}^{y} {NI_t(u) \times VAR\_CAP_t \times CRF_s}$$
 
 **[END ALGORITHM]{.underline}**
 
@@ -373,7 +366,7 @@ INVDECOM(y) =
 \sum_{\begin{aligned}
  & t \in MILESTONES \cup PASTYEARS \\
  & t \leq T(y)
-\end{aligned}}^{}{INDIC(1.a) \times \left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right) \times NCAP\_ DCOST_{y - TLIFE_{t}}}
+\end{aligned}}^{}{INDIC(1.a) \times \left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right) \times NCAP\_DCOST_{y - TLIFE_{t}}}
 \times \left\{ \begin{aligned}
  & 1 \quad if \space M(t) - D(t) + 1 + TLIFE_{t} + DLAG_{t} \leq y \leq M(t) + TLIFE_{t} + DLAG_{t} \\
  & 0 \quad otherwise
@@ -391,13 +384,21 @@ $$
 
 This cost expression is similar to I.1.b, but with payments shifted to the right by *TLIFE* (see example). The inner summation disappears because of the assumption that $DELIF=1$. Note also that past investments have no effect in this case, because this case does not arise when $D(t)=1$, which is always the case for past periods.
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$
+INVDECOM(y) = 
+\sum_{\begin{aligned}
+ & t \in MILESTONES \\
+ & t \leq T(y)
+\end{aligned}}^{}{INDIC(1.b) \times \left( \frac{VAR\_NCAP_{t}}{TLIFE_t}\right) \times NCAP\_DCOST_{y - TLIFE_{t}}}
+\times \left\{ \begin{aligned}
+ & 1 \quad if \space B(t) + \left[ \frac{TLIFE_t}{2} \right] \leq y \leq B(t) + \left[ \frac{TLIFE_t}{2} \right] + C \cdot TLIFE_t - 1 \\
+ & 0 \quad otherwise
+\end{aligned} \right.\ 
+$$
 
-> **(III.1.b)**
+where $C=\left\langle\frac{D(t)}{TLIFE_t}\right\rangle$
+
+**(III.1.b)**
 
 ![](assets/case-1b-example-3.svg)
 
@@ -415,12 +416,12 @@ $${INVDECOM(y) =
 }
 {+ \sum_{t \in PASTYEARS}^{}{INDIC(2.a)} \times \sum_{k = Max\left\{ t + TLIFE_{t} + DLAG_{t},y - DELIF_{t} + 1 \right\}}^{Min\{ y,t + TLIFE_{t} + DLAG_{t} + DLIFE_{t} - 1\}}\left( \frac{NCAP\_ PASTI_{t}}{DLIFE_{t}} \right) \times CRF_{s} \times NCAP\_ DCOST_{t}}$$
 
-> **(III.2.a)**
+**(III.2.a)**
 
 Useful Range for $y$:
 
 $$
-{B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} - 1, \space same + DELIF_{t} - 1}
+\{B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} - 1, \space same + DELIF_{t} - 1\}
 $$
 
 ![](assets/case-2a-example-2.svg)
@@ -471,19 +472,11 @@ There are two types of fixed annual costs, *FIXCOST(y)*, which is incurred each 
 
 In TIMES, any capacity may also be retired before the end of its technical lifetime, if so-called early retirements are enabled for a process. In such cases, the plant is assumed to be irrevocably shut down, and therefore fixed O&M costs would no longer occur. This situation is not taken into account in the standard formulations given below, but it has been taken into account in the model generator. To see that the expressions for the fixed annual costs, taxes and subsidies could be easily adjusted for early retirements, consider the standard expressions for *FIXCOST(y)*, which can all be written as follows.
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$missing \space expression$$
 
 Here, $CF_{r,v,p,y}$ is the compound fixed cost coefficient for each capacity vintage in year $y$, as obtained from the original expressions for $FIXCOST(y)$. Recalling that fixed costs are accounted only within the model horizon, these expressions can be adjusted as follows:
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$missing \space expression$$
 
 As one can see, the expressions for $FIXCOST(r,y)$ can be augmented in a straightforward manner, obtaining the expressions $FIXCOST°(r,y)$ that take into account early capacity retirements of each vintage, represented by the $VAR\_SCAP_{r,v,t,p}$ variables.
 
@@ -556,27 +549,17 @@ $${FIXCOST(y) = \sum_{t \in MILESTONYR,t \leq T(y)}^{}{INDIC(2.a)} \times \left(
 0otherwise
 \end{Bmatrix} \times SHAPE(t,y - B(t) + ILED_{t}) \times MULTI(y)}$$
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}**(IV.2.a)**
+$$missing \space expression$$
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+**(IV.2.a)**
+
+$$missing \space expression$$
 
 *Useful Range for y:*
 
 ii) $SURVCOST$ (Surveillance cost for same case 2.a. See same example)
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$missing \space expression$$
 
 $$
 {+ \sum_{t \in PASTYEARS}^{}{INDIC(2.a)} \times \left( NCAP\_ PASTI_{t} \right) \times NCAP\_ DLAGC_{t}
@@ -585,11 +568,7 @@ $$
 0otherwise
 \end{matrix} \right.\ }$$
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$missing \space expression$$
 
 **(IV.2.a')**
 
@@ -605,11 +584,7 @@ height="7.507655293088364e-3in"}
 
 The cost expression takes into account the vintage and the age of the *FIXOM* being paid at any given year $y$. See note in formula and figure for an explanation.
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$missing \space expression$$
 
 where:
 
@@ -621,11 +596,7 @@ $$
 
 *Range for y:*
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$missing \space expression$$
 
 **(IV.2.b)**
 
@@ -690,7 +661,7 @@ $${- \sum_{j = 1}^{COM\_ STEP_{up}}{COM\_ BPRICE_{T(y)} \times \left\{ \left( 1 
 
 **(VII)**
 
-###  Salvage value: SALVAGE (EOH+1)
+### Salvage value: SALVAGE (EOH+1)
 
 Investments whose technical lives exceed the model's horizon receive a SALVAGE value for the unused portion of their technical lives. Salvage applies to several types of costs: investment costs, sunk material costs, as well as decommissioning costs and surveillance costs. SALVAGE is reported as a single lump sum revenue accruing precisely at the end of the horizon (and then discounted to the base year like all other costs).
 
@@ -931,11 +902,11 @@ Late revenues consist of revenues from any materials and energy which had been e
 
 *Note*: For materials released within the horizon, the revenue is either explicit (and then it is the user's responsibility to indicate a negative cost -- credit -- at dismantling time), or the revenue is implicit, and then the user must specify a physical release of the material at dismantling time, and the model will correctly 'price' this material within the RES.
 
-*LATEREVENUES(y) y ≥ EOH+1*
+$$LATEREVENUES(y) \space y ≥ EOH+1$$
 
-The late revenues come *only* from the resale at dismantling time, of materials and/or energy that were sunk at construction time. Therefore, the *LATEREVENUES* expressions are identical to the decommissioning cost expressions, with the NCAP_DCOST attribute replaced by
+The late revenues come *only* from the resale at dismantling time, of materials and/or energy that were sunk at construction time. Therefore, the *LATEREVENUES* expressions are identical to the decommissioning cost expressions, with the *NCAP_DCOST* attribute replaced by
 
-![](assets/image29.png)
+$$\sum_{c} {-NCAP\_VAL(c) \times NCAP\_OCOM(c)}$$
 
 where the summation extends over all commodities *c* for which an *NCAP_OCOM* attribute is defined (defaults to zero if undefined)
 
@@ -1526,7 +1497,7 @@ $$\mathbf{EQL\_ ACTUP}\mathbf{S}_{\mathbf{r,v,t,p,tsl,}\mathbf{'}\mathbf{FX}\mat
 
 $$VAR\_ UPS_{r,v,t,p,s,'FX'}\quad \leq \quad\sum_{ts \in C(s)}^{}{VAR\_ UPS_{r,v,t,p,ts,'UP'}}$$
 
-###  Equation: EQ(*l*)\_ASHAR
+### Equation: EQ(*l*)\_ASHAR
 
 **Indices**: **region (r), vintage year (v), period (t), process (p),
 time slice (s)**
@@ -1584,10 +1555,12 @@ $${\sum_{\mathbf{rps\_ s}\mathbf{2}_{\mathbf{r,p,sl}}}^{}{\mathbf{FLO\_ ASHA}\ma
 \mathbf{|}\mathbf{\mspace{6mu}}\mathbf{cg =}\mathbf{'}\text{ACT}\mathbf{'}
 \end{Bmatrix}}^{}{\sum_{\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,ts}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,com,sl,ts}}}} \right)
 }{\overset{\underset{}{}}{\left\{ \mathbf{= ;}\mathbf{\leq}\mathbf{;}\mathbf{\geq} \right\}}
-}$$$\sum_{\begin{array}{r}
+}$$
+
+$$\sum_{\begin{array}{r}
 \mathbf{\&}\mathbf{\mspace{6mu}}\mathbf{rpc\_ st}\mathbf{g}_{\mathbf{r,p,c}} \\
 \mathbf{\& rpcs\_ va}\mathbf{r}_{\mathbf{r,p,c,ts}}
-\end{array}}^{}{\frac{\mathbf{VAR\_ SOU}\mathbf{T}_{\mathbf{r,v,t,p,c,ts}}}{\mathbf{PRC\_ ACTFL}\mathbf{O}_{\mathbf{r,v,p,c}}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,c,s,ts}}}$
+\end{array}}^{}{\frac{\mathbf{VAR\_ SOU}\mathbf{T}_{\mathbf{r,v,t,p,c,ts}}}{\mathbf{PRC\_ ACTFL}\mathbf{O}_{\mathbf{r,v,p,c}}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,c,s,ts}}}$$
 
 ### Equation: EQ(*l*)\_BLND
 
@@ -1596,13 +1569,7 @@ $${\sum_{\mathbf{rps\_ s}\mathbf{2}_{\mathbf{r,p,sl}}}^{}{\mathbf{FLO\_ ASHA}\ma
 **Type**: Any type, as determined by the value of the input parameter BL_TYPE(r,ble,spe):
 
 -   *l* = 'L' for a value of 1 yields $\leq$.
-
--   *l* = 'G' for a value of 2 yields ![{\"mathml\":\"\<math
-    style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-    for Microsoft
-    Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-    height="7.507655293088364e-3in"}.
-
+-   *l* = 'G' for a value of 2 yields $\geq$.
 -   *l* = 'E' for a value of 3 yields $=$.
 
 **Related variables**: **VAR_BLND**
@@ -1839,22 +1806,17 @@ $${\sum_{\begin{aligned}
 
 ### Equation: EQ(*l*)\_CAPACT
 
-**Indices:** **region (r), vintage year (v), period (t), process (p),
-time slice (s)**
+**Indices:** **region (r), vintage year (v), period (t), process (p), time slice (s)**
 
-**Type:** Determined by the bound index **bd** of NCAP_AF, NCAP_AFS or
-NCAP_AFA:
+**Type:** Determined by the bound index **bd** of NCAP_AF, NCAP_AFS or NCAP_AFA:
 
 -   *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
-
 -   *l* = 'L' for **bd** = 'UP' (upper bound) yields ≤.
-
 -   *l* = 'G' for **bd** = 'LO' (lower bound) yields ≥.
 
 **Related variables:** **VAR_ACT, VAR_NCAP, VAR_FLO**
 
-**Related equations:** **EQ_ACTFLO, EQ_COMBAL, EQ_INSHR, EQ_OUTSHR,
-EQ_PTRANS**
+**Related equations:** **EQ_ACTFLO, EQ_COMBAL, EQ_INSHR, EQ_OUTSHR, EQ_PTRANS**
 
 **Purpose**: The capacity-activity equation relates the activity of a process to its available existing capacity in period **t**. The existing capacity consists of investments made in the current and previous periods (VAR_NCAP) and investment decisions that have been made exogenously (NCAP_PASTI/PRC_RESID). The availability of the existing capacity in a specific period **t** and timeslice **s** is specified by the availability factor. Three availability factors exist:
 
@@ -1888,11 +1850,10 @@ If the process is defined as a vintaged one (**prc_vint**), for each vintage yea
 
 - **prc_vint** is a set of processes for which attributes are changing over time and vintaging is required.
 - Entries in **rtp_vintyr** are controlled by the same logic as applied to COEF_CPT combined with the vintaging consideration. Note **v** = **t** when no vintaging is required, or vintaging is turned off for a particular processes, where the sum over the previous investments is used instead of individual variables.
-- COEF_AF~r,v,t,p,s,bd~ will be read off a pre-processed table, after application of SHAPE and MULTI to the user provided availabilities (NCAP_AF/A/S).
+- $COEF\_AF_{r,v,t,p,s,bd}$ will be read off a pre-processed table, after application of SHAPE and MULTI to the user provided availabilities (NCAP_AF/A/S).
 - COEF_AF is calculated in the following manner:
 
 1) aggregate if possible (pp_lvlbd.mod), otherwise inherit (in ppmain.mod)
-
 2) apply SHAPE and MULTI to NCAP_AF/S
 
 - For storage processes, the capacity describes the volume of the storage and the activity the storage content. For storage processes between timeslices (**prc_tgtss**, **prc_nstts**) parameter RS_STGPRD is used instead of G_YRFR. RS_STGPRD(r,s) equals the number of storage periods on the timeslice level of timeslice **s** in the whole year multiplied with the duration of its parent timeslice **ts**. Thus, the storage level VAR_ACT (and indirectly the storage in- and output flows VAR_SIN and VAR_SOUT) are scaled-up for the entire year.
@@ -1903,15 +1864,11 @@ Consequently, the value of RS_STGPRD(r,s) is:
 - 365/7\*G_YRFR(r,ts) for a weekly storage, where **ts** is the parent node of **s**,
 - 365\*G_YRFR(r,ts) for a daynite storage, where **ts** is the parent node of **s**.
 
-**\
-Interpretation of the results**:
+**Interpretation of the results**:
 
 Primal: In case of an inequality constraint and no past investments (i.e. RHS is zero), the primal value describes the difference between the activity level and the maximum possible activity due to the installed capacity in the considered period and timeslice. If the primal value is negative, it means that the capacity is not fully utilized. In case of past investments, the RHS is not zero[^43], but has a positive value and corresponds to the possible activity due to the past investments. If the primal value equals the RHS value, the capacity is fully utilized. If not the difference (RHS minus primal value), where the primal value may also be negative, describes the possible unused activity production.
 
 Dual: The dual value is in case of an inequality constraint a negative number, when the constraint is binding. It describes the cost reduction caused by an additional capacity unit and can thus be interpreted as the value of the capacity. For a power plant for example it can be viewed as the part of the electricity price that can be used for covering the fixed operating and investment costs of the capacity (multiplied by the corresponding coefficient in the dual equation of the electricity flow variable). If NCAP_AFS or NCAP_AFA are applied for timeslices above the process timeslice level, in addition capacity-activity constraints (with a default value for NCAP_AF of 1 as upper bound) are generated for the process timeslices. The dual value of the constraints related to NCAP_AFS or NCAP_AFA serve as benchmark value of the capacity between the process timeslices. If for example NCAP_AFA is given for a power plant with a DAYNITE timeslice resolution (e.g. WD, WN, SD, SN), the NCAP_AF related capacity constraints with an availability of 1 are usually binding only in one process timeslice level, e.g. WD. Now the dual variable of NCAP_AFA can be seen as rent that must be covered in other process timeslices (WN, SD, SN) by the then prevailing electricity price, so that the model would decide to shift the scarce annual capacity from WD to another timeslice.
-
-**\
-**
 
 **Equation:**
 
@@ -1972,12 +1929,6 @@ $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathb
 
 {Where,
 }{COEF\_ RPTI_{r,v,p} = \left\langle \frac{D(v) - IL}{TL} \right\rangle}$$
-
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
 
 where:
 
@@ -2260,11 +2211,7 @@ p \in \mathbf{rpc}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}} \\
 
 We now show the detailed calculation of the Right-hand-side
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$missing \space expression$$
 
 **Flow Coefficients related to process activity (VAR_FLO)**
 
@@ -2290,24 +2237,15 @@ The parameter RTCS_TSFR is used to match the timeslice resolution of flow variab
 
 **Inter-regional Flow Coefficients**
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$missing \space expression$$
 
-**\
-****Investment Related Flow Coefficients**
+**Investment Related Flow Coefficients**
 
 **Intermediate Notation:**
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"} Beginning year of commodity flow
+$BCF = B(v) + NCAP\_ILED - NCAP\_CLED$ Beginning year of commodity flow
 
-$ECF = B(v) + NCAP\_ ILED - 1$ Ending year of commodity flow
+$ECF = B(v) + NCAP\_ILED - 1$ Ending year of commodity flow
 
 $${COEF\_ ICOM:
 }
@@ -2320,19 +2258,13 @@ $${COEF\_ ICOM:
 
 ![](assets/cases-1-2-3-4.svg)
 
-**\
-****Dismantling Related Flow Coefficients**
+**Dismantling Related Flow Coefficients**
 
 **Intermediate Notation:**
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"} Start year of commodity flow.
+$BCF = B(v) + NCAP\_ILED + NCAP\_TLIFE + NCAP\_DLAG$ Start year of commodity flow.
 
-$ECF = B(v) + NCAP\_ ILED + NCAP\_ TLIFE + NCAP\_ DLAG + NCAP\_ DLIFE - 1$
-End year of commodity flow.
+$ECF = B(v) + NCAP\_ILED + NCAP\_TLIFE + NCAP\_DLAG + NCAP\_DLIFE - 1$ End year of commodity flow.
 
 $${COEF\_ OCOM:
 }
@@ -2420,7 +2352,7 @@ $${\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{c}\mathbf{\neq '}\text{ACT}\mathbf{'}
 
 *VAR_CUMFLO.FX~r,p,c,y1,y2~* = *FLO_CUM ~r,p,c,\ y1,y2,\'FX\'~*
 
-###  Equation: EQ_CUMNET/PRD
+### Equation: EQ_CUMNET/PRD
 
 **Indices**: **region (r), year1 (y1), year2 (y2), commodity (c)**
 
@@ -2493,7 +2425,7 @@ $$\mathbf{EQ\_ CUMRE}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{\quad}\mathbf{\ni}\mat
 
 $\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{= VAR\_ RCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{+}\sum_{\mathbf{t}\mathbf{-}\mathbf{1}\mathbf{\in}\left\{ \mathbf{tt|rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,tt,p}} \right\}}^{}{\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t}\mathbf{-}\mathbf{1,p}}}$
 
-###  Equation EQ_DSCNCAP
+### Equation EQ_DSCNCAP
 
 **Indices:** **region (r),** **milestone year (t), process (p)**
 
@@ -2520,7 +2452,7 @@ $${EQ\_ DSCNCAP_{r,t,p} \ni \left( \mathbf{rp}\_\mathbf{dscnca}\mathbf{p}_{\math
 {VAR\_ NCAP_{r,t,p} = \sum_{u \in \mathbf{unit}}^{}\left( VAR\_ DNCAP_{r,t,p,u} \times NCAP\_ DSC_{r,t,p,u} \right) + 
 }\left( VAR\_ SNCAP_{r,t,p}\quad if\mspace{6mu} NCAP\_ SEMI_{r,t,p}\mspace{6mu} given \right)$$
 
-###  Equation: EQ_DSCONE 
+### Equation: EQ_DSCONE 
 
 **Indices**: **region (r),** **milestoneyear (t), process (p)**
 
@@ -2567,7 +2499,7 @@ $${\mathbf{EQ\_ DSCRE}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{\quad}\mathbf{\ni}\ma
 }{\mathbf{RCAP\_ BL}\mathbf{K}_{\mathbf{r,v,p}}\mathbf{\times}\mathbf{VAR\_ DRCA}\mathbf{P}_{\mathbf{r,v,t,p,2}}\mathbf{+}
 }{\mathbf{(NCAP\_ PAST}\mathbf{I}_{\mathbf{r,v,p}}\mathbf{-}\mathbf{RTFOR}\mathbf{C}_{\mathbf{r,v,t,p}}\mathbf{)}\mathbf{\times}\mathbf{VAR\_ DRCA}\mathbf{P}_{\mathbf{r,v,t,p,1}}}$$
 
-###  Equation: EQ(*l*)\_FLOBND
+### Equation: EQ(*l*)\_FLOBND
 
 **Indices: region (r), period (t), process (p), commodity group (cg),
 timeslice (s)**
@@ -2602,20 +2534,13 @@ Dual: The dual value describes for a lower/upper bound the cost increase/decreas
 
 **Notation used in formulation:**
 
-- *XS~cg,ie~* denotes a sign coefficient for trade flows, such that *XS~cg,\'IMP\'~* = 1 for all cg, *XS~c,\'EXP\'~* = 1 for all c, and *XS~cg,\'EXP\'~* = --1 for all other (true) cg.
-
-**\
-**
+- $XS_{cg,ie}$ denotes a sign coefficient for trade flows, such that $XS_{cg,'IMP'} = 1$ for all cg, $XS_{c,'EXP'} = 1$ for all c, and $XS_{cg,'EXP'} = -1$ for all other (true) cg.
 
 **Equation:**
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}
+$$ missing \space expression $$
 
-###  Equation: EQ(*l*)\_FLOFR
+### Equation: EQ(*l*)\_FLOFR
 
 **Indices: region (r), period (t), process (p), commodity (c), timeslice (s)**
 
@@ -2661,7 +2586,7 @@ $${EQ(l)\_ FLOFR_{r,t,p,c,s} \ni \left\{ \mathbf{rtpcs}\_\mathbf{va}\mathbf{r}_{
 
 {\text{wheretheequationsignisindicatedbyequationindex}\mathbf{l}.}$$
 
-###  Equation: EQ(*l*)\_FLOMRK
+### Equation: EQ(*l*)\_FLOMRK
 
 **Indices**: **region (r), period (t), process (p), commodity (c), time-slice (s)**
 
@@ -2749,7 +2674,7 @@ VAR\_ SIN_{r,v,t,p,com,ts}
 }{\overset{\underset{}{}}{\left\{ = ; \leq ; \geq \right\}}
 }{\sum_{\underset{RPC \cap COM\_ GMAP_{c}}{com \in}}^{}{\sum_{\underset{RHS\_ COMPRD_{t,com}}{ts \in}}^{}\left\{ VAR\_ COMPRD_{r,t,com,ts} \times \left( \overset{\underset{}{}}{RS\_ FR_{r,s,ts}} \right) \right\}}}$$
 
-###  Equations related to exchanges (EQ_IRE, EQ_IREBND, EQ_XBND)
+### Equations related to exchanges (EQ_IRE, EQ_IREBND, EQ_XBND)
 
 The three equations in this section concern trade between regions. Since these equations involve (directly or indirectly) more than one region, we start their presentation by a complete description of the modeling approach used, which, as we shall see, involves various schemes for representing different types of trade. The description already given in Chapter 4 is also relevant to these equations.
 
@@ -2822,7 +2747,7 @@ $$$
 > **\
 > **
 
-#####  Case B. Multidirectional and market-based trade between regions.
+##### Case B. Multidirectional and market-based trade between regions.
 
 **Equation:**
 
@@ -3012,7 +2937,7 @@ $$$
 
 {\left\{ = ; \leq ; \geq \right\} IRE\_ XBND_{all\_ r,t,c,s,ie,bd}}$$
 
-###  Equations: EQ(*l*)\_INSHR, EQ(*l*)\_OUTSHR
+### Equations: EQ(*l*)\_INSHR, EQ(*l*)\_OUTSHR
 
 **Indices: region (r), year (t), process (p), commodity (c), commodity
 group (cg), time-slice (s)**
@@ -3058,7 +2983,7 @@ $$${\mathbf{(s}\mathbf{\in}\mathbf{rps\_ s}\mathbf{1}_{\mathbf{r,p,s}}\mathbf{)}
 }
 {\sum_{\mathbf{s}\mathbf{2}\mathbf{\in}\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,s}\mathbf{2}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,c,s}\mathbf{2}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,c,s,s}\mathbf{2}}}}$$
 
-###  Equation: EQ_PEAK
+### Equation: EQ_PEAK
 
 **Indices: region (r), period (t), commodity group (cg), time-slice (s)**
 
@@ -3170,7 +3095,7 @@ $${\geq
  & 
 \end{aligned} \right\rbrack$$
 
-###  Equation: EQ_PTRANS
+### Equation: EQ_PTRANS
 
 **Indices:** **region (r), year (y), process (p), commodity group1 (cg1), commodity group2 (cg2), time-slice (s)**
 
@@ -3202,11 +3127,7 @@ Primal: The primal value of the transformation is usually zero.
 
 Dual: Due to the flexibility of the transformation equation the interpretation of its dual value depends on the specific case. For a simple case, a process with one input flow **c1** and one output flow **c2** being linked by an efficiency FLO_FUNC(c1,c2), the dual variable, which is being defined as the cost change when the RHS is increased by one unit, can be interpreted as cost change when the efficiency of the process is increased by 1/VAR_FLO(r,v,t,p,c1,s):
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}**.**
+$$ Missing \space expression$$
 
 **Equation:**
 
@@ -3251,7 +3172,7 @@ $${RTP\_ FFCX_{r,v,t,p,cg1,c,cg2}\quad \ni FLO\_ FUNCX_{r,v,p,cg1,cg2}
 }{= 
 }{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\frac{SHAPE\left( FLO\_ FUNCX_{r,v,p,cg1,cg2},PRC\_ YMAX_{r,v,p} \right)}{PRC\_ YMAX_{r,v,p}} - 1}$$
 
-###  Equation: EQL_REFIT 
+### Equation: EQL_REFIT 
 
 **Indice**s: **region (r), period1 (tt), period2 (t), process (p)**
 
@@ -3290,7 +3211,7 @@ where
 - *VAR_NCAP~r,v,p~* is the TIMES new capacity variable
 - *VAR_SCAP~r,v,t,p~* is the TIMES cumulative retirement variable
 
-###  Equations: EQL_SCAP
+### Equations: EQL_SCAP
 
 **Indices: region (r), vintage (v), process (p), indicator (ips)**
 
@@ -3325,7 +3246,7 @@ $${\left( \begin{aligned}
 
 ### Equations: EQ_SLSIFT
 
-###  {#section-2 .unnumbered}
+### {#section-2 .unnumbered}
 
 This block of equations implements the load shifting constraints. Enabling load-shifting for demand or final energy commodities is supported by introducing load-shifting processes. Load shifting processes must be characterized as timeslice storage processes, and must have *STG_SIFT~r,t,p,D,s~* specified for the load commodity *D*. The constraints for the load-shifting can be divided into different types, as described below.
 
@@ -3458,7 +3379,7 @@ $${EQ\_ STGAUX_{r,v,t,p,c,s}\mspace{6mu} \ni \left( \mathbf{rtp}\_\mathbf{vinty}
 {+ \mspace{6mu}\mspace{6mu}\sum_{com \in \mathbf{to}\mathbf{p}_{IN}}^{}{VAR\_ SIN_{r,v,t,p,com,s} \times \left( \overset{\underset{}{}}{COEF\_ PTRAN_{r,v,p,com,com,c,s}} \right)}
 }$$$+ \sum_{com \in \mathbf{to}\mathbf{p}_{OUT}}^{}{VAR\_ SOUT_{r,v,t,p,com,s} \times \left( \frac{1}{COEF\_ PTRAN_{r,v,p,c,c,com,s}}\mspace{6mu} if\mspace{6mu} COEF\_ PTRAN_{r,v,p,c,c,com,s} > 0 \right)}$
 
-###  Equation: EQ_STGTSS/IPS
+### Equation: EQ_STGTSS/IPS
 
 **Indices**: **region (r), vintage year (v), period (t), process (p), time-slice (s)**
 
@@ -3546,7 +3467,7 @@ c \in \mathbf{rpc}\_\mathbf{st}\mathbf{g}_{r,p,c}
 }
 {+ STG\_ CHRG_{r,t,p,'ANNUAL'}(whenORD(t) = 1)}$$
 
-###  Equations: EQ(*l*)\_STGIN / EQ(*l*)\_STGOUT
+### Equations: EQ(*l*)\_STGIN / EQ(*l*)\_STGOUT
 
 **Indices: region (r), period (t), process (p), commodity (c), timeslice (s)**
 
@@ -3593,7 +3514,7 @@ $$${EQ(l)\_ STGIN/OUT_{r,t,p,c,s} \ni \left\{ \begin{aligned}
 }
 {\text{wheretheequationsignisindicatedbyequationindex}\mathbf{l}\text{ based on the bound type }\mathbf{bd}.}$$
 
-###  Equations: EQ_STSBAL
+### Equations: EQ_STSBAL
 
 **Indices: region (r), vintage (v), period (t), process (p), timeslice
 (s)**
@@ -3628,7 +3549,7 @@ $${EQ\_ STSBAL_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left( \mathbf{rtp}\_\mathbf{vi
 \end{aligned} \right\rbrack
 }$$
 
-###  Equations: EQ(*l*)\_UCRTP
+### Equations: EQ(*l*)\_UCRTP
 
 **Indices: name (uc_n), region (r), period (t), process (p), type (uc_grptype), bound (bd)**
 
@@ -3667,15 +3588,15 @@ $${\mathbf{EQ(l)\_ UCRT}\mathbf{P}_{\mathbf{uc\_ n,r,t,p,'NCAP',bd}}\mathbf{\qua
 
 **Case C. For ACT:**
 
-![{\"mathml\":\"\<math
-style=\\\"font-family:stix;font-size:16px;\\\"/\>\",\"origin\":\"MathType
-for Microsoft
-Add-in\"}](assets/image18.png "blank"){width="7.50754593175853e-2in"
-height="7.507655293088364e-3in"}$\sum_{\mathbf{v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}}^{}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{prc\_ ts}}^{}{\mathbf{VAR\_ AC}\mathbf{T}_{\mathbf{r,t,p,s}}}}\mathbf{\quad}\left\{ \mathbf{\leq}\mathbf{; = ;}\mathbf{\geq} \right\}
-$$${\sum_{\mathbf{v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}}^{}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{prc\_ ts}}^{}{\mathbf{VAR\_ AC}\mathbf{T}_{\mathbf{r,t}\mathbf{-}\mathbf{1,p,s}}}\mathbf{\times}\left( \mathbf{UC\_ AC}\mathbf{T}_{\mathbf{uc\_ n,}\mathbf{'}\mathbf{LHS}\mathbf{'}\mathbf{,r,t,p,}\mathbf{'}\mathbf{ANNYAL}\mathbf{'}} \right)^{\mathbf{(M(t)}\mathbf{-}\mathbf{M(t}\mathbf{-}\mathbf{1))}}}
+$${EQ(l)\_UCRTP_{uc\_n,r,t,p,'ACT',bd} \quad \ni \left( rtp_{r,t,p} \land uc\_dynbnd_{uc\_n,bd}\land \left( \sum_{side} {(UC\_ACT_{uc\_n,side,r,t,p,'ANNUAL'}) > 0} \right) \right)}$$
+
+$$\sum_{\mathbf{v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}}^{}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{prc\_ ts}}^{}{\mathbf{VAR\_ AC}\mathbf{T}_{\mathbf{r,t,p,s}}}}\mathbf{\quad}\left\{ \mathbf{\leq}\mathbf{; = ;}\mathbf{\geq} \right\}
+$$
+
+$${\sum_{\mathbf{v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}}^{}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{prc\_ ts}}^{}{\mathbf{VAR\_ AC}\mathbf{T}_{\mathbf{r,t}\mathbf{-}\mathbf{1,p,s}}}\mathbf{\times}\left( \mathbf{UC\_ AC}\mathbf{T}_{\mathbf{uc\_ n,}\mathbf{'}\mathbf{LHS}\mathbf{'}\mathbf{,r,t,p,}\mathbf{'}\mathbf{ANNYAL}\mathbf{'}} \right)^{\mathbf{(M(t)}\mathbf{-}\mathbf{M(t}\mathbf{-}\mathbf{1))}}}
 }{\mathbf{+ UC\_ AC}\mathbf{T}_{\mathbf{uc\_ n,}\mathbf{'}\mathbf{RHS}\mathbf{'}\mathbf{,r,t,p,}\mathbf{'}\mathbf{ANNUAL}\mathbf{'}}\mathbf{\times}\mathbf{(M(t)}\mathbf{-}\mathbf{M(t}\mathbf{-}\mathbf{1))}}$$
 
-##  User Constraints
+## User Constraints
 
 This section on TIMES User Constraints explains the framework that may be employed by modellers to formulate additional linear constraints, which are not part of the generic constraint set of TIMES, without having to bother with any GAMS programming.
 
@@ -3964,7 +3885,7 @@ If neither **uc_r_each** nor **uc_r_sum** are given, the default is set to all *
 - *UC_RHSRTS~r,uc_n,t,s,bd\ ~*: RHS constant with bound type **bd** of the user constraint *EQl_UCRTS~r,uc_n,t,s~* of type **l**.
 - *UC_TIME~uc_n,r,t\ ~*: Defines an additional term in the RHS constant, which is either the time (in years) covered by the user constraint multiplied by *UC_TIME* (for static and cumulative constraints), or the time between the milestone years of the successive periods in the constraint (for dynamic user constraints).
 
-###  LHS user constraints
+### LHS user constraints
 
 **Mathematical formulation of LHS user constraints**
 

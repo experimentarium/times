@@ -200,7 +200,7 @@ The adaptation of Rutherford algorithm to TIMES-MACRO was formalized by Kypreos 
 
 [^39]: The concrete implementation in the TIMES-MACRO model differs in some points, e.g. the consumption variable in the utility function is substituted by equations (12-2) and (12-3).
 
-[^40]: A production function is called homogenous of degree $r$, if multiplying all production factors by a constant scalar leads ![](assets/image33.png)to an increase of the function by![](assets/image34.png). If $r = 1$, the production function is called linearly homogenous and leads to constant returns to scale.
+[^40]: A production function is called homogenous of degree $r$, if multiplying all production factors by a constant scalar leads $\lambda$ to an increase of the function by $\lambda^r$. If $r = 1$, the production function is called linearly homogenous and leads to constant returns to scale.
 
 [^41]: Of course, if no trade between the regions is assumed, the global equilibrium amounts to a series of independent national equilibria, which may be calculated by the single region TIMES-MACRO.
 

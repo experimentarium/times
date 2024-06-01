@@ -12,11 +12,11 @@ Whereas exogenous technological learning does not require any additional modelin
 
 ## The basic ETL challenge
 
-Empirical studies of unit investment costs of several technologies have been undertaken in several countries. Many of these studies find an empirical relationship between the unit investment cost of a technology at time $t$ $INVCOST_{t}$, and the cumulative investment in that technology up to time $t$, $C_{t} = \sum_{j = - 1}^{t}{VAR\_ NCAP_{j}}$.
+Empirical studies of unit investment costs of several technologies have been undertaken in several countries. Many of these studies find an empirical relationship between the unit investment cost of a technology at time $t$, $INVCOST_{t}$, and the cumulative investment in that technology up to time $t$, $C_{t} = \sum_{j = - 1}^{t}{VAR\_ NCAP_{j}}$.
 
 A typical relationship between unit investment cost and cumulative investments is of the form:
 
-$$INVCOST_{t} = a \times C_{t}^{- b}$$ (11 - 1)
+$$INVCOST_{t} = a \times C_{t}^{- b}$$ (11-1)
 
 where
 - $INVCOST$ [^37] is the unit cost of creating one unit of the technology, which is no longer a constant, but evolves as more units of the technology are produced;
@@ -25,7 +25,7 @@ where
 
 As experience builds up, the unit investment cost decreases, potentially rendering investments in the technology more attractive. It should be clear that near-sighted investors will not be able to detect the advantage of investing early in learning technologies, since they will only observe the high initial investment cost and, being near-sighted, will not anticipate the future drop in investment cost resulting from early investments. In other words, tapping the full potential of technological learning requires far-sighted agents who accept making initially non-profitable investments in order to later benefit from the investment cost reduction.
 
-With regard to actual implementation, simply using (11-1) as the objective function coefficient of $VAR\_NCAP_t$ will yield a non-linear, non-convex expression. Therefore, the resulting mathematical optimization is no longer linear, and requires special techniques for its solution. In TIMES, a Mixed Integer Programming (MIP) formulation is used, that we now describe.
+With regard to actual implementation, simply using {eq}`11-1` as the objective function coefficient of $VAR\_NCAP_t$ will yield a non-linear, non-convex expression. Therefore, the resulting mathematical optimization is no longer linear, and requires special techniques for its solution. In TIMES, a Mixed Integer Programming (MIP) formulation is used, that we now describe.
 
 ## The TIMES formulation of ETL
 
@@ -33,9 +33,9 @@ With regard to actual implementation, simply using (11-1) as the objective funct
 
 We follow the basic approach described in Barreto, 2001.
 
-The first step of the formulation is to express the total investment cost, i.e. the quantity that should appear in the objective function. The cumulative investment cost $TC_t$ of a learning technology in period $t$ is obtained by integrating expression (11-1):
+The first step of the formulation is to express the total investment cost, i.e. the quantity that should appear in the objective function. The cumulative investment cost $TC_t$ of a learning technology in period $t$ is obtained by integrating expression {eq}`11-1`:
 
-$$TC_{t} = \int_{0}^{C_{t}}{a \times y^{- b}*dy} = \frac{a}{1 - b} \times {C_{t}}^{- b + 1}$$ (11 - 2)
+$$TC_{t} = \int_{0}^{C_{t}}{a \cdot y^{- b}*dy} = \frac{a}{1 - b} \cdot {C_{t}}^{- b + 1}$$ (11-2)
 
 $TC_t$ is a concave function of $C_t$, with a shape as shown in {numref}`cumulative-learning-curve`.
 
@@ -78,27 +78,27 @@ $$TC_{i} = TC_{i - 1} + 2^{i - N - 1}(T{Co^{N}}_{\max}$$
 
 Note that $TC_{max}$ is equal to $TC_N$.
 
-The break points on the horizontal axis are obtained by plugging the $TC_i$'s into expression (11-2), yielding:
+The break points on the horizontal axis are obtained by plugging the $TC_i$'s into expression {eq}`11-2`, yielding:
 
-$$C_{i} = \left( \frac{(1 - b)}{a}\left( TC_{i} \right) \right)^{\frac{1}{1 - b}},i = 1,2,...,N$$
+$$C_{i} = \left( \frac{(1 - b)}{a}\left( TC_{i} \right) \right)^{\frac{1}{1 - b}}, \space i = 1,2,...,N$$
 
 ### New variables
 
 Once intervals are chosen, standard approaches are available to represent a concave function by means of integer (0-1) variables. We describe the approach used in TIMES.
 
-First, we define $N$ continuous variables $x_i$, $i= 1,...,N$. Each $x_i$ represents the portion of cumulative investments lying in the $i^{th}$ interval. Therefore, the following holds:
+First, we define $N$ continuous variables $x_i, i= 1,...,N$. Each $x_i$ represents the portion of cumulative investments lying in the $i^{th}$ interval. Therefore, the following holds:
 
-![](assets/image28.png)
+$$C = {\sum^{N}_{i=1} x_i}$$ (11-3)
 
 We now define $N$ integer (0-1) variables $z_i$ that serve as indicators of whether or not the value of $C$ lies in the $i^{th}$ interval. We may now write the expression for $TC$, as follows:
 
-![](assets/image29.png)
+$$TC = {\sum^{N}_{i=1} a_i z_i + b_i x_i}$$ (11-4)
 
 where $b_i$ is the slope of the $i^{th}$ line segment, and $a_i$ is the value of the intercept of that segment with the vertical axis, as shown in {numref}`i-approx-learning-curve`. The precise expressions for $a_i$ and $b_i$ are:
 
-$${b_{i} = \frac{TC_{i} - TC_{i - 1}}{C_{i} - C_{i - 1}}i = 1,2,...,N}$$(11 - 5)
+$${b_{i} = \frac{TC_{i} - TC_{i - 1}}{C_{i} - C_{i - 1}}, \space i = 1,2,...,N}$$(11-5)
 
-$a_{i} = TC_{i - 1} - b_{i} \cdot C_{i - 1}i = 1,2,...,N$
+$$a_{i} = TC_{i - 1} - b_{i} \cdot C_{i - 1}, \space i = 1,2,...,N$$
 
 ```{figure} assets/step-wise-approximation-segment.svg
 :name: i-approx-learning-curve
@@ -109,13 +109,13 @@ The i<sup>th</sup> segment of the step-wise approximation.
 
 ### New constraints
 
-For (11-4) to be valid we must make sure that exactly one $z_i$ is equal to 1, and the others equal to 0. This is done (recalling that the $z_i$ variables are 0-1) via:
+For {eq}`11-4` to be valid we must make sure that exactly one $z_i$ is equal to 1, and the others equal to 0. This is done (recalling that the $z_i$ variables are 0-1) via:
 
 $$\sum_{i = 1}^{N}{z_{i} = 1}$$
 
 We also need to make sure that each $x_i$ lies within the $i^{th}$ interval whenever $z_i$ is equal to 1 and is equal to 0 otherwise. This is done via two constraints:
 
-$$C_{i - 1} \times z_{i} \leq x_{i} \leq C_{i} \times z_{i}$$
+$$C_{i - 1} \cdot z_{i} \leq x_{i} \leq C_{i} \cdot z_{i}$$
 
 ### Objective function terms
 
@@ -125,7 +125,13 @@ Re-establishing the period index, we see that the objective function term at per
 
 Solving integer programming problems is facilitated if the domain of feasibility of the integer variables is reduced. This may be done via additional constraints that are not strictly needed but that are guaranteed to hold. In our application we know that experience (i.e. cumulative investment) is always increasing as time goes on. Therefore, if the cumulative investment in period $t$ lies in segment $i$, it is certain that it will not lie in segments $i-1, i-2, .., 1$ in time period $t+1$. This leads to two new constraints (re-establishing the period index $t$ for the $z$ variables):
 
-![](assets/image31.png)
+$$
+\begin{aligned}
+&{\sum^{i}_{j=1} z_{j,t}} \geq {\sum^{i}_{j=1} z_{j,t+1}} \\
+&& i=1,2,...,N-1, \space t=1,2,...,T-1 \\
+&{\sum^{N}_{j=i} z_{j,t}} \geq {\sum^{N}_{j=i} z_{j,t+1}}
+\end{aligned}
+$$
 
 Summarizing the above formulation, we observe that each learning technology requires the introduction of $N*T$ integer (0-1) variables. For example, if the model has 10 periods and a 5-segment approximation is selected, 50 integer (0-1) variables are created for that learning technology, assuming that the technology is available in the first period of the model. Thus, the formulation may become very onerous in terms of solution time, if many learning technologies are envisioned, and if the model is of large size to begin with. In section 11.5 we provide some comments on ETL, as well as a word of warning.
 
@@ -187,9 +193,9 @@ ETL modelers are well aware of this phenomenon, and they use additional constrai
 
 In view of the preceding discussion, a fundamental question arises: is it worthwhile for the modeler to go to the trouble of modeling *endogenous* learning (with all the attendant computational burdens) when the results are to a large extent conditioned by *exogenous* upper bounds? We do not have a clear and unambiguous answer to this question; that is left for each modeler to evaluate.
 
-However, given the above caveat, a possible alternative to ETL would consist in using exogenous learning trajectories. To do so, the same sequence of 'realistic' upper bounds on capacity would be selected by the modeler, and the values of the unit investment costs ($INVCOST$) would be externally computed by plugging these upper bounds into the learning formula (11-1). This approach makes use of the same exogenous upper bounds as the ETL approach, but avoids the MIP computational burden of ETL. Of course, the running of exogenous learning scenarios is not entirely foolproof, since there is no absolute guarantee that the capacity of a learning technology will turn out to be exactly equal to its exogenous upper bound. If that were not the case, a modified scenario would have to be run, with upper bounds adjusted downward. This trial-and-error approach may seem inelegant, but it should be remembered that it (or some other heuristic approach) might prove to be necessary in those cases where the number of learning technologies and the model size are both large (thus making the rigorous ETL formulation computationally intractable).
+However, given the above caveat, a possible alternative to ETL would consist in using exogenous learning trajectories. To do so, the same sequence of 'realistic' upper bounds on capacity would be selected by the modeler, and the values of the unit investment costs ($INVCOST$) would be externally computed by plugging these upper bounds into the learning formula {eq}`11-1`. This approach makes use of the same exogenous upper bounds as the ETL approach, but avoids the MIP computational burden of ETL. Of course, the running of exogenous learning scenarios is not entirely foolproof, since there is no absolute guarantee that the capacity of a learning technology will turn out to be exactly equal to its exogenous upper bound. If that were not the case, a modified scenario would have to be run, with upper bounds adjusted downward. This trial-and-error approach may seem inelegant, but it should be remembered that it (or some other heuristic approach) might prove to be necessary in those cases where the number of learning technologies and the model size are both large (thus making the rigorous ETL formulation computationally intractable).
 
 
 [^37]: The notation in this chapter is sometimes different from the standard notation for parameters and variables, in order to conform to the more detailed technical note on the subject.
 
-[^38]: It is usual to define, instead of $b$, another parameter, $pr$ called the *progress ratio*, which is related to $b$ via the following relationship:![](assets/image25.png). Hence, $1-pr$ is the cost reduction incurred when cumulative investment is doubled. Typical observed $pr$ values are in a range of 0.75 to 0.95.
+[^38]: It is usual to define, instead of $b$, another parameter, $pr$ called the *progress ratio*, which is related to $b$ via the following relationship: $pr=2^{-b}$. Hence, $1-pr$ is the cost reduction incurred when cumulative investment is doubled. Typical observed $pr$ values are in a range of 0.75 to 0.95.

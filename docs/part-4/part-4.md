@@ -2542,7 +2542,7 @@ The \~Series table is used to define sensitivity and calibration series (Figure 
 
 The growth rates of the various drivers are applied to the 2005 baseyear demands using the following formula:
 
-![](assets/image205.png)
+$$D_t = D_{t-1} \times \left(Calibration + \left(\frac{Driver_t}{Driver_{t-1}} - 1 \right) \times Sensitivity \right)$$
 
 The \~DRVR_Allocation table is used to allocate a particular driver to each end-use demand in each region (Figure 176). Only one such allocation file, always named Dem_Alloc+Series, may be built. That is, it is envisioned that in different scenarios, the projection of the driver for each demand may change (higher or lower population growth, for example), but the association of each demand with a particular driver will not change. (For example, DRSH is always driven by population growth with the same sensitivity.) Only one driver series may be associated with each demand. However, one may easily create a composite series if combining two drivers is desired. In this example, the demand DAOT will be projected using the driver GDP, adjusted with calibration and sensitivity series (Constant; =1 over the whole model horizon).
 
