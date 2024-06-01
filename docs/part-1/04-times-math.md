@@ -53,23 +53,23 @@ $$and \quad B \cdot X \geq b$$ (4-7)
 
 where $X$ is the vector of all TIMES variables, {eq}`4-5` expresses the total net surplus, and $DM(t)$ is now a vector of *variables* in {eq}`4-6`, rather than fixed demands. The integral in {eq}`4-5` is easily computed, yielding the following maximization program:
 
-$$Max \sum_i \sum_t \left( p^0_i(t) \cdot [DM^0_i(t)]^{-1/E_i} \cdot {DM_i(t)}^{1+1/E_i} / (1 + 1 / E_i) \right) - c \cdot X $$ (4-5')
+$$Max \sum_i \sum_t \left( p^0_i(t) \cdot [DM^0_i(t)]^{-1/E_i} \cdot {DM_i(t)}^{1+1/E_i} / (1 + 1 / E_i) \right) - c \cdot X $$ (4-5-tick)
 
-$$s.t.\space \sum_{k}{VAR\_ACT_{k,i}}(t) \geq {DM}_{i}(t) \quad i = 1,\ldots,I; \space t = 1,\ldots,T$$ (4-6')
+$$s.t.\space \sum_{k}{VAR\_ACT_{k,i}}(t) \geq {DM}_{i}(t) \quad i = 1,\ldots,I; \space t = 1,\ldots,T$$ (4-6-tick)
 
-$$and \quad B \cdot X \geq b$$ (4-7')
+$$and \quad B \cdot X \geq b$$ (4-7-tick)
 
 We are almost there, but not quite, since the $[DM_i(t)]^{-1/E_i}$ are non linear expressions and thus not directly usable in an LP.
 
 ### Linearization of the Mathematical Program
 
-The Mathematical Program embodied in {eq}`4-5'`, {eq}`4-6'` and {eq}`4-7'` has a non-linear objective function. Because the latter is separable (i.e. does not include cross terms) and concave in the $DM_i$ variables, each of its terms is easily linearized by piece-wise linear functions which approximate the integrals in {eq}`4-5`. This is the same as saying that the inverse demand curves are approximated by staircase functions, as illustrated in {numref}`approx-non-linear-obj-function`. By so doing, the resulting optimization problem becomes linear again. The linearization proceeds as follows.
+The Mathematical Program embodied in {eq}`4-5-tick`, {eq}`4-6-tick` and {eq}`4-7-tick` has a non-linear objective function. Because the latter is separable (i.e. does not include cross terms) and concave in the $DM_i$ variables, each of its terms is easily linearized by piece-wise linear functions which approximate the integrals in {eq}`4-5`. This is the same as saying that the inverse demand curves are approximated by staircase functions, as illustrated in {numref}`approx-non-linear-obj-function`. By so doing, the resulting optimization problem becomes linear again. The linearization proceeds as follows.
 
 a) For each demand category $i$ and each time period $t$, the user selects a range $R_i(t)$, i.e. the distance between some values $DM_i(t)_{min}$ and $DM_i(t)_{max}$. The user estimates that the demand value $DM_i(t)$ will always remain within such a range, even after adjustment for price effects (for instance the range could be equal to the reference demand $DM^0_i(t)$ plus or minus 50%).
 
 b) Select a grid that divides each range into a number $n$ of equal width intervals. Let $\beta_i(t)$ be the resulting common width of the grid, $\beta_i(t) = R_i(t)/n$. See {numref}`approx-non-linear-obj-function` for a sketch of the non-linear expression and of its step-wise constant approximation. The number of steps, $n$, should be chosen so that the step-wise constant approximation remains close to the exact value of the function.
 
-c) For each demand segment $DM_i(t)$ define $n$ step-variables (one per grid interval), denoted $s_{1,i}(t)$, $s_{2,i}(t)$, ...,$s_{n,i}(t)$. Each $s$ variable is bounded below by 0 and above by $\beta_i(t)$. One may now replace in equations {eq}`4-5'` and {eq}`4-6'` each $DM_i(t)$ variable by the sum of the $n$-step variables, and each non-linear term in the objective function by a weighted sum of the $n$-step-variables, as follows:
+c) For each demand segment $DM_i(t)$ define $n$ step-variables (one per grid interval), denoted $s_{1,i}(t)$, $s_{2,i}(t)$, ...,$s_{n,i}(t)$. Each $s$ variable is bounded below by 0 and above by $\beta_i(t)$. One may now replace in equations {eq}`4-5-tick` and {eq}`4-6-tick` each $DM_i(t)$ variable by the sum of the $n$-step variables, and each non-linear term in the objective function by a weighted sum of the $n$-step-variables, as follows:
 
 $$DM_i(t) = DM(t)_{min} + \sum^{n}_{j=1}{s_{j,i}(t)}$$ (4-8)
 
