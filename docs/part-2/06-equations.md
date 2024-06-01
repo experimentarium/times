@@ -931,11 +931,11 @@ Late revenues consist of revenues from any materials and energy which had been e
 
 *Note*: For materials released within the horizon, the revenue is either explicit (and then it is the user's responsibility to indicate a negative cost -- credit -- at dismantling time), or the revenue is implicit, and then the user must specify a physical release of the material at dismantling time, and the model will correctly 'price' this material within the RES.
 
-*LATEREVENUES(y) y ≥ EOH+1*
+$$LATEREVENUES(y) \space y ≥ EOH+1$$
 
-The late revenues come *only* from the resale at dismantling time, of materials and/or energy that were sunk at construction time. Therefore, the *LATEREVENUES* expressions are identical to the decommissioning cost expressions, with the NCAP_DCOST attribute replaced by
+The late revenues come *only* from the resale at dismantling time, of materials and/or energy that were sunk at construction time. Therefore, the *LATEREVENUES* expressions are identical to the decommissioning cost expressions, with the *NCAP_DCOST* attribute replaced by
 
-![](assets/image29.png)
+$$\sum_{c} {-NCAP\_VAL(c) \times NCAP\_OCOM(c)}$$
 
 where the summation extends over all commodities *c* for which an *NCAP_OCOM* attribute is defined (defaults to zero if undefined)
 
