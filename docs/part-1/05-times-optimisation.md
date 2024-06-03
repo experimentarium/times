@@ -276,13 +276,13 @@ For each time period $t$ and for region $r$, there must be enough installed capa
 
 #### $EQ\_PEAK(r,t,c,s)$ -- Commodity peak requirement
 
-$$\sum_{p,c=pcg} PRC\_CAPACT(r,p) \times Peak(r,v,p,c,s) \times FR(s) \times VAR\_CAP(r,v,t,p) \times VAR\_ACTFLO(r,v,p,c) + \sum_{p,c≠pcg} CAP\_PKCNT(r,v,p,c,s) \times VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,i) ≥ (1+ COM\_PKRSV(r,t,c,s))(\sum_{p,c} VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,e))$$ (5-7)
+$$\sum_{p,c=pcg} PRC\_CAPACT(r,p) \times Peak(r,v,p,c,s) \times FR(s) \times VAR\_CAP(r,v,t,p) \times PRC\_ACTFLO(r,v,p,c) + \sum_{p,c≠pcg} CAP\_PKCNT(r,v,p,c,s) \times VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,i) ≥ (1+ COM\_PKRSV(r,t,c,s))(\sum_{p,c} VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,e))$$ (5-7)
 
 where:
 
-> $COM_PKRSV(r,t,c,s)$ is the region-specific reserve coefficient for commodity $c$ in time-slice $s$, which allows for unexpected down time of equipment, for demand at peak, and for uncertain resource availability, and
+> $COM\_PKRSV(r,t,c,s)$ is the region-specific reserve coefficient for commodity $c$ in time-slice $s$, which allows for unexpected down time of equipment, for demand at peak, and for uncertain resource availability, and
 >
-> $NCAP_PKCNT(r,v,p,c,s)$ specifies the fraction of technology $p$'s capacity in a region $r$ for a period $t$ and commodity $c$ (electricity or heat only) that is allowed to contribute to the peak load in slice $s$; many types of supply processes are predictably available during the peak and thus have a peak coefficient equal to 1, whereas others (such as wind turbines or solar plants in the case of electricity) are attributed a peak coefficient less than 1, since they are on average only fractionally available at peak (e.g., a wind turbine typically has a peak coefficient of .25 or .3, whereas a hydroelectric plant, a gas plant, or a nuclear plant typically has a peak coefficient equal to 1).
+> $NCAP\_PKCNT(r,v,p,c,s)$ specifies the fraction of technology $p$'s capacity in a region $r$ for a period $t$ and commodity $c$ (electricity or heat only) that is allowed to contribute to the peak load in slice $s$; many types of supply processes are predictably available during the peak and thus have a peak coefficient equal to 1, whereas others (such as wind turbines or solar plants in the case of electricity) are attributed a peak coefficient less than 1, since they are on average only fractionally available at peak (e.g., a wind turbine typically has a peak coefficient of .25 or .3, whereas a hydroelectric plant, a gas plant, or a nuclear plant typically has a peak coefficient equal to 1).
 >
 > For simplicity it has been assumed in {eq}`5-7` that the time-slice resolution of the peaking commodity and the time-slice resolution of the commodity flows (FLO, TRADE) are the same. In practice, this is not the case and additional conversion factors or summation operations are necessary to match different time-slice levels.
 
@@ -312,7 +312,7 @@ These are special cases of UC\'s that are frequently used to maintain the growth
 
 Typically, a growth constraint is of the following generic form (ignoring several indices for clarity:
 
-$$VAR\_CAP(t+1) \leq (1+ GROWTH^{M(t+1)- M(t)}).VAR\_CAP(t) + K$$ (5-8)
+$$VAR\_CAP(t+1) \leq (1+ GROWTH^{M(t+1)- M(t)}) \cdot VAR\_CAP(t) + K$$ (5-8)
 
 The $GROWTH$ coefficient is defined as a new attribute of the technology, and represents the maximum annual growth allowed for the capacity. The quantity $M(t+1)-M(t)$ is the number of years between the milestones of periods $t$ and $t+1$. The constant $K$ is useful whenever the technology has no capacity initially, in order to allow capacity to build over time (if $K$ were absent and initial capacity is zero, the technology would never acquire any capacity).
 
