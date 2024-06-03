@@ -330,9 +330,9 @@ In addition, as discussed in Section 3.10, there are a number of switches that c
 
 ### QA check report (LOG)
 
-In order to assist the user with identifying accidental modelling errors, a number of sanity checks are done by the model generator. If incorrect or suspicious specifications are found in these checks, a message is written in a text file named QA_CHECK.LOG, in the working folder. The checks implemented in TIMES Version 3.9.3 are listed in {numref}`times-qa-checks`. The "Log entry" column shows the identification given for each suspicious specification.
+In order to assist the user with identifying accidental modelling errors, a number of sanity checks are done by the model generator. If incorrect or suspicious specifications are found in these checks, a message is written in a text file named QA_CHECK.LOG, in the working folder. The checks implemented in TIMES Version 4.8.0 are listed in {numref}`times-qa-checks`. The "Log entry" column shows the identification given for each suspicious specification.
 
-```{list-table} TIMES Quality Assurance Checks (as of Version 4.4.0)
+```{list-table} TIMES Quality Assurance Checks (as of Version 4.8.0)
 :name: times-qa-checks
 :header-rows: 1
 
@@ -525,6 +525,41 @@ In order to assist the user with identifying accidental modelling errors, a numb
   <br>A zero PRC_ACTFLO has been specified for a commodity in the primary group.
   - fatal
   - region, process, commodity
+* - STD
+  - Duplicate parent timeslices –- Fatal error:
+  <br>A timeslice has been mapped below several parent timeslices.
+  - fatal error
+  - region, timeslice
+* - STD
+  - Inconsistent CAP_BND(UP/LO/FX) defined for process capacity:
+  <br>CAP_BND(…,UP) is lower than CAP_BND(…,LO), and therefore the lower bound is automatically reduced to the upper bound.
+  - warning
+  - region, milestone, process
+* - STD
+  - Elastic Demand but missing BPRICE for some MILESTONYR - using tail extrapolation:
+  <br>When elastic demands are used and Base Prices are defined but are missing for some Milestone year(s), they are completed by extrapolation.
+  - warning
+  - region, commodity
+* -
+  - Flow OFF TS level below VARiable TS level:
+  <br>A PRC_FOFF attribute has been defined for a timeslice below the timeslice level of the flow variable, and therefore the specification can only be ignored.
+  - warning
+  - region, process, commodity, timeslice
+* - STD
+  - ACT_EFF shadow group contains only an auxiliary flow:
+  <br>ACT_EFF has been specified for a shadow group that does not contain any other flows but an auxiliary.  In this case the efficiency is applied to the auxiliary flow (while normally auxiliary flows are excluded from ACT_EFF).
+  - warning
+  - region, process, commodity
+* - STD
+  - Inconsistent/spurious process transformation parameters:
+  <br>A process commodity flow has been defined by several transformation attributes, which are mutually inconsistent.
+  - severe error
+  - region, process, commodity
+* - STD
+  - Unsupported dynamic timeslice trees with overlap -- Fatal:
+  <br> When using the dynamic timeslice tree functionality, the timeslice tree has been defined with branches that are shared by the different configurations. Such timeslice trees are not supported.
+  - fatal error
+  - region, milestone
 * - XTD
   - Same Commodity IN and OUT of non-STG process:
   <br>A process has been defined to have the same commodity as an input and an output, and it is not a storage process; that is not supported.
@@ -598,6 +633,11 @@ In order to assist the user with identifying accidental modelling errors, a numb
 * - XTD
   - Found CHP processes without electricity in the PG:
   <br>A CHP process is found with no electricity commodity in the PG.
+  - warning
+  - region, process
+* - XTD
+  - Standard Flow Process with invalid Attributes:
+  <br>A standard process has IRE qualification or UC_IRE parameters.
   - warning
   - region, process
 ```
