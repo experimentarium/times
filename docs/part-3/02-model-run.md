@@ -540,7 +540,7 @@ In order to assist the user with identifying accidental modelling errors, a numb
   <br>When elastic demands are used and Base Prices are defined but are missing for some Milestone year(s), they are completed by extrapolation.
   - warning
   - region, commodity
-* -
+* - STD
   - Flow OFF TS level below VARiable TS level:
   <br>A PRC_FOFF attribute has been defined for a timeslice below the timeslice level of the flow variable, and therefore the specification can only be ignored.
   - warning
