@@ -36,7 +36,7 @@ This remark leads directly to the following general multi-period, multi-stage st
 
 **Minimize**
 
-$$Z = \sum_{t \in T}^{}{}\sum_{s \in S(t)}^{}{}C(t,s) \times X(t,s) \times p(t,s)$$ (8 - 1)   
+$$Z = \sum_{t \in T}^{}{}\sum_{s \in S(t)}^{}{}C(t,s) \times X(t,s) \times p(t,s)$$ (8-1)
 
 **Subject to:**
 
