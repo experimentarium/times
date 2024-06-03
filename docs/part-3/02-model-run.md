@@ -662,7 +662,9 @@ Most commonly errors are encountered during the solve process, resulting in an i
 To identify the cause of a solve error, if using CPLEX the user can activate the Infeasibility Finder (set in the CPLEX.OPT as default (via the IIS command) in VEDA-FE Case Manager or said file distributed with ANSWER). The CPLEX Infeasibility Finder will identify the explicit row/columns corresponding to the first infeasibility encountered and list the conflict involved in the \<Case\>.LST file, such as shown here where the electricity balance equation can't be satisfied (due
 to a limit being imposed on the first year electric grid capacity that is too small).
 
-![](assets/image20.png)
+```
+Implied bounds make row 'EQG_COMBAL('STARTER'.2013.'ELCD'.'FAD')' infeasible.
+```
 
 This helps with tracking down the culprit, but the user still needs to figure out why the problem occurred. When using a solver other than CPLEX, or if the Infeasibility Finder is not activated, then the solution dump will be tagged for all the potentially interrelated model variables/equations that were not in equilibrium at the time the solve stopped. The user can find these by searching the LST file for the string \"INFES\".
 
