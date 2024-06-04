@@ -8,9 +8,9 @@ This section is not strictly needed for a basic understanding of the TIMES model
 
 In this subsection, the superscript *t* following a vector or matrix represents the transpose of that vector or matrix. A Linear Program may always be represented as the following *Primal Problem* in canonical form:
 
-$$Max \ \ c^tx$$(14-1)
+$$Max \quad c^tx$$ (14-1)
 
-s.t. $$Ax ≤ b$$ (14-2)
+$$s.t. \quad Ax ≤ b$$ (14-2)
 
 $$x ≥ 0$$ (14-3)
 
@@ -25,9 +25,9 @@ In the last case, the variable $x_j^*$ is called *basic*. Otherwise it is *non-b
 
 For each primal problem, there corresponds a *Dual problem* derived as follows:
 
-$$Min \ \  b^ty$$ (14-4)
+$$Min \quad  b^ty$$ (14-4)
 
-s.t. $$A^ty ≥ c$$ (14-5)
+$$s.t. \quad A^ty ≥ c$$ (14-5)
 
 $$y ≥ 0$$ (14-6)
 
@@ -87,18 +87,18 @@ In a maximization problem, the difference $y \times A'_j - c_j$ is called the *r
 
 We now restate the above summary in the case of a Linear Program that minimizes cost subject to constraints:
 
-> $Min \ \  c^tx^*$
+$$Min \quad c^tx$$
 
-s.t. $Ax ≥ b$
+$$s.t. \quad Ax ≥ b$$
 
-> $x ≥ 0$
+$$x ≥ 0$$
 
 In a minimization problem (such as the usual formulation of TIMES), the difference $c_j - y^*A'_j$ is called the *reduced cost* of technology $j$. The following holds:
 - If $x^*_j$ is at its lower bound, its unit cost $c_j$ is *larger* than the value created (i.e. its reduced cost is positive). The technology is not competitive (and stays at its lower bound in the equilibrium);
 - if $x^*_j$ is at its upper bound, its cost $c_j$ is *less* than the value created (i.e. its reduced cost is negative). The technology is super competitive and produces a profit; and
 - if $x^*_j$ is basic, its reduced cost is equal to 0. The technology is competitive but does not produce a profit
 
-The reduced costs/surpluses may thus be used to rank all technologies, *including those that are not selected by the model.*
+The reduced costs/surpluses may thus be used to rank all technologies, *including those that are not selected by the model*.
 
 
 [^48]: Their proofs may be found in the textbooks on Linear Programming already referenced.

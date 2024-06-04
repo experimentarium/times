@@ -50,7 +50,7 @@ Among technology explicit models also, two main classes are usually distinguishe
 
 ## The core TIMES paradigm
 
-In the rest of this chapter, we present the properties of the **core TIMES** paradigm. As will be seen in chapters8 to 12, some of these properties are not applicable to several important TIMES variants. The reader should keep this caveat in mind when contemplating the use of some features that are described in these 5 chapters.
+In the rest of this chapter, we present the properties of the **core TIMES** paradigm. As will be seen in chapters 8 to 12, some of these properties are not applicable to several important TIMES variants. The reader should keep this caveat in mind when contemplating the use of some features that are described in these 5 chapters.
 
 Since certain portions of this and the next sections require an understanding of the concepts and terminology of Linear Programming, the reader requiring a brush-up on this topic may first read Appendix B, and then, if needed, some standard textbook on LP, such as Hillier and Lieberman (2009), Chvàtal (1983), or Schrijver (1986). The application of Linear Programming to microeconomic theory is covered in two historically important references, Gale (1960 and 11th edition 1989), and in Dorfman, Samuelson, and Solow (1958, and 1987 reprint).
 
@@ -107,7 +107,7 @@ In a similar manner, each TIMES model instance defines a series of inverse deman
 
 As already mentioned, the demand curves of most TIMES commodities (i.e. energy carriers, materials, emission permits) are implicitly constructed endogenously as an integral part of the solution of the LP. For each commodity that is an energy service, the user *explicitly* defines the demand *function* by specifying its own price elasticity. In TIMES, each energy service demand is assumed to have a constant own price elasticity function of the form (see {numref}`eq-demand-curve`):
 
-$DM/DM_{0} = (P/P_{0})^{E}$ (3-2)
+$$DM/DM_{0} = (P/P_{0})^{E}$$ (3-2)
 
 Where $\{DM_0,P_0\}$ is a reference pair of demand and price values for that energy service over the forecast horizon, and $E$ is the (negative) own price elasticity of that energy service demand, as specified by the user (note that although not obvious from the notation, this price elasticity may vary over time). The pair $\{DM_0,P_0\}$ is obtained by solving TIMES for a reference scenario. More precisely, $DM_0$ is the demand projection estimated by the user in the reference scenario (usually based upon explicitly defined relationships to economic and demographic drivers), and $P_0$ is the shadow price of that energy service demand in the dual solution of the reference case scenario. The precise manner in which the demand functions are discretized and incorporated in the TIMES objective function is explained in chapter 4.
 
@@ -176,8 +176,6 @@ An interesting property may be derived from the assumptions of competitiveness. 
 
 This property is important inasmuch as it provides an alternative justification for the class of equilibria based on the maximization of total surplus. It is now possible to shift the model's rationale from a global, societal one (total surplus maximization), to a local, decentralized one (individual utility maximization). Of course, the equivalence suggested by the theorem is valid only insofar as the marginal value pricing mechanism is strictly enforced --- that is, neither an individual producer nor an individual consumer may affect market prices --- both are price takers. Clearly, some markets are not competitive in the sense the term has been used here. For example, the behavior of a few oil producers has a dramatic impact on world oil prices, which then depart from their marginal system value. Market power[^25] may also exist in cases where a few consumers dominate a market.
 
-
-------------
 
 [^11]: These models assume that the relationships (as defined by the form of the production functions as well as the calculated parameters) between sector level inputs and outputs are in equilibrium in the base year.
 

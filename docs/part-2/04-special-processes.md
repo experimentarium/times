@@ -15,10 +15,10 @@ All these different cases are illustrated in {numref}`chp-characteristics` below
 
 Denoting the electrical efficiency in the full condensing mode (point B) by $η_B$, the total efficiency in the full CHP mode (point F) by $η_F$, the heat-to-power ratio (inverse slope of line E--F) by $R$, and the slope of the iso-fuel line (B--F) by $S$, we can easily write the relations between these as follows:
 
-$${\eta_{B} = \frac{\eta_{F} \times (1 + R \times S)}{(1 + R)}
-}$$
-$${\eta_{F} = \frac{\eta_{B} \times (1 + R)}{1 + R \times S}
-}$$
+$${\eta_{B} = \frac{\eta_{F} \times (1 + R \times S)}{(1 + R)}}$$
+
+$${\eta_{F} = \frac{\eta_{B} \times (1 + R)}{1 + R \times S}}$$
+
 $${S = \frac{\eta_{B} \times (1 + R) - \eta_{F}}{\eta_{F} \times R}}$$
 
 The core TIMES parameters for modeling the CHP attributes are listed in {numref}`core-chp-parameters`.

@@ -32,22 +32,17 @@ For the example shown in {numref}`stochastic-TIMES-tree`, in 2000 and 2010 there
 Event Tree for a three-stage stochastic TIMES Example.
 ```
 
-This remark leads directly to the following general multi-period, multi-stage stochastic program in Equations 8-1 to 8-3 below. The formulation described here is based on Dantzig (1963, Wets (1989), or Kanudia and Loulou (1999), and uses the expected cost criterion. Note that this is a LP, but its size is much larger than that of the deterministic TIMES model.
+This remark leads directly to the following general multi-period, multi-stage stochastic program in Equations {eq}`8-1` to {eq}`8-3` below. The formulation described here is based on Dantzig (1963, Wets (1989), or Kanudia and Loulou (1999), and uses the expected cost criterion. Note that this is a LP, but its size is much larger than that of the deterministic TIMES model.
 
 **Minimize**
 
-  -------------------------------------------------------------------------------------------- -------------
-  $$Z = \sum_{t \in T}^{}{}\sum_{s \in S(t)}^{}{}C(t,s) \times X(t,s) \times p(t,s)(8 - 1)$$   
-
-  -------------------------------------------------------------------------------------------- -------------
+$$Z = \sum_{t \in T}^{}{}\sum_{s \in S(t)}^{}{}C(t,s) \times X(t,s) \times p(t,s)$$ (8-1)
 
 **Subject to:**
 
-  ----------------------------------------------------------------------------------- -----------
-  $$A(t,s) \times X(t,s) \geq b(t,s)\forall s \in S(T),t \in T$$                      (8-2)
+$$A(t,s) \times X(t,s) \geq b(t,s)\forall s \in S(T),t \in T$$ (8-2)
 
-  $$\sum_{t \in T}^{}{D(t,g(t,s)) \times X(t,g(t,s))} \geq e(s)\forall s \in S(T)$$   (8-3)
-  ----------------------------------------------------------------------------------- -----------
+$$\sum_{t \in T}^{}{D(t,g(t,s)) \times X(t,g(t,s))} \geq e(s)\forall s \in S(T)$$ (8-3)
 
 where
 
@@ -59,9 +54,7 @@ where
 >
 > $S(t)$ = set of state indices for time period $t$;
 
-For {numref}`stochastic-TIMES-tree`, we have: S(2000) = 1; S(2010) = 1; S(2020) = 1,2;
-S(2030) = 1,2,3,4;\
-S(2040) = 1,2,3,4; S(2050) = 1,2,3,4; S(2060) = 1,2,3,4;
+For {numref}`stochastic-TIMES-tree`, we have: S(2000) = 1; S(2010) = 1; S(2020) = 1,2; S(2030) = 1,2,3,4; S(2040) = 1,2,3,4; S(2050) = 1,2,3,4; S(2060) = 1,2,3,4;
 
 > $S(T)$ = set of state indices at the last stage (the set of *scenarios*). Set $S(T)$ is homeomorphic to the set of paths from period 1 to last period, in the event tree.
 >
@@ -81,22 +74,17 @@ S(2040) = 1,2,3,4; S(2050) = 1,2,3,4; S(2060) = 1,2,3,4;
 >
 > $e(s)$ = the right hand side column vector (multi-period > constraints) under scenario $s$
 
-**Alternate formulation**: The above formulation makes it a somewhat difficult to retrieve the strategies attached to the various scenarios. Moreover, the actual writing of the cumulative constraints (8-3) is a bit delicate. An alternate (but equivalent) formulation consists in defining one scenario per path from initial to terminal period, and to define distinct variables *X(t,s)* for each scenario and each time period. For instance, in this alternate formulation of the example, there would be four variables *X(t,s)* at every period t, (whereas there was only one variable X(2000,1) in the previous formulation).
+**Alternate formulation**: The above formulation makes it a somewhat difficult to retrieve the strategies attached to the various scenarios. Moreover, the actual writing of the cumulative constraints {eq}`8-3` is a bit delicate. An alternate (but equivalent) formulation consists in defining one scenario per path from initial to terminal period, and to define distinct variables *X(t,s)* for each scenario and each time period. For instance, in this alternate formulation of the example, there would be four variables *X(t,s)* at every period t, (whereas there was only one variable X(2000,1) in the previous formulation).
 
 **Minimize**
 
-  -------------------------------------------------------------------------------------------- -------------
-  $$Z = \sum_{t \in T}^{}{}\sum_{s \in S(t)}^{}{}C(t,s) \times X(t,s) \times p(t,s)$$ (8-1)
-
-  -------------------------------------------------------------------------------------------- -------------
+$$Z = \sum_{t \in T}^{}{}\sum_{s \in S(t)}^{}{}C(t,s) \times X(t,s) \times p(t,s)$$ (8-1-tick)
 
 **Subject to:**
 
-  ----------------------------------------------------------------------------------- -----------
-  $$A(t,s) \times X(t,s) \geq b(t,s) \forall t, for all s$$ (8-2)
+$$A(t,s) \times X(t,s) \geq b(t,s) \space \forall t, \space \forall s$$ (8-2-tick)
 
-  $$\sum_{t \in T}^{}{D(t,s) \times X(t,s)} \geq e(s) \forall t, \forall s$$ (8-3)
-  ----------------------------------------------------------------------------------- -----------
+$$\sum_{t \in T}^{}{D(t,s) \times X(t,s)} \geq e(s) \space \forall t, \space \forall s$$ (8-3-tick)
 
 Of course, in this approach we need to add equality constraints to express the fact that some scenarios are identical at some periods. In the example of {numref}`stochastic-TIMES-tree`, we would have:
 
@@ -110,7 +98,7 @@ X(2020,3)=X(2020,4).
 
 Although this formulation is less parsimonious in terms of additional variables and constraints, many of these extra variables and constraints are in fact eliminated by the pre-processor of most optimizers. The main advantage of this new formulation is the ease of producing outputs organized by scenario.
 
-In the current implementation of stochastic TIMES, the first approach has been used (Equations 8-1 to 8-3). The results are however reported for all scenarios in the same way as in the second approach.
+In the current implementation of stochastic TIMES, the first approach has been used (Equations {eq}`8-1` to {eq}`8-3`). The results are however reported for all scenarios in the same way as in the second approach.
 
 In addition, in TIMES there is also an experimental variant for the modeling of recurring uncertainties with stochastic programming, described in Appendix A of technical note "TIMES-Stochastic".
 
@@ -168,6 +156,5 @@ The introduction of uncertainty alters the economic interpretation of the TIMES 
 - During the first stage (i.e. before resolution of any uncertainties), the meaning of the primal solution is identical to that of a deterministic TIMES run, i.e. of a set of optimal decisions, whereas the meaning of the shadow prices is that of *expected prices*(resp. expected marginal utility changes) of the various commodities. This is so because the shadow price is the marginal change in objective function when a commodity\'s balance is marginally altered, and the objective function is an expected cost (resp. an expected utility function).
 - During subsequent stages, the primal values of any given branch of the event tree represent the optimal decisions *conditional on the corresponding outcome being true*, and the shadow prices are the *expected*[^35] *prices* of the commodities also conditional on the corresponding outcome being true.
 
-------------
 
 [^35]: The expected prices become deterministic prices if the stage is the last one, so that there is no uncertainty remaining at or after the current period.

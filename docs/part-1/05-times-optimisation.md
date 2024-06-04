@@ -177,7 +177,7 @@ The total available capacity for each technology *p,* in region *r*, in period *
 #### $EQ\_CPT(r,t,p)$ -- Capacity transfer
 
 $$VAR\_CAPT(r,t,p) = \sum_{t' \in \{t-t'< LIFE(r,t',p)\}} VAR\_NCAP(r,t',p) + RESID(r,t,p)$$ (5-1)
->
+
 > where $RESID(r,t,p)$ is the (exogenously provided) capacity of technology $p$ due to investments that were made prior to the initial model period and still exist in region $r$ at time $t$.
 
 ### Definition of process activity variables
@@ -200,11 +200,11 @@ For each technology $p$, period $t$, vintage $v$, region $r$, and time-slice $s$
 
 $$VAR\_ACT(r,v,t,p,s) ≤ or = AF(r,v,t,p,s) \times PRC\_CAPACT(r,p)) \times FR(r,s) \times VAR\_CAP(r,v,t,p)$$ (5-3)
 
-> Here $PRC\_CAPACT(r,p)$ is the conversion factor between units of capacity and activity (often equal to 1, except for power plants). The $FR(r,s)$ parameter is equal to the (fractional) duration of time-slices. The availability factor ***AF*** also serves to indicate the nature of the constraint as an inequality or an equality. In the latter case the capacity is forced to be fully utilized. Note that the ***CAP(r,v,t,p)*** "variable" is not explicitly defined in TIMES. Instead it is replaced in (5-3) by a fraction (less than or equal to 1) of the investment variable $VAR\_NCAP(r,v,p)$[^31] sum of past investments that are still operating, as in equation (5-1).
+> Here $PRC\_CAPACT(r,p)$ is the conversion factor between units of capacity and activity (often equal to 1, except for power plants). The $FR(r,s)$ parameter is equal to the (fractional) duration of time-slices. The availability factor ***AF*** also serves to indicate the nature of the constraint as an inequality or an equality. In the latter case the capacity is forced to be fully utilized. Note that the ***CAP(r,v,t,p)*** "variable" is not explicitly defined in TIMES. Instead it is replaced in {eq}`5-3` by a fraction (less than or equal to 1) of the investment variable $VAR\_NCAP(r,v,p)$[^31] sum of past investments that are still operating, as in equation {eq}`5-1`.
 
 **<ins>Example</ins>**: a coal fired power plant's activity in any time-slice is bounded above by 80% of its capacity, i.e. $VAR\_ACT(r,v,t,p,s) ≤ 0.8 \times 31.536 \times CAP(r,v,t,p)$, where $PRC\_CAPACT(r,p) = 31.536$ is the conversion factor between the units of the capacity variable (GW) and the activity-based capacity unit (PJ/a) The activity-based capacity unit is obtained from the activity unit(PJ) by division by a denominator of one year.
 
-The $s$ index of the $AF$ coefficient in equation (5-3) indicates that the user may specify time-sliced dependency on the availability of the installed capacity of some technologies, if desirable. This is especially needed when the operation of the equipment depends on the availability of a resource that cannot be stored, such as wind and sun, or that can be only partially stored, such as water in a reservoir. In other cases, the user may provide an $AF$ factor that does not depend on $s$, which is then applied to the entire year. The operation profile of a technology within a year, if the technology has a sub-annual process resolution, is determined by the optimization routine. The number of $EQ\_CAPACT$ constraints is at least equal to the number of time-slices in which the equipment operates. For technologies with only an annual characterization the number of constraints is reduced to one per period (where $s$="ANNUAL").
+The $s$ index of the $AF$ coefficient in equation {eq}`5-3` indicates that the user may specify time-sliced dependency on the availability of the installed capacity of some technologies, if desirable. This is especially needed when the operation of the equipment depends on the availability of a resource that cannot be stored, such as wind and sun, or that can be only partially stored, such as water in a reservoir. In other cases, the user may provide an $AF$ factor that does not depend on $s$, which is then applied to the entire year. The operation profile of a technology within a year, if the technology has a sub-annual process resolution, is determined by the optimization routine. The number of $EQ\_CAPACT$ constraints is at least equal to the number of time-slices in which the equipment operates. For technologies with only an annual characterization the number of constraints is reduced to one per period (where $s$="ANNUAL").
 
 ### Commodity balance equation
 
@@ -216,9 +216,8 @@ For each commodity $c$, time period $t$ (vintage $v$), region $r$, and time-slic
 
 #### $EQ\_COMBAL(r,t,c,s)$ -- Commodity balance
 
-$$\sum_{p,c \in TOP(r,p,c,out)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SOUT(r,v,t,p,c,s) \times STG\_EFF(r,v,p) + \sum_{p,c \in RPC\_IRE(r,p,c,imp)} VAR\_IRE(r,t,p,c,s,imp) + \sum_{p} Release(r,t,p,c) \times VAR\_NCAP(r,t,p,c) ≥ or = \sum_{p,c \in TOP(r,p,c,in)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SIN(r,v,t,p,c,s) + \sum_{p,c \in RPC\_IRE(r,p,c,exp)} VAR\_IRE(r,t,p,c,s,exp) + \sum_{p} Sink(r,t,p,c) \times VAR\_NCAP(r,t,p,c) + FR(c,s) \times VAR\_DEM(c,t)$$
-> (5-4)
-> 
+$$\sum_{p,c \in TOP(r,p,c,out)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SOUT(r,v,t,p,c,s) \times STG\_EFF(r,v,p) + \sum_{p,c \in RPC\_IRE(r,p,c,imp)} VAR\_IRE(r,t,p,c,s,imp) + \sum_{p} Release(r,t,p,c) \times VAR\_NCAP(r,t,p,c) ≥ or = \sum_{p,c \in TOP(r,p,c,in)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SIN(r,v,t,p,c,s) + \sum_{p,c \in RPC\_IRE(r,p,c,exp)} VAR\_IRE(r,t,p,c,s,exp) + \sum_{p} Sink(r,t,p,c) \times VAR\_NCAP(r,t,p,c) + FR(c,s) \times VAR\_DEM(c,t)$$ (5-4)
+ 
 > where:
 >
 > The constraint is ≥ for energy forms and = for materials and emissions (unless these defaults are overridden by the user, see Part II).
@@ -253,11 +252,9 @@ $$\sum_{c \in cg2} VAR\_FLO(r,v,t,p,c,s) = FLO\_FUNC(r,v,cg1,cg2,s) \times \sum_
 
 When either of the commodity groups $cg1$ or $cg2$ contains more than one element, the previous constraint allows a lot of freedom on the values of flows. The process is therefore quite flexible. The flow share constraint is intended to limit the flexibility, by constraining the share of each flow within its own group. For instance, a refinery output might consist of three refined products: $c_1$ is light, $c_2$ is medium, and $c_3$ is heavy distillate. If losses are 9% of the input, then the user must specify $FLO\_FUNC = 0.91$ to define the overall efficiency. The user may then want to limit the flexibility of the slate of outputs by means of three $FLO\_SHAR(c_i)$ coefficients, say 0.4, 0.5, 0.6, resulting in three flow share constraints as follows (ignoring some indices for clarity):
 
-> $VAR\_FLO(c_1) ≤ 0.4 \times (VAR\_FLO(c_1) + VAR\_FLO(c_2) + VAR\_FLO(c_3))$, so that $c_1$ is at most 40% of the total output,
->
-> $VAR\_FLO(c_2) ≤ 0.5 \times (VAR\_FLO(c_1) + VAR\_FLO(c_2) + VAR\_FLO(c_3))$, so that $c_2$ is at most 50% of the total output,
->
-> $VAR\_FLO(c_3) ≤ 0.6 \times (VAR\_FLO(c_1) + VAR\_FLO(c_2) + VAR\_FLO(c_3))$, so that $c_3$ is at most 60% of the total output.
+- $VAR\_FLO(c_1) ≤ 0.4 \times (VAR\_FLO(c_1) + VAR\_FLO(c_2) + VAR\_FLO(c_3))$, so that $c_1$ is at most 40% of the total output,
+- $VAR\_FLO(c_2) ≤ 0.5 \times (VAR\_FLO(c_1) + VAR\_FLO(c_2) + VAR\_FLO(c_3))$, so that $c_2$ is at most 50% of the total output,
+- $VAR\_FLO(c_3) ≤ 0.6 \times (VAR\_FLO(c_1) + VAR\_FLO(c_2) + VAR\_FLO(c_3))$, so that $c_3$ is at most 60% of the total output.
 
 The general form of this constraint is:
 
@@ -267,9 +264,9 @@ $$VAR\_FLO(c) ≤,≥,= FLO\_SHAR(c) \times \sum_{c' \in cg} VAR\_FLO(c')$$ (5-6
 
 > The commodity group $cg$ may be on the input or output side of the process.
 
-A recent modification of TIMES simplifies the above constraints by allowing the use of the $VAR\_ACT$ variable instead of the sum of $VAR\_FLO$ variables in equation (5-6) or in similar ones. This simplification is triggered when the user defines the new attribute $ACT\_FLO$, which is a coefficient linking a flow to the activity of a process. Furthermore, commodity $c$ appearing in left-hand-side of the constraint may even be a flow that is not part of the $cg$ group.
+A recent modification of TIMES simplifies the above constraints by allowing the use of the $VAR\_ACT$ variable instead of the sum of $VAR\_FLO$ variables in equation {eq}`5-6` or in similar ones. This simplification is triggered when the user defines the new attribute $ACT\_FLO$, which is a coefficient linking a flow to the activity of a process. Furthermore, commodity $c$ appearing in left-hand-side of the constraint may even be a flow that is not part of the $cg$ group.
 
-<ins>Warning</ins>: It is quite possible (and regrettable) to over specify flow related equations such as (5-6), especially when the constraint is an equality. Such an over specification leads to an infeasible LP. A new feature of TIMES consists in deleting some of the flow constraints in order to re-establish feasibility, in which case a warning message is issued.
+<ins>Warning</ins>: It is quite possible (and regrettable) to over specify flow related equations such as {eq}`5-6`, especially when the constraint is an equality. Such an over specification leads to an infeasible LP. A new feature of TIMES consists in deleting some of the flow constraints in order to re-establish feasibility, in which case a warning message is issued.
 
 ### Peaking reserve constraint (time-sliced commodities only)
 
@@ -279,21 +276,21 @@ For each time period $t$ and for region $r$, there must be enough installed capa
 
 #### $EQ\_PEAK(r,t,c,s)$ -- Commodity peak requirement
 
-$$\sum_{p,c=pcg} PRC\_CAPACT(r,p) \times Peak(r,v,p,c,s) \times FR(s) \times VAR\_CAP(r,v,t,p) \times VAR\_ACTFLO(r,v,p,c) + \sum_{p,c≠pcg} CAP\_PKCNT(r,v,p,c,s) \times VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,i) ≥ (1+ COM\_PKRSV(r,t,c,s))(\sum_{p,c} VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,e))$$
+$$\sum_{p,c=pcg} PRC\_CAPACT(r,p) \times Peak(r,v,p,c,s) \times FR(s) \times VAR\_CAP(r,v,t,p) \times PRC\_ACTFLO(r,v,p,c) + \sum_{p,c≠pcg} CAP\_PKCNT(r,v,p,c,s) \times VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,i) ≥ (1+ COM\_PKRSV(r,t,c,s))(\sum_{p,c} VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,e))$$ (5-7)
 
 where:
 
-> $COM_PKRSV(r,t,c,s)$ is the region-specific reserve coefficient for commodity $c$ in time-slice $s$, which allows for unexpected down time of equipment, for demand at peak, and for uncertain resource availability, and
+> $COM\_PKRSV(r,t,c,s)$ is the region-specific reserve coefficient for commodity $c$ in time-slice $s$, which allows for unexpected down time of equipment, for demand at peak, and for uncertain resource availability, and
 >
-> $NCAP_PKCNT(r,v,p,c,s)$ specifies the fraction of technology $p$'s capacity in a region $r$ for a period $t$ and commodity $c$ (electricity or heat only) that is allowed to contribute to the peak load in slice $s$; many types of supply processes are predictably available during the peak and thus have a peak coefficient equal to 1, whereas others (such as wind turbines or solar plants in the case of electricity) are attributed a peak coefficient less than 1, since they are on average only fractionally available at peak (e.g., a wind turbine typically has a peak coefficient of .25 or .3, whereas a hydroelectric plant, a gas plant, or a nuclear plant typically has a peak coefficient equal to 1).
+> $NCAP\_PKCNT(r,v,p,c,s)$ specifies the fraction of technology $p$'s capacity in a region $r$ for a period $t$ and commodity $c$ (electricity or heat only) that is allowed to contribute to the peak load in slice $s$; many types of supply processes are predictably available during the peak and thus have a peak coefficient equal to 1, whereas others (such as wind turbines or solar plants in the case of electricity) are attributed a peak coefficient less than 1, since they are on average only fractionally available at peak (e.g., a wind turbine typically has a peak coefficient of .25 or .3, whereas a hydroelectric plant, a gas plant, or a nuclear plant typically has a peak coefficient equal to 1).
 >
-> For simplicity it has been assumed in (5-7) that the time-slice resolution of the peaking commodity and the time-slice resolution of the commodity flows (FLO, TRADE) are the same. In practice, this is not the case and additional conversion factors or summation operations are necessary to match different time-slice levels.
+> For simplicity it has been assumed in {eq}`5-7` that the time-slice resolution of the peaking commodity and the time-slice resolution of the commodity flows (FLO, TRADE) are the same. In practice, this is not the case and additional conversion factors or summation operations are necessary to match different time-slice levels.
 
 *Remark*: to establish the peak capacity, two cases must be distinguished in constraint ***EQ_PEAK***.
 - For production processes where the peaking commodity is the only commodity in the primary commodity group (denoted $c=pcg$), the capacity of the process may be assumed to contribute to the peak.
 - For processes where the peaking commodity is not the only member of the pcg, there are several commodities included in the pcg. Therefore, the capacity as such cannot be used in the equation. In this case, the actual production is taken into account in the contribution to the peak, instead of the capacity. For example, in the case of CHP only the production of electricity contributes to the peak electricity supply, not the entire capacity of the plant, because the activity of the process consists of both electricity and heat generation in either fixed or flexible proportions, and, depending on the modeler\'s choice, the capacity may represent either the electric power of the turbine in condensing or back-pressure mode, or the sum of power and heat capacities in back-pressure mode. There is therefore a slight inconsistency between these two cases, since in the first case, a technology may contribute to the peak requirement without producing any energy, whereas this is impossible in the second case.
 
-Note also that in the peak equation (5-7), it is assumed that imports of the commodity are contributing to the peak of the importing region (thus, exports are implicitly considered to be of the *firm power* type).
+Note also that in the peak equation {eq}`5-7`, it is assumed that imports of the commodity are contributing to the peak of the importing region (thus, exports are implicitly considered to be of the *firm power* type).
 
 ### Constraints on commodities
 
@@ -315,7 +312,7 @@ These are special cases of UC\'s that are frequently used to maintain the growth
 
 Typically, a growth constraint is of the following generic form (ignoring several indices for clarity:
 
-$VAR\_CAP(t+1) \leq (1+ GROWTH^{M(t+1)- M(t)}).VAR\_CAP(t) + K$ (5-8)
+$$VAR\_CAP(t+1) \leq (1+ GROWTH^{M(t+1)- M(t)}) \cdot VAR\_CAP(t) + K$$ (5-8)
 
 The $GROWTH$ coefficient is defined as a new attribute of the technology, and represents the maximum annual growth allowed for the capacity. The quantity $M(t+1)-M(t)$ is the number of years between the milestones of periods $t$ and $t+1$. The constant $K$ is useful whenever the technology has no capacity initially, in order to allow capacity to build over time (if $K$ were absent and initial capacity is zero, the technology would never acquire any capacity).
 
@@ -441,8 +438,7 @@ One sophisticated expression reports the *levelized cost* (LC) of a process. A p
 
 The general expression for the levelized cost of a process is as follows:
 
-$LEC = \frac{\sum_{t = 1}^{n}{\frac{IC_{t}}{(1 + r)^{t - 1}} + \frac{OC_{t} + VC_{t} + \sum_{i}^{}{FC_{i,t} + FD_{i,t}} + \sum_{j}^{}{ED_{j,t}}}{(1 + r)^{t - 0.5}} -}\frac{\sum_{k}^{}{BD_{k,t}}}{(1 + r)^{t - 0.5}}}{\sum_{t = 1}^{n}\frac{\sum_{m}^{}{MO_{m,t}}}{(1 + r)^{t - 0.5}}}$
-(5-9)
+$$LEC = \frac{\sum_{t = 1}^{n}{\frac{IC_{t}}{(1 + r)^{t - 1}} + \frac{OC_{t} + VC_{t} + \sum_{i}^{}{FC_{i,t} + FD_{i,t}} + \sum_{j}^{}{ED_{j,t}}}{(1 + r)^{t - 0.5}} -}\frac{\sum_{k}^{}{BD_{k,t}}}{(1 + r)^{t - 0.5}}}{\sum_{t = 1}^{n}\frac{\sum_{m}^{}{MO_{m,t}}}{(1 + r)^{t - 0.5}}}$$ (5-9)
 
 where
 
@@ -488,7 +484,6 @@ The following further modifications are done in the LIN formulation:
 - The cumulative user constraints for activities and flows are also modified in a similar manner.
 - Note that in the LIN formulation the activity of ***inter-period storage*** equations is measured at the milestone year (in the standard formulation it is measured at the end of each period). In addition, new EQ_STGIPS equations are added to ensure that the storage level remains non-negative at the end of each period. (Without these additional constraints, the linear interpolation of storage could lead to a negative storage level if the period contains more than a single year.)
 
-------------
 
 [^26]: This rather improper term includes equality as well as inequality relationships between mathematical expressions.
 

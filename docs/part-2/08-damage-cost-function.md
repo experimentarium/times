@@ -27,7 +27,7 @@ In both approaches, a number of assumptions are made:
 
 In a given time period, and for a given pollutant, the damage cost is modeled as follows:
 
-$$DAM(EM) = \alpha \cdot EM^{\beta + 1}$$   (1)
+$$DAM(EM) = \alpha \cdot EM^{\beta + 1}$$ (1)
 
 where:
 
@@ -38,15 +38,15 @@ where:
 
 If we denote the marginal cost at the reference level MC~0~, the following holds:
 
-$$MC_{0} = \alpha \cdot (\beta + 1) \cdot EM_{0}^{\beta}$$   (2)
+$$MC_{0} = \alpha \cdot (\beta + 1) \cdot EM_{0}^{\beta}$$ (2)
 
 where EM~0~ is the reference amount of emissions. Therefore expression (1) may be re-written as:
 
-$$DAM(EM) = MC_{0} \cdot \frac{EM^{\beta + 1}}{(\beta + 1) \cdot EM_{0}^{\beta}}$$   (3)
+$$DAM(EM) = MC_{0} \cdot \frac{EM^{\beta + 1}}{(\beta + 1) \cdot EM_{0}^{\beta}}$$ (3)
 
 The marginal damage cost is therefore given by the following expression:
 
-$$MC(EM) = MC_{0} \cdot \frac{EM^{\beta}}{EM_{0}^{\beta}}$$   (4)
+$$MC(EM) = MC_{0} \cdot \frac{EM^{\beta}}{EM_{0}^{\beta}}$$ (4)
 
 The approach to damage costs described in this section applies more particularly to local pollutants. Extension to global emissions such GHG emissions requires the use of a global TIMES model and a reinterpretation of the equations discussed above.
 
@@ -54,11 +54,11 @@ The modeling of damage costs via equation (3) introduces a non-linear term in th
 
 The linearization can be done by choosing a suitable range of emissions, and dividing that range into *m* intervals below the reference level, and *n* intervals above the reference level. We also assume a middle interval centered at the reference emission level. To each interval corresponds one step variable *S*. Thus, we have for emissions:
 
-  $$EM = \sum_{i = 1}^{m}S_{i}^{lo} + S^{mid} + \sum_{i = 1}^{n}S_{i}^{up}$$   (5)
+$$EM = \sum_{i = 1}^{m}S_{i}^{lo} + S^{mid} + \sum_{i = 1}^{n}S_{i}^{up}$$ (5)
 
 The damage cost can then be written as follows:
 
-  $$DAM(EM) = \sum_{i = 1}^{m}{MC_{i}^{lo} \cdot S_{i}^{lo}} + MC_{0} \cdot S^{mid} + \sum_{i = 1}^{n}{MC_{i}^{up} \cdot S_{i}^{up}}$$   (6)
+$$DAM(EM) = \sum_{i = 1}^{m}{MC_{i}^{lo} \cdot S_{i}^{lo}} + MC_{0} \cdot S^{mid} + \sum_{i = 1}^{n}{MC_{i}^{up} \cdot S_{i}^{up}}$$ (6)
 
 where:
 
@@ -67,7 +67,7 @@ where:
 
 The approximate marginal costs at each step can be assumed to be the marginal costs at the center of each step. If all the steps intervals are of equal size, the marginal costs for the steps below the reference level are obtained by the following formula:
 
-  $$MC_{i}^{lo} = MC_{0} \cdot \left( \frac{(i - 0.5)}{(m + 0.5)} \right)^{\beta}$$   (7)
+$$MC_{i}^{lo} = MC_{0} \cdot \left( \frac{(i - 0.5)}{(m + 0.5)} \right)^{\beta}$$ (7)
 
 Formulas for the marginal costs of the other steps can be derived similarly.
 
