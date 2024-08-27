@@ -105,7 +105,7 @@ Figure 3. Model StartPage
 
 ## VEDA2.0 Navigator and Types of Templates
 
-The VEDA2.0 Navigator (Figure 4) provides a comprehensive view of all Templates In the various folders managed by VEDA2.0 for the current model. The form opens with the last model loaded. To bring in your 1^st^ or another model hit the Add New button in the upper left of the Navigator form, which opens Windows Explorer -- move to the VEDA_Models sub-folder of interest and click on it to start the process. VEDA2.0 may ask if you want to open a New Window, where "Yes" will start another instance of VEDA2.0 and "No" will replace the currently viewed model with the one requested, which also happens if you reselect the current model folder. You may reopen previously opened models via ![](assets/image8.png), which will again ask if you want to open a new instance or replace the only currently open.
+The VEDA2.0 Navigator (Figure 4) provides a comprehensive view of all Templates In the various folders managed by VEDA2.0 for the current model. The form opens with the last model loaded. To bring in your first or another model hit the Add New button in the upper left of the Navigator form, which opens Windows Explorer -- move to the VEDA_Models sub-folder of interest and click on it to start the process. VEDA2.0 may ask if you want to open a New Window, where "Yes" will start another instance of VEDA2.0 and "No" will replace the currently viewed model with the one requested, which also happens if you reselect the current model folder. You may reopen previously opened models via ![](assets/image8.png), which will again ask if you want to open a new instance or replace the only currently open.
 
 When first opening the Navigator for a particular model the form will be presented as seen below, with all the panel types displayed. If you want to recover empty real estate simply Unpin say the Parametric and No Seed Value panes showing in Figure 4, resulting in what one sees in Figure 5, where by grabbing the vertical tabs in the middle of a pane the window size has also been adjusted. Note that when Unpinned the pane header appears to the right so that when clicked on it returns to the visualization pane.
 
@@ -139,7 +139,7 @@ Hitting ![](assets/image15.png) will import all Templates In the application fol
 
 ## VEDA2.0 Templates Tables
 
-The VEDA2.0 synchronize operation reads each sheet in each file to be imported in sequence, looking for VEDA2.0 tables to be processed. All VEDA2.0 tables are identified by table tags, discussed below, and triggered by the special character tilde (\" **\~** \"). VEDA2.0 tables must be separated from each other and the rest of the information on a worksheet by blank rows and columns. Rows and columns starting with the character \" **\*** \" or with "\\I:", which stands for \"ignore\", are not read.
+The VEDA2.0 synchronize operation reads each sheet in each file to be imported in sequence, looking for VEDA2.0 tables to be processed. All VEDA2.0 tables are identified by table tags, discussed below, and triggered by the special character tilde (\"**\~**\"). VEDA2.0 tables must be separated from each other and the rest of the information on a worksheet by blank rows and columns. Rows and columns starting with the character \"**\***\" or with "\\I:", which stands for \"ignore\", are not read.
 
 The most common types of tables are briefly described in this section. More information on how to use them for specific cases is shown in the sections associated with each step of the DemoS. The initial examples in this section come out of the DemoS_001 model, unless otherwise noted. The VEDA2.0 Information/VEDA Tags feature, shown in Figure 6, provides a summary of what is required for each "\~"tag VEDA handles.
 
@@ -347,9 +347,9 @@ Transformation tables may be used only in scenario and transformation files. Val
   - **Insert or update values**
 * - Attribute
   - Name of the attribute
-* - Year\*
+* - Year<sup>*</sup>
   - Year declaration; default value = start year
-* - TimeSlice\*
+* - TimeSlice<sup>*</sup>
   - Time slices declaration; default=ANNUAL.
 * - LimType
   - Valid entries are: UP (Upper), LO (Lower), FX (Fixed) and N (Non-binding)
@@ -369,21 +369,21 @@ Transformation tables may be used only in scenario and transformation files. Val
   - Region-specific data values; these will supersede any declaration in AllRegions column
 * - 
   - **Commodity and process filtering**
-* - PSet_Set^1^
+* - PSet_Set<sup>1</sup>
   - Identifies qualifying processes based on TIMES or user-defined set membership
-* - PSet_PN^2^
+* - PSet_PN<sup>2</sup>
   - Identifies qualifying processes based on names
-* - PSet_PD^2^
+* - PSet_PD<sup>2</sup>
   - Identifies qualifying processes based on descriptions
-* - PSet_CI^2^
+* - PSet_CI<sup>2</sup>
   - Identifies qualifying processes based on commodity inputs
-* - PSet_CO^2^
+* - PSet_CO<sup>2</sup>
   - Identifies qualifying processes based on commodity outputs
-* - CSet_Set^1^
+* - CSet_Set<sup>1</sup>
   - Identifies qualifying commodities based on TIMES set membership
-* - CSet_CN^2^
+* - CSet_CN<sup>2</sup>
   - Identifies qualifying commodities based on names
-* - CSet_CD^2^
+* - CSet_CD<sup>2</sup>
   - Identifies qualifying commodities based on descriptions
 * - Top_Check
   - To restrict application of attribute data to those process-commodity combinations where the specified topology already exists in the model, rather than creating new topology. Valid entries: **I/O/A. "I"** will retain those combinations where commodities are input to processes. **"O"** =\> Output. No topology check is performed by default.
@@ -393,17 +393,17 @@ Transformation tables may be used only in scenario and transformation files. Val
   - Used in conjunction with Attrib_Cond to filter on the value of the specified attribute. Define using \'\<\', \'\>\', '\<\>', or \'=\'. The condition will be tested across all dimensions (for example, years) for the specified process, region, and attribute.
 ```
 
-> ^\*^ Comma separated entries permitted.
+><sup>*</sup> Comma separated entries permitted.
 >
-> ^1^ Comma separated elements are allowed. Each of these fields can have comma-separated entries that are joined by OR.
+><sup>1</sup> Comma separated elements are allowed. Each of these fields can have comma-separated entries that are joined by OR.
 >
-> ^2^ Comma separated elements and wild cards characters are allowed. The possible wild cards are:
+><sup>2</sup> Comma separated elements and wild cards characters are allowed. The possible wild cards are:
 >
-> "\*" is used as wild card; for example \*GAS\* would refer to all elements that have GAS in the name with any possible characters before and after GAS.
->
-> "-" before the text used for exclusions; for example, \*GAS\*,-ELCGAS would refer to all elements that have GAS in the name except for ELCGAS.
->
-> "?" can be used to specify a single character; for example, ???GAS means there are 3 characters before GAS.
+>  "\*" is used as wild card; for example \*GAS\* would refer to all elements that have GAS in the name with any possible characters before and after GAS.
+>  
+>  "-" before the text used for exclusions; for example, \*GAS\*,-ELCGAS would refer to all elements that have GAS in the name except for ELCGAS.
+>  
+>  "?" can be used to specify a single character; for example, ???GAS means there are 3 characters before GAS.
 
 ### Advanced tables
 
@@ -596,7 +596,7 @@ Figure 15. Master Schematic Representation of the RES -- Process View
 
 Figure 16. Master Schematic Representation of the RES -- Commodity View
 
-The User Constraint (UC) view allows you to see components of the individual user constraints, as shown in for the cross-region (global) CO~2~ limit constraint.
+The User Constraint (UC) view allows you to see components of the individual user constraints, as shown in for the cross-region (global) CO<sub>2</sub> limit constraint.
 
 There is also a facility for examining the Commodity Groups, not shown here as DemoS only employs the standard single commodity input/output groups created by VEDA2.0.
 
@@ -611,9 +611,6 @@ The Run Manager, available from the **StartPage**, **Module** menu, or by pressi
 Figure 18 illustrates the main components of the Run Manager.
 
 ![](assets/image33.png)
-
-
-![](assets/image34.png)
 
 Figure 18. Run Manager
 
@@ -742,7 +739,7 @@ The Property / Description window at the bottom of the form provides information
 
 Figure 27. Sets-\<model\> Rules Workbook
 
-> The Sets rule workbook is accessible via Navigator ![](assets/image53.png){width="0.84375in" height="0.3125in"} or better yet the Tools/SetBrowser which presents the Set definition information via a VEDA2.0 cube (Figure 28, TIMES Commodity on the left / User-defined Process on the right) for viewing using all the filtering/tailoring of the information available throughout VEDA2.0.
+> The Sets rule workbook is accessible via Navigator ![](assets/image53.png) or better yet the Tools/SetBrowser which presents the Set definition information via a VEDA2.0 cube (Figure 28, TIMES Commodity on the left / User-defined Process on the right) for viewing using all the filtering/tailoring of the information available throughout VEDA2.0.
 
 ![](assets/image54.png)
 
@@ -893,10 +890,8 @@ This sheet contains two tables (see Figure 32):
 - The list of model region names (REG1).
 - \~TimeSlices is used to define the time-slice resolution for the model at different hierarchical levels: SEASON, WEEKLY and DAYNITE. In this first step, there is only one time slice defined by the user for the seasonal level and called ANNUAL.
 
-+-----------------------------+----------------------------------------+
-| > ![](assets/image59.png)    | > ![](assets/image60.png)               |
-+=============================+========================================+
-+-----------------------------+----------------------------------------+
+| ![](assets/image59.png) | ![](assets/image60.png) |
+|-------------------------|-------------------------|
 
 Figure 32. Regions and Time-slices Definition in SysSettings
 
@@ -972,10 +967,8 @@ This sheet contains two tables (see Figure 38):
 - The list of model region names (REG1).
 - \~TimeSlices is used to define the time-slice resolution for the model at different hierarchical levels: SEASON, WEEKLY and DAYNITE. In this first step, there is only one time slice defined by the user for the seasonal level and called ANNUAL.
 
-+-----------------------------+----------------------------------------+
-| ![](assets/image59.png)    | ![](assets/image60.png)               |
-+=============================+========================================+
-+-----------------------------+----------------------------------------+
+| ![](assets/image59.png) | ![](assets/image60.png) |
+|-------------------------|-------------------------|
 
 Figure 38. Regions and Time-slices Definition in SysSettings
 
@@ -1121,7 +1114,7 @@ Figure 50. VEDA2.0 Run Manager to Submit Model Runs
 
 ### Analysis via Results Module
 
-The results of a model run in VEDA2.0 can be imported into the Results manager upon activating it from the StartPage, Modules menus or {f10\] key. If the Results form is already open, and new runs submitted, then the ![](assets/image43.png) refresh in the upper right can be used to reload the data.
+The results of a model run in VEDA2.0 can be imported into the Results manager upon activating it from the StartPage, Modules menus or \[f10\] key. If the Results form is already open, and new runs submitted, then the ![](assets/image43.png) refresh in the upper right can be used to reload the data.
 
 The list of pre-defined tables can be seen by pressing ![](assets/image45.png) at the top right of the form. To view a particular table(s), scroll down/up the list and select it (them), then click the **Load** button. The table will open with a pre-defined layout that can than be modified in a very flexible manner. Not all of the tables can be used for the first demo steps, in which only few results and information will be available. If a Results table is inconsistent or empty you will get a pop up message saying that table is empty.
 
@@ -1160,7 +1153,7 @@ Figure 54. Total System Cost in DemoS_001
 Figure 55. All Costs Results Table Definition
 
 - The cost elements, each an individual attribute selected in the table definition, comprise capital costs for investing in and/or dismantling processes (Cost_Inv), fixed O&M costs (Cost_Fom), activity costs (Cost_Act), flow costs including import and export prices (Cost_Flo), implied costs of endogenous trade (Cost_ire), taxes and subsidies (Cost_Flox, Cost_Comx), salvage value of processes and commodities at the end of the planning horizon (Cost_Salv), and welfare loss resulting from reduced end-use demands (Cost_Els).
-- The undiscounted cost elements (in million euros) that are part of the solution for this first step for REG1 are shown below (Figure 56). \[Note that the "fit" button (![](assets/image79.png){width="0.21875in" height="0.17708333333333334in"}) was applied once the table was loaded.\]
+- The undiscounted cost elements (in million euros) that are part of the solution for this first step for REG1 are shown below (Figure 56). \[Note that the "fit" button (![](assets/image79.png)) was applied once the table was loaded.\]
 
 ![](assets/image80.png)
 
@@ -1211,7 +1204,7 @@ Figure 62. Marginal Prices for DemoS_001 Commodities
 
 **Description.** The second step model includes a greater number of supply, demand, import and export options for additional commodities in a single region over two time periods.
 
-**Objective**. The objective is to show how to expand the model with more examples of commodities (energy and emissions) and of typical processes along with their respective attributes, including emission coefficients. On the supply side, it includes more three-step supply curves (e.g., for oil & gas in addition to coal), extraction processes, and import and export options, as well as the introduction of new sector fuel processes (processes used to change fuel names into sectoral commodity names). The demand side is also expanded with the presentation of two demands for energy services (residential and transportation) and corresponding end-use devices in each sector. Emission commodities (e.g. CO~2~) and emission tracking are also introduced at the end-use device level in both the residential and transport sectors.
+**Objective**. The objective is to show how to expand the model with more examples of commodities (energy and emissions) and of typical processes along with their respective attributes, including emission coefficients. On the supply side, it includes more three-step supply curves (e.g., for oil & gas in addition to coal), extraction processes, and import and export options, as well as the introduction of new sector fuel processes (processes used to change fuel names into sectoral commodity names). The demand side is also expanded with the presentation of two demands for energy services (residential and transportation) and corresponding end-use devices in each sector. Emission commodities (e.g. CO<sub>2</sub>) and emission tracking are also introduced at the end-use device level in both the residential and transport sectors.
 
 | Attributes Introduced | Files Updated  |
 | --------------------- | -------------- |
@@ -1287,7 +1280,7 @@ Figure 67. Results -- Fuel Supply Results Table for DemoS_002
 
 ![](assets/image93.png)
 
-}Figure 68. Results -- Emissions by Sector Results Table for DemoS_002
+Figure 68. Results -- Emissions by Sector Results Table for DemoS_002
 
 **Objective-Function** = 496 637 M euros (see the \_SysCost table).
 
@@ -1600,11 +1593,9 @@ Figure 93. Declaration of the Peak Reserve in a Scenario File
 
 Three cases are solved with this step model, with a different selection of scenario files (Figure 94): the DemoS_004 case is solved using only the two components (BASE, SysSettings), while the DemoS_004a case is solved adding one scenario file (Peak_RSV), and the DemoS_004b case is solved adding the other scenario file (Peak_RSV-FLX). The different Cases in the Run Manager can be selected individually to run a single Case or multiple Cases selected to be submitted in parallel (i.e., the cases will be launched automatically by VEDA2.0 one after the other) to TIMES.
 
-+-----------------------------------------------------------------------+
-| > ![](assets/image120.png)           |
-+=======================================================================+
-| Figure 94. Solving Multiple Cases           |
-+-----------------------------------------------------------------------+
+![](assets/image120.png)
+
+Figure 94. Solving Multiple Cases
 
 The impacts of the improvements made in the electricity sector on the electricity generating capacity are shown in Figure 95, namely.
 
@@ -1634,7 +1625,7 @@ Figure 97. Slack and Dual Values of the Peak Equations in DemoS_004
 
 **Description.** At the fifth step, the model evolves from being a single region model to become a compact multi-regional model (2 or more regions in the same set of B-Y Templates). This approach is relevant when all the model regions are under the control of a single individual.
 
-**Objective**. The objective is to create the multi-regional model framework typical to larger or more complex models, namely the trade matrix that allows the modelling of energy trade movements (uni-directional or bi-directional trade between two regions). Another objective is to demonstrate how to limit emissions from a sector in a particular region or from the entire energy system of all regions through emission bounds or user constraints. Scenario variants illustrate the impact of a cap on CO~2~ emissions from the electricity sector only and of a cross-region user constraint on the total CO~2~ emissions from the transport and electricity sectors.
+**Objective**. The objective is to create the multi-regional model framework typical to larger or more complex models, namely the trade matrix that allows the modelling of energy trade movements (uni-directional or bi-directional trade between two regions). Another objective is to demonstrate how to limit emissions from a sector in a particular region or from the entire energy system of all regions through emission bounds or user constraints. Scenario variants illustrate the impact of a cap on CO<sub>2</sub> emissions from the electricity sector only and of a cross-region user constraint on the total CO<sub>2</sub> emissions from the transport and electricity sectors.
 
 | Attributes Introduced | Files Updated      |
 | --------------------- | ------------------ |
@@ -1802,7 +1793,7 @@ Figure 112. Costs by Sector and Region in DemoS_005
 
 The motivation behind these repositories is mainly to avoid repeating the new process specifications for each region; all attributes specifications apply to all regions unless a transformation file is used to regionalize some values when necessary.
 
-Simultaneously, the role of the vintage feature is illustrated to handle processes for which characteristics change over time (other than investment cost) when new capacity is built. As in step 5, the scenario variants illustrate the impact of a cap on CO~2~ emissions from the electricity sector only and of a cross-region user constraint on the total CO~2~ emissions from the transport and electricity sectors.
+Simultaneously, the role of the vintage feature is illustrated to handle processes for which characteristics change over time (other than investment cost) when new capacity is built. As in step 5, the scenario variants illustrate the impact of a cap on CO<sub>2</sub> emissions from the electricity sector only and of a cross-region user constraint on the total CO<sub>2</sub> emissions from the transport and electricity sectors.
 
 | Attributes Introduced | Files Updated      |
 | --------------------- | ------------------ |
@@ -2737,7 +2728,7 @@ The declaration of discrete capacity for nuclear power plants (DemoS_012e) limit
 
 Figure 191. New Electric Plant Capacity Investments - DemoS_011/012 Comparison
 
-#### RESULTS TIMES Attributes
+# Appendix A RESULTS TIMES Attributes
 
 {numref}`p4-times-results-attributes` provides a list of TIMES results attributes produced by the **gdx2veda** GAMS utility from a TIMES run **GDX** file, according to the **times2veda.vdd** directives (see Appendix B) and the reporting options (see Part III, Section 3.10) invoked with the run. Not all attributes listed will appear in every Results database. Many attributes will not appear if the driving input attributes were not used in the model input. See Part II, Section 3.3.1 for more details on the TIMES reporting parameters.
 
@@ -2911,17 +2902,17 @@ Figure 191. New Electric Plant Capacity Investments - DemoS_011/012 Comparison
 
 In addition, the r,t,s,v dimensions are involved for attributes involving processes, and the r,t,s dimensions for attributes involving commodities only.
 
-####  TIMES Results files
+# Appendix B TIMES Results Files
 
 There are three files produced for the Results module by the GDX2VEDA utility: the \<scenarioname\>.VD data dump with the attributes, \<scenarioname\>.VDE (set elements), and \<scenarioname\>.VDS (sets definition). In addition, VEDA2.0 produces a \<scenarioname\>.VDT (topology) file with the RES connectivity information. These files are dumped in comma delimited format. They never require user intervention, though they may be processed by other software if desired. Snippets of each file are shown below, after a brief description of the layout of each.
 
-## B.1 \<scenarioname\>.VD {#b.1-scenarioname.vd .unnumbered}
+## B.1 \<scenarioname\>.VD
 
 The \<scenarioname\>.VD file contains the application Results module header directives (controlling the appearance of the main Results table specification form) followed by the actual model data.
 
-[Layout, after the header]{.underline}: Attribute, Commodity, Process, Period, Region, Vintage, Timeslice, UserConstraint, Value;
+<ins>Layout, after the header</ins>: Attribute, Commodity, Process, Period, Region, Vintage, Timeslice, UserConstraint, Value;
 
-[Excerpt:]{.underline}
+<ins>Excerpt</ins>:
 
 \* GDX2VEDAversion- 2005-10-07
 
@@ -3053,13 +3044,13 @@ Attribute:31;Commodity:31;Process:31;Period:31;Region:31;Vintage:31;TimeSlice:31
 
 \"VAR_Act\",\"-\",\"FTE-COMOIL\",\"2005\",\"REG1\",\"2005\",\"ANNUAL\",\"-\",507.22288375
 
-## B.2 \<scenarioname\>.VDE {#b.2-scenarioname.vde .unnumbered}
+## B.2 \<scenarioname\>.VDE
 
 The \<scenarioname\>.VDE file contains the list of individual set member elements for each index managed by Results module along with their descriptions.
 
-[Layout]{.underline}: Dimension Name - Region - Element name - Element Description;
+<ins>Layout</ins>: Dimension Name - Region - Element name - Element Description;
 
-[Excerpt]{.underline}:
+<ins>Excerpt</ins>:
 
 \"Attribute\",\"-\",\"VAR_act\",\"Process Activity\"
 
@@ -3069,13 +3060,11 @@ The \<scenarioname\>.VDE file contains the list of individual set member element
 
 \"Attribute\",\"-\",\"VAR_capM\",\"Technology Capacity - Marginals\"
 
-\"Attribute\",\"-\",\"VAR_ncap\",\"Technology Investment - New
-capacity\"
+\"Attribute\",\"-\",\"VAR_ncap\",\"Technology Investment - New capacity\"
 
 \"Attribute\",\"-\",\"VAR_ncapM\",\"Technology Investment - Marginals\"
 
-\"Attribute\",\"-\",\"VAR_ncapR\",\"Technology Investment - BenCost +
-ObjRange\"
+\"Attribute\",\"-\",\"VAR_ncapR\",\"Technology Investment - BenCost + ObjRange\"
 
 \"Attribute\",\"-\",\"VAR_fin\",\"Commodity Consumption by Process\"
 
@@ -3083,58 +3072,47 @@ ObjRange\"
 
 \"Attribute\",\"-\",\"VAR_comprd\",\"Commodity Total Production\"
 
-\"Attribute\",\"-\",\"VAR_comprdM\",\"Commodity Total Production -
-Marginal\"
+\"Attribute\",\"-\",\"VAR_comprdM\",\"Commodity Total Production - Marginal\"
 
 \"Attribute\",\"-\",\"VAR_comnet\",\"Commodity Net\"
 
 \"Attribute\",\"-\",\"VAR_comnetM\",\"Commodity Net - Marginal\"
 
-\"Attribute\",\"-\",\"VAR_eout\",\"Electricity supply by technology and
-energy source\"
+\"Attribute\",\"-\",\"VAR_eout\",\"Electricity supply by technology and energy source\"
 
 \"Attribute\",\"-\",\"EQ_combal\",\"Commodity Slack/Levels\"
 
-\"Attribute\",\"-\",\"EQ_combalM\",\"Commodity Slack/Levels -
-Marginals\"
+\"Attribute\",\"-\",\"EQ_combalM\",\"Commodity Slack/Levels - Marginals\"
 
 \"Attribute\",\"-\",\"EQ_peak\",\"Peaking Constraint Slack\"
 
-\"Attribute\",\"-\",\"EQ_peakM\",\"Peaking Constraint Slack -
-Marginals\"
+\"Attribute\",\"-\",\"EQ_peakM\",\"Peaking Constraint Slack - Marginals\"
 
-\"Attribute\",\"-\",\"EQ_Cumflo\",\"Cumulative flow constraint -
-Levels\"
+\"Attribute\",\"-\",\"EQ_Cumflo\",\"Cumulative flow constraint - Levels\"
 
-\"Attribute\",\"-\",\"EQ_CumfloM\",\"Cumulative flow constraint -
-Marginals\"
+\"Attribute\",\"-\",\"EQ_CumfloM\",\"Cumulative flow constraint - Marginals\"
 
 \"Attribute\",\"-\",\"PAR_capLO\",\"Capacity Lower Limit\"
 
 \"Attribute\",\"-\",\"PAR_capUP\",\"Capacity Upper Limit\"
 
-\"Attribute\",\"-\",\"PAR_Top\",\"Process topology (Opted out - SET
-RPT_TOP YES to activate)\"
+\"Attribute\",\"-\",\"PAR_Top\",\"Process topology (Opted out - SET RPT_TOP YES to activate)\"
 
-\"Attribute\",\"-\",\"Cap_New\",\"Newly installed capacity and lumpsum
-investment by vintage and commissioning period\"
+\"Attribute\",\"-\",\"Cap_New\",\"Newly installed capacity and lumpsum investment by vintage and commissioning period\"
 
 \"Attribute\",\"-\",\"COST_inv\",\"Annual investment costs\"
 
 \"Attribute\",\"-\",\"COST_dec\",\"Annual decommissioning costs\"
 
-\"Attribute\",\"-\",\"COST_salv\",\"Salvage values of capacities at
-EOH+1\"
+\"Attribute\",\"-\",\"COST_salv\",\"Salvage values of capacities at EOH+1\"
 
 \"Attribute\",\"-\",\"COST_late\",\"Annual late costs\"
 
-\"Attribute\",\"-\",\"COST_fom\",\"Annual fixed operating and
-maintenance costs\"
+\"Attribute\",\"-\",\"COST_fom\",\"Annual fixed operating and maintenance costs\"
 
 \"Attribute\",\"-\",\"COST_act\",\"Annual activity costs\"
 
-\"Attribute\",\"-\",\"COST_flo\",\"Annual flow costs (including
-import/export prices)\"
+\"Attribute\",\"-\",\"COST_flo\",\"Annual flow costs (including import/export prices)\"
 
 \"Attribute\",\"-\",\"COST_com\",\"Annual commodity costs\"
 
@@ -3150,11 +3128,9 @@ import/export prices)\"
 
 \"Attribute\",\"-\",\"COST_comx\",\"Annual commodity taxes/subsidies\"
 
-\"Attribute\",\"-\",\"COST_ire\",\"Annual implied costs of endogenous
-trade\"
+\"Attribute\",\"-\",\"COST_ire\",\"Annual implied costs of endogenous trade\"
 
-\"Attribute\",\"-\",\"COST_NPV\",\"Total discounted costs by
-process/commodity (optional)\"
+\"Attribute\",\"-\",\"COST_NPV\",\"Total discounted costs by process/commodity (optional)\"
 
 \"Attribute\",\"-\",\"Time_NPV\",\"Discounted value of time by period\"
 
@@ -3162,31 +3138,23 @@ process/commodity (optional)\"
 
 \"Attribute\",\"-\",\"ObjZ\",\"Total discounted system cost\"
 
-\"Attribute\",\"-\",\"Reg_wobj\",\"Regional total expected discounted
-system cost\"
+\"Attribute\",\"-\",\"Reg_wobj\",\"Regional total expected discounted system cost\"
 
-\"Attribute\",\"-\",\"Reg_obj\",\"Regional total discounted system
-cost\"
+\"Attribute\",\"-\",\"Reg_obj\",\"Regional total discounted system cost\"
 
-\"Attribute\",\"-\",\"Reg_irec\",\"Regional total discounted implied
-trade cost\"
+\"Attribute\",\"-\",\"Reg_irec\",\"Regional total discounted implied trade cost\"
 
-\"Attribute\",\"-\",\"Reg_ACost\",\"Regional total annualized costs by
-period\"
+\"Attribute\",\"-\",\"Reg_ACost\",\"Regional total annualized costs by period\"
 
 \"Attribute\",\"-\",\"User_Con\",\"Level of user constraint\"
 
-\"Attribute\",\"-\",\"User_ConFXM\",\"Marginal cost of fixed bound user
-constraint\"
+\"Attribute\",\"-\",\"User_ConFXM\",\"Marginal cost of fixed bound user constraint\"
 
-\"Attribute\",\"-\",\"User_ConLOM\",\"Marginal cost of lower bound user
-constraint\"
+\"Attribute\",\"-\",\"User_ConLOM\",\"Marginal cost of lower bound user constraint\"
 
-\"Attribute\",\"-\",\"User_ConUPM\",\"Marginal cost of upper bound user
-constraint\"
+\"Attribute\",\"-\",\"User_ConUPM\",\"Marginal cost of upper bound user constraint\"
 
-\"Attribute\",\"-\",\"User_DynbM\",\"Marginal cost of dynamic process
-bound constraint\"
+\"Attribute\",\"-\",\"User_DynbM\",\"Marginal cost of dynamic process bound constraint\"
 
 \"Attribute\",\"-\",\"User_Maxbet\",\"Level of MaxBet constraint\"
 
@@ -3264,13 +3232,13 @@ bound constraint\"
 
 \"Commodity\",\"REG1\",\"COMSOL\",\"Commercial Solar energy\"
 
-## B.3 \<scenarioname\>.VDS {#b.3-scenarioname.vds .unnumbered}
+## B.3 \<scenarioname\>.VDS
 
 The \<scenarioname\>.VDS file provides the set membership information for the dimensions where sets are allowed. Note that these are different from the user-defined sets (rule-based) that are managed in the Results module. But these sets can be used as a part of those rules.
 
-[Layout]{.underline}: Type of set (tab), region, set name, item name;
+<ins>Layout</ins>: Type of set (tab), region, set name, item name;
 
-[Excerpt]{.underline}:
+<ins>Excerpt</ins>:
 
 \"Commodity\",\"REG1\",\"ELC+\",\"ELC\"
 
@@ -3362,13 +3330,13 @@ The \<scenarioname\>.VDS file provides the set membership information for the di
 
 \"Commodity\",\"REG1\",\"NRG\",\"GAS\"
 
-######### B.3.4 \<scenarioname\>.VDT {#b.3.4-scenarioname.vdt .unnumbered}
+## B.4 \<scenarioname\>.VDT
 
 The \<scenarioname\>.VDT file contains all the Reference Energy System (RES) topology information.
 
-[Layout]{.underline}: Region, Process, Commodity, IN/OUT topology indicator. VEDA BE also enables one to look at UCs that are related to a process or commodity. \<UC Name\>, Process, Commodity, "UC" entries are needed for that.
+<ins>Layout</ins>: Region, Process, Commodity, IN/OUT topology indicator. VEDA BE also enables one to look at UCs that are related to a process or commodity. \<UC Name\>, Process, Commodity, "UC" entries are needed for that.
 
-[Excerpt]{.underline}:
+<ins>Excerpt</ins>:
 
 \*VFEPATH=C:\\Veda\\VEDA_Models\\DemoS_012
 
