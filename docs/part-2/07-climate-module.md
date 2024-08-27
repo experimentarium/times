@@ -100,7 +100,7 @@ c) The radiative forcing due to atmospheric N<sub>2</sub>O is given by the follo
 
 d) *EXOFOR(y)* is the increase in total radiative forcing at period *t* relative to pre-industrial level due to GHGs that are not represented explicitly in the model. Units = W/m<sup>2</sup>. In Nordhaus and Boyer (1999), only emissions of CO<sub>2</sub> were explicitly modeled, and therefore O(y) accounted for all other GHG's. In TIMES, N<sub>2</sub>O and CH<sub>4</sub> are fully accounted for, but some other substances are not (e.g. CFC's, aerosols, ozone, etc.). Therefore, our values for *EXOFOR(y)* will differ from those in Nordhaus and Boyer. It is the modeler's responsibility to include in the calculation of *EXOFOR(y)* only the forcings from those gases and other causes that are not modeled. {numref}`tiam-world-exoforcing-example` shows a possible trajectory for EXOFOR.
 
-The parameterization of the three forcing equations (4a, 4b, 4c) is not controversial and relies on the results reported by Working Group I in the IPCC. IPCC (2001, Table 6.2, p.358) provides a value of 3.7 for γ, smaller than the one used by Nordhaus and Boyer (γ = 4.1). We have adopted this lower value of 3.7 W/m^2^ as default in TIMES. Users are free to experiment with other values of the γ parameter. The same reference provides the entire expressions for all three forcing equations.
+The parameterization of the three forcing equations (4a, 4b, 4c) is not controversial and relies on the results reported by Working Group I in the IPCC. IPCC (2001, Table 6.2, p.358) provides a value of 3.7 for γ, smaller than the one used by Nordhaus and Boyer (γ = 4.1). We have adopted this lower value of 3.7 W/m<sup>2</sup> as default in TIMES. Users are free to experiment with other values of the γ parameter. The same reference provides the entire expressions for all three forcing equations.
 
 ### Linear approximations
 
@@ -226,31 +226,31 @@ Like all other aspects of TIMES, the user defines the Climate Module components 
   <br>N2O-UP: natural N<sub>2</sub>O concentration, in Mt
 * - CM_GHGMAP (r,c,cg)
   - Global units:
-  <br>CO2: GtC
-  <br>CH4: Mt
-  <br>N2O: Mt
+  <br>CO<sub>2</sub>: GtC
+  <br>CH<sub>4</sub>: Mt
+  <br>N<sub>2</sub>O: Mt
   - Conversion factors from regional GHG commodities (c) to global emissions (*cg*) in the Climate Module, where cg=
   <br>CO2-GtC: global CO<sub>2</sub> emissions in GtC
   <br>CH4-Mt: global CH<sub>4</sub> emissions in Mt
   <br>N2O-Mt: global N<sub>2</sub>O emissions in Mt
 * - CM_EXOFORC (y)
-  - Unit: W/m2
+  - Unit: W/m<sup>2</sup>
   - Radiative forcing from exogenous sources (from greenhouse gases not modelled) in year *y*.
 * - CM_LINFOR (y,cm_var,lim)
   - Unit:
-  <br>CO2: ppm
-  <br>CH4/N2O: W/m<sup>2</sup>/ppb
+  <br>CO<sub>2</sub>: ppm
+  <br>CH<sub>4</sub>/N<sub>2</sub>O: W/m<sup>2</sup>/ppb
   <br>Default: none
   - Parameters for the linear forcing functions for cm_var:
   <br>CO2-PPM: lower (LO) and upper (UP) end of the concentration range over which the forcing function for CO<sub>2</sub> is linearized (in ppm)
-  <br>CH4-PPB: multiplier (N) for the CH<sub>4<sub> concentration and constant term (FX) of the linear forcing function
-  <br>N2O-PPB: multiplier (N) for the N<sub>2<sub>O concentration and constant term (FX) of the linear forcing function
+  <br>CH4-PPB: multiplier (N) for the CH<sub>4</sub> concentration and constant term (FX) of the linear forcing function
+  <br>N2O-PPB: multiplier (N) for the N<sub>2</sub>O concentration and constant term (FX) of the linear forcing function
 * - CM_MAXC (y,cm_var)
   - Default: none
   - Maximum level of climate indicator *cm_var* in year *y*.
-  <br>CO2-GtC: CO2 emissions in GtC
-  <br>CH4-Mt: CH4 emissions in Mt
-  <br>N2O-Mt: N2O emissions in Mt
+  <br>CO2-GtC: CO<sub>2</sub> emissions in GtC
+  <br>CH4-Mt: CH<sub>4</sub> emissions in Mt
+  <br>N2O-Mt: N<sub>2</sub>O emissions in Mt
   <br>CO2-ATM: atm. CO<sub>2</sub> concentration / pre-industrial ratio
   <br>CO2-PPM: atm. CO<sub>2</sub> concentration in ppm
   <br>CH4-PPB: atm. CH<sub>4</sub> concentration in ppb
