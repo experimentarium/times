@@ -135,7 +135,7 @@ In addition to controlling how the objective function is assembled, as described
   - Used for requesting a period-wise objective formulation, which can be used e.g. together with the MACRO decomposition method for enabling the iterative update of the period-wise discount factors (See the documentation titled *Macro MSA,* on the MACRO Decomposition Algorithm, for details).
 * - OBLONG \<YES/NO\>
   - In the STD (standard) and MOD (alternative) objective function formulations discussed in {numref}`obj-func-formulation-opt` the capacity-related costs are not completely synchronized with the corresponding activities, which may cause distortions in the accounting of costs. This switch causes all capacity-related cost to be synchronized with the process activities (which are assumed to have oblong shapes), thereby eliminating also the small problems in salvaging that exist in the STD and MOD formulations.
-  <br>Due to the obvious advantages of using this setting, the OBLONG setting is activated by default whenever the MOD formulation is used. However, for backwards compatibility, one can disable it by adding the explicit setting \$SET OBLONG NO in the run file. Using the OBLONG setting can be recommended also with the STD and AUTO settings. It can even be used with the ALT and LIN settings, but that is not recommended.
+  <br>Due to the obvious advantages of using this setting, the OBLONG setting is activated by default whenever the MOD formulation is used. However, for backwards compatibility, one can disable it by adding the explicit setting `$SET OBLONG NO` in the run file. Using the OBLONG setting can be recommended also with the STD and AUTO settings. It can even be used with the ALT and LIN settings, but that is not recommended.
 * - MIDYEAR \<YES\>
   - In the standard objective formulation, both the investment payments and the operating cost payments are assumed to occur at the beginning of each year within the economic/technical lifetime of technologies. This also means that the so-called annuities of investment costs are calculated using the following formula, where r is the discount rate (see Part II, Section 6.2 for more on the objective function):
   <br>$CRF = (1-(1+r)^{-1})/(1-(1+r)^{-L})$
@@ -174,7 +174,7 @@ The use of the warm start facilities can be automatically enabled in sensitivity
 $SET SENSIS YES
 ```
 
-As the variables then remain the same, warm start is automatically enabled by GAMS according to the BRATIO value (BRATIO can be set in VEDA-FE, or added manually to the ANSWER GEN template as a \$OPTION BRATIO=1; as well).
+As the variables then remain the same, warm start is automatically enabled by GAMS according to the BRATIO value (BRATIO can be set in VEDA-FE, or added manually to the ANSWER GEN template as a `$OPTION BRATIO=1;` as well).
 
 See the documentation on stochastic programming and tradeoff analysis in TIMES for more information on the use of this switch. The documentation is available at the [ETSAP site](https://www.iea-etsap.org/index.php/documentation).
 
