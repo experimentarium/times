@@ -294,8 +294,10 @@ CM_GHGMAP(R,'TOTCO2','CO2-GtC') = 2.727272E-7;
 
 CM_LINFOR(datayear,item,lim): lower and upper limit for the concentration of CO<sub>2</sub> in atmosphere, used in the approximation of the radiative forcing equation for CO<sub>2</sub> (see section 2.2 above). *item* may be equal to CO2-ATM (in which case the limit is expressed as a ratio of concentration over pre-industrial concentration), or to CO2-PPM (in which case the limit is expressed in ppm of CO2-equivalent). The index *lim* is either equal to LO or to UP, depending on whether the lower or the upper limit of the range is being specified. For example, the following specifications may be used to select a range from 375 to 550 ppm for the approximation at year 2020:
 
-- `CM_LINFOR('2020','CO2-PPM','LO') = 375;`
-- `CM_LINFOR('2020','CO2-PPM','UP') = 550;`
+```
+CM_LINFOR('2020','CO2-PPM','LO') = 375;
+CM_LINFOR('2020','CO2-PPM','UP') = 550;
+```
 
 Note that the values of LINFOR are systematically interpolated. The range can also be specified in a time-dependent manner taking into account the gradual increase in the expected range of possible concentration levels over time. That would further improve the accuracy of the linearization. For example, for 2005 the range could be specified to consist of only a single value, because the actual concentration in 2005 is well-known.
 
