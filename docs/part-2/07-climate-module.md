@@ -281,7 +281,7 @@ Assuming here that the total regional emissions are represented by the commoditi
 ```
 CM_GHGMAP(R,'TOTCH4','CH4-MT') = 1E-3;
 CM_GHGMAP(R,'TOTN2O','N2O-MT') = 1E-3;
-CM_GHGMAP(R,'TOTCO2','CO2-GtC') = 2.727272 E-7
+CM_GHGMAP(R,'TOTCO2','CO2-GtC') = 2.727272E-7
 ```
 
 #### Deterministic input parameters for CO<sub>2</sub>
@@ -390,7 +390,10 @@ Regarding the two random coefficients, their multiple values are then declared v
 
 The reader is referred to Chapter 8 of Part I and the documentation of the stochastic programming version of TIMES for the precise meaning of the **stage** and **sow** concepts.
 
-**Remark:** in addition to the possible values of the random parameters, the user must specify the probabilities attached to each ***sow***. This is also explained in the documentation on stochastic TIMES.
+:::{admonition} Remark
+
+In addition to the possible values of the random parameters, the user must specify the probabilities attached to each ***sow***. This is also explained in the documentation on stochastic TIMES.
+:::
 
 #### Parameters for extending the Climate Module equations beyond EOH
 
@@ -579,9 +582,7 @@ The variables that are used in the Climate Module in TIMES are presented in {num
 
 **Description:** The total amount of aggregate climate indicator in year y.
 
-**Purpose and** This variable tracks the total amount of an aggregate climate indicator by
-
-**Occurrence:** period. This variable is generated for each main emission type of the Climate Module as well as for the total forcing from all greenhouse gas concentrations.
+**Purpose and Occurrence:** This variable tracks the total amount of an aggregate climate indicator by period. This variable is generated for each main emission type of the Climate Module as well as for the total forcing from all greenhouse gas concentrations.
 
 **Units:** GtC (for CO<sub>2</sub> emissions), Mt (for CH<sub>4</sub> and N<sub>2</sub>O emissions), or W/m<sup>2</sup> (for total radiative forcing).
 
@@ -591,7 +592,7 @@ The variables that are used in the Climate Module in TIMES are presented in {num
 
 **Description:** The amount of climate indicator in a reservoir.
 
-**Purpose and** This variable tracks the amount of reservoir-specific climate indicator by **Occurrence:** period. This variable is generated for each of the reservoirs for each of the aggregate indicators: ATM/UP/LO for CO<sub>2</sub> emissions, ATM/UP for CH<sub>4</sub> and N<sub>2</sub>O emissions, and ATM/LO for FORCING (connected to the temperature reservoirs).
+**Purpose and Occurrence:** This variable tracks the amount of reservoir-specific climate indicator by period. This variable is generated for each of the reservoirs for each of the aggregate indicators: ATM/UP/LO for CO<sub>2</sub> emissions, ATM/UP for CH<sub>4</sub> and N<sub>2</sub>O emissions, and ATM/LO for FORCING (connected to the temperature reservoirs).
 
 **Units:** GtC (for CO<sub>2</sub> emissions), Mt (for CH<sub>4</sub> and N<sub>2</sub>O emissions), or °C (for temperature reservoirs).
 
