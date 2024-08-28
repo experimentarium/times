@@ -281,7 +281,7 @@ Assuming here that the total regional emissions are represented by the commoditi
 ```
 CM_GHGMAP(R,'TOTCH4','CH4-MT') = 1E-3;
 CM_GHGMAP(R,'TOTN2O','N2O-MT') = 1E-3;
-CM_GHGMAP(R,'TOTCO2','CO2-GtC') = 2.727272E-7
+CM_GHGMAP(R,'TOTCO2','CO2-GtC') = 2.727272E-7;
 ```
 
 #### Deterministic input parameters for CO<sub>2</sub>
