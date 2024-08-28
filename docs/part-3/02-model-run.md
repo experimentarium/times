@@ -2,7 +2,7 @@
 
 As discussed in the previous section, the heart of TIMES is embodied in the GAMS source code, comprised of the matrix generator that digests the input data prepared from ANSWER or VEDA-FE and prepares the mathematical representation of the model instance, an optimizer to solve the resulting mathematical programming problem, and a report writer that post-processes the solution and prepares results files for ANSWER and VEDA-BE. It is this collection of GAMS source code routines that correspond to the TIMES model, where each TIMES model run proceeds through the appropriate path in the source code based upon the user specified runtime switches, described in Section 3, and the provided input data.
 
-For the most part, this process is seamless to the user, as the model management shells extract the scenario data and prepare ASCII text files in the layout required by GAMS, set up the top level GAMS control file, and initiate the model run (in a Command Prompt box). GAMS then compiles the source and data, constructs the model, invokes the solvers, and dumps the model results for importing back into the model management environment. However, knowledge of the run process and the files produced along the way can be helpful in diagnosing model errors (e.g., a division by zero may necessitate turning on the source code listing (\$ONLISTING/\$OFFLIST at the top/bottom of the routine where the error is reported) to determine which parameter is causing the problem) or if a user is considering modifying the model formulation to, say, add a new kind of constraint (note that any such undertaking should be closely coordinated with ETSAP).
+For the most part, this process is seamless to the user, as the model management shells extract the scenario data and prepare ASCII text files in the layout required by GAMS, set up the top level GAMS control file, and initiate the model run (in a Command Prompt box). GAMS then compiles the source and data, constructs the model, invokes the solvers, and dumps the model results for importing back into the model management environment. However, knowledge of the run process and the files produced along the way can be helpful in diagnosing model errors (e.g., a division by zero may necessitate turning on the source code listing (`$ONLISTING`/`$OFFLIST` at the top/bottom of the routine where the error is reported) to determine which parameter is causing the problem) or if a user is considering modifying the model formulation to, say, add a new kind of constraint (note that any such undertaking should be closely coordinated with ETSAP).
 
 ## Overview of the model run process
 
@@ -176,10 +176,11 @@ As discussed in Section 2.1, three sets of files are created by VEDA and ANSWER 
 
 The VTRUN/ANSRUN.CMD script file calls GAMS, referring to the \<case\> file and identifying the location of the TIMES source code and gdx file. For VEDA-FE the CMD file consists of the line:
 
-Call ..\\\<source_code_folder\>\\vt_gams \<case\>.run
-\<source_code_folder\> gamssave\\\<case\>
+```
+Call ..<source_code_folder>\vt_gams <case>.run <source_code_folder> gamssave\<case>
+```
 
-along with a 2^nd^ line to call the GDX2VEDA utility to process the TIMES2VEDA.VDD file to prepare the \<case\>.VD\* result files for VEDA-BE. The ANSRUN.CMD file has a similar setup calling ANS_GAMS.CMD in the source code folder which invokes GAMS and subsequently the GDX2VEDA utility.
+Along with a 2<sup>nd</sup> line to call the GDX2VEDA utility to process the TIMES2VEDA.VDD file to prepare the \<case\>.VD\* result files for VEDA-BE. The ANSRUN.CMD file has a similar setup calling ANS_GAMS.CMD in the source code folder which invokes GAMS and subsequently the GDX2VEDA utility.
 
 The \<case\>.RUN/GEN file is the key file controlling the model run. It instructs the TIMES code what data to grab, what model variant to employ, how to handle the objective function, and other aspects of the model run controlled by the switches discussed in Section . An example .RUN file is displayed in . Rows beginning with an asterisk (\*) are comment lines for the user\'s convenience and are ignored by the code. Rows beginning with a dollar-sign (\$) are switches that can be set by the user (usually by means of VEDA/ANSWER).
 
@@ -187,7 +188,7 @@ Both VEDA and ANSWER have facilities to allow the user to tailor the content of 
 
 At the beginning of a \<case\>.RUN file the version of the TIMES code being used is identified and some option control statements that influence the information output (e.g., SOLPRINT ON/OFF to see a dump of the solution, OFF recommended) are provided. The LIMROW/LIMCOL options allow the user to turn on equation listing in the .LST file (discussed in the next section) by setting the number of rows/columns of each type to be shown.
 
-Then compile-time dollar control options indicating which solver to use (if not the default to the particular solution algorithm), whether to echo the source code (\$ON/OFFLISTING) by printing it to the LST file, and that multiple definitions of sets and parameters (\$ONMULTI) are permitted (that is they can appear more than one time, which TIMES requires since first there are empty declarations for every possible parameter followed by the actual data provided by the user). Further possible dollar control options are also described in the GAMS manual.
+Then compile-time dollar control options indicating which solver to use (if not the default to the particular solution algorithm), whether to echo the source code (`$ON`/`$OFFLISTING`) by printing it to the LST file, and that multiple definitions of sets and parameters (`$ONMULTI`) are permitted (that is they can appear more than one time, which TIMES requires since first there are empty declarations for every possible parameter followed by the actual data provided by the user). Further possible dollar control options are also described in the GAMS manual.
 
 Afterwards the content of several so-called TIMES dollar control (or environment) switches are specified. Within the source code the use of these control switches in combination with queries enables the model to skip or activate specific parts of the code. Thus it is possible to turn-on/off variants of the code, e.g. the use of the reduction algorithm, without changing the input data. The meaning and use of the different control switches is discussed in Section . Again these are generally set using the Case Manager/Run form in VEDA/ANSWER.
 
@@ -206,7 +207,7 @@ Example of a VEDA-FE TIMES \<case\>.RUN file[^16]
 
 The line containing the include command for the file initmty.mod can be supplemented by calls for additional user extensions that trigger the use of additional special equations or report routines. The use of these extension options are described in more detail in Section 0.
 
-Afterwards the data dictionary file(s) (BASE.DD, ..., CO2_TAX_HIGH.DD in {numref}`example-veda-fe-times`) containing the user input sets and parameters are included, inserted automatically by VEDA-FE/ANSWER according to the list of scenarios in the Case Manager/Run forms by means of the \$INCLUDE statements. It is normally advisable to segregate user data into "packets" as scenarios, where there may be a single Base scenario containing the core descriptions of the energy system being studied and a series of alternate scenario depicting other aspects of the system. For example, one \<scenario\>.DD file may contain the description of the energy system for a reference scenario, and additional \<alt_scenario\>.DD files (.DDS for ANSWER) may be included containing additions or changes relative to the reference file, for example CO~2~ mitigation targets for a reduction scenario, or alternative technology specifications.
+Afterwards the data dictionary file(s) (BASE.DD, ..., CO2_TAX_HIGH.DD in {numref}`example-veda-fe-times`) containing the user input sets and parameters are included, inserted automatically by VEDA-FE/ANSWER according to the list of scenarios in the Case Manager/Run forms by means of the \$INCLUDE statements. It is normally advisable to segregate user data into "packets" as scenarios, where there may be a single Base scenario containing the core descriptions of the energy system being studied and a series of alternate scenario depicting other aspects of the system. For example, one \<scenario\>.DD file may contain the description of the energy system for a reference scenario, and additional \<alt_scenario\>.DD files (.DDS for ANSWER) may be included containing additions or changes relative to the reference file, for example CO<sub>2</sub> mitigation targets for a reduction scenario, or alternative technology specifications.
 
 The SET MILESTONYR declaration identifies years for this model run based upon those years identified in in VEDA via the Period Defs selected on the Case Manager (and maintained in SysSettings) and the Milestone Years button on the ANSWER run form. The dollar control switch RUN_NAME contains the short name of the scenario, and is used for the name of the results files (\<case\>.VD\*) passed to VEDA-BE.
 
@@ -231,7 +232,7 @@ Requesting Equation Listing and Solution Print.
 
 For ANSWER these are handled by manually editing these entries in the GEN file either at runtime, or via the Run menu if the change is to be retrained as the default,
 
-When GAMS takes its 1^st^ pass the \<Case\>.LST file will report each of the individual source code modules compiled. \[Note that for any particular TIMES model instance, according to the Run Switch settings, only the routines needed are invoked, as discussed in Section .\]
+When GAMS takes its 1<sup>st</sup> pass the \<Case\>.LST file will report each of the individual source code modules compiled. \[Note that for any particular TIMES model instance, according to the Run Switch settings, only the routines needed are invoked, as discussed in Section 3.\]
 
 A small snippet from the LST file compilation trace from an ANSWER-TIMES model run of is shown in , where the \"\...\" shows the nesting as one GAMS routine calls another with the appropriate parameters needed.
 
