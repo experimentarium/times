@@ -91,7 +91,8 @@ c) The radiative forcing due to atmospheric N<sub>2</sub>O is given by the follo
 $$\Delta F_{N2O}(y) = 0.12 \cdot \left( \sqrt{N2O_{y}} - \sqrt{N2O_{0}} \right) - \left\lbrack f(CH4_{0},N2O_{y}) - f(CH4_{0},N2O_{0}) \right\rbrack$$ (4c)
 
 where:
- $$f(x,y) = 0.47 \cdot \ln\left\lbrack 1 + 2.01 \cdot 10^{- 5} \cdot (xy)^{0.75} + 5.31 \cdot 10^{- 15} \cdot x(xy)^{1.52} \right\rbrack$$ (4d)
+
+$$f(x,y) = 0.47 \cdot \ln\left\lbrack 1 + 2.01 \cdot 10^{- 5} \cdot (xy)^{0.75} + 5.31 \cdot 10^{- 15} \cdot x(xy)^{1.52} \right\rbrack$$ (4d)
 
 Note that the $f(x,y)$ function, which quantifies the cross-effects on forcing of the presence in the atmosphere of both gases (CH<sub>4</sub> and N<sub>2</sub>O), is not quite symmetrical in the two gases. As usual, the 0 subscript indicates the pre-industrial times (1750)
 
@@ -105,7 +106,7 @@ In TIMES, each of the three forcing expressions is replaced by a linear approxim
 
 As an example, we derive below the linear approximation for the CO<sub>2</sub> forcing expression. The other approximations are obtained in a similar manner, and the parameters of the linear approximations are shown in the next section.
 
-:::{admonition} Linear approximation for the CO<sub>2</sub> forcing expression:
+:::{admonition} Linear approximation for the CO<sub>2</sub> forcing expression
 
 First, an interval of interest for the concentration M must be selected by the user. The interval should be wide enough to accommodate the anticipated values of the concentrations, but not so wide as to make the approximation inaccurate. We denote the interval $(M_1,M_2)$.
 
@@ -113,13 +114,21 @@ Next, the linear forcing equation is taken as the half sum of two linear express
 
 By denoting the pre-industrial concentration level as $M_0$, the general formulas for the two estimates are as follows:
 
-*Overestimate:* $$F_{1}(M) = \frac{\gamma}{\ln 2} \cdot \left\lbrack \ln(\frac{\gamma}{slope \cdot \ln(2) \cdot M_{0}}) - 1 \right\rbrack + slope \cdot M$$ (5)
+*Overestimate:*
 
-*Underestimate*: $$F_{2}(M) = \gamma \cdot \ln(M_{1}/M_{0})/\ln 2 + slope \cdot (M - M_{1})$$ (6)
+$$F_{1}(M) = \frac{\gamma}{\ln 2} \cdot \left\lbrack \ln(\frac{\gamma}{slope \cdot \ln(2) \cdot M_{0}}) - 1 \right\rbrack + slope \cdot M$$ (5)
 
-*Final approximation*: $$F_{3}(M) = \frac{F_{1}(M) + F_{2}(M)}{2}$$ (7)
+*Underestimate*:
 
-where: $$slope = \gamma \cdot \frac{\ln(M_{2}/M_{1})/\ln 2}{(M_{2} - M_{1})}$$
+$$F_{2}(M) = \gamma \cdot \ln(M_{1}/M_{0})/\ln 2 + slope \cdot (M - M_{1})$$ (6)
+
+*Final approximation*:
+
+$$F_{3}(M) = \frac{F_{1}(M) + F_{2}(M)}{2}$$ (7)
+
+where:
+
+$$slope = \gamma \cdot \frac{\ln(M_{2}/M_{1})/\ln 2}{(M_{2} - M_{1})}$$
 
 :::
 
@@ -142,7 +151,10 @@ with
 - $\sigma_3$ = 1-year coefficient of heat gain by deep oceans,
 - $\lambda$ = feedback parameter (climatic retroaction). It is customary to write $\lambda$ as $\lambda=\gamma/C_s$, $C_s$ being the *climate sensitivity* parameter, defined as the change in equilibrium atmospheric temperature induced by a doubling of CO<sub>2</sub> concentration.
 
-<ins>Remark</ins>: in contrast with most other parameters, the value of $C_s$ is highly uncertain, with a possible range of values from 1°C to 10°C. This parameter is therefore a prime candidate for sensitivity analysis, or for treatment by probabilistic methods such as stochastic programming. In {numref}`cli-parameters`, a best estimate value of 2.9 °C is shown, as per IPCC (2001, 2007).
+:::{admonition} Remark
+
+In contrast with most other parameters, the value of $C_s$ is highly uncertain, with a possible range of values from 1°C to 10°C. This parameter is therefore a prime candidate for sensitivity analysis, or for treatment by probabilistic methods such as stochastic programming. In {numref}`cli-parameters`, a best estimate value of 2.9 °C is shown, as per IPCC (2001, 2007).
+:::
 
 In the next section we describe all the input parameters required to define the climate equations and those needed to define climate constraints. With few exceptions (such as the densities of the gases), all parameters are modifiable by the user, should the need arise. We also provide {numref}`cli-parameters` summarizing the default values of the parameters.
 
@@ -152,9 +164,11 @@ In the next section we describe all the input parameters required to define the 
 
 The Climate Module (CLI) extension of TIMES can be activated and employed by using the Parameters and Switches described in this chapter.
 
-Besides the basic input data parameters described in {numref}`cli-user-input-parameters`, the user also has full control over the CLI component being activated by means of the \$SET CLI YES switch. This switch is provided by the data handling system when the user indicates that the CLI option is to be included:
+Besides the basic input data parameters described in {numref}`cli-user-input-parameters`, the user also has full control over the CLI component being activated by means of the `$SET CLI YES` switch. This switch is provided by the data handling system when the user indicates that the CLI option is to be included:
 
-> \$SET CLI YES
+```
+$SET CLI YES
+```
 
 ### Calibration
 
@@ -170,7 +184,9 @@ The Climate Equations will be calculated beyond EOH at each of the years for whi
 
 In addition, by default any Climate Equations beyond EOH will be calculated only at each year having a year value divisible by 20. This default year resolution can be changed by using the Climate Module constant **\'BEOHMOD\'**. However, note that the years available in the model extend by default to 2200 only, and therefore one may need to adjust the year-span e.g. to 2300 by using the following switch:
 
-> \$SET EOTIME 2300
+```
+$SET EOTIME 2300
+```
 
 The **reporting years** for the climate variables are the same as the calculation years.
 
@@ -262,15 +278,15 @@ Conversion from regional emissions to global emissions must be done by using the
 
 Assuming here that the total regional emissions are represented by the commodities TOTCO2, TOTCH4 and TOTN2O, and are measured in kt, as is the case in TIAM models for instance, the mapping and conversion would be the following:
 
-> CM_GHGMAP(R,\'TOTCH4\',\'CH4-MT\') = 1E-3;
->
-> CM_GHGMAP(R,\'TOTN2O\',\'N2O-MT\') = 1E-3;
->
-> CM_GHGMAP(R,\'TOTCO2\',\'CO2-GtC\') = 2.727272 E-7
+```
+CM_GHGMAP(R,'TOTCH4','CH4-MT') = 1E-3;
+CM_GHGMAP(R,'TOTN2O','N2O-MT') = 1E-3;
+CM_GHGMAP(R,'TOTCO2','CO2-GtC') = 2.727272 E-7
+```
 
 #### Deterministic input parameters for CO<sub>2</sub>
 
-- CM_CONST({PHI_AT_UP, PHI_UP_AT, PHI_UP_LO, PHI_LO_UP}) (also denoted *φ~atm-up~*, *φ~up-atm~*, etc, in the equations of section 2): annual CO<sub>2</sub> flow coefficients between the three reservoirs (AT=Atmosphere, UP=Upper ocean layer, LO=Deep ocean layer). These are time-independent coefficients. Units: none
+- CM_CONST({PHI_AT_UP, PHI_UP_AT, PHI_UP_LO, PHI_LO_UP}) (also denoted $\varphi_{atm-up}$, $\varphi_{up-atm}$, etc, in the equations of section 2): annual CO<sub>2</sub> flow coefficients between the three reservoirs (AT=Atmosphere, UP=Upper ocean layer, LO=Deep ocean layer). These are time-independent coefficients. Units: none
 - CM_HISTORY(y,{CO2-ATM, CO2-UP, CO2-LO}): Values at the end of the calibration year *y* of the masses of CO<sub>2</sub> in the atmosphere, the upper ocean layer, and the deep ocean layer, respectively. Note that these values are time- indexed so that the model generator can pick up the correct value according to the calibration year chosen by the user. Units: GtC, Mt(CH<sub>4</sub>), Mt(N<sub>2</sub>O).
 - CM_CONST(CO2-PREIND): Pre-industrial atmospheric mass of CO<sub>2</sub>. Units = GtC
 
@@ -278,45 +294,44 @@ Assuming here that the total regional emissions are represented by the commoditi
 
 CM_LINFOR(datayear,item,lim): lower and upper limit for the concentration of CO<sub>2</sub> in atmosphere, used in the approximation of the radiative forcing equation for CO<sub>2</sub> (see section 2.2 above). *item* may be equal to CO2-ATM (in which case the limit is expressed as a ratio of concentration over pre-industrial concentration), or to CO2-PPM (in which case the limit is expressed in ppm of CO2-equivalent). The index *lim* is either equal to LO or to UP, depending on whether the lower or the upper limit of the range is being specified. For example, the following specifications may be used to select a range from 375 to 550 ppm for the approximation at year 2020:
 
-- CM_LINFOR(\'2020\', \'CO2-PPM\', \'LO\') = 375;
-- CM_LINFOR(\'2020\', \'CO2-PPM\', \'UP\') = 550;
+- `CM_LINFOR('2020','CO2-PPM','LO') = 375;`
+- `CM_LINFOR('2020','CO2-PPM','UP') = 550;`
 
 Note that the values of LINFOR are systematically interpolated. The range can also be specified in a time-dependent manner taking into account the gradual increase in the expected range of possible concentration levels over time. That would further improve the accuracy of the linearization. For example, for 2005 the range could be specified to consist of only a single value, because the actual concentration in 2005 is well-known.
 
 #### Parameters for modeling the concentrations and forcings of other greenhouse gases
 
 > **Historical base year values of natural (UP) and anthropogenic (ATM) concentrations** (in Mt), needed at for the base year of the model (default 2005):
->
-> CM_HISTORY(\'2005\', \'CH4-UP\') = 1988;
->
-> CM_HISTORY(\'2005\', \'CH4-ATM\') = 3067;
->
-> CM_HISTORY(\'2005\', \'N2O-UP\') = 2109;
->
-> CM_HISTORY(\'2005\', \'N2O-ATM\') = 390;
->
+
+```
+CM_HISTORY('2005','CH4-UP') = 1988;
+CM_HISTORY('2005','CH4-ATM') = 3067;
+CM_HISTORY('2005','N2O-UP') = 2109;
+CM_HISTORY('2005','N2O-ATM') = 390;
+```
+
 > In the results the total concentrations (UP+ATM) are reported for both CH<sub>4</sub> and N<sub>2</sub>O.
 >
 > **Annual exponential decay of concentrations (PHI-xxx = 1/Life):**
->
-> CM_CONST(\'PHI-CH4\') = 0.09158;
->
-> CM_CONST(\'PHI-N2O\') = 0.008803;
+
+```
+CM_CONST('PHI-CH4') = 0.09158;
+CM_CONST('PHI-N2O') = 0.008803;
+```
 
 Here $\Phi_{CH4}$, $\Phi_{N2O}$, are the one-year decay rates for methane and N<sub>2</sub>O respectively
 
 > **Parameters for the linear CH<sub>4</sub> and N<sub>2</sub>O forcing approximations:**
 >
 > Note that for specifying the linear forcing functions for CH<sub>4</sub> and N<sub>2</sub>O, the LO/UP bounds cannot be used, but the slope (\'N\') and constant (\'FX\') of the forcing functions must be directly defined by the user. Example:
->
-> CM_LINFOR(\'2010\',\'CH4-PPB\',\'N\') = 0.000340;
->
-> CM_LINFOR(\'2010\',\'CH4-PPB\',\'FX\') = --0.110;
->
-> CM_LINFOR(\'2010\',\'N2O-PPB\',\'N\') = 0.00292;
->
-> CM_LINFOR(\'2010\',\'N2O-PPB\',\'FX\') = --0.769;
->
+
+```
+CM_LINFOR('2010','CH4-PPB','N') = 0.000340;
+CM_LINFOR('2010','CH4-PPB','FX') = -0.110;
+CM_LINFOR('2010','N2O-PPB','N') = 0.00292;
+CM_LINFOR('2010','N2O-PPB','FX') = -0.769;
+```
+
 > **Parameter for the exogenous radiative forcing from non-modeled gases** in each year from initial year: CM_EXOFOR(y)
 >
 > Units: Watts/m<sup>2</sup>.
@@ -400,7 +415,10 @@ The setting **EXT-EOH**=**0** may be useful for ensuring that any user-defined t
 
 A positive value **EXT-EOH**=**y** **≤ EOH** means that a linear development of emissions towards the first user-defined value is requested to start im­mediately at the EOH, regardless of the model horizon being truncated or not. Finally, a positive value **EXT-EOH**=**y** **\> EOH** can be useful if the user wishes the emissions to remain constant at the EOH value until a predefined year y \> EOH, before turning into the linear development towards the first user-defined value.
 
-**<ins>Warning</ins>:** If **0 \< EXT-EOH \< E(M) = MAX<sub>m</sub>(E(m))**, any user-defined global emission bounds for CO2-GTC, CH4-MT or N2O-MT, which may be inadvertently specified at years between **MAX(EXT-EOH, EOH)** and **E(M)**, will also be taken into account as target values for the emission trajectories.
+:::{admonition} Warning
+
+If **0 \< EXT-EOH \< E(M) = MAX<sub>m</sub>(E(m))**, any user-defined global emission bounds for CO2-GTC, CH4-MT or N2O-MT, which may be inadvertently specified at years between **MAX(EXT-EOH, EOH)** and **E(M)**, will also be taken into account as target values for the emission trajectories.
+:::
 
 The global greenhouse gas emissions that can be considered by the extended climate equations are the three main input emissions to the Climate Module:
 
@@ -418,7 +436,9 @@ The Climate Equations will be calculated beyond EOH at each of the years for whi
 
 In addition, by default the Climate Equations will be calculated also at each year having a year value divisible by 20. This default year resolution can be changed by using the new Climate Module constant **\'BEOHMOD\'**. Accordingly, if the user wishes the Climate Equations to be calculated at 10 years' intervals (in addition to the CM_MAXC years) she can specify the following parameter:
 
-> **PARAMETER CM_CONST / BEOHMOD 10 /;**
+```
+PARAMETER CM_CONST / BEOHMOD 10 /;
+```
 
 The **reporting years** for the climate variables are the same as the calculation years.
 
@@ -585,7 +605,10 @@ In addition, there is a generic block of equations expressing the upper bounding
 
 We now give the formulations of these constraints.
 
-**Reminder**: the Climate Module formulation is activated at run time from the data handling system, which in turn set the `$SET CLI YES` switch.
+:::{admonition} Reminder
+
+The Climate Module formulation is activated at run time from the data handling system, which in turn set the `$SET CLI YES` switch.
+:::
 
 General notation:
 
