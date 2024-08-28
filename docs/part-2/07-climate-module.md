@@ -211,7 +211,7 @@ Like all other aspects of TIMES, the user defines the Climate Module components 
   <br>PHI-UP-LO: carbon transfer coefficient UP→LO
   <br>GAMMA: radiative forcing sensitivity, in W/m<sup>2</sup>
   <br>CS: temperature sensitivity, in °C
-  <br>LAMBDA: λ = γ / C~s~
+  <br>LAMBDA: $\lambda = \gamma / C_s$
   <br>SIGMA1: speed of adjustment, in W-yr/m<sup>2</sup>/°C
   <br>SIGMA2: thermal capacity ratio, in W/m<sup>2</sup>/°C
   <br>SIGMA3: transfer rate upper to deep ocean, in yr<sup>-1</sup>
@@ -859,7 +859,7 @@ Nordhaus, W. D. and J. Boyer. 1999. *Roll the DICE Again: Economic Models of Glo
 Wigley, T.M.L., Solomon, M. and S.C.B. Raper. 1994. *Model for the Assessment of Greenhouse-Gas Induced Climate Change*. Version 1.2. Climate Research Unit, University of East Anglia, UK.
 
 
-[^46]: There exists another well-known representation of CO~2~ accumulation equations, using a five-box model.
+[^46]: There exists another well-known representation of CO<sub>2</sub> accumulation equations, using a five-box model.
 
-[^47]: Note that the subscripts *atm* and *up*, which for the CO2 equations referred to the atmosphere and upper reservoirs, have been reused for the CH4 and N2O equations to stand for anthropogenic and natural concentrations.
+[^47]: Note that the subscripts *atm* and *up*, which for the CO<sub>2</sub> equations referred to the atmosphere and upper reservoirs, have been reused for the CH<sub>4</sub> and N<sub>2</sub>O equations to stand for anthropogenic and natural concentrations.
 
