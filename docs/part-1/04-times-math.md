@@ -40,7 +40,7 @@ $$and \quad B \cdot X \geq b$$ (4-4)
 
 where $X$ is the vector of all TIMES variables and $I$ is the number of demand categories. In words:
 - {eq}`4-2` expresses the total discounted cost to be minimized. See chapter 5 for details on the list of TIMES variables $X$, and on the cost vector $c$.
-- {eq}`4-3` is the set of demand satisfaction constraints (where the $VAR_{ACT}$ variables are the activity levels of end-use technologies, and the $DM$ right-hand-sides are the exogenous demands to satisfy).
+- {eq}`4-3` is the set of demand satisfaction constraints (where the $VAR\_ACT$ variables are the activity levels of end-use technologies, and the $DM$ right-hand-sides are the exogenous demands to satisfy).
 - {eq}`4-4` is the set of all other TIMES constraints, which need not be explicated here, and are presented in chapter 5.
 
 When demand are elastic, TIMES must compute a supply/demand equilibrium of the optimization problem {eq}`4-2` through {eq}`4-4`, where the demand side adjusts to changes in prices, and the prevailing demand prices are the marginal costs of the demand categories (i.e. $p_i$ is the marginal cost of producing demand $DM_i$). *A priori* this seems to be a difficult task, because the demand prices are computed as part of the dual solution to that optimization problem. The Equivalence Theorem, however, states that the equilibrium is reached as the solution of the following mathematical program, where the objective is to maximize the net total surplus:

@@ -162,27 +162,28 @@ There are alternate discounting methods in TIMES. The default method is to assum
 
 #### Components of the Objective function
 
-The objective function is the sum of all regional objectives, all of them discounted to the same user-selected base year, as shown in equation (A) below
+The objective function is the sum of all regional objectives, all of them discounted to the same user-selected base year, as shown in equation {eq}`6-A` below
 
-*EQ_OBJ(z)* $\ni z \in ALLYEARS$
+$$EQ\_OBJ(z) \ni z \in ALLYEARS$$
 
-  --------------------------------------------------------------------------
-  $$VAR\_ OBJ(z) = \sum_{r \in REG}^{}{REG\_ OBJ(z,r)}$$             *(A)*
-  ------------------------------------------------------------------ -------
+$$VAR\_OBJ(z) = \sum_{r \in REG}{REG\_OBJ(z,r)}$$ (6-A)
 
-Each regional objective *OBJ(z,r)* is decomposed into the sum of nine components, to facilitate exposition, as per expression (B) below.
+Each regional objective *OBJ(z,r)* is decomposed into the sum of nine components, to facilitate exposition, as per expression {eq}`6-B` below.
 
-*EQ_OBJ(z,r)* $\ni z \in ALLYEARS,r \in REG$
+$$EQ\_OBJ(z,r) \ni z \in ALLYEARS, \space r \in REG$$
 
-  ------------------------------------------------------------------------------------------------------------
-  $${REG\_ OBJ(z,r) = \sum_{y \in ( - \infty, + \infty)}^{}{DISC(y,z) \times \left\{ \begin{aligned}   *(B)*
-   & INVCOST(y) + INVTAXSUB(y) + INVDECOM(y) + \\                                                      
-   & FIXCOST(y) + FIXTAXSUB(y) + SURVCOST(y) + \\                                                      
-   & VARCOST(y) + VARTAXSUB(y) + ELASTCOST(y) - \\                                                     
-   & LATEREVENUES(y)                                                                                   
-  \end{aligned} \right\}}                                                                              
-  }{- SALVAGE(z)}$$                                                                                    
-  ---------------------------------------------------------------------------------------------------- -------
+$$
+\begin{aligned}
+REG\_ OBJ(z,r) = & \sum_{y \in ( - \infty, + \infty)}{DISC(y,z) \times \left\{
+  \begin{aligned}
+   & INVCOST(y) + INVTAXSUB(y) + \\
+   & INVDECOM(y) + FIXCOST(y) + \\
+   & FIXTAXSUB(y) + SURVCOST(y) + \\
+   & VARCOST(y) + VARTAXSUB(y) + \\
+   & ELASTCOST(y) - LATEREVENUES(y)                                  
+  \end{aligned}
+  \right\}}\\ & - SALVAGE(z)
+\end{aligned}$$ (6-B)
 
 The regional index *r* is omitted from the nine components for simplicity of notation.
 
@@ -227,9 +228,7 @@ $$
 
 Useful range for $y$:
 
-$$\left \{ M(t) - D(t) + 1, M(t) + ELIFE_{t} - 1 \right \}$$
-
-**(I.1.a)**
+$$\left \{ M(t) - D(t) + 1, M(t) + ELIFE_{t} - 1 \right \}$$ (I-1-a)
 
 *Comments*: The summand represents the payment effected in year *y,* due to the investment increment that occurred in year *v* (recall that investment payments are spread over *ELIFE*). The summand consists of three factors: the first is the amount of investment in year *v*, the second is the capital recovery factor, and the third is the unit investment cost.
 
@@ -252,9 +251,7 @@ $$
 
 Relevant range for $y$:
 
-$$\{ \langle B(t) - TLIFE_{t}/2 \rangle, \langle B(t) - TLIFE_{t}/2 \rangle + C \times TLIFE_{t} + ELIFE_{t}-2\}$$
-
-**(I.1.b)**
+$$\{ \langle B(t) - TLIFE_{t}/2 \rangle, \langle B(t) - TLIFE_{t}/2 \rangle + C \times TLIFE_{t} + ELIFE_{t}-2\}$$ (I-1-b)
 
 *Comments:* the expression is similar to that in case **1.a**., except that i) the investment is spread over the technical life rather than the period length, and ii) the investment cycle is repeated more than once.
 
@@ -283,9 +280,7 @@ $$
 
 $$
 {\{ B(t) + ILED_{t},B(t) + ELIFE_{t} - 2\} \quad for \space ILED_{t} \leq -1}
-$$
-
-(**I.2.a**)
+$$ (I-2-a)
 
 *Comments:* The main difference with case I.1.a) is that the investment's construction starts at year *B(t)* and ends at year $B(t)+ILED_t-1$ (see example). As before, payments for each year's construction spread over *ELIFE* years. Equation I.2.a also shows the impact of negative *ILED*s, which is simply a shift of the lead-time *ILED* years backwards.
 
@@ -325,9 +320,7 @@ $Next \space I$
 
 For each $y$ in range:
 
-$$B(t) \leq y \leq B(t) + (C-1) \cdot TLIFE_t + ILED_t + ELIFE_t - 2$$
-
-**(I.2.b)**
+$$B(t) \leq y \leq B(t) + (C-1) \cdot TLIFE_t + ILED_t + ELIFE_t - 2$$ (I-2-b)
 
 Compute:
 
@@ -371,8 +364,7 @@ INVDECOM(y) =
  & 1 \quad if \space M(t) - D(t) + 1 + TLIFE_{t} + DLAG_{t} \leq y \leq M(t) + TLIFE_{t} + DLAG_{t} \\
  & 0 \quad otherwise
 \end{aligned} \right.\ 
-$$ 
-**(III.1.a)**
+$$  (III-1-a)
 
 *Comment:* Note that the cost attribute is indexed at the year when the investment started to operate. We have adopted this convention throughout the objective function.
 
@@ -414,9 +406,7 @@ $${INVDECOM(y) =
  & t \leq T(y)
 \end{aligned}}^{}{INDIC(2.a)} \times \sum_{k = Max\left\{ B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t},y - DELIF_{t} + 1 \right\}}^{Min\{ y,B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} + DLIFE_{t} - 1\}}\left( \frac{VAR\_ NCAP_{t}}{DLIFE_{t}} \right) \times CRF_{s} \times NCAP\_ DCOST_{B(t) + ILED_{t}}
 }
-{+ \sum_{t \in PASTYEARS}^{}{INDIC(2.a)} \times \sum_{k = Max\left\{ t + TLIFE_{t} + DLAG_{t},y - DELIF_{t} + 1 \right\}}^{Min\{ y,t + TLIFE_{t} + DLAG_{t} + DLIFE_{t} - 1\}}\left( \frac{NCAP\_ PASTI_{t}}{DLIFE_{t}} \right) \times CRF_{s} \times NCAP\_ DCOST_{t}}$$
-
-**(III.2.a)**
+{+ \sum_{t \in PASTYEARS}^{}{INDIC(2.a)} \times \sum_{k = Max\left\{ t + TLIFE_{t} + DLAG_{t},y - DELIF_{t} + 1 \right\}}^{Min\{ y,t + TLIFE_{t} + DLAG_{t} + DLIFE_{t} - 1\}}\left( \frac{NCAP\_ PASTI_{t}}{DLIFE_{t}} \right) \times CRF_{s} \times NCAP\_ DCOST_{t}}$$ (III-2-a)
 
 Useful Range for $y$:
 
@@ -514,8 +504,7 @@ $$
 {FIXCOST(y) = \sum_{t \in MILESTONYR}^{}{INDIC(1.b)} \times \sum_{v = Max\left\{ \left\langle B(t) - TLIFE_{t}/2 \right\rangle,y - TLIFE_{t} + 1 \right\}}^{Min(y,\left\langle B(t) - TLIFE_{t}/2 \right\rangle + C \times TLIFE_{t} - 1\}}\left( \frac{VAR\_ NCAP_{t}}{TLIFE_{t}} \right) \times NCAP\_ FOM_{v}
 }{
  \times SHAPE(t,y - v) \times MULTI(y)}
- $$ 
- **(IV.1.b)**
+$$ (IV-1-b)
 
 Where:
 
@@ -549,9 +538,7 @@ $${FIXCOST(y) = \sum_{t \in MILESTONYR,t \leq T(y)}^{}{INDIC(2.a)} \times \left(
 0otherwise
 \end{Bmatrix} \times SHAPE(t,y - B(t) + ILED_{t}) \times MULTI(y)}$$
 
-$$missing \space expression$$
-
-**(IV.2.a)**
+$$missing \space expression$$ (IV-2-a)
 
 $$missing \space expression$$
 
@@ -568,9 +555,7 @@ $$
 0otherwise
 \end{matrix} \right.\ }$$
 
-$$missing \space expression$$
-
-**(IV.2.a')**
+$$missing \space expression$$ (IV-2-a-tick)
 
 ![](assets/case-2a-example-4.svg)
 
@@ -596,9 +581,7 @@ $$
 
 *Range for y:*
 
-$$missing \space expression$$
-
-**(IV.2.b)**
+$$missing \space expression$$ (IV-2-b)
 
 *Remark:* same as above, concerning the indexing of the cost attribute
 
@@ -620,9 +603,7 @@ $$
 }{and
 }{C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle
 }{NotethatymayexceedEOH}
-$$
-
-(**IV.2.b')**
+$$ (IV-2-b-tick)
 
 ![](assets/case-2b-example-4.svg)
 
@@ -647,6 +628,7 @@ $$
 }{VARTAXSUB(y) = VAR\_ XXX_{v,T(y)} \times (XXX\_ TAX_{y} - XXX\_ SUB_{y})
 }
 $$
+
 $y \leq EOH$ **(VI)**
 
 ### Cost of demand reductions ELASTCOST(y) 
@@ -699,7 +681,7 @@ Note that the second case may indeed arise, because some investments will occur 
 
 Since we want to calculate all salvages at the single year *(EOH+1)*, the above expressions for *S(k,TL)* must be discounted (multiplied) by:
 
-> $$(1 + d)^{EOH + 1 - k}$$
+$$(1 + d)^{EOH + 1 - k}$$
 
 Finally, another correction must be made to these expressions, whenever the user chooses to utilize a technology specific discount rate. The correction factor which must multiply every investment (and of course every salvage value) is:
 
@@ -710,7 +692,8 @@ $$
 \left( 1 - \frac{1}{(1 + i)^{ELIFE}} \right)}
 {\left( 1 - \frac{1}{1 + i} \right) \times
 \left( 1 - \frac{1}{\left( 1 + i_{s} \right)^{ELIFE}} \right)}
-$$ 
+$$
+
 where $i$ is the general discount rate, $i_s$ is the technology specific discount rate and $ELIFE$ is the economic life of the investment.
 
 Note: the time indexes have been omitted for clarity of the expression.
@@ -725,7 +708,6 @@ $$
 }{SAL(k,TL) = \frac{1 - (1 + d)^{EOH + 1 - k - TL}}{1 - (1 + d)^{- TL}} \times \frac{CRF_{s}}{CRF} \times \frac{S(k,TL,FDR)}{S(k,TL,0)}\quad otherwise}
 $$
 
-
 where $d$ is the general discount rate, $CRF_s$ is the technology-specific capital recovery factor and $FDR$ is the functional depreciation rate.
 
 These expressions may now be adapted to each case of investment (and taxes/subsidies on investments). We enumerate these cases below. Note that to simplify the equations, we have omitted the second argument in $SAL$ (it is always $TLIFE_t$ in the expressions).
@@ -739,7 +721,8 @@ $$
 =
 }{\sum_{t}^{}{INDIC(I.1.a) \times \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_ NCAP_{t}}{D(t)
 } + NCAP\_ PASTI_{t} \right)} \times NCAP\_ COST_{v} \times SAL(v)}
-$$ 
+$$
+
 Where $SAL(v)$ is equal to $SAL(v,TLIFE_t)$ defined in *Result*  2.
 
 Note that $SAL(v) = 0$ whenever  $v + TLIFE_t  ≤  EOH + 1$
@@ -750,13 +733,9 @@ Note that $SAL(v) = 0$ whenever  $v + TLIFE_t  ≤  EOH + 1$
 
 **Small Projects, repeated investments in period**
 
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  $$SALVINV(EOH + 1) = \sum_{t}^{}{INDIC(I.1.b) \times \sum_{v = B(t) - \left\langle TL/2 \right\rangle + (C - 1) \times TLIFE_{t}}^{B(t) - \left\langle TL/2 \right\rangle + C \times TLIFE_{t} - 1}\frac{VAR\_ NCAP_{t}}{TLIFE_{t}}} \times NCAP\_ COST_{v} \times SAL(v)$$
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Note again here that *SAL(v)* equals 0 if *v*+*TLIFE* ≤ *EOH*+1
+$$SALVINV(EOH + 1) = \sum_{t}{INDIC(I.1.b) \times \sum_{v = B(t) - \left\langle TL/2 \right\rangle + (C - 1) \times TLIFE_{t}}^{B(t) - \left\langle TL/2 \right\rangle + C \times TLIFE_{t} - 1}\frac{VAR\_ NCAP_{t}}{TLIFE_{t}}} \times NCAP\_ COST_{v} \times SAL(v)$$
 
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+Note again here that $SAL(v)$ equals 0 if $v+TLIFE ≤ EOH+1$
 
 (**VIII.1.b)**
 
@@ -764,20 +743,20 @@ Note that $SAL(v) = 0$ whenever  $v + TLIFE_t  ≤  EOH + 1$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
-$$
-{\mathbf{SALVINV(EOH + 1) =}\sum_{\mathbf{t}\mathbf{\in}\mathbf{MILESTONESYEARS}}^{}{\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}\mathbf{NCAP\_ COS}\mathbf{T}_{\mathbf{B(t) + ILE}\mathbf{D}_{\mathbf{t}}}\mathbf{\times}\mathbf{SAL(B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{)}}
-}{
-\mathbf{NotethatSAL(B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{) = 0}\mathbf{wheneverB(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\leq}\mathbf{EOH + 1}}
-$$
+$${SALVINV(EOH + 1) = \sum_{t \in MILESTONESYEARS} {VAR\_NCAP_{t} \times NCAP\_COST_{B(t) + ILED_{t}} \times SAL(B(t) + ILED_{t})}}$$
+
+Note that $SAL(B(t) + ILED_{t}) = 0$ whenever $B(t) + ILED_{t} + TLIFE_{t} \leq EOH + 1$
+
 (**VIII.2.a)**
 
 **Case 2.b:** ${ILED} > {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} < {D(t)}$
 
 **(Large, indivisible Projects, repeated investments in period)**
 
-$${\mathbf{SALVINV(EOH + 1) =}\sum_{\mathbf{t}}^{}{\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}\mathbf{NCAP\_ COS}\mathbf{T}_{\mathbf{B(t) + (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}}\mathbf{\times}\mathbf{SAL}}\left( \mathbf{B(t) + (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}} \right)
-}{
-\mathbf{NoteagainthatSAL}\left( \mathbf{B(t) + (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}} \right)\mathbf{= 0}\mathbf{wheneverB(t) + (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\leq}\mathbf{EOH + 1}}$$
+$${SALVINV(EOH + 1) =\sum_{t}{VAR\_NCAP_{t} \times NCAP\_COST_{B(t) + (C - 1) \times TLIFE_{t} + ILED_{t}} \times SAL} (B(t) + (C - 1) \times TLIFE_{t} + ILED_{t})}$$
+
+Note again that $SAL (B(t) + (C-1) \times TLIFE_{t} + ILED_{t}) = 0$ whenever $B(t) + (C - 1) \times TLIFE_{t} + ILED_{t} + TLIFE_{t} \leq {EOH + 1}$
+
 **(VIII.2.b)**
 
 **NOTE:** salvage cost of taxes/subsidies on investment costs are identical to the above, replacing NCAP_COST by {NCAP_ITAX -- NCAP_ISUB}*.*
@@ -837,33 +816,33 @@ $${SALVDECOM(EOH + 1) =
 
 **(Small Projects, repeated investments in period)**
 
-$${SALVDECOM(EOH + 1) = 
-}{\sum_{t}^{}{INDIC(1.b) \times \sum_{v = B(t) - \left\langle TL/2 \right\rangle + (C - 1) \times TLIFE_{t}}^{B(t) - \left\langle TL/2 \right\rangle + C \times TLIFE_{t} - 1}\frac{VAR\_ NCAP_{t}}{TLIFE_{t}}} \times NCAP\_ DCOST_{v} \times SAL(v,v + TLIFE_{t})
-}{
-Noteagain here thatSAL(k,l)equals0ifk + TLIFE \leq EOH + 1}$$
+$$SALVDECOM(EOH + 1) = {\sum_{t}^{}{INDIC(1.b) \times \sum_{v = B(t) - \left\langle TL/2 \right\rangle + (C - 1) \times TLIFE_{t}}^{B(t) - \left\langle TL/2 \right\rangle + C \times TLIFE_{t} - 1}\frac{VAR\_NCAP_{t}}{TLIFE_{t}}} \times NCAP\_DCOST_{v} \times SAL(v,v + TLIFE_{t})}$$
+
+Note again here that $SAL(k,l)$ equals 0 if $k + TLIFE \leq EOH + 1$
+
 **(IX.1.b)**
 
 **Case 2.a:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${ILED}_{t} + {TLIFE}_{t} \geq {D(t)}$
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
-$${\mathbf{SALVDECOM(EOH + 1) =}
-}{\sum_{\mathbf{t}\mathbf{\in}\mathbf{MILESTONESYEARS}}^{}{\mathbf{INDIC(2.a)}\mathbf{\times}\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}\mathbf{NCAP\_ COS}\mathbf{T}_{\mathbf{B(t) + ILE}\mathbf{D}_{\mathbf{t}}}\mathbf{\times}\sum_{\mathbf{l = B(t) + TLIFE + DLAG}}^{\mathbf{same + DLIFE}\mathbf{-}\mathbf{1}}{\mathbf{SAL(B(t) + ILE}\mathbf{D}_{\mathbf{t}}}\mathbf{,l)}}
-}{
-\mathbf{NotethatSALis}\mathbf{0}\mathbf{⥂ ⥂}\mathbf{wheneverB(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\leq}\mathbf{EOH + 1}}$$
+$$SALVDECOM(EOH + 1) =
+{\sum_{t \in MILESTONESYEARS} {INDIC(2.a) \times VAR\_NCAP_{t} \times NCAP\_COST_{B(t) + ILED_{t}} \times \sum_{l = B(t) + TLIFE + DLAG}^{same + DLIFE - 1}{ SAL(B(t) + ILED_{t}},l)}}$$
+
+Note that $SAL$ is 0 whenever $B(t) + ILED_{t} + TLIFE_{t} \leq {EOH + 1}$
+
 (**IX.2.a)**
 
 **Case 2.b:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} < {D(t)}$
 
 **(Large, indivisible Projects, repeated investments in period)**
 
-$${\mathbf{SALVDECOM(EOH + 1) =}\sum_{\mathbf{t}\mathbf{\in}\mathbf{MILESTONYEARS}}^{}\mathbf{INDIC(2.b)}\mathbf{\times}\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}\mathbf{NCAP\_ DCOS}\mathbf{T}_{\mathbf{B(t) + (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}}
-}{\mathbf{\times}\sum_{\mathbf{l = B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ C}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ DLA}\mathbf{G}_{\mathbf{t}}}^{\mathbf{same + DLIFE}\mathbf{-}\mathbf{1}}\mathbf{SAL}\left\lbrack \mathbf{B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{,l} \right\rbrack
-}
-{\mathbf{where}
-}{\mathbf{C =}\left\langle \frac{\mathbf{D(t)}\mathbf{-}\mathbf{ILE}\mathbf{D}_{\mathbf{t}}}{\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}} \right\rangle
-}{
-\mathbf{NoteagainthatSALis}\mathbf{0}\mathbf{wheneverB(t) + C}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{+ ILE}\mathbf{D}_{\mathbf{t}}\mathbf{\leq}\mathbf{EOH + 1}}$$
+$$SALVDECOM(EOH + 1) =\sum_{t \in MILESTONYEARS} INDIC(2.b) \times VAR\_NCAP_{t} \times NCAP\_DCOST_{B(t) + (C - 1) \times TLIFE_{t} + ILED_{t}} \times \sum_{l = B(t) + ILED_{t} + C \times TLIFE_{t} + DLAG_{t}}^{same + DLIFE - 1}SAL[B(t) + ILED_{t} + (C - 1) \times TLIFE_{t},l]$$
+
+where $C =\left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle$
+
+Note again that $SAL$ is 0 whenever $B(t) + C \times TLIFE_{t} + ILED_{t} \leq EOH + 1$
+
 **(IX.2.b)**
 
 **C) Salvage Value of Surveillance Costs**
@@ -874,25 +853,21 @@ Similarly to the salvaging of decommissioning costs, the basic salvage value fra
 
 **(Large, indivisible projects, unrepeated investment in period)**
 
-$${\mathbf{SALVSURV(EOH + 1) =}
-}{\sum_{\mathbf{t}\mathbf{\in}\mathbf{MILESTONESYEARS}}^{}{\mathbf{INDIC(2.a)}\mathbf{\times}\mathbf{S(B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{,TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{)}\mathbf{\times}}
-}{\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}\mathbf{NCAP\_ DLAG}\mathbf{C}_{\mathbf{B(t) + ILE}\mathbf{D}_{\mathbf{t}}}\mathbf{\times}\sum_{\mathbf{l = B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ TLIF}\mathbf{E}_{\mathbf{t}}}^{\mathbf{same + DLA}\mathbf{G}_{\mathbf{t}}\mathbf{-}\mathbf{1}}\mathbf{DISC(l,EOH + 1)}
-}{
-\text{Notethat}\mathbf{S}\mathbf{(}\mathbf{k}\mathbf{,}\mathbf{m}\mathbf{) = 0}\mathbf{⥂ ⥂}\text{whenever}\mathbf{k}\mathbf{+}\mathbf{m}\mathbf{\leq}\mathbf{EOH}\mathbf{+ 1.}}$$
+$$SALVSURV(EOH + 1) = {\sum_{t \in MILESTONESYEARS}{INDIC(2.a) \times S(B(t) + ILED_{t},TLIFE_{t}) \times}}VAR\_NCAP_{t} \times NCAP\_DLAGC_{B(t) + ILED_{t}} \times \sum_{l = B(t) + ILED_{t} + TLIFE_{t}}^{same + DLAG_{t} - 1}DISC(l,EOH + 1)$$
+
+Note that $S(k,m) = 0$ whenever $k + m \leq EOH + 1$.
+
 (**X.2.a)**
 
 **Case 2.b:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} < {D(t)}$
 
 **(Large, indivisible projects, repeated investments in period)**
 
-$${\mathbf{SALVSURV(EOH + 1) =}
-}
-{\sum_{}^{}\mathbf{INDIC(2.b)}\mathbf{\times}\mathbf{S\lbrack B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{,TLIF}\mathbf{E}_{\mathbf{t}}\mathbf{\rbrack}\mathbf{\times}\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{t}}\mathbf{\times}
-}{\mathbf{NCAP\_ DLAG}\mathbf{C}_{\mathbf{B(t) + ILED + (C}\mathbf{-}\mathbf{1)}\mathbf{\times}\mathbf{TLIFE}}\mathbf{\times}\sum_{\mathbf{l = B(t) + ILE}\mathbf{D}_{\mathbf{t}}\mathbf{+ C}\mathbf{\times}\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}}^{\mathbf{same + DLA}\mathbf{G}_{\mathbf{t}}\mathbf{-}\mathbf{1}}\mathbf{DISC(l,EOH + 1)}
-}
-{\mathbf{where:C =}\left\langle \frac{\mathbf{D(t)}\mathbf{-}\mathbf{ILE}\mathbf{D}_{\mathbf{t}}}{\mathbf{TLIF}\mathbf{E}_{\mathbf{t}}} \right\rangle
-}
-{\text{Noteagainthat}\mathbf{S}\mathbf{(}\mathbf{k}\mathbf{,}\mathbf{m}\mathbf{) = 0}\text{whenever}\mathbf{k}\mathbf{+}\mathbf{m}\mathbf{\leq}\mathbf{EOH}\mathbf{+ 1.}}$$
+$$SALVSURV(EOH + 1) = {\sum INDIC(2.b) \times S[B(t) + ILED_{t} + (C - 1) \times TLIFE_{t},TLIFE_{t}] \times VAR\_NCAP_{t} \times}NCAP\_DLAGC_{B(t) + ILED + (C - 1) \times TLIFE} \times \sum_{l = B(t) + ILED_{t} + C \times  TLIFE_{t}}^{same + DLAG_{t} - 1}DISC(l,EOH + 1)$$
+
+where: $C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle$
+
+Note again that $S(k,m) = 0$ whenever $k + m \leq EOH + 1$.
 
 **(X.2.b)**
 
@@ -910,8 +885,7 @@ $$\sum_{c} {-NCAP\_VAL(c) \times NCAP\_OCOM(c)}$$
 
 where the summation extends over all commodities *c* for which an *NCAP_OCOM* attribute is defined (defaults to zero if undefined)
 
-*LATEREVENUES(y)* is reported as a lump sum discounted to the user
-selected base year.
+*LATEREVENUES(y)* is reported as a lump sum discounted to the user selected base year.
 
 ### Known issues in the standard objective function formulation
 
@@ -959,18 +933,13 @@ However, one could additionally argue that the Capital Recovery Factor $CRF_{beg
 
 Accordingly, we should correct the definition of the *CRF proper* by assuming that the annualized payments occur *half a year forward* in time with respect to the lump-sum investment, which means that we must increase the nominal size of the payments by the corresponding interest for the half-year\'s time. Combining these corrections together, the general discount rate $d(y)$ should be simply replaced by the **tech­nology-specific discount rate** $d_S(T(y))$ in the expression above, because in addition to the nominal change in the *CRF*, the time of the annualized payments has been restored back to original. However, to maintain consistency bet­ween Cases 1 and 2, the same basic correction to the *CRF proper* should be applied to all cases. Therefore, the total adjust­ments needed when taking into account the correction to the *CRF proper* are the following:
 
-$$CFR_{mid}^{proper} = CRF_{beg} \times (1 + d_S(T(y)))^{0.5}$$
+$$CFR_{mid}^{proper} = CRF_{beg} \times (1 + d_S(T(y)))^{0.5}$$ (XI-1)
 
-(XI.1)
+$$CRF_{1,mid} = CFR_{mid}^{proper} \times (1+d(T(y)))^{0.5} \times (1+d(T(y)))^{-0.5} = CRF_{beg} \times (1+d_S(T(y)))^{0.5}$$ (XI-2)
 
-$$CRF_{1,mid} = CFR_{mid}^{proper} \times (1+d(T(y)))^{0.5} \times (1+d(T(y)))^{-0.5} = CRF_{beg} \times (1+d_S(T(y)))^{0.5}$$
+$$CRF_{2,mid} = CFR_{mid}^{proper} \times (1+d(T(y)))^{-0.5} = CRF_{beg} \times (1+d(T(y)))^{-0.5} \times (1+d_S(T(y)))^{0.5}$$ (XI-3)
 
-(XI.2)
-
-$$CRF_{2,mid} = CFR_{mid}^{proper} \times (1+d(T(y)))^{-0.5} = CRF_{beg} \times (1+d(T(y)))^{-0.5} \times (1+d_S(T(y)))^{0.5}$$
-(XI.3)
-
-Consequently, in both cases the annualized investment payments are then assumed to occur at the mid-point of each fiscal year starting at the time of the lump-sum investment, and the annual payments are equivalent to the lump-sum investment when discounted back to that point by the technology-specific discount rate. The implementation of the optional corrections for mid-year discounting corresponds to equations (XI.1 to XI.3). To be consistent, the expression (XI.3) for $CRF_{2,mid}$ should also be used for decommissioning costs.
+Consequently, in both cases the annualized investment payments are then assumed to occur at the mid-point of each fiscal year starting at the time of the lump-sum investment, and the annual payments are equivalent to the lump-sum investment when discounted back to that point by the technology-specific discount rate. The implementation of the optional corrections for mid-year discounting corresponds to equations ({eq}`XI-1` to {eq}`XI-3`). To be consistent, the expression {eq}`XI-3` for $CRF_{2,mid}$ should also be used for decommissioning costs.
 
 ## Constraints
 
@@ -1139,9 +1108,9 @@ The constraints available in standard TIMES are shown in {numref}`times-equation
 - If COM_ELAST and COM_VOC are specified, and COM_STEP (number of steps) is not, the latter defaults to 1 (single step discretization)
 - Attributes COM_VOC and COM_STEP do not have a timeslice index. The user can still control elasticities in each time slice through COM_ELAST~s~.
 
-$${BND\_ ELAST_{r,t,c,s,j,l} \ni COM\_ STEP_{r,c,l} \land (s \in \mathbf{com}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{s}})
-}
-{VAR\_ ELAST_{r,t,c,s,j,l} \leq \frac{COM\_ PROJ_{r,t,c} \times COM\_ FR_{r,t,c,s} \times COM\_ VOC_{r,t,c,l}}{COM\_ STEP_{r,c,l}}}$$
+$${BND\_ELAST_{r,t,c,s,j,l} \ni COM\_STEP_{r,c,l} \land (s \in com\_ts_{r,c,s})}$$
+
+$${VAR\_ELAST_{r,t,c,s,j,l} \leq \frac{COM\_PROJ_{r,t,c} \times COM\_FR_{r,t,c,s} \times COM\_VOC_{r,t,c,l}}{COM\_STEP_{r,c,l}}}$$
 
 **Bound:**
 
@@ -1152,9 +1121,7 @@ $${BND\_ ELAST_{r,t,c,s,j,l} \ni COM\_ STEP_{r,c,l} \land (s \in \mathbf{com}\_\
 **Type**: Any type, as determined by the index **bd** of ACT_BND:
 
 -   *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
-
 -   *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
-
 -   *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
 **Related variables**: **VAR_ACT**
@@ -1405,9 +1372,7 @@ $${obj_{RMPC} =
 **Notation:**
 
 - *SUP(s)* is the set of timeslices above timeslice ***s*** in the timeslice tree, but including also ***s*** itself,
-
 - *UPS(p)* is the set of timeslices with start-ups/shut-downs allowed for process *p*,
-
 - *P(s)* and *C(s)* refer to the parent timeslice of ***s*** and the set of child timeslices of ***s***, respectively.
 
 **Equations:**
@@ -1505,9 +1470,7 @@ time slice (s)**
 **Type**: As determined by the bd index of the input parameter FLO_SHAR:
 
 -   *l* = \'G\' for **bd** = \'LO\' yields ≥,
-
 -   *l* = \'L\' for **bd** = \'UP\' yields ≤,
-
 -   *l* = \'E\' for **bd** = \'FX\' yields =.
 
 **Related variables**: **VAR_FLO, VAR_ACT, VAR_SOUT**
@@ -1678,9 +1641,7 @@ $${\mathbf{EQ\_ BNDCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,t,y}\mathbf{2,agg,cur}}\
 COM_BNDNET/PRD:
 
 -   *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
-
 -   *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
-
 -   *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
 **Purpose:** If the bound on the net or gross production of a commodity is specified for a timeslice being above the timeslice level of the commodity, the equation described here is generated. The bound on the net or gross production of a commodity is directly applied to the variable (VAR_COMNET, VAR_COMPRD), if the bound parameter is specified for a commodity timeslice (**com_ts**).
@@ -1715,7 +1676,6 @@ $$${\ni \left\{ \mathbf{rcs}\_\mathbf{comt}\mathbf{s}_{\mathbf{r},\mathbf{c},\ma
 **Type**: As determined by the bd index of the standard availability parameter:
 
 -   *l* = 'L' for **bd** = 'UP' yields $\leq$,
-
 -   *l* = 'E' for **bd** = 'FX' yields $=$.
 
 **Related variables**: **VAR_NCAP, VAR_FLO, VAR_IRE, VAR_SIN, VAR_SOUT**
@@ -3672,22 +3632,23 @@ The alternative formulation is created when the dollar control parameter VAR_UC 
 
 *[Timeslice-dynamic user constraints]{.underline}*
 
-Timeslice-dynamic user constraints establish a relationship between two successive timeslices within a timeslice cycle. The LHS expression *LHS~r,t,s~* is generated for timeslice **s**, whereas the RHS expression *RHS~r,t,s--1~* is generated for the preceding timeslice **s--**RS_STG(r,s) under the same parent timeslice. Timeslice-dynamic user constraints of type can thus be written as follows:
+Timeslice-dynamic user constraints establish a relationship between two successive timeslices within a timeslice cycle. The LHS expression $LHS_{r,t,s}$ is generated for timeslice **s**, whereas the RHS expression $RHS_{r,t,s-1}$ is generated for the preceding timeslice **s--**RS_STG(r,s) under the same parent timeslice. Timeslice-dynamic user constraints of type can thus be written as follows:
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  $${EQ(l)\_ UCRS_{r,uc\_ n,t,tsl,s} \ni \left\{ \begin{aligned}
-   & UC\_ RHSRTS_{r,uc\_ n,t,s,bd} \land \left( r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}} \right) \land \left( t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{eac}\mathbf{h}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}} \right) \\
-   & \land (s \in \{ ts|\mathbf{ts}\_\mathbf{gr}\mathbf{p}_{r,tsl,s} \land \bigcup_{side}^{}{\mathbf{uc}\_\mathbf{ts}\mathbf{l}_{r,uc\_ n,side,tsl}}\})
-  \end{aligned} \right\}
-  }
-  {LHS_{r,t,s}\quad\left\{ = / \geq / \leq \right\}\sum_{\mathbf{uc}\_\mathbf{tsl}(r,ucn,'RHS',tsl)}^{}{RHS_{r,t,s - RS\_ STG(r,s)}} + \overset{}{UC\_ RHS(R)T(S)_{(r),uc\_ n,t,(s),bd}}}$$
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+$$
+\begin{aligned}
+& EQ(l)\_UCRS_{r,uc\_n,t,tsl,s} \ni \left\{ \begin{aligned}
+   & UC\_RHSRTS_{r,uc\_n,t,s,bd} \land \left( r \in uc\_r\_each_{r,uc\_n} \right) \land \left( t \in uc\_t\_each_{r,uc\_n,t} \right) \\
+   & \land (s \in \{ ts|ts\_grp_{r,tsl,s} \land \bigcup_{side}^{}{uc\_tsl_{r,uc\_n,side,tsl}}\})
+  \end{aligned} \right\} \\
+& LHS_{r,t,s}\quad\left\{ = / \geq / \leq \right\}\sum_{uc\_tsl(r,ucn,'RHS',tsl)}{RHS_{r,t,s - RS\_ STG(r,s)}} + UC\_RHS(R)T(S)_{(r),uc\_n,t,(s),bd}
+\end{aligned}
+$$
 
 Timeslice-dynamic user constraints are always specific to a single region and period. To build a timeslice-dynamic user constraint, the modeller must identify the desired timeslice level of the constraint, by using the set **uc_tsl***~r,uc_n,side,tsl~*, and the RHS constants must be defined by using the UC_RHSRTS parameter. As an alternative to using **uc_tsl**, **uc_attr***~r,uc_n,side,uc_grptype,tslvl~* can also be used, with any **uc_grptype** (**ucn** recommended). The constraint will be genuinely dynamic only if **uc_tsl** is specified on the RHS. This is the only type of user constraint for which the RHS constant parameter is levelized, according the timeslice level identified by **uc_tsl**. That can make the RHS specification much easier.
 
 *[Dynamic user constraints]{.underline}*
 
-Dynamic user constraints establish a relationship between two *consecutive* periods. The LHS expression *LHS~r,t,s~* is generated for period **t**, whereas the for the RHS expression either the term *RHS~r,t+1,s~* corresponding to the period **t+1**, or the term *RHS~r,t--1,s~* corresponding to the period **t--1** is generated, according to the dynamic type.
+Dynamic user constraints establish a relationship between two *consecutive* periods. The LHS expression $LHS_{r,t,s}$ is generated for period $t$, whereas the for the RHS expression either the term $RHS_{r,t+1,s}$ corresponding to the period $t+1$, or the term $RHS_{r,t-1,s}$ corresponding to the period $t-1$ is generated, according to the dynamic type.
 
 Dynamic user constraints of type (**t,t+1**) can thus be written as follows:
 

@@ -52,13 +52,13 @@ The purpose of this section is to show how certain policies may be simulated in 
 
 **Policy 1: Carbon tax**
 
-A tax is levied on emissions of CO2 at point of source.
+A tax is levied on emissions of CO<sub>2</sub> at point of source.
 
-This policy is easily represented in TIMES a) making sure that all technologies that emit CO2 have an emission coefficient, and then defining a tax on these emissions (see 2.6.1.2). The policy may indicate that the tax be levied upstream for some end-use sectors (e.g. automobiles), in which case the emission coefficient is defined at the oil refinery level rather than at the level of individual car types.
+This policy is easily represented in TIMES a) making sure that all technologies that emit CO<sub>2</sub> have an emission coefficient, and then defining a tax on these emissions (see 2.6.1.2). The policy may indicate that the tax be levied upstream for some end-use sectors (e.g. automobiles), in which case the emission coefficient is defined at the oil refinery level rather than at the level of individual car types.
 
-**Policy 2: Cap-and-trade on CO2**
+**Policy 2: Cap-and-trade on CO<sub>2</sub>**
 
-An upper limit on CO2 emissions is imposed at the national level (alternatively, separate upper limits are imposed at the sector level). If the model is multi-country, trade of emission permits is allowed between countries (and/or between sectors). The trade may also be upper bounded by a maximum percentage of the actual emissions, thus representing a form of the subsidiarity principle.
+An upper limit on CO<sub>2</sub> emissions is imposed at the national level (alternatively, separate upper limits are imposed at the sector level). If the model is multi-country, trade of emission permits is allowed between countries (and/or between sectors). The trade may also be upper bounded by a maximum percentage of the actual emissions, thus representing a form of the subsidiarity principle.
 
 This type of policy is simulated by defining upper bounds on emissions, a straightforward feature in TIMES (sections2.6.1.3 and 2.6.2.3). By defining total sector emissions as a new commodity, the sector-restricted cap is just as easily implemented. The trade of national emissions makes use of the standard trade variables of TIMES (section 5.2).
 
@@ -78,8 +78,6 @@ A more elaborate form of the subsidy might be to first levy an emission tax, and
 
 An important aspect of any policy is whether it will stay effective under various conditions. Examples of such conditions are oil prices, climate parameters, availability of certain resources, key technology costs or efficiency, etc. A policy that remains effective under a range of values for such conditions, is said to be ***robust***. In TIMES, robustness may be assessed using a variety of features, ranging from sensitivity analysis (chapter 6) to Stochastic Programming (chapter 8).
 
-
-------------
 
 [^1]: MARKAL (MARket ALlocation model, Fishbone et al, 1981, 1983, Berger et al. 1992) and EFOM (Van Voort et al, 1984) are two bottom-up energy models that inspired the structure of TIMES.
 

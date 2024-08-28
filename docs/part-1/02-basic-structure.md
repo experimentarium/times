@@ -202,7 +202,6 @@ Similarly, energy services may be labeled so that they are more easily recognize
 
 In the same fashion, fuels, materials, and emissions may be identified so as to immediately designate the sector and sub-sector where they are produced or consumed. To achieve this, some fuels have to change names when they change sectors. This is accomplished via processes whose primary role is to change the name of a fuel. In addition, such a process may serve as a bearer of sector wide parameters such as distribution cost, price markup, tax, that are specific to that sector and fuel. For instance, a tax may be levied on industrial distillate use but not on agricultural distillate use, even though the two commodities are physically identical.
 
-------------
 
 [^4]: However, there are TIMES variants -- discussed in chapters 8 to 12, that depart significantly from these assumptions
 
