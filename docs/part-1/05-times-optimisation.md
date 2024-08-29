@@ -186,7 +186,7 @@ Since TIMES recognizes activity variables as well as flow variables, it is neces
 
 #### $EQ\_ACTFLO(r,v,t,p,s)$ -- Activity definition
 
-$$VAR\_ACT(r,v,t,p,s) = \sum_{c \in pcg} VAR\_FLO(r,v,t,p,c,s) / ACTFLO(r,v p,c)$$ (5-2)
+$$VAR\_ACT(r,v,t,p,s) = \sum_{c \in pcg} VAR\_FLO(r,v,t,p,c,s) / ACTFLO(r,v,p,c)$$ (5-2)
 
 > where $ACTFLO(r,v,p,c)$ is a conversion factor (often equal to 1) from the activity of the process to the flow of a particular commodity.
 
@@ -244,7 +244,7 @@ A process with one or more (perhaps heterogeneous) commodity flows is essentiall
 
 #### $EQ\_PTRANS(r,v,t,p,cg1,cg2,s)$ -- Efficiency definition
 
-$$\sum_{c \in cg2} VAR\_FLO(r,v,t,p,c,s) = FLO\_FUNC(r,v,cg1,cg2,s) \times \sum_{c \in cg1} COEFF(r,v,p,cg1,c,cg2,s) \times VAR_FLO(r,v,t,p,c,s)$$ (5-5)
+$$\sum_{c \in cg2} VAR\_FLO(r,v,t,p,c,s) = FLO\_FUNC(r,v,cg1,cg2,s) \times \sum_{c \in cg1} COEFF(r,v,p,cg1,c,cg2,s) \times VAR\_FLO(r,v,t,p,c,s)$$ (5-5)
 
 > where $COEFF(r,v,p,cg1,c,cg2,s)$ takes into account the harmonization of different time-slice resolution of the flow variables, which have been omitted here for simplicity, as well as commodity-dependent transformation efficiencies.
 
@@ -276,7 +276,7 @@ For each time period $t$ and for region $r$, there must be enough installed capa
 
 #### $EQ\_PEAK(r,t,c,s)$ -- Commodity peak requirement
 
-$$\sum_{p,c=pcg} PRC\_CAPACT(r,p) \times Peak(r,v,p,c,s) \times FR(s) \times VAR\_CAP(r,v,t,p) \times PRC\_ACTFLO(r,v,p,c) + \sum_{p,c≠pcg} CAP\_PKCNT(r,v,p,c,s) \times VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,i) ≥ (1+ COM\_PKRSV(r,t,c,s))(\sum_{p,c} VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,e))$$ (5-7)
+$$\sum_{p,c=pcg} PRC\_CAPACT(r,p) \times Peak(r,v,p,c,s) \times FR(s) \times VAR\_CAP(r,v,t,p) \times VAR\_ACTFLO(r,v,p,c) + \sum_{p,c≠pcg} NCAP\_PKCNT(r,v,p,c,s) \times VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,i) ≥ (1+ COM\_PKRSV(r,t,c,s))(\sum_{p,c} VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,e))$$ (5-7)
 
 where:
 
