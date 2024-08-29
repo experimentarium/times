@@ -131,7 +131,7 @@ $$COST\_T_{t} + \frac{1}{2}qfac\sum_{p}^{}{\frac{cstinv_{t,p}}{\exp f_{t} \times
 
 with
 
-> $XCAP_{t,p}$: portion of the capacity expansion for technology $p$ in period $t$ that is penalized. Constraint {eq}`12-11` below states that it is the portion exceeding a predefined tolerable expansion rate $\expf_{t}$,
+> $XCAP_{t,p}$: portion of the capacity expansion for technology $p$ in period $t$ that is penalized. Constraint {eq}`12-11` below states that it is the portion exceeding a predefined tolerable expansion rate$\ exp f_{t}$,
 > 
 > $EC_{t}$: costs for the production factor energy in the MACRO model,
 > 
