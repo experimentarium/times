@@ -145,7 +145,7 @@ In the TIMES Climate Module as in many other integrated models, climate change i
 $$
 \begin{split}
 ΔT_{up}(y) = & ΔT_{up}(y-1) + \\
-& σ_1(F(y) - λΔT_{up}(y-1) - σ~2(ΔT_{up}(y-1) - ΔT_{low}(y-1)))
+& σ_1(F(y) - λΔT_{up}(y-1) - σ_2(ΔT_{up}(y-1) - ΔT_{low}(y-1)))
 \end{split}
 $$ (7-11)
 
