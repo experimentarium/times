@@ -16,7 +16,7 @@ Imposing such a constraint on an investment is unfortunately impossible to formu
 
 Typically, the modeling of a lumpy investment involves Integer Variables, i.e. variables whose values may only be non-negative integers (0, 1, 2, ...). The mathematical formulation is as follows:
 
-$$VAR\_NCAP(p,t) = \sum_{i = 1}^{N}{S_{i}(p,t) \times}Z_{i}(p,t) \text{ each} ⥂ t = 1,..,T$$
+$$VAR\_NCAP(p,t) = \sum_{i = 1}^{N}{S_{i}(p,t) \times}Z_{i}(p,t) \text{ each }  t = 1,..,T$$
 
 with:
 
