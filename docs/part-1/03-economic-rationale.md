@@ -119,7 +119,7 @@ This is a remarkably useful result, as it leads to a method for computing the eq
 
 In the multi-dimensional case, the proof of the above statement is less obvious, and requires a certain qualifying property (called the integrability property) to hold (Samuelson, 1952, Takayama and Judge, 1972). One sufficient condition for the integrability property to be satisfied is realized when the cross-price elasticities of any two energy forms are equal, viz.
 
-$$\partial P_{j}/\partial Q_{i} = \partial P_{i}/\partial Q_{j}\text{for} ⥂ ⥂ \text{all}i,j$$
+$$\partial P_{j}/\partial Q_{i} = \partial P_{i}/\partial Q_{j} \quad \text{for all } i,j$$
 
 In the case of commodities that are end-use energy services, these conditions are trivially satisfied in TIMES because we have assumed zero cross price elasticities. In the case of an endogenous energy carrier, where the demand curve is implicitly derived, it is also easy to show that the integrability property is always satisfied[^21]. Thus the equivalence principle is valid in all cases.
 

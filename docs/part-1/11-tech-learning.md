@@ -74,7 +74,7 @@ Example of a 4-segment approximation of the cumulative cost curve.
 
 The successive interval lengths on the vertical axis are chosen to be in geometric progression, each interval being twice as wide as the preceding one. In this fashion, the intervals near the low values of the curve are smaller so as to better approximate the curve in its high curvature zone. Let $\{TC_{i-1}, TC_{i}\}$ be the $i^{th}$ interval on the vertical axis, for $i = 1, ..., N-1$. Then:
 
-$$TC_{i} = TC_{i - 1} + 2^{i - N - 1}(T{Co^{N}}_{\max}$$
+$$TC_{i} = TC_{i-1} + 2^{i-N-1} (TC_{\text{max}} - TC_{0}) / (1 - 0.5^{N}), \; i = 1, 2, \ldots, N$$
 
 Note that $TC_{max}$ is equal to $TC_N$.
 
@@ -129,7 +129,7 @@ $$
 \begin{aligned}
 &{\sum^{i}_{j=1} z_{j,t}} \geq {\sum^{i}_{j=1} z_{j,t+1}} \\
 && i=1,2,...,N-1, \space t=1,2,...,T-1 \\
-&{\sum^{N}_{j=i} z_{j,t}} \geq {\sum^{N}_{j=i} z_{j,t+1}}
+&{\sum^{N}_{j=i} z_{j,t}} \leq {\sum^{N}_{j=i} z_{j,t+1}}
 \end{aligned}
 $$
 
