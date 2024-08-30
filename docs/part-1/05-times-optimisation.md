@@ -276,7 +276,7 @@ For each time period $t$ and for region $r$, there must be enough installed capa
 
 #### $EQ\_PEAK(r,t,c,s)$ -- Commodity peak requirement
 
-$$\sum_{p,c=pcg} PRC\_CAPACT(r,p) \times Peak(r,v,p,c,s) \times FR(s) \times VAR\_CAP(r,v,t,p) \times VAR\_ACTFLO(r,v,p,c) + \sum_{p,c≠pcg} NCAP\_PKCNT(r,v,p,c,s) \times VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,i) ≥ (1+ COM\_PKRSV(r,t,c,s))(\sum_{p,c} VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,e))$$ (5-7)
+$$\sum_{p,c=pcg} PRC\_CAPACT(r,p) \times Peak(r,v,p,c,s) \times FR(s) \times VAR\_CAP(r,v,t,p) \times PRC\_ACTFLO(r,v,p,c) + \sum_{p,c≠pcg} NCAP\_PKCNT(r,v,p,c,s) \times VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,i) ≥ (1+ COM\_PKRSV(r,t,c,s))(\sum_{p,c} VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,e))$$ (5-7)
 
 where:
 
