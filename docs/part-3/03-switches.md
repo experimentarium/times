@@ -2,13 +2,15 @@
 
 This Section describes the various GAMS control variables available in TIMES as control switches that can be set by the user in the model \<case\>.RUN/GEN file for VEDA-FE/ANSWER respectively. As discussed in Section 2, VEDA-FE and ANSWER, in most cases automatically take care of inserting the proper switches into the run file, so the user normally does not have to modify the run file at all. The switches are set in the highly user-friendly GUI interface of the user shell, which uses a run file template and inserts all run-specific switches correctly into the run file of each model run. These are managed by the user via the Case Manager (Control Panel) and Run/Edit GEN Template parts of VEDA-FE and ANSWER respectively.
 
-In the subsections that follow, unless otherwise stated, the basic syntax for the inclusion of control switch options in the main \<case\>.RUN/GEN GAMS directive file is \$SET \<option\> \<value\>. The various options are grouped according to the nature of their usage by subsection.
+In the subsections that follow, unless otherwise stated, the basic syntax for the inclusion of control switch options in the main \<case\>.RUN/GEN GAMS directive file is `$SET <option> <value>`. The various options are grouped according to the nature of their usage by subsection.
 
 ## Run name case identification
 
 The use of the RUN_NAME control variable is practically mandatory when running TIMES. By setting the RUN_NAME control variable, the user gives a name to the model run, which will be used when generating various output files and/or loading information from a previously generated file that has the same name. The control variable is used in the following way:
 
-> \$SET RUN_NAME runname
+```
+$SET RUN_NAME runname
+```
 
 Here the ***runname*** identifier (corresponding to the run \<case\> name) is a string of letters, numbers and other characters (excluding spaces), such that the name complies with the rules for the base name of files. It will be used to construct names for the various files comprising a model run, as listed in {numref}`run_name-times-files`.
 
@@ -48,7 +50,9 @@ TIMES has a number of variants or model instances embedded in the within the ful
 
 The TIMESED control variable is one of the most important TIMES control variables. It has to be used whenever the full partial equilibrium features of TIMES (that is, employing elastic demands) are to be utilized. For running a baseline scenario to be subsequently used as the reference scenario for partial equilibrium analyses with elastic demands, the following setting should be used:
 
-> \$SET TIMESED NO
+```
+$SET TIMESED NO
+```
 
 This setting indicates that the user plans to use the resulting price levels from the current run as reference prices in subsequent runs with elastic demands. The setting causes the model generator to create the following (identical) two files from the Baseline run (the second file is a backup copy):
 
@@ -57,32 +61,31 @@ This setting indicates that the user plans to use the resulting price levels fro
 
 For running any policy scenarios with elastic demands, using price levels from a previous run as reference prices, one must use the following setting:
 
-> \$SET TIMESED YES
+```
+$SET TIMESED YES
+```
 
-The reference price levels are read from a file named `Com_Bprice.gdx`, which is expected to reside in the current directory folder where the model run takes place. Therefore, the Baseline scenario using the setting `\$SET TIMESED NO` has to be run before running the policy scenarios, or the correct `Com_Bprice.gdx` be otherwise restored from some backup copy.
+The reference price levels are read from a file named `Com_Bprice.gdx`, which is expected to reside in the current directory folder where the model run takes place. Therefore, the Baseline scenario using the setting `$SET TIMESED NO` has to be run before running the policy scenarios, or the correct `Com_Bprice.gdx` be otherwise restored from some backup copy.
 
-The VEDA-FE Case Manager (BasePrice) and ANSWER Run (ModelVariant) buttons allow the user to easily control setting of the `TIMESED` switch and thereby creating/including the `Com_Bprice.GDX` as appropriate. If neither the base prices are to be written out, nor a policy scenario with elastic demands to be run, the user should not set the `TIMESED` control variable.
+The VEDA-FE Case Manager (BasePrice) and ANSWER Run (ModelVariant) buttons allow the user to easily control setting of the TIMESED switch and thereby creating/including the `Com_Bprice.gdx` as appropriate. If neither the base prices are to be written out, nor a policy scenario with elastic demands to be run, the user should not set the TIMESED control variable.
 
 ### General equilibrium \[MACRO\]
 
 The general equilibrium mode of TIMES can be activated in two different ways, using the following MACRO control switch settings:
 
-> \$SET MACRO YES -- activate the standard MACRO formulation
-
-> \$SET MACRO MSA -- activate the MACRO decomposition formulation
-
-> \$SET MACRO MLF -- activate the linearized MACRO-MLF formulation
+- `$SET MACRO YES` -- activate the standard MACRO formulation
+- `$SET MACRO MSA` -- activate the MACRO decomposition formulation
+- `$SET MACRO MLF` -- activate the linearized MACRO-MLF formulation
 
 For further information about the standard MACRO formulation, see the TIMES-MACRO documentation available at the [ETSAP site](https://www.iea-etsap.org/index.php/documentation).
 
 In all three formulations, the use of the MACRO mode for evaluating policy scenarios requires that so-called demand decoupling factors (DDF) and labor growth rates first have to be calibrated for the Baseline scenario and corre­sponding GDP growth projections. When using the standard MACRO or the Macro-MSA formulation, the calibration produces a file containing the calibrated parameters, which must then be included in the policy scenarios to be evaluated. When using the Macro-MLF formulation, the calibration is done on-the-fly.
 
-Until TIMES v3.3.9, the standard MACRO formulation included a separate utility for calibrating the DDF factors and labor growth rates (see the TIMES-MACRO documentation for details). However, the calibration is much easier using the new MACRO decom­position formulation, where you can use the following MACRO control switch setting for carrying out the Baseline
-calibration:
+Until TIMES v3.3.9, the standard MACRO formulation included a separate utility for calibrating the DDF factors and labor growth rates (see the TIMES-MACRO documentation for details). However, the calibration is much easier using the new MACRO decom­position formulation, where you can use the following MACRO control switch setting for carrying out the Baseline calibration:
 
-> \$SET MACRO CSA -- calibration with the MACRO decomposition method
+> `$SET MACRO CSA` -- calibration with the MACRO decomposition method
 
-The `CSA` calibration facility produces a file called `MSADDF.DD`, which is auto­matically included in any subsequent policy run activated by the `MACRO=MSA` control switch. In order to carry out the calibration, one must also include the necessary MACRO parameters in the model input data
+The CSA calibration facility produces a file called `MSADDF.DD`, which is auto­matically included in any subsequent policy run activated by the MACRO=MSA control switch. In order to carry out the calibration, one must also include the necessary MACRO parameters in the model input data
 (see the TIMES-MACRO documenta­tion for a description of the MACRO parameters). The only mandatory para­meters are the initial GDP and GDP growth parameters.
 
 The DDF file produced by CSA can be used for the original TIMES-MACRO formulation, where one may re-calibrate it a few times more with the Baseline scenario to verify the calibration for TIMES-MACRO. The re-calib­ration is automatically done by TIMES-MACRO at the end of each run, whereupon a new file `DDFNEW.DD` is written, which can then be renamed for inclusion in the subsequent TIMES-MACRO policy runs.
@@ -90,14 +93,13 @@ The DDF file produced by CSA can be used for the original TIMES-MACRO formulatio
 When using the Macro-MLF formulation, the Macro equations are calibrated on-the-fly when running any policy scenario. Therefore, no dedicated Macro calibration run is needed for using Macro-MLF, but only a standard Baseline model run is required for obtaining the Base prices, in the
 same way as when using elastic demands (TIMESED).
 
-When using the MACRO decomposition formulation (with `MACRO=MSA` or `MACRO=CSA`), and when the partial equilibrium runs of the Baseline and policy scenarios have already been made, using the LPOINT/RPOINT control settings (in combination with SPOINT) may also be useful (see Section
-3.8 and 3.12). If the RPOINT setting is used, the initial solution for the decomposition algorithm is taken directly from the GDX file without having to re-run the previously solved LP model again.
+When using the MACRO decomposition formulation (with MACRO=MSA or MACRO=CSA), and when the partial equilibrium runs of the Baseline and policy scenarios have already been made, using the LPOINT/RPOINT control settings (in combination with SPOINT) may also be useful (see Section 3.8 and 3.12). If the RPOINT setting is used, the initial solution for the decomposition algorithm is taken directly from the GDX file without having to re-run the previously solved LP model again.
 
 ## Controls affecting the objective function
 
 ### Objective function cost accounting \[OBJ\]
 
-The user can choose to use several alternative objective function formulations instead of the standard objective function. See Part I, Section 5.3.4 and the documentation for the Objective Function Variants for details. The alternative objective formulations can be activated using the \$SET OBJ \<option\> as described in {numref}`obj-func-formulation-opt`.
+The user can choose to use several alternative objective function formulations instead of the standard objective function. See Part I, Section 5.3.4 and the documentation for the Objective Function Variants for details. The alternative objective formulations can be activated using the `$SET OBJ <option>` as described in {numref}`obj-func-formulation-opt`.
 
 ```{list-table} Objective Function Formulation Options
 :name: obj-func-formulation-opt
@@ -133,17 +135,17 @@ In addition to controlling how the objective function is assembled, as described
   - Used for requesting a period-wise objective formulation, which can be used e.g. together with the MACRO decomposition method for enabling the iterative update of the period-wise discount factors (See the documentation titled *Macro MSA,* on the MACRO Decomposition Algorithm, for details).
 * - OBLONG \<YES/NO\>
   - In the STD (standard) and MOD (alternative) objective function formulations discussed in {numref}`obj-func-formulation-opt` the capacity-related costs are not completely synchronized with the corresponding activities, which may cause distortions in the accounting of costs. This switch causes all capacity-related cost to be synchronized with the process activities (which are assumed to have oblong shapes), thereby eliminating also the small problems in salvaging that exist in the STD and MOD formulations.
-  <br>Due to the obvious advantages of using this setting, the OBLONG setting is activated by default whenever the MOD formulation is used. However, for backwards compatibility, one can disable it by adding the explicit setting \$SET OBLONG NO in the run file. Using the OBLONG setting can be recommended also with the STD and AUTO settings. It can even be used with the ALT and LIN settings, but that is not recommended.
+  <br>Due to the obvious advantages of using this setting, the OBLONG setting is activated by default whenever the MOD formulation is used. However, for backwards compatibility, one can disable it by adding the explicit setting `$SET OBLONG NO` in the run file. Using the OBLONG setting can be recommended also with the STD and AUTO settings. It can even be used with the ALT and LIN settings, but that is not recommended.
 * - MIDYEAR \<YES\>
   - In the standard objective formulation, both the investment payments and the operating cost payments are assumed to occur at the beginning of each year within the economic/technical lifetime of technologies. This also means that the so-called annuities of investment costs are calculated using the following formula, where r is the discount rate (see Part II, Section 6.2 for more on the objective function):
-  <br>CRF = (1--(1+r)^--1^)/(1--(1+r)^--L^)
+  <br>$CRF = (1-(1+r)^{-1})/(1-(1+r)^{-L})$
   <br>According to this formula, the interest costs are zero if the lifetime L of the technology is only one year, because the payments are assumed to occur at the beginning of each year. This approach is often called as *beginning-of-year* discounting. However, it leads to an underestimation of the costs, because in reality the investments can be paid back only after getting some income from the investment. To avoid such underestimation, the following formula for annuities is perhaps more commonly used:
-  <br>CRF = r/(1--(1+r)^--L^)
+  <br>$CRF = r/(1-(1+r)^{-L})$
   <br>This second formula effectively assumes that the annual investment payments occur at the end of each year. This approach is often called as *end-of-year* discounting. As a good compromise between these two approaches, and highly recommended by many guidelines on good practices in cost evaluations[^19], so-called *mid-year discounting* can additionally be used.
   <br>See Section 6.2.12 of Part II for more information about mid-year discounting.
 * - DISCSHIFT
-  - As a generalization to the MID_YEAR setting, alternate time-of-year discounting, including the end-of-year discounting mentioned above, can be achieved by using the DISCSHIFT control variable. The control variable should be set to correspond to the amount of time (in years) by which the discounting of continuous streams of payments should be shifted forward in time, with respect to the beginning of operation. Setting it to the value of 0.5 would be equal to the setting \$SET MID_YEAR YES, and setting it to the value of 1.0 would be equal to end-of-year discounting, as follows:
-  <br>\$SET DISCSHIFT 1
+  - As a generalization to the MID_YEAR setting, alternate time-of-year discounting, including the end-of-year discounting mentioned above, can be achieved by using the DISCSHIFT control variable. The control variable should be set to correspond to the amount of time (in years) by which the discounting of continuous streams of payments should be shifted forward in time, with respect to the beginning of operation. Setting it to the value of 0.5 would be equal to the setting `$SET MID_YEAR YES`, and setting it to the value of 1.0 would be equal to end-of-year discounting, as follows:
+  <br>`$SET DISCSHIFT 1`
 * - VARCOST \<LIN\>
   - The standard dense interpolation and extrapolation of all cost parameters in TIMES may consume considerable amounts of memory resources in very large models. In particular, the variable costs, which may also be to a large extent levelized onto a number of timeslices, usually account for the largest amount of cost data in the GAMS working memory.
   <br>If desired, TIMES can be advised to interpolate and extrapolate the variable cost parameters only sparsely for the Milestone years. The values at the intermediate years will then be derived "*on the fly"*, by piecewise linear interpolation, and will not be stored in the GAMS memory. This option may thus be useful when running very large models on computers with limited memory.
@@ -155,20 +157,24 @@ In addition to controlling how the objective function is assembled, as described
 
 The stochastic mode of TIMES can be activated with the STAGES control variable, by using the following setting:
 
-> \$SET STAGES YES
+```
+$SET STAGES YES
+```
 
-This setting is required for using the multi-stage stochastic programming features of TIMES. It can also be used for enabling sensitivity and tradeoff analysis features. See Part I for more details on stochastic programming and tradeoff analysis in TIMES. []{.mark}
+This setting is required for using the multi-stage stochastic programming features of TIMES. It can also be used for enabling sensitivity and tradeoff analysis features. See Part I for more details on stochastic programming and tradeoff analysis in TIMES.
 
 ### Sensitivity \[SENSIS\]
 
 Many useful sensitivity and tradeoff analysis features are available in TIMES, and they can be enables by activating the stochastic mode of TIMES (see above). However, such sensitivity and tradeoff analyses are often based on running the model in a series of cases that differ from
 each other in only in a few parameter values. In such cases the so-called warm start features can usually significantly speed up the model solution in the successive runs.
 
-The use of the warm start facilities can be automatically enabled in sensitivity and tradeoff analysis by using the following setting instead of \$SET STAGES YES:
+The use of the warm start facilities can be automatically enabled in sensitivity and tradeoff analysis by using the following setting instead of `$SET STAGES YES`:
 
-> \$SET SENSIS YES
+```
+$SET SENSIS YES
+```
 
-As the variables then remain the same, warm start is automatically enabled by GAMS according to the BRATIO value (BRATIO can be set in VEDA-FE, or added manually to the ANSWER GEN template as a \$OPTION BRATIO=1; as well).
+As the variables then remain the same, warm start is automatically enabled by GAMS according to the BRATIO value (BRATIO can be set in VEDA-FE, or added manually to the ANSWER GEN template as a `$OPTION BRATIO=1;` as well).
 
 See the documentation on stochastic programming and tradeoff analysis in TIMES for more information on the use of this switch. The documentation is available at the [ETSAP site](https://www.iea-etsap.org/index.php/documentation).
 
@@ -178,11 +184,15 @@ For modeling recurring uncertainties, such as hydrological conditions or fuel-pr
 
 This variant of the stochastic mode can be activated by using the following control variable setting:
 
-> \$SET SPINES YES
+```
+$SET SPINES YES
+```
 
 In addition, under the SPINES option all the remaining equations that define dynamic or cumulative relationships between variables can additionally be requested to be based on the expected values instead of imposing the inter-period equations separately for each SOW. Doing so will ensure that the uncertainties represented by the SOW-indexed variables will be independent in successive periods. This further model simplification can be requested by using the SOLVEDA switch, as follows:
 
-> \$SET SOLVEDA 1
+```
+$SET SOLVEDA 1
+```
 
 In addition, under the SPINES option this SOLVEDA setting will, for now, also cause all the results for the activities and flows to be reported on the basis of the expected values only, and not separately for each SOW. After all, the recurring uncertainties are rather aleatory by nature, and therefore the user should probably be most interested in the optimal investment strategy, and only in the average or normal year results for the activities and flows. If requested, an option to produce results for all SOWs even under the period-independent variant can later be added.
 
@@ -196,9 +206,10 @@ The SPINES control variable is available only in TIMES versions 3.3.0 and above,
 
 The purpose of the FIXBOH option is to bind the first years of a model run to the same values determined during a previous optimization. The approach first requires that a reference case be run, and then by using FIXBOH the model generator sets fixed bounds for a subsequent run according to the solution values from the reference case up to the last Milestone year less than or equal to the year specified by the FIXBOH control variable. The FIXBOH control has to be used together with the LPOINT control variable, in the following way:
 
-> \$SET FIXBOH 2050
-
-> \$SET LPOINT \<run_name\>
+```
+$SET FIXBOH 2050
+$SET LPOINT <run_name>
+```
 
 Here, the value of FIXBOH (2050) specifies the year, up to which the model solution will be fixed to the previous solution, and the value of LPOINT (run_name) specifies the name of the previous run, from which the previous solution is to be retrieved. Consequently, either a full GDX file or a GAMS "point file" (see section 3.8) from the previous run should be available. If no such GDX file is found, a compiler error is issued. The Milestone years of the previous run must match those in the current run.
 
@@ -210,9 +221,10 @@ Assume that you would like to analyze the 15-region ETSAP TIAM model with some s
 
 In the RUN file you should specify the control switches described above:
 
-> \$SET FIXBOH 2030
-
-> \$SET LPOINT \<run_name\>
+```
+$SET FIXBOH 2030
+$SET LPOINT <run_name>
+```
 
 In a model DD file you should include the values for the REG_FIXT parameter:
 ```
@@ -237,9 +249,9 @@ Sequence of Optimized Periods in Time-stepped Solution.
 
 The amount of overlapping years between successive steps is by default half of the active step length (the value of TIMESTEP), but it can be controlled by the user by using the TIMES G_OVERLAP parameter. Consequently, the specifi­cations that can be used to control a stepped TIMES solution are the following:
 
-> \$SET TIMESTEP 20 (specified in the run file)
+> `$SET TIMESTEP 20` (specified in the run file)
 
-> PARAMETER G_OVERLAP / 10 /; (specified in a DD file)
+> `PARAMETER G_OVERLAP / 10 /;` (specified in a DD file)
 
 In this example, the TIMESTEP control variable specifies the active step length of each successive solution step (20 years), and the G_OVERLAP parameter specifies the amount of years, by which the successive steps should overlap (10 years). They may be set in the VEDA-FE Control Panel, like almost all control switches, or in ANSWER by manually adding the parameter to the Run GEN Template.
 
@@ -261,27 +273,27 @@ VEDA-FE Case Manager and ANSWER Run Model Options form along with the GEN templa
   - Description
 * - ABS
   - Option to use the Ancillary Balancing Services extension. It is activated with the following setting in the \<case\>.run file:
-  <br>\$SET ABS YES
+  <br>`$SET ABS YES`
   <br>See the separate documentation on the ABS extension for more information.
 * - CLI
   - The climate module estimates change in CO<sub>2</sub> concentrations in the atmosphere, the upper ocean including the biosphere and the lower ocean, and calculates the change in radiative forcing and the induced change in global mean surface temperature. It is activated with the following setting in the \<case\>.run file:
-  <br>\$SET CLI YES
+  <br>`$SET CLI YES`
   <br>See Parts I--II for more information on the use of the Climate Module and this switch.
 * - DSC
   - Option to use lumpy investment formulation. Since the usage of the discrete investment options leads to a Mixed-Integer Programming (MIP) problem, the solve statement in the file solve.mod is automatically altered by the user shell. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file:
-  <br>\$SET DSC YES
+  <br>`$SET DSC YES`
   <br>See Part I, Chapter 10 for more information on the use of Lumpy Investment.
 * - DUC
   - Option to use the discrete unit commitment formulation. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file:
-  <br>\$SET DUC YES
+  <br>`$SET DUC YES`
   <br>See separate documentation on Dispatching and unit commitment features in TIMES for more information on the use of the discrete unit commitment option.
 * - ECB
   - Option to use the Economic Choice Behavior extension (logit market sharing mechanism). To activate this extension, the following control switch needs to be provided in the \<Case\>.run file, as follows:
-  <br>\$SET ECB YES
+  <br>`$SET ECB YES`
   <br>See related user note for more information on the use of this extension.
 * - ETL
   - Option to use endogenous technology learning formulation. Since the usage of this option leads to a Mixed-Integer Programming (MIP) problem, the solve statement in the file solve.mod is automatically altered by TIMES. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file, as follows:
-  <br>\$SET ETL YES
+  <br>`$SET ETL YES`
   <br>See Parts I--II for more information on the use of Endogenous Technology Learning.
 * - MACRO
   - Option to use the MACRO formulation. Since the usage of the MACRO options leads to a Non-linear Programming (NLP) problem, the solve statement in the file solve.mod has to be altered. To activate this extension manually, the \$SET MACRO \<value\> control switch needs to be provided in the \<Case\>.run file, with the following valid values:
@@ -292,18 +304,18 @@ VEDA-FE Case Manager and ANSWER Run Model Options form along with the GEN templa
   <br>See the separate MACRO documentation for more on using these options.
 * - MICRO
   - Option to use the non-linear elastic demand formulation. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file:
-  <br>\$SET MICRO YES
+  <br>`$SET MICRO YES`
   <br>See Part II for more information on demand function formulations.
 * - RETIRE
   - The RETIRE control variable can be used for enabling early and lumpy retirements of process capacities. The valid switch values for this control variable are:
   <br>NO -- Disables all early and lumpy retirements;
   <br>LP -- Enables continuous early retirements for all those processes that are included in the set PRC_RCAP(r,p);
   <br>MIP -- Enables early retirements for the processes that are included in the set PRC_RCAP(r,p), and additionally enables the retirements to be lumpy for those of these processes that also have RCAP_BLK (the lumpy block size) defined, and
-  <br>YES -- Enables early retirements for any processes that have at least one instance of the parameter RCAP_BND defined. In this variant, activating lumpy retirements for those processes that have also RCAP_BLK defined requires that the setting \$SET DSC YES is used as well. Consequently, when using the \$SET RETIRE YES switch, using the set PRC_RCAP is not needed at all (and it will have no effect).
+  <br>YES -- Enables early retirements for any processes that have at least one instance of the parameter RCAP_BND defined. In this variant, activating lumpy retirements for those processes that have also RCAP_BLK defined requires that the setting `$SET DSC YES` is used as well. Consequently, when using the `$SET RETIRE YES` switch, using the set PRC_RCAP is not needed at all (and it will have no effect).
   <br>See Part II for more information on the use of the Early Retirement feature.
 * - VDA
   - The VDA control variable can be used to enable the VDA pre-processor extension of TIMES, which implements new features and handles advanced parameters specified by VEDA-FE/ANSWER that are transformed into their equivalent TIMES core parameters to make specification easier (e.g., VDA_FLOP becomes FLO_FUNC/FLO_SUM), with the following setting:
-  <br>\$SET VDA YES
+  <br>`$SET VDA YES`
   <br>The VDA extension is always automatically enabled by both VEDA-FE and ANSWER. The attributes implemented are documented in Part II.
 ```
 
@@ -313,7 +325,9 @@ Besides the core extensions discussed in the previous section, the model managem
 
 The user extension(s) that are to be included in the current model run need to be activated in the \<case\>.run file, and passed to inimty.mod, e.g.:
 
-> \$BATINCLUDE initmty.mod IER FIA
+```
+$BATINCLUDE initmty.mod IER FIA
+```
 
 As shown in this example, it is possible to add several extension in the \$BATINCLUDE line above at the same time. In this case two user extensions, IER and FIA, are incorporated with the standard TIMES code.
 
@@ -368,11 +382,11 @@ The effects arising from activating the reduction algorithm are each described b
 
 ### Implementation
 
-To make use of the reduction algorithm one has to define the environment variable
+To make use of the reduction algorithm one has to define the environment variable in order to turn on/off the reduction:
 
-> \$SET REDUCE YES/NO
+> `$SET REDUCE YES` or `$SET REDUCE NO`
 
-in order to turn on/off the reduction. This environment variable controls in each equation where the flow variable occurs whether it should be replaced by some other term or not. If the control variable is not defined at all, the default is to make partial model reduction by eliminating unnecessary capacity variables and substituting emission flows only. This third option can thus be more useful if full model reduction is not wanted.
+This environment variable controls in each equation where the flow variable occurs whether it should be replaced by some other term or not. If the control variable is not defined at all, the default is to make partial model reduction by eliminating unnecessary capacity variables and substituting emission flows only. This third option can thus be more useful if full model reduction is not wanted.
 
 The possibility of reduction measures is checked in the file pp_reduce.red. If reduction is turned on, flow variables that can be replaced are substituted by a term defined in cal_red.red. The substitution expression for the import/export variable VAR_IRE is directly given in the corresponding equations. In addition the \$control statement controlling the generation of the equations EQ_PTRANS, EQ_ACTFLO, EQx_CAPACT has been altered. Also bnd_act.mod has been changed to implement point 6 above.
 
@@ -446,7 +460,9 @@ In VEDA-FE the LPOINT can be set from the Case Manager by requesting the loading
 
 By using the DEBUG control, the user can request dumping out all user/system data structures into a file, and turn on extended quality assurance checks. The switch is activated by means of:
 
-> \$SET DEBUG YES
+```
+$SET DEBUG YES
+```
 
 with actions performed according to the settings described in {numref}`debug-switches`.
 
@@ -483,9 +499,9 @@ The various \$\<switch\> \<value\> switches controlling reporting of the model r
 * - SOLANS YES
   - Produce the solution reports that can be imported into the ANSWER.
 * - SOLVEDA YES / 1
-  - Prepare the solution reporting values that are to be imported into the VEDA-BE. The standard setting is \$SET SOLVEDA YES, which works with all TIMES extensions. Sometimes it may be useful to request that TIMES reports also the results from non-stochastic runs with an extra dummy SOW index '1', such that the results can be imported into a database that contains results from both deterministic and stochastic runs. The inclusion of the extra index can be activated by the setting \$SET SOLVEDA 1.
+  - Prepare the solution reporting values that are to be imported into the VEDA-BE. The standard setting is `$SET SOLVEDA YES`, which works with all TIMES extensions. Sometimes it may be useful to request that TIMES reports also the results from non-stochastic runs with an extra dummy SOW index '1', such that the results can be imported into a database that contains results from both deterministic and stochastic runs. The inclusion of the extra index can be activated by the setting `$SET SOLVEDA 1`.
 * - XTQA YES
-  - Turn on extended quality assurance checks \[this setting is automatically enabled whenever \$SET DEBUG YES is used\].
+  - Turn on extended quality assurance checks \[this setting is automatically enabled whenever `$SET DEBUG YES is used`\].
 ```
 
 :::{table} Solution Cost Reporting Attributes
@@ -535,9 +551,10 @@ The various \$\<switch\> \<value\> switches controlling reporting of the model r
 
 For the BENCOST report, all of the absolute indicators are expressed in terms of undiscounted investment costs (like those specified by NCAP_COST). For example, the competitiveness gap represents the amount of change in investment costs that would bring the technology competitive (the VAR_NCAP variable would enter the solution basis). Ranging information can only be reported when the CPLEX ranging option has been used. The ranging option can be activated by adding the following two lines into the CPLEX options file (CPLEX.OPT):
 
-> objrng VAR_NCAP
-
-> rngrestart timesrng.inc
+```
+objrng VAR_NCAP
+rngrestart timesrng.inc
+```
 
 When available, the LO ranging information is also used for calculating the competitiveness gap indicators, because the VAR_NCAP variables can occasionally be basic at zero, making the reduced cost information useless. In such cases the LO ranging value can be used to derive the amount of change required in the VAR_NACP cost coefficient to cause a change in the basis.
 
@@ -545,9 +562,9 @@ When available, the LO ranging information is also used for calculating the comp
 
 Various reporting options can also be set by specifying values for the RPT_OPT parameter. Although it is actually not a GAMS control variable, for completeness it is described here. Like the control switches, these options can be specified in the RUN file, but they can also be included in the DD files, if the user shell implements their use that way. Specifying the options in the RUN file can be done with any of the three following alternative ways:
 
-- \$SET RPT_OPT KEY1.N1 \<value1\>, KEY2.N2 \<value2\>, ....
-- PARAMETER RPT_OPT / KEY1.N1 \<value1\>, KEY2.N2 \<value2\>, .... /;
-- RPT_OPT('KEY1','N1') = \<value1\>; RPT_OPT('KEY2','N2') =\<value2\>; ...
+- `$SET RPT_OPT KEY1.N1 <value1>, KEY2.N2 <value2>, ...`
+- `PARAMETER RPT_OPT / KEY1.N1 <value1>, KEY2.N2 <value2>, ... /;`
+- `RPT_OPT('KEY1','N1') = <value1>; RPT_OPT('KEY2','N2') = <value2>; ...`
 
 Here, KEY1, KEY2, ... refer to the main option group and N1, N2, ... refer to sub-groups within that group, as indicated in {numref}`rpt_opt-opt-settings`.
 
