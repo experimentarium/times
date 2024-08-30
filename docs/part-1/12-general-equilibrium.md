@@ -127,7 +127,7 @@ Indeed, the energy demand in the TIMES model can be lower than the energy requir
 
 The other link consists in accounting for the monetary flow $EC_{t}$, equal to the expenditures made in the energy sector. Precisely, $EC_{t}$is equal to the annual *undiscounted* energy system cost of the TIMES model, $COST\_ T_{t}$, (as used in the TIMES objective function), augmented with an additional term as shown in equation {eq}`12-10`:
 
-$$COST\_T_{t} + \frac{1}{2}qfac\sum_{p}^{}{\frac{cstinv_{t,p}}{\expf_{t} \times capfy_{p}} \times XCAP_{t,p}^{2}} = EC_{t}$$ (12-10)
+$$COST\_T_{t} + \frac{1}{2}qfac\sum_{p}^{}{\frac{cstinv_{t,p}}{expf_{t} \times capfy_{p}} \times XCAP_{t,p}^{2}} = EC_{t}$$ (12-10)
 
 with
 
@@ -141,7 +141,7 @@ with
 > 
 > $capfy_{p}$: maximum level of capacity for technology $p$,
 > 
-> $\expf_{t}$: tolerable expansion between two periods.
+> $expf_{t}$: tolerable expansion between two periods.
 
 Just like in the pure MACRO model, the quadratic penalty term added on the left hand side of equation {eq}`12-10` serves to slow down the penetration of technologies. This term plays a somewhat similar role as the growth constraints do in the stand-alone TIMES model. The variable $XCAP_{t,p}$ is the amount of capacity exceeding a predefined expansion level expressed by the expansion factor $\exp f_{t}$ and is determined by the following equation:
 
