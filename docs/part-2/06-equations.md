@@ -42,7 +42,8 @@ A typical example of the latter is the first condition for equation $EQ\_ACTFLO_
 
 There are situations where an expression A is either equal to B or to C, depending on whether a certain condition holds or not, i.e.:
 
-$${A = BifCond}{A = CifNOTCond}$$
+$${A = B\ if\ Cond}$$
+$${A = C\ if\ NOT\ Cond}$$
 
 This may also be written as:
 
