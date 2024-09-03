@@ -97,7 +97,7 @@ For convenience, we summarize below the notation which is more especially used i
 
 ***M(t):*** the "middle" year or milestone year of period ***t***. Since period ***n*** may have an even or an odd number of years, ***M(t)*** is not always exactly centered at the middle of the period. It is defined as follows: ***M(t) = \[B(t)+(D(t)--1)/2\],*** where ***\[x\]*** indicates the largest integer less than or equal to ***x***. For example, period from 2011 to 2020 includes 10 years, and its "middle year" is \[2011+4.5\] or 2015 (slightly left of the middle), whereas the period from 2001 to 2015 has 15 years, and its "middle year" is : \[2001+7\] or 2008 (i.e. the true middle in this example)
 
-***y*** : running year, ranging over ***MODELYEARS***, from ***$B_{0}$*** to ***EOH***.
+***y*** : running year, ranging over ***MODELYEARS***, from $\boldsymbol{B_{0}}$ to ***EOH***.
 
 ***k*** : dummy running index of any year, even outside horizon
 
@@ -105,7 +105,7 @@ For convenience, we summarize below the notation which is more especially used i
 
 ***v(p)*** vintage of process ***p*** (defined only if ***p*** is vintaged)
 
-***$B_{0}$*** : initial year (the single year of first period of the model run)
+$\boldsymbol{B_{0}}$ : initial year (the single year of first period of the model run)
 
 ***EOH*** : Last year in horizon for a given model run.
 
@@ -127,13 +127,13 @@ notation)
 
 ***r(y)*** : general discount factor: ***r(y)=1/(1+d(y))*** (time dependent, although not shown in notation)
 
-***$d_{s}(t)$*** : technology specific discount rate (model year dependent)
+***$\boldsymbol{d_{s}(t)}$*** : technology specific discount rate (model year dependent)
 
-***$r_{s}(t)$*** : technology specific discount factor: ***$r_{s}(t)$=1/(1+$d_{s}(t)$)***
+***$\boldsymbol{r_{s}(t)}$*** : technology specific discount factor: ***$\boldsymbol{r_{s}(t)$=1/(1+$d_{s}(t)$)}***
 
-***DISC(y,z)**:* Value, discounted to the beginning of year ***z***, of a \$1 payment made at beginning of year ***y***, using **general** discount factor. ***${DISC}(y,z) = \prod_{u=z\ to\ y-1} r(u)$***
+***DISC(y,z)**:* Value, discounted to the beginning of year ***z***, of a \$1 payment made at beginning of year ***y***, using **general** discount factor. ***$\boldsymbol{{DISC}(y,z) = \prod_{u=z\ to\ y-1} r(u)}$***
 
-***CRF~s~(t):*** Capital recovery factor, using a (technology specific) discount rate and an economic life appropriate to the payment being considered. This quantity is used to replace an investment cost by a series of annual payments spread over some span of time ***$CRF_{s} = \{1 - r_{s}(t)\} / \{1 - r_{s}(t)^{ELIFE}\}$***[^40]***.*** Note that a *CRF* using the general discount rate is also defined and used in the SALVAGE portion of the objective function.
+***$\boldsymbol{CRF_{s}(t)}$:*** Capital recovery factor, using a (technology specific) discount rate and an economic life appropriate to the payment being considered. This quantity is used to replace an investment cost by a series of annual payments spread over some span of time ***$\boldsymbol{CRF_{s} = \{1 - r_{s}(t)\} / \{1 - r_{s}(t)^{ELIFE}\}}$***[^40]***.*** Note that a *CRF* using the general discount rate is also defined and used in the SALVAGE portion of the objective function.
 
 ***OBJ(z):*** Total system cost, discounted to the beginning of year ***z***
 
@@ -155,7 +155,7 @@ $\left\langle \mathbf{E} \right\rangle$ is the smallest integer larger than of e
 
 ***ILED*** Lead-time for the construction of a process. *TLIFE* starts *after* the end of *ILED.* Note that below we in general assume *ILED*≥0, although *ILED* can also be negative (causing the lead-time be shifted ILED years backward).
 
-***$ILED_{Min} = \textit{Min} \left\{ (1/10) \times D(t), (1/10) \times TLIFE \right\}$*** This threshold serves to distinguish small from large projects; it triggers a different treatment of investment timing.
+***$\boldsymbol{ILED_{Min} = \textit{Min} \left\{ (1/10) \times D(t), (1/10) \times TLIFE \right\}}$*** This threshold serves to distinguish small from large projects; it triggers a different treatment of investment timing.
 
 #### Discounting options
 
