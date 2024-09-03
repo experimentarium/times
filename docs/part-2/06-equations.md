@@ -129,7 +129,7 @@ notation)
 
 ***$\boldsymbol{d_{s}(t)}$*** : technology specific discount rate (model year dependent)
 
-***$\boldsymbol{r_{s}(t)}$*** : technology specific discount factor: ***$\boldsymbol{r_{s}(t)$=1/(1+$d_{s}(t)}$)***
+***$\boldsymbol{r_{s}(t)}$*** : technology specific discount factor: ***$\boldsymbol{r_{s}(t)$=1/(1+$d_{s}(t))}$***
 
 ***DISC(y,z)**:* Value, discounted to the beginning of year ***z***, of a \$1 payment made at beginning of year ***y***, using **general** discount factor. ***$\boldsymbol{{DISC}(y,z) = \prod_{u=z\ to\ y-1} r(u)}$***
 
