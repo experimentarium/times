@@ -305,7 +305,7 @@ $\underline{\textbf{Step 1}}$ Compute number of repetitions of investment
 
 $$C = \left\langle \frac{D(t)-ILED_t}{TLIFE_t} \right\rangle$$
 
-$\underline{Step 2}}$ for each year $u$ in range:
+$\underline{\textbf{Step 2}}$ for each year $u$ in range:
 
 $$B(t) \leq u \leq B(t) + ILED_t + (C-1) \cdot TLIFE_t - 1$$
 
