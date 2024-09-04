@@ -422,9 +422,9 @@ $$
 
 Here too, the decommissioning takes place over *DLIFE*, but now, contrary to case 2.a, the process is repeated more than once in the period. The last investment has life extending over following periods, as in all similar cases. The resulting stream of yearly payments is complex, and therefore, we are forced to use an algorithm rather than a closed form summation. See also example below.
 
-**[ALGORITHM]{.underline}** (apply to each *t* such that $t \leq T(y)$)
+$\underline{\textbf{ALGORITHM}}$ (apply to each *t* such that $t \leq T(y)$)
 
-[Step 0]{.underline}: Initialization
+$\underline{\textbf{Step 0}}$ : Initialization
 
 $$P_{t}(y): = 0\quad\forall B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} \leq y \leq same + (C - 1) \times TLIFE_{t} + DLIFE_{t} + DELIF_{t} - 2$$
 
@@ -432,20 +432,22 @@ Where:
 
 $$C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle$$
 
-[Step 1]{.underline}: Compute payment vector
+$\underline{\textbf{Step 1}}$: Compute payment vector
 
 $$
-{For \space I = 1 \space to \space C}
-{For \space J = 1 \space to \space DLIFE_{t}
-}{For \space L = 1 \space to \space DELIF_{t}
-}{P_{t}\left( B(t) + ILED_{t} + I \times TLIFE_{t} + DLAG_{t} + J + L - 2 \right): = 
-}{same + \frac{NCAP\_ DCOST_{B(t) + ILED_{t} + (I - 1) \times TLIFE_{t}}}{DLIFE_{t}}
-}{Next \space L
-}{Next \space J
-}{Next \space I}
+\begin{align*}
+&\textit{For} \ I = 1 \ \textit{to} \ C \\
+&\quad \textit{For} \ J = 1 \ \textit{to} \ DLIFE_t \\
+&\quad\quad \textit{For} \ L = 1 \ \textit{to} \ DELIF_t \\
+&\quad\quad\quad P_t(B(t) + ILED_t + I \times TLIFE_t + DLAG_t + J + L - 2) := \\
+&\quad\quad\quad\quad \textit{same} + \frac{NCAP\_DCOST_{B(t) + ILED_t + (I-1) \times TLIFE_t}}{DLIFE_t} \\
+&\quad\quad \textit{Next} \ L \\
+&\quad \textit{Next} \ J \\
+&\textit{Next} \ I
+\end{align*}
 $$
 
-**[END ALGORITHM]{.underline}**
+$\underline{\textbf{END ALGORITHM}}$
 
 $INVDECOM(y) = \sum_{t \in MILESTONES,t \leq T(y)}^{}{INDIC(III.2.b) \times P_{t}(y)} \times VAR\_ NCAP_{t} \times CRF$
 **III.2.b**
