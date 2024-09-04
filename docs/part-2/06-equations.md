@@ -752,7 +752,7 @@ We treat each component separately, starting with *SALVINV.*
 
 The principle of salvaging is simple, and is used in other technology models such as MARKAL, etc: a technology with technical life *TLIFE*, but which has only spent *x* years within the planning horizon, should trigger a repayment to compensate for the unused portion *TLIFE-x* of its active life.
 
-However, the user can also request more accelerated functional depreciation in the value of the capacity, by defining \(NCAP\_FDR_{r,v,p}\) (representing additional annual depreciation in the value). For simplicity, we apply the functional depreciation as an additional exponential discounter.
+However, the user can also request more accelerated functional depreciation in the value of the capacity, by defining $NCAP\_FDR_{r,v,p}$ (representing additional annual depreciation in the value). For simplicity, we apply the functional depreciation as an additional exponential discounter.
 
 The computation of the salvage value therefore obeys a simple rule, described by the following result:
 
