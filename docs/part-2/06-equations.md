@@ -501,12 +501,17 @@ $${FIXCOST(y) =
 }{\times NCAP\_ FOM_{v} \times SHAPE(v,y - v) \times MULTI(y)}
 $$
 
-The useful range for $y$ is :
+*The useful range for* \( y \) *is*:
+
 $$
-{\{ M(t) - D(t) + 1,M(t) + TLIFE_{t} - 1\}}
+\{M(t) - D(t) + 1, \; M(t) + TLIFE_{t} - 1\}
 $$
 
-and $y \leq EOH$   **(IV.1.a)**
+*and*
+
+$$
+y \leq EOH
+$$
 
 Example:
 
