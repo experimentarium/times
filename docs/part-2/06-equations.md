@@ -698,7 +698,7 @@ $$ (IV-2-b-tick)
 
 ### Annual taxes/subsidies on capacity: FIXTAXSUB(Y) 
 
-It is assumed that these taxes (subsidies) are paid (accrued) at exactly the same time as the fixed annual costs. Therefore, the expressions **IV** of subsection 5.1.4 are valid, replacing the cost attributes by *NCAP_FTAX -- NCAP_FSUB. []{.mark}*
+It is assumed that these taxes (subsidies) are paid (accrued) at exactly the same time as the fixed annual costs. Therefore, the expressions **IV** of subsection 5.1.4 are valid, replacing the cost attributes by *NCAP_FTAX -- NCAP_FSUB*.
 
 ### Variable annual costs *VARCOST(y), y ≤ EOH*
 
@@ -711,9 +711,10 @@ Finally, the expressions are written only for the years within horizon, since pa
 As stated in the introduction, the payment of variable costs is constant over each period. Therefore, the expressions below are particularly simple.
 
 $$
-{VARCOST(y) = VAR\_ XXX_{v,T(y)} \times XXX\_ COST_{y}
-}{VARTAXSUB(y) = VAR\_ XXX_{v,T(y)} \times (XXX\_ TAX_{y} - XXX\_ SUB_{y})
-}
+{VARCOST(y) = VAR\_ XXX_{v,T(y)} \times XXX\_ COST_{y}}
+$$
+$$
+{VARTAXSUB(y) = VAR\_ XXX_{v,T(y)} \times (XXX\_ TAX_{y} - XXX\_ SUB_{y})}
 $$
 
 $y \leq EOH$ **(VI)**
@@ -725,8 +726,11 @@ When elastic demands are used, the objective function also includes a cost resul
 $${ELASTCOST(y) = 
 }{\quad\sum_{j = 1}^{COM\_ STEP_{lo}}{COM\_ BPRICE_{T(y)} \times \left\{ \left( 1 - \frac{(j - 1/2) \times COM\_ VOC_{lo,T(y)}}{COM\_ STEP_{lo}} \right)^{\frac{1}{COM\_ ELAST_{lo,T(y)}}} \right\}} \times VAR\_ ELAST_{lo,j,T(y)}}$$
 
-$${- \sum_{j = 1}^{COM\_ STEP_{up}}{COM\_ BPRICE_{T(y)} \times \left\{ \left( 1 + \frac{(j - 1/2) \times COM\_ VOC_{up,T(y)}}{COM\_ STEP_{up}} \right)^{\frac{1}{COM\_ ELAST_{up, ⥂ T(y)}}} \right\}} \times VAR\_ ELAST_{up,j,T(y)}
-}{y \leq EOH}$$
+$${- \sum_{j = 1}^{COM\_ STEP_{up}}{COM\_ BPRICE_{T(y)} \times \left\{ \left( 1 + \frac{(j - 1/2) \times COM\_ VOC_{up,T(y)}}{COM\_ STEP_{up}} \right)^{\frac{1}{COM\_ ELAST_{up,T(y)}}} \right\}} \times VAR\_ ELAST_{up,j,T(y)}}
+$$
+$$
+{y \leq EOH}
+$$
 
 **(VII)**
 
