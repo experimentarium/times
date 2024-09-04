@@ -464,11 +464,25 @@ There are two types of fixed annual costs, *FIXCOST(y)*, which is incurred each 
 
 In TIMES, any capacity may also be retired before the end of its technical lifetime, if so-called early retirements are enabled for a process. In such cases, the plant is assumed to be irrevocably shut down, and therefore fixed O&M costs would no longer occur. This situation is not taken into account in the standard formulations given below, but it has been taken into account in the model generator. To see that the expressions for the fixed annual costs, taxes and subsidies could be easily adjusted for early retirements, consider the standard expressions for *FIXCOST(y)*, which can all be written as follows.
 
-$$missing \space expression$$
+$$
+FIXCOST(r, y) = \sum_{(r, v, p) \in rtp} \left( \begin{array}{c}
+VAR\_NCAP_{r, v, p} \left( \exists t_v \right) \\
++ NCAP\_PASTI_{r, v, p}
+\end{array} \right) \times CF_{r, v, p, y}
+$$
 
 Here, $CF_{r,v,p,y}$ is the compound fixed cost coefficient for each capacity vintage in year $y$, as obtained from the original expressions for $FIXCOST(y)$. Recalling that fixed costs are accounted only within the model horizon, these expressions can be adjusted as follows:
 
-$$missing \space expression$$
+$$
+FIXCOST^{\circ}(r, y) = \sum_{(r, v, p) \in rtp} \left( 
+\begin{array}{l}
+VAR\_NCAP_{r, v, p} \ (\exists \ t_v) \\
++ NCAP\_PASTI_{r, v, p} \\
+- \sum_{\substack{prc\_rcap_{r, p} \\ periodyr_{t, v}}} VAR\_SCAP_{r, v, t, p}
+\end{array} 
+\right)  
+\times CF_{r, v, p, y}
+$$
 
 As one can see, the expressions for $FIXCOST(r,y)$ can be augmented in a straightforward manner, obtaining the expressions $FIXCOST°(r,y)$ that take into account early capacity retirements of each vintage, represented by the $VAR\_SCAP_{r,v,t,p}$ variables.
 
@@ -483,14 +497,16 @@ $$
 The figure of the example shows that payments made in year $y$ may come from investments made at periods before $T(y)$, at $T(y)$ itself, or at periods after $T(y)$. Note that the cost attribute is multiplied by two factors: the *SHAPE*, which takes into account the vintage and age of the technology, and the *MULTI* parameter, which takes into account the pure time at which the cost is paid (the notation below for *SHAPE* and *MULTI* is simplified: it should also specify that these two parameters are those pertaining to the *FOM* attribute).
 
 $${FIXCOST(y) = 
-}{\sum_{t \in MILESTONYR \cup PASTYEARS}^{}{INDIC(1.a)} \times \sum_{v = Max\left\{ M(t) - D(t) + 1,y - TLIFE_{t} + 1 \right\}}^{Min(M(t),y)}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)
-}{\times NCAP\_ FOM_{v} \times SHAPE(v,y - v) \times MULTI(y)
-}
-{Theusefulrangeforyis:
-}{\{ M(t) - D(t) + 1,M(t) + TLIFE_{t} - 1\}
-}
+}{\sum_{t \in MILESTONYEARS \cup PASTYEARS}^{}{INDIC(1.a)} \times \sum_{v = Max\left\{ M(t) - D(t) + 1,y - TLIFE_{t} + 1 \right\}}^{Min(M(t),y)}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)
+}{\times NCAP\_ FOM_{v} \times SHAPE(v,y - v) \times MULTI(y)}
 $$
-and $y \leq EOH$ **(IV.1.a)**
+
+The useful range for $y$ is :
+$$
+{\{ M(t) - D(t) + 1,M(t) + TLIFE_{t} - 1\}}
+$$
+
+and $y \leq EOH$   **(IV.1.a)**
 
 Example:
 
@@ -503,7 +519,7 @@ Example:
 The figure shows that payments made at year $y$ may come from investments made at, before, or after period $T(y)$. Note that our expression takes into account the vintage and age of the *FOM* being paid, via the *SHAPE* parameter, and also the pure time via *MULTI*, both pertaining to the *FOM* attribute.
 
 $$
-{FIXCOST(y) = \sum_{t \in MILESTONYR}^{}{INDIC(1.b)} \times \sum_{v = Max\left\{ \left\langle B(t) - TLIFE_{t}/2 \right\rangle,y - TLIFE_{t} + 1 \right\}}^{Min(y,\left\langle B(t) - TLIFE_{t}/2 \right\rangle + C \times TLIFE_{t} - 1\}}\left( \frac{VAR\_ NCAP_{t}}{TLIFE_{t}} \right) \times NCAP\_ FOM_{v}
+{FIXCOST(y) = \sum_{t \in MILESTONYEARS}^{}{INDIC(1.b)} \times \sum_{v = Max\left\{ \left\langle B(t) - TLIFE_{t}/2 \right\rangle,y - TLIFE_{t} + 1 \right\}}^{Min(y,\left\langle B(t) - TLIFE_{t}/2 \right\rangle + C \times TLIFE_{t} - 1\}}\left( \frac{VAR\_ NCAP_{t}}{TLIFE_{t}} \right) \times NCAP\_ FOM_{v}
 }{
  \times SHAPE(t,y - v) \times MULTI(y)}
 $$ (IV-1-b)
@@ -534,30 +550,66 @@ i)  $FIXCOST(y)$
 
 The figure of the example shows that payments made in year $y$ may come from investments made at period $T(y)$ or earlier, but not later. Again here the *SHAPE* has the correct vintage year and age, as its two parameters, whereas *MULTI* has the current year as its parameter. Both pertain to *FOM*.
 
-$${FIXCOST(y) = \sum_{t \in MILESTONYR,t \leq T(y)}^{}{INDIC(2.a)} \times \left( VAR\_ NCAP_{t} \right) \times NCAP\_ FOM_{B(t) + ILED_{t}}
+$${FIXCOST(y) = \sum_{t \in MILESTONYEARS,t \leq T(y)}^{}{INDIC(2.a)} \times \left( VAR\_ NCAP_{t} \right) \times NCAP\_ FOM_{B(t) + ILED_{t}}
 }{\times \begin{Bmatrix}
-1ifB(t) + ILED_{t} \leq y \leq B(t) + ILED_{t} + TLIFE_{t} - 1 \\
-0otherwise
+1\ if\ B(t) + ILED_{t} \leq y \leq B(t) + ILED_{t} + TLIFE_{t} - 1 \\
+0\ otherwise
 \end{Bmatrix} \times SHAPE(t,y - B(t) + ILED_{t}) \times MULTI(y)}$$
 
-$$missing \space expression$$ (IV-2-a)
+$$
++ \sum_{t \in PASTYEARS} INDIC(2.a) \times (NCAP\_PASTI_{t}) \times NCAP\_FOM_{t}
+$$
 
-$$missing \space expression$$
+$$
+\times
+\left\{
+  \begin{array}{ll}
+    1 & \text{if } \; t \leq y \leq t + TLIFE_{t} - 1 \\
+    0 & \text{otherwise}
+  \end{array}
+\right\}
+\times SHAPE(t, y - t) \times MULTI(y)
+$$ (IV-2-a)
 
 *Useful Range for y:*
 
+$$
+\{B(t) + ILED_{t}, \; B(t) + ILED_{t} + TLIFE_{t} - 1\}
+$$
+
+*and*
+
+$$
+y \leq EOH
+$$
+
 ii) $SURVCOST$ (Surveillance cost for same case 2.a. See same example)
 
-$$missing \space expression$$
+$$
+SURVCOST(y) = \sum_{\substack{t \in MILESTONYEARs, \\ t \leq T(y)}} INDIC(2.a) \times (VAR\_NCAP_{t}) \times NCAP\_DLAGC_{B(t) + ILED_{t}}
+\times 
+\left\{
+  \begin{array}{ll}
+    1 & \text{if } \; B(t) + ILED_{t} + TLIFE_{t} \leq y \leq B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} - 1 \\
+    0 & \text{otherwise}
+  \end{array}
+\right.
+$$
 
 $$
 {+ \sum_{t \in PASTYEARS}^{}{INDIC(2.a)} \times \left( NCAP\_ PASTI_{t} \right) \times NCAP\_ DLAGC_{t}
 }{\times \left\{ \begin{matrix}
-1ift + TLIFE_{t} \leq y \leq t + TLIFE_{t} + DLAG_{t} - 1 \\
-0otherwise
+1\ if\ t + TLIFE_{t} \leq y \leq t + TLIFE_{t} + DLAG_{t} - 1 \\
+0\ otherwise
 \end{matrix} \right.\ }$$
 
-$$missing \space expression$$ (IV-2-a-tick)
+*Useful Range for* \( y \):
+
+$$
+\{B(t) + ILED_{t} + TLIFE_{t}, \; \text{same} + DLAG_{t} - 1\}
+$$
+
+*note that* \( y \) *may be larger than* \( EOH \) (IV-2-a-tick)
 
 ![](assets/case-2a-example-4.svg)
 
@@ -571,7 +623,20 @@ $$missing \space expression$$ (IV-2-a-tick)
 
 The cost expression takes into account the vintage and the age of the *FIXOM* being paid at any given year $y$. See note in formula and figure for an explanation.
 
-$$missing \space expression$$
+$$
+\sum_{\substack{t \in MILESTONES, \\ t \leq T(y)}} INDIC(2.b) \times (VAR\_NCAP_{t}) \times NCAP\_FOM_{B(t) + ILED_{t} + I \cdot TLIFE_{t}} 
+\times SHAPE(t, y - B(t) - ILED_{t} - I \cdot TLIFE_{t}) 
+\times 
+\left\{
+  \begin{array}{ll}
+    1 & \text{if } \; 0 \leq I \leq C - 1 \\
+    0 & \text{otherwise}
+  \end{array}
+\right.
+$$
+
+\[\text{Note : I is the index of the investment cycle where } y \text{ lies. I varies from } 0 \text{ to } C-1
+\]
 
 where:
 
@@ -583,7 +648,15 @@ $$
 
 *Range for y:*
 
-$$missing \space expression$$ (IV-2-b)
+$$
+\{B(t) + ILED_{t}, \; B(t) + ILED_{t} + C \times TLIFE_{t} - 1\}
+$$
+
+*and*
+
+$$
+y \leq EOH
+$$
 
 *Remark:* same as above, concerning the indexing of the cost attribute
 
@@ -594,17 +667,24 @@ $${SURVCOST(y) = \sum_{\begin{aligned}
  & t \leq T(y)
 \end{aligned}}^{}{INDIC(2.b)} \times \left( VAR\_ NCAP_{t} \right) \times NCAP\_ DLAGC_{B(t) + ILED_{t} + I \cdot TLIFE_{t}}
 }{\times \left\{ \begin{matrix}
-1ifB(t) + ILED_{t} + (I + 1) \times TLIFE_{t} \leq y \leq same + DLAG_{t} - 1and0 \leq I \leq C - 1 \\
-0otherwise
+1\ if\ B(t) + ILED_{t} + (I + 1) \times TLIFE_{t} \leq y \leq same + DLAG_{t} - 1\ and\ 0 \leq I \leq C - 1 \\
+0\ otherwise
 \end{matrix} \right.\ }$$
 
 where:
 
 $$
 {I = \left\lbrack \frac{y - B(t) - ILED_{t} - TLIFE_{t}}{TLIFE_{t}} \right\rbrack
-}{and
-}{C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle
-}{NotethatymayexceedEOH}
+}$$
+
+*and*
+
+$$
+{C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle}
+$$
+
+*Note that y may exceed EOH*
+
 $$ (IV-2-b-tick)
 
 ![](assets/case-2b-example-4.svg)
