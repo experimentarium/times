@@ -571,7 +571,7 @@ $$
 \times SHAPE(t, y - t) \times MULTI(y)
 $$ (IV-2-a)
 
-*Useful Range for y:*
+*Useful Range for* \( y \):
 
 $$
 \{B(t) + ILED_{t}, \; B(t) + ILED_{t} + TLIFE_{t} - 1\}
