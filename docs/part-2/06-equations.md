@@ -667,13 +667,19 @@ The computation of the salvage value therefore obeys a simple rule, described by
 
 *Result 1*
 
-The salvage value (calculated at year *k*) of a unit investment made in
-year *k*,\
-and whose technical life is *TL*, is:
+The salvage value (calculated at year *k*) of a unit investment made in year *k*, and whose technical life is *TL*, is:
 
-$${S(k,TL,FDR) = 0 if\overset{\underset{}{}}{k} + TL \leq EOH
-}{S(k,TL,FDR) = 1if\overset{\underset{}{}}{k} > EOH
-}{S(k,TL,FDR) = \frac{\left( (1 + d) \cdot \exp(FDR) \right)^{TL - EOH - 1 + k} - 1}{\left( (1 + d) \cdot \exp(FDR) \right)^{TL} - 1}\quad otherwise}$$
+$$
+S(k, TL, FDR) = 0 \quad \text{if } k + TL \leq EOH
+$$
+
+$$
+S(k, TL, FDR) = 1 \quad \text{if } k > EOH
+$$
+
+$$
+S(k, TL, FDR) = \frac{((1 + d) \cdot \exp(FDR))^{TL - EOH - 1 + k} - 1}{((1 + d) \cdot \exp(FDR))^{TL} - 1} \quad \text{otherwise}
+$$
 
 where d is the general discount rate and FDR is the optional functional depreciation rate
 
@@ -703,10 +709,17 @@ The final result of these expressions is *Result 2* expressing the salvage value
 *Result 2*
 
 $$
-{SAL(k,TL) = 0if\overset{\underset{}{}}{k} + TL \leq EOH
-}{SAL(k,TL) = \frac{CRF_{s}}{CRF}if\overset{\underset{}{}}{k} \geq EOH + 1
-}{SAL(k,TL) = \frac{1 - (1 + d)^{EOH + 1 - k - TL}}{1 - (1 + d)^{- TL}} \times \frac{CRF_{s}}{CRF} \times \frac{S(k,TL,FDR)}{S(k,TL,0)}\quad otherwise}
+SAL(k, TL) = 0 \quad \text{if } k + TL \leq EOH
 $$
+
+$$
+SAL(k, TL) = \frac{CRF_{s}}{CRF} \quad \text{if } k \geq EOH + 1
+$$
+
+$$
+SAL(k, TL) = \frac{1 - (1 + d)^{EOH + 1 - k - TL}}{1 - (1 + d)^{-TL}} \times \frac{CRF_{s}}{CRF} \times \frac{S(k, TL, FDR)}{S(k, TL, 0)} \quad \text{otherwise}
+$$
+
 
 where $d$ is the general discount rate, $CRF_s$ is the technology-specific capital recovery factor and $FDR$ is the functional depreciation rate.
 
@@ -781,19 +794,24 @@ It is helpful to look at the examples for each case in order to understand these
 
 Finally, the equivalent of Result 2 is given as Result 3, for decommissioning.
 
-$${\text{Result 3}
-}
-{\text{TheSalvage}\text{Value}\text{of}a\text{decommissioningcostoccuringatyear}l,\text{for}
-}{\text{aninvestmenttakingplaceatyear}k,\text{is}:
-}
-{SAL(k,l) = 0ifk + TL \leq EOH
-}
-{SAL(k,l) = \frac{CRF_{s}}{CRF} \times (1 + i)^{EOH + 1 - l}ifk \geq EOH + 1
-}
-{SAL(k,l) = \frac{(1 + d)^{TLIFE + k - l} - (1 + d)^{EOH + 1 - l}}{(1 + d)^{TLIFE} - 1} \times \frac{CRF_{s}}{CRF}otherwise
-}
-{\text{where }d\ \text{is the general discountrate}
-}{\text{and}d_{s}\text{isthetechnologyspecificdiscountrate}}$$
+*Result 3*
+
+The Salvage Value of a decommissioning cost occurring at year \(l\), for an investment taking place at year \(k\), is:
+
+$$
+SAL(k, l) = 0 \quad \text{if } k + TL \leq EOH
+$$
+
+$$
+SAL(k, l) = \frac{CRF_{s}}{CRF} \times (1 + i)^{EOH + 1 - l} \quad \text{if } k \geq EOH + 1
+$$
+
+$$
+SAL(k, l) = \frac{(1 + d)^{TLIFE + k - l} - (1 + d)^{EOH + 1 - l}}{(1 + d)^{TLIFE} - 1} \times \frac{CRF_{s}}{CRF} \quad \text{otherwise}
+$$
+
+where \(d\) is the general discount rate \\
+and \(d_s\) is the technology-specific discount rate.
 
 We are now ready to write the salvage values of decommissioning cost in each case.
 
@@ -805,10 +823,11 @@ $${SALVDECOM(EOH + 1) =
  }{\sum_{t}^{}{INDIC(1.a) \times \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)} \times 
  }{NCAP\_ DCOST_{v} \times SAL(v,v + TLIFE_{t})
  }
- {\text{where }SAL(k,l)\ \text{is}\ \text{defined in}\ \text{Result }3.
- }
- {\text{Note  that }SAL(v,x)\ \text{is always 0 whenever}\ v + TLIFE \leq EOH + 1
- }$$
+ $$
+ 
+where *SAL(k,l)* is defined in Result 3
+ 
+Note  that *SAL(v,x)* is always 0 whenever $v + TLIFE \leq EOH + 1$
  
  (IX.1.a)
  
