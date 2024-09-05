@@ -1125,13 +1125,13 @@ The constraints available in standard TIMES are shown in {numref}`times-equation
 
 - These bounds are applied whenever a demand is price elastic, i.e. when the COM_ELAST (elasticity) and COM_VOC (total range) parameters are specified and not zero.
 - If COM_ELAST and COM_VOC are specified, and COM_STEP (number of steps) is not, the latter defaults to 1 (single step discretization)
-- Attributes COM_VOC and COM_STEP do not have a timeslice index. The user can still control elasticities in each time slice through COM_ELAST~s~.
+- Attributes COM_VOC and COM_STEP do not have a timeslice index. The user can still control elasticities in each time slice through $COM\_ELAST_{s}$.
+
+**Bound:**
 
 $${BND\_ELAST_{r,t,c,s,j,l} \ni COM\_STEP_{r,c,l} \land (s \in com\_ts_{r,c,s})}$$
 
 $${VAR\_ELAST_{r,t,c,s,j,l} \leq \frac{COM\_PROJ_{r,t,c} \times COM\_FR_{r,t,c,s} \times COM\_VOC_{r,t,c,l}}{COM\_STEP_{r,c,l}}}$$
-
-**Bound:**
 
 ### Equation EQ(*l*)\_ACTBND
 
@@ -1152,7 +1152,7 @@ $${VAR\_ELAST_{r,t,c,s,j,l} \leq \frac{COM\_PROJ_{r,t,c} \times COM\_FR_{r,t,c,s
 **Remarks**:
 
 - The equation is required because for the two cases described above (bound specified for a timelslice above the process timeslice level or process is characterized as a vintaged one), no single variable exists which can be bounded directly.
-- The bound is only directly applied to VAR_ACT for non-vintaged processes, when ACT_BND is applied at the level **prc_ts(r,p,s)~.~**
+- The bound is only directly applied to VAR_ACT for non-vintaged processes, when ACT_BND is applied at the level **prc_ts(r,p,s).**
 
 **Interpretation of the results**:
 
@@ -1162,11 +1162,17 @@ Dual: The dual variable describes in the case of a lower (upper) bound the cost 
 
 **Equation:**
 
-$EQ(l)\_ ACTBND_{r,t,p,s} \ni ACT\_ BND_{r,t,p,s,bd} \land \mathbf{rtp}\_\mathbf{var}\mathbf{a}_{\mathbf{r},\mathbf{t},\mathbf{p}} \land \mathbf{rps}\_\mathbf{prct}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}}
-$$${\land \left( p \in \mathbf{prc}\_\mathbf{vin}\mathbf{t}_{\mathbf{r},\mathbf{p}} \vee s \notin \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}} \right)
-}
+$$
+EQ(l)\_ACTBND_{r,t,p,s} \hspace{1cm} \exists \; ACT\_BND_{r,t,p,s,bd} \land rtp\_vara_{r,t,p} \land rps\_prcts_{r,p,s} \land (p \in prc\_vint_{r,p} \lor s \notin prc\_ts_{r,p,s})
+$$
 
-{\sum_{v \in \mathbf{rtp}\_\mathbf{vintyr}}^{}{\sum_{s2 \in \mathbf{prc}\_\mathbf{ts}}^{}{VAR\_ ACT_{r,v,t,p,s2}}}\left\{ = ; \leq ; \geq \right\} ACT\_ BND_{r,t,p,s,l}}$$
+Note : For $rtp\_vara_{r,t,p}$, Activity must exist and process is available in period t. For $rps\_prcts_{r,p,s}$, All timeslices at or above *prc_tsl*. For $p \in prc\_vint_{r,p} \lor s \notin prc\_ts_{r,p,s}$, either p is vintaged or the bound is applied for a n exact slice of p.
+
+$$
+\sum_{v \in rtp\_vintyr} \sum_{s2 \in prc\_ts} VAR\_ACT_{r,v,t,p,s2} \; \{=; \leq; \geq\} \; ACT\_BND_{r,t,p,s,l}
+$$
+
+*s2* : all timeslices on process timeslice level(prc_ts) that are descendents of s in the timeslice tree; determined by the internal set ts_map(r,s,s2).
 
 ### Equation: EQE_ACTEFF
 
