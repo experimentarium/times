@@ -1185,7 +1185,7 @@ commodity group (cg), side (io), timeslice (s)**
 
 **Related equations**: **EQ_PTRANS, EQ_ACTPL**
 
-**Purpose**: This equation is generated when the process activity efficiency has been defined with the input attribute *ACT_EFF~r,v,p,cg,s~* for a group of flows on the shadow side.
+**Purpose**: This equation is generated when the process activity efficiency has been defined with the input attribute $ACT\_EFF_{r,v,p,cg,s}$ for a group of flows on the shadow side.
 
 **Remarks**:
 
