@@ -1262,13 +1262,29 @@ reduction algorithm is activated. Then, in all equations where the flow occurs, 
 
 **Equation:**
 
-$EQ\_ ACTFLO_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \land \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}} \land \mathbf{rtp}\_\mathbf{var}\mathbf{a}_{\mathbf{r},\mathbf{t},\mathbf{p}}
-$$$
-{IFNOT\mathbf{rpc}\_\mathbf{ire}
-}{VAR\_ ACT_{v,t} = \sum_{c \in \mathbf{prc}\_\mathbf{actunt}}^{}\frac{VAR\_ FLO_{r,v,t,p,c,s}}{PRC\_ ACTFLO_{r,v,p,c}}
-}
-{IF\mathbf{rpc}\_\mathbf{ire}
-}{VAR\_ ACT_{t,v} = \sum_{c \in \mathbf{prc}\_\mathbf{actunt}}^{}\frac{\sum_{ie \in \mathbf{rp}\_\mathbf{aire}}^{}{VAR\_ IRE_{r,v,t,p,c,s,ie}}}{PRC\_ ACTFLO_{r,v,p,c}}}$$
+$$
+EQ\_ACTFLO_{r,v,t,p,s} \quad \exists \; rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land rtp\_vara_{r,t,p}
+$$
+
+$$
+\textit{IF NOT} \; rpc\_ire
+$$
+
+i.e : If the process is not an inter-regional process
+
+$$
+VAR\_ACT_{v,t} = \sum_{c \in prc\_actunt} \frac{VAR\_FLO_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}}
+$$
+
+$$
+\textit{IF NOT} \; rpc\_ire
+$$
+
+ie : If the process is an inter-regional trade process
+
+$$
+VAR\_ACT_{t,v} = \sum_{c \in prc\_actunt} \sum_{ie \in erp\_aire} \frac{\sum VAR\_IRE_{r,v,t,p,c,s,ie}}{PRC\_ACTFLO_{r,v,p,c}}
+$$
 
 ### Equation: EQ_ACTPL
 
