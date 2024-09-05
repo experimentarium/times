@@ -1190,13 +1190,13 @@ commodity group (cg), side (io), timeslice (s)**
 **Remarks**:
 
 - The group cg in the equation may be either directly specified in ACT_EFF, or, if *ACT_EFF* is only specified for single commodity, determined as the commodity type, or, if *ACT_EFF* is specified for the reserved group name \'ACT\', determined as the default shadow group of the process. 
-- The parameter *ACT_EFF~r,v,p,cg,s~* can be specified using any of the following as the cg: 
-- commodity groups; these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
-- commodity types (NRG/MAT/ENV/DEM/FIN); as above, these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
-- the predefined commodity group \'ACT\'; this defines a common efficiency for all members of the default shadow group of the process; 
-- single commodities on the shadow side without an associated group efficiency; these define commodity-specific efficiencies, and the shadow group will consist of all commodities of the same type; if no commodity efficiency is defined for some member in the group, the default efficiency 1 is assumed; 
-- single commodities on the shadow side with an associated group efficiency; these define commodity-specific efficiencies as above, but are multiplied by the effi­ciency specified for the group; if no efficiency is defined for some member in the group, the group efficiency is applied directly to that member; 
-- single commodities C that are members of the PCG of the process; these define commodity-specific multipliers for the process efficiency when producing the commodity C; if no efficiencies are additionally defined on the shadow side of the process, the whole standard shadow group of the process is assumed to be involved in the transformation (as when using 'ACT'), with the default efficiency of 1 on the shadow side. 
+- The parameter $ACT\_EFF_{r,v,p,cg,s}$ can be specified using any of the following as the cg: 
+ - commodity groups; these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
+ - commodity types (NRG/MAT/ENV/DEM/FIN); as above, these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
+ - the predefined commodity group \'ACT\'; this defines a common efficiency for all members of the default shadow group of the process; 
+ - single commodities on the shadow side without an associated group efficiency; these define commodity-specific efficiencies, and the shadow group will consist of all commodities of the same type; if no commodity efficiency is defined for some member in the group, the default efficiency 1 is assumed; 
+ - single commodities on the shadow side with an associated group efficiency; these define commodity-specific efficiencies as above, but are multiplied by the effi­ciency specified for the group; if no efficiency is defined for some member in the group, the group efficiency is applied directly to that member; 
+ - single commodities C that are members of the PCG of the process; these define commodity-specific multipliers for the process efficiency when producing the commodity C; if no efficiencies are additionally defined on the shadow side of the process, the whole standard shadow group of the process is assumed to be involved in the transformation (as when using 'ACT'), with the default efficiency of 1 on the shadow side. 
 - The ACT_EFF parameter can also be shaped by using a FLO_FUNCX parameter of the following form: FLO_FUNCX(reg,datayear,p,CG,\'ACT\') = shape index. Here, the CG should correspond to the group of commodities on the shadow side involved in the EQE_ACTEFF equation (the group, commodity type, or \'ACT\' that was either explicitly or implicitly used in the ACT_EFF parameters that should be shaped).
 
 **Equation:**
@@ -1210,7 +1210,7 @@ $${\sum_{\begin{aligned}
  & VAR\_ FLO_{r,v,t,c,ts} \times \\
  & \left( \begin{aligned}
  & ACT\_ EFF_{r,v,p,c,ts}\mspace{6mu} if\mspace{6mu} ACT\_ EFF_{r,v,p,c,ts}\mspace{6mu} given \\
- & 1otherwise
+ & 1\ otherwise
 \end{aligned} \right) \\
  & \times RTCS\_ TSFR_{r,t,c,s,ts}
 \end{aligned} \right)
@@ -1220,22 +1220,22 @@ $${\sum_{\begin{aligned}
  & \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}
 \end{aligned}}^{}{\left( \begin{aligned}
  & \left( \begin{aligned}
- & VAR\_ ACT_{r,v,t,p,ts}if\mspace{6mu} RP\_ PGACT_{r,p} \\
- & \frac{VAR\_ FLO_{r,v,t,p,c,ts}}{PRC\_ ACTFLO_{r,v,p,c}}otherwise
+ & VAR\_ ACT_{r,v,t,p,ts}\ if\mspace{6mu} RP\_ PGACT_{r,p} \\
+ & \frac{VAR\_ FLO_{r,v,t,p,c,ts}}{PRC\_ ACTFLO_{r,v,p,c}}\ otherwise
 \end{aligned} \right) \times \\
  & \left( \begin{aligned}
- & 1/ACT\_ EFF_{r,v,p,cg,ts}if\mspace{6mu} ACT\_ EFF_{r,v,p,cg,ts}\mspace{6mu} given \\
- & 1otherwise
+ & 1/ACT\_ EFF_{r,v,p,cg,ts}\ if\mspace{6mu} ACT\_ EFF_{r,v,p,cg,ts}\mspace{6mu} given \\
+ & 1\ otherwise
 \end{aligned} \right) \times \\
  & \left( \begin{aligned}
- & 1/ACT\_ EFF_{r,v,p,c,ts}if\mspace{6mu} ACT\_ EFF_{r,v,p,c,ts}\mspace{6mu} given \\
- & 1otherwise
+ & 1/ACT\_ EFF_{r,v,p,c,ts}\ if\mspace{6mu} ACT\_ EFF_{r,v,p,c,ts}\mspace{6mu} given \\
+ & 1\ otherwise
 \end{aligned} \right) \\
  & \times RTCS\_ TSFR_{r,t,c,s,ts}
 \end{aligned} \right) +}
 }{\sum_{\mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{}\left( \begin{aligned}
  & VAR\_ UPS_{r,v,t,p,ts,'FX'} \times \\
- & ACT\_ LOSPL_{r,v,p,'FX'}if\mspace{6mu} ACT\_ LOSPL_{r,v,p,'FX'}\mspace{6mu} given \\
+ & ACT\_ LOSPL_{r,v,p,'FX'}\ if\mspace{6mu} ACT\_ LOSPL_{r,v,p,'FX'}\mspace{6mu} given \\
  & \times RS\_ FR_{r,s,ts}
 \end{aligned} \right)}$$
 
