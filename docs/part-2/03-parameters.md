@@ -3324,7 +3324,7 @@ The levelized cost calculation option looks to weight all the costs influencing 
 
 Levelized cost can be calculated according to the following general formula:
 
-  $$LEC = \frac{\sum_{t = 1}^{n}{\frac{IC_{t}}{(1 + r)^{t - 1}} + \frac{OC_{t} + VC_{t} + \sum_{i}^{}{FC_{i,t} + FD_{i,t}} + \sum_{j}^{}{ED_{j,t}}}{(1 + r)^{t - 0.5}} -}\frac{\sum_{k}^{}{BD_{k,t}}}{(1 + r)^{t - 0.5}}}{\sum_{t = 1}^{n}\frac{\sum_{m}^{}{MO_{m,t}}}{(1 + r)^{t - 0.5}}}$$   \(1\)
+  $LEC = \frac{\sum_{t = 1}^{n}{\frac{IC_{t}}{(1 + r)^{t - 1}} + \frac{OC_{t} + VC_{t} + \sum_{i}^{}{FC_{i,t} + FD_{i,t}} + \sum_{j}^{}{ED_{j,t}}}{(1 + r)^{t - 0.5}} -}\frac{\sum_{k}^{}{BD_{k,t}}}{(1 + r)^{t - 0.5}}}{\sum_{t = 1}^{n}\frac{\sum_{m}^{}{MO_{m,t}}}{(1 + r)^{t - 0.5}}}$   \(1\)
 
 where
 - $r$ = discount rate (e.g. 5%)
