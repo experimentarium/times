@@ -246,7 +246,7 @@ Like all other aspects of TIMES, the user defines the Climate Module components 
   - Unit: W/m<sup>2</sup>
   - Radiative forcing from exogenous sources (from greenhouse gases not modelled) in year *y*.
 * - CM_LINFOR (y,cm_var,lim)
-  - Unit:
+  - Unit: For
   <br>CO<sub>2</sub>: ppm
   <br>CH<sub>4</sub>/N<sub>2</sub>O: W/m<sup>2</sup>/ppb
   <br>Default: none
