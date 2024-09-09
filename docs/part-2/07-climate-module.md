@@ -712,9 +712,7 @@ $${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\math
 } \\ \\ {\left\{ = \right\}
 } \\ \\ {\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
 
-:::{admonition}
-$$
-{CM\_ AA_{cm\_ emis,t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}\mspace{6mu}
+\fbox$${{CM\_ AA_{cm\_ emis,t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}\mspace{6mu}
 } \\ \\ {PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
 (1 - PHI\_ AT\_ UP) & PHI\_ UP\_ AT & 0 \\
 PHI\_ AT\_ UP & (1 - PHI\_ U\_ AT - PHI\_ UP\_ LO) & PHI\_ LO\_ UP \\
@@ -731,7 +729,7 @@ PHI\_ AT\_ UP & (1 - PHI\_ U\_ AT - PHI\_ UP\_ LO) & PHI\_ LO\_ UP \\
 } \\ \\ {D(t)\text{  is the number of years in period }t,and m(t)\text{is the middle year of period}\ t\text{ defined as}\mspace{18mu}
 } \\ \\ {m(t) = B(t) + \left\lfloor \frac{D(t) - 1}{2} \right\rfloor
 } \\ \\ {\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to}\ x}$$
-:::
+
 ### EQ_CLITEMP(cm_var,cm_box,t)
 
 **Description:** Defines the reservoir-specific amounts of temperature indicator in each period.
@@ -766,8 +764,7 @@ $${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_
 } \\ \\ {\left\{ = \right\}
 } \\ \\ {\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
 
-$$
-{CM\_ AA_{'FORCING',t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}\mspace{6mu}
+$${CM\_ AA_{'FORCING',t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}\mspace{6mu}
 } \\ \\ {PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
 (1 - SIGMA1 \times (LAMBDA + SIGMA2) & SIGMA1 \times SIGMA2 & 0 \\
 SIGMA3 & (1 - SIGMA3) & 0 \\
