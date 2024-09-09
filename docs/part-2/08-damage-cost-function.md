@@ -16,7 +16,7 @@ We now describe the mathematical formulation used for the damage cost functions.
 
 With respect to optimization, two distinct approaches to account for damage costs can be distinguished:
 
-1. Environmental damages are computed ex-post, without feedback into optimization process, and
+1. Environmental damages are computed ex-post, without feedback into the optimization process, and
 2. Environmental damages are part of the objective function and therefore taken into account in the optimization process.
 
 In both approaches, a number of assumptions are made:
@@ -36,11 +36,11 @@ where:
 - *β* ≥ 0 is the elasticity of marginal damage cost to amount of emissions; and
 - *α* \> 0 is a calibrating parameter, which may be obtained from dose-response studies that allow the computation of the marginal damage cost per unit of emission at some reference level of emissions.
 
-If we denote the marginal cost at the reference level MC~0~, the following holds:
+If we denote the marginal cost at the reference level MC_ 0, the following holds:
 
 $$MC_{0} = \alpha \cdot (\beta + 1) \cdot EM_{0}^{\beta}$$ (2)
 
-where EM~0~ is the reference amount of emissions. Therefore expression (1) may be re-written as:
+where EM_ 0 is the reference amount of emissions. Therefore expression (1) may be re-written as:
 
 $$DAM(EM) = MC_{0} \cdot \frac{EM^{\beta + 1}}{(\beta + 1) \cdot EM_{0}^{\beta}}$$ (3)
 
@@ -62,7 +62,7 @@ $$DAM(EM) = \sum_{i = 1}^{m}{MC_{i}^{lo} \cdot S_{i}^{lo}} + MC_{0} \cdot S^{mid
 
 where:
 
-- $MC_{i}^{lo}\text{and}MC_{i}^{up}$are the approximate marginal costs at each step below and above the reference level as shown in (7) below; and 
+- $MC_{i}^{lo}\text{and}MC_{i}^{up}$are the approximate marginal costs at each step below and above the reference level as shown in (105) below; and 
 - $S_{i}^{lo},S^{mid}\text{and}S_{i}^{up}$are the non-negative step variables for emissions. Apart from the final step, each step variable has an upper bound equal to the width of the interval. In this formulation we choose intervals of uniform width on each side of the reference level. However, the intervals below and above the reference level can have different sizes. The width of the middle interval is always the average of the widths below and above the reference level.
 
 The approximate marginal costs at each step can be assumed to be the marginal costs at the center of each step. If all the steps intervals are of equal size, the marginal costs for the steps below the reference level are obtained by the following formula:
@@ -151,7 +151,7 @@ The input parameters are listed in {numref}`dam-input-parameters`.
   - Number of emission steps for the linearized cost function in the lower/upper direction. Can also be used for excluding the costs from the objective.
   - EQ_DAMAGE
   <br>EQ_OBJDAM
-* - DAM_VOC(r,c,lim)
+* - DAM_VOC(r,c,bd)
   - See above
   - TIMES emission unit
   <br>(0,INF); ≤ DAM_BQTY; default value: DAM_BQTY
@@ -287,6 +287,10 @@ In addition, the standard TIMES objective function, **EQ_OBJ**, is augmented by 
 
 We now give the formulations of these constraints.
 
+:::{admonition} Reminder:
+the Damage Cost Functions are activated at run time from the data handling system, which in turn sets the switch $SET DAMAGE LP/NLP/NO.
+:::
+
 ```{list-table} Constraints specific to damage costs (in the GAMS file eqdamage.mod).
 :name: dam-constraints
 :header-rows: 1
@@ -313,16 +317,16 @@ We now give the formulations of these constraints.
 
 **Remarks**:
 
-- The damage costs can be defined either on the net production (VAR_COMNET) or the gross production (VAR_COMPRD) of the commodity c. By default the damage costs are applied to the NET amount, unless *DAM_ELAST~r,c,\'N\'~* is also specified. *DAM_ELAST~r,c,\'N\'~* defines a multiplier for the Base prices to be added to the damage cost function, when it is to be applied to the gross production.
-- The internal parameter *DAM_COEF~r,t,c,s~* is set to the base prices, if *DAM_ELAST~r,c,\'N\'~* is specified, and otherwise to 1.
+- The damage costs can be defined either on the net production (VAR_COMNET) or the gross production (VAR_COMPRD) of the commodity c. By default the damage costs are applied to the NET amount, unless *DAM_ELAST_{ r,c,\'N\'}* is also specified. *DAM_ELAST_{r,c,\'N\'}* defines a multiplier for the Base prices to be added to the damage cost function, when it is to be applied to the gross production.
+- The internal parameter *DAM_COEF_{r,t,c,s}* is set to the base prices, if *DAM_ELAST_{r,c,\'N\'}* is specified, and otherwise to 1.
 
 **Equation:**
 
 $$EQ\_ DAMAGE_{r,t,c} \ni \left( \mathbf{rt}\mathbf{c}_{r,t,c} \land \exists(cur):DAM\_ COST_{r,t,c,cur} \right)$$
 
 $${\sum_{(jj,bd) \in \mathbf{dam}\_\mathbf{nu}\mathbf{m}_{r,c,jj,bd}}^{}{\sum_{j \leq jj}^{}{VAR\_ DAM_{r,t,c,bd,j}}}
-}{\left\{ = \right\}
-}{\sum_{\mathbf{com}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{ts}}}^{}\left( \begin{aligned}
+} \\ \\ {\left\{ = \right\}
+} \\ \\ {\sum_{\mathbf{com}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{ts}}}^{}\left( \begin{aligned}
  & DAM\_ COEF_{r,t,c,ts} \times \\
  & \left( \begin{aligned}
  & VAR\_ COMNET_{r,t,c,ts}if\mspace{6mu} DAM\_ ELAST_{r,c,'N'}\mspace{6mu} not\mspace{6mu} given \\
@@ -342,7 +346,7 @@ $${\sum_{(jj,bd) \in \mathbf{dam}\_\mathbf{nu}\mathbf{m}_{r,c,jj,bd}}^{}{\sum_{j
 
 **Remarks:**
 
-- The internal parameter *DAM_SIZE~r,c,bd~* represents the sizes of cost steps of the dlinearized damage cost function, for both directions (bd=LO/UP) and for the middle step (bd=FX), as described above in Section 2.
+- The internal parameter *DAM_SIZE_{r,c,bd}* represents the sizes of cost steps of the dlinearized damage cost function, for both directions (bd=LO/UP) and for the middle step (bd=FX), as described above in Section 2.
 
 **Equation:**
 
@@ -351,7 +355,7 @@ $$EQ\_ OBJDAM_{r,cur} \ni \left( \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur
 **Case A: Linearized functions**
 
 $${\sum_{(t,c) \in \left\{ \mathbf{rt}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c}}|(DAM\_ COST_{r,t,} > 0) \right\}}^{}{DAM\_ COST_{r,t,c,cur} \times OBJ\_ PVT_{r,t,cur}} \times 
-}{\left\lbrack \begin{aligned}
+} \\ \\ {\left\lbrack \begin{aligned}
  & \sum_{\begin{matrix}
 jj \in \mathbf{dam}\_\mathbf{nu}\mathbf{m}_{r,c,jj,'LO'} \\
 j \leq jj
@@ -374,18 +378,18 @@ j \leq ORD(jj)
 \end{aligned} \right)^{DAM\_ ELAST_{r,c,'UP'}}
 \end{aligned} \right)
 \end{aligned} \right\rbrack
-}{\left\{ = \right\}
-}{VAR\_ OBJ_{r,'OBJDAM',cur}}$$
+} \\ \\ {\left\{ = \right\}
+} \\ \\ {VAR\_ OBJ_{r,'OBJDAM',cur}}$$
 
 **\
 Case B: Non-linear functions**
 
 $${\sum_{(t,c) \in \left\{ \mathbf{rt}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c}}|(DAM\_ COST_{r,t,} > 0) \right\}}^{}{DAM\_ COST_{r,t,c,cur} \times OBJ\_ PVT_{r,t,cur}} \times 
-}{\left\lbrack \begin{aligned}
+} \\ \\ {\left\lbrack \begin{aligned}
  & \\
  & \frac{\left( \begin{aligned}
  & \left( \begin{aligned}
- & VAR\_ DAM_{r,t,,'LO',j} + \\
+ & VAR\_ DAM_{r,t,c,'LO',j} + \\
  & DAM\_ BQTY_{r,c} - DAM\_ VOC_{r,c,'LO'}
 \end{aligned} \right)^{\left( DAM\_ ELAST_{r,c,'LO'} + 1 \right)} - \\
  & \left( DAM\_ BQTY_{r,c} - DAM\_ VOC_{r,c,'LO'} \right)^{\left( DAM\_ ELAST_{r,c,'LO'} + 1 \right)}
@@ -396,8 +400,8 @@ $${\sum_{(t,c) \in \left\{ \mathbf{rt}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{
  & \left( DAM\_ BQTY_{r,c} \right)^{\left( DAM\_ ELAST_{r,c,'UP'} + 1 \right)}
 \end{aligned} \right)}{DAM\_ BQT{Y_{r,c}}^{DAM\_ ELAST_{r,c,'UP'}} \times \left( DAM\_ ELAST_{r,c,'UP'} + 1 \right)}
 \end{aligned} \right\rbrack
-}{\left\{ = \right\}
-}{VAR\_ OBJ_{r,'OBJDAM',cur}}$$
+} \\ \\ {\left\{ = \right\}
+} \\ \\ {VAR\_ OBJ_{r,'OBJDAM',cur}}$$
 
 ## References
 
