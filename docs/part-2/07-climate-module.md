@@ -767,7 +767,7 @@ $${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_
 }{\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
 
 $$
-{CM\_ AA_{'FORCING',t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}
+{CM\_ AA_{'FORCING',t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}\mspace{6mu}
 }{PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
 (1 - SIGMA1 \times (LAMBDA + SIGMA2) & SIGMA1 \times SIGMA2 & 0 \\
 SIGMA3 & (1 - SIGMA3) & 0 \\
@@ -775,8 +775,8 @@ SIGMA3 & (1 - SIGMA3) & 0 \\
 \end{bmatrix}
 }
 {CM\_ BB_{'FORCING',t,i} = \left\{ BB_{i1}(t) \right\}\text{  is the first column of the matrix: }
-}{BB(t) = SIGMA1 \times \ \sum_{i = 0}^{n(t) - 1}{\frac{n(t) - i}{n(t)} \times PHI^{i}}\mspace{6mu}
-}{CM\_ CC_{'FORCING',t,i} = \left\{ CC_{i1}(t) \right\}\text{  is the first column of the matrix :}
+}{BB(t) = SIGMA1 \times \ \sum_{i = 0}^{n(t) - 1}{\frac{n(t) - i}{n(t)} \times PHI^{i}}\mspace{18mu}
+}\\{CM\_ CC_{'FORCING',t,i} = \left\{ CC_{i1}(t) \right\}\text{  is the first column of the matrix :}
 }{CC(t) = \ SIGMA1 \times \sum_{i = 0}^{n(t) - 1}{\frac{i}{n(t)} \times PHI^{i}}
 }{n(t)\text{  } = \ m(t) - m(t - 1)\mspace{6mu}\mspace{6mu} if\ t \neq 1,\text{   }
 }{n(t)\text{  } = \ m(t) - Yift = 1
