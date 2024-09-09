@@ -713,7 +713,7 @@ $${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\math
 }{\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
 
 $$
-{CM\_ AA_{cm\_ emis,t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}
+{CM\_ AA_{cm\_ emis,t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}\mspace{6mu}
 }{PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
 (1 - PHI\_ AT\_ UP) & PHI\_ UP\_ AT & 0 \\
 PHI\_ AT\_ UP & (1 - PHI\_ U\_ AT - PHI\_ UP\_ LO) & PHI\_ LO\_ UP \\
@@ -721,7 +721,7 @@ PHI\_ AT\_ UP & (1 - PHI\_ U\_ AT - PHI\_ UP\_ LO) & PHI\_ LO\_ UP \\
 \end{bmatrix}
 }
 {CM\_ BB_{cm\_ emis,t,i} = \left\{ BB_{i1}(t) \right\}\text{  is the first column of the matrix: }
-}{BB(t) = \ \sum_{i = 0}^{p(t) - 1}{PHI^{i}}ifp(t) \geq 1
+}{BB(t) = \ \sum_{i = 0}^{p(t) - 1}{PHI^{i}}\mspace{6mu}if\mspace{6mu}p(t) \geq 1
 }{BB(t) = 0ifp(t) = 0
 }{CM\_ CC_{cm\_ emis,t,i} = \left\{ CC_{i1}(t) \right\}\text{  is the first column of the matrix :}
 }{CC(t) = \ \sum_{i = p(t)}^{n(t) - 1}{PHI^{i}}ifn(t) \geq p(t) + 1
