@@ -721,14 +721,14 @@ PHI\_ AT\_ UP & (1 - PHI\_ U\_ AT - PHI\_ UP\_ LO) & PHI\_ LO\_ UP \\
 \end{bmatrix}
 }
 {CM\_ BB_{cm\_ emis,t,i} = \left\{ BB_{i1}(t) \right\}\text{  is the first column of the matrix: }
-}{BB(t) = \ \sum_{i = 0}^{p(t) - 1}{PHI^{i}}\mspace{6mu}if\mspace{6mu}p(t) \geq 1
-}{BB(t) = 0ifp(t) = 0
+}{BB(t) = \ \sum_{i = 0}^{p(t) - 1}{PHI^{i}}\mspace{18mu}if\mspace{18mu}p(t) \geq 1
+}{BB(t) = 0\mspace{18mu}if\mspace{18mu}p(t) = 0
 }{CM\_ CC_{cm\_ emis,t,i} = \left\{ CC_{i1}(t) \right\}\text{  is the first column of the matrix :}
-}{CC(t) = \ \sum_{i = p(t)}^{n(t) - 1}{PHI^{i}}ifn(t) \geq p(t) + 1
-}{CC(t) = 0ifn(t) = p(t)
-}{p(t)\text{  } = \text{  }\left\lfloor \frac{D(t) + 1}{2} \right\rfloor,n(t)\text{  } = \ m(t) - m(t - 1)\mspace{6mu} if\ t \neq 1,\text{   }
-}{p(t)\text{  } = \ m(t) - \Upsilon,n(t)\text{  } = \ p(t)ift = 1
-}{D(t)\text{  is the number of years in period }t,andm(t)\text{is the middle year of period}\ t\text{ defined as}
+}{CC(t) = \ \sum_{i = p(t)}^{n(t) - 1}{PHI^{i}}\mspace{18mu}if\mspace{18mu}n(t) \geq p(t) + 1
+}{CC(t) = 0\mspace{18mu}if\mspace{18mu}n(t) = p(t)
+}{p(t)\text{  } = \text{  }\left\lfloor \frac{D(t) + 1}{2} \right\rfloor,n(t)\text{  } = \ m(t) - m(t - 1)\mspace{18mu} if\ t \neq 1,\text{   }
+}{p(t)\text{  } = \ m(t) - \Upsilon,n(t)\text{  } = \ p(t)\mspace{18mu}if\mspace{18mu}t = 1
+}{D(t)\text{  is the number of years in period }t,and m(t)\text{is the middle year of period}\ t\text{ defined as}\mspace{18mu}
 }{m(t) = B(t) + \left\lfloor \frac{D(t) - 1}{2} \right\rfloor
 }{\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to}\ x}$$
 
