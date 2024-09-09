@@ -768,7 +768,7 @@ $${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_
 
 $$
 {CM\_ AA_{'FORCING',t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}\\ \mspace{6mu}
-}{PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
+}\\{PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
 (1 - SIGMA1 \times (LAMBDA + SIGMA2) & SIGMA1 \times SIGMA2 & 0 \\
 SIGMA3 & (1 - SIGMA3) & 0 \\
 0 & 0 & 0
