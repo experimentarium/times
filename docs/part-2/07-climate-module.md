@@ -762,7 +762,7 @@ $${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_
 }{\sum_{\begin{matrix}
 \mathbf{miyr}\_\mathbf{1}_{t} \\
 \mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}\mathbf{2}}
-\end{matrix}}^{\sum}{CM\_ CONS{T'FORCING',t,cm\_ box,cm\_ box2}_{cm\_ var}}
+\end{matrix}}^{}{CM\_ CONST_{cm\_ var} \times {CM\_ AA_{'FORCING,t,cm\_ box,cm\_ box2}}}
 }{\left\{ = \right\}
 }{\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
 
