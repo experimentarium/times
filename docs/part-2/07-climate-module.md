@@ -663,10 +663,10 @@ This equation is generated in each time period for all indicators considered.
 $$EQ\_ CLITOT_{cm\_ tkind,t}\forall\left\lbrack \left( t \in \mathbf{milestonyr} \right) \right\rbrack$$
 
 $${\sum_{\begin{aligned}
- & cm\_ tkind \in \mathbf{cm}\_\mathbf{emis} \\
+ & cm\_ tkind \in \mathbf{cm}\_\mathbf{emis} \\ \\
  & (r,c,s) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{c},\mathbf{t},\mathbf{s}}
 \end{aligned}}^{}{VAR\_ COMNET_{r,t,c,s} \times CM\_ GHGMAP_{r,c,cm\_ tkind}}
-} \\ {\sum_{\mathbf{cm}\_\mathbf{emi}\mathbf{s}_{\mathbf{cm}\_\mathbf{tkind}}}^{}\left( \begin{aligned}
+} \\ \\ {\sum_{\mathbf{cm}\_\mathbf{emi}\mathbf{s}_{\mathbf{cm}\_\mathbf{tkind}}}^{}\left( \begin{aligned}
  & CM\_ LINFOR_{t,cm\_ emis,'N'} \times \\
  & \left( \sum_{\begin{aligned}
  & \mathbf{cm}\_\mathbf{atbo}\mathbf{x}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{box}} \\
@@ -674,9 +674,9 @@ $${\sum_{\begin{aligned}
 \end{aligned}}^{}{VAR\_ CLIBOX_{cm\_ var}} \right) \\
  & CM\_ LINFOR_{t,cm\_ emis,'FX'}
 \end{aligned} \right) + 
-} \\ {+ CM\_ EXOFORC_{t}
-} \\ {\left\{ = \right\}
-} \\ {VAR\_ CLITOT_{cm\_ tkind,t}}$$
+} \\ \\ {+ CM\_ EXOFORC_{t}
+} \\ \\ {\left\{ = \right\}
+} \\ \\ {VAR\_ CLITOT_{cm\_ tkind,t}}$$
 
 ### EQ_CLICONC(cm_var,cm_box,t)
 
@@ -703,34 +703,33 @@ $${\sum_{\begin{aligned}
 $$EQ\_ CLICONC_{cm\_ emis,cm\_ box,t}\forall\left\lbrack \left( t \in \mathbf{milestonyr} \right) \right\rbrack$$
 
 $${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}2}}^{}{VAR\_ CLIBOX_{cm\_ var,t - 1} \times CM\_ AA_{cm\_ emis,t,cm\_ box,cm\_ box2}} + 
-}{CM\_ BB_{cm\_ emis,t,cm\_ box} \times VAR\_ CLITOT_{cm\_ emis,t} + 
-}{CM\_ CC_{cm\_ emis,t,cm\_ box} \times VAR\_ CLITOT_{cm\_ emis,t - 1} + 
-}{\sum_{\begin{matrix}
+} \\ \\ {CM\_ BB_{cm\_ emis,t,cm\_ box} \times VAR\_ CLITOT_{cm\_ emis,t} + 
+} \\ \\ {CM\_ CC_{cm\_ emis,t,cm\_ box} \times VAR\_ CLITOT_{cm\_ emis,t - 1} + 
+} \\ \\ {\sum_{\begin{matrix}
 \mathbf{miyr}\_\mathbf{1}_{t} \\
 \mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}\mathbf{2}}
 \end{matrix}}^{}{CM\_ CONST_{cm\_ var} \times CM\_ AA_{cm\_ emis,t,cm\_ box,cm\_ box2}}
-}{\left\{ = \right\}
-}{\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
+} \\ \\ {\left\{ = \right\}
+} \\ \\ {\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
 
 $$
 {CM\_ AA_{cm\_ emis,t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}\mspace{6mu}
-}{PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
+} \\ \\ {PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
 (1 - PHI\_ AT\_ UP) & PHI\_ UP\_ AT & 0 \\
 PHI\_ AT\_ UP & (1 - PHI\_ U\_ AT - PHI\_ UP\_ LO) & PHI\_ LO\_ UP \\
 0 & PHI\_ UP\_ LO & (1 - PHI\_ LO\_ UP)
 \end{bmatrix}
-}
-{CM\_ BB_{cm\_ emis,t,i} = \left\{ BB_{i1}(t) \right\}\text{  is the first column of the matrix: }
-}{BB(t) = \ \sum_{i = 0}^{p(t) - 1}{PHI^{i}}\mspace{18mu}if\mspace{18mu}p(t) \geq 1
-}{BB(t) = 0\mspace{18mu}if\mspace{18mu}p(t) = 0
-}{CM\_ CC_{cm\_ emis,t,i} = \left\{ CC_{i1}(t) \right\}\text{  is the first column of the matrix :}
-}{CC(t) = \ \sum_{i = p(t)}^{n(t) - 1}{PHI^{i}}\mspace{18mu}if\mspace{18mu}n(t) \geq p(t) + 1
-}{CC(t) = 0\mspace{18mu}if\mspace{18mu}n(t) = p(t)
-}{p(t)\text{  } = \text{  }\left\lfloor \frac{D(t) + 1}{2} \right\rfloor,n(t)\text{  } = \ m(t) - m(t - 1)\mspace{18mu} if\ t \neq 1,\text{   }
-}{p(t)\text{  } = \ m(t) - \Upsilon,n(t)\text{  } = \ p(t)\mspace{18mu}if\mspace{18mu}t = 1
-}{D(t)\text{  is the number of years in period }t,and m(t)\text{is the middle year of period}\ t\text{ defined as}\mspace{18mu}
-}{m(t) = B(t) + \left\lfloor \frac{D(t) - 1}{2} \right\rfloor
-}{\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to}\ x}$$
+} \\ \\ {CM\_ BB_{cm\_ emis,t,i} = \left\{ BB_{i1}(t) \right\}\text{  is the first column of the matrix: }
+} \\ \\ {BB(t) = \ \sum_{i = 0}^{p(t) - 1}{PHI^{i}}\mspace{18mu}if\mspace{18mu}p(t) \geq 1
+} \\ \\ {BB(t) = 0\mspace{18mu}if\mspace{18mu}p(t) = 0
+} \\ \\ {CM\_ CC_{cm\_ emis,t,i} = \left\{ CC_{i1}(t) \right\}\text{  is the first column of the matrix :}
+} \\ \\ {CC(t) = \ \sum_{i = p(t)}^{n(t) - 1}{PHI^{i}}\mspace{18mu}if\mspace{18mu}n(t) \geq p(t) + 1
+} \\ \\ {CC(t) = 0\mspace{18mu}if\mspace{18mu}n(t) = p(t)
+} \\ \\ {p(t)\text{  } = \text{  }\left\lfloor \frac{D(t) + 1}{2} \right\rfloor,n(t)\text{  } = \ m(t) - m(t - 1)\mspace{18mu} if\ t \neq 1,\text{   }
+} \\ \\ {p(t)\text{  } = \ m(t) - \Upsilon,n(t)\text{  } = \ p(t)\mspace{18mu}if\mspace{18mu}t = 1
+} \\ \\ {D(t)\text{  is the number of years in period }t,and m(t)\text{is the middle year of period}\ t\text{ defined as}\mspace{18mu}
+} \\ \\ {m(t) = B(t) + \left\lfloor \frac{D(t) - 1}{2} \right\rfloor
+} \\ \\ {\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to}\ x}$$
 
 ### EQ_CLITEMP(cm_var,cm_box,t)
 
@@ -757,32 +756,31 @@ PHI\_ AT\_ UP & (1 - PHI\_ U\_ AT - PHI\_ UP\_ LO) & PHI\_ LO\_ UP \\
 $$EQ\_ CLITEMP_{cm\_ box,t}\forall\left\lbrack \left( t \in \mathbf{milestonyr} \right) \right\rbrack$$
 
 $${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}2}}^{}{VAR\_ CLIBOX_{cm\_ var,t - 1} \times CM\_ AA_{'FORCING',t,cm\_ box,cm\_ box2}} + 
-}\\ \\{CM\_ BB_{'FORCING',t,cm\_ box} \times VAR\_ CLITOT_{'FORCING',t} + 
-}\\ \\{CM\_ CC_{'FORCING',t,cm\_ box} \times VAR\_ CLITOT_{'FORCING',t - 1} + 
-}\\ \\{\sum_{\begin{matrix}
+} \\ \\ {CM\_ BB_{'FORCING',t,cm\_ box} \times VAR\_ CLITOT_{'FORCING',t} + 
+} \\ \\ {CM\_ CC_{'FORCING',t,cm\_ box} \times VAR\_ CLITOT_{'FORCING',t - 1} + 
+} \\ \\ {\sum_{\begin{matrix}
 \mathbf{miyr}\_\mathbf{1}_{t}
 \mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}\mathbf{2}}
 \end{matrix}}^{}{CM\_ CONST_{cm\_ var} \times {CM\_ AA_{'FORCING,t,cm\_ box,cm\_ box2}}}
-}{\left\{ = \right\}
-}\\ \\{\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
+} \\ \\ {\left\{ = \right\}
+} \\ \\ {\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
 
 $$
 {CM\_ AA_{'FORCING',t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}\mspace{6mu}
-}\\ \\{PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
+} \\ \\ {PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
 (1 - SIGMA1 \times (LAMBDA + SIGMA2) & SIGMA1 \times SIGMA2 & 0 \\
 SIGMA3 & (1 - SIGMA3) & 0 \\
 0 & 0 & 0
 \end{bmatrix}
-}\\ \\
-{CM\_ BB_{'FORCING',t,i} = \left\{ BB_{i1}(t) \right\}\text{  is the first column of the matrix: }
-}\\ \\{BB(t) = SIGMA1 \times \ \sum_{i = 0}^{n(t) - 1}{\frac{n(t) - i}{n(t)} \times PHI^{i}}\mspace{18mu}
-}\\ \\{CM\_ CC_{'FORCING',t,i} = \left\{ CC_{i1}(t) \right\}\text{  is the first column of the matrix :}
-}\\ \\{CC(t) = \ SIGMA1 \times \sum_{i = 0}^{n(t) - 1}{\frac{i}{n(t)} \times PHI^{i}}
-}\\ \\{n(t)\text{  } = \ m(t) - m(t - 1)\mspace{6mu}\mspace{6mu} if\ t \neq 1,\text{   }
-}\\ \\{n(t)\text{  } = \ m(t) - Yift = 1
-}\\ \\{D(t)\text{  is the number of years in period }t,\text{ and}m(t)\text{is the middle year of period}\ t\text{ defined as}
-}\\ \\{m(t) = B(t) + \left\lfloor \frac{D(t) - 1}{2} \right\rfloor
-}\\ \\{\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to}\ x}$$
+} \\ \\ {CM\_ BB_{'FORCING',t,i} = \left\{ BB_{i1}(t) \right\}\text{  is the first column of the matrix: }
+} \\ \\ {BB(t) = SIGMA1 \times \ \sum_{i = 0}^{n(t) - 1}{\frac{n(t) - i}{n(t)} \times PHI^{i}}\mspace{18mu}
+} \\ \\ {CM\_ CC_{'FORCING',t,i} = \left\{ CC_{i1}(t) \right\}\text{  is the first column of the matrix :}
+} \\ \\ {CC(t) = \ SIGMA1 \times \sum_{i = 0}^{n(t) - 1}{\frac{i}{n(t)} \times PHI^{i}}
+} \\ \\ {n(t)\text{  } = \ m(t) - m(t - 1)\mspace{6mu}\mspace{6mu} if\ t \neq 1,\text{   }
+} \\ \\ {n(t)\text{  } = \ m(t) - Yift = 1
+} \\ \\ {D(t)\text{  is the number of years in period }t,\text{ and}m(t)\text{is the middle year of period}\ t\text{ defined as}
+} \\ \\ {m(t) = B(t) + \left\lfloor \frac{D(t) - 1}{2} \right\rfloor
+} \\ \\ {\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to}\ x}$$
 
 ### EQ_CLIMAX(y,cm_var)
 
@@ -811,7 +809,7 @@ $$EQ\_ CLIMA{X_{y,cm\_ var}}^{}\forall\left\lbrack \left\{ (y,cm\_{var})|CM\_ MA
 **Case A. For total emissions, up to m(T)**
 
 $${\alpha_{y} \times VAR\_ CLITOT_{cm\_ emis,t - 1} + \beta_{y} \times VAR\_ CLITOT_{cm\_ emis,t}
-}{\leq CM\_ MAXC_{y,cm\_ emis}}$$
+} \\ \\ {\leq CM\_ MAXC_{y,cm\_ emis}}$$
 
 **Case B. For atmospheric GHG concentrations, up to m(T)**
 
@@ -819,17 +817,17 @@ $${\sum_{\begin{matrix}
 \mathbf{cm}\_\mathbf{atbo}\mathbf{x}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{box}} \\
 \mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}
 \end{matrix}}^{}{\alpha_{y} \times VAR\_ CLIBOX_{cm\_ var,t - 1} + \beta_{y} \times VAR\_ CLIBOX_{cm\_ var,t}}
-}{\leq CM\_ MAXC_{y,cm\_ var}}$$
+} \\ \\ {\leq CM\_ MAXC_{y,cm\_ var}}$$
 
 **Case C. For total radiative forcing, up to m(T)**
 
 $${\alpha_{y} \times VAR\_ CLITOT_{'FORCING',t - 1} + \beta_{y} \times VAR\_ CLITOT_{'FORCING',t}
-}{\leq CM\_ MAXC_{y,'FORCING'}}$$
+} \\ \\ {\leq CM\_ MAXC_{y,'FORCING'}}$$
 
 **Case D. For increase in global atmospheric temperature, up to m(T):**
 
 $${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},'\mathbf{ATM}'}}^{}{\alpha_{y} \times VAR\_ CLIBOX_{cm\_ var,t - 1} + \beta_{y} \times VAR\_ CLIBOX_{cm\_ var,t}}
-}{\leq CM\_ MAXC_{y,cm\_ var}}$$
+} \\ \\ {\leq CM\_ MAXC_{y,cm\_ var}}$$
 
 **Case E. For atmospheric GHG concentrations, beyond m(T):**
 
