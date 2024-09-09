@@ -662,11 +662,11 @@ This equation is generated in each time period for all indicators considered.
 
 $$EQ\_ CLITOT_{cm\_ tkind,t}\forall\left\lbrack \left( t \in \mathbf{milestonyr} \right) \right\rbrack$$
 
-$${\sum_{\begin{aligned}
+$${\begin{aligned} & {\sum_{\begin{aligned}
  & cm\_ tkind \in \mathbf{cm}\_\mathbf{emis} \\
  & (r,c,s) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{c},\mathbf{t},\mathbf{s}}
 \end{aligned}}^{}{VAR\_ COMNET_{r,t,c,s} \times CM\_ GHGMAP_{r,c,cm\_ tkind}}
-}{\sum_{\mathbf{cm}\_\mathbf{emi}\mathbf{s}_{\mathbf{cm}\_\mathbf{tkind}}}^{}\left( \begin{aligned}
+} & \\ {\sum_{\mathbf{cm}\_\mathbf{emi}\mathbf{s}_{\mathbf{cm}\_\mathbf{tkind}}}^{}\left( \begin{aligned}
  & CM\_ LINFOR_{t,cm\_ emis,'N'} \times \\
  & \left( \sum_{\begin{aligned}
  & \mathbf{cm}\_\mathbf{atbo}\mathbf{x}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{box}} \\
@@ -674,9 +674,9 @@ $${\sum_{\begin{aligned}
 \end{aligned}}^{}{VAR\_ CLIBOX_{cm\_ var}} \right) \\
  & CM\_ LINFOR_{t,cm\_ emis,'FX'}
 \end{aligned} \right) + 
-}{+ CM\_ EXOFORC_{t}
-}{\left\{ = \right\}
-}{VAR\_ CLITOT_{cm\_ tkind,t}}$$
+} & \\ {+ CM\_ EXOFORC_{t}
+} & \\ {\left\{ = \right\}
+} & \\ {VAR\_ CLITOT_{cm\_ tkind,t}}\end{aligned}}$$
 
 ### EQ_CLICONC(cm_var,cm_box,t)
 
