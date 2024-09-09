@@ -756,15 +756,15 @@ PHI\_ AT\_ UP & (1 - PHI\_ U\_ AT - PHI\_ UP\_ LO) & PHI\_ LO\_ UP \\
 
 $$EQ\_ CLITEMP_{cm\_ box,t}\forall\left\lbrack \left( t \in \mathbf{milestonyr} \right) \right\rbrack$$
 
-$${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}2}}^{}{VAR\_ CLIBOX_{cm\_ var,t - 1} \times CM\_ AA_{'FORCING',t,cm\_ box,cm\_ box2}} + 
-}{CM\_ BB_{'FORCING',t,cm\_ box} \times VAR\_ CLITOT_{'FORCING',t} + 
-}{CM\_ CC_{'FORCING',t,cm\_ box} \times VAR\_ CLITOT_{'FORCING',t - 1} + 
+$${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}2}}^{}{VAR\_ CLIBOX_{cm\_ var,t - 1} \times CM\_ AA_{'FORCING',t,cm\_ box,cm\_ box2}} +\\ 
+}{CM\_ BB_{'FORCING',t,cm\_ box} \times VAR\_ CLITOT_{'FORCING',t} +\\ 
+}{CM\_ CC_{'FORCING',t,cm\_ box} \times VAR\_ CLITOT_{'FORCING',t - 1} +\\ 
 }{\sum_{\begin{matrix}
 \mathbf{miyr}\_\mathbf{1}_{t} \\
 \mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}\mathbf{2}}
 \end{matrix}}^{}{CM\_ CONST_{cm\_ var} \times {CM\_ AA_{'FORCING,t,cm\_ box,cm\_ box2}}}
 }{\left\{ = \right\}
-}{\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
+}\\{\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
 
 $$
 {CM\_ AA_{'FORCING',t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}\\ \mspace{6mu}
