@@ -21,7 +21,7 @@ For the own-price elasticities, we have the following relations (see Part I, Cha
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------
   $p_{i} = p_{i}^{0} \cdot (DM_{i}/D{M_{i}}^{0})^{1/E_{i}}$                                                                                                             \(2\)
 
-  \small$U_{i} = \sum_{t}^{}\left( \frac{p_{i}^{0}(t)}{(1 + 1/E_{i})} \cdot \left\lbrack DM_{i}^{0}(t) \right\rbrack^{- 1/E_{i}} \bullet DM_{i}(t)^{1 + 1/E_{i}} \right)$     \(3\)
+  \scalebox{0.5}$U_{i} = \sum_{t}^{}\left( \frac{p_{i}^{0}(t)}{(1 + 1/E_{i})} \cdot \left\lbrack DM_{i}^{0}(t) \right\rbrack^{- 1/E_{i}} \bullet DM_{i}(t)^{1 + 1/E_{i}} \right)$     \(3\)
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Consider then a utility function of the general CES form:
