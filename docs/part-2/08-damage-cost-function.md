@@ -317,8 +317,8 @@ The Damage Cost Functions are activated at run time from the data handling syste
 
 **Remarks**:
 
-- The damage costs can be defined either on the net production (VAR_COMNET) or the gross production (VAR_COMPRD) of the commodity c. By default the damage costs are applied to the NET amount, unless $DAM_ELAST_{ r,c,\'N\'}$ is also specified. $DAM_ELAST_{r,c,\'N\'}$ defines a multiplier for the Base prices to be added to the damage cost function, when it is to be applied to the gross production.
-- The internal parameter $DAM_COEF_{r,t,c,s}$ is set to the base prices, if $DAM_ELAST_{r,c,\'N\'}$ is specified, and otherwise to 1.
+- The damage costs can be defined either on the net production (VAR_COMNET) or the gross production (VAR_COMPRD) of the commodity c. By default the damage costs are applied to the NET amount, unless $DAM_ELAST_{ r,c,'N'}$ is also specified. $DAM_ELAST_{r,c,'N'}$ defines a multiplier for the Base prices to be added to the damage cost function, when it is to be applied to the gross production.
+- The internal parameter $DAM_COEF_{r,t,c,s}$ is set to the base prices, if $DAM_ELAST_{r,c,'N'}$ is specified, and otherwise to 1.
 
 **Equation:**
 
@@ -346,7 +346,7 @@ $${\sum_{(jj,bd) \in \mathbf{dam}\_\mathbf{nu}\mathbf{m}_{r,c,jj,bd}}^{}{\sum_{j
 
 **Remarks:**
 
-- The internal parameter $DAM_SIZE_{r,c,bd}$ represents the sizes of cost steps of the dlinearized damage cost function, for both directions (bd=LO/UP) and for the middle step (bd=FX), as described above in Section 2.
+- The internal parameter $DAM_ SIZE_{r,c,bd}$ represents the sizes of cost steps of the dlinearized damage cost function, for both directions (bd=LO/UP) and for the middle step (bd=FX), as described above in Section 2.
 
 **Equation:**
 
