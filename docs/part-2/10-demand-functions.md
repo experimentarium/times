@@ -14,10 +14,10 @@ In this Appendix we provide the input attributes and modeling details associated
 
 ## Mathematical formulation
 
-For the own-price elasticities, we have the following relations (see Part I, Chapter 4), where *U_i* is the term in the objective function associated with the utility change due to the demand variation of demand *i*:
+For the own-price elasticities, we have the following relations (see Part I, Chapter 4), where $U_{i}$ is the term in the objective function associated with the utility change due to the demand variation of demand *i*:
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  $$DM_{i}/D{M_{i}}^{0} = (p_{i}/p_{i}^{0})^{E_{i}}$$                                                                                                                   \(1\)
+  $DM_{i}/D{M_{i}}^{0} = (p_{i}/p_{i}^{0})^{E_{i}}$                                                                                                                     \(1\)
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------
   $$p_{i} = p_{i}^{0} \cdot (DM_{i}/D{M_{i}}^{0})^{1/E_{i}}$$                                                                                                           \(2\)
 
