@@ -1283,7 +1283,8 @@ $${VAR\_ UPS_{r,v,t,p,s,'FX'} \geq
  & COEF\_ CPT_{r,v,t,p}\left( VAR\_ NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}} \right) \times \\
  & PL\_ LDL_{r,v,p} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{s} - VAR\_ ACT_{r,v,t,p,s}
 \end{aligned} \right) \times 
-}$$$\quad\frac{AF\_ MIN_{r,v,p,ANNUAL}}{PL\_ LDL_{r,v,p} - AF\_ MIN_{r,v,p,ANNUAL}}$
+}$$
+$\quad\frac{AF\_ MIN_{r,v,p,ANNUAL}}{PL\_ LDL_{r,v,p} - AF\_ MIN_{r,v,p,ANNUAL}}$
 
 ### Equation: EQ_ACTRAMP
 
