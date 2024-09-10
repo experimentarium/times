@@ -1340,14 +1340,14 @@ time slice (s)**
 - The amount of on-line capacity is the full available capacity, unless start-ups / shut-downs have been enabled by using the parameter *ACT_MINLD*.
 
 The following equation calculates the changes in the load
-$var\text{\_}ldc_{r,v,t,p,s,bd}$ during the dispatching phase:
+$var\_ldc_{r,v,t,p,s,bd}$ during the dispatching phase:
 
 $${\left( \frac{var\_ act_{r,v,t,p,s - 1}}{G\_ YRFR_{r,s - 1}} - \frac{var\_ act_{r,v,t,p,s}}{G\_ YRFR_{r,s}} \right) \cdot \frac{1}{CAPACT_{r,p}}\mspace{6mu} = \mspace{6mu} var\_ ldc_{r,v,t,p,s,LO} - var\_ ldc_{r,v,t,p,s,UP} - 
 }{ACT\_ MINLD_{r,v,p} \times \left( var\_ off_{r,v,t,p,s - 1} - var\_ off_{r,v,t,p,s} \right),\mspace{6mu}\forall s \in PRC\_ TS_{r,p}}$$
 
-In the above equation the variable *var_ldc~r,v,t,p,s,LO~* holds load decreases, while the variable *var_ldc~r,v,t,p,s,UP~* holds load increases. The two variables appear together in the equation since at each time slice $s$ only one of the two variables can be set (i.e. the load can either increase or decrease).
+In the above equation the variable $var\_ldc_{r,v,t,p,s,LO}$ holds load decreases, while the variable $var\_ldc_{r,v,t,p,s,UP}$ holds load increases. The two variables appear together in the equation since at each time slice $s$ only one of the two variables can be set (i.e. the load can either increase or decrease).
 
-Having calculated the changes in the dispatchable load, the associated ramping costs are entered into the objective function as the sum of the load changes *var_ldc~r,v,t,p,s,UP~* multiplied by the cost attribute *ACT_CSTRMP~r,v,p,UP,cur~* for the ramping up costs, and the sum of the load changes *var_ldc~r,v,t,p,s,LO~* multiplied by the cost attribute *ACT_CSTRMP~r,v,p,LO,cur~* for the ramping down costs. The costs are discounted to the base year:
+Having calculated the changes in the dispatchable load, the associated ramping costs are entered into the objective function as the sum of the load changes $var\_ldc_{r,v,t,p,s,UP}$ multiplied by the cost attribute $ACT\_CSTRMP_{r,v,p,UP,cur}$ for the ramping up costs, and the sum of the load changes $var\_ldc_{r,v,t,p,s,LO}$ multiplied by the cost attribute $ACT\_CSTRMP_{r,v,p,LO,cur}$ for the ramping down costs. The costs are discounted to the base year:
 
 $${obj_{RMPC} = 
 }{\sum_{r,t}^{}\left( NPV_{r,t} \cdot \sum_{p,v,bd \in \{ LO,UP\}}^{}{ACT\_ CSTRMP_{r,v,p,bd,cur} \cdot \sum_{s \in PRC\_ TS_{r,p}}^{}{var\_ ldc_{r,v,t,p,s,bd}}} \right)}$$
