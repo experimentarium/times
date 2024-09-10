@@ -36,7 +36,7 @@ where:
 - *β* ≥ 0 is the elasticity of marginal damage cost to amount of emissions; and
 - *α* \> 0 is a calibrating parameter, which may be obtained from dose-response studies that allow the computation of the marginal damage cost per unit of emission at some reference level of emissions.
 
-If we denote the marginal cost at the reference level MC_ 0, the following holds:
+If we denote the marginal cost at the reference level $MC_{0}$, the following holds:
 
 $$MC_{0} = \alpha \cdot (\beta + 1) \cdot EM_{0}^{\beta}$$ (2)
 
@@ -287,8 +287,8 @@ In addition, the standard TIMES objective function, **EQ_OBJ**, is augmented by 
 
 We now give the formulations of these constraints.
 
-:::{admonition} Reminder:
-the Damage Cost Functions are activated at run time from the data handling system, which in turn sets the switch $SET DAMAGE LP/NLP/NO.
+:::{admonition} Reminder
+The Damage Cost Functions are activated at run time from the data handling system, which in turn sets the switch $SET DAMAGE LP/NLP/NO.
 :::
 
 ```{list-table} Constraints specific to damage costs (in the GAMS file eqdamage.mod).
@@ -317,8 +317,8 @@ the Damage Cost Functions are activated at run time from the data handling syste
 
 **Remarks**:
 
-- The damage costs can be defined either on the net production (VAR_COMNET) or the gross production (VAR_COMPRD) of the commodity c. By default the damage costs are applied to the NET amount, unless *DAM_ELAST_{ r,c,\'N\'}* is also specified. *DAM_ELAST_{r,c,\'N\'}* defines a multiplier for the Base prices to be added to the damage cost function, when it is to be applied to the gross production.
-- The internal parameter *DAM_COEF_{r,t,c,s}* is set to the base prices, if *DAM_ELAST_{r,c,\'N\'}* is specified, and otherwise to 1.
+- The damage costs can be defined either on the net production (VAR_COMNET) or the gross production (VAR_COMPRD) of the commodity c. By default the damage costs are applied to the NET amount, unless $DAM_ELAST_{ r,c,\'N\'}$ is also specified. $DAM_ELAST_{r,c,\'N\'}$ defines a multiplier for the Base prices to be added to the damage cost function, when it is to be applied to the gross production.
+- The internal parameter $DAM_COEF_{r,t,c,s}$ is set to the base prices, if $DAM_ELAST_{r,c,\'N\'}$ is specified, and otherwise to 1.
 
 **Equation:**
 
@@ -346,7 +346,7 @@ $${\sum_{(jj,bd) \in \mathbf{dam}\_\mathbf{nu}\mathbf{m}_{r,c,jj,bd}}^{}{\sum_{j
 
 **Remarks:**
 
-- The internal parameter *DAM_SIZE_{r,c,bd}* represents the sizes of cost steps of the dlinearized damage cost function, for both directions (bd=LO/UP) and for the middle step (bd=FX), as described above in Section 2.
+- The internal parameter $DAM_SIZE_{r,c,bd}$ represents the sizes of cost steps of the dlinearized damage cost function, for both directions (bd=LO/UP) and for the middle step (bd=FX), as described above in Section 2.
 
 **Equation:**
 
