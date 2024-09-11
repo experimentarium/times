@@ -1565,13 +1565,18 @@ $$\sum_{\begin{array}{r}
 
 **Equation:**
 
-$${EQ(l)\_ BLND_{r,t,ble,spe} \ni bl\_ type_{r,ble,spe}
-}
-{\sum_{opr \in ble\_ opr_{r,ble,opr}}^{}{BL\_ COM_{r,ble,opr,spe} \cdot RU\_ CVT_{r,ble,spe,opr} \cdot VAR\_ BLND_{r,t,ble,opr}}
-}
-{\left\{ \leq ; = ; \geq \right\}
-}
-{\sum_{opr \in ble\_ opr_{r,ble,opr}}^{}{BL\_ SPEC_{r,ble,opr,spe} \cdot RU\_ CVT_{r,ble,spe,opr} \cdot VAR\_ BLND_{r,t,ble,opr}}}$$
+$$
+{EQ(l)\_ BLND_{r,t,ble,spe} \ni bl\_ type_{r,ble,spe}}
+$$
+$$
+{\sum_{opr \in ble\_ opr_{r,ble,opr}}^{}{BL\_ COM_{r,ble,opr,spe} \cdot RU\_ CVT_{r,ble,spe,opr} \cdot VAR\_ BLND_{r,t,ble,opr}}}
+$$
+$$
+{\left\{ \leq ; = ; \geq \right\}}
+$$
+$$
+{\sum_{opr \in ble\_ opr_{r,ble,opr}}^{}{BL\_ SPEC_{r,ble,opr,spe} \cdot RU\_ CVT_{r,ble,spe,opr} \cdot VAR\_ BLND_{r,t,ble,opr}}}
+$$
 
 ### Equation: EQ_BNDCST
 
