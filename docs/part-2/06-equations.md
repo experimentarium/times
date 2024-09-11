@@ -1636,24 +1636,59 @@ $$
 - COMSUB(r,y) = the commodity subsidy portion of the (virtual) variable VARTAXSUB
 - FLOTAX(r,y) = the flow tax portion of the (virtual) variable VARTAXSUB
 - FLOSUB(r,y) = the flow subsidy portion of the (virtual) variable VARTAXSUB
-- **$cost\_map_{agg,costagg}$** = mapping coefficient between all cost aggregations and the component aggregations to be summed up (value = 0 / 1 / --1).
+- $\textbf{cost\_map}_{\text{agg, costagg}} = \text{mapping coefficient between all cost aggregations and the component aggregations to be summed up (value = 0 / 1 / -1).}$
 
 **Remark**: See the Section on the objective function for details on the expressions for the (virtual) cost variables mentioned above.
 
 **Equation:**
 
-$${\mathbf{EQ\_ BNDCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,t,y}\mathbf{2,agg,cur}}\mathbf{\quad \ni}\left( \left( \sum_{\mathbf{bd}}^{}{\mathbf{REG\_ CUMCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,agg,cur,bd}}}\mathbf{< > 0} \right)\mathbf{\land}\left( \mathbf{t =}\underset{\left\{ \mathbf{tt|M(tt - 1) < y}\mathbf{2} \right\}}{\mathbf{argmax}}\mathbf{(M(tt))} \right) \right)\mathbf{VAR\_ CUMCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,agg,cur}}\mathbf{=}
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{INVCOST(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{INV}\mathbf{'}\mathbf{,type}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{INVTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{INVTAX}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{INVSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{INVSUB}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FIXCOST(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FOM}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FIXTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FOMTAX}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FIXSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FOMSUB}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{COMTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{COMTAX}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{COMSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{COMSUB}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FLOTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FLOTAX}\mathbf{'}} \right)
-}$$
-$\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FLOSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FLOSUB}\mathbf{'}} \right)$
+$$
+\mathbf{EQ\_ BNDCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,t,y}\mathbf{2,agg,cur}}\mathbf{\quad \ni}\left( \left( \sum_{\mathbf{bd}}^{}{\mathbf{REG\_ CUMCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,agg,cur,bd}}}\mathbf{< > 0} \right)\mathbf{\land}\left( \mathbf{t =}\underset{\left\{ \mathbf{tt|M(tt - 1) < y}\mathbf{2} \right\}}{\mathbf{argmax}}\mathbf{(M(tt))} \right) \right)
+$$
+
+$$
+\mathbf{VAR\_CUMCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,agg,cur}}\mathbf{=}
+$$
+
+$$
+{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{INVCOST(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{INV}\mathbf{'}\mathbf{,type}} \right)}
+$$
+
+$$
+{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{INVTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{INVTAX}\mathbf{'}} \right)}
+$$
+
+$$
+{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{INVSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{INVSUB}\mathbf{'}} \right)}
+$$
+
+$$
+{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FIXCOST(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FOM}\mathbf{'}} \right)}
+$$
+
+$$
+{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FIXTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FOMTAX}\mathbf{'}} \right)}
+$$
+
+$$
+{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FIXSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FOMSUB}\mathbf{'}} \right)}
+$$
+
+$$
+{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{COMTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{COMTAX}\mathbf{'}} \right)}
+$$
+
+$$
+{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{COMSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{COMSUB}\mathbf{'}} \right)}
+$$
+
+$$
+{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FLOTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FLOTAX}\mathbf{'}} \right)}
+$$
+
+$$
+\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FLOSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FLOSUB}\mathbf{'}} \right)
+$$
 
 ### Equation: EQ(*l*)\_BNDNET/PRD
 
