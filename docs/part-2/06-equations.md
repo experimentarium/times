@@ -1717,14 +1717,25 @@ Dual: marginal cost of increasing the bound by one unit
 
 **Equation**
 
-$EQ(l)\_ BND(NET/PRD)_{r,t,c,s}
-$$${\ni \left\{ \mathbf{rcs}\_\mathbf{comt}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{s}} \land (NOT\mspace{6mu}\mathbf{com}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{s}}) \land COM\_ BND(NET/PRD)_{r,t,c,s,bd} \right\}
-}
-{\sum_{\underset{ts \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{ts}} \cap \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}}}{}}^{}{VAR\_ COM(NET/PRD)_{r,t,c,ts}}
-}
-{( \leq / \geq / = )
-}
-{COM\_ BND(NET/PRD)_{r,t,c,s,bd}}$$
+$$
+EQ(l)\_ BND(NET/PRD)_{r,t,c,s}
+$$
+
+$$
+{\ni \left\{ \mathbf{rcs}\_\mathbf{comt}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{s}} \land (NOT\mspace{6mu}\mathbf{com}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{s}}) \land COM\_ BND(NET/PRD)_{r,t,c,s,bd} \right\}}
+$$
+
+$$
+{\sum_{\underset{ts \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{ts}} \cap \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}}}{}}^{}{VAR\_ COM(NET/PRD)_{r,t,c,ts}}}
+$$
+
+$$
+{( \leq / \geq / = )}
+$$
+
+$$
+{COM\_ BND(NET/PRD)_{r,t,c,s,bd}}
+$$
 
 ### Equation: EQ(*l*)\_CAFLAC
 
