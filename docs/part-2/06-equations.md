@@ -1588,7 +1588,7 @@ $$
 
 **Related equations**: **EQ_OBJ**
 
-**Purpose**: This equation is generated when a bound is specified on regional costs, taxes and/or subsidies, either cumulative over a year range (using *REG_CUMCST~r,y1,y2,agg,,cur,bd~*) or in given milestone years (using *REG_BNDCST~r,y,agg,cur,bd~*). It sets the level of the variable *VAR_CUMCST~r,y1,y2,costagg,cur~* equal to the cost expression, to be bounded accordingly.
+**Purpose**: This equation is generated when a bound is specified on regional costs, taxes and/or subsidies, either cumulative over a year range (using $REG\_CUMCST_{r,y1,y2,agg,,cur,bd}$) or in given milestone years (using $REG\_BNDCST_{r,y,agg,cur,bd}$). It sets the level of the variable $VAR\_CUMCST_{r,y1,y2,costagg,cur}$ equal to the cost expression, to be bounded accordingly.
 
 **Remarks**:
 
@@ -1636,7 +1636,7 @@ $$
 - COMSUB(r,y) = the commodity subsidy portion of the (virtual) variable VARTAXSUB
 - FLOTAX(r,y) = the flow tax portion of the (virtual) variable VARTAXSUB
 - FLOSUB(r,y) = the flow subsidy portion of the (virtual) variable VARTAXSUB
-- **cost_map~agg,costagg~** = mapping coefficient between all cost aggregations and the component aggregations to be summed up (value = 0 / 1 / --1).
+- **$cost\_map_{agg,costagg}$** = mapping coefficient between all cost aggregations and the component aggregations to be summed up (value = 0 / 1 / --1).
 
 **Remark**: See the Section on the objective function for details on the expressions for the (virtual) cost variables mentioned above.
 
@@ -1652,7 +1652,8 @@ $${\mathbf{EQ\_ BNDCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,t,y}\mathbf{2,agg,cur}}\
 }{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{COMTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{COMTAX}\mathbf{'}} \right)
 }{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{COMSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{COMSUB}\mathbf{'}} \right)
 }{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FLOTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FLOTAX}\mathbf{'}} \right)
-}$$$\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FLOSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FLOSUB}\mathbf{'}} \right)$
+}$$
+$\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FLOSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FLOSUB}\mathbf{'}} \right)$
 
 ### Equation: EQ(*l*)\_BNDNET/PRD
 
