@@ -1417,15 +1417,21 @@ timeslice (s)**
 
 **Notation:**
 
-- *UPS^+^(r,p,tsl)* is the set of timeslice levels with start-ups/shut-down costs defined for process p.
+- $UPS^{*}(r,p,tsl)$ is the set of timeslice levels with start-ups/shut-down costs defined for process p.
 
 **Equation:**
 
 $$\mathbf{EQE\_ ACTUP}\mathbf{S}_{\mathbf{r,v,t,p,tsl,s}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{UP}\mathbf{S}_{\mathbf{r,p,tsl}}^{\mathbf{+}}\mathbf{\land}\mathbf{ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}}\mathbf{)}$$
 
-> $${VAR\_ UPS_{r,v,t,p,s,'UP'} - VAR\_ UPS_{r,v,t,p,s,'LO'}
-> }{= 
-> }{VAR\_ UPS_{r,v,t,p,s - 1,'N'} - VAR\_ UPS_{r,v,t,p,s,'N'}}$$
+$$
+VAR\_UPS_{r,v,t,p,s,'UP'} - VAR\_UPS_{r,v,t,p,s,'LO'}
+$$
+$$
+=
+$$
+$$
+VAR\_UPS_{r,v,t,p,s-1,'N'} - VAR\_UPS_{r,v,t,p,s,'N'}
+$$
 
 ### Equation: EQL_ACTUPS
 
@@ -1442,7 +1448,7 @@ timeslice level (tsl), lim_type (l), time slice (s)**
 
 **Notation:**
 
-- *UPS^+^(r,p,tsl)* is the set of timeslice levels with start-ups/shut-down costs defined for process **p**.
+- $UPS^{*}(r,p,tsl)$ is the set of timeslice levels with start-ups/shut-down costs defined for process **p**.
 - *P(r,s)* refers to the parent timeslice of ***s*** in region **r**.
 
 **Equations:**
@@ -1456,8 +1462,8 @@ $$VAR\_ UPS_{r,v,t,p,s,'N'}\quad \leq \quad VAR\_ UPS_{p,v,t,P(s),'FX'}$$
 **Case B: lim_type=\'FX\'**
 
 $$\mathbf{EQL\_ ACTUP}\mathbf{S}_{\mathbf{r,v,t,p,tsl,}\mathbf{'}\mathbf{FX}\mathbf{'}\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\left( \begin{array}{r}
-\mathbf{\& rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{UP}\mathbf{S}_{\mathbf{r,p,tsl}}^{\mathbf{+}}\mathbf{\land} \\
-\mathbf{\& ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}}\mathbf{\land}\mathbf{s}\mathbf{\in}\left\{ \bigcup_{\mathbf{sl}}^{}{\mathbf{P(sl)|sl}\mathbf{\in}\mathbf{UP}\mathbf{S}^{\mathbf{+}}\mathbf{(p)}} \right\}
+\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{UP}\mathbf{S}_{\mathbf{r,p,tsl}}^{\mathbf{+}}\mathbf{\land} \\
+\mathbf{ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}}\mathbf{\land}\mathbf{s}\mathbf{\in}\left\{ \bigcup_{\mathbf{sl}}^{}{\mathbf{P(sl)|sl}\mathbf{\in}\mathbf{UP}\mathbf{S}^{\mathbf{+}}\mathbf{(p)}} \right\}
 \end{array} \right)$$
 
 $$VAR\_ UPS_{r,v,t,p,s,'FX'}\quad \leq \quad\sum_{ts \in C(s)}^{}{VAR\_ UPS_{r,v,t,p,ts,'UP'}}$$
