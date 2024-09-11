@@ -1762,7 +1762,8 @@ $$
 **Special notation used for the equation formulation:**
 
 -   $SX_{r,v,p,c,s}$ denotes an adjustment coefficient for storage inputs:
-    $$\mathbf{S}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r}
+  
+    $\mathbf{S}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r}
     \mathbf{0}\mathbf{\ if}\mathbf{\mspace{6mu}}\mathbf{to}\mathbf{p}_{\mathbf{OUT}}\mathbf{(c)}\mathbf{\land}\mathbf{to}\mathbf{p}_{\mathbf{IN}}\mathbf{(c)}\mathbf{\land}\mathbf{\neg}\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}} \\
     \left( \frac{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}}{\sum_{\mathbf{rp\_ p}\mathbf{g}_{\mathbf{r,p,cg}}}^{}{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}}} \right)\mathbf{\quad}\begin{matrix}
     \mathbf{if}\mathbf{\mspace{6mu}}\mathbf{to}\mathbf{p}_{\mathbf{OUT}}\mathbf{(c)}\mathbf{\land}\mathbf{to}\mathbf{p}_{\mathbf{IN}}\mathbf{(c)}\mathbf{\land} \\
@@ -1770,24 +1771,27 @@ $$
     \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}
     \end{matrix} \\
     \mathbf{1}\mathbf{\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad}\mathbf{otherwise}
-    \end{array} \right\}$$
+    \end{array} \right\}$
 
 -   $IX_{r,v,p,c,s}$ denotes an adjustment coefficient for trade process exports:
-    $$\mathbf{I}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r}
+  
+    $\mathbf{I}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r}
     \left( \frac{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}}{\sum_{\mathbf{rp\_ p}\mathbf{g}_{\mathbf{r,p,cg}}}^{}{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}}} \right)\mathbf{\quad}\begin{matrix}
     \mathbf{if}\mathbf{\mspace{6mu}}\mathbf{imp(c)}\mathbf{\land}\mathbf{exp(c)}\mathbf{\land} \\
     \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}\mathbf{\land} \\
     \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}
     \end{matrix} \\
     \mathbf{1}\mathbf{\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad}\mathbf{otherwise}
-    \end{array} \right\}$$
+    \end{array} \right\}$
 
 **Equation:**
 
-$$\mathbf{EQ(l)\_ CAFLA}\mathbf{C}_{\mathbf{r,v,t,p,s}}\mathbf{\quad}\mathbf{\ni}\left( \begin{array}{r}
-\mathbf{\& rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,s}}\mathbf{\land} \\
-\mathbf{\&}\left( \mathbf{NCAP\_ A}\mathbf{F}_{\mathbf{r,v,p,s,bd}}\mathbf{\vee}\mathbf{NCAP\_ AF}\mathbf{S}_{\mathbf{r,v,p,s,bd}}\mathbf{\vee}\mathbf{NCAP\_ AF}\mathbf{A}_{\mathbf{r,t,p,bd}} \right)
-\end{array} \right)$$
+$$
+\mathbf{EQ(l)\_ CAFLA}\mathbf{C}_{\mathbf{r,v,t,p,s}}\mathbf{\quad}\mathbf{\ni}\left( \begin{array}{r}
+\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,s}}\mathbf{\land} \\
+\left( \mathbf{NCAP\_ A}\mathbf{F}_{\mathbf{r,v,p,s,bd}}\mathbf{\vee}\mathbf{NCAP\_ AF}\mathbf{S}_{\mathbf{r,v,p,s,bd}}\mathbf{\vee}\mathbf{NCAP\_ AF}\mathbf{A}_{\mathbf{r,t,p,bd}} \right)
+\end{array} \right)
+$$
 
 $${\sum_{\begin{aligned}
  & \mathbf{rpc}\_\mathbf{p}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}} \\
@@ -1812,23 +1816,33 @@ $${\sum_{\begin{aligned}
 \end{aligned} \right) \\
  & \times RTCS\_ TSFR_{r,t,c,s,ts}
 \end{aligned} \right) +}
-}{\left\{ \leq , = \right\}
-}{\sum_{\left\{ v2|\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v2},\mathbf{t},\mathbf{p}} \right\}}^{}\left( \begin{aligned}
+}
+$$
+
+$$
+{\left\{ \leq , = \right\}}
+$$
+
+$$
+{\sum_{\left\{ v2|\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v2},\mathbf{t},\mathbf{p}} \right\}}^{}\left( \begin{aligned}
  & COEF\_ AF_{r,v2,t,p,s} \times COEF\_ CPT_{r,v2,t,p} \times \\
  & \left( \begin{aligned}
  & VAR\_ NCAP_{r,v2,p} + NCAP\_ PASTI_{r,v2,p} - \\
  & \left( VAR\_ SCAP_{r,v2,t,p}\quad if\mspace{6mu} PRC\_ RCAP_{r,p} \right)
 \end{aligned} \right) \\
  & \times PRC\_ CAPACT_{r,p}
-\end{aligned} \right)\quad if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}
-}$$$\quad + \quad\quad\left( \begin{aligned}
+\end{aligned} \right)\quad if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}}$$
+
+$$
+\quad + \quad\quad\left( \begin{aligned}
  & COEF\_ AF_{r,v,t,p,s} \times COEF\_ CPT_{r,v,t,p} \times \\
  & \left( \begin{aligned}
  & VAR\_ NCAP_{r,v,p} + NCAP\_ PASTI_{r,v,p} - \\
  & \left( VAR\_ SCAP_{r,v,t,p}\quad if\mspace{6mu} PRC\_ RCAP_{r,p} \right)
 \end{aligned} \right) \\
  & \times PRC\_ CAPACT_{r,p}
-\end{aligned} \right)\quad if\mspace{6mu}\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}$
+\end{aligned} \right)\quad if\mspace{6mu}\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}
+$$
 
 ### Equation: EQ(*l*)\_CAPACT
 
