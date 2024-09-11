@@ -1369,7 +1369,7 @@ $${obj_{RMPC} =
 
 **Remarks:**
 
-- The minimum on-line / off-line hours are defined by using the input attribute *ACT_TIME~r,v,p,bd~*, where bd = LO/UP. The maximum number of start-up cycles is defined by using the input attribute *ACT_TIME~r,v,p,\'N\'~*.
+- The minimum on-line / off-line hours are defined by using the input attribute $ACT\_TIME_{r,v,p,bd}$, where bd = LO/UP. The maximum number of start-up cycles is defined by using the input attribute $ACT\_TIME_{r,v,p,\'N\'}$.
 
 **Notation:**
 
