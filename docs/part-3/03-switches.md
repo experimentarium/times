@@ -2,7 +2,7 @@
 
 This Section describes the various GAMS control variables available in TIMES as control switches that can be set by the user in the model \<case\>.RUN/GEN file for VEDA-FE/ANSWER respectively. As discussed in Section 2, VEDA-FE and ANSWER, in most cases automatically take care of inserting the proper switches into the run file, so the user normally does not have to modify the run file at all. The switches are set in the highly user-friendly GUI interface of the user shell, which uses a run file template and inserts all run-specific switches correctly into the run file of each model run. These are managed by the user via the Case Manager (Control Panel) and Run/Edit GEN Template parts of VEDA-FE and ANSWER respectively.
 
-In the sub-sections that follow, unless otherwise stated, the basic syntax for the inclusion of control switch options in the main \<case\>.RUN/GEN GAMS directive file is `$SET <option> <value>`. The various options are grouped according to the nature of their usage by sub-section.
+In the subsections that follow, unless otherwise stated, the basic syntax for the inclusion of control switch options in the main \<case\>.RUN/GEN GAMS directive file is `$SET <option> <value>`. The various options are grouped according to the nature of their usage by subsection.
 
 ## Run name case identification
 
