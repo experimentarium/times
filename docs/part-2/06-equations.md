@@ -6,7 +6,7 @@ Each equation has a unique name and is described in a separate subsection. The e
 
 The mathematical formulation of an equation starts with the name of the equation in the format: $EQ\_XXX_{i,j,k,l}$, where $XXX$ is a unique equation identifier, and $i,j,k,..,$ are the *equation indexes*, among those described in chapter 2. Some equation names also include an index *l* controlling the sense of the equation. Next to the equation name is a *logical condition* that the equation indexes must satisfy. That condition constitutes the *domain of definition* of the equation. It is useful to remember that the equation is created in multiple instances, one for each combination of the equation indexes that satisfies the logical condition, and that each index in the equation's index list remains *fixed* in the expressions constituting each instance of the equation.
 
-## Notational conventions 
+## Notational conventions
 
 We use the following mathematical symbols for the mathematical expressions and relations constituting the equations:
 
@@ -24,29 +24,30 @@ When a single index j runs over a one-dimensional set A, the usual notation is u
 
 When a summation must be done over a subset of a multi-dimensional set, we use a simplified notation where some of the running indexes are omitted, if they are not active for this summation.
 
-[Example]{.underline}: consider the 3-dimensional set *top* consisting of all quadruples $\{r,p,c,io\}$ such that process $p$ in region $r$, has a flow of commodity $c$ with orientation $io$ (see table 3 of chapter 2). If is it desired to sum an expression $A_{r,p,c,io}$ over all commodities $c$, keeping the region ($r$), process ($p$) and orientation ($io$) fixed respectively at $r_1$, $p_1$ and 'IN', we will write, by a slight abuse of notation: $\sum_{c \in top(r_{1},p_{1},'IN')}^{}{A(r_{1},p_{1},c,'IN')}$ , or even more simply:
+\underline{Example}: consider the 3-dimensional set *top* consisting of all quadruples $\{r,p,c,io\}$ such that process $p$ in region $r$, has a flow of commodity $c$ with orientation $io$ (see table 3 of chapter 2). If is it desired to sum an expression $A_{r,p,c,io}$ over all commodities $c$, keeping the region ($r$), process ($p$) and orientation ($io$) fixed respectively at $r_1$, $p_1$ and 'IN', we will write, by a slight abuse of notation: $\sum_{c \in top(r_{1},p_{1},'IN')}^{}{A(r_{1},p_{1},c,'IN')}$ , or even more simply:
 
 $\sum_{c \in top}^{}{A(r_{1},p_{1},c,'IN')}$, if the context is unambiguous. Either of these notations clearly indicates that $r$, $p$ and $io$ are fixed and that the only active running index is $c$.
 
-(The traditional mathematical notation would have been: $\sum_{\{ r_{1},p_{1},c,'IN'\} \in top}^{}{A(r_{1},p,c_{1},'IN')}$, but this may have hidden the fact that $c$ is the only running index active in the sum).
+(The traditional mathematical notation would have been: $\sum_{\{ r_{1},p_{1},c,'IN'\} \in top}^{}{A(r_{1},p_{1},c,'IN')}$, but this may have hidden the fact that $c$ is the only running index active in the sum).
 
 ### Notation for logical conditions 
 
 We use similar simplifying notation in writing the logical conditions of each equation. A logical condition usually expresses that some parameter exists (i.e. has been given a value by the user), and/or that some indexes are restricted to certain subsets.
 
-A typical example of the former would be written as: $\ni$*ACTBND~r,t,p,s,bd~*, which reads: "the user has defined an activity bound for process *p* in region *r*, time-period *t*, timeslice *s* and sense *bd*". The indexes may sometimes be omitted, when they are the same as those attached to the equation name.
+A typical example of the former would be written as: $\ni ACTBND_{r,t,p,s,bd}$, which reads: "the user has defined an activity bound for process *p* in region *r*, time-period *t*, timeslice *s* and sense *bd*". The indexes may sometimes be omitted, when they are the same as those attached to the equation name.
 
-A typical example of the latter is the first condition for equation *EQ_ACTFLO~r,v,t,p,s~* (see section 6.3.4), which we write simply as: $\mathbf{rtp}\_\mathbf{vintyr}$, which is short for: $\{ r,v,t,p\} \in \mathbf{rtp}\_\mathbf{vintyr}$, with the meaning that "some capacity of process *p* in region *r*, created at period *v*, exists at period *t*". Again here, the indices have been omitted from the notation since they are already listed as indices of the equation name.
+A typical example of the latter is the first condition for equation $EQ\_ACTFLO_{r,v,t,p,s}$ (see section 6.3.4), which we write simply as: $\mathbf{rtp}\_\mathbf{vintyr}$, which is short for: $\{ r,v,t,p\} \in \mathbf{rtp}\_\mathbf{vintyr}$, with the meaning that "some capacity of process *p* in region *r*, created at period *v*, exists at period *t*". Again here, the indices have been omitted from the notation since they are already listed as indices of the equation name.
 
 ### Using Indicator functions in arithmetic expressions
 
 There are situations where an expression A is either equal to B or to C, depending on whether a certain condition holds or not, i.e.:
 
-$${A = BifCond}{A = CifNOTCond}$$
+$${A = B\ if\ Cond}$$
+$${A = C\ if\ NOT\ Cond}$$
 
 This may also be written as:
 
-$$A = B \times (Cond) + C \times (NOTCond)$$
+$$A = B \times (Cond) + C \times (NOT\ Cond)$$
 
 where it is understood that the notation (Cond) is the *indicator function* of the logical condition, i.e. (Cond)=1 if Cond holds, and 0 if not.
 
@@ -70,7 +71,7 @@ The TIMES objective function includes a number of innovations compared to those 
 
 - The objective function may be thought of as the discounted sum of *net annual costs* (i.e. costs minus revenues), as opposed to *net period costs*[^39]. Note that some costs and revenues are incurred after the end of horizon (EOH). This is the case for instance for some investment payments and more frequently for payments and revenues attached to decommissioning activities. The past investments (made before the first year of the horizon) may also have payments within horizon years (and even after EOH!) These are also reflected in the objective function. However, it should be clear that such payments are shown in OBJ only for reporting purposes, since such payments are entirely *sunk*, i.e. they are not affected by the model's decisions.
 
-- The model uses a general discount rate *d(y)* (year dependent), as well as technology specific discount rates *d~s~(t)* (period dependent). The former is used to: a) discount fixed and variable operating costs, and b) discount investment cost payments from the point of time when the investment actually occurs to the base year chosen for the computation of the present value of the total system cost. The latter are used only to calculate the annual payments resulting from a lump-sum investment in some year. Thus, the only place where *d~s~(t)* intervenes is to compute the Capital Recovery Factors *(CRF)* discussed further down.
+- The model uses a general discount rate $d(y)$ (year dependent), as well as technology specific discount rates $d_{s}(t)$ (period dependent). The former is used to: a) discount fixed and variable operating costs, and b) discount investment cost payments from the point of time when the investment actually occurs to the base year chosen for the computation of the present value of the total system cost. The latter are used only to calculate the annual payments resulting from a lump-sum investment in some year. Thus, the only place where $d_{s}(t)$ intervenes is to compute the Capital Recovery Factors *(CRF)* discussed further down.
 
 For convenience, we summarize below the notation which is more especially used in the objective function formulation (see Section 6.1 for general notes on the notation) .
 
@@ -96,7 +97,7 @@ For convenience, we summarize below the notation which is more especially used i
 
 ***M(t):*** the "middle" year or milestone year of period ***t***. Since period ***n*** may have an even or an odd number of years, ***M(t)*** is not always exactly centered at the middle of the period. It is defined as follows: ***M(t) = \[B(t)+(D(t)--1)/2\],*** where ***\[x\]*** indicates the largest integer less than or equal to ***x***. For example, period from 2011 to 2020 includes 10 years, and its "middle year" is \[2011+4.5\] or 2015 (slightly left of the middle), whereas the period from 2001 to 2015 has 15 years, and its "middle year" is : \[2001+7\] or 2008 (i.e. the true middle in this example)
 
-***y*** : running year, ranging over ***MODELYEARS***, from ***B~0~*** to ***EOH***.
+***y*** : running year, ranging over ***MODELYEARS***, from $\boldsymbol{B_{0}}$ to ***EOH***.
 
 ***k*** : dummy running index of any year, even outside horizon
 
@@ -104,7 +105,7 @@ For convenience, we summarize below the notation which is more especially used i
 
 ***v(p)*** vintage of process ***p*** (defined only if ***p*** is vintaged)
 
-***B~0~*** : initial year (the single year of first period of the model run)
+$\boldsymbol{B_{0}}$ : initial year (the single year of first period of the model run)
 
 ***EOH*** : Last year in horizon for a given model run.
 
@@ -126,13 +127,13 @@ notation)
 
 ***r(y)*** : general discount factor: ***r(y)=1/(1+d(y))*** (time dependent, although not shown in notation)
 
-***d~s~(t)*** : technology specific discount rate (model year dependent)
+***$\boldsymbol{d_{s}(t)}$*** : technology specific discount rate (model year dependent)
 
-***r~s~(t)*** : technology specific discount factor: ***r~s~(t)=1/(1+d~s~(t))***
+***$\boldsymbol{r_{s}(t)}$*** : technology specific discount factor: ***$\boldsymbol{r_{s}(t)=1/(1+d_{s}(t))}$***
 
-***DISC(y,z)**:* Value, discounted to the beginning of year ***z***, of a \$1 payment made at beginning of year ***y***, using **general** discount factor. ***DISC(y,z) = Π~u=z\ to\ y-1~ r(u)***
+***DISC(y,z)**:* Value, discounted to the beginning of year ***z***, of a \$1 payment made at beginning of year ***y***, using **general** discount factor. ***$\boldsymbol{{DISC}(y,z) = \prod_{u=z\ to\ y-1} r(u)}$***
 
-***CRF~s~(t):*** Capital recovery factor, using a (technology specific) discount rate and an economic life appropriate to the payment being considered. This quantity is used to replace an investment cost by a series of annual payments spread over some span of time ***CRF~s~={1--r~s~(t)}/{1--r~s~(t)^ELIFE^}***[^40]***.*** Note that a *CRF* using the general discount rate is also defined and used in the SALVAGE portion of the objective function.
+***$\boldsymbol{CRF_{s}(t)}$:*** Capital recovery factor, using a (technology specific) discount rate and an economic life appropriate to the payment being considered. This quantity is used to replace an investment cost by a series of annual payments spread over some span of time ***$\boldsymbol{CRF_{s} = \{1 - r_{s}(t)\} / \{1 - r_{s}(t)^{ELIFE}\}}$***[^40]***.*** Note that a *CRF* using the general discount rate is also defined and used in the SALVAGE portion of the objective function.
 
 ***OBJ(z):*** Total system cost, discounted to the beginning of year ***z***
 
@@ -154,7 +155,7 @@ $\left\langle \mathbf{E} \right\rangle$ is the smallest integer larger than of e
 
 ***ILED*** Lead-time for the construction of a process. *TLIFE* starts *after* the end of *ILED.* Note that below we in general assume *ILED*≥0, although *ILED* can also be negative (causing the lead-time be shifted ILED years backward).
 
-***ILED~Min~* =*Min {1/10 \* D(t), 1/10 \* TLIFE~.~}*** This threshold serves to distinguish small from large projects; it triggers a different treatment of investment timing.
+***$\boldsymbol{ILED_{Min} = \textit{Min} \left\{ (1/10) \times D(t), (1/10) \times TLIFE \right\}}$*** This threshold serves to distinguish small from large projects; it triggers a different treatment of investment timing.
 
 #### Discounting options
 
@@ -207,7 +208,7 @@ e) Taxes and subsidies on investments are treated exactly as investment costs in
 
 f) Since the model has the capability to represent *sunk* materials and energy carriers (i.e. those embedded in a technology at construction time, such as the uranium core of a nuclear reactor, or the steel imbedded in a car), these sunk commodities have an impact on cost. Two possibilities exist: if the material is one whose production is explicitly modeled in the RES, then there is no need to indicate the cost corresponding to the sunk material, which will be implicitly accounted for by the model just like any other flow. If on the other hand the material is not speci­fically modeled in the RES, then the cost of the sunk material should be included in the technology's investment cost, and will then be handled exactly as investment costs.
 
-**[The four investment cases]{.underline}**
+<ins><b>The four investment cases</b></ins>
 
 As mentioned above, the timing of the various types of payments and revenues is made as realistic and as smooth as possible. All investment decisions result in increments and/or decrements in the capacity of a process, at various times. These increments or decrements may occur, in some cases, in one large lump, for instance in the case of a large project (hydroelectric plant, aluminum plant, etc.), and, in other cases, in small additions or subtractions to capacity (e.g. buying or retiring cars, or heating devices). Depending on which case is considered, the assumption regarding the corresponding streams of payments (or revenues) differs markedly. Therefore, the distinction between small and large projects (called cases 1 and 2 below) will be crucial for writing the capital cost components of the objective function. A second distinction comes from the relative length of a project's technical life vs. that of the period when the investment occurs. Namely, if the life of an investment is less than the length of the period, then it is clear that the investment must be repeated all along the period. This is not so when the technical life extends beyond the period's end. Altogether, these two distinctions result in four mutually exclusive cases, each of which is treated separately. In what follows, we present the mathematical expression for the INVCOST component and one graphical example for each case.
 
@@ -222,7 +223,7 @@ Here, we make what appears to be the most natural assumption, i.e. that the inve
 *EQ_INVCOST(y)*
 
 $$
-INVCOST(y) = \sum_{t \in MILESTONE \cup PASTYRS}^{}{INDIC(1.a)} \times \sum_{v = Max\{ M(t) - D(t) + 1,y - ELIFE_{t} + 1\}}^{Min\{ M(t),y\}}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)
+INVCOST(y) = \sum_{t \in MILESTONE \cup PASTYEARS}^{}{INDIC(1.a)} \times \sum_{v = Max\{ M(t) - D(t) + 1,y - ELIFE_{t} + 1\}}^{Min\{ M(t),y\}}\left( \frac{VAR\_ NCAP_{t}}{D(t)} + NCAP\_ PASTI_{t} \right)
 \times CRF_{s} \times NCAP\_COST_{v}
 $$
 
@@ -292,31 +293,35 @@ $$ (I-2-a)
 
 This case is similar to case I.2.a, but the investment is repeated more than once over the period, each cycle being *TLIFE* years long. As in case I.2.a, each construction is spread over one lead time, *ILED*. In this case, the exact pattern of yearly investments is complex, so that we have to use an algorithm instead of a closed form summation.
 
-**[ALGORITHM]{.underline}** (Output: the vector of payments $P_t(y)$ at each year $y$, due to $VAR\_NCAP_t$)
+<ins><b>ALGORITHM</b></ins> (Output: the vector of payments $P_t(y)$ at each year $y$, due to $VAR\_NCAP_t$)
 
-**[Step 0:]{.underline}** Initialization ($NI(u)$ represents the amount of new investment made in year $u$)
+<ins><b>Step 0:</b></ins> Initialization ($NI(u)$ represents the amount of new investment made in year $u$)
 
 $$
 NI_t(u):=0 \quad \forall B(t) \leq u \leq B(t) + ILED_t + (C-1) \times TLIFE_t-1 
 $$
 
-**[Step 1:]{.underline}** Compute number of repetitions of investment
+<ins><b>Step 1:</b></ins> Compute number of repetitions of investment
 
 $$C = \left\langle \frac{D(t)-ILED_t}{TLIFE_t} \right\rangle$$
 
-**[Step 2:]{.underline}** for each year $u$ in range:
+<ins><b>Step 2:</b></ins> for each year $u$ in range:
 
 $$B(t) \leq u \leq B(t) + ILED_t + (C-1) \cdot TLIFE_t - 1$$
 
 Compute:
 
-$For \space I=1 \space to \space C$
-     $For \space u=B(t)+(I-1) \cdot TLIFE_t \space to \space B(t) + (I-1) \cdot TLIFE_t + ILED_t -1$
-           $NI_t(t):=NI_t(u)+\frac{NCAP\_COST_{B(t)+(I-1)\times TLIFE_t + ILED_t}}{ILED_t}$
-     $Next \space u$
-$Next \space I$
+$$
+\begin{align*}
+&For \ I=1 \ to \ C \\
+&\quad For \ u = B(t) + (I - 1) \cdot TLIFE_t \ to \ B(t) + (I - 1) \cdot TLIFE_t + ILED_t - 1 \\
+&\quad \quad NI_t(u) := NI_t(u) + \frac{NCAP\_COST_{B(t) + (I - 1) \times TLIFE_t + ILED_t}}{ILED_t} \\
+&\quad Next \ u \\
+&Next \ I
+\end{align*}
+$$
 
-**[Step 3:]{.underline}** Compute payments incurred in year $y$, and resulting from variable $VAR\_NCAP_t$
+<ins><b>Step 3:</b></ins> Compute payments incurred in year $y$, and resulting from variable $VAR\_NCAP_t$
 
 For each $y$ in range:
 
@@ -326,7 +331,7 @@ Compute:
 
 $$P_t(y) = \sum_{u=Max\{B(t), y-ELIFE_t+1\}}^{y} {NI_t(u) \times VAR\_CAP_t \times CRF_s}$$
 
-**[END ALGORITHM]{.underline}**
+<ins><b>END ALGORITHM</b></ins>
 
 $$INVCOST(y) = \sum_{t \in MILESTONES,t \leq T(y)}^{}{INDIC(2.b) \times P_{t}(y)}$$
 
