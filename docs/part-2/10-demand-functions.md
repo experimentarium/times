@@ -295,7 +295,8 @@ These variables are defined whenever any of the elastic demand formulations is u
 The equations that are used to model the demand functions in TIMES are presented in {numref}`dem-constraints` below. The primary role of the variables and equations used to model Demand Functions is to control the standard TIMES demand variables VAR_DEM and the associated losses or gains in consumer\'s utility in the regional demand utility part of the objective function (EQ_OBJELS).
 
 :::{admonition} Reminder
-The elastic demand function formulations are activated at run time from the data handling system. The linear formulation is activated by the switch $SET TIMESED YES and the non-linear formulation by the switch $SET MICRO YES.
+
+The elastic demand function formulations are activated at run time from the data handling system. The linear formulation is activated by the switch `$SET TIMESED YES` and the non-linear formulation by the switch `$SET MICRO YES`.
 :::
 
 ```{list-table} Model constraints specific to demand functions
