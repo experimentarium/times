@@ -758,7 +758,7 @@ However, the user can also request more accelerated functional depreciation in t
 
 The computation of the salvage value therefore obeys a simple rule, described by the following result:
 
-*Result 1*
+:::{admonition} Result 1
 
 The salvage value (calculated at year *k*) of a unit investment made in year *k*, and whose technical life is *TL*, is:
 
@@ -774,11 +774,12 @@ $$
 S(k, TL, FDR) = \frac{((1 + d) \cdot \exp(FDR))^{TL - EOH - 1 + k} - 1}{((1 + d) \cdot \exp(FDR))^{TL} - 1} \quad \text{otherwise}
 $$
 
-where d is the general discount rate and FDR is the optional functional depreciation rate
+where $d$ is the general discount rate and $FDR$ is the optional functional depreciation rate
+:::
 
 Note that the second case may indeed arise, because some investments will occur even after *EOH.*
 
-Since we want to calculate all salvages at the single year *(EOH+1)*, the above expressions for *S(k,TL)* must be discounted (multiplied) by:
+Since we want to calculate all salvages at the single year *(EOH+1)*, the above expressions for $S(k,TL)$ must be discounted (multiplied) by:
 
 $$(1 + d)^{EOH + 1 - k}$$
 
@@ -799,7 +800,7 @@ Note: the time indexes have been omitted for clarity of the expression.
 
 The final result of these expressions is *Result 2* expressing the salvage value discounted to year *EOH+1*, of a unit investment with technical life *TL* made in year *k* as follows. Result 2 will be used in salvage expressions for investments and taxes/subsidies on investments.
 
-*Result 2*
+:::{admonition} Result 2
 
 $$
 SAL(k, TL) = 0 \quad \text{if } k + TL \leq EOH
@@ -815,6 +816,7 @@ $$
 
 
 where $d$ is the general discount rate, $CRF_s$ is the technology-specific capital recovery factor and $FDR$ is the functional depreciation rate.
+:::
 
 These expressions may now be adapted to each case of investment (and taxes/subsidies on investments). We enumerate these cases below. Note that to simplify the equations, we have omitted the second argument in $SAL$ (it is always $TLIFE_t$ in the expressions).
 
@@ -887,7 +889,7 @@ It is helpful to look at the examples for each case in order to understand these
 
 Finally, the equivalent of Result 2 is given as Result 3, for decommissioning.
 
-*Result 3*
+:::{admonition} Result 3
 
 The Salvage Value of a decommissioning cost occurring at year \(l\), for an investment taking place at year \(k\), is:
 
@@ -903,8 +905,8 @@ $$
 SAL(k, l) = \frac{(1 + d)^{TLIFE + k - l} - (1 + d)^{EOH + 1 - l}}{(1 + d)^{TLIFE} - 1} \times \frac{CRF_{s}}{CRF} \quad \text{otherwise}
 $$
 
-where \(d\) is the general discount rate \\
-and \(d_s\) is the technology-specific discount rate.
+where $d$ is the general discount rate and $d_s$ is the technology-specific discount rate.
+:::
 
 We are now ready to write the salvage values of decommissioning cost in each case.
 
@@ -918,9 +920,9 @@ $${SALVDECOM(EOH + 1) =
  }
  $$
  
-where *SAL(k,l)* is defined in Result 3
+where $SAL(k,l)$ is defined in Result 3
  
-Note  that *SAL(v,x)* is always 0 whenever $v + TLIFE \leq EOH + 1$
+Note  that $SAL(v,x)$ is always 0 whenever $v + TLIFE \leq EOH + 1$
  
  (IX.1.a)
  
@@ -1283,54 +1285,54 @@ commodity group (cg), side (io), timeslice (s)**
 **Remarks**:
 
 - The group cg in the equation may be either directly specified in ACT_EFF, or, if *ACT_EFF* is only specified for single commodity, determined as the commodity type, or, if *ACT_EFF* is specified for the reserved group name \'ACT\', determined as the default shadow group of the process. 
-- The parameter $ACT\_EFF_{r,v,p,cg,s}$ can be specified using any of the following as the cg: 
- - commodity groups; these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
- - commodity types (NRG/MAT/ENV/DEM/FIN); as above, these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
- - the predefined commodity group \'ACT\'; this defines a common efficiency for all members of the default shadow group of the process; 
- - single commodities on the shadow side without an associated group efficiency; these define commodity-specific efficiencies, and the shadow group will consist of all commodities of the same type; if no commodity efficiency is defined for some member in the group, the default efficiency 1 is assumed; 
- - single commodities on the shadow side with an associated group efficiency; these define commodity-specific efficiencies as above, but are multiplied by the effi­ciency specified for the group; if no efficiency is defined for some member in the group, the group efficiency is applied directly to that member; 
- - single commodities C that are members of the PCG of the process; these define commodity-specific multipliers for the process efficiency when producing the commodity C; if no efficiencies are additionally defined on the shadow side of the process, the whole standard shadow group of the process is assumed to be involved in the transformation (as when using 'ACT'), with the default efficiency of 1 on the shadow side. 
+- The parameter $ACT\_EFF_{r,v,p,cg,s}$ can be specified using any of the following as the cg:
+	- commodity groups; these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
+	- commodity types (NRG/MAT/ENV/DEM/FIN); as above, these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
+	- the predefined commodity group \'ACT\'; this defines a common efficiency for all members of the default shadow group of the process; 
+	- single commodities on the shadow side without an associated group efficiency; these define commodity-specific efficiencies, and the shadow group will consist of all commodities of the same type; if no commodity efficiency is defined for some member in the group, the default efficiency 1 is assumed; 
+	- single commodities on the shadow side with an associated group efficiency; these define commodity-specific efficiencies as above, but are multiplied by the effi­ciency specified for the group; if no efficiency is defined for some member in the group, the group efficiency is applied directly to that member; 
+	- single commodities C that are members of the PCG of the process; these define commodity-specific multipliers for the process efficiency when producing the commodity C; if no efficiencies are additionally defined on the shadow side of the process, the whole standard shadow group of the process is assumed to be involved in the transformation (as when using 'ACT'), with the default efficiency of 1 on the shadow side. 
 - The ACT_EFF parameter can also be shaped by using a FLO_FUNCX parameter of the following form: FLO_FUNCX(reg,datayear,p,CG,\'ACT\') = shape index. Here, the CG should correspond to the group of commodities on the shadow side involved in the EQE_ACTEFF equation (the group, commodity type, or \'ACT\' that was either explicitly or implicitly used in the ACT_EFF parameters that should be shaped).
 
 **Equation:**
 
-$$\mathbf{EQE\_ ACTEF}\mathbf{F}_{\mathbf{r,v,t,p,cg,io,s}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{\neg}\mathbf{rp\_ inou}\mathbf{t}_{\mathbf{r,p,io}}\mathbf{\land}\mathbf{ACT\_ EF}\mathbf{F}_{\mathbf{r,v,p,cg,s}}\mathbf{)}$$
+$$EQE\_ACTEFF_{r,v,t,p,cg,io,s} \quad \ni (rtp\_vintyr_{r,v,t,p} \land \neg rp\_inout_{r,p,io} \land ACT\_EFF_{r,v,p,cg,s})$$
 
-$${\sum_{\begin{aligned}
- & \mathbf{com}\_\mathbf{gma}\mathbf{p}_{\mathbf{r},\mathbf{cg},\mathbf{c}} \\
- & \mathbf{rtcp}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{s}}
-\end{aligned}}^{}\left( \begin{aligned}
- & VAR\_ FLO_{r,v,t,c,ts} \times \\
- & \left( \begin{aligned}
- & ACT\_ EFF_{r,v,p,c,ts}\mspace{6mu} if\mspace{6mu} ACT\_ EFF_{r,v,p,c,ts}\mspace{6mu} given \\
- & 1\ otherwise
+$$\sum_{\begin{aligned}
+& com\_gmap_{r,cg,c} \\  & rtcp\_varf_{r,t,p,c,s} \end{aligned}} 
+\left(\begin{aligned}
+& VAR\_FLO_{r,v,t,c,ts} \times \\
+& \left(\begin{aligned}
+& ACT\_EFF_{r,v,p,c,ts} \space if \space ACT\_EFF_{r,v,p,c,ts} \space given \\
+& 1 \space otherwise
 \end{aligned} \right) \\
- & \times RTCS\_ TSFR_{r,t,c,s,ts}
+& \times RTCS\_TSFR_{r,t,c,s,ts}
 \end{aligned} \right)
-}{= 
-}{\sum_{\begin{aligned}
- & \mathbf{rpc}\_\mathbf{p}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}} \\
- & \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}
-\end{aligned}}^{}{\left( \begin{aligned}
- & \left( \begin{aligned}
- & VAR\_ ACT_{r,v,t,p,ts}\ if\mspace{6mu} RP\_ PGACT_{r,p} \\
- & \frac{VAR\_ FLO_{r,v,t,p,c,ts}}{PRC\_ ACTFLO_{r,v,p,c}}\ otherwise
+ = 
+\sum_{\begin{aligned}
+& rpc\_pg_{r,p,c} \\
+& prc\_ts_{r,p,ts}
+\end{aligned}}
+\left (\begin{aligned}
+& \left (\begin{aligned}
+& VAR\_ACT_{r,v,t,p,ts} \space if \space RP\_PGACT_{r,p} \\
+& \frac{VAR\_FLO_{r,v,t,p,c,ts}}{PRC\_ACTFLO_{r,v,p,c}} \space otherwise
 \end{aligned} \right) \times \\
- & \left( \begin{aligned}
- & 1/ACT\_ EFF_{r,v,p,cg,ts}\ if\mspace{6mu} ACT\_ EFF_{r,v,p,cg,ts}\mspace{6mu} given \\
- & 1\ otherwise
+& \left (\begin{aligned}
+& 1/ACT\_EFF_{r,v,p,cg,ts} \space if \space ACT\_EFF_{r,v,p,cg,ts} \space given \\
+& 1 \space otherwise
 \end{aligned} \right) \times \\
- & \left( \begin{aligned}
- & 1/ACT\_ EFF_{r,v,p,c,ts}\ if\mspace{6mu} ACT\_ EFF_{r,v,p,c,ts}\mspace{6mu} given \\
- & 1\ otherwise
+& \left (\begin{aligned}
+& 1/ACT\_EFF_{r,v,p,c,ts} \space if \space ACT\_EFF_{r,v,p,c,ts} \space given \\
+& 1 \space otherwise
 \end{aligned} \right) \\
- & \times RTCS\_ TSFR_{r,t,c,s,ts}
-\end{aligned} \right) +}
-}{\sum_{\mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{}\left( \begin{aligned}
- & VAR\_ UPS_{r,v,t,p,ts,'FX'} \times \\
- & ACT\_ LOSPL_{r,v,p,'FX'}\ if\mspace{6mu} ACT\_ LOSPL_{r,v,p,'FX'}\mspace{6mu} given \\
- & \times RS\_ FR_{r,s,ts}
-\end{aligned} \right)}$$
+& \times RTCS\_TSFR_{r,t,c,s,ts}
+\end{aligned} \right)
++\sum_{prc\_ts_{r,p,ts}} \left (\begin{aligned}
+& VAR\_UPS_{r,v,t,p,ts,'FX'} \times \\
+& ACT\_LOSPL_{r,v,p,'FX'} \space if \space ACT\_LOSPL_{r,v,p,'FX'} \space given \\
+& \times RS\_FR_{r,s,ts}
+\end{aligned} \right)$$
 
 ### Equation: EQ_ACTFLO 
 
@@ -1355,29 +1357,19 @@ reduction algorithm is activated. Then, in all equations where the flow occurs, 
 
 **Equation:**
 
-$
-EQ\_ACTFLO_{r,v,t,p,s} \quad \exists \; rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land rtp\_vara_{r,t,p}
-$
+$$EQ\_ACTFLO_{r,v,t,p,s} \quad \exists \space rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land rtp\_vara_{r,t,p}$$
 
-$
-\textit{IF NOT} \; rpc\_ire
-$
+$$ \space IF \space NOT \space rpc\_ire$$
 
 i.e : If the process is not an inter-regional process
 
-$
-VAR\_ACT_{v,t} = \sum_{c \in prc\_actunt} \frac{VAR\_FLO_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}}
-$
+$$VAR\_ACT_{v,t} = \sum_{c \in prc\_actunt} \frac{VAR\_FLO_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}}$$
 
-$
-\textit{IF} \; rpc\_ire
-$
+$$IF \space rpc\_ire$$
 
 ie : If the process is an inter-regional trade process
 
-$
-VAR\_ACT_{t,v} = \sum_{c \in prc\_actunt} \frac{\sum VAR\_IRE_{r,v,t,p,c,s,ie}}{PRC\_ACTFLO_{r,v,p,c}}
-$
+$$VAR\_ACT_{t,v} = \sum_{c \in prc\_actunt} \frac{\sum VAR\_IRE_{r,v,t,p,c,s,ie}}{PRC\_ACTFLO_{r,v,p,c}}$$
 
 ### Equation: EQ_ACTPL
 
