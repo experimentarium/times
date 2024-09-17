@@ -427,9 +427,9 @@ $$
 
 Here too, the decommissioning takes place over *DLIFE*, but now, contrary to case 2.a, the process is repeated more than once in the period. The last investment has life extending over following periods, as in all similar cases. The resulting stream of yearly payments is complex, and therefore, we are forced to use an algorithm rather than a closed form summation. See also example below.
 
-$\underline{\textbf{ALGORITHM}}$ (apply to each *t* such that $t \leq T(y)$)
+<ins><b>ALGORITHM</b></ins> (apply to each *t* such that $t \leq T(y)$)
 
-$\underline{\textbf{Step 0}}$ : Initialization
+<ins><b>Step 0:</b></ins> Initialization
 
 $$P_{t}(y): = 0\quad\forall B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} \leq y \leq same + (C - 1) \times TLIFE_{t} + DLIFE_{t} + DELIF_{t} - 2$$
 
@@ -437,7 +437,7 @@ Where:
 
 $$C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle$$
 
-$\underline{\textbf{Step 1}}$: Compute payment vector
+<ins><b>Step 1:</b></ins> Compute payment vector
 
 $$
 \begin{align*}
@@ -452,7 +452,7 @@ $$
 \end{align*}
 $$
 
-$\underline{\textbf{END ALGORITHM}}$
+<ins><b>END ALGORITHM</b></ins>
 
 $INVDECOM(y) = \sum_{t \in MILESTONES,t \leq T(y)}^{}{INDIC(III.2.b) \times P_{t}(y)} \times VAR\_ NCAP_{t} \times CRF$
 **III.2.b**
@@ -695,7 +695,7 @@ $$
 
 *Note that y may exceed EOH*
 
-$$ (IV-2-b-tick)
+**(IV-2-b-tick)**
 
 ![](assets/case-2b-example-4.svg)
 
@@ -722,7 +722,7 @@ $$
 {VARTAXSUB(y) = VAR\_ XXX_{v,T(y)} \times (XXX\_ TAX_{y} - XXX\_ SUB_{y})}
 $$
 
-$y \leq EOH$ **(VI)**
+$$y \leq EOH$$ (VI)
 
 ### Cost of demand reductions ELASTCOST(y) 
 
@@ -733,11 +733,8 @@ $${ELASTCOST(y) =
 
 $${- \sum_{j = 1}^{COM\_ STEP_{up}}{COM\_ BPRICE_{T(y)} \times \left\{ \left( 1 + \frac{(j - 1/2) \times COM\_ VOC_{up,T(y)}}{COM\_ STEP_{up}} \right)^{\frac{1}{COM\_ ELAST_{up,T(y)}}} \right\}} \times VAR\_ ELAST_{up,j,T(y)}}
 $$
-$$
-{y \leq EOH}
-$$
 
-**(VII)**
+$$y \leq EOH$$ (VII)
 
 ### Salvage value: SALVAGE (EOH+1)
 
