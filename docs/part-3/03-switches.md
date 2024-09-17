@@ -85,7 +85,7 @@ Until TIMES v3.3.9, the standard MACRO formulation included a separate utility f
 
 > `$SET MACRO CSA` -- calibration with the MACRO decomposition method
 
-The CSA calibration facility produces a file called `MSADDF.DD`, which is auto­matically included in any subsequent policy run activated by the MACRO=MSA control switch. In order to carry out the calibration, one must also include the necessary MACRO parameters in the model input data
+The "CSA" calibration facility produces a file called `MSADDF.DD`, which is auto­matically included in any subsequent policy run activated by the MACRO=MSA control switch. In order to carry out the calibration, one must also include the necessary MACRO parameters in the model input data
 (see the TIMES-MACRO documenta­tion for a description of the MACRO parameters). The only mandatory para­meters are the initial GDP and GDP growth parameters.
 
 The DDF file produced by CSA can be used for the original TIMES-MACRO formulation, where one may re-calibrate it a few times more with the Baseline scenario to verify the calibration for TIMES-MACRO. The re-calib­ration is automatically done by TIMES-MACRO at the end of each run, whereupon a new file `DDFNEW.DD` is written, which can then be renamed for inclusion in the subsequent TIMES-MACRO policy runs.
@@ -107,9 +107,9 @@ The user can choose to use several alternative objective function formulations i
 
 * - OBJ Option
   - Description
-* - LT
+* - ALT
   - Uses modified capacity transfer coefficients that improve the independency of investment costs on period definitions.
-* - UTO (default)
+* - AUTO (default)
   - TIMES automatically selects the objective function among the standard formulation or the 'MOD' alternative formulation according to the B(t) and E(t) parameters specified by the user. If those parameters comply with the assumptions used in the standard formulation, then the standard formulation is used, but if not then the alternative formulation 'MOD' is used.
 * - LIN
   - Assumes linear evolution of flows and activities between Milestone years, but is otherwise similar to the ALT formulation.
@@ -142,7 +142,7 @@ In addition to controlling how the objective function is assembled, as described
   <br>According to this formula, the interest costs are zero if the lifetime L of the technology is only one year, because the payments are assumed to occur at the beginning of each year. This approach is often called as *beginning-of-year* discounting. However, it leads to an underestimation of the costs, because in reality the investments can be paid back only after getting some income from the investment. To avoid such underestimation, the following formula for annuities is perhaps more commonly used:
   <br>$CRF = r/(1-(1+r)^{-L})$
   <br>This second formula effectively assumes that the annual investment payments occur at the end of each year. This approach is often called as *end-of-year* discounting. As a good compromise between these two approaches, and highly recommended by many guidelines on good practices in cost evaluations[^19], so-called *mid-year discounting* can additionally be used.
-  <br>See Section 6.2.12 of Part II for more information about mid-year discounting.
+  <br>See Section 6.2.12 "The discounting methods for annual payments" of Part II for more information about mid-year discounting.
 * - DISCSHIFT
   - As a generalization to the MID_YEAR setting, alternate time-of-year discounting, including the end-of-year discounting mentioned above, can be achieved by using the DISCSHIFT control variable. The control variable should be set to correspond to the amount of time (in years) by which the discounting of continuous streams of payments should be shifted forward in time, with respect to the beginning of operation. Setting it to the value of 0.5 would be equal to the setting `$SET MID_YEAR YES`, and setting it to the value of 1.0 would be equal to end-of-year discounting, as follows:
   <br>`$SET DISCSHIFT 1`
@@ -449,12 +449,17 @@ The GAMS control variables that can be used for the savepoint and loadpoint feat
 * - LPOINT filename
   - Indicates that the model generator should load the solution point from the file %LPOINT%\_p.gdx. If the control variable SPOINT has additionally been set to 2 or 3, a subsequent attempt to load from %RUN_NAME%\_p.gdx is also made if the loading from the file %LPOINT%\_p.gdx fails.
 ```
+In VEDA-FE the LPOINT can be set from the Case Manager by requesting the loading of a previously GDX, and in ANSWER by means of Run Model Restart files specifications, as shown in {numref}`image23`.
 
-![](assets/image22.png)
-
-![](assets/image23.png)
-
-In VEDA-FE the LPOINT can be set from the Case Manager by requesting the loading of a previously GDX, and in ANSWER by means of Run Model Restart files specifications, as shown in Figure 18.
+```{figure} assets/image22.png
+:name: image22
+:align: center
+```
+```{figure} assets/image23.png
+:name: image23
+:align: center
+Setting LPOINT
+```
 
 ## Debugging controls
 
@@ -491,7 +496,7 @@ The various \$\<switch\> \<value\> switches controlling reporting of the model r
 * - Switch \<value\>
   - Description
 * - ANNCOST LEV
-  - Until TIMES v3.4.9, the values reported for each of these cost components have been calculated strictly for the associated Milestone year of a period. However this can result in investments made in other years within a period not being reflected, and for longer periods may not properly reflect changes in the other annual expenditures over that timeframe. A consequence of this is that it has not been possible to reconstruct the objective function value from the annualized costs reported. Additionally, these reported costs cannot be thought of as "representative" of the entire period, but only of the Milestone year. To redress this, from TIMES v3.5.0 the annual costs based upon the levelized costs over process lifetimes or periods can be requested. The various annualized cost report parameters are found in {numref}`sol-cost-rpt-attributes`. In this way all expenditures during the period are captured and the total objective function can be reconstructed from the levelized annual costs with a veryhigh accuracy (when using \$SET OBLONG YES). There is also a new attribute Time_NPV, which gives the period-wise discount factors, and a UC tag = LEVCOST/COSTindicating whether the annual costs reported for each scenario are levelized or not. That is, when said Attribute = LEVCOST for a scenario, then the annualized costs for said scenario represent the levelized average annual values.
+  - Until TIMES v3.4.9, the values reported for each of these cost components have been calculated strictly for the associated Milestone year of a period. However this can result in investments made in other years within a period not being reflected, and for longer periods may not properly reflect changes in the other annual expenditures over that timeframe. A consequence of this is that it has not been possible to reconstruct the objective function value from the annualized costs reported. Additionally, these reported costs cannot be thought of as "representative" of the entire period, but only of the Milestone year. To redress this, from TIMES v3.5.0 the annual costs based upon the levelized costs over process lifetimes or periods can be requested. The various annualized cost report parameters are found in {numref}`sol-cost-rpt-attributes`. In this way all expenditures during the period are captured and the total objective function can be reconstructed from the levelized annual costs with a very high accuracy (when using \$SET OBLONG YES). There is also a new attribute Time_NPV, which gives the period-wise discount factors, and a UC tag = LEVCOST/COST indicating whether the annual costs reported for each scenario are levelized or not. That is, when said Attribute = LEVCOST for a scenario, then the annualized costs for said scenario represent the levelized average annual values.
 * - BENCOST YES
   - TIMES includes also a basic benefit-cost reporting for new technologies. When the benefit-cost reporting is requested, the TIMES reporting attribute VAR_NCAPR includes the benefit-cost indicators listed in {numref}`bencost-rpt-attributes`.
 * - RPT_FLOTS COM / ANNUAL
@@ -544,9 +549,9 @@ The various \$\<switch\> \<value\> switches controlling reporting of the model r
 * - GRATIO
   - benefit / cost ratio, based on GGAP
 * - RNGLO
-  - ranging information (LO) for VAR_NCAP (when CPLEX ranging is activated; in terms of investment costs
+  - ranging information (LO) for VAR_NCAP (when CPLEX ranging is activated; in terms of investment costs)
 * - RNGUP
-  - ranging information (UP) for VAR_NCAP (when CPLEX ranging is activated; in terms of investment costs
+  - ranging information (UP) for VAR_NCAP (when CPLEX ranging is activated; in terms of investment costs)
 ```
 
 For the BENCOST report, all of the absolute indicators are expressed in terms of undiscounted investment costs (like those specified by NCAP_COST). For example, the competitiveness gap represents the amount of change in investment costs that would bring the technology competitive (the VAR_NCAP variable would enter the solution basis). Ranging information can only be reported when the CPLEX ranging option has been used. The ranging option can be activated by adding the following two lines into the CPLEX options file (CPLEX.OPT):
@@ -663,7 +668,7 @@ Various other \$\<option\> switches control miscellaneous aspects of a TIMES mod
 * - DYNTS \<YES\>
   - This control can be used for enabling dynamic timeslice configurations. Dynamic timeslices means that the timeslice tree can be varied according to model period. See the related user note for more information on the use of dynamic timeslice configurations.
 * - GDX_IREBND / GDX_IPRIC \<file\>
-  - These control flags can be used to import bounds and rices on exogenous imports/exports from a previous run, and thereby override any user-defined bounds/prices. Only bounds and prices for such imports and exports flows are imported that were endogenous in the previous run but are exogenous for the current run. The first setting tells TIMES to import the flow-levels of imports and exports from the file 'boundfile.gdx', and use these levels as fixed bounds on the imports and exports in the current run (if they are exogenous in the current run and were endogenous in the earlier run). The second setting tells TIMES to import the marginal prices of imports and exports from the file 'pricefile.gdx', and define these prices on the imports and exports in the current run (if they are exogenous in the current run and were endogenous in the earlier run). The earlier run may have different Milestone years than the current run.
+  - These control flags can be used to import bounds and prices on exogenous imports/exports from a previous run, and thereby override any user-defined bounds/prices. Only bounds and prices for such imports and exports flows are imported that were endogenous in the previous run but are exogenous for the current run. The first setting tells TIMES to import the flow-levels of imports and exports from the file 'boundfile.gdx', and use these levels as fixed bounds on the imports and exports in the current run (if they are exogenous in the current run and were endogenous in the earlier run). The second setting tells TIMES to import the marginal prices of imports and exports from the file 'pricefile.gdx', and define these prices on the imports and exports in the current run (if they are exogenous in the current run and were endogenous in the earlier run). The earlier run may have different Milestone years than the current run.
 * - PUNITS \<YES\>
   - Used for generating process units info (activity & capacity). The output attribute is PRC_UNITS(r,p,type,units), where type='ACT'/'CAP'.
 * - RELAX_PRC_CG \<YES\>
