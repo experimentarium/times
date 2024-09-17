@@ -196,13 +196,13 @@ Assume that we wish to define linearized damage costs for the emission commodity
 
 The damage function can be specified with the following parameters:
 
+```
 PARAMETER DAM_COST / REG.2000.EM.CUR 10 /;
-
 PARAMETER DAM_BQTY / REG.EM 80 /;
-
 PARAMETER DAM_ELAST / REG.EM.LO 1, REG.EM.UP 0.7 /;
+```
 
- ```{figure} assets/linearized-damage-function.svg
+```{figure} assets/linearized-damage-function.svg
 :name: example-linearized-function-111
 :align: center
 
@@ -217,17 +217,15 @@ Assume next that we would like to refine the damage function by the following sp
 - The threshold level of damage costs is 20 units of emissions;
 - The steps above the reference level should cover 100 units of emissions.
 
-The damage function can be specified with the following parameters
+The damage function can be specified with the following parameters:
 
+```
 PARAMETER DAM_COST / REG.2000.EM.CUR 10 /;
-
 PARAMETER DAM_BQTY / REG.EM 80 /;
-
 PARAMETER DAM_ELAST / REG.EM.LO 1, REG.EM.UP 0.7 /;
-
 PARAMETER DAM_STEP / REG.EM.LO 5, REG.EM.UP 3 /;
-
 PARAMETER DAM_VOC / REG.EM.LO 60, REG.EM.UP 100 /;
+```
 
 The resulting damage cost function is illustrated in {numref}`example-linearized-function-1513`. The cost function follows now very closely the accurate non-linear function. Note that the step sizes derived from the VOC specifications are 10 units for the lower steps, 20 for the middle step, and 30 units for the upper steps. However, the last step of course has no upper bound.
 
