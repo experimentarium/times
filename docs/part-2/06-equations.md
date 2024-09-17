@@ -293,19 +293,19 @@ $$ (I-2-a)
 
 This case is similar to case I.2.a, but the investment is repeated more than once over the period, each cycle being *TLIFE* years long. As in case I.2.a, each construction is spread over one lead time, *ILED*. In this case, the exact pattern of yearly investments is complex, so that we have to use an algorithm instead of a closed form summation.
 
-$\underline{\textbf{ALGORITHM}}$ (Output: the vector of payments $P_t(y)$ at each year $y$, due to $VAR\_NCAP_t$)
+<ins><b>ALGORITHM</b></ins> (Output: the vector of payments $P_t(y)$ at each year $y$, due to $VAR\_NCAP_t$)
 
-$\underline{\textbf{Step 0}}$ Initialization ($NI(u)$ represents the amount of new investment made in year $u$)
+<ins><b>Step 0:</b></ins> Initialization ($NI(u)$ represents the amount of new investment made in year $u$)
 
 $$
 NI_t(u):=0 \quad \forall B(t) \leq u \leq B(t) + ILED_t + (C-1) \times TLIFE_t-1 
 $$
 
-$\underline{\textbf{Step 1}}$ Compute number of repetitions of investment
+<ins><b>Step 1:</b></ins> Compute number of repetitions of investment
 
 $$C = \left\langle \frac{D(t)-ILED_t}{TLIFE_t} \right\rangle$$
 
-$\underline{\textbf{Step 2}}$ for each year $u$ in range:
+<ins><b>Step 2:</b></ins> for each year $u$ in range:
 
 $$B(t) \leq u \leq B(t) + ILED_t + (C-1) \cdot TLIFE_t - 1$$
 
@@ -321,7 +321,7 @@ $$
 \end{align*}
 $$
 
-$\underline{\textbf{Step 3}}$ Compute payments incurred in year $y$, and resulting from variable $VAR\_NCAP_t$
+<ins><b>Step 3:</b></ins> Compute payments incurred in year $y$, and resulting from variable $VAR\_NCAP_t$
 
 For each $y$ in range:
 
@@ -331,7 +331,7 @@ Compute:
 
 $$P_t(y) = \sum_{u=Max\{B(t), y-ELIFE_t+1\}}^{y} {NI_t(u) \times VAR\_CAP_t \times CRF_s}$$
 
-$\underline{\textbf{END ALGORITHM}}$
+<ins><b>END ALGORITHM</b></ins>
 
 $$INVCOST(y) = \sum_{t \in MILESTONES,t \leq T(y)}^{}{INDIC(2.b) \times P_{t}(y)}$$
 
