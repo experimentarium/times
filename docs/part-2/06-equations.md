@@ -1402,15 +1402,14 @@ time slice (s)**
 
 **Equations:**
 
-$$\mathbf{EQ\_ ACTP}\mathbf{L}_{\mathbf{r,v,t,p,s,}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ LOSP}\mathbf{L}_{\mathbf{r,v,p,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{> 0))}$$
+$$EQ\_ ACTPL_{r,v,t,p,s,} \quad \ni (rtp\_ vintyr_{r,v,t,p} \land prc\_ ts_{r,p,s} \land (ACT\_LOSPL_{r,v,p,'FX'}> 0))$$
 
-$${VAR\_ UPS_{r,v,t,p,s,'FX'} \geq 
+$${VAR\_UPS_{r,v,t,p,s,'FX'} \geq 
 }{\left( \begin{aligned}
- & COEF\_ CPT_{r,v,t,p}\left( VAR\_ NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}} \right) \times \\
- & PL\_ LDL_{r,v,p} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{s} - VAR\_ ACT_{r,v,t,p,s}
-\end{aligned} \right) \times 
+ & COEF\_CPT_{r,v,t,p}\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times \\
+ & PL\_LDL_{r,v,p} \cdot PRC\_CAPACT_{r,p} \cdot G\_YRFR_{s} - VAR\_ACT_{r,v,t,p,s}
+\end{aligned} \right) \times \frac{AF\_MIN_{r,v,p,ANNUAL}}{PL\_LDL_{r,v,p} - AF\_MIN_{r,v,p,ANNUAL}}
 }$$
-$\quad\frac{AF\_ MIN_{r,v,p,ANNUAL}}{PL\_ LDL_{r,v,p} - AF\_ MIN_{r,v,p,ANNUAL}}$
 
 ### Equation: EQ_ACTRAMP
 
@@ -1435,23 +1434,21 @@ $\quad\frac{AF\_ MIN_{r,v,p,ANNUAL}}{PL\_ LDL_{r,v,p} - AF\_ MIN_{r,v,p,ANNUAL}}
 
 **Equations:**
 
-$$\mathbf{EQ\_ ACTRAM}\mathbf{P}_{\mathbf{r,v,t,p,s,}\mathbf{'}\mathbf{UP}\mathbf{'}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,}\mathbf{'}\mathbf{UP}\mathbf{'}}\mathbf{> 0))}$$
+$$EQ\_ACTRAMP_{r,v,t,p,s,'UP'} \quad \ni (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,'UP'} > 0))$$
 
-$${\left( \frac{VAR\_ ACT_{r,v,t,p,s}}{G\_ YRFR_{r,s}} - \frac{VAR\_ ACT_{r,v,t,p,s - 1}}{G\_ YRFR_{r,s - 1}} - \left( VAR\_ UPS_{r,v,t,p,s,'UP'} - VAR\_ UPS_{r,v,t,p,s,'LO'} \right) \cdot ACT\_ UPS_{r,v,p,s,'FX'} \right) \times 
-}{\frac{2 \cdot RS\_ STGPRD_{r,s}}{8760 \times \left( G\_ YRFR_{r,s} + G\_ YRFR_{r,s - 1} \right)} \leq \left( VAR\_ NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}} \right) \times 
-}{COEF\_ CPT_{r,v,t,p} \times PRC\_ CAPACT_{r,p} \times ACT\_ UPS_{r,v,p,s,'UP'}\mspace{6mu}}$$
+$${\left( \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \frac{VAR\_ACT_{r,v,t,p,s - 1}}{G\_YRFR_{r,s - 1}} - \left( VAR\_UPS_{r,v,t,p,s,'UP'} - VAR\_UPS_{r,v,t,p,s,'LO'} \right) \cdot ACT\_UPS_{r,v,p,s,'FX'} \right) \times 
+}{\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s - 1} \right)} \leq \left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times 
+}{COEF\_CPT_{r,v,t,p} \times PRC\_CAPACT_{r,p} \times ACT\_UPS_{r,v,p,s,'UP'} \space}$$
 
-$$\mathbf{EQ\_ ACTRAM}\mathbf{P}_{\mathbf{r,v,t,p,s,}\mathbf{'}\mathbf{LO}\mathbf{'}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,}\mathbf{'}\mathbf{LO}\mathbf{'}}\mathbf{> 0))}$$
+$$EQ\_ ACTRAMP_{r,v,t,p,s,'LO'} \quad \ni (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,'LO'} > 0))$$
 
-$${\left( \frac{VAR\_ ACT_{r,v,t,p,s - 1}}{G\_ YRFR_{r,s - 1}} - \frac{VAR\_ ACT_{r,v,t,p,s}}{G\_ YRFR_{r,s}} - \left( VAR\_ UPS_{r,v,t,p,s,'LO'} - VAR\_ UPS_{r,v,t,p,s,'UP'} \right) \cdot ACT\_ UPS_{r,v,p,s,'FX'} \right) \times 
-}{\frac{2 \cdot RS\_ STGPRD_{r,s}}{8760 \times \left( G\_ YRFR_{r,s} + G\_ YRFR_{r,s - 1} \right)} \leq \left( VAR\_ NCAP_{r,v,p} - \sum_{ts \in SUP(s - 1) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}} \right) \times 
+$${\left( \frac{VAR\_ACT_{r,v,t,p,s - 1}}{G\_YRFR_{r,s - 1}} - \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \left( VAR\_UPS_{r,v,t,p,s,'LO'} - VAR\_UPS_{r,v,t,p,s,'UP'} \right) \cdot ACT\_UPS_{r,v,p,s,'FX'} \right) \times 
+}{\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s - 1} \right)} \leq \left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s - 1) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times COEF\_CPT_{r,v,t,p} \times PRC\_CAPACT_{r,p} \times ACT\_UPS_{r,v,p,s,'LO'}
 }$$
-$COEF\_ CPT_{r,v,t,p} \times PRC\_ CAPACT_{r,p} \times ACT\_ UPS_{r,v,p,s,'LO'}$
 
 ### Equation: EQ_ACTRAMPC 
 
-**Indice**s: **region (r), vintage year (v), period (t), process (p),
-time slice (s)**
+**Indice**s: **region (r), vintage year (v), period (t), process (p), time slice (s)**
 
 **Type**: =
 
@@ -1468,15 +1465,15 @@ time slice (s)**
 The following equation calculates the changes in the load
 $var\_ldc_{r,v,t,p,s,bd}$ during the dispatching phase:
 
-$${\left( \frac{var\_ act_{r,v,t,p,s - 1}}{G\_ YRFR_{r,s - 1}} - \frac{var\_ act_{r,v,t,p,s}}{G\_ YRFR_{r,s}} \right) \cdot \frac{1}{CAPACT_{r,p}}\mspace{6mu} = \mspace{6mu} var\_ ldc_{r,v,t,p,s,LO} - var\_ ldc_{r,v,t,p,s,UP} - 
-}{ACT\_ MINLD_{r,v,p} \times \left( var\_ off_{r,v,t,p,s - 1} - var\_ off_{r,v,t,p,s} \right),\mspace{6mu}\forall s \in PRC\_ TS_{r,p}}$$
+$${\left( \frac{var\_act_{r,v,t,p,s - 1}}{G\_YRFR_{r,s - 1}} - \frac{var\_act_{r,v,t,p,s}}{G\_YRFR_{r,s}} \right) \cdot \frac{1}{CAPACT_{r,p}} \space = \space var\_ldc_{r,v,t,p,s,LO} - var\_ldc_{r,v,t,p,s,UP} - 
+}{ACT\_MINLD_{r,v,p} \times \left( var\_off_{r,v,t,p,s - 1} - var\_off_{r,v,t,p,s} \right), \space \forall s \in PRC\_TS_{r,p}}$$
 
 In the above equation the variable $var\_ldc_{r,v,t,p,s,LO}$ holds load decreases, while the variable $var\_ldc_{r,v,t,p,s,UP}$ holds load increases. The two variables appear together in the equation since at each time slice $s$ only one of the two variables can be set (i.e. the load can either increase or decrease).
 
 Having calculated the changes in the dispatchable load, the associated ramping costs are entered into the objective function as the sum of the load changes $var\_ldc_{r,v,t,p,s,UP}$ multiplied by the cost attribute $ACT\_CSTRMP_{r,v,p,UP,cur}$ for the ramping up costs, and the sum of the load changes $var\_ldc_{r,v,t,p,s,LO}$ multiplied by the cost attribute $ACT\_CSTRMP_{r,v,p,LO,cur}$ for the ramping down costs. The costs are discounted to the base year:
 
 $${obj_{RMPC} = 
-}{\sum_{r,t}^{}\left( NPV_{r,t} \cdot \sum_{p,v,bd \in \{ LO,UP\}}^{}{ACT\_ CSTRMP_{r,v,p,bd,cur} \cdot \sum_{s \in PRC\_ TS_{r,p}}^{}{var\_ ldc_{r,v,t,p,s,bd}}} \right)}$$
+}{\sum_{r,t}^{}\left( NPV_{r,t} \cdot \sum_{p,v,bd \in \{ LO,UP\}}{ACT\_CSTRMP_{r,v,p,bd,cur} \cdot \sum_{s \in PRC\_TS_{r,p}}{var\_ldc_{r,v,t,p,s,bd}}} \right)}$$
 
 ### Equation: EQL_ACTUPC
 
@@ -1495,7 +1492,7 @@ $${obj_{RMPC} =
 
 **Remarks:**
 
-- The minimum on-line / off-line hours are defined by using the input attribute $ACT\_TIME_{r,v,p,bd}$, where $bd = LO/UP$. The maximum number of start-up cycles is defined by using the input attribute $ACT\_TIME_{r,v,p,\textit{NV}}$.
+- The minimum on-line / off-line hours are defined by using the input attribute $ACT\_TIME_{r,v,p,bd}$, where $bd = LO$/$UP$. The maximum number of start-up cycles is defined by using the input attribute $ACT\_TIME_{r,v,p,'N'}$.
 
 **Notation:**
 
