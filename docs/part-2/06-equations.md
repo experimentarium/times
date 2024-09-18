@@ -1492,7 +1492,7 @@ $${obj_{RMPC} =
 
 **Remarks:**
 
-- The minimum on-line / off-line hours are defined by using the input attribute $ACT\_TIME_{r,v,p,bd}$, where $bd = LO$/$UP$. The maximum number of start-up cycles is defined by using the input attribute $ACT\_TIME_{r,v,p,'N'}$.
+- The minimum on-line / off-line hours are defined by using the input attribute $ACT\_TIME_{r,v,p,bd}$, where bd = LO/UP. The maximum number of start-up cycles is defined by using the input attribute $ACT\_TIME_{r,v,p,'N'}$.
 
 **Notation:**
 
@@ -1542,15 +1542,21 @@ timeslice (s)**
 
 **Notation:**
 
-- *UPS^+^(r,p,tsl)* is the set of timeslice levels with start-ups/shut-down costs defined for process p.
+- $UPS^{+}(r,p,tsl)$ is the set of timeslice levels with start-ups/shut-down costs defined for process p.
 
 **Equation:**
 
-$$\mathbf{EQE\_ ACTUP}\mathbf{S}_{\mathbf{r,v,t,p,tsl,s}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{UP}\mathbf{S}_{\mathbf{r,p,tsl}}^{\mathbf{+}}\mathbf{\land}\mathbf{ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}}\mathbf{)}$$
+$$EQE\_ACTUPS_{r,v,t,p,tsl,s} \quad \ni (rtp\_vintyr_{r,v,t,p} \land UP S_{r,p,tsl}^{+} \land ts\_group_{r,tsl,s})$$
 
-> $${VAR\_ UPS_{r,v,t,p,s,'UP'} - VAR\_ UPS_{r,v,t,p,s,'LO'}
-> }{= 
-> }{VAR\_ UPS_{r,v,t,p,s - 1,'N'} - VAR\_ UPS_{r,v,t,p,s,'N'}}$$
+$$
+VAR\_UPS_{r,v,t,p,s,'UP'} - VAR\_UPS_{r,v,t,p,s,'LO'}
+$$
+$$
+=
+$$
+$$
+VAR\_UPS_{r,v,t,p,s-1,'N'} - VAR\_UPS_{r,v,t,p,s,'N'}
+$$
 
 ### Equation: EQL_ACTUPS
 
@@ -1567,25 +1573,25 @@ timeslice level (tsl), lim_type (l), time slice (s)**
 
 **Notation:**
 
-- *UPS^+^(r,p,tsl)* is the set of timeslice levels with start-ups/shut-down costs defined for process **p**.
+- $UPS^{+}(r,p,tsl)$ is the set of timeslice levels with start-ups/shut-down costs defined for process **p**.
 - *P(r,s)* refers to the parent timeslice of ***s*** in region **r**.
 
 **Equations:**
 
 **Case A: lim_type=\'N\'**
 
-$$\mathbf{EQL\_ ACTUP}\mathbf{S}_{\mathbf{r,v,t,p,tsl,}\mathbf{'}\mathbf{N}\mathbf{'}\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\left( \mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{UP}\mathbf{S}_{\mathbf{r,p,tsl}}^{\mathbf{+}}\mathbf{\land}\mathbf{ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}} \right)$$
+$$EQL\_ACTUPS_{r,v,t,p,tsl,'N',s} \quad \ni \left(rtp\_vintyr_{r,v,t,p} \land UP S_{r,p,tsl}^{+} \land ts\_group_{r,tsl,s} \right)$$
 
 $$VAR\_ UPS_{r,v,t,p,s,'N'}\quad \leq \quad VAR\_ UPS_{p,v,t,P(s),'FX'}$$
 
 **Case B: lim_type=\'FX\'**
 
-$$\mathbf{EQL\_ ACTUP}\mathbf{S}_{\mathbf{r,v,t,p,tsl,}\mathbf{'}\mathbf{FX}\mathbf{'}\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\left( \begin{array}{r}
-\mathbf{\& rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{UP}\mathbf{S}_{\mathbf{r,p,tsl}}^{\mathbf{+}}\mathbf{\land} \\
-\mathbf{\& ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}}\mathbf{\land}\mathbf{s}\mathbf{\in}\left\{ \bigcup_{\mathbf{sl}}^{}{\mathbf{P(sl)|sl}\mathbf{\in}\mathbf{UP}\mathbf{S}^{\mathbf{+}}\mathbf{(p)}} \right\}
+$$EQL\_ACTUPS_{r,v,t,p,tsl,'FX',s} \quad \ni \left( \begin{array}{r}
+rtp\_vintyr_{r,v,t,p} \land UPS_{r,p,tsl}^{+} \land \\
+ts\_group_{r,tsl,s} \land s \in \left\{ \underset{sl}{\bigcup}{P(sl)|sl \in UPS^{+} (p)} \right\}
 \end{array} \right)$$
 
-$$VAR\_ UPS_{r,v,t,p,s,'FX'}\quad \leq \quad\sum_{ts \in C(s)}^{}{VAR\_ UPS_{r,v,t,p,ts,'UP'}}$$
+$$VAR\_UPS_{r,v,t,p,s,'FX'}\quad \leq \quad\sum_{ts \in C(s)}{VAR\_UPS_{r,v,t,p,ts,'UP'}}$$
 
 ### Equation: EQ(*l*)\_ASHAR
 
@@ -1602,7 +1608,7 @@ time slice (s)**
 
 **Related equations**: **EQ(*l*)\_INSHR, EQ(*l*)\_OUTSHR**
 
-**Purpose**: A share equation between process flows/activity is generated a process (**p**) in region (**r**) for time period (**t**) and each time-slice (**s**). The equation is similar to the equations EQ(l)\_INSHR and EQ(l)\_OUTSHR, but is only generated when the input parameter *FLO_SHAR~r,v,p,c,cg,s,bd~* is specified in a non-standard way, for a commodity **c** and group **cg** such that **c** is not a member of group **cg**, or such that **c**=**cg**.
+**Purpose**: A share equation between process flows/activity is generated a process (**p**) in region (**r**) for time period (**t**) and each time-slice (**s**). The equation is similar to the equations EQ(l)\_INSHR and EQ(l)\_OUTSHR, but is only generated when the input parameter $FLO\_SHAR_{r,v,p,c,cg,s,bd}$ is specified in a non-standard way, for a commodity **c** and group **cg** such that **c** is not a member of group **cg**, or such that **c**=**cg**.
 
 **Remarks**:
 
@@ -1611,44 +1617,49 @@ time slice (s)**
 - When **c**=\'ACT\', the equation defines a bound on the amount of activity in proportion to the flows in the group **cg**, on the ANNUAL level. 
 - When **cg**=\'ACT\', the equation defines a bound on the amount of flow of **c** in proportion to the activity, on the level of the process flow variable for **c**. 
 - When **c**=**cg**, and **c** is a member of the default shadow group, the share equation is generated for the flow of **c** in the total flow of commodities in the SPG, and either on the group level or on the WEEKLY level, whichever is higher. This feature makes it easy to define e.g. daily share constraints for a DAYNITE level process, such as fuel shares for plug-in hybrid cars. 
-- When the process is a storage process, the only valid share specification is *FLO_SHAR~r,v,p,c,\'ACT\',s,bd~*, where c is the discharge commodity of a timeslice storage. This generates a constraint between the output flow and the storage activity, which can be useful e.g. for preventing the use of the storage for a by-pass operation. The **cg** is set automatically to the SPG when the *FLO_SHAR* is converted into *FLO_ASHAR.*
+- When the process is a storage process, the only valid share specification is $FLO\_SHAR_{r,v,p,c,'ACT',s,bd}$, where c is the discharge commodity of a timeslice storage. This generates a constraint between the output flow and the storage activity, which can be useful e.g. for preventing the use of the storage for a by-pass operation. The **cg** is set automatically to the SPG when the *FLO_SHAR* is converted into *FLO_ASHAR.*
 
-$$\mathbf{EQ(l)\_ ASHA}\mathbf{R}_{\mathbf{r,v,t,p,c,cg,s}}\mathbf{\ni}\left( \begin{array}{r}
-\mathbf{\& rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\left( \mathbf{rpcs\_ va}\mathbf{r}_{\mathbf{r,p,c,s}}\mathbf{\vee}\left( \mathbf{(c =}\mathbf{'}\mathbf{ACT}\mathbf{'}\mathbf{)}\mathbf{\land}\mathbf{annua}\mathbf{l}_{\mathbf{s}} \right) \right) \\
-\mathbf{\&}\mathbf{\land}\sum_{\mathbf{ts\_ ma}\mathbf{p}_{\mathbf{r,s,ts}}}^{}{\mathbf{FLO\_ ASHA}\mathbf{R}_{\mathbf{r,v,p,c,cg,ts,bd}}}
+$$EQ(l)\_ASHAR_{r,v,t,p,c,cg,s} \ni \left( \begin{array}{r}
+rtp\_vintyr_{r,v,t,p} \land \left( rpcs\_var_{r,p,c,s} \vee \left( (c ='ACT') \land annual_{s} \right) \right) \\
+\land \sum_{ts\_map_{r,s,ts}}{FLO\_ASHAR_{r,v,p,c,cg,ts,bd}}
 \end{array} \right)$$
 
 **Case A**: Standard processes:
 
-$${\sum_{\mathbf{rps\_ s}\mathbf{2}_{\mathbf{r,p,sl}}}^{}{\mathbf{FLO\_ ASHA}\mathbf{R}_{\mathbf{r,v,p,c,cg,sl,bd}}\mathbf{\times}\mathbf{RS\_ F}\mathbf{R}_{\mathbf{r,s,sl}}\mathbf{\times}}
-}{\mathbf{\quad}\left( \begin{array}{r}
-\mathbf{\&}\sum_{\mathbf{com}\mathbf{\in}\mathbf{cg}}^{}{\sum_{\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,com,ts}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,com,sl,ts}}}}\mathbf{+} \\
-\mathbf{\&}\sum_{\mathbf{com}\mathbf{\in}\begin{Bmatrix}
-\mathbf{rpc\_ p}\mathbf{g}_{\mathbf{r,p,com}} \\
-\mathbf{|}\mathbf{\mspace{6mu}}\mathbf{cg =}\mathbf{'}\text{ACT}\mathbf{'}
-\end{Bmatrix}}^{}{\sum_{\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,ts}}}^{}{\frac{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}}{\mathbf{PRC\_ ACTFL}\mathbf{O}_{\mathbf{r,v,p,com}}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,com,sl,ts}}}}
-\end{array} \right)
-}{\overset{\underset{}{}}{\left\{ \mathbf{= ;}\mathbf{\leq}\mathbf{;}\mathbf{\geq} \right\}}
-}{\sum_{\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,ts}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,c,ts}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,c,s,ts}}}\mathbf{+}
-}{\sum_{\mathbf{com}\mathbf{\in}\begin{Bmatrix}
-\mathbf{rpc\_ p}\mathbf{g}_{\mathbf{r,p,com}} \\
-\mathbf{|}\mathbf{\mspace{6mu}}\mathbf{c =}\mathbf{'}\text{ACT}\mathbf{'}
-\end{Bmatrix}}^{}{\sum_{\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,ts}}}^{}{\frac{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}}{\mathbf{PRC\_ ACTFL}\mathbf{O}_{\mathbf{r,v,p,com}}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,com,s,ts}}}}}$$
+$${\sum_{rps\_s2_{r,p,sl}}{FLO\_ASHAR_{r,v,p,c,cg,sl,bd} \times RS\_FR_{r,s,sl} \times}
+}{ \quad \left( \begin{array}{r}
+\sum_{com \in cg}{\sum_{rtpcs\_varf_{r,t,p,com,ts}}{VAR\_FLO_{r,v,t,p,com,ts} \times RTCS\_TSFR_{r,t,p,com,sl,ts}}} + \\
+\sum_{com \in \begin{Bmatrix}
+rpc\_pg_{r,p,com} \\
+| \space cg = 'ACT'
+\end{Bmatrix}}{\sum_{prc\_ts_{r,p,ts}}{\frac{VAR\_FLO_{r,v,t,p,com,ts}}{PRC\_ACTFLO_{r,v,p,com}} \times RTCS\_TSFR_{r,t,p,com,sl,ts}}}
+\end{array} \right)}
+$$
+
+$$\left\{ = ; \leq ; \geq \right\}$$
+$$
+{\sum_{rtpcs\_varf_{r,t,p,c,ts}}{VAR\_FLO_{r,v,t,p,c,ts} \times RTCS\_TSFR_{r,t,p,c,s,ts}}+}
+$$
+$$
+{\sum_{com \in \begin{Bmatrix}
+rpc\_pg_{r,p,com} \\
+| \space c = 'ACT' \end{Bmatrix}}
+{\sum_{prc\_ts_{r,p,ts}}{\frac{VAR\_FLO_{r,v,t,p,com,ts}}{PRC\_ACTFLO_{r,v,p,com}} \times RTCS\_TSFR_{r,t,p,com,s,ts}}}}$$
 
 **Case B**: Storage processes:
 
-$${\sum_{\mathbf{rps\_ s}\mathbf{2}_{\mathbf{r,p,sl}}}^{}{\mathbf{FLO\_ ASHA}\mathbf{R}_{\mathbf{r,v,p,c,}\mathbf{'}\mathbf{ACT}\mathbf{'}\mathbf{,sl,bd}}\mathbf{\times}\mathbf{RS\_ F}\mathbf{R}_{\mathbf{r,s,sl}}\mathbf{\times}}
-}{\mathbf{\quad}\left( \sum_{\mathbf{com}\mathbf{\in}\begin{Bmatrix}
-\mathbf{rpc\_ p}\mathbf{g}_{\mathbf{r,p,com}} \\
-\mathbf{|}\mathbf{\mspace{6mu}}\mathbf{cg =}\mathbf{'}\text{ACT}\mathbf{'}
-\end{Bmatrix}}^{}{\sum_{\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,ts}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,com,sl,ts}}}} \right)
-}{\overset{\underset{}{}}{\left\{ \mathbf{= ;}\mathbf{\leq}\mathbf{;}\mathbf{\geq} \right\}}
-}$$
+$${\sum_{rps\_s2_{r,p,sl}}FLO\_ASHAR_{r,v,p,c,'ACT',sl,bd} \times RS\_FR_{r,s,sl} \times}{ \quad \left( \sum_{com \in \begin{Bmatrix}
+rpc\_pg_{r,p,com} \\
+| \space cg = 'ACT' \end{Bmatrix}}
+{\sum_{prc\_ts_{r,p,ts}}{VAR\_FLO_{r,v,t,p,com,ts} \times RTCS\_TSFR_{r,t,p,com,sl,ts}}} \right)
+}
+$$
+$$\left\{ = ; \leq ; \geq \right\}$$
 
 $$\sum_{\begin{array}{r}
-\mathbf{\&}\mathbf{\mspace{6mu}}\mathbf{rpc\_ st}\mathbf{g}_{\mathbf{r,p,c}} \\
-\mathbf{\& rpcs\_ va}\mathbf{r}_{\mathbf{r,p,c,ts}}
-\end{array}}^{}{\frac{\mathbf{VAR\_ SOU}\mathbf{T}_{\mathbf{r,v,t,p,c,ts}}}{\mathbf{PRC\_ ACTFL}\mathbf{O}_{\mathbf{r,v,p,c}}}\mathbf{\times}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,p,c,s,ts}}}$$
+& \space rpc\_stg_{r,p,c} \\
+& rpcs\_var_{r,p,c,ts}\end{array}}
+{\frac{VAR\_SOUT_{r,v,t,p,c,ts}}{PRC\_ACTFLO_{r,v,p,c}} \times RTCS\_TSFR_{r,t,p,c,s,ts}}$$
 
 ### Equation: EQ(*l*)\_BLND
 
@@ -1674,13 +1685,18 @@ $$\sum_{\begin{array}{r}
 
 **Equation:**
 
-$${EQ(l)\_ BLND_{r,t,ble,spe} \ni bl\_ type_{r,ble,spe}
-}
-{\sum_{opr \in ble\_ opr_{r,ble,opr}}^{}{BL\_ COM_{r,ble,opr,spe} \cdot RU\_ CVT_{r,ble,spe,opr} \cdot VAR\_ BLND_{r,t,ble,opr}}
-}
-{\left\{ \leq ; = ; \geq \right\}
-}
-{\sum_{opr \in ble\_ opr_{r,ble,opr}}^{}{BL\_ SPEC_{r,ble,opr,spe} \cdot RU\_ CVT_{r,ble,spe,opr} \cdot VAR\_ BLND_{r,t,ble,opr}}}$$
+$$
+{EQ(l)\_BLND_{r,t,ble,spe} \ni bl\_type_{r,ble,spe}}
+$$
+$$
+{\sum_{opr \in ble\_opr_{r,ble,opr}}{BL\_COM_{r,ble,opr,spe} \cdot RU\_CVT_{r,ble,spe,opr} \cdot VAR\_BLND_{r,t,ble,opr}}}
+$$
+$$
+\left\{ \leq ; = ; \geq \right\}
+$$
+$$
+\sum_{opr \in ble\_opr_{r,ble,opr}}{BL\_SPEC_{r,ble,opr,spe} \cdot RU\_CVT_{r,ble,spe,opr} \cdot VAR\_BLND_{r,t,ble,opr}}
+$$
 
 ### Equation: EQ_BNDCST
 
@@ -1692,7 +1708,7 @@ $${EQ(l)\_ BLND_{r,t,ble,spe} \ni bl\_ type_{r,ble,spe}
 
 **Related equations**: **EQ_OBJ**
 
-**Purpose**: This equation is generated when a bound is specified on regional costs, taxes and/or subsidies, either cumulative over a year range (using *REG_CUMCST~r,y1,y2,agg,,cur,bd~*) or in given milestone years (using *REG_BNDCST~r,y,agg,cur,bd~*). It sets the level of the variable *VAR_CUMCST~r,y1,y2,costagg,cur~* equal to the cost expression, to be bounded accordingly.
+**Purpose**: This equation is generated when a bound is specified on regional costs, taxes and/or subsidies, either cumulative over a year range (using $REG\_CUMCST_{r,y1,y2,agg,,cur,bd}$) or in given milestone years (using $REG\_BNDCST_{r,y,agg,cur,bd}$). It sets the level of the variable $VAR\_CUMCST_{r,y1,y2,costagg,cur}$ equal to the cost expression, to be bounded accordingly.
 
 **Remarks**:
 
@@ -1740,23 +1756,37 @@ $${EQ(l)\_ BLND_{r,t,ble,spe} \ni bl\_ type_{r,ble,spe}
 - COMSUB(r,y) = the commodity subsidy portion of the (virtual) variable VARTAXSUB
 - FLOTAX(r,y) = the flow tax portion of the (virtual) variable VARTAXSUB
 - FLOSUB(r,y) = the flow subsidy portion of the (virtual) variable VARTAXSUB
-- **cost_map~agg,costagg~** = mapping coefficient between all cost aggregations and the component aggregations to be summed up (value = 0 / 1 / --1).
+- $cost\_map_{agg, costagg}$ = mapping coefficient between all cost aggregations and the component aggregations to be summed up (value = 0 / 1 / -1).
 
 **Remark**: See the Section on the objective function for details on the expressions for the (virtual) cost variables mentioned above.
 
 **Equation:**
 
-$${\mathbf{EQ\_ BNDCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,t,y}\mathbf{2,agg,cur}}\mathbf{\quad \ni}\left( \left( \sum_{\mathbf{bd}}^{}{\mathbf{REG\_ CUMCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,agg,cur,bd}}}\mathbf{< > 0} \right)\mathbf{\land}\left( \mathbf{t =}\underset{\left\{ \mathbf{tt|M(tt - 1) < y}\mathbf{2} \right\}}{\mathbf{argmax}}\mathbf{(M(tt))} \right) \right)\mathbf{VAR\_ CUMCS}\mathbf{T}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,agg,cur}}\mathbf{=}
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{INVCOST(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{INV}\mathbf{'}\mathbf{,type}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{INVTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{INVTAX}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{INVSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{INVSUB}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FIXCOST(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FOM}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FIXTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FOMTAX}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FIXSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FOMSUB}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{COMTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{COMTAX}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{COMSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{COMSUB}\mathbf{'}} \right)
-}{\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FLOTAX(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FLOTAX}\mathbf{'}} \right)
-}$$$\sum_{\mathbf{y}\mathbf{1}\mathbf{\leq}\mathbf{y}\mathbf{\leq}\mathbf{y}\mathbf{2}}^{}\mathbf{FLOSUB(r,y)}\mathbf{\times}\left( \mathbf{cost\_ ma}\mathbf{p}_{\mathbf{agg,}\mathbf{'}\mathbf{FLOSUB}\mathbf{'}} \right)$
+$$EQ\_BNDCST_{r,y1,t,y2,agg,cur} \quad \ni \left( \left( \sum_{bd}{REG\_CUMCST_{r,y1,y2,agg,cur,bd}}< > 0 \right) \land \left(t = \underset{\left\{ tt|M(tt - 1) < y2 \right\}}{argmax}(M(tt)) \right) \right)
+$$
+
+$$VAR\_CUMCST_{r,y1,y2,agg,cur} =
+$$
+
+$$\sum_{y1 \leq y \leq y2} INVCOST(r,y) \times \left( cost\_map_{agg,'INV',type} \right)$$
+
+$$\sum_{y1 \leq y \leq y2} INVTAX(r,y) \times \left(cost\_map_{agg,'INVTAX'} \right)$$
+
+$$\sum_{y1 \leq y \leq y2} INVSUB(r,y) \times \left(cost\_map_{agg,'INVSUB'} \right)$$
+
+$$\sum_{y1 \leq y \leq y2} FIXCOST(r,y) \times \left(cost\_map_{agg,'FOM'} \right)$$
+
+$$\sum_{y1 \leq y \leq y2}FIXTAX(r,y)\times \left(cost\_map_{agg,'FOMTAX'} \right)$$
+
+$$\sum_{y1 \leq y \leq y2} FIXSUB(r,y)\times \left(cost\_map_{agg,'FOMSUB'} \right)$$
+
+$$\sum_{y1 \leq y \leq y2} COMTAX(r,y)\times \left(cost\_map_{agg,'COMTAX'} \right)$$
+
+$$\sum_{y1 \leq y \leq y2} COMSUB(r,y)\times \left(cost\_map_{agg,'COMSUB'} \right)$$
+
+$$\sum_{y1 \leq y \leq y2} FLOTAX(r,y)\times \left(cost\_map_{agg,'FLOTAX'} \right)$$
+
+$$\sum_{y1 \leq y \leq y2} FLOSUB(r,y)\times \left(cost\_map_{agg,'FLOSUB'} \right)$$
 
 ### Equation: EQ(*l*)\_BNDNET/PRD
 
@@ -1785,14 +1815,18 @@ Dual: marginal cost of increasing the bound by one unit
 
 **Equation**
 
-$EQ(l)\_ BND(NET/PRD)_{r,t,c,s}
-$$${\ni \left\{ \mathbf{rcs}\_\mathbf{comt}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{s}} \land (NOT\mspace{6mu}\mathbf{com}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{s}}) \land COM\_ BND(NET/PRD)_{r,t,c,s,bd} \right\}
-}
-{\sum_{\underset{ts \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{ts}} \cap \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}}}{}}^{}{VAR\_ COM(NET/PRD)_{r,t,c,ts}}
-}
-{( \leq / \geq / = )
-}
-{COM\_ BND(NET/PRD)_{r,t,c,s,bd}}$$
+$$
+EQ(l)\_BND(NET/PRD)_{r,t,c,s}
+$$
+
+$$\ni \left\{ rcs\_comts_{r,c,s} \land (NOT \space com\_ts_{r,c,s}) \land COM\_ BND(NET/PRD)_{r,t,c,s,bd} \right\}$$
+
+$$\sum_{ts \in rtcs\_varc_{r,t,c,ts} \cap ts\_map_{r,s,ts}} VAR\_COM(NET/PRD)_{r,t,c,ts}$$
+
+$$(\leq / \geq / = )$$
+
+$$COM\_BND(NET/PRD)_{r,t,c,s,bd}$$
+Note: sign according to the $l$ equation index (must coincide with t the **bd** index in parameter COM_BDNET/PRD).
 
 ### Equation: EQ(*l*)\_CAFLAC
 
@@ -1807,87 +1841,78 @@ $$${\ni \left\{ \mathbf{rcs}\_\mathbf{comt}\mathbf{s}_{\mathbf{r},\mathbf{c},\ma
 
 **Related equations**: **EQ(*l*)\_CAPACT, EQL_CAPFLO**
 
-**Purpose**: This equation relates the flows in the primary group of a process to its available existing capacity in period **t**. The existing capacity consists of investments made in the current and previous periods (VAR_NCAP) and investment decisions that have been made exogenously (*NCAP_PASTI/PRC_RESID*). The availability of the existing capacity in a specific period **t** and timeslice **s** can be specified by the input attribute *NCAP_AFC~r,v,p,cg,tsl~ / NCAP_AFCS~r,v,p,cg,s~*, where cg can be a single commodity in the PG, thereby making the process availability factor dependent on the output mix.
+**Purpose**: This equation relates the flows in the primary group of a process to its available existing capacity in period **t**. The existing capacity consists of investments made in the current and previous periods (VAR_NCAP) and investment decisions that have been made exogenously (*NCAP_PASTI/PRC_RESID*). The availability of the existing capacity in a specific period **t** and timeslice **s** can be specified by the input attribute $NCAP\_AFC_{r,v,p,cg,tsl}/NCAP\_AFCS_r{,v,p,cg,s}$, where cg can be a single commodity in the PG, thereby making the process availability factor dependent on the output mix.
 
 **Remarks:**
-- The cg index in the input attributes *NCAP_AFC~r,v,p,cg,tsl~ / NCAP_AFCS~r,v,p,cg,s~* can be either a single commodity in the PG, the reserved group name \'ACT\' denoting the PG itself (for other than storage processes, see below), or a commodity type of the PG. Any *NCAP_AFCS~r,v,p,cg,s~* specified overrides an *NCAP_AFC~r,v,p,cg,tsl~* specified on the same level, and any value specified for a single commodity overrides a value specified for a group containing the commodity.
+- The cg index in the input attributes $NCAP\_AFC_{r,v,p,cg,tsl}/NCAP\_AFCS_{r,v,p,cg,s}$ can be either a single commodity in the PG, the reserved group name \'ACT\' denoting the PG itself (for other than storage processes, see below), or a commodity type of the PG. Any $NCAP\_AFCS_{r,v,p,cg,s}$ specified overrides an $NCAP\_AFC_{r,v,p,cg,tsl}$ specified on the same level, and any value specified for a single commodity overrides a value specified for a group containing the commodity.
 - For storage and trade processes, which both can have the same commodity IN and OUT of the process, defining an *NCAP_AFC/NCAP_AFCS* both for the commodity type and for the single     commodity itself results in the commodity availability being applied to the output flow while the group availability is applied to the input flow.
 - For storage processes, defining an *NCAP_AFC/NCAP_AFCS* on the reserved group name \'ACT\' defines a separate availability factor constraint (EQL_CAPFLO) for the storage level, and not for the flows in the PG.
-- For trade processes, **prc_map~r,\'DISTR\',p~** can be also used for removing exports from contributing to the availability equation, if the process is bi-directional.
+- For trade processes, $prc\_map_{r,'DISTR',p}$** can be also used for removing exports from contributing to the availability equation, if the process is bi-directional.
 - Note that the availability factors defined by NCAP_AFC are multiplied by any NCAP_AF/NCAP_AFS/NCAP_AFA value if defined for the same timeslice.
 
 **Special notation used for the equation formulation:**
 
--   *SX~r,v,p,c,s~* denotes an adjustment coefficient for storage
-    > inputs:\
-    > $$\mathbf{S}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r}
-    > \mathbf{\& 0}\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{to}\mathbf{p}_{\mathbf{OUT}}\mathbf{(c)}\mathbf{\land}\mathbf{to}\mathbf{p}_{\mathbf{IN}}\mathbf{(c)}\mathbf{\land}\mathbf{\neg}\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}} \\
-    > \mathbf{\&}\left( \frac{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}}{\sum_{\mathbf{rp\_ p}\mathbf{g}_{\mathbf{r,p,cg}}}^{}{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}}} \right)\mathbf{\quad}\begin{matrix}
-    > \mathbf{if}\mathbf{\mspace{6mu}}\mathbf{to}\mathbf{p}_{\mathbf{OUT}}\mathbf{(c)}\mathbf{\land}\mathbf{to}\mathbf{p}_{\mathbf{IN}}\mathbf{(c)}\mathbf{\land} \\
-    > \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}\mathbf{\land} \\
-    > \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}
-    > \end{matrix} \\
-    > \mathbf{\& 1}\mathbf{\quad}\mathbf{otherwise}
-    > \end{array} \right\}$$
+-   $SX_{r,v,p,c,s}$ denotes an adjustment coefficient for storage inputs:
 
--   *IX~r,v,p,c,s~* denotes an adjustment coefficient for trade process
-    > exports:\
-    > $$\mathbf{I}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r}
-    > \mathbf{\&}\left( \frac{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}}{\sum_{\mathbf{rp\_ p}\mathbf{g}_{\mathbf{r,p,cg}}}^{}{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}}} \right)\mathbf{\quad}\begin{matrix}
-    > \mathbf{if}\mathbf{\mspace{6mu}}\mathbf{imp(c)}\mathbf{\land}\mathbf{exp(c)}\mathbf{\land} \\
-    > \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}\mathbf{\land} \\
-    > \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}
-    > \end{matrix} \\
-    > \mathbf{\& 1}\mathbf{\quad}\mathbf{otherwise}
-    > \end{array} \right\}$$
+$$SX_{r,v,p,c,s} \quad = \left\{ \begin{array}{r} 0 \space if \space top_{OUT}(c) \land top_{IN}(c) \land \neg NCAP\_AFCS_{r,v,p,cg,s} \\ \left( \frac{NCAP\_AFCS_{r,v,p,c,s}}{\sum_{rp\_pg_{r,p,cg}}{NCAP\_AFCS_{r,v,p,cg,s}}} \right) \quad \begin{matrix} if \space top_{OUT}(c) \land top_{IN}(c) \land \\ NCAP\_AFCS_{r,v,p,c,s} \land \\ NCAP\_AFCS_{r,v,p,cg,s} \end{matrix} \\ 1 \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad otherwise \end{array} \right\}$$
+
+
+-   $IX_{r,v,p,c,s}$ denotes an adjustment coefficient for trade process exports:
+  
+$$IX_{r,v,p,c,s} \quad = \left\{ \begin{array}{r} \left( \frac{NCAP\_AFCS_{r,v,p,c,s}}{\sum_{rp\_pg_{r,p,cg}}{NCAP\_AFCS_{r,v,p,cg,s}}} \right) \quad \begin{matrix}
+if \space imp(c) \land exp(c) \land \\
+NCAP\_AFCS_{r,v,p,c,s} \land \\ NCAP\_AFCS_{r,v,p,cg,s} \end{matrix} \\ 1 \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad otherwise \end{array} \right\}$$
+
 
 **Equation:**
 
-$$\mathbf{EQ(l)\_ CAFLA}\mathbf{C}_{\mathbf{r,v,t,p,s}}\mathbf{\quad}\mathbf{\ni}\left( \begin{array}{r}
-\mathbf{\& rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,s}}\mathbf{\land} \\
-\mathbf{\&}\left( \mathbf{NCAP\_ A}\mathbf{F}_{\mathbf{r,v,p,s,bd}}\mathbf{\vee}\mathbf{NCAP\_ AF}\mathbf{S}_{\mathbf{r,v,p,s,bd}}\mathbf{\vee}\mathbf{NCAP\_ AF}\mathbf{A}_{\mathbf{r,t,p,bd}} \right)
-\end{array} \right)$$
+$$EQ(l)\_CAFLAC_{r,v,t,p,s} \quad \ni \left(\begin{array}{r}
+rtp\_vintyr_{r,v,t,p} \land NCAP\_AFCS_{r,v,p,s} \land \\
+\left( NCAP\_AF_{r,v,p,s,bd} \vee NCAP\_AFS_{r,v,p,s,bd} \vee NCAP\_AFA_{r,t,p,bd} \right) \end{array} \right)$$
 
-$${\sum_{\begin{aligned}
- & \mathbf{rpc}\_\mathbf{p}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}} \\
- & \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}
-\end{aligned}}^{}{\left( \begin{aligned}
- & \frac{1}{PRC\_ ACTFLO_{r,v,p,c}} \times \\
- & \left( \begin{aligned}
- & \quad 1/NCAP\_ AFCS_{r,v,p,c,s}if\mspace{6mu} NCAP\_ AFCS_{r,v,p,c,s}\mspace{6mu} given \\
- & \sum_{\mathbf{rp}\_\mathbf{p}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{cg}}}^{}\frac{1}{NCAP\_ AFCS_{r,v,p,cg,s}}elseif\mspace{6mu} NCAP\_ AFCS_{r,v,p,cg,s}\mspace{6mu} given \\
- & 1otherwise
+$$\sum_{\begin{aligned}
+ & rpc\_pg_{r,p,c} \\
+ & prc\_ts_{r,p,ts}
+\end{aligned}}
+{\left( \begin{aligned}
+& \frac{1}{PRC\_ACTFLO_{r,v,p,c}} \times \\
+& \left( \begin{aligned}
+& \quad 1/NCAP\_AFCS_{r,v,p,c,s} \space if \space NCAP\_AFCS_{r,v,p,c,s} \space given \\
+& \sum_{rp\_pg_{r,p,cg}}\frac{1}{NCAP\_AFCS_{r,v,p,cg,s}}\space else \space if \space NCAP\_AFCS_{r,v,p,cg,s} \space given \\
+& 1 \space otherwise
 \end{aligned} \right) \times \\
- & \left( \begin{aligned}
- & VAR\_ FLO_{r,v,t,p,c,ts}if\mspace{6mu}\mathbf{rp}\_\mathbf{st}\mathbf{d}_{\mathbf{r},\mathbf{p}} \\
- & \left( \begin{aligned}
- & VAR\_ SOUT_{r,v,t,p,c,ts} + \\
- & VAR\_ SIN_{r,v,t,p,c,ts} \times SX_{r,v,p,c,ts}
-\end{aligned} \right)if\mspace{6mu}\mathbf{rp}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p}} \\
- & \left( \begin{aligned}
- & VAR\_ IRE_{r,v,t,p,c,ts,'IMP} + \\
- & VAR\_ IRE_{r,v,t,p,c,ts,'EXP'} \times IX_{r,v,p,c,ts}
-\end{aligned} \right)if\mspace{6mu}\mathbf{rp}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p}}
+& \left( \begin{aligned}
+& VAR\_FLO_{r,v,t,p,c,ts} \space if \space rp\_std_{r,p} \\
+& \left( \begin{aligned}
+& VAR\_SOUT_{r,v,t,p,c,ts} + \\
+& VAR\_SIN_{r,v,t,p,c,ts} \times SX_{r,v,p,c,ts}
+\end{aligned} \right) \space if \space rp\_stg_{r,p} \\
+& \left( \begin{aligned}
+& VAR\_IRE_{r,v,t,p,c,ts,'IMP} + \\
+& VAR\_IRE_{r,v,t,p,c,ts,'EXP'} \times IX_{r,v,p,c,ts}
+\end{aligned} \right) \space if \space rp\_ire_{r,p}
 \end{aligned} \right) \\
- & \times RTCS\_ TSFR_{r,t,c,s,ts}
-\end{aligned} \right) +}
-}{\left\{ \leq , = \right\}
-}{\sum_{\left\{ v2|\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v2},\mathbf{t},\mathbf{p}} \right\}}^{}\left( \begin{aligned}
- & COEF\_ AF_{r,v2,t,p,s} \times COEF\_ CPT_{r,v2,t,p} \times \\
- & \left( \begin{aligned}
- & VAR\_ NCAP_{r,v2,p} + NCAP\_ PASTI_{r,v2,p} - \\
- & \left( VAR\_ SCAP_{r,v2,t,p}\quad if\mspace{6mu} PRC\_ RCAP_{r,p} \right)
+ & \times RTCS\_TSFR_{r,t,c,s,ts}
+\end{aligned} \right) +}$$
+
+$$ \left\{ \leq, = \right\}$$
+
+$${\sum_{\left\{ v2|rtp\_cptyr_{r,v2,t,p} \right\}}\left( \begin{aligned}
+& COEF\_AF_{r,v2,t,p,s} \times COEF\_CPT_{r,v2,t,p} \times \\
+& \left( \begin{aligned}
+& VAR\_NCAP_{r,v2,p} + NCAP\_PASTI_{r,v2,p} - \\
+& \left( VAR\_SCAP_{r,v2,t,p}\quad if \space PRC\_RCAP_{r,p} \right)
 \end{aligned} \right) \\
- & \times PRC\_ CAPACT_{r,p}
-\end{aligned} \right)\quad if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}
-}$$$\quad + \quad\quad\left( \begin{aligned}
- & COEF\_ AF_{r,v,t,p,s} \times COEF\_ CPT_{r,v,t,p} \times \\
- & \left( \begin{aligned}
- & VAR\_ NCAP_{r,v,p} + NCAP\_ PASTI_{r,v,p} - \\
- & \left( VAR\_ SCAP_{r,v,t,p}\quad if\mspace{6mu} PRC\_ RCAP_{r,p} \right)
+& \times PRC\_CAPACT_{r,p} \end{aligned} \right)\quad if \space \neg prc\_vint_{r,p}}$$
+
+$$\quad + \quad\quad\left( \begin{aligned}
+& COEF\_AF_{r,v,t,p,s} \times COEF\_CPT_{r,v,t,p} \times \\
+& \left( \begin{aligned}
+& VAR\_NCAP_{r,v,p} + NCAP\_PASTI_{r,v,p} - \\
+& \left( VAR\_SCAP_{r,v,t,p}\quad if \space PRC\_RCAP_{r,p} \right)
 \end{aligned} \right) \\
- & \times PRC\_ CAPACT_{r,p}
-\end{aligned} \right)\quad if\mspace{6mu}\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}$
+& \times PRC\_CAPACT_{r,p}
+\end{aligned} \right)\quad if\space prc\_vint_{r,p}$$
 
 ### Equation: EQ(*l*)\_CAPACT
 
