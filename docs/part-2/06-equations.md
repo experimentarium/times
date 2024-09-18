@@ -1276,14 +1276,13 @@ time slice (s)**
 
 **Equations:**
 
-$$\mathbf{EQ\_ ACTP}\mathbf{L}_{\mathbf{r,v,t,p,s,}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ LOSP}\mathbf{L}_{\mathbf{r,v,p,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{> 0))}$$
+$$EQ\_ACTPL_{r,v,t,p,s} \quad \ni (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_LOSPL_{r,v,p,'FX'} > 0))$$
 
-$${VAR\_ UPS_{r,v,t,p,s,'FX'} \geq 
+$${VAR\_UPS_{r,v,t,p,s,'FX'} \geq 
 }{\left( \begin{aligned}
- & COEF\_ CPT_{r,v,t,p}\left( VAR\_ NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}} \right) \times \\
- & PL\_ LDL_{r,v,p} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{s} - VAR\_ ACT_{r,v,t,p,s}
-\end{aligned} \right) \times 
-}$$$\quad\frac{AF\_ MIN_{r,v,p,ANNUAL}}{PL\_ LDL_{r,v,p} - AF\_ MIN_{r,v,p,ANNUAL}}$
+& COEF\_CPT_{r,v,t,p}\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times \\
+& PL\_LDL_{r,v,p} \cdot PRC\_CAPACT_{r,p} \cdot G\_YRFR_{s} - VAR\_ACT_{r,v,t,p,s}
+\end{aligned} \right) \times \quad \frac{AF\_MIN_{r,v,p,ANNUAL}}{PL\_LDL_{r,v,p} - AF\_MIN_{r,v,p,ANNUAL}}}$$
 
 ### Equation: EQ_ACTRAMP
 
