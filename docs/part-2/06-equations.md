@@ -1308,17 +1308,17 @@ $${VAR\_ UPS_{r,v,t,p,s,'FX'} \geq
 
 **Equations:**
 
-$$\mathbf{EQ\_ ACTRAM}\mathbf{P}_{\mathbf{r,v,t,p,s,}\mathbf{'}\mathbf{UP}\mathbf{'}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,}\mathbf{'}\mathbf{UP}\mathbf{'}}\mathbf{> 0))}$$
+$$EQ\_ACTRAMP_{r,v,t,p,s,'UP'} \quad \ni (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,'UP'}> 0))$$
 
-$${\left( \frac{VAR\_ ACT_{r,v,t,p,s}}{G\_ YRFR_{r,s}} - \frac{VAR\_ ACT_{r,v,t,p,s - 1}}{G\_ YRFR_{r,s - 1}} - \left( VAR\_ UPS_{r,v,t,p,s,'UP'} - VAR\_ UPS_{r,v,t,p,s,'LO'} \right) \cdot ACT\_ UPS_{r,v,p,s,'FX'} \right) \times 
-}{\frac{2 \cdot RS\_ STGPRD_{r,s}}{8760 \times \left( G\_ YRFR_{r,s} + G\_ YRFR_{r,s - 1} \right)} \leq \left( VAR\_ NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}} \right) \times 
-}{COEF\_ CPT_{r,v,t,p} \times PRC\_ CAPACT_{r,p} \times ACT\_ UPS_{r,v,p,s,'UP'}\mspace{6mu}}$$
+$${\left( \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \frac{VAR\_ACT_{r,v,t,p,s - 1}}{G\_YRFR_{r,s - 1}} - \left( VAR\_UPS_{r,v,t,p,s,'UP'} - VAR\_UPS_{r,v,t,p,s,'LO'} \right) \cdot ACT\_UPS_{r,v,p,s,'FX'} \right) \times 
+}{\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s - 1} \right)} \leq \left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times 
+}{COEF\_CPT_{r,v,t,p} \times PRC\_CAPACT_{r,p} \times ACT\_UPS_{r,v,p,s,'UP'}}$$
 
-$$\mathbf{EQ\_ ACTRAM}\mathbf{P}_{\mathbf{r,v,t,p,s,}\mathbf{'}\mathbf{LO}\mathbf{'}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,}\mathbf{'}\mathbf{LO}\mathbf{'}}\mathbf{> 0))}$$
+$$EQ\_ACTRAMP_{r,v,t,p,s,'LO'} \quad \ni (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,'LO'} > 0))$$
 
-$${\left( \frac{VAR\_ ACT_{r,v,t,p,s - 1}}{G\_ YRFR_{r,s - 1}} - \frac{VAR\_ ACT_{r,v,t,p,s}}{G\_ YRFR_{r,s}} - \left( VAR\_ UPS_{r,v,t,p,s,'LO'} - VAR\_ UPS_{r,v,t,p,s,'UP'} \right) \cdot ACT\_ UPS_{r,v,p,s,'FX'} \right) \times 
-}{\frac{2 \cdot RS\_ STGPRD_{r,s}}{8760 \times \left( G\_ YRFR_{r,s} + G\_ YRFR_{r,s - 1} \right)} \leq \left( VAR\_ NCAP_{r,v,p} - \sum_{ts \in SUP(s - 1) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}} \right) \times 
-}$$$COEF\_ CPT_{r,v,t,p} \times PRC\_ CAPACT_{r,p} \times ACT\_ UPS_{r,v,p,s,'LO'}$
+$${\left( \frac{VAR\_ACT_{r,v,t,p,s - 1}}{G\_YRFR_{r,s - 1}} - \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \left( VAR\_UPS_{r,v,t,p,s,'LO'} - VAR\_UPS_{r,v,t,p,s,'UP'} \right) \cdot ACT\_UPS_{r,v,p,s,'FX'} \right) \times 
+}{\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s - 1} \right)} \leq \left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s - 1) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times 
+} COEF\_CPT_{r,v,t,p} \times PRC\_CAPACT_{r,p} \times ACT\_UPS_{r,v,p,s,'LO'}$$
 
 ### Equation: EQ_ACTRAMPC 
 
@@ -1421,11 +1421,10 @@ timeslice (s)**
 
 **Equation:**
 
-$$\mathbf{EQE\_ ACTUP}\mathbf{S}_{\mathbf{r,v,t,p,tsl,s}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{UP}\mathbf{S}_{\mathbf{r,p,tsl}}^{\mathbf{+}}\mathbf{\land}\mathbf{ts\_ grou}\mathbf{p}_{\mathbf{r,tsl,s}}\mathbf{)}$$
+$$EQE\_ACTUPS_{r,v,t,p,tsl,s} \quad \ni (rtp\_vintyr_{r,v,t,p} \land UPS_{r,p,tsl}^{+} \land ts\_group_{r,tsl,s})$$
 
-> $${VAR\_ UPS_{r,v,t,p,s,'UP'} - VAR\_ UPS_{r,v,t,p,s,'LO'}
-> }{= 
-> }{VAR\_ UPS_{r,v,t,p,s - 1,'N'} - VAR\_ UPS_{r,v,t,p,s,'N'}}$$
+$${VAR\_ UPS_{r,v,t,p,s,'UP'} - VAR\_ UPS_{r,v,t,p,s,'LO'}
+}{=}{VAR\_ UPS_{r,v,t,p,s - 1,'N'} - VAR\_ UPS_{r,v,t,p,s,'N'}}$$
 
 ### Equation: EQL_ACTUPS
 
@@ -1660,14 +1659,13 @@ Dual: marginal cost of increasing the bound by one unit
 
 **Equation**
 
-$EQ(l)\_ BND(NET/PRD)_{r,t,c,s}
-$$${\ni \left\{ \mathbf{rcs}\_\mathbf{comt}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{s}} \land (NOT\mspace{6mu}\mathbf{com}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{c},\mathbf{s}}) \land COM\_ BND(NET/PRD)_{r,t,c,s,bd} \right\}
+$$EQ(l)\_ BND(NET/PRD)_{r,t,c,s}$$
+
+$$\ni \left\{rcs\_comts_{r,c,s} \land (NOT \space com\_ts_{r,c,s}) \land COM\_BND(NET/PRD)_{r,t,c,s,bd} \right\}
+{\sum_{ts \in rtcs\_varc_{r,t,c,ts} \cap ts\_map_{r,s,ts}}{VAR\_COM(NET/PRD)_{r,t,c,ts}}
 }
-{\sum_{\underset{ts \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{ts}} \cap \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}}}{}}^{}{VAR\_ COM(NET/PRD)_{r,t,c,ts}}
-}
-{( \leq / \geq / = )
-}
-{COM\_ BND(NET/PRD)_{r,t,c,s,bd}}$$
+( \leq / \geq / = )
+{COM\_BND(NET/PRD)_{r,t,c,s,bd}}$$
 
 ### Equation: EQ(*l*)\_CAFLAC
 
@@ -1693,28 +1691,25 @@ $$${\ni \left\{ \mathbf{rcs}\_\mathbf{comt}\mathbf{s}_{\mathbf{r},\mathbf{c},\ma
 
 **Special notation used for the equation formulation:**
 
--   *SX~r,v,p,c,s~* denotes an adjustment coefficient for storage
-    > inputs:\
-    > $$\mathbf{S}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r}
-    > \mathbf{\& 0}\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{to}\mathbf{p}_{\mathbf{OUT}}\mathbf{(c)}\mathbf{\land}\mathbf{to}\mathbf{p}_{\mathbf{IN}}\mathbf{(c)}\mathbf{\land}\mathbf{\neg}\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}} \\
-    > \mathbf{\&}\left( \frac{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}}{\sum_{\mathbf{rp\_ p}\mathbf{g}_{\mathbf{r,p,cg}}}^{}{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}}} \right)\mathbf{\quad}\begin{matrix}
-    > \mathbf{if}\mathbf{\mspace{6mu}}\mathbf{to}\mathbf{p}_{\mathbf{OUT}}\mathbf{(c)}\mathbf{\land}\mathbf{to}\mathbf{p}_{\mathbf{IN}}\mathbf{(c)}\mathbf{\land} \\
-    > \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}\mathbf{\land} \\
-    > \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}
-    > \end{matrix} \\
-    > \mathbf{\& 1}\mathbf{\quad}\mathbf{otherwise}
-    > \end{array} \right\}$$
+-   *SX~r,v,p,c,s~* denotes an adjustment coefficient for storage inputs:
 
--   *IX~r,v,p,c,s~* denotes an adjustment coefficient for trade process
-    > exports:\
-    > $$\mathbf{I}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r}
-    > \mathbf{\&}\left( \frac{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}}{\sum_{\mathbf{rp\_ p}\mathbf{g}_{\mathbf{r,p,cg}}}^{}{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}}} \right)\mathbf{\quad}\begin{matrix}
-    > \mathbf{if}\mathbf{\mspace{6mu}}\mathbf{imp(c)}\mathbf{\land}\mathbf{exp(c)}\mathbf{\land} \\
-    > \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}\mathbf{\land} \\
-    > \mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}
-    > \end{matrix} \\
-    > \mathbf{\& 1}\mathbf{\quad}\mathbf{otherwise}
-    > \end{array} \right\}$$
+$$\mathbf{S}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r} \mathbf{\& 0}\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{to}\mathbf{p}_{\mathbf{OUT}}\mathbf{(c)}\mathbf{\land}\mathbf{to}\mathbf{p}_{\mathbf{IN}}\mathbf{(c)}\mathbf{\land}\mathbf{\neg}\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}} \\
+\mathbf{\&}\left( \frac{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}}{\sum_{\mathbf{rp\_ p}\mathbf{g}_{\mathbf{r,p,cg}}}^{}{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}}} \right)\mathbf{\quad}\begin{matrix}
+\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{to}\mathbf{p}_{\mathbf{OUT}}\mathbf{(c)}\mathbf{\land}\mathbf{to}\mathbf{p}_{\mathbf{IN}}\mathbf{(c)}\mathbf{\land} \\
+\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}\mathbf{\land} \\
+\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}
+\end{matrix} \\
+\mathbf{\& 1}\mathbf{\quad}\mathbf{otherwise}
+\end{array} \right\}$$
+
+-   *IX~r,v,p,c,s~* denotes an adjustment coefficient for trade process exports:
+
+$$\mathbf{I}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r} \mathbf{\&}\left( \frac{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}}{\sum_{\mathbf{rp\_ p}\mathbf{g}_{\mathbf{r,p,cg}}}^{}{\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}}} \right)\mathbf{\quad}\begin{matrix} \mathbf{if}\mathbf{\mspace{6mu}}\mathbf{imp(c)}\mathbf{\land}\mathbf{exp(c)}\mathbf{\land} \\
+\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,c,s}}\mathbf{\land} \\
+\mathbf{NCAP\_ AFC}\mathbf{S}_{\mathbf{r,v,p,cg,s}}
+\end{matrix} \\
+\mathbf{\& 1}\mathbf{\quad}\mathbf{otherwise}
+\end{array} \right\}$$
 
 **Equation:**
 
@@ -1755,14 +1750,16 @@ $${\sum_{\begin{aligned}
 \end{aligned} \right) \\
  & \times PRC\_ CAPACT_{r,p}
 \end{aligned} \right)\quad if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}
-}$$$\quad + \quad\quad\left( \begin{aligned}
+}$$
+
+$$\quad + \quad\quad\left( \begin{aligned}
  & COEF\_ AF_{r,v,t,p,s} \times COEF\_ CPT_{r,v,t,p} \times \\
  & \left( \begin{aligned}
  & VAR\_ NCAP_{r,v,p} + NCAP\_ PASTI_{r,v,p} - \\
  & \left( VAR\_ SCAP_{r,v,t,p}\quad if\mspace{6mu} PRC\_ RCAP_{r,p} \right)
 \end{aligned} \right) \\
  & \times PRC\_ CAPACT_{r,p}
-\end{aligned} \right)\quad if\mspace{6mu}\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}$
+\end{aligned} \right)\quad if\mspace{6mu}\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}$$
 
 ### Equation: EQ(*l*)\_CAPACT
 
@@ -1862,8 +1859,7 @@ $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathb
 }
 {\times \left\lbrack G\_ YRFR_{r,s} \times (p \notin \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}',\mathbf{p}}) + 1 \times (p \in \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}',\mathbf{p}}) \right\rbrack}$$
 
-**\
-**$${COEF\_ CPT_{r,v,t,p}:
+$${COEF\_ CPT_{r,v,t,p}:
 }
 {ifv = t
 }{= Max\left( \begin{aligned}
@@ -1886,7 +1882,6 @@ $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathb
 }{endif
 }{endif
 }
-
 {Where,
 }{COEF\_ RPTI_{r,v,p} = \left\langle \frac{D(v) - IL}{TL} \right\rangle}$$
 
