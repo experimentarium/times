@@ -23,11 +23,11 @@ We now describe the mathematical equations used at each of the three steps of th
 
 a\) CO<sub>2</sub> accumulation is represented as the linear three-reservoir model below[^46]: the atmosphere, the quickly mixing upper ocean + biosphere, and the deep ocean. CO<sub>2</sub> flows in both directions between adjacent reservoirs. The 3-reservoir model is represented by the following 3 equations when the step of the recursion is equal to one year:
 
-$$M_{atm}(y) = E(y) + (1 - \varphi_{atm-up}) M_{atm}(y-1) + \varphi_{up-atm} M_{up}(y-1)$$ (1)
+$$M_{atm}(y) = E(y) + (1 - \varphi_{atm-up}) M_{atm}(y-1) + \varphi_{up-atm} M_{up}(y-1)$$ (2-7-1)
 
-$$M_{up}(y) = (1 - \varphi_{up-atm} - \varphi_{up-lo}) M_{up}(y-1) + \varphi_{atm-up} M_{atm}(y-1) + \varphi_{lo-up} M_{lo}(y-1)$$ (2)
+$$M_{up}(y) = (1 - \varphi_{up-atm} - \varphi_{up-lo}) M_{up}(y-1) + \varphi_{atm-up} M_{atm}(y-1) + \varphi_{lo-up} M_{lo}(y-1)$$ (2-7-2)
 
-$$M_{lo}(y) = (1 - \varphi_{lo-up}) M_{lo}(y-1) + \varphi_{up-lo} M_{up}(y-1)$$ (3)
+$$M_{lo}(y) = (1 - \varphi_{lo-up}) M_{lo}(y-1) + \varphi_{up-lo} M_{up}(y-1)$$ (2-7-3)
 
 with
 
@@ -37,11 +37,11 @@ with
 
 b\) CH<sub>4</sub> accumulation is represented by a so-called single-box model in which the atmospheric methane concentration obeys the following equations assuming a constant annual decay rate of the anthropogenic concentrations $\Phi_{CH4}$ (whereas the natural concentration is assumed in equilibrium):
 
-$$CH4_{atm}(y) = (1 - \Phi_{CH4}) \cdot CH4_{atm}(y - 1) + EA_{CH4}(y)$$ (1a)
+$$CH4_{atm}(y) = (1 - \Phi_{CH4}) \cdot CH4_{atm}(y - 1) + EA_{CH4}(y)$$ (2-7-1a)
 
-$$CH4_{up}(y) = CH4_{up}(y - 1)$$ (1b)
+$$CH4_{up}(y) = CH4_{up}(y - 1)$$ (2-7-1b)
 
-$$CH4_{tot}(y) = CH4_{atm}(y) + CH4_{up}(y)$$ (1c)
+$$CH4_{tot}(y) = CH4_{atm}(y) + CH4_{up}(y)$$ (2-7-1c)
 
 where
 
@@ -51,11 +51,11 @@ where
 
 c\) N<sub>2</sub>O accumulation is also represented by a single-box model in which the atmospheric N<sub>2</sub>O concentration obeys the following equations:
 
-$$N2O_{atm}(y) = (1 - \Phi_{N2O}) \cdot N2O_{atm}(y - 1) + EA_{N2O}(y)$$ (2a)
+$$N2O_{atm}(y) = (1 - \Phi_{N2O}) \cdot N2O_{atm}(y - 1) + EA_{N2O}(y)$$ (2-7-2a)
 
-$$N2O_{up}(y) = N2O_{up}(y - 1)$$ (2b)
+$$N2O_{up}(y) = N2O_{up}(y - 1)$$ (2-7-2b)
 
-$$N2O_{tot}(y) = N2O_{atm}(y) + N2O_{up}(y)$$ (2c)
+$$N2O_{tot}(y) = N2O_{atm}(y) + N2O_{up}(y)$$ (2-7-2c)
 
 where
 
@@ -69,13 +69,13 @@ where
 
 We assume, as is routinely done in atmospheric science, that the atmospheric radiative forcing caused by the various gases are additive (IPCC, 2007). Thus:
 
-$$\Delta F(y) = \Delta F_{CO2}(y) + \Delta F_{CH4}(y) + \Delta F_{N2O}(y) + EXOFOR(y)$$ (3)
+$$\Delta F(y) = \Delta F_{CO2}(y) + \Delta F_{CH4}(y) + \Delta F_{N2O}(y) + EXOFOR(y)$$ (2-7-4)
 
 We now explain these four terms.
 
 a\) The relationship between CO<sub>2</sub> accumulation and increased radiative forcing, $\Delta F_{CO2}(y)$, is derived from empirical measurements and climate models (IPCC 2007).
 
-$$\Delta F_{CO2}(y) = \gamma \times \frac{\ln(M_{atm}(y)/{M_{0}})}{\ln2}$$ (4a)
+$$\Delta F_{CO2}(y) = \gamma \times \frac{\ln(M_{atm}(y)/{M_{0}})}{\ln2}$$ (2-7-4a)
   
 where:
 
@@ -84,15 +84,15 @@ where:
 
 b) The radiative forcing due to atmospheric CH<sub>4</sub> is given by the following expression (IPCC, 2001)
 
-$$\Delta F_{CH4}(y) = 0.036 \cdot \left( \sqrt{CH4_{y}} - \sqrt{CH4_{0}} \right) - \left\lbrack f(CH4_{y},N2O_{0}) - f(CH4_{0},N2O_{0}) \right\rbrack$$ (4b)
+$$\Delta F_{CH4}(y) = 0.036 \cdot \left( \sqrt{CH4_{y}} - \sqrt{CH4_{0}} \right) - \left\lbrack f(CH4_{y},N2O_{0}) - f(CH4_{0},N2O_{0}) \right\rbrack$$ (2-7-4b)
 
 c) The radiative forcing due to atmospheric N<sub>2</sub>O is given by the following expression (IPCC, 2001)
 
-$$\Delta F_{N2O}(y) = 0.12 \cdot \left( \sqrt{N2O_{y}} - \sqrt{N2O_{0}} \right) - \left\lbrack f(CH4_{0},N2O_{y}) - f(CH4_{0},N2O_{0}) \right\rbrack$$ (4c)
+$$\Delta F_{N2O}(y) = 0.12 \cdot \left( \sqrt{N2O_{y}} - \sqrt{N2O_{0}} \right) - \left\lbrack f(CH4_{0},N2O_{y}) - f(CH4_{0},N2O_{0}) \right\rbrack$$ (2-7-4c)
 
 where:
 
-$$f(x,y) = 0.47 \cdot \ln\left\lbrack 1 + 2.01 \cdot 10^{- 5} \cdot (xy)^{0.75} + 5.31 \cdot 10^{- 15} \cdot x(xy)^{1.52} \right\rbrack$$ (4d)
+$$f(x,y) = 0.47 \cdot \ln\left\lbrack 1 + 2.01 \cdot 10^{- 5} \cdot (xy)^{0.75} + 5.31 \cdot 10^{- 15} \cdot x(xy)^{1.52} \right\rbrack$$ (2-7-4d)
 
 Note that the $f(x,y)$ function, which quantifies the cross-effects on forcing of the presence in the atmosphere of both gases (CH<sub>4</sub> and N<sub>2</sub>O), is not quite symmetrical in the two gases. As usual, the 0 subscript indicates the pre-industrial times (1750)
 
@@ -116,15 +116,15 @@ By denoting the pre-industrial concentration level as $M_0$, the general formula
 
 *Overestimate:*
 
-$$F_{1}(M) = \frac{\gamma}{\ln 2} \cdot \left\lbrack \ln(\frac{\gamma}{slope \cdot \ln(2) \cdot M_{0}}) - 1 \right\rbrack + slope \cdot M$$ (5)
+$$F_{1}(M) = \frac{\gamma}{\ln 2} \cdot \left\lbrack \ln(\frac{\gamma}{slope \cdot \ln(2) \cdot M_{0}}) - 1 \right\rbrack + slope \cdot M$$ (2-7-5)
 
 *Underestimate*:
 
-$$F_{2}(M) = \gamma \cdot \ln(M_{1}/M_{0})/\ln 2 + slope \cdot (M - M_{1})$$ (6)
+$$F_{2}(M) = \gamma \cdot \ln(M_{1}/M_{0})/\ln 2 + slope \cdot (M - M_{1})$$ (2-7-6)
 
 *Final approximation*:
 
-$$F_{3}(M) = \frac{F_{1}(M) + F_{2}(M)}{2}$$ (7)
+$$F_{3}(M) = \frac{F_{1}(M) + F_{2}(M)}{2}$$ (2-7-7)
 
 where:
 
@@ -138,9 +138,9 @@ The linearized forcing expression implemented in TIMES is the average of the two
 
 In the TIMES Climate Module as in many other integrated models, climate change is represented by the global mean surface temperature. The idea behind the two-reservoir model is that a higher radiative forcing warms the atmospheric layer, which then quickly warms the upper ocean. In this model, the atmosphere and upper ocean form a single layer, which slowly warms the second layer consisting of the deep ocean.
 
-$$\Delta T_{up}(y) = \Delta T_{up}(y-1) + \sigma_1\{F(y) - \lambda \Delta T_{up}(y-1) - \sigma_2 [\Delta T_{up}(y-1) - \Delta T_{low}(y-1)]\}$$ (8)
+$$\Delta T_{up}(y) = \Delta T_{up}(y-1) + \sigma_1\{F(y) - \lambda \Delta T_{up}(y-1) - \sigma_2 [\Delta T_{up}(y-1) - \Delta T_{low}(y-1)]\}$$ (2-7-8)
 
-$$\Delta T_{low}(y) = \Delta T_{low}(y-1) + \sigma_3[\Delta T_{up}(y-1) - \Delta T_{low}(y-1)]$$ (9)
+$$\Delta T_{low}(y) = \Delta T_{low}(y-1) + \sigma_3[\Delta T_{up}(y-1) - \Delta T_{low}(y-1)]$$ (2-7-9)
 
 with
 
@@ -173,10 +173,8 @@ $SET CLI YES
 ### Calibration
 
 The calibration of the Climate Module to historical values is an important aspect of using the module. The mass balance and temperature equations can be calibrated for the first period by using three alternative calibration years B(1)--1, m(1)--1, and m(1). Whenever D(1)=1, the first two alternatives are equal. The default calibrating year is m(1)--1. The alternative calibration years can be activated by using one of the following two settings in the run-file:
-
-> \$SET CM_CALIB B ! Calibrate at the end of B(1)--1
->
-> \$SET CM_CALIB M ! Calibrate at the end of m(1)
+- `$SET CM_CALIB B` ! Calibrate at the end of B(1)--1
+- `$SET CM_CALIB M` ! Calibrate at the end of m(1)
 
 ### Controlling the years considered beyond EOH
 
@@ -303,7 +301,7 @@ Note that the values of LINFOR are systematically interpolated. The range can al
 
 #### Parameters for modeling the concentrations and forcings of other greenhouse gases
 
-> **Historical base year values of natural (UP) and anthropogenic (ATM) concentrations** (in Mt), needed at for the base year of the model (default 2005):
+**Historical base year values of natural (UP) and anthropogenic (ATM) concentrations** (in Mt), needed at for the base year of the model (default 2005):
 
 ```
 CM_HISTORY('2005','CH4-UP') = 1988;
@@ -312,9 +310,9 @@ CM_HISTORY('2005','N2O-UP') = 2109;
 CM_HISTORY('2005','N2O-ATM') = 390;
 ```
 
-> In the results the total concentrations (UP+ATM) are reported for both CH<sub>4</sub> and N<sub>2</sub>O.
->
-> **Annual exponential decay of concentrations (PHI-xxx = 1/Life):**
+In the results the total concentrations (UP+ATM) are reported for both CH<sub>4</sub> and N<sub>2</sub>O.
+
+**Annual exponential decay of concentrations (PHI-xxx = 1/Life):**
 
 ```
 CM_CONST('PHI-CH4') = 0.09158;
@@ -323,9 +321,9 @@ CM_CONST('PHI-N2O') = 0.008803;
 
 Here $\Phi_{CH4}$, $\Phi_{N2O}$, are the one-year decay rates for methane and N<sub>2</sub>O respectively
 
-> **Parameters for the linear CH<sub>4</sub> and N<sub>2</sub>O forcing approximations:**
->
-> Note that for specifying the linear forcing functions for CH<sub>4</sub> and N<sub>2</sub>O, the LO/UP bounds cannot be used, but the slope (\'N\') and constant (\'FX\') of the forcing functions must be directly defined by the user. Example:
+**Parameters for the linear CH<sub>4</sub> and N<sub>2</sub>O forcing approximations:**
+
+Note that for specifying the linear forcing functions for CH<sub>4</sub> and N<sub>2</sub>O, the LO/UP bounds cannot be used, but the slope (\'N\') and constant (\'FX\') of the forcing functions must be directly defined by the user. Example:
 
 ```
 CM_LINFOR('2010','CH4-PPB','N') = 0.000340;
@@ -334,9 +332,9 @@ CM_LINFOR('2010','N2O-PPB','N') = 0.00292;
 CM_LINFOR('2010','N2O-PPB','FX') = -0.769;
 ```
 
-> **Parameter for the exogenous radiative forcing from non-modeled gases** in each year from initial year: CM_EXOFOR(y)
->
-> Units: Watts/m<sup>2</sup>.
+**Parameter for the exogenous radiative forcing from non-modeled gases** in each year from initial year: CM_EXOFOR(y)
+
+Units: Watts/m<sup>2</sup>.
 
 #### Parameters for the temperature equations
 
@@ -450,13 +448,9 @@ The **reporting years** for the climate variables are the same as the calculatio
 ### Internal parameters
 
 - *CM_PPM<sub>cm_var</sub>*: The densities of the greenhouse gases are hard coded in TIMES (via the internal parameter), with the following values:
-
-> density of CH<sub>4</sub>: 2.84 Mt / ppbv
->
-> density of N<sub>2</sub>O: 7.81 Mt / ppbv
->
-> density of CO<sub>2</sub>: 2.13 Gt / ppm.
-
+	- density of CH<sub>4</sub>: 2.84 Mt / ppbv
+	- density of N<sub>2</sub>O: 7.81 Mt / ppbv
+	- density of CO<sub>2</sub>: 2.13 Gt / ppm.
 - *CM_PHI<sub>cm_var,t,i,j</sub>*: The transition matrix for climate indicator cm_var between reservoirs i and j and successive years t--1 and t;
 - *CM_AA<sub>cm_var,t,i,j</sub>*: The transition matrix for climate indicator cm_var between reservoirs i and j and between the milestone years of periods t--1 and t;
 - *CM_BB<sub>cm_var,t,i,j</sub>*: The transition matrix for climate indicator cm_var from emissions in period t to reservoir contents in the same period;
@@ -656,27 +650,29 @@ This equation is generated in each time period for all indicators considered.
 *Dual variable:* The dual variables represent the marginal prices of the global emissions / forcing (when undiscounted).
 
 **Remarks**:
-- For CO2, the linear forcing function parameters *CM_LINFOR<sub>t,cm_emis,'FX'</sub>* and *CM_LINFOR<sub>t,cm_emis,'N'</sub>* are automatically calculated by the model generator from any user-defined *CM_LINFOR<sub>t,cm_emis,'LO'</sub>* and *CM_LINFOR<sub>t,cm_emis,'UP'</sub>*.
+- For CO<sub>2</sub>, the linear forcing function parameters $CM\_LINFOR_{t,cm\_emis,'FX'}$ and $CM\_LINFOR_{t,cm\_emis,'N'}$ are automatically calculated by the model generator from any user-defined $CM\_LINFOR_{t,cm\_emis,'LO'}$ and $CM\_LINFOR_{t,cm\_emis,'UP'}$.
 
 **Equation:**
 
-$$EQ\_ CLITOT_{cm\_ tkind,t}\forall\left\lbrack \left( t \in \mathbf{milestonyr} \right) \right\rbrack$$
+$$EQ\_CLITOT_{cm\_tkind,t}\forall\left\lbrack \left( t \in milestonyr \right) \right\rbrack$$
 
 $${\sum_{\begin{aligned}
- & cm\_ tkind \in \mathbf{cm}\_\mathbf{emis} \\ \\
- & (r,c,s) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{c},\mathbf{t},\mathbf{s}}
-\end{aligned}}^{}{VAR\_ COMNET_{r,t,c,s} \times CM\_ GHGMAP_{r,c,cm\_ tkind}}
-} \\ \\ {\sum_{\mathbf{cm}\_\mathbf{emi}\mathbf{s}_{\mathbf{cm}\_\mathbf{tkind}}}^{}\left( \begin{aligned}
- & CM\_ LINFOR_{t,cm\_ emis,'N'} \times \\
- & \left( \sum_{\begin{aligned}
- & \mathbf{cm}\_\mathbf{atbo}\mathbf{x}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{box}} \\
- & \mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}
-\end{aligned}}^{}{VAR\_ CLIBOX_{cm\_ var}} \right) \\
- & CM\_ LINFOR_{t,cm\_ emis,'FX'}
+ & cm\_tkind \in cm\_emis \\ \\
+ & (r,c,s) \in rtcs\_varc_{r,c,t,s}
+ \end{aligned}}{VAR\_COMNET_{r,t,c,s} \times CM\_GHGMAP_{r,c,cm\_tkind}}
+} \\ \\ {\sum_{cm\_emis_{cm\_tkind}}
+\left (\begin{aligned}
+& CM\_LINFOR_{t,cm\_emis,'N'} \times \\
+& \left (\sum_{\begin{aligned}
+& cm\_atbox_{cm\_emis,cm\_box} \\
+& cm\_boxmap_{cm\_emis,cm\_var,cm\_box}
+\end{aligned}}
+{VAR\_CLIBOX_{cm\_var}} \right) \\
+& CM\_LINFOR_{t,cm\_emis,'FX'}
 \end{aligned} \right) + 
-} \\ \\ {+ CM\_ EXOFORC_{t}
+} \\ \\ {+ CM\_EXOFORC_{t}
 } \\ \\ {\left\{ = \right\}
-} \\ \\ {VAR\_ CLITOT_{cm\_ tkind,t}}$$
+} \\ \\ {VAR\_CLITOT_{cm\_tkind,t}}$$
 
 ### EQ_CLICONC(cm_var,cm_box,t)
 
@@ -700,35 +696,35 @@ $${\sum_{\begin{aligned}
 
 **Equation:**
 
-$$EQ\_ CLICONC_{cm\_ emis,cm\_ box,t}\forall\left\lbrack \left( t \in \mathbf{milestonyr} \right) \right\rbrack$$
+$$EQ\_CLICONC_{cm\_emis,cm\_box,t}\forall\left\lbrack \left( t \in milestonyr \right) \right\rbrack$$
 
-$${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}2}}^{}{VAR\_ CLIBOX_{cm\_ var,t - 1} \times CM\_ AA_{cm\_ emis,t,cm\_ box,cm\_ box2}} + 
-} \\ \\ {CM\_ BB_{cm\_ emis,t,cm\_ box} \times VAR\_ CLITOT_{cm\_ emis,t} + 
-} \\ \\ {CM\_ CC_{cm\_ emis,t,cm\_ box} \times VAR\_ CLITOT_{cm\_ emis,t - 1} + 
+$${\sum_{cm\_boxmap_{cm\_emis,cm\_var,cm\_box2}}{VAR\_CLIBOX_{cm\_var,t - 1} \times CM\_AA_{cm\_emis,t,cm\_box,cm\_box2}} + 
+} \\ \\ {CM\_BB_{cm\_emis,t,cm\_box} \times VAR\_CLITOT_{cm\_emis,t} + 
+} \\ \\ {CM\_CC_{cm\_emis,t,cm\_box} \times VAR\_CLITOT_{cm\_emis,t - 1} + 
 } \\ \\ {\sum_{\begin{matrix}
-\mathbf{miyr}\_\mathbf{1}_{t} \\
-\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}\mathbf{2}}
-\end{matrix}}^{}{CM\_ CONST_{cm\_ var} \times CM\_ AA_{cm\_ emis,t,cm\_ box,cm\_ box2}}
+miyr\_1_{t} \\
+cm\_boxmap_{cm\_emis,cm\_var,cm\_box2}
+\end{matrix}}{CM\_CONST_{cm\_var} \times CM\_AA_{cm\_emis,t,cm\_box,cm\_box2}}
 } \\ \\ {\left\{ = \right\}
-} \\ \\ {\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
+} \\ \\ {\sum_{cm\_boxmap_{cm\_emis,cm\_var,cm\_box}}{VAR\_CLIBOX_{cm\_var,t}}}$$
 
-$${CM\_ AA_{cm\_ emis,t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}\mspace{6mu}
+$${CM\_AA_{cm\_emis,t,i,j} = \left\{ A_{ij}(t) \right\} = \space PHI^{n(t)}(PHI^{0} = I), \space \text{where} \space
 } \\ \\ {PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
-(1 - PHI\_ AT\_ UP) & PHI\_ UP\_ AT & 0 \\
-PHI\_ AT\_ UP & (1 - PHI\_ U\_ AT - PHI\_ UP\_ LO) & PHI\_ LO\_ UP \\
-0 & PHI\_ UP\_ LO & (1 - PHI\_ LO\_ UP)
+(1 - PHI\_AT\_UP) & PHI\_UP\_AT & 0 \\
+PHI\_AT\_UP & (1 - PHI\_U\_AT - PHI\_UP\_LO) & PHI\_LO\_UP \\
+0 & PHI\_UP\_LO & (1 - PHI\_LO\_UP)
 \end{bmatrix}
-} \\ \\ {CM\_ BB_{cm\_ emis,t,i} = \left\{ BB_{i1}(t) \right\}\text{  is the first column of the matrix: }
-} \\ \\ {BB(t) = \ \sum_{i = 0}^{p(t) - 1}{PHI^{i}}\mspace{18mu}if\mspace{18mu}p(t) \geq 1
-} \\ \\ {BB(t) = 0\mspace{18mu}if\mspace{18mu}p(t) = 0
-} \\ \\ {CM\_ CC_{cm\_ emis,t,i} = \left\{ CC_{i1}(t) \right\}\text{  is the first column of the matrix :}
-} \\ \\ {CC(t) = \ \sum_{i = p(t)}^{n(t) - 1}{PHI^{i}}\mspace{18mu}if\mspace{18mu}n(t) \geq p(t) + 1
-} \\ \\ {CC(t) = 0\mspace{18mu}if\mspace{18mu}n(t) = p(t)
-} \\ \\ {p(t)\text{  } = \text{  }\left\lfloor \frac{D(t) + 1}{2} \right\rfloor,n(t)\text{  } = \ m(t) - m(t - 1)\mspace{18mu} if\ t \neq 1,\text{   }
-} \\ \\ {p(t)\text{  } = \ m(t) - \Upsilon,n(t)\text{  } = \ p(t)\mspace{18mu}if\mspace{18mu}t = 1
-} \\ \\ {D(t)\text{  is the number of years in period }t,and m(t)\text{is the middle year of period}\ t\text{ defined as}\mspace{18mu}
+} \\ \\ {CM\_BB_{cm\_emis,t,i} = \left\{ BB_{i1}(t) \right\}\text{  is the first column of the matrix: }
+} \\ \\ {BB(t) = \space \sum_{i = 0}^{p(t) - 1}{PHI^{i}} \space if \space p(t) \geq 1
+} \\ \\ {BB(t) = 0 \space if \space p(t) = 0
+} \\ \\ {CM\_CC_{cm\_emis,t,i} = \left\{CC_{i1}(t) \right\} \text{  is the first column of the matrix :}
+} \\ \\ {CC(t) = \ \sum_{i = p(t)}^{n(t) - 1}{PHI^{i}} \space if \space n(t) \geq p(t) + 1
+} \\ \\ {CC(t) = 0 \space if \space n(t) = p(t)
+} \\ \\ {p(t) \space = \space \left\lfloor \frac{D(t) + 1}{2} \right\rfloor,n(t) \space = \space m(t) - m(t - 1) \space if \space t \neq 1,\space
+} \\ \\ {p(t) \space = \space m(t) - \Upsilon,n(t) \space = \space p(t) \space if \space t = 1
+} \\ \\ {D(t) \text{  is the number of years in period }t,and m(t)\text{ is the middle year of period}\space t\text{ defined as} \space
 } \\ \\ {m(t) = B(t) + \left\lfloor \frac{D(t) - 1}{2} \right\rfloor
-} \\ \\ {\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to}\ x}$$
+} \\ \\ {\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to} \space x}$$
 
 ### EQ_CLITEMP(cm_var,cm_box,t)
 
@@ -752,33 +748,33 @@ PHI\_ AT\_ UP & (1 - PHI\_ U\_ AT - PHI\_ UP\_ LO) & PHI\_ LO\_ UP \\
 
 **Equation:**
 
-$$EQ\_ CLITEMP_{cm\_ box,t}\forall\left\lbrack \left( t \in \mathbf{milestonyr} \right) \right\rbrack$$
+$$EQ\_CLITEMP_{cm\_box,t}\forall\left\lbrack \left( t \in milestonyr \right) \right\rbrack$$
 
-$${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}2}}^{}{VAR\_ CLIBOX_{cm\_ var,t - 1} \times CM\_ AA_{'FORCING',t,cm\_ box,cm\_ box2}} + 
-} \\ \\ {CM\_ BB_{'FORCING',t,cm\_ box} \times VAR\_ CLITOT_{'FORCING',t} + 
-} \\ \\ {CM\_ CC_{'FORCING',t,cm\_ box} \times VAR\_ CLITOT_{'FORCING',t - 1} + 
+$${\sum_{cm\_boxmap_{'FORCING',cm\_var,cm\_box2}}{VAR\_CLIBOX_{cm\_var,t - 1} \times CM\_AA_{'FORCING',t,cm\_box,cm\_box2}} + 
+} \\ \\ {CM\_BB_{'FORCING',t,cm\_box} \times VAR\_CLITOT_{'FORCING',t} + 
+} \\ \\ {CM\_CC_{'FORCING',t,cm\_box} \times VAR\_CLITOT_{'FORCING',t - 1} + 
 } \\ \\ {\sum_{\begin{matrix}
-\mathbf{miyr}\_\mathbf{1}_{t}
-\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}\mathbf{2}}
-\end{matrix}}^{}{CM\_ CONST_{cm\_ var} \times {CM\_ AA_{'FORCING,t,cm\_ box,cm\_ box2}}}
+miyr\_1_t \\
+cm\_boxmap_{'FORCING',cm\_var,cm\_box2}
+\end{matrix}}{CM\_CONST_{cm\_var} \times {CM\_AA_{'FORCING,t,cm\_box,cm\_box2}}}
 } \\ \\ {\left\{ = \right\}
-} \\ \\ {\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}}^{}{VAR\_ CLIBOX_{cm\_ var,t}}}$$
+} \\ \\ {\sum_{cm\_boxmap_{'FORCING',cm\_var,cm\_box}}{VAR\_CLIBOX_{cm\_var,t}}}$$
 
-$${CM\_ AA_{'FORCING',t,i,j} = \left\{ A_{ij}(t) \right\} = \ PHI^{n(t)}(PHI^{0} = I),\mspace{6mu}\text{where}\mspace{6mu}
-} \\ \\ {PHI\text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
+$${CM\_AA_{'FORCING',t,i,j} = \left \{ A_{ij}(t) \right\} = \space PHI^{n(t)}(PHI^{0} = I), \space \text{where} \space
+} \\ \\ {PHI \text{  is the 3} \times \text{3 matrix}:\begin{bmatrix}
 (1 - SIGMA1 \times (LAMBDA + SIGMA2) & SIGMA1 \times SIGMA2 & 0 \\
 SIGMA3 & (1 - SIGMA3) & 0 \\
 0 & 0 & 0
 \end{bmatrix}
-} \\ \\ {CM\_ BB_{'FORCING',t,i} = \left\{ BB_{i1}(t) \right\}\text{  is the first column of the matrix: }
-} \\ \\ {BB(t) = SIGMA1 \times \ \sum_{i = 0}^{n(t) - 1}{\frac{n(t) - i}{n(t)} \times PHI^{i}}\mspace{18mu}
-} \\ \\ {CM\_ CC_{'FORCING',t,i} = \left\{ CC_{i1}(t) \right\}\text{  is the first column of the matrix :}
-} \\ \\ {CC(t) = \ SIGMA1 \times \sum_{i = 0}^{n(t) - 1}{\frac{i}{n(t)} \times PHI^{i}}
-} \\ \\ {n(t)\text{  } = \ m(t) - m(t - 1)\mspace{6mu}\mspace{6mu} if\ t \neq 1,\text{   }
-} \\ \\ {n(t)\text{  } = \ m(t) - Yift = 1
-} \\ \\ {D(t)\text{  is the number of years in period }t,\text{ and}m(t)\text{is the middle year of period}\ t\text{ defined as}
+} \\ \\ {CM\_BB_{'FORCING',t,i} = \left \{ BB_{i1}(t) \right\} \text{  is the first column of the matrix: }
+} \\ \\ {BB(t) = SIGMA1 \times \space \sum_{i = 0}^{n(t) - 1}{\frac{n(t) - i}{n(t)} \times PHI^{i}} \space
+} \\ \\ {CM\_CC_{'FORCING',t,i} = \left \{ CC_{i1}(t) \right \} \text{  is the first column of the matrix :}
+} \\ \\ {CC(t) = \space SIGMA1 \times \sum_{i = 0}^{n(t) - 1}{\frac{i}{n(t)} \times PHI^{i}}
+} \\ \\ {n(t) \space = \space m(t) - m(t - 1) \space if \space t \neq 1, \space
+} \\ \\ {n(t) \space = \space m(t) - Y \space if \space t = 1
+} \\ \\ {D(t) \text{  is the number of years in period } t, \text{ and } m(t) \text{ is the middle year of period} \space t\text{ defined as}
 } \\ \\ {m(t) = B(t) + \left\lfloor \frac{D(t) - 1}{2} \right\rfloor
-} \\ \\ {\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to}\ x}$$
+} \\ \\ {\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to} \space x}$$
 
 ### EQ_CLIMAX(y,cm_var)
 
@@ -802,37 +798,37 @@ SIGMA3 & (1 - SIGMA3) & 0 \\
 
 **Equation:**
 
-$$EQ\_ CLIMA{X_{y,cm\_ var}}^{}\forall\left\lbrack \left\{ (y,cm\_{var})|CM\_ MAXC_{y,cm\_ var} \right\} \right\rbrack$$
+$$EQ\_CLIMA{X_{y,cm\_var}}\forall\left\lbrack \left\{ (y,cm\_{var})|CM\_MAXC_{y,cm\_var} \right\} \right\rbrack$$
 
 **Case A. For total emissions, up to m(T)**
 
-$${\alpha_{y} \times VAR\_ CLITOT_{cm\_ emis,t - 1} + \beta_{y} \times VAR\_ CLITOT_{cm\_ emis,t}
-} \\ \\ {\leq CM\_ MAXC_{y,cm\_ emis}}$$
+$${\alpha_{y} \times VAR\_CLITOT_{cm\_emis,t - 1} + \beta_{y} \times VAR\_CLITOT_{cm\_emis,t}
+} \\ \\ {\leq CM\_MAXC_{y,cm\_emis}}$$
 
 **Case B. For atmospheric GHG concentrations, up to m(T)**
 
 $${\sum_{\begin{matrix}
-\mathbf{cm}\_\mathbf{atbo}\mathbf{x}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{box}} \\
-\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}
-\end{matrix}}^{}{\alpha_{y} \times VAR\_ CLIBOX_{cm\_ var,t - 1} + \beta_{y} \times VAR\_ CLIBOX_{cm\_ var,t}}
-} \\ \\ {\leq CM\_ MAXC_{y,cm\_ var}}$$
+cm\_atbox_{cm\_emis,cm\_box} \\
+cm\_boxmap_{cm\_emis,cm\_var,cm\_box}
+\end{matrix}}{\alpha_{y} \times VAR\_CLIBOX_{cm\_var,t - 1} + \beta_{y} \times VAR\_CLIBOX_{cm\_var,t}}
+} \\ \\ {\leq CM\_MAXC_{y,cm\_var}}$$
 
 **Case C. For total radiative forcing, up to m(T)**
 
-$${\alpha_{y} \times VAR\_ CLITOT_{'FORCING',t - 1} + \beta_{y} \times VAR\_ CLITOT_{'FORCING',t}
-} \\ \\ {\leq CM\_ MAXC_{y,'FORCING'}}$$
+$${\alpha_{y} \times VAR\_CLITOT_{'FORCING',t - 1} + \beta_{y} \times VAR\_CLITOT_{'FORCING',t}
+} \\ \\ {\leq CM\_MAXC_{y,'FORCING'}}$$
 
 **Case D. For increase in global atmospheric temperature, up to m(T):**
 
-$${\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},'\mathbf{ATM}'}}^{}{\alpha_{y} \times VAR\_ CLIBOX_{cm\_ var,t - 1} + \beta_{y} \times VAR\_ CLIBOX_{cm\_ var,t}}
-} \\ \\ {\leq CM\_ MAXC_{y,cm\_ var}}$$
+$${\sum_{cm\_boxmap_{'FORCING',cm\_var,'ATM'}}{\alpha_{y} \times VAR\_CLIBOX_{cm\_var,t - 1} + \beta_{y} \times VAR\_CLIBOX_{cm\_var,t}}
+} \\ \\ {\leq CM\_MAXC_{y,cm\_var}}$$
 
 **Case E. For atmospheric GHG concentrations, beyond m(T):**
 
 $$\sum_{\begin{matrix}
-\mathbf{cm}\_\mathbf{atbo}\mathbf{x}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{box}} \\
-\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{\mathbf{cm}\_\mathbf{emis},\mathbf{cm}\_\mathbf{var},\mathbf{cm}\_\mathbf{box}}
-\end{matrix}}^{}{VAR\_ CLIBOX_{cm\_ var,y}}\quad \leq \quad CM\_ MAXC_{y,cm\_ var}$$
+cm\_atbox_{cm\_emis,cm\_box} \\
+cm\_boxmap_{cm\_emis,cm\_var,cm\_box}
+\end{matrix}}{VAR\_CLIBOX_{cm\_var,y}}\quad \leq \quad CM\_MAXC_{y,cm\_var}$$
 
 **Case F. For total radiative forcing, beyond m(T):**
 
@@ -840,7 +836,7 @@ $$VAR\_ CLITOT_{'FORCING',y}\quad \leq \quad CM\_ MAXC_{y,'FORCING'}$$
 
 **Case G. For increase in global atmospheric temperature, beyond m(T):**
 
-$$\sum_{\mathbf{cm}\_\mathbf{boxma}\mathbf{p}_{'\mathbf{FORCING}',\mathbf{cm}\_\mathbf{var},'\mathbf{ATM}'}}^{}{VAR\_ CLIBOX_{cm\_ var,y}}\quad \leq \quad CM\_ MAXC_{y,cm\_ var}$$
+$$\sum_{cm\_boxmap_{'FORCING',cm\_var,'ATM'}}{VAR\_CLIBOX_{cm\_var,y}}\quad \leq \quad CM\_MAXC_{y,cm\_var}$$
 
 ## References
 
