@@ -1831,7 +1831,7 @@ $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathb
 } \\ \\ {\left( NCAP\_ AF_{r,t,p,s} \vee NCAP\_ AFS_{r,t,p,s} \vee NCAP\_ AFA_{r,t,p} \right)
 } \\ \\
 {\left\{ \begin{aligned}
- & \sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \cap \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}} \right)}^{}{VAR\_ ACT_{r,v,t,p,ts}}\mspace{18mu} if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}'\mathbf{p}} \\
+ & \sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \cap \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}} \right)}^{}{VAR\_ ACT_{r,v,t,p,ts}}\mspace{54mu} if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}'\mathbf{p}} \\
  & \sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \right)}^{}{\frac{VAR\_ ACT_{r,v,t,p,ts}}{RS\_ STGPRD_{r,ts}} \times RS\_ FR_{r,ts,s}}\mspace{18mu} if\mspace{6mu}\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}'\mathbf{p}}
 \end{aligned} \right\}
 } \\ \\
@@ -1861,38 +1861,45 @@ $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathb
 {\times \left\lbrack G\_ YRFR_{r,s} \times (p \notin \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}',\mathbf{p}}) + 1 \times (p \in \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}',\mathbf{p}}) \right\rbrack}$$
 
 $${COEF\_ CPT_{r,v,t,p}:
-}
-{ifv = t
-}{= Max\left( \begin{aligned}
+} \\ \\ 
+{if\mspace{6mu}v = t
+} \\ \\ 
+{= Max\left( \begin{aligned}
  & \frac{D(t) - NCAP\_ ILED}{D(t)} \\
  & 0
 \end{aligned} \right)
-}
+} \\ \\
 {else
-}{ift \geq v \land D(v) > IL + TL \land B(t) < E(v) + TL
-}
+} \\ \\ 
+{if\mspace{6mu}t \geq v \land D(v) > IL + TL \land B(t) < E(v) + TL
+} \\ \\
 {= Max\left( \begin{aligned}
  & \frac{Min\left( B(v) + IL + COEF\_ RPTI_{r,v,p} \times TL,E(t) + 1 \right) - B(t)}{D(t)} \\
  & 0
 \end{aligned} \right)
-}{else
-}{= Max\left( \begin{aligned}
+} \\ \\ 
+{else
+} \\ \\ 
+{= Max\left( \begin{aligned}
  & \frac{Min\left( B(v) + IL + TL,E(t) + 1 \right) - Max\left( B(v) + IL,B(t) \right)}{D(t)} \\
  & 0
 \end{aligned} \right)
-}{endif
-}{endif
-}
+} \\ \\ 
+{endif
+} \\ \\ 
+{endif
+} \\ \\
 {Where,
-}{COEF\_ RPTI_{r,v,p} = \left\langle \frac{D(v) - IL}{TL} \right\rangle}$$
+} \\ \\
+{COEF\_ RPTI_{r,v,p} = \left\langle \frac{D(v) - IL}{TL} \right\rangle}$$
 
 where:
 
-IL = *NCAP_ILED~r,v,p~*
+IL = *NCAP_ILED_{r,v,p}*
 
-TL *= NCAP_TLIFE~r,v,p~*
+TL *= NCAP_TLIFE_{r,v,p}*
 
-B(t) = 1^st^ year of the period containing **t**
+B(t) = 1\textsuperscript{st} year of the period containing **t**
 
 E(t) = Last year of the period containing **t**
 
@@ -1912,7 +1919,7 @@ D(t) = Duration of the period containing **t**
 
 **Remarks:**
 
-- The equation is generated only for process flows not in the PG, as the PG flows are handled by EQ_CAFLAC. However, independent EQL_CAPFLO constraints may be requested also for the PG flows by setting *NCAP_AFC~r,\'0\',p,\'ACT\',tsl~* =--1. 
+- The equation is generated only for process flows not in the PG, as the PG flows are handled by EQ_CAFLAC. However, independent EQL_CAPFLO constraints may be requested also for the PG flows by setting *NCAP_AFC_{r,\'0\',p,\'ACT\',tsl}* =--1. 
 - When defined for storage activity, note that the capacity is assumed to represent an annual production capacity equivalent to the amount produced by full power during one full year/week/day for SEASON/WEEKLY/DAYNITE level storage processes, respectively. The availability factor should be adjusted to correspond to the actual storage capacity. For example, a capacity of 1 GW is equal to 24 GWh for a DAYNITE storage, and if the real daily storage capacity is, say 8 GWh / GW, the maximum availability factor should be 0.333. 
 - The equation formulation is shown below is for the vintaged case only; the non-vintaged case differs in the RHS in the same way as in *EQ(l)\_CAPACT*.
 
