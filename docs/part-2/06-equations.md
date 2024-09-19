@@ -2160,40 +2160,45 @@ p \in \mathbf{rpc}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}} \\
 
 We now show the detailed calculation of the Right-hand-side
 
-$$COEF\_ FBRHS:$$
+$COEF\_ FBRHS:$
 
 *Do Case*
 
->$$Case \ni COM\_ BNDNET \lor COM\_ CUMNET \lor COM\_ CSTNET \lor COM\_SUBNET \lor COM\_TAXNET$$
-$$COEF\_ FBRHS = VAR\_ COMNET$$
+>$Case \ni COM\_ BNDNET \lor COM\_ CUMNET \lor COM\_ CSTNET \lor COM\_SUBNET \lor COM\_TAXNET$
 
->$$Case \ni COM\_ BNDPRD \lor COM\_ CUMPRD \lor COM\_ CSTPRD \lor COM\_ SUBPRD \lor COM\_ TAXPRD$$
-$$COEF\_ FBRHS = VAR\_ COMPRD$$
+>>$COEF\_ FBRHS = VAR\_ COMNET$
 
->$$Case COM\_ PROJ$$
->>$$COEF\_ FBRHS = COM\_ PROJ \times COM\_ FR$$
+
+>$Case \ni COM\_ BNDPRD \lor COM\_ CUMPRD \lor COM\_ CSTPRD \lor COM\_ SUBPRD \lor COM\_ TAXPRD$
+
+>>$COEF\_ FBRHS = VAR\_ COMPRD$
+
+
+>$Case COM\_ PROJ$
+
+>>$COEF\_ FBRHS = COM\_ PROJ \times COM\_ FR$
 
 >*Otherwise*
 
->>$$COEF\_ FBRHS = 0$$
+>>$COEF\_ FBRHS = 0$
 
 *Endcase*
 
 **Flow Coefficients related to process activity (VAR_FLO)**
 
-$\mathbf{CAL\_ FLOFL}\mathbf{O}_{\mathbf{r,v,t,p,c,s,io}}\mathbf{\ni}\mathbf{rp\_ fl}\mathbf{o}_{\mathbf{r,p}}\mathbf{\land}\mathbf{NOTrpc\_ conl}\mathbf{y}_{\mathbf{r,t,p,c}}
-$$$
-{\mathbf{=}\sum_{\mathbf{s}\mathbf{1}\mathbf{\in}\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,s}\mathbf{1}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,c,s}\mathbf{1}}\mathbf{\times}}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,c,s,s}\mathbf{1}}
-}$$
+$\mathbf{CAL\_ FLOFL}\mathbf{O}_{\mathbf{r,v,t,p,c,s,io}}\mathbf{\ni}\mathbf{rp\_ fl}\mathbf{o}_{\mathbf{r,p}}\mathbf{\land}\mathbf{NOT\mspace{6mu}rpc\_ conl}\mathbf{y}_{\mathbf{r,t,p,c}}$
+
+>${\mathbf{=}\sum_{\mathbf{s}\mathbf{1}\mathbf{\in}\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,s}\mathbf{1}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,c,s}\mathbf{1}}\mathbf{\times}}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,c,s,s}\mathbf{1}}
+}$
 
 with RTCS_TSFR defined in the following way:
 
-$${\mathbf{RTCS\_ TSFR(r,t,c,s,s}\mathbf{1)}
-}{\mathbf{IF}\mathbf{\mspace{6mu}}\mathbf{ts\_ ma}\mathbf{p}_{\mathbf{r,s,s}\mathbf{1}}
+${\mathbf{RTCS\_ TSFR(r,t,c,s,s}\mathbf{1)}
+} \\ \\ {\mathbf{IF}\mathbf{\mspace{6mu}}\mathbf{ts\_ ma}\mathbf{p}_{\mathbf{r,s,s}\mathbf{1}}
 }{\mathbf{= 1}
-}{\mathbf{ELSE}
-}{\mathbf{=}\frac{\mathbf{COM\_ F}\mathbf{R}_{\mathbf{r,t,c,s}}}{\mathbf{COM\_ F}\mathbf{R}_{\mathbf{r,t,c,s}\mathbf{1}}}\text{   if c is a demand commodity and }\mathbf{COM}\mathbf{\_}\mathbf{FR}\text{ is specified,}
-}{\mathbf{=}\frac{\mathbf{G\_ YRF}\mathbf{R}_{\mathbf{r,t,c,s}}}{\mathbf{G\_ YRF}\mathbf{R}_{\mathbf{r,t,c,s}\mathbf{1}}}\text{  otherwise.}}$$
+} \\ \\ {\mathbf{ELSE}
+} \\ \\ >{\mathbf{=}\frac{\mathbf{COM\_ F}\mathbf{R}_{\mathbf{r,t,c,s}}}{\mathbf{COM\_ F}\mathbf{R}_{\mathbf{r,t,c,s}\mathbf{1}}}\text{   if c is a demand commodity and }\mathbf{COM}\mathbf{\_}\mathbf{FR}\text{ is specified,}
+} \\ \\ >{\mathbf{=}\frac{\mathbf{G\_ YRF}\mathbf{R}_{\mathbf{r,t,c,s}}}{\mathbf{G\_ YRF}\mathbf{R}_{\mathbf{r,t,c,s}\mathbf{1}}}\text{  otherwise.}}$
 
 The parameter RTCS_TSFR is used to match the timeslice resolution of flow variables (VAR_FLO/VAR_IRE) and commodities. RTCS_TSFR is the coefficient of the flow variable, which is producing or consuming commodity (**c**), in the commodity balance of **c**. If timeslice **s** corresponds to the commodity timeslice resolution of **c** and timeslice **s1** to the timeslice resolution of the flow variable two cases may occur:
 
