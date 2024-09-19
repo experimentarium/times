@@ -2040,7 +2040,7 @@ $${\mathbf{EQ(l)\_ CP}\mathbf{T}_{\mathbf{r,t,p}}\mathbf{\ni}\mathbf{CAP\_ BN}\m
 } \\ \\
 {\mathbf{where}
 } \\ \\
-{\mathbf{COEF\_ CP}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{as defined in equation EQ(l)\_ CAPACT}}$$
+{\mathbf{COEF\_ CP}\mathbf{T}_{\mathbf{r,v,t,p}}\mspace{12u}\mathbf{as\mspace{6u}defined\mspace{6u} in\mspace{6u} equation\mspace{6u} EQ(l)\_ CAPACT}}$$
 
 ### Equation: EQ(*l*)\_COMBAL
 
