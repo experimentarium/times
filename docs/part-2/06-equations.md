@@ -1828,16 +1828,18 @@ Dual: The dual value is in case of an inequality constraint a negative number, w
 **Equation:**
 
 $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}} \land \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}} \land \mathbf{rtp}\_\mathbf{var}\mathbf{a}_{\mathbf{r},\mathbf{t},\mathbf{p}} \land 
-}{\left( NCAP\_ AF_{r,t,p,s} \vee NCAP\_ AFS_{r,t,p,s} \vee NCAP\_ AFA_{r,t,p} \right)
-}
+} \\ \\ {\left( NCAP\_ AF_{r,t,p,s} \vee NCAP\_ AFS_{r,t,p,s} \vee NCAP\_ AFA_{r,t,p} \right)
+} \\ \\
 {\left\{ \begin{aligned}
- & \sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \cap \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}} \right)}^{}{VAR\_ ACT_{r,v,t,p,ts}}if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}'\mathbf{p}} \\
- & \sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \right)}^{}{\frac{VAR\_ ACT_{r,v,t,p,ts}}{RS\_ STGPRD_{r,ts}} \times RS\_ FR_{r,ts,s}}if\mspace{6mu}\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}'\mathbf{p}}
+ & \sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \cap \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}} \right)}^{}{VAR\_ ACT_{r,v,t,p,ts}}\mspace{54mu} if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}'\mathbf{p}} \\
+ & \sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \right)}^{}{\frac{VAR\_ ACT_{r,v,t,p,ts}}{RS\_ STGPRD_{r,ts}} \times RS\_ FR_{r,ts,s}}\mspace{18mu} if\mspace{6mu}\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}'\mathbf{p}}
 \end{aligned} \right\}
-}
-{\left\{ \leq ; = ; \geq \right\}
-}{\overset{}{\text{Case1:}\mspace{6mu}\text{Non-vintagedprocess}(v = t):}
-}{\sum_{\left\{ v2|\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v}\mathbf{2},\mathbf{t},\mathbf{p}} \right\}}^{}\left( \begin{aligned}
+} \\ \\
+{\left\{ \leq ; = ; \geq \right\} 
+} \\ \\ 
+{\overset{}{\text{Case1:}\mspace{6mu}\text{Non-vintagedprocess}(v = t):}
+}\\ \\ 
+{\sum_{\left\{ v2|\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v}\mathbf{2},\mathbf{t},\mathbf{p}} \right\}}^{}\left( \begin{aligned}
  & COEF\_ AF_{r,v2,t,p,s,bd} \times COEF\_ CPT_{r,v2,t,p} \times \\
  & \left( \begin{aligned}
  & VAR\_ NCAP_{r,v2,p} + NCAP\_ PASTI_{r,v2,p} - \\
@@ -1845,8 +1847,10 @@ $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathb
 \end{aligned} \right) \\
  & \times PRC\_ CAPACT_{r,p}
 \end{aligned} \right)\quad if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}
-}{\overset{}{\text{Case2:}\mspace{6mu}\text{Vintagedprocess}(v = \text{vintage}):}
-}{\quad + \quad\quad\left( \begin{aligned}
+} \\ \\ 
+{\overset{}{\text{Case2:}\mspace{6mu}\text{Vintagedprocess}(v = \text{vintage}):}
+} \\ \\ 
+{\quad + \quad\quad\left( \begin{aligned}
  & COEF\_ AF_{r,v,t,p,s,bd} \times COEF\_ CPT_{r,v,t,p} \times \\
  & \left( \begin{aligned}
  & VAR\_ NCAP_{r,v,p} + NCAP\_ PASTI_{r,v,p} - \\
@@ -1854,42 +1858,49 @@ $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathb
 \end{aligned} \right) \\
  & \times PRC\_ CAPACT_{r,p}
 \end{aligned} \right)\quad if\mspace{6mu}\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}
-}
+} \\ \\ 
 {\times \left\lbrack G\_ YRFR_{r,s} \times (p \notin \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}',\mathbf{p}}) + 1 \times (p \in \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}',\mathbf{p}}) \right\rbrack}$$
 
 $${COEF\_ CPT_{r,v,t,p}:
-}
-{ifv = t
-}{= Max\left( \begin{aligned}
+} \\ \\ 
+{if\mspace{6mu}v = t
+} \\ \\ 
+{= Max\left( \begin{aligned}
  & \frac{D(t) - NCAP\_ ILED}{D(t)} \\
  & 0
 \end{aligned} \right)
-}
+} \\ \\
 {else
-}{ift \geq v \land D(v) > IL + TL \land B(t) < E(v) + TL
-}
+} \\ \\ 
+{if\mspace{6mu}t \geq v \land D(v) > IL + TL \land B(t) < E(v) + TL
+} \\ \\
 {= Max\left( \begin{aligned}
  & \frac{Min\left( B(v) + IL + COEF\_ RPTI_{r,v,p} \times TL,E(t) + 1 \right) - B(t)}{D(t)} \\
  & 0
 \end{aligned} \right)
-}{else
-}{= Max\left( \begin{aligned}
+} \\ \\ 
+{else
+} \\ \\ 
+{= Max\left( \begin{aligned}
  & \frac{Min\left( B(v) + IL + TL,E(t) + 1 \right) - Max\left( B(v) + IL,B(t) \right)}{D(t)} \\
  & 0
 \end{aligned} \right)
-}{endif
-}{endif
-}
+} \\ \\ 
+{endif
+} \\ \\ 
+{endif
+} \\ \\
 {Where,
-}{COEF\_ RPTI_{r,v,p} = \left\langle \frac{D(v) - IL}{TL} \right\rangle}$$
+} \\ \\
+{COEF\_ RPTI_{r,v,p} = \left\langle \frac{D(v) - IL}{TL} \right\rangle}$$
 
 where:
 
-IL = *NCAP_ILED~r,v,p~*
+IL = $NCAP\_ ILED_{r,v,p}$
 
-TL *= NCAP_TLIFE~r,v,p~*
+TL = $NCAP\_ TLIFE_{r,v,p}$
 
-B(t) = 1^st^ year of the period containing **t**
+B(t) = $1^{st}$ year of the period containing **t**
 
 E(t) = Last year of the period containing **t**
 
@@ -1909,7 +1920,7 @@ D(t) = Duration of the period containing **t**
 
 **Remarks:**
 
-- The equation is generated only for process flows not in the PG, as the PG flows are handled by EQ_CAFLAC. However, independent EQL_CAPFLO constraints may be requested also for the PG flows by setting *NCAP_AFC~r,\'0\',p,\'ACT\',tsl~* =--1. 
+- The equation is generated only for process flows not in the PG, as the PG flows are handled by EQ_CAFLAC. However, independent EQL_CAPFLO constraints may be requested also for the PG flows by setting $NCAP\_ AFC_{r,'0',p,'ACT',tsl} =--1$. 
 - When defined for storage activity, note that the capacity is assumed to represent an annual production capacity equivalent to the amount produced by full power during one full year/week/day for SEASON/WEEKLY/DAYNITE level storage processes, respectively. The availability factor should be adjusted to correspond to the actual storage capacity. For example, a capacity of 1 GW is equal to 24 GWh for a DAYNITE storage, and if the real daily storage capacity is, say 8 GWh / GW, the maximum availability factor should be 0.333. 
 - The equation formulation is shown below is for the vintaged case only; the non-vintaged case differs in the RHS in the same way as in *EQ(l)\_CAPACT*.
 
@@ -1922,13 +1933,14 @@ D(t) = Duration of the period containing **t**
 $$EQ\_CAPFLO_{r,v,t,p,c,s} \quad \ni \left( rtp\_vintyr_{r,v,t,p} \land NCAP\_AFC_{r,v,p,c,s} \land \neg rpc\_pg_{r,p,c} \right)$$
 
 $${\left( \begin{aligned}
-& \sum_{rtpcs\_varf_{r,t,p,c,ts}}{VAR\_FLO_{r,v,t,p,c,s}} \space if \space c \neq 'ACT' \\
-& \sum_{prc\_ts_{r,p,ts}}\frac{VAR\_ACT_{r,v,t,p,ts} \times RS\_FR_{r,ts,s} \times G\_YRFR_{r,s}}{G\_YRFR_{r,P(ts)}} \space if \space c = 'ACT' \end{aligned} \right)
-}
-{\leq}
-{NCAP\_AFC_{r,v,t,p,c,s} \times \left( \begin{aligned}
-& VAR\_NCAP_{r,v,p} + NCAP\_PASTI_{r,v,p} - \\
-& \sum_{prc\_rcap_{r,p}}{VAR\_SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}}\end{aligned} \right) \cdot COEF\_CPT_{r,v,p,t} \times PRC\_CAPACT_{r,p} \times G\_YRFR_{r,s}}$$
+& \sum_{rtpcs\_varf_{r,t,p,c,ts}}{VAR\_FLO_{r,v,t,p,c,s}} \mspace{100mu} if \space c \neq 'ACT' \\
+& \sum_{prc\_ts_{r,p,ts}}\frac{VAR\_ACT_{r,v,t,p,ts} \times RS\_FR_{r,ts,s} \times G\_YRFR_{r,s}}{G\_YRFR_{r,P(ts)}} \mspace{18mu} if \space c = 'ACT' \end{aligned} \right)
+} \\ \\
+{\leq} \\ \\
+{{NCAP\_AFC_{r,v,t,p,c,s}} {\times \left( \begin{aligned}
+& \sum_{prc\_rcap_{r,p}}{VAR\_SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \end{aligned} \right)}
+\\ \\
+{\cdot COEF\_CPT_{r,v,p,t} \times PRC\_CAPACT_{r,p} \times G\_YRFR_{r,s}}}$$
 
 ### Equation: EQ_CAPLOAD
 
@@ -1952,8 +1964,8 @@ $${\left( \begin{aligned}
 
 **Notation:**
 
-- *AF_MAX~r,v,p,t,s~* maximum operating level of online capacity of process ***p***, vintage ***v***, in period ***t*** and timeslice ***s***, as defined by NCAP_AF(\'UP\') 
-- *AF_MIN~r,v,p,s~* minimum operating level of online capacity of process ***p***, vintage ***v*** in timeslice ***s***, as defined by ACT_MINLD 
+- $AF\_ MAX_{r,v,p,t,s}$ maximum operating level of online capacity of process ***p***, vintage ***v***, in period ***t*** and timeslice ***s***, as defined by NCAP_AF(\'UP\') 
+- $AF\_ MIN_{r,v,p,s}$ minimum operating level of online capacity of process ***p***, vintage ***v*** in timeslice ***s***, as defined by ACT_MINLD 
 - *SUP(s)* is the set of timeslices above timeslice ***s*** in the timeslice tree, but including also ***s*** itself 
 - *UPS(p)* is the set of timeslices with start-ups/shut-downs allowed for process *p*;
 
@@ -1964,16 +1976,20 @@ $${\left( \begin{aligned}
 $$\mathbf{EQ\_ CAPLOA}\mathbf{D}_{\mathbf{r,v,t,p,s,UP}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,s,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{> 0))}$$
 
 $${VAR\_ ACT_{r,v,t,p,s} \leq 
-}{AF\_ MAX_{r,v,t,p,s} \times \left( \begin{aligned}
+} \\ \\ 
+{AF\_ MAX_{r,v,t,p,s} \times \left( \begin{aligned}
  & VAR\_ NCAP_{r,tt(v),p} + NCAP\_ PASTI_{r,v,p} - \\
  & \sum_{\mathbf{prc}\_\mathbf{rca}\mathbf{p}_{\mathbf{r},\mathbf{p}}}^{}{VAR\_ SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}}
-\end{aligned} \right) \cdot 
-}{COEF\_ CPT_{r,v,p,t} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{r,s}}$$
+\end{aligned} \right) 
+}$$
+$$\cdot{COEF\_ CPT_{r,v,p,t} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{r,s}}$$
+
 
 $$\mathbf{EQ\_ CAPLOA}\mathbf{D}_{\mathbf{r,v,t,p,s,LO}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,s,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{> 0))}$$
 
 $${VAR\_ ACT_{r,v,t,p,s} \geq 
-}{AF\_ MIN_{r,v,p,s} \times \left( \begin{aligned}
+} \\ \\ 
+{AF\_ MIN_{r,v,p,s} \times \left( \begin{aligned}
  & VAR\_ NCAP_{r,tt(v),p} - NCAP\_ PASTI_{r,v,p} - \\
  & \sum_{\mathbf{prc}\_\mathbf{rca}\mathbf{p}_{\mathbf{r},\mathbf{p}}}^{}{VAR\_ SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}}
 \end{aligned} \right) \cdot 
@@ -2009,22 +2025,24 @@ $${VAR\_ ACT_{r,v,t,p,s} \geq
 **Equation:**
 
 $${\mathbf{EQ(l)\_ CP}\mathbf{T}_{\mathbf{r,t,p}}\mathbf{\ni}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,bd}}\mathbf{\vee}\mathbf{te}\mathbf{g}_{\mathbf{p}}\mathbf{\vee}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}}
-}
+} \\  \\ 
 {\mathbf{VAR\_ CA}\mathbf{P}_{\mathbf{r,t,p}}\mathbf{\times}\left( \mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}}\mathbf{\vee}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{\vee}\mathbf{te}\mathbf{g}_{\mathbf{p}} \right)
-}{\mathbf{+ CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{LO}\mathbf{'}}\mathbf{\times}\left\lbrack \left( \mathbf{NOT}\mathbf{\mspace{6mu}}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}} \right)\mathbf{\land}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{LO}\mathbf{'}} \right\rbrack
-}{\mathbf{+ CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{UP}\mathbf{'}}\mathbf{\times}\left\lbrack \left( \mathbf{NOT}\mathbf{\mspace{6mu}}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}} \right)\mathbf{\land}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{UP}\mathbf{'}} \right\rbrack
-}
+} \\ \\ 
+{\mathbf{+ CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{LO}\mathbf{'}}\mathbf{\times}\left\lbrack \left( \mathbf{NOT}\mathbf{\mspace{6mu}}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}} \right)\mathbf{\land}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{LO}\mathbf{'}} \right\rbrack
+} \\ \\ 
+{\mathbf{+ CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{UP}\mathbf{'}}\mathbf{\times}\left\lbrack \left( \mathbf{NOT}\mathbf{\mspace{6mu}}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}} \right)\mathbf{\land}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{UP}\mathbf{'}} \right\rbrack
+} \\ \\ 
 {\left\{ \mathbf{\leq}\mathbf{; = ;}\mathbf{\geq} \right\}
-}
+} \\ \\ 
 {\sum_{\mathbf{v}\mathbf{\in}\mathbf{rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,t,p}}}^{}{\mathbf{COEF\_ CP}\mathbf{T}_{\mathbf{r,v,t,p}}}\mathbf{\times}\left( \begin{array}{r}
-\mathbf{\& VAR\_ NCA}\mathbf{P}_{\mathbf{r,v,p}}\mathbf{\times}\left( \mathbf{v}\mathbf{\in}\mathbf{MILESTONYR} \right) \\
-\mathbf{\& + NCAP\_ PAST}\mathbf{I}_{\mathbf{r,v,p}}\mathbf{\times}\left( \mathbf{v}\mathbf{\in}\mathbf{PASTYEAR} \right) \\
-\mathbf{\&}\mathbf{-}\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{\times}\left( \mathbf{(r,p)}\mathbf{\in}\mathbf{prc\_ rcap} \right)
+\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{r,v,p}}\mathbf{\times}\left( \mathbf{v}\mathbf{\in}\mathbf{MILESTONYR} \right) \\
+\mathbf{+ NCAP\_ PAST}\mathbf{I}_{\mathbf{r,v,p}}\mathbf{\times}\left( \mathbf{v}\mathbf{\in}\mathbf{PASTYEAR} \right) \\
+\mathbf{-}\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{\times}\left( \mathbf{(r,p)}\mathbf{\in}\mathbf{prc\_ rcap} \right)
 \end{array} \right)
-}
+} \\ \\
 {\mathbf{where}
-}
-{\mathbf{COEF\_ CP}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{asdefinedinequationEQ(l)\_ CAPACT}}$$
+} \\ \\
+{\mathbf{COEF\_ CP}\mathbf{T}_{\mathbf{r,v,t,p}}\mspace{12mu}\mathbf{as\mspace{6mu}defined\mspace{6mu} in\mspace{6mu} equation\mspace{6mu} EQ(l)\_ CAPACT}}$$
 
 ### Equation: EQ(*l*)\_COMBAL
 
