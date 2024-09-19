@@ -2164,18 +2164,18 @@ $$COEF\_ FBRHS:$$
 
 *Do Case*
 
-$$Case \ni COM\_ BNDNET \lor COM\_ CUMNET \lor COM\_ CSTNET \lor COM\_SUBNET \lor COM\_TAXNET$$
+>$$Case \ni COM\_ BNDNET \lor COM\_ CUMNET \lor COM\_ CSTNET \lor COM\_SUBNET \lor COM\_TAXNET$$
 $$COEF\_ FBRHS = VAR\_ COMNET$$
 
-$$*Case* \ni COM\_ BNDPRD \lor COM\_ CUMPRD \lor COM\_ CSTPRD \lor COM\_ SUBPRD \lor COM\_ TAXPRD$$
-$$COEF\_ FBRHS = \VAR\_ OMPRD$$
+>$$Case \ni COM\_ BNDPRD \lor COM\_ CUMPRD \lor COM\_ CSTPRD \lor COM\_ SUBPRD \lor COM\_ TAXPRD$$
+$$COEF\_ FBRHS = VAR\_ COMPRD$$
 
-$$*Case* COM\_ PROJ$$
-$$COEF\_ FBRHS = COM\_ PROJ} \times COM\_ FR$$
+>$$Case COM\_ PROJ$$
+>>$$COEF\_ FBRHS = COM\_ PROJ \times COM\_ FR$$
 
-*Otherwise*
+>*Otherwise*
 
-$$COEF\_ FBRHS = 0$$
+>>$$COEF\_ FBRHS = 0$$
 
 *Endcase*
 
