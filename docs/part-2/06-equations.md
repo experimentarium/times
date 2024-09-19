@@ -1897,9 +1897,9 @@ where:
 
 IL = $NCAP\_ ILED_{r,v,p}$
 
-TL = $NCAP\_ TLIFE_ r,v,p}$
+TL = $NCAP\_ TLIFE_{r,v,p}$
 
-B(t) = $1^st$ year of the period containing **t**
+B(t) = $1^{st}$ year of the period containing **t**
 
 E(t) = Last year of the period containing **t**
 
@@ -1919,7 +1919,7 @@ D(t) = Duration of the period containing **t**
 
 **Remarks:**
 
-- The equation is generated only for process flows not in the PG, as the PG flows are handled by EQ_CAFLAC. However, independent EQL_CAPFLO constraints may be requested also for the PG flows by setting *NCAP_AFC_{r,\'0\',p,\'ACT\',tsl}* =--1. 
+- The equation is generated only for process flows not in the PG, as the PG flows are handled by EQ_CAFLAC. However, independent EQL_CAPFLO constraints may be requested also for the PG flows by setting $NCAP\_ AFC_{r,'0',p,'ACT',tsl} =--1$. 
 - When defined for storage activity, note that the capacity is assumed to represent an annual production capacity equivalent to the amount produced by full power during one full year/week/day for SEASON/WEEKLY/DAYNITE level storage processes, respectively. The availability factor should be adjusted to correspond to the actual storage capacity. For example, a capacity of 1 GW is equal to 24 GWh for a DAYNITE storage, and if the real daily storage capacity is, say 8 GWh / GW, the maximum availability factor should be 0.333. 
 - The equation formulation is shown below is for the vintaged case only; the non-vintaged case differs in the RHS in the same way as in *EQ(l)\_CAPACT*.
 
@@ -1932,13 +1932,13 @@ D(t) = Duration of the period containing **t**
 $$EQ\_CAPFLO_{r,v,t,p,c,s} \quad \ni \left( rtp\_vintyr_{r,v,t,p} \land NCAP\_AFC_{r,v,p,c,s} \land \neg rpc\_pg_{r,p,c} \right)$$
 
 $${\left( \begin{aligned}
-& \sum_{rtpcs\_varf_{r,t,p,c,ts}}{VAR\_FLO_{r,v,t,p,c,s}} \space if \space c \neq 'ACT' \\
-& \sum_{prc\_ts_{r,p,ts}}\frac{VAR\_ACT_{r,v,t,p,ts} \times RS\_FR_{r,ts,s} \times G\_YRFR_{r,s}}{G\_YRFR_{r,P(ts)}} \space if \space c = 'ACT' \end{aligned} \right)
-}
-{\leq}
+& \sum_{rtpcs\_varf_{r,t,p,c,ts}}{VAR\_FLO_{r,v,t,p,c,s}} \mspace{100mu} if \space c \neq 'ACT' \\
+& \sum_{prc\_ts_{r,p,ts}}\frac{VAR\_ACT_{r,v,t,p,ts} \times RS\_FR_{r,ts,s} \times G\_YRFR_{r,s}}{G\_YRFR_{r,P(ts)}} \mspace{18mu} if \space c = 'ACT' \end{aligned} \right)
+} \\ \\
+{\leq} \\ \\
 {NCAP\_AFC_{r,v,t,p,c,s} \times \left( \begin{aligned}
 & VAR\_NCAP_{r,v,p} + NCAP\_PASTI_{r,v,p} - \\
-& \sum_{prc\_rcap_{r,p}}{VAR\_SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}}\end{aligned} \right) \cdot COEF\_CPT_{r,v,p,t} \times PRC\_CAPACT_{r,p} \times G\_YRFR_{r,s}}$$
+& \sum_{prc\_rcap_{r,p}}{VAR\_SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \\ \\ \end{aligned} \right) \cdot COEF\_CPT_{r,v,p,t} \times PRC\_CAPACT_{r,p} \times G\_YRFR_{r,s}}$$
 
 ### Equation: EQ_CAPLOAD
 
@@ -1962,8 +1962,8 @@ $${\left( \begin{aligned}
 
 **Notation:**
 
-- *AF_MAX~r,v,p,t,s~* maximum operating level of online capacity of process ***p***, vintage ***v***, in period ***t*** and timeslice ***s***, as defined by NCAP_AF(\'UP\') 
-- *AF_MIN~r,v,p,s~* minimum operating level of online capacity of process ***p***, vintage ***v*** in timeslice ***s***, as defined by ACT_MINLD 
+- $AF\_ MAX_{r,v,p,t,s}$ maximum operating level of online capacity of process ***p***, vintage ***v***, in period ***t*** and timeslice ***s***, as defined by NCAP_AF(\'UP\') 
+- $AF\_ MIN_{r,v,p,s}$ minimum operating level of online capacity of process ***p***, vintage ***v*** in timeslice ***s***, as defined by ACT_MINLD 
 - *SUP(s)* is the set of timeslices above timeslice ***s*** in the timeslice tree, but including also ***s*** itself 
 - *UPS(p)* is the set of timeslices with start-ups/shut-downs allowed for process *p*;
 
@@ -1974,20 +1974,24 @@ $${\left( \begin{aligned}
 $$\mathbf{EQ\_ CAPLOA}\mathbf{D}_{\mathbf{r,v,t,p,s,UP}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,s,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{> 0))}$$
 
 $${VAR\_ ACT_{r,v,t,p,s} \leq 
-}{AF\_ MAX_{r,v,t,p,s} \times \left( \begin{aligned}
+} \\ \\ 
+{AF\_ MAX_{r,v,t,p,s} \times \left( \begin{aligned}
  & VAR\_ NCAP_{r,tt(v),p} + NCAP\_ PASTI_{r,v,p} - \\
  & \sum_{\mathbf{prc}\_\mathbf{rca}\mathbf{p}_{\mathbf{r},\mathbf{p}}}^{}{VAR\_ SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}}
 \end{aligned} \right) \cdot 
-}{COEF\_ CPT_{r,v,p,t} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{r,s}}$$
+} \\ \\ 
+{COEF\_ CPT_{r,v,p,t} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{r,s}}$$
 
 $$\mathbf{EQ\_ CAPLOA}\mathbf{D}_{\mathbf{r,v,t,p,s,LO}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,s,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{> 0))}$$
 
 $${VAR\_ ACT_{r,v,t,p,s} \geq 
-}{AF\_ MIN_{r,v,p,s} \times \left( \begin{aligned}
+} \\ \\ 
+{AF\_ MIN_{r,v,p,s} \times \left( \begin{aligned}
  & VAR\_ NCAP_{r,tt(v),p} - NCAP\_ PASTI_{r,v,p} - \\
  & \sum_{\mathbf{prc}\_\mathbf{rca}\mathbf{p}_{\mathbf{r},\mathbf{p}}}^{}{VAR\_ SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}}
 \end{aligned} \right) \cdot 
-}{COEF\_ CPT_{r,v,p,t} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{r,s}}$$
+} \\ \\ 
+{COEF\_ CPT_{r,v,p,t} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{r,s}}$$
 
 ### Equation: EQ(*l*)\_CPT
 
@@ -2019,22 +2023,24 @@ $${VAR\_ ACT_{r,v,t,p,s} \geq
 **Equation:**
 
 $${\mathbf{EQ(l)\_ CP}\mathbf{T}_{\mathbf{r,t,p}}\mathbf{\ni}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,bd}}\mathbf{\vee}\mathbf{te}\mathbf{g}_{\mathbf{p}}\mathbf{\vee}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}}
-}
+} \\  \\ 
 {\mathbf{VAR\_ CA}\mathbf{P}_{\mathbf{r,t,p}}\mathbf{\times}\left( \mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}}\mathbf{\vee}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{\vee}\mathbf{te}\mathbf{g}_{\mathbf{p}} \right)
-}{\mathbf{+ CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{LO}\mathbf{'}}\mathbf{\times}\left\lbrack \left( \mathbf{NOT}\mathbf{\mspace{6mu}}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}} \right)\mathbf{\land}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{LO}\mathbf{'}} \right\rbrack
-}{\mathbf{+ CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{UP}\mathbf{'}}\mathbf{\times}\left\lbrack \left( \mathbf{NOT}\mathbf{\mspace{6mu}}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}} \right)\mathbf{\land}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{UP}\mathbf{'}} \right\rbrack
-}
+} \\ \\ 
+{\mathbf{+ CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{LO}\mathbf{'}}\mathbf{\times}\left\lbrack \left( \mathbf{NOT}\mathbf{\mspace{6mu}}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}} \right)\mathbf{\land}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{LO}\mathbf{'}} \right\rbrack
+} \\ \\ 
+{\mathbf{+ CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{UP}\mathbf{'}}\mathbf{\times}\left\lbrack \left( \mathbf{NOT}\mathbf{\mspace{6mu}}\mathbf{rtp\_ var}\mathbf{p}_{\mathbf{r,t,p}} \right)\mathbf{\land}\mathbf{CAP\_ BN}\mathbf{D}_{\mathbf{r,t,p,}\mathbf{'}\mathbf{UP}\mathbf{'}} \right\rbrack
+} \\ \\ 
 {\left\{ \mathbf{\leq}\mathbf{; = ;}\mathbf{\geq} \right\}
-}
+} \\ \\ 
 {\sum_{\mathbf{v}\mathbf{\in}\mathbf{rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,t,p}}}^{}{\mathbf{COEF\_ CP}\mathbf{T}_{\mathbf{r,v,t,p}}}\mathbf{\times}\left( \begin{array}{r}
-\mathbf{\& VAR\_ NCA}\mathbf{P}_{\mathbf{r,v,p}}\mathbf{\times}\left( \mathbf{v}\mathbf{\in}\mathbf{MILESTONYR} \right) \\
-\mathbf{\& + NCAP\_ PAST}\mathbf{I}_{\mathbf{r,v,p}}\mathbf{\times}\left( \mathbf{v}\mathbf{\in}\mathbf{PASTYEAR} \right) \\
-\mathbf{\&}\mathbf{-}\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{\times}\left( \mathbf{(r,p)}\mathbf{\in}\mathbf{prc\_ rcap} \right)
+\mathbf{VAR\_ NCA}\mathbf{P}_{\mathbf{r,v,p}}\mathbf{\times}\left( \mathbf{v}\mathbf{\in}\mathbf{MILESTONYR} \right) \\
+\mathbf{+ NCAP\_ PAST}\mathbf{I}_{\mathbf{r,v,p}}\mathbf{\times}\left( \mathbf{v}\mathbf{\in}\mathbf{PASTYEAR} \right) \\
+\mathbf{-}\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{\times}\left( \mathbf{(r,p)}\mathbf{\in}\mathbf{prc\_ rcap} \right)
 \end{array} \right)
-}
+} \\ \\
 {\mathbf{where}
-}
-{\mathbf{COEF\_ CP}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{asdefinedinequationEQ(l)\_ CAPACT}}$$
+} \\ \\
+{\mathbf{COEF\_ CP}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{as defined in equation EQ(l)\_ CAPACT}}$$
 
 ### Equation: EQ(*l*)\_COMBAL
 
