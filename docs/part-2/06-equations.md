@@ -1938,7 +1938,8 @@ $${\left( \begin{aligned}
 } \\ \\
 {\leq} \\ \\
 {{NCAP\_AFC_{r,v,t,p,c,s}} {\times \left( \begin{aligned}
-& \sum_{prc\_rcap_{r,p}}{VAR\_SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \end{aligned} \right)} \\ \\
+& \sum_{prc\_rcap_{r,p}}{VAR\_SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \end{aligned} \right)}
+\\ \\
 {\cdot COEF\_CPT_{r,v,p,t} \times PRC\_CAPACT_{r,p} \times G\_YRFR_{r,s}}}$$
 
 ### Equation: EQ_CAPLOAD
