@@ -1895,11 +1895,11 @@ $${COEF\_ CPT_{r,v,t,p}:
 
 where:
 
-IL = *NCAP_ILED_{r,v,p}*
+IL = *NCAP_ILED\_ {r,v,p}*
 
-TL *= NCAP_TLIFE_{r,v,p}*
+TL *= NCAP_TLIFE\_ {r,v,p}*
 
-B(t) = 1\textsuperscript{st} year of the period containing **t**
+B(t) = 1\textss{st} year of the period containing **t**
 
 E(t) = Last year of the period containing **t**
 
