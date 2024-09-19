@@ -1980,9 +1980,9 @@ $${VAR\_ ACT_{r,v,t,p,s} \leq
 {AF\_ MAX_{r,v,t,p,s} \times \left( \begin{aligned}
  & VAR\_ NCAP_{r,tt(v),p} + NCAP\_ PASTI_{r,v,p} - \\
  & \sum_{\mathbf{prc}\_\mathbf{rca}\mathbf{p}_{\mathbf{r},\mathbf{p}}}^{}{VAR\_ SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_ UPS_{r,v,t,p,ts,'N'}}
-\end{aligned} \right) \cdot 
-} \\ \\ 
-{COEF\_ CPT_{r,v,p,t} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{r,s}}$$
+\end{aligned} \right) 
+}$$
+$$\cdot{COEF\_ CPT_{r,v,p,t} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{r,s}}$$
 
 
 $$\mathbf{EQ\_ CAPLOA}\mathbf{D}_{\mathbf{r,v,t,p,s,LO}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,s,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{> 0))}$$
