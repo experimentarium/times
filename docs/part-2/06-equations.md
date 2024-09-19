@@ -2068,7 +2068,7 @@ Dual: The dual variable (shadow price) of the commodity balance describes the in
 
 $
 $$${EQ(l)\_ COMBAL_{r,t,c,s} \ni \left\lbrack \mathbf{rcs}\_\mathbf{comba}\mathbf{l}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{s},\mathbf{bd}} \right\rbrack
-}
+} \\ \\
 {COM\_ IE_{r,t,c} \times \left( \begin{aligned}
  & \sum_{p \in \mathbf{to}\mathbf{p}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{OUT}'}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ FLOFLO_{r,v,t,p,c,s,'OUT'}}} \\
  & \\
@@ -2114,13 +2114,11 @@ VAR\_ COMPRD_{r,t,com,ts}
 \end{pmatrix} \times RTCS\_ TSFR_{r,t,com,s,ts}} \\
  & 
 \end{aligned} \right)
-}
+} \\ \\
 {+ \sum_{j = 1}^{COM\_ STEP_{r,c,'LO'}}{VAR\_ ELAST_{r,t,c.s,j,'LO'}} - \sum_{j = 1}^{COM\_ STEP_{r,c,'UP'}}{VAR\_ ELAST_{r,t,c,s,j,'UP'}}
-}
-{(continued\mspace{6mu} on\mspace{6mu} next\mspace{6mu} page)}$$
+}$$
 
-$
-$$${- \left( \begin{aligned}
+$${- \left( \begin{aligned}
  & \sum_{p \in \mathbf{to}\mathbf{p}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{OUT}'}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ FLOFLO_{r,v,t,p,c,s,'IN'}}} \\
  & \\
  & + \sum_{p \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c},'EX\mathbf{P}'}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ IRE_{r,v,t,p,c,s,'EXP'}}} + AUX\_ IRE_{r,t,c,s,'IN'} \\
@@ -2157,12 +2155,29 @@ p \in \mathbf{rpc}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}} \\
 \end{aligned} \right) \right\rbrack \times G\_ YRFR_{r,s} \\
  & 
 \end{aligned} \right)
-}
+} \\ \\
 {\left\{ \geq ; = \right\}\quad COEF\_ FBRHS}$$
 
 We now show the detailed calculation of the Right-hand-side
 
-$$missing \space expression$$
+$$COEF\_ FBRHS:$$
+
+*Do Case*
+
+$$Case \ni COM\_ BNDNET \lor COM\_ CUMNET \lor COM\_ CSTNET \lor COM\_SUBNET \lor COM\_TAXNET$$
+$$COEF\_ FBRHS = VAR\_ COMNET$$
+
+$$*Case* \ni COM\_ BNDPRD \lor COM\_ CUMPRD \lor COM\_ CSTPRD \lor COM\_ SUBPRD \lor COM\_ TAXPRD$$
+$$COEF\_ FBRHS = \VAR\_ OMPRD$$
+
+$$*Case* COM\_ PROJ$$
+$$COEF\_ FBRHS = COM\_ PROJ} \times COM\_ FR$$
+
+*Otherwise*
+
+$$COEF\_ FBRHS = 0$$
+
+*Endcase*
 
 **Flow Coefficients related to process activity (VAR_FLO)**
 
