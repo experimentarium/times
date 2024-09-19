@@ -1835,8 +1835,9 @@ $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathb
  & \sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \right)}^{}{\frac{VAR\_ ACT_{r,v,t,p,ts}}{RS\_ STGPRD_{r,ts}} \times RS\_ FR_{r,ts,s}}\mspace{18mu} if\mspace{6mu}\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}'\mathbf{p}}
 \end{aligned} \right\}
 } \\ \\
-{\left\{ \leq ; = ; \geq \right\}
-}{\overset{}{\text{Case1:}\mspace{6mu}\text{Non-vintagedprocess}(v = t):}
+{\left\{ \leq ; = ; \geq \right\} 
+} \\ \\ 
+{\overset{}{\text{Case1:}\mspace{6mu}\text{Non-vintagedprocess}(v = t):}
 }\\ \\ 
 {\sum_{\left\{ v2|\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v}\mathbf{2},\mathbf{t},\mathbf{p}} \right\}}^{}\left( \begin{aligned}
  & COEF\_ AF_{r,v2,t,p,s,bd} \times COEF\_ CPT_{r,v2,t,p} \times \\
@@ -1936,9 +1937,11 @@ $${\left( \begin{aligned}
 & \sum_{prc\_ts_{r,p,ts}}\frac{VAR\_ACT_{r,v,t,p,ts} \times RS\_FR_{r,ts,s} \times G\_YRFR_{r,s}}{G\_YRFR_{r,P(ts)}} \mspace{18mu} if \space c = 'ACT' \end{aligned} \right)
 } \\ \\
 {\leq} \\ \\
-{NCAP\_AFC_{r,v,t,p,c,s} \times \left( \begin{aligned}
+{NCAP\_AFC_{r,v,t,p,c,s} \times {\left( \begin{aligned}
 & VAR\_NCAP_{r,v,p} + NCAP\_PASTI_{r,v,p} - \\
-& \sum_{prc\_rcap_{r,p}}{VAR\_SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \\ \\ \end{aligned} \right) \cdot COEF\_CPT_{r,v,p,t} \times PRC\_CAPACT_{r,p} \times G\_YRFR_{r,s}}$$
+& \sum_{prc\_rcap_{r,p}}{VAR\_SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \end{aligned} \right)
+} \\ \\ 
+{\cdot COEF\_CPT_{r,v,p,t} \times PRC\_CAPACT_{r,p} \times G\_YRFR_{r,s}}$$
 
 ### Equation: EQ_CAPLOAD
 
@@ -1981,6 +1984,7 @@ $${VAR\_ ACT_{r,v,t,p,s} \leq
 \end{aligned} \right) \cdot 
 } \\ \\ 
 {COEF\_ CPT_{r,v,p,t} \cdot PRC\_ CAPACT_{r,p} \cdot G\_ YRFR_{r,s}}$$
+
 
 $$\mathbf{EQ\_ CAPLOA}\mathbf{D}_{\mathbf{r,v,t,p,s,LO}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,s,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{> 0))}$$
 
