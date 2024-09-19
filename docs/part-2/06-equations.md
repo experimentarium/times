@@ -1834,10 +1834,11 @@ $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathb
  & \sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \cap \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}} \right)}^{}{VAR\_ ACT_{r,v,t,p,ts}}if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}'\mathbf{p}} \\
  & \sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \right)}^{}{\frac{VAR\_ ACT_{r,v,t,p,ts}}{RS\_ STGPRD_{r,ts}} \times RS\_ FR_{r,ts,s}}if\mspace{6mu}\mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}'\mathbf{p}}
 \end{aligned} \right\}
-}
+} \\ \\
 {\left\{ \leq ; = ; \geq \right\}
 }{\overset{}{\text{Case1:}\mspace{6mu}\text{Non-vintagedprocess}(v = t):}
-}{\sum_{\left\{ v2|\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v}\mathbf{2},\mathbf{t},\mathbf{p}} \right\}}^{}\left( \begin{aligned}
+}\\ \\ 
+{\sum_{\left\{ v2|\mathbf{rtp}\_\mathbf{cpty}\mathbf{r}_{\mathbf{r},\mathbf{v}\mathbf{2},\mathbf{t},\mathbf{p}} \right\}}^{}\left( \begin{aligned}
  & COEF\_ AF_{r,v2,t,p,s,bd} \times COEF\_ CPT_{r,v2,t,p} \times \\
  & \left( \begin{aligned}
  & VAR\_ NCAP_{r,v2,p} + NCAP\_ PASTI_{r,v2,p} - \\
@@ -1845,8 +1846,10 @@ $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathb
 \end{aligned} \right) \\
  & \times PRC\_ CAPACT_{r,p}
 \end{aligned} \right)\quad if\mspace{6mu}\neg\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}
-}{\overset{}{\text{Case2:}\mspace{6mu}\text{Vintagedprocess}(v = \text{vintage}):}
-}{\quad + \quad\quad\left( \begin{aligned}
+} \\ \\ 
+{\overset{}{\text{Case2:}\mspace{6mu}\text{Vintagedprocess}(v = \text{vintage}):}
+} \\ \\ 
+{\quad + \quad\quad\left( \begin{aligned}
  & COEF\_ AF_{r,v,t,p,s,bd} \times COEF\_ CPT_{r,v,t,p} \times \\
  & \left( \begin{aligned}
  & VAR\_ NCAP_{r,v,p} + NCAP\_ PASTI_{r,v,p} - \\
@@ -1854,7 +1857,7 @@ $${EQ(l)\_ CAPACT_{r,v,t,p,s} \ni \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathb
 \end{aligned} \right) \\
  & \times PRC\_ CAPACT_{r,p}
 \end{aligned} \right)\quad if\mspace{6mu}\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{r,p}
-}
+} \\ \\ 
 {\times \left\lbrack G\_ YRFR_{r,s} \times (p \notin \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}',\mathbf{p}}) + 1 \times (p \in \mathbf{prc}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},'\mathbf{STG}',\mathbf{p}}) \right\rbrack}$$
 
 $${COEF\_ CPT_{r,v,t,p}:
