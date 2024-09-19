@@ -1937,11 +1937,8 @@ $${\left( \begin{aligned}
 & \sum_{prc\_ts_{r,p,ts}}\frac{VAR\_ACT_{r,v,t,p,ts} \times RS\_FR_{r,ts,s} \times G\_YRFR_{r,s}}{G\_YRFR_{r,P(ts)}} \mspace{18mu} if \space c = 'ACT' \end{aligned} \right)
 } \\ \\
 {\leq} \\ \\
-{NCAP\_AFC_{r,v,t,p,c,s} \times {\left( \begin{aligned}
-& VAR\_NCAP_{r,v,p} + NCAP\_PASTI_{r,v,p} - \\
-& \sum_{prc\_rcap_{r,p}}{VAR\_SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \end{aligned} \right)
-} \\ \\ 
-{\cdot COEF\_CPT_{r,v,p,t} \times PRC\_CAPACT_{r,p} \times G\_YRFR_{r,s}}$$
+{NCAP\_AFC_{r,v,t,p,c,s} \times \left( \begin{aligned}
+& \sum_{prc\_rcap_{r,p}}{VAR\_SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \\ \\ \end{aligned} \right) \cdot COEF\_CPT_{r,v,p,t} \times PRC\_CAPACT_{r,p} \times G\_YRFR_{r,s}}$$
 
 ### Equation: EQ_CAPLOAD
 
