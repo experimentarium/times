@@ -2238,7 +2238,7 @@ $BCF = B(v) + NCAP\_ILED - NCAP\_CLED$ Beginning year of commodity flow
 
 $ECF = B(v) + NCAP\_ILED - 1$ Ending year of commodity flow
 
-${COEF\_ ICOM:
+$${COEF\_ ICOM:
 } \\ \\
 {if(v = t) \land (IL + TL < D(t))
 } \\ \\ 
@@ -2246,7 +2246,7 @@ ${COEF\_ ICOM:
 } \\ \\ {where\ COEF\_ RPTINV = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle
 } \\ \\ {else
 } \\ \\ {= Max\left( \frac{1 + Min\left( ECF,E(t) \right) - Max\left( BCF,B(t) \right)}{D(t)} \times \frac{NCAP\_ ICOM_{v}}{NCAP\_ CLED_{v}},0 \right)
-} \\ \\ {endif}$
+} \\ \\ {endif}$$
 
 ![](assets/cases-1-2-3-4.svg)
 
@@ -2258,7 +2258,7 @@ $BCF = B(v) + NCAP\_ILED + NCAP\_TLIFE + NCAP\_DLAG$ Start year of commodity flo
 
 $ECF = B(v) + NCAP\_ILED + NCAP\_TLIFE + NCAP\_DLAG + NCAP\_DLIFE - 1$ End year of commodity flow.
 
-${COEF\_ OCOM:
+$${COEF\_ OCOM:
 } \\ \\ 
 {ift \geq v \land D(v) > IL + TL \land B(t) < E(v) + TL + DLAG + DLIFE
 } \\ \\ 
@@ -2275,7 +2275,7 @@ ${COEF\_ OCOM:
  & \frac{1 + Min(ECF,E(t)) - Max(BCF,B(t))}{D(t)} \times \frac{NCAP\_ OCOM_{v}}{NCAP\_ DLIFE_{v}} \\
  & 0
 \end{aligned} \right)
-} \\ \\ {endif}$
+} \\ \\ {endif}$$
 
 ### Equation: EQE_COMPRD
 
@@ -2295,10 +2295,10 @@ ${COEF\_ OCOM:
 
 **Equation:**
 
-${\mathbf{EQE\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}\mathbf{\ni}\mathbf{COM\_ BNDPRD}\mathbf{\vee}\mathbf{COM\_ CUMPRD}
+$${\mathbf{EQE\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}\mathbf{\ni}\mathbf{COM\_ BNDPRD}\mathbf{\vee}\mathbf{COM\_ CUMPRD}
 } \\ \\ {\mathbf{\vee}\mathbf{COM\_ CSTPRD}\mathbf{\vee}\mathbf{COM\_ SUBPRD}\mathbf{\vee}\mathbf{COM\_ TAXPRD}
 } \\ \\ 
-{\mathbf{COMSUP = VAR\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}}$
+{\mathbf{COMSUP = VAR\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}}$$
 
 ### Equation: EQ_CUMFLO
 
