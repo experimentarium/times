@@ -2066,8 +2066,7 @@ Dual: The dual variable (shadow price) of the commodity balance describes the in
 
 **Equation:**
 
-$
-$$${EQ(l)\_ COMBAL_{r,t,c,s} \ni \left\lbrack \mathbf{rcs}\_\mathbf{comba}\mathbf{l}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{s},\mathbf{bd}} \right\rbrack
+$${EQ(l)\_ COMBAL_{r,t,c,s} \ni \left\lbrack \mathbf{rcs}\_\mathbf{comba}\mathbf{l}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{s},\mathbf{bd}} \right\rbrack
 } \\ \\
 {COM\_ IE_{r,t,c} \times \left( \begin{aligned}
  & \sum_{p \in \mathbf{to}\mathbf{p}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{OUT}'}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ FLOFLO_{r,v,t,p,c,s,'OUT'}}} \\
@@ -2174,7 +2173,7 @@ $COEF\_ FBRHS:$
 >>$COEF\_ FBRHS = VAR\_ COMPRD$
 
 
->$Case COM\_ PROJ$
+>$Case \mspace{6mu} COM\_ PROJ$
 
 >>$COEF\_ FBRHS = COM\_ PROJ \times COM\_ FR$
 
