@@ -2066,9 +2066,8 @@ Dual: The dual variable (shadow price) of the commodity balance describes the in
 
 **Equation:**
 
-$
-$$${EQ(l)\_ COMBAL_{r,t,c,s} \ni \left\lbrack \mathbf{rcs}\_\mathbf{comba}\mathbf{l}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{s},\mathbf{bd}} \right\rbrack
-}
+$${EQ(l)\_ COMBAL_{r,t,c,s} \ni \left\lbrack \mathbf{rcs}\_\mathbf{comba}\mathbf{l}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{s},\mathbf{bd}} \right\rbrack
+} \\ \\
 {COM\_ IE_{r,t,c} \times \left( \begin{aligned}
  & \sum_{p \in \mathbf{to}\mathbf{p}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{OUT}'}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ FLOFLO_{r,v,t,p,c,s,'OUT'}}} \\
  & \\
@@ -2114,13 +2113,11 @@ VAR\_ COMPRD_{r,t,com,ts}
 \end{pmatrix} \times RTCS\_ TSFR_{r,t,com,s,ts}} \\
  & 
 \end{aligned} \right)
-}
+} \\ \\
 {+ \sum_{j = 1}^{COM\_ STEP_{r,c,'LO'}}{VAR\_ ELAST_{r,t,c.s,j,'LO'}} - \sum_{j = 1}^{COM\_ STEP_{r,c,'UP'}}{VAR\_ ELAST_{r,t,c,s,j,'UP'}}
-}
-{(continued\mspace{6mu} on\mspace{6mu} next\mspace{6mu} page)}$$
+}$$
 
-$
-$$${- \left( \begin{aligned}
+$${- \left( \begin{aligned}
  & \sum_{p \in \mathbf{to}\mathbf{p}_{\mathbf{r},\mathbf{p},\mathbf{c},'\mathbf{OUT}'}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ FLOFLO_{r,v,t,p,c,s,'IN'}}} \\
  & \\
  & + \sum_{p \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c},'EX\mathbf{P}'}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{CAL\_ IRE_{r,v,t,p,c,s,'EXP'}}} + AUX\_ IRE_{r,t,c,s,'IN'} \\
@@ -2157,28 +2154,58 @@ p \in \mathbf{rpc}\_\mathbf{st}\mathbf{g}_{\mathbf{r},\mathbf{p},\mathbf{c}} \\
 \end{aligned} \right) \right\rbrack \times G\_ YRFR_{r,s} \\
  & 
 \end{aligned} \right)
-}
+} \\ \\
 {\left\{ \geq ; = \right\}\quad COEF\_ FBRHS}$$
 
 We now show the detailed calculation of the Right-hand-side
 
-$$missing \space expression$$
+$COEF\_ FBRHS:$
+
+*Do Case*
+
+>$Case \ni COM\_ BNDNET \lor COM\_ CUMNET \lor COM\_ CSTNET \lor COM\_SUBNET \lor COM\_TAXNET$
+
+>>$COEF\_ FBRHS = VAR\_ COMNET$
+
+
+>$Case \ni COM\_ BNDPRD \lor COM\_ CUMPRD \lor COM\_ CSTPRD \lor COM\_ SUBPRD \lor COM\_ TAXPRD$
+
+>>$COEF\_ FBRHS = VAR\_ COMPRD$
+
+
+>$Case \mspace{6mu} COM\_ PROJ$
+
+>>$COEF\_ FBRHS = COM\_ PROJ \times COM\_ FR$
+
+>*Otherwise*
+
+>>$COEF\_ FBRHS = 0$
+
+*Endcase*
+
+
+
 
 **Flow Coefficients related to process activity (VAR_FLO)**
 
-$\mathbf{CAL\_ FLOFL}\mathbf{O}_{\mathbf{r,v,t,p,c,s,io}}\mathbf{\ni}\mathbf{rp\_ fl}\mathbf{o}_{\mathbf{r,p}}\mathbf{\land}\mathbf{NOTrpc\_ conl}\mathbf{y}_{\mathbf{r,t,p,c}}
-$$$
-{\mathbf{=}\sum_{\mathbf{s}\mathbf{1}\mathbf{\in}\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,s}\mathbf{1}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,c,s}\mathbf{1}}\mathbf{\times}}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,c,s,s}\mathbf{1}}
-}$$
+$\mathbf{CAL\_ FLOFL}\mathbf{O}_{\mathbf{r,v,t,p,c,s,io}}\mathbf{\ni}\mathbf{rp\_ fl}\mathbf{o}_{\mathbf{r,p}}\mathbf{\land}\mathbf{NOT\mspace{6mu}rpc\_ conl}\mathbf{y}_{\mathbf{r,t,p,c}}$
+
+>${\mathbf{=}\sum_{\mathbf{s}\mathbf{1}\mathbf{\in}\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,s}\mathbf{1}}}^{}{\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,c,s}\mathbf{1}}\mathbf{\times}}\mathbf{RTCS\_ TSF}\mathbf{R}_{\mathbf{r,t,c,s,s}\mathbf{1}}
+}$
 
 with RTCS_TSFR defined in the following way:
 
-$${\mathbf{RTCS\_ TSFR(r,t,c,s,s}\mathbf{1)}
-}{\mathbf{IF}\mathbf{\mspace{6mu}}\mathbf{ts\_ ma}\mathbf{p}_{\mathbf{r,s,s}\mathbf{1}}
-}{\mathbf{= 1}
-}{\mathbf{ELSE}
-}{\mathbf{=}\frac{\mathbf{COM\_ F}\mathbf{R}_{\mathbf{r,t,c,s}}}{\mathbf{COM\_ F}\mathbf{R}_{\mathbf{r,t,c,s}\mathbf{1}}}\text{   if c is a demand commodity and }\mathbf{COM}\mathbf{\_}\mathbf{FR}\text{ is specified,}
-}{\mathbf{=}\frac{\mathbf{G\_ YRF}\mathbf{R}_{\mathbf{r,t,c,s}}}{\mathbf{G\_ YRF}\mathbf{R}_{\mathbf{r,t,c,s}\mathbf{1}}}\text{  otherwise.}}$$
+$RTCS\_ TSFR(r,t,c,s,s1)$
+
+$IF\hspace{6pt}\mathbf{ts\_ map_{r,s,s1}}$
+
+>>$\mathbf{=1}$
+
+*ELSE*
+
+>>$\mathbf{=}\frac{COM\_ FR_{r,t,c,s}}{COM\_ FR_{r,t,c,s1}}\hspace{6pt}\mathbf{if\ c\ is\ a\ demand\ commodity\ and\ \mathbf{COM\_ FR}\ is\ specified,}$
+
+>>$\mathbf{=}\frac{G\_ YRFR_{r,t,c,s}}{G\_ YRFR_{r,t,c,s1}}\hspace{6pt}\mathbf{otherwise}$
 
 The parameter RTCS_TSFR is used to match the timeslice resolution of flow variables (VAR_FLO/VAR_IRE) and commodities. RTCS_TSFR is the coefficient of the flow variable, which is producing or consuming commodity (**c**), in the commodity balance of **c**. If timeslice **s** corresponds to the commodity timeslice resolution of **c** and timeslice **s1** to the timeslice resolution of the flow variable two cases may occur:
 
@@ -2188,7 +2215,20 @@ The parameter RTCS_TSFR is used to match the timeslice resolution of flow variab
 
 **Inter-regional Flow Coefficients**
 
-$$missing \space expression$$
+$$CAL\_ IRE_{r,v,t,p,c,s,ie} \ni \mathbf{rpc\_ ire_{r,p,c,ie}}\hspace{3pt} \wedge NOT \hspace{3pt} \mathbf{rpc\_ conly_{r,t,c,s,s1}}$$
+
+$$\mathbf{=}\sum_{s1 \in \mathbf{rtpcs\_ varf_{r,t,p,c,s1}}} VAR\_ IRE_{r,v,t,p,c,s1,ie} \times RTCS\_ TSFR_{r,t,c,s,s1}$$
+
+$$AUX\_ IRE_{r,t,c,s,io} \mathbf{=}$$
+
+$$= \sum_{(p,com,ie)\in \left(\mathbf{rpc\_ire_{r,p,com,ie}} \wedge {IRE\_ FLOSUM_{r,t,p,com,s,ie,c,io}}\right)} \hspace{3pt} \sum_{v \in \mathbf{rtp\_vintyr_{r,p,com,ie}}} \sum_{s1 \in \mathbf{rtpcs\_ varf_{r,t,p,com,s1}}}$$
+
+$$\left( \begin{array}{r} IRE\_ FLOSUM_{r,t,p,com,s1,ie,c,io} \times VAR\_ IRE_{r,v,t,p,c,s1,ie} \\
+if \hspace{6pt} \mathbf{ts\_ map_{r,s,s1}} \\
+\times 1 \\
+else \\
+\times \frac{G\_ YRFR_{r,s}}{G\_ YRFR_{r,s1}}
+\end{array} \right)$$
 
 **Investment Related Flow Coefficients**
 
@@ -2199,13 +2239,14 @@ $BCF = B(v) + NCAP\_ILED - NCAP\_CLED$ Beginning year of commodity flow
 $ECF = B(v) + NCAP\_ILED - 1$ Ending year of commodity flow
 
 $${COEF\_ ICOM:
-}
+} \\ \\
 {if(v = t) \land (IL + TL < D(t))
-}{= COEF\_ RPTINV \times \frac{NCAP\_ ICOM_{v}}{D(t)}
-}{whereCOEF\_ RPTINV = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle
-}{else
-}{= Max\left( \frac{1 + Min\left( ECF,E(t) \right) - Max\left( BCF,B(t) \right)}{D(t)} \times \frac{NCAP\_ ICOM_{v}}{NCAP\_ CLED_{v}},0 \right)
-}{endif}$$
+} \\ \\ 
+{= COEF\_ RPTINV \times \frac{NCAP\_ ICOM_{v}}{D(t)}
+} \\ \\ {where\ COEF\_ RPTINV = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle
+} \\ \\ {else
+} \\ \\ {= Max\left( \frac{1 + Min\left( ECF,E(t) \right) - Max\left( BCF,B(t) \right)}{D(t)} \times \frac{NCAP\_ ICOM_{v}}{NCAP\_ CLED_{v}},0 \right)
+} \\ \\ {endif}$$
 
 ![](assets/cases-1-2-3-4.svg)
 
@@ -2218,22 +2259,23 @@ $BCF = B(v) + NCAP\_ILED + NCAP\_TLIFE + NCAP\_DLAG$ Start year of commodity flo
 $ECF = B(v) + NCAP\_ILED + NCAP\_TLIFE + NCAP\_DLAG + NCAP\_DLIFE - 1$ End year of commodity flow.
 
 $${COEF\_ OCOM:
-}
+} \\ \\ 
 {ift \geq v \land D(v) > IL + TL \land B(t) < E(v) + TL + DLAG + DLIFE
-}{= \sum_{i = 1}^{COEF\_ RPTINV}{\left( Max\left( \begin{aligned}
+} \\ \\ 
+{= \sum_{i = 1}^{COEF\_ RPTINV}{\left( Max\left( \begin{aligned}
  & \left( \begin{aligned}
  & \frac{Min\left( B(v) + IL + (i \times TL) + DLAG + DLIFE - 1,E(t) \right)}{D(t)} \\
  & - \frac{Max\left( B(v) + IL + (i \times TL) + DLAG,B(t) \right)}{D(t)}
 \end{aligned} \right) \\
  & 0
 \end{aligned} \right) \right) \times \frac{NCAP\_ OCOM_{v}}{NCAP\_ DLIFE_{v}}}
-}{else
-}
+} \\ \\ {else
+} \\ \\ 
 {= Max\left( \begin{aligned}
  & \frac{1 + Min(ECF,E(t)) - Max(BCF,B(t))}{D(t)} \times \frac{NCAP\_ OCOM_{v}}{NCAP\_ DLIFE_{v}} \\
  & 0
 \end{aligned} \right)
-}{endif}$$
+} \\ \\ {endif}$$
 
 ### Equation: EQE_COMPRD
 
@@ -2254,8 +2296,8 @@ $${COEF\_ OCOM:
 **Equation:**
 
 $${\mathbf{EQE\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}\mathbf{\ni}\mathbf{COM\_ BNDPRD}\mathbf{\vee}\mathbf{COM\_ CUMPRD}
-}{\mathbf{\vee}\mathbf{COM\_ CSTPRD}\mathbf{\vee}\mathbf{COM\_ SUBPRD}\mathbf{\vee}\mathbf{COM\_ TAXPRD}
-}
+} \\ \\ {\mathbf{\vee}\mathbf{COM\_ CSTPRD}\mathbf{\vee}\mathbf{COM\_ SUBPRD}\mathbf{\vee}\mathbf{COM\_ TAXPRD}
+} \\ \\ 
 {\mathbf{COMSUP = VAR\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}}$$
 
 ### Equation: EQ_CUMFLO
@@ -2268,42 +2310,44 @@ $${\mathbf{EQE\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}\mathbf{\ni}\mathbf{COM\_ BN
 
 **Related equations**: **EQ_CUMNET, EQ_CUMPRD**
 
-**Purpose**: This equation is generated whenever the input parameter *FLO_CUM~r,p,c,y1,y2~* or *ACT_CUM~r,p,y1,y2~* has been specified, for bounding the cumulative amount of process flow or activity. It is also generated when the input parameter *UC_CUMFLO* or *UC_CUMACT* has been specified. It sets the variable *VAR_CUMFLO~r,p,c,y1,y2~* equal to the cumulative flow/activity expression, to be bounded accordingly or to be referred to in a user constraint.
+**Purpose**: This equation is generated whenever the input parameter $FLO\_ CUM_{r,p,c,y1,y2}$ or $ACT\_ CUM_{r,p,y1,y2}$ has been specified, for bounding the cumulative amount of process flow or activity. It is also generated when the input parameter $UC\_ CUMFLO$ or $UC\_ CUMACT$ has been specified. It sets the variable $VAR\_ CUMFLO_{r,p,c,y1,y2}$ equal to the cumulative flow/activity expression, to be bounded accordingly or to be referred to in a user constraint.
 
 **Remarks:**
 
-- The internal set **rpc_cumflo~r,p,c,y1,y2~** is set according to any user-defined *FLO_CUM~r,p,c,y1,y2~* , *ACT_CUM~r,p,y1,y2~*, *UC_CUMFLO or* *UC_CUMACT*, with the reserved commodity name \'ACT\' used for *ACT_CUM* and *UC_CUMACT*.
+- The internal set $\mathbf{rpc\_ cumflo_{r,p,c,y1,y2}}$ is set according to any user-defined $FLO\_ CUM_{r,p,c,y1,y2}$ , $ACT\_ CUM_{r,p,y1,y2}$, $UC\_ CUMFLO$ or $UC\_ CUMACT$, with the reserved commodity name \'ACT\' used for $ACT\_ CUM$ and $UC\_ CUMACT$.
 
 **Equation:**
 
-$$\mathbf{EQ\_ CUMFL}\mathbf{O}_{\mathbf{r,p,c,y}\mathbf{1,t,y}\mathbf{2}}\mathbf{\quad}\mathbf{\ni}\left( \mathbf{rp}\mathbf{c}_{\mathbf{r,p,c}}\mathbf{\land}\mathbf{rpc\_ cumfl}\mathbf{o}_{\mathbf{r,p,c,y}\mathbf{1,y}\mathbf{2}} \right)$$
+$EQ\_ CUMFLO_{{r,p,c,y1,t,y2} \quad} \ni \left( \mathbf{rp}\mathbf{c}_{\mathbf{r,p,c}}\mathbf{\land}\mathbf{rpc\_ cumfl}\mathbf{o}_{\mathbf{r,p,c,y}\mathbf{1,y}\mathbf{2}} \right)$
 
-$${\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{c}\mathbf{\neq '}\text{ACT}\mathbf{'}\mathbf{:}
-}{\sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\begin{array}{r}
-\mathbf{\& s}\mathbf{\in}\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,s}} \\
-\mathbf{\& v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}
+${\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{c}\mathbf{\neq '}\text{ACT}\mathbf{'}\mathbf{:}
+} \\ \\ 
+{\sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\begin{array}{r}
+\mathbf{s}\mathbf{\in}\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,s}} \\
+\mathbf{v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}
 \end{array}}^{}{\left\lbrack \mathbf{Min}\left\{ \mathbf{E(t),y}\mathbf{2} \right\}\mathbf{-}\mathbf{Max}\left\{ \mathbf{B(t),y}\mathbf{1} \right\}\mathbf{+ 1} \right\rbrack\mathbf{\times}\mathbf{VAR\_ FL}\mathbf{O}_{\mathbf{r,v,t,p,c,s}}}}\mathbf{= VAR\_ CUMFL}\mathbf{O}_{\mathbf{r,p,c,y}\mathbf{1,y}\mathbf{2}}
-}{\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{c =}\mathbf{'}\text{ACT}\mathbf{'}\mathbf{:}
+} \\ \\ 
+{\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{c =}\mathbf{'}\text{ACT}\mathbf{'}\mathbf{:}
 }
 \sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\begin{array}{r}
-\mathbf{\&}\mathbf{\quad}\mathbf{s}\mathbf{\in}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}} \\
-\mathbf{\& v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}
+\mathbf{s}\mathbf{\in}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}} \\
+\mathbf{v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}
 \end{array}}^{}{\left\lbrack \mathbf{Min}\left\{ \mathbf{E(t),y}\mathbf{2} \right\}\mathbf{-}\mathbf{Max}\left\{ \mathbf{B(t),y}\mathbf{1} \right\}\mathbf{+ 1} \right\rbrack\mathbf{\times}\mathbf{VAR\_ AC}\mathbf{T}_{\mathbf{r,v,t,p,s}}}}\mathbf{= VAR\_ CUMFL}\mathbf{O}_{\mathbf{r,p,c,y}\mathbf{1,y}\mathbf{2}}
-$$
+$
 
 **Bounds**:
 
-*VAR_CUMFLO.LO~r,p,\'ACT\',y1,y2~* = *ACT_CUM ~r,\ y1,y2,\'LO\'~*
+$VAR\_ CUMFLO.LO_{r,p,'ACT',y1,y2} = ACT\_ CUM_{r,y1,y2,'LO'}$
 
-*VAR_CUMFLO.UP~r,p,\'ACT\',y1,y2~* = *ACT_CUM ~r,\ y1,y2,\'UP\'~*
+$VAR\_ CUMFLO.UP_{r,p,'ACT',y1,y2} = ACT\_ CUM_{r,y1,y2,'UP'}$
 
-*VAR_CUMFLO.FX~r,p,\'ACT\',y1,y2~* = *ACT_CUM ~r,\ y1,y2,\'FX\'~*
+$VAR\_ CUMFLO.FX_{r,p,'ACT',y1,y2} = ACT\_ CUM_{r,y1,y2,'FX'}$
 
-*VAR_CUMFLO.LO~r,p,c,y1,y2~* = *FLO_CUM ~r,p,c,\ y1,y2,\'LO\'~*
+$VAR\_ CUMFLO.LO_{r,p,c,y1,y2} = FLO\_ CUM_{r,p,c,y1,y2,'LO'}$
 
-*VAR_CUMFLO.UP~r,p,c,y1,y2~* = *FLO_CUM ~r,p,c,\ y1,y2,\'UP\'~*
+$VAR\_ CUMFLO.UP_{r,p,c,y1,y2} = FLO\_ CUM_{r,p,c,y1,y2,'UP'}$
 
-*VAR_CUMFLO.FX~r,p,c,y1,y2~* = *FLO_CUM ~r,p,c,\ y1,y2,\'FX\'~*
+$VAR\_ CUMFLO.FX_{r,p,c,y1,y2} = FLO\_ CUM_{r,p,c,y1,y2,'FX'}$
 
 ### Equation: EQ_CUMNET/PRD
 
