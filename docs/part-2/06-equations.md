@@ -2183,6 +2183,9 @@ $COEF\_ FBRHS:$
 
 *Endcase*
 
+
+
+
 **Flow Coefficients related to process activity (VAR_FLO)**
 
 $\mathbf{CAL\_ FLOFL}\mathbf{O}_{\mathbf{r,v,t,p,c,s,io}}\mathbf{\ni}\mathbf{rp\_ fl}\mathbf{o}_{\mathbf{r,p}}\mathbf{\land}\mathbf{NOT\mspace{6mu}rpc\_ conl}\mathbf{y}_{\mathbf{r,t,p,c}}$
@@ -2212,8 +2215,6 @@ The parameter RTCS_TSFR is used to match the timeslice resolution of flow variab
 
 **Inter-regional Flow Coefficients**
 
-$$missing \space expression$$
-
 $$CAL\_ IRE_{r,v,t,p,c,s,ie} \ni \mathbf{rpc\_ ire_{r,p,c,ie}}\hspace{3pt} \wedge NOT \hspace{3pt} \mathbf{rpc\_ conly_{r,t,c,s,s1}}$$
 
 $$\mathbf{=}\sum_{s1 \in \mathbf{rtpcs\_ varf_{r,t,p,c,s1}}} VAR\_ IRE_{r,v,t,p,c,s1,ie} \times RTCS\_ TSFR_{r,t,c,s,s1}$$
@@ -2237,15 +2238,15 @@ $BCF = B(v) + NCAP\_ILED - NCAP\_CLED$ Beginning year of commodity flow
 
 $ECF = B(v) + NCAP\_ILED - 1$ Ending year of commodity flow
 
-$${COEF\_ ICOM:
+${COEF\_ ICOM:
 } \\ \\
 {if(v = t) \land (IL + TL < D(t))
 } \\ \\ 
 {= COEF\_ RPTINV \times \frac{NCAP\_ ICOM_{v}}{D(t)}
-} \\ \\ {whereCOEF\_ RPTINV = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle
+} \\ \\ {where\ COEF\_ RPTINV = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle
 } \\ \\ {else
 } \\ \\ {= Max\left( \frac{1 + Min\left( ECF,E(t) \right) - Max\left( BCF,B(t) \right)}{D(t)} \times \frac{NCAP\_ ICOM_{v}}{NCAP\_ CLED_{v}},0 \right)
-} \\ \\ {endif}$$
+} \\ \\ {endif}$
 
 ![](assets/cases-1-2-3-4.svg)
 
@@ -2257,7 +2258,7 @@ $BCF = B(v) + NCAP\_ILED + NCAP\_TLIFE + NCAP\_DLAG$ Start year of commodity flo
 
 $ECF = B(v) + NCAP\_ILED + NCAP\_TLIFE + NCAP\_DLAG + NCAP\_DLIFE - 1$ End year of commodity flow.
 
-$${COEF\_ OCOM:
+${COEF\_ OCOM:
 } \\ \\ 
 {ift \geq v \land D(v) > IL + TL \land B(t) < E(v) + TL + DLAG + DLIFE
 } \\ \\ 
@@ -2274,7 +2275,7 @@ $${COEF\_ OCOM:
  & \frac{1 + Min(ECF,E(t)) - Max(BCF,B(t))}{D(t)} \times \frac{NCAP\_ OCOM_{v}}{NCAP\_ DLIFE_{v}} \\
  & 0
 \end{aligned} \right)
-} \\ \\ {endif}$$
+} \\ \\ {endif}$
 
 ### Equation: EQE_COMPRD
 
@@ -2294,10 +2295,10 @@ $${COEF\_ OCOM:
 
 **Equation:**
 
-$${\mathbf{EQE\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}\mathbf{\ni}\mathbf{COM\_ BNDPRD}\mathbf{\vee}\mathbf{COM\_ CUMPRD}
+${\mathbf{EQE\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}\mathbf{\ni}\mathbf{COM\_ BNDPRD}\mathbf{\vee}\mathbf{COM\_ CUMPRD}
 } \\ \\ {\mathbf{\vee}\mathbf{COM\_ CSTPRD}\mathbf{\vee}\mathbf{COM\_ SUBPRD}\mathbf{\vee}\mathbf{COM\_ TAXPRD}
 } \\ \\ 
-{\mathbf{COMSUP = VAR\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}}$$
+{\mathbf{COMSUP = VAR\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}}$
 
 ### Equation: EQ_CUMFLO
 
@@ -2313,13 +2314,13 @@ $${\mathbf{EQE\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}\mathbf{\ni}\mathbf{COM\_ BN
 
 **Remarks:**
 
-- The internal set $\mathbf{rpc\_ cumflo_{r,p,c,y1,y2} is set according to any user-defined $FLO\_ CUM_{r,p,c,y1,y2}$ , $ACT\_ CUM_{r,p,y1,y2}$, $UC\_ CUMFLO$ or $UC\_ CUMACT$, with the reserved commodity name \'ACT\' used for $ACT\_ CUM$ and $UC\_ CUMACT$.
+- The internal set $\mathbf{rpc\_ cumflo_{r,p,c,y1,y2}}$ is set according to any user-defined $FLO\_ CUM_{r,p,c,y1,y2}$ , $ACT\_ CUM_{r,p,y1,y2}$, $UC\_ CUMFLO$ or $UC\_ CUMACT$, with the reserved commodity name \'ACT\' used for $ACT\_ CUM$ and $UC\_ CUMACT$.
 
 **Equation:**
 
-$$EQ\_ CUMFLO_{{r,p,c,y1,t,y2} \quad} \ni \left( \mathbf{rp}\mathbf{c}_{\mathbf{r,p,c}}\mathbf{\land}\mathbf{rpc\_ cumfl}\mathbf{o}_{\mathbf{r,p,c,y}\mathbf{1,y}\mathbf{2}} \right)$$
+$EQ\_ CUMFLO_{{r,p,c,y1,t,y2} \quad} \ni \left( \mathbf{rp}\mathbf{c}_{\mathbf{r,p,c}}\mathbf{\land}\mathbf{rpc\_ cumfl}\mathbf{o}_{\mathbf{r,p,c,y}\mathbf{1,y}\mathbf{2}} \right)$
 
-$${\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{c}\mathbf{\neq '}\text{ACT}\mathbf{'}\mathbf{:}
+${\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{c}\mathbf{\neq '}\text{ACT}\mathbf{'}\mathbf{:}
 } \\ \\ 
 {\sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\begin{array}{r}
 \mathbf{s}\mathbf{\in}\mathbf{rtpcs\_ var}\mathbf{f}_{\mathbf{r,t,p,c,s}} \\
@@ -2332,21 +2333,21 @@ $${\mathbf{if}\mathbf{\mspace{6mu}}\mathbf{c}\mathbf{\neq '}\text{ACT}\mathbf{'}
 \mathbf{s}\mathbf{\in}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}} \\
 \mathbf{v}\mathbf{\in}\mathbf{rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}
 \end{array}}^{}{\left\lbrack \mathbf{Min}\left\{ \mathbf{E(t),y}\mathbf{2} \right\}\mathbf{-}\mathbf{Max}\left\{ \mathbf{B(t),y}\mathbf{1} \right\}\mathbf{+ 1} \right\rbrack\mathbf{\times}\mathbf{VAR\_ AC}\mathbf{T}_{\mathbf{r,v,t,p,s}}}}\mathbf{= VAR\_ CUMFL}\mathbf{O}_{\mathbf{r,p,c,y}\mathbf{1,y}\mathbf{2}}
-$$
+$
 
 **Bounds**:
 
-$VAR\_ CUMFLO.LO_{r,p,\'ACT\',y1,y2} = ACT\_ CUM_{r,y1,y2,'LO\'}$
+$VAR\_ CUMFLO.LO_{r,p,'ACT',y1,y2} = ACT\_ CUM_{r,y1,y2,'LO'}$
 
-$VAR\_ CUMFLO.UP_{r,p,\'ACT\',y1,y2} = ACT\_ CUM_{r,y1,y2,\'UP\'}$
+$VAR\_ CUMFLO.UP_{r,p,'ACT',y1,y2} = ACT\_ CUM_{r,y1,y2,'UP'}$
 
-$VAR\_ CUMFLO.FX_{r,p,\'ACT\',y1,y2} = ACT\_ CUM_{r,y1,y2,\'FX\'}$
+$VAR\_ CUMFLO.FX_{r,p,'ACT',y1,y2} = ACT\_ CUM_{r,y1,y2,'FX'}$
 
-$VAR\_ CUMFLO.LO_{r,p,c,y1,y2} = FLO\_ CUM_{r,p,c,y1,y2,\'LO\'}$
+$VAR\_ CUMFLO.LO_{r,p,c,y1,y2} = FLO\_ CUM_{r,p,c,y1,y2,'LO'}$
 
-$VAR\_ CUMFLO.UP_{r,p,c,y1,y2} = FLO\_ CUM_{r,p,c,y1,y2,\'UP\'}$
+$VAR\_ CUMFLO.UP_{r,p,c,y1,y2} = FLO\_ CUM_{r,p,c,y1,y2,'UP'}$
 
-$VAR\_ CUMFLO.FX_{r,p,c,y1,y2} = FLO\_ CUM_{r,p,c,y1,y2,\'FX\'}$
+$VAR\_ CUMFLO.FX_{r,p,c,y1,y2} = FLO\_ CUM_{r,p,c,y1,y2,'FX'}$
 
 ### Equation: EQ_CUMNET/PRD
 
