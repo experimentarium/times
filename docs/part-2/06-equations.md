@@ -2200,9 +2200,9 @@ $IF\hspace{6pt}\mathbf{ts\_ map_{r,s,s1}}$
 
 *ELSE*
 
->>$\mathrm{=}\frac{COM\_ FR_{r,t,c,s}}{COM\_ FR_{r,t,c,s1}}\hspace{6pt}\mathrm{if\ c\ is\ a\ demand\ commodity\ and\} COM\_ FR {\ is\ specified,}$
+>>$\mathbf{=}\frac{COM\_ FR_{r,t,c,s}}{COM\_ FR_{r,t,c,s1}}\hspace{6pt}\mathbf{if\ c\ is\ a\ demand\ commodity\ and\} COM\_ FR {\ is\ specified,}$
 
->>$\mathrm{=}\frac{G\_ YRFR_{r,t,c,s}}{G\_ YRFR_{r,t,c,s1}}\hspace{6pt}\mathrm{otherwise}$
+>>$\mathbf{=}\frac{G\_ YRFR_{r,t,c,s}}{G\_ YRFR_{r,t,c,s1}}\hspace{6pt}\mathbf{otherwise}$
 
 The parameter RTCS_TSFR is used to match the timeslice resolution of flow variables (VAR_FLO/VAR_IRE) and commodities. RTCS_TSFR is the coefficient of the flow variable, which is producing or consuming commodity (**c**), in the commodity balance of **c**. If timeslice **s** corresponds to the commodity timeslice resolution of **c** and timeslice **s1** to the timeslice resolution of the flow variable two cases may occur:
 
