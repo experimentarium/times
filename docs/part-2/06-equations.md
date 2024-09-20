@@ -2214,19 +2214,19 @@ The parameter RTCS_TSFR is used to match the timeslice resolution of flow variab
 
 $$missing \space expression$$
 
-$CAL\_ IRE_{r,v,t,p,c,s,ie} \ni \mathbf{rpc\_ ire_{r,p,c,ie}}\hspace{3pt} \wedge NOT \hspace{3pt} \mathbf{rpc\_ conly_{r,t,c,s,s1}} $ \\
+$$CAL\_ IRE_{r,v,t,p,c,s,ie} \ni \mathbf{rpc\_ ire_{r,p,c,ie}}\hspace{3pt} \wedge NOT \hspace{3pt} \mathbf{rpc\_ conly_{r,t,c,s,s1}}$$
 
-$\mathbf{=}\sum_{s1 \in \mathbf{rtpcs\_ varf_{r,t,p,c,s1}}} VAR\_ IRE_{r,v,t,p,c,s1,ie} \times RTCS\_ TSFR_{r,t,c,s,s1}$ \\
+$$\mathbf{=}\sum_{s1 \in \mathbf{rtpcs\_ varf_{r,t,p,c,s1}}} VAR\_ IRE_{r,v,t,p,c,s1,ie} \times RTCS\_ TSFR_{r,t,c,s,s1}$$
 
-$AUX\_ IRE_{r,t,c,s,io} =$
+$$AUX\_ IRE_{r,t,c,s,io} \mathbf{=}$$
 
 $$= \sum_{(p,com,ie)\in \left(\mathbf{rpc\_ire_{r,p,com,ie}} \wedge {IRE\_ FLOSUM_{r,t,p,com,s,ie,c,io}}\right)} \hspace{3pt} \sum_{v \in \mathbf{rtp\_vintyr_{r,p,com,ie}}} \sum_{s1 \in \mathbf{rtpcs\_ varf_{r,t,p,com,s1}}}$$
 
-$$\left( \begin{array}{r} \& IRE\_ FLOSUM_{r,t,p,com,s1,ie,c,io} \times VAR\_ IRE_{r,v,t,p,c,s1,ie} \\
-\& if \hspace{6pt} \mathbf{ts\_ map_{r,s,s1}} \\
-\& \times 1 \\
-\& else \\
-\& \times \frac{G\_ YRFR_{r,s}}{G\_ YRFR_{r,s1}}
+$$\left( \begin{array}{r} IRE\_ FLOSUM_{r,t,p,com,s1,ie,c,io} \times VAR\_ IRE_{r,v,t,p,c,s1,ie} \\
+if \hspace{6pt} \mathbf{ts\_ map_{r,s,s1}} \\
+\times 1 \\
+else \\
+\times \frac{G\_ YRFR_{r,s}}{G\_ YRFR_{r,s1}}
 \end{array} \right)$$
 
 **Investment Related Flow Coefficients**
