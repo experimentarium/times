@@ -2200,7 +2200,7 @@ $IF\hspace{6pt}\mathbf{ts\_ map_{r,s,s1}}$
 
 *ELSE*
 
->>$\mathbf{=}\frac{COM\_ FR_{r,t,c,s}}{COM\_ FR_{r,t,c,s1}}\hspace{6pt}\mathbf{if\ c\ is\ a\ demand\ commodity\ and\} COM\_ FR {\ is\ specified,}$
+>>$\mathbf{=}\frac{COM\_ FR_{r,t,c,s}}{COM\_ FR_{r,t,c,s1}}\hspace{6pt}\mathbf{if\ c\ is\ a\ demand\ commodity\ and\ \mathbf{COM\_ FR}\ is\ specified,}$
 
 >>$\mathbf{=}\frac{G\_ YRFR_{r,t,c,s}}{G\_ YRFR_{r,t,c,s1}}\hspace{6pt}\mathbf{otherwise}$
 
