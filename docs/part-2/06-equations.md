@@ -2438,13 +2438,13 @@ $${EQ\_ DSCONE_{r,t,p} \ni \left( \mathbf{rp}\_\mathbf{dscnca}\mathbf{p}_{\mathb
 
 **Equation:**
 
-$${\mathbf{EQ\_ DSCRE}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{RCAP\_ BL}\mathbf{K}_{\mathbf{r,v,p}}\mathbf{)}
+$${EQ\_ DSCRET_{r,v,t,p}\mathbf{\quad}\mathbf{\ni} (\mathbf{rtp\_ cptyr_{\mathbf{r,v,t,p}}} \land RCAP\_ BLK_{r,v,p})}
 } \\ \\ 
-{\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{-}\mathbf{RTFOR}\mathbf{C}_{\mathbf{r,v,t,p}}\mathbf{=}
+{VAR\_ SCAP_{r,v,t,p}\ - RTFORC_{r,v,t,p} =
 } \\ \\ 
-{\mathbf{RCAP\_ BL}\mathbf{K}_{\mathbf{r,v,p}}\mathbf{\times}\mathbf{VAR\_ DRCA}\mathbf{P}_{\mathbf{r,v,t,p,2}}\mathbf{+}
+{RCAP\_ BLK_{r,v,p} \times VAR\_ DRCAP_{r,v,t,p,2} +
 } \\ \\
-{\mathbf{(NCAP\_ PAST}\mathbf{I}_{\mathbf{r,v,p}}\mathbf{-}\mathbf{RTFOR}\mathbf{C}_{\mathbf{r,v,t,p}}\mathbf{)}\mathbf{\times}\mathbf{VAR\_ DRCA}\mathbf{P}_{\mathbf{r,v,t,p,1}}}$$
+{(NCAP\_ PASTI_{r,v,p} - RTFORC_{r,v,t,p} )} \times {VAR\_ DRCAP_{r,v,t,p,1}}$$
 
 ### Equation: EQ(*l*)\_FLOBND
 
@@ -2489,11 +2489,12 @@ $$EQ(l)\_ FLOBND_{r,t,p,cg,s} \ni
 \left\{
     \begin{array}{ll}
         \mathbf{rtp_{r,t,p}} \land FLO\_BND_{r,t,p,cg,s,bd} \land \\
-        ( \mathbf{prc\_vint_{r,p}} \lor \sum_{c \in \mathbf{com\_ gmap_{r,cg,c}}} \sum_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \mathbf{rs\_ below_{r,s,ts}} \lor \neg \mathbf{com_{r,cg}} )
+        ( \mathbf{prc\_vint_{r,p}} \lor \sum\limits_{c \in \mathbf{com\_ gmap_{r,cg,c}}} \sum\limits_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \mathbf{rs\_ below_{r,s,ts}} \lor \neg \mathbf{com_{r,cg}} )
     \end{array}
 \right\}$$
 
-$${\sum_{c \in \mathbf{com\_ gmap_{r,cg,c}}} \sum_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \sum_{v \in \mathbf{rtp\_ vintyr_{r,v,t,p}}} \left( VAR\_ FLO_{r,v,t,p,c,ts} \mspace{50mu} if \mspace{6mu} \mathbf{rp\_ flo_{r,p}} \\ \\ \sum_{ie} VAR\_ IRE_{r,v,t,p,c,ts,ie} \times XS_{cg,ie} \mspace{18mu} if \mspace{6mu} \mathbf{rp\_ ire_{r,p}} \right) }$$
+$${\sum_{c \in \mathbf{com\_ gmap_{r,cg,c}}} \sum_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \sum_{v \in \mathbf{rtp\_ vintyr_{r,v,t,p}}} \left( VAR\_ FLO_{r,v,t,p,c,ts} \mspace{50mu} if \mspace{6mu} \mathbf{rp\_ flo_{r,p}} \\
+\sum_{ie} VAR\_ IRE_{r,v,t,p,c,ts,ie} \times XS_{cg,ie} \mspace{18mu} if \mspace{6mu} \mathbf{rp\_ ire_{r,p}} \right) }$$
 
 $${(\le/ \ge / =) \mspace{20mu} FLO\_ BND_{r,t,p,cg,s,bd}}$$
 
@@ -2542,7 +2543,7 @@ $${EQ(l)\_ FLOFR_{r,t,p,c,s} \ni \left\{ \mathbf{rtpcs}\_\mathbf{va}\mathbf{r}_{
 } \\ \\
 {( \leq / \geq / = )
 } \\ \\ 
-{\sum_{ts \in \mathbf{rs}\_\mathbf{below}\mathbf{l}_{\mathbf{r},\mathbf{ts},\mathbf{s}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\left( \frac{\sum_{sl \in \mathbf{rs}\_\mathbf{below}\mathbf{l}_{\mathbf{r},\mathbf{ts},\mathbf{sl}}}^{}{VAR\_ FLO_{r,v,t,p,c,sl}}}{G\_ YRFR_{r,ts}} \right) \times FLO\_ FR_{r,t,p,c,s,bd}}}
+{\sum_{ts \in \mathbf{rs}\_\mathbf{below}\mathbf{l}_{\mathbf{r},\mathbf{ts},\mathbf{s}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\left( \frac{\sum\limits_{sl \in \mathbf{rs}\_\mathbf{below}\mathbf{l}_{\mathbf{r},\mathbf{ts},\mathbf{sl}}}^{}{VAR\_ FLO_{r,v,t,p,c,sl}}}{G\_ YRFR_{r,ts}} \right) \times FLO\_ FR_{r,t,p,c,s,bd}}}
 }
 $$
 
