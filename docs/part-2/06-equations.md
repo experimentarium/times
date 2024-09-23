@@ -2487,11 +2487,11 @@ Dual: The dual value describes for a lower/upper bound the cost increase/decreas
 
 $$ missing \space expression $$
 
-$$ EQ(l)\_ FLOBND_{r,t,p,cg,s} \ni \left{ \mathbf{rtp_{r,t,p}} \land  FLO\_ BND_{r,t,p,cg,s,bd} \land \\ \\ \left( \mathbf{prc\_ vint_{r,p} \lor \sum_{c \in \mathbf{com\_gmap_{r,cg,c}}} \sum_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \mathbf{rs\_ below_{r,s,ts}} \mspace{6mu} \lor \mspace{6mu} _\urcorner \mathbf{com_{r,cg}} \right) \right} $$
+$${EQ(l)\_ FLOBND_{r,t,p,cg,s} \ni \left{ \mathbf{rtp_{r,t,p}} \land  FLO\_ BND_{r,t,p,cg,s,bd} \land \\ \\ \left( \mathbf{prc\_ vint_{r,p} \lor \sum_{c \in \mathbf{com\_gmap_{r,cg,c}}} \sum_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \mathbf{rs\_ below_{r,s,ts}} \mspace{6mu} \lor \mspace{6mu} _\urcorner \mathbf{com_{r,cg}} \right) \right} }$$
 
-$$\sum_{c \in \mathbf{com\_ gmap_{r,cg,c}}} \sum_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \sum_{v \in \mathbf{rtp\_ vintyr_{r,v,t,p}}} \left( VAR\_ FLO_{r,v,t,p,c,ts} \mspace{50mu} if \mspace{6mu} \mathbf{rp\_ flo_{r,p}} \\ \\ \sum_{ie} VAR\_ IRE_{r,v,t,p,c,ts,ie} \times XS_{cg,ie} \mspace{18mu} if \mspace{6mu} \mathbf{rp\_ ire_{r,p}} \right) $$
+$${\sum_{c \in \mathbf{com\_ gmap_{r,cg,c}}} \sum_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \sum_{v \in \mathbf{rtp\_ vintyr_{r,v,t,p}}} \left( VAR\_ FLO_{r,v,t,p,c,ts} \mspace{50mu} if \mspace{6mu} \mathbf{rp\_ flo_{r,p}} \\ \\ \sum_{ie} VAR\_ IRE_{r,v,t,p,c,ts,ie} \times XS_{cg,ie} \mspace{18mu} if \mspace{6mu} \mathbf{rp\_ ire_{r,p}} \right) }$$
 
-$$(\le/ \ge / =) \mspace{20mu} FLO\_ BND_{r,t,p,cg,s,bd}$$
+$${(\le/ \ge / =) \mspace{20mu} FLO\_ BND_{r,t,p,cg,s,bd}}$$
 
 where the equation sign is indicated by equation index **l** based on the bound type **bd**. 
 
