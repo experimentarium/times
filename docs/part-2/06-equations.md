@@ -2881,11 +2881,12 @@ $${\sum_{p \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{all}\_\mathbf{r},\ma
 *all_r is an external*
 
 $${\sum_{p \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{com},\mathbf{impex}}}^{\sum}{\sum_{(ts,s2) \in \left( \mathbf{rs}\_\mathbf{tre}\mathbf{e}_{\mathbf{r},\mathbf{ts},\mathbf{s}\mathbf{2}} \cap \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{com},\mathbf{s}\mathbf{2}} \cap IRE\_ TSCVT_{r,ts,all\_ r,s} \right)}^{\sum}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{\sum}\left\lbrack \begin{aligned}
- & VAR\_ IR{Er,com,all\_ r,c}_{r,v,t,p,com,s2,impexp} \\
+ & VAR\_ IR{Er,com,all\_ r,c}_{r,v,t,p,com,s2,impexp} \times IRE\_ CCVT_{r,com,all\_ r,c} \\
  & \times IRE\_ TSCVT(r,ts,all\_ r,s)
 \end{aligned} \right\rbrack}}
-} \\ \\ 
-{\left\{ = ; \leq ; \geq \right\} IRE\_ XBND_{all\_ r,t,c,s,ie,bd}}}$$
+}}$$
+
+$${\left\{ = ; \leq ; \geq \right\} IRE\_ XBND_{all\_ r,t,c,s,ie,bd}}$$
 
 ### Equations: EQ(*l*)\_INSHR, EQ(*l*)\_OUTSHR
 
