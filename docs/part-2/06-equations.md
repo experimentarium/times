@@ -2485,8 +2485,6 @@ Dual: The dual value describes for a lower/upper bound the cost increase/decreas
 
 **Equation:**
 
-$$ missing \space expression $$
-
 $$EQ(l)\_ FLOBND_{r,t,p,cg,s} \ni 
 \left\{
     \begin{array}{ll}
@@ -2494,8 +2492,6 @@ $$EQ(l)\_ FLOBND_{r,t,p,cg,s} \ni
         ( \mathbf{prc\_vint_{r,p}} \lor \sum_{c \in \mathbf{com\_ gmap_{r,cg,c}}} \sum_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \mathbf{rs\_ below_{r,s,ts}} \lor \neg \mathbf{com_{r,cg}} )
     \end{array}
 \right\}$$
-
-$${EQ(l)\_ FLOBND_{r,t,p,cg,s} \ni \left{ \mathbf{rtp_{r,t,p}} \land  FLO\_ BND_{r,t,p,cg,s,bd} \land \\ \\ \left( \mathbf{prc\_ vint_{r,p} \lor \sum_{c \in \mathbf{com\_gmap_{r,cg,c}}} \sum_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \mathbf{rs\_ below_{r,s,ts}} \mspace{6mu} \lor \mspace{6mu} _\urcorner \mathbf{com_{r,cg}} \right) \right} }$$
 
 $${\sum_{c \in \mathbf{com\_ gmap_{r,cg,c}}} \sum_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \sum_{v \in \mathbf{rtp\_ vintyr_{r,v,t,p}}} \left( VAR\_ FLO_{r,v,t,p,c,ts} \mspace{50mu} if \mspace{6mu} \mathbf{rp\_ flo_{r,p}} \\ \\ \sum_{ie} VAR\_ IRE_{r,v,t,p,c,ts,ie} \times XS_{cg,ie} \mspace{18mu} if \mspace{6mu} \mathbf{rp\_ ire_{r,p}} \right) }$$
 
@@ -2513,7 +2509,7 @@ where the equation sign is indicated by equation index **l** based on the bound 
 - *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
-**Purpose: 1)** Relationship in period (**t**) between the total annual flow and the flow in a particular timeslice (**s**) for a specific process (**p**). This is the standard usage of the *FLO_FR* parameter, which may be used even for defining a full load curve for a process flow.\
+**Purpose: 1)** Relationship in period (**t**) between the total annual flow and the flow in a particular timeslice (**s**) for a specific process (**p**). This is the standard usage of the *FLO_FR* parameter, which may be used even for defining a full load curve for a process flow.
 
 **2**) Relationship in period (**t**) between the the flow level in a particular flow timeslice (**s**) and the average level under all timeslices under its parent timeslice for a specific process (**p**). This variant will only be used when *FLO_FR* is levelized to the flow timeslices (**rpcs_var**), which is triggered by defining any *FLO_FR* value for that process flow at the ANNUAL level.
 
@@ -2525,16 +2521,18 @@ The sign of the equation determines whether the flow in a given timeslice is rig
 
 **Case A**: Standard EQ(*l*)\_FLOFR: fraction of flow in total ANNUAL flow
 
-$EQ(l)\_ FLOFR_{r,t,p,c,s} \ni \left\{ \sum_{ts \in \mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}}} \land FLO\_ FR_{r,t,p,c,s,bd} \right\}
-$$$
+$EQ(l)\_ FLOFR_{r,t,p,c,s} \ni \left\{ \sum_{ts \in \mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}}} \land FLO\_ FR_{r,t,p,c,s,bd} \right\}$
+
+$$
 {\sum_{ts \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left( VAR\_ FLO_{r,v,t,p,c,ts} \times RTCS\_ TSFR_{r,t,c,s,ts} \right)}
 }
 {( \leq / \geq / = )
 }
 {\sum_{ts \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left\lbrack VAR\_ FLO_{r,v,t,p,c,ts} \times FLO\_ FR_{r,t,p,c,s,bd} \right\rbrack}
 }
+$$
 
-{\text{wheretheequationsignisindicatedbyequationindex}\mathbf{l}.}$$
+where the equation sign is indicated by equation index **l**
 
 **Case B**: Levelized EQ(*l*)\_FLOFR: flow level in proportion to average level under parent
 
