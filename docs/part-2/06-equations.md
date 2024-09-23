@@ -2882,7 +2882,7 @@ $${\sum_{p \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{all}\_\mathbf{r},\ma
 *all_r is an external*
 
 $${\sum_{p \in \mathbf{rpc}\_\mathbf{ire}_{\mathbf{r,p,com,impex}}} {\sum_{(ts,s2) \in \left( \mathbf{rs}\_\mathbf{tre}\mathbf{e}_{\mathbf{r},\mathbf{ts},\mathbf{s}\mathbf{2}} \cap \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{com},\mathbf{s}\mathbf{2}} \cap IRE\_ TSCVT_{r,ts,all\_ r,s} \right)} {\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}} \left\lbrack \begin{aligned}
- & VAR\_ IR{Er,com,all\_ r,c}_{r,v,t,p,com,s2,impexp} \times IRE\_ CCVT_{r,com,all\_ r,c} \\
+ & VAR\_ IRE_{r,v,t,p,com,s2,impexp} \times IRE\_ CCVT_{r,com,all\_ r,c} \\
  & \times IRE\_ TSCVT(r,ts,all\_ r,s)
 \end{aligned} \right\rbrack}}
 }$$
