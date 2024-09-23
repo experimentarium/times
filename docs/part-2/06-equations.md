@@ -2330,35 +2330,29 @@ Primal: The primal value describes the cumulative net release/the cumulative pro
 
 Dual: The dual value of the constraint describes the change in the objective function if the bound parameter is increased by one unit. The increase of an upper bound yields a reduction of the total costs (dual value is negative), since the system wants to use more of this commodity. The increase of a lower bound yields an increase of the total costs (dual value is positive), since the system has to be forced to use more of an uncompetitive commodity (the commodity itself or the technologies utilizing it maybe too expensive). The dual value of a cumulative production constraint can also be interpreted as a tax/subsidy that is applied between the years **y1** and **y2** to reach the same cumulative productions as specified in the bound (the tax/subsidy has to be adjusted by the discount rate).
 
-**\
-**
-
 **Equation:**
 
-$\mathbf{EQ(l)\_ CUMNE}\mathbf{T}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,c}}\mathbf{\ni}\mathbf{COM\_ CUMNE}\mathbf{T}_{\mathbf{r,y1,y}\mathbf{2,c,l}}
-$$$
-{\sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{rtcs\_ var}\mathbf{c}_{\mathbf{r,t,c,s}}}^{}{\left\lbrack \mathbf{Min}\left\{ \mathbf{E(t),y}\mathbf{2} \right\}\mathbf{-}\mathbf{Max}\left\{ \mathbf{B(t),y}\mathbf{1} \right\}\mathbf{+ 1} \right\rbrack\mathbf{\times}\mathbf{VAR\_ COMNE}\mathbf{T}_{\mathbf{r,t,c,s}}}}\mathbf{= VAR\_ CUMCO}\mathbf{M}_{\mathbf{r,c,}\mathbf{'}\mathbf{NET}\mathbf{'}\mathbf{,y}\mathbf{1,y}\mathbf{2}}}$$
+$EQ(l)\_ CUMNET_{r,y1,y2,c} \ni COM\_ CUMNET_{r,y1,y2,c,l}$
+
+$${\sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{rtcs\_ var}\mathbf{c}_{\mathbf{r,t,c,s}}}^{}{\left\lbrack \mathbf{Min}\left\{ \mathbf{E(t),y}\mathbf{2} \right\}\mathbf{-}\mathbf{Max}\left\{ \mathbf{B(t),y}\mathbf{1} \right\}\mathbf{+ 1} \right\rbrack\mathbf{\times}\mathbf{VAR\_ COMNE}\mathbf{T}_{\mathbf{r,t,c,s}}}} \\ \\ \mathbf{= VAR\_ CUMCO}\mathbf{M}_{\mathbf{r,c,}\mathbf{'}\mathbf{NET}\mathbf{'}\mathbf{,y}\mathbf{1,y}\mathbf{2}}}$$
 
 $${\mathbf{EQ(l)\_ CUMPR}\mathbf{D}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,c,s}}\mathbf{\ni}\mathbf{COM\_ CUMPR}\mathbf{D}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,c,l}}
-}
+} \\ \\ 
 {\sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{rtcs\_ var}\mathbf{c}_{\mathbf{r,t,c,s}}}^{}{\left\lbrack \mathbf{Min}\left\{ \mathbf{E(t),y}\mathbf{2} \right\}\mathbf{-}\mathbf{Max}\left\{ \mathbf{B(t),y}\mathbf{1} \right\}\mathbf{+ 1} \right\rbrack\mathbf{\times}\mathbf{VAR\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}}}\mathbf{= VAR\_ CUMCO}\mathbf{M}_{\mathbf{r,c,}\mathbf{'}\mathbf{PRD}\mathbf{'}\mathbf{,y}\mathbf{1,y}\mathbf{2}}}$$
 
-**Bounds**: []{.mark}
+**Bounds**:
 
-*VAR_CUMCOM.LO~r,c,\'NET\',y1,y2~* = *COM_CUMNET ~r,\ y1,y2,c,\'LO\'~*
+$VAR\_ CUMCOM.LO_{r,c,'NET',y1,y2} = COM\_ CUMNET_{r,y1,y2,c,'LO'}$
 
-*VAR_CUMCOM.UP~r,c,\'NET\',y1,y2~* = *COM_CUMNET ~r,\ y1,y2,c,\'UP\'~*
+$VAR\_ CUMCOM.UP_{r,c,'NET',y1,y2} = COM\_ CUMNET_{r,y1,y2,c,'UP'}$
 
-*VAR_CUMCOM.FX~r,c,\'NET\',y1,y2~* = *COM_CUMNET ~r,\ y1,y2,c,\'FX\'~*
+$VAR\_ CUMCOM.FX_{r,c,'NET',y1,y2} = COM\_ CUMNET_{r,y1,y2,c,'FX'}$
 
-*VAR_CUMCOM.LO~r,c,\'PRD\',y1,y2~* = *COM_CUMPRD ~r,\ y1,y2,c,\'LO\'~*
+$VAR\_ CUMCOM.LO_{r,c,'PRD',y1,y2} = COM\_ CUMPRD_{r,y1,y2,c,'LO'}$
 
-*VAR_CUMCOM.UP~r,c,\'PRD\',y1,y2~* = *COM_CUMPRD ~r,\ y1,y2,c,\'UP\'~*
+$VAR\_ CUMCOM.UP_{r,c,'PRD',y1,y2} = COM\_ CUMPRD_{r,y1,y2,c,'UP'}$
 
-*VAR_CUMCOM.FX~r,c,\'PRD\',y1,y2~* = *COM_CUMPRD ~r,\ y1,y2,c,\'FX\'~*
-
-[\
-]{.mark}
+$VAR\_ CUMCOM.FX_{r,c,'PRD',y1,y2} = COM\_ CUMPRD_{r,y1,y2,c,'FX'}$
 
 ### Equation: EQ_CUMRET
 
@@ -2374,7 +2368,7 @@ $${\mathbf{EQ(l)\_ CUMPR}\mathbf{D}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,c,s}}\mat
 
 **Equation:**
 
-$$\mathbf{EQ\_ CUMRE}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ rca}\mathbf{p}_{\mathbf{r,p}}\mathbf{)}$$
+$\mathbf{EQ\_ CUMRE}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ rca}\mathbf{p}_{\mathbf{r,p}}\mathbf{)}$
 
 $\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{= VAR\_ RCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{+}\sum_{\mathbf{t}\mathbf{-}\mathbf{1}\mathbf{\in}\left\{ \mathbf{tt|rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,tt,p}} \right\}}^{}{\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t}\mathbf{-}\mathbf{1,p}}}$
 
@@ -2401,9 +2395,10 @@ $\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{= VAR\_ RCA}\mathbf{P}_{
 **Equation:**
 
 $${EQ\_ DSCNCAP_{r,t,p} \ni \left( \mathbf{rp}\_\mathbf{dscnca}\mathbf{p}_{\mathbf{r},\mathbf{p}} \land \mathbf{rt}\mathbf{p}_{\mathbf{r},\mathbf{t},\mathbf{p}} \right)
-}
-{VAR\_ NCAP_{r,t,p} = \sum_{u \in \mathbf{unit}}^{}\left( VAR\_ DNCAP_{r,t,p,u} \times NCAP\_ DSC_{r,t,p,u} \right) + 
-}\left( VAR\_ SNCAP_{r,t,p}\quad if\mspace{6mu} NCAP\_ SEMI_{r,t,p}\mspace{6mu} given \right)$$
+} \\ \\ 
+{VAR\_ NCAP_{r,t,p} = \sum_{u \in \mathbf{unit}}^{}\left( VAR\_ DNCAP_{r,t,p,u} \times NCAP\_ DSC_{r,t,p,u} \right) +
+} \\ \\
+\left( VAR\_ SNCAP_{r,t,p}\quad if\mspace{6mu} NCAP\_ SEMI_{r,t,p}\mspace{6mu} given \right)$$
 
 ### Equation: EQ_DSCONE 
 
@@ -2420,13 +2415,10 @@ $${EQ\_ DSCNCAP_{r,t,p} \ni \left( \mathbf{rp}\_\mathbf{dscnca}\mathbf{p}_{\math
 **Equation**
 
 $${EQ\_ DSCONE_{r,t,p} \ni \left( \mathbf{rp}\_\mathbf{dscnca}\mathbf{p}_{\mathbf{r},\mathbf{p}} \land \mathbf{rt}\mathbf{p}_{\mathbf{r},\mathbf{t},\mathbf{p}} \right)
-}
+} \\ \\
 {\sum_{u \in \mathbf{unit}}^{}{VAR\_ DNCAP_{r,t,p,u}} = 1
-}
-{NotethatVAR\_ DNCAPmustbedeclaredasabinary{var}iable(takingvalues0or1only)}$$
-
-[\
-]{.mark}
+} \\ \\
+{Note\ that\ VAR\_ DNCAP\ must\ be\ declared\ as\ a\ binary\ variable\ (taking\ values\ 0\ or\ 1\ only)}$$
 
 ### Equation: EQ_DSCRET
 
@@ -2447,10 +2439,13 @@ $${EQ\_ DSCONE_{r,t,p} \ni \left( \mathbf{rp}\_\mathbf{dscnca}\mathbf{p}_{\mathb
 
 **Equation:**
 
-$${\mathbf{EQ\_ DSCRE}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{RCAP\_ BL}\mathbf{K}_{\mathbf{r,v,p}}\mathbf{)}
-}{\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{-}\mathbf{RTFOR}\mathbf{C}_{\mathbf{r,v,t,p}}\mathbf{=}
-}{\mathbf{RCAP\_ BL}\mathbf{K}_{\mathbf{r,v,p}}\mathbf{\times}\mathbf{VAR\_ DRCA}\mathbf{P}_{\mathbf{r,v,t,p,2}}\mathbf{+}
-}{\mathbf{(NCAP\_ PAST}\mathbf{I}_{\mathbf{r,v,p}}\mathbf{-}\mathbf{RTFOR}\mathbf{C}_{\mathbf{r,v,t,p}}\mathbf{)}\mathbf{\times}\mathbf{VAR\_ DRCA}\mathbf{P}_{\mathbf{r,v,t,p,1}}}$$
+$${EQ\_ DSCRET_{r,v,t,p}\mathbf{\quad}\mathbf{\ni} (\mathbf{rtp\_ cptyr_{\mathbf{r,v,t,p}}} \land RCAP\_ BLK_{r,v,p})}
+} \\ \\ 
+{VAR\_ SCAP_{r,v,t,p}\ - RTFORC_{r,v,t,p} =
+} \\ \\ 
+{RCAP\_ BLK_{r,v,p} \times VAR\_ DRCAP_{r,v,t,p,2} +
+} \\ \\
+{(NCAP\_ PASTI_{r,v,p} - RTFORC_{r,v,t,p} )} \times {VAR\_ DRCAP_{r,v,t,p,1}}$$
 
 ### Equation: EQ(*l*)\_FLOBND
 
@@ -2491,7 +2486,20 @@ Dual: The dual value describes for a lower/upper bound the cost increase/decreas
 
 **Equation:**
 
-$$ missing \space expression $$
+$$EQ(l)\_ FLOBND_{r,t,p,cg,s} \ni 
+\left\{
+    \begin{array}{ll}
+        \mathbf{rtp_{r,t,p}} \land FLO\_BND_{r,t,p,cg,s,bd} \land \\
+        ( \mathbf{prc\_vint_{r,p}} \lor \sum\limits_{c \in \mathbf{com\_ gmap_{r,cg,c}}} \sum\limits_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \mathbf{rs\_ below_{r,s,ts}} \lor \neg \mathbf{com_{r,cg}} )
+    \end{array}
+\right\}$$
+
+$${\sum_{c \in \mathbf{com\_ gmap_{r,cg,c}}} \sum_{ts \in \mathbf{rtpcs\_ varf_{r,t,p,c,ts}}} \sum_{v \in \mathbf{rtp\_ vintyr_{r,v,t,p}}} \left( VAR\_ FLO_{r,v,t,p,c,ts} \mspace{50mu} if \mspace{6mu} \mathbf{rp\_ flo_{r,p}} \\
+\sum_{ie} VAR\_ IRE_{r,v,t,p,c,ts,ie} \times XS_{cg,ie} \mspace{18mu} if \mspace{6mu} \mathbf{rp\_ ire_{r,p}} \right) }$$
+
+$${(\le/ \ge / =) \mspace{20mu} FLO\_ BND_{r,t,p,cg,s,bd}}$$
+
+where the equation sign is indicated by equation index **l** based on the bound type **bd**. 
 
 ### Equation: EQ(*l*)\_FLOFR
 
@@ -2503,7 +2511,7 @@ $$ missing \space expression $$
 - *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
-**Purpose: 1)** Relationship in period (**t**) between the total annual flow and the flow in a particular timeslice (**s**) for a specific process (**p**). This is the standard usage of the *FLO_FR* parameter, which may be used even for defining a full load curve for a process flow.\
+**Purpose: 1)** Relationship in period (**t**) between the total annual flow and the flow in a particular timeslice (**s**) for a specific process (**p**). This is the standard usage of the *FLO_FR* parameter, which may be used even for defining a full load curve for a process flow.
 
 **2**) Relationship in period (**t**) between the the flow level in a particular flow timeslice (**s**) and the average level under all timeslices under its parent timeslice for a specific process (**p**). This variant will only be used when *FLO_FR* is levelized to the flow timeslices (**rpcs_var**), which is triggered by defining any *FLO_FR* value for that process flow at the ANNUAL level.
 
@@ -2515,29 +2523,32 @@ The sign of the equation determines whether the flow in a given timeslice is rig
 
 **Case A**: Standard EQ(*l*)\_FLOFR: fraction of flow in total ANNUAL flow
 
-$EQ(l)\_ FLOFR_{r,t,p,c,s} \ni \left\{ \sum_{ts \in \mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}}} \land FLO\_ FR_{r,t,p,c,s,bd} \right\}
-$$$
-{\sum_{ts \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left( VAR\_ FLO_{r,v,t,p,c,ts} \times RTCS\_ TSFR_{r,t,c,s,ts} \right)}
-}
-{( \leq / \geq / = )
-}
-{\sum_{ts \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left\lbrack VAR\_ FLO_{r,v,t,p,c,ts} \times FLO\_ FR_{r,t,p,c,s,bd} \right\rbrack}
-}
+$$EQ(l)\_ FLOFR_{r,t,p,c,s} \ni \left\{ \sum_{ts \in \mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}}} \land FLO\_ FR_{r,t,p,c,s,bd} \right\}$$
 
-{\text{wheretheequationsignisindicatedbyequationindex}\mathbf{l}.}$$
+$$
+{\sum_{ts \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left( VAR\_ FLO_{r,v,t,p,c,ts} \times RTCS\_ TSFR_{r,t,c,s,ts} \right)}
+} \\ \\ 
+{( \leq / \geq / = )
+} \\ \\
+{\sum_{ts \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left\lbrack VAR\_ FLO_{r,v,t,p,c,ts} \times FLO\_ FR_{r,t,p,c,s,bd} \right\rbrack }
+}
+$$
+
+where the equation sign is indicated by equation index **l**
 
 **Case B**: Levelized EQ(*l*)\_FLOFR: flow level in proportion to average level under parent
 
 $${EQ(l)\_ FLOFR_{r,t,p,c,s} \ni \left\{ \mathbf{rtpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{s}} \land FLO\_ FR_{r,t,p,c,s,bd} \right\}
-}
+} \\ \\
 {\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left( \frac{VAR\_ FLO_{r,v,t,p,c,s}}{G\_ YRFR_{r,s}} \right)
-}
+} \\ \\
 {( \leq / \geq / = )
+} \\ \\ 
+{\sum_{ts \in \mathbf{rs}\_\mathbf{below}\mathbf{l}_{\mathbf{r},\mathbf{ts},\mathbf{s}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\left( \frac{\sum\limits_{sl \in \mathbf{rs}\_\mathbf{below}\mathbf{l}_{\mathbf{r},\mathbf{ts},\mathbf{sl}}}^{}{VAR\_ FLO_{r,v,t,p,c,sl}}}{G\_ YRFR_{r,ts}} \right) \times FLO\_ FR_{r,t,p,c,s,bd}}}
 }
-{\sum_{ts \in \mathbf{rs}\_\mathbf{below}\mathbf{1}_{\mathbf{r},\mathbf{ts},\mathbf{s}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\left( \frac{\sum_{sl \in \mathbf{rs}\_\mathbf{below}\mathbf{1}_{\mathbf{r},\mathbf{ts},\mathbf{sl}}}^{}{VAR\_ FLO_{r,v,t,p,c,sl}}}{G\_ YRFR_{r,ts}} \right) \times FLO\_ FR_{r,t,p,c,s,bd}}}
-}
+$$
 
-{\text{wheretheequationsignisindicatedbyequationindex}\mathbf{l}.}$$
+where the equation sign is indicated by equation index **l**.
 
 ### Equation: EQ(*l*)\_FLOMRK
 
