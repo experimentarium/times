@@ -3083,8 +3083,6 @@ Primal: The primal value of the transformation is usually zero.
 
 Dual: Due to the flexibility of the transformation equation the interpretation of its dual value depends on the specific case. For a simple case, a process with one input flow **c1** and one output flow **c2** being linked by an efficiency FLO_FUNC(c1,c2), the dual variable, which is being defined as the cost change when the RHS is increased by one unit, can be interpreted as cost change when the efficiency of the process is increased by 1/VAR_FLO(r,v,t,p,c1,s):
 
-$$ Missing \space expression$$
-
 $VAR\_FLO_{r,v,t,p,c2,s} - FLO\_FUNC_{r,v,t,p,c1,c2,s} \times VAR\_FLO_{r,v,t,p,c1,s} = 1$
 
 $VAR\_FLO_{r,v,t,p,c2,s} - FLO\_FUNC_{r,v,t,p,c1,c2,s} \times VAR\_FLO_{r,v,t,p,c1,s} - 1 = 0$
@@ -3105,16 +3103,16 @@ $${EQ\_ PTRANS_{r,v,t,p,cg1,cg2,s1} \ni (r,v,t,p) \in \left( \mathbf{rp}\_\mathb
 } \\ \\
 {\sum_{c \in cg1}^{}{\sum_{s \in \left( \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{s}\mathbf{1}} \cap \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{s}} \right)}^{}\left( COEF\_ PTRAN_{r,v,t,p,cg1,c,cg2,s} \times VAR\_ FLO_{r,v,t,p,c,s} \times RTCS\_ TSFR_{r,t,c,s1,s} \right)}
 } \\ \\
-{\times \left( 1 + RTP\_ FFCX_{r,v,t,p,cg1,cg2} \times \left( if\mathbf{prc}\_\mathbf{vin}\mathbf{t}_{\mathbf{r},\mathbf{p}} \right) \right)}$$
+{\times \left( 1 + RTP\_ FFCX_{r,v,t,p,cg1,cg2} \times \left( if \mspace{6mu} \mathbf{prc}\_\mathbf{vin}\mathbf{t}_{\mathbf{r},\mathbf{p}} \right) \right)}$$
 
 $${COEF\_ PTRAN_{r,v,t,p,cg1,c,cg2,ts}\quad ts \in \mathbf{rpcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ts}}
 } \\ \\ {= 
 } \\ \\ {\sum_{s \in \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}}}^{}\left( 1 \times \left( if\mspace{6mu}\mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{ts},\mathbf{s}} \right) + \frac{G\_ YRFR_{r,ts}}{G\_ YRFR_{r,s}} \times \left( if\mspace{6mu}\mathbf{rs}\_\mathbf{belo}\mathbf{w}_{\mathbf{r},\mathbf{s},\mathbf{ts}} \right) \right)
-}{\frac{FLO\_ FUNC_{r,v,t,p,cg1,cg2,s}}{FLO\_ FUNC_{r,v,t,p,cg2,cg1,s} \times \left( if \mspace{6mu} FLO\_ SUM_{r,v,t,p,cg1,c,cg2,s} \right)} \times \left( \begin{aligned}
+} \\ \\ {\frac{FLO\_ FUNC_{r,v,t,p,cg1,cg2,s}}{FLO\_ FUNC_{r,v,t,p,cg2,cg1,s} \times \left( if \mspace{6mu} FLO\_ SUM_{r,v,t,p,cg1,c,cg2,s} \right)} \times \left( \begin{aligned}
  & if \mspace{6mu} FLO\_ FUNC_{r,v,t,p,cg1,cg2,s} \\
  & \vee FLO\_ FUNC_{r,v,t,p,cg2,cg1,s}
 \end{aligned} \right) \times 
-}\overset{\underset{}{}}{\left( 1\mspace{6mu} \times \left( if \mspace{6mu} NOTFLO\_ SUM_{r,v,t,p,cg1,c,cg2,s} \right) + FLO\_ SUM_{r,v,t,p,cg1,c,cg2,s} \right)}$$
+} \\ \\ \overset{\underset{}{}}{\left( 1\mspace{6mu} \times \left( if \mspace{6mu} NOTFLO\_ SUM_{r,v,t,p,cg1,c,cg2,s} \right) + FLO\_ SUM_{r,v,t,p,cg1,c,cg2,s} \right)}$$
 
 **Calculation of SHAPE parameter RTP_FFCX**
 
@@ -3221,7 +3219,7 @@ This block of equations implements the load shifting constraints. Enabling load-
 - *P(s)* -- Set of parent timeslice of timeslice $s$ in the timeslice tree
 - *C(s)* -- Set of child timeslices of timeslice s in the timeslice tree
 - $S_i$ -- Set of timeslices belonging to season *i* (e.g. summer, winter)
--  $VAR\_ DAC_{r,t,p,s,bd} -- activities of bi-directional load storage (advance / delay);\ virtual variables internally implemented with *VAR_UDP*
+-  $VAR\_ DAC_{r,t,p,s,bd}$ -- activities of bi-directional load storage (advance / delay);\ virtual variables internally implemented with *VAR_UDP*
 
 A. **Seasonal balances**
 
@@ -3244,7 +3242,7 @@ B. **Maximum allowed deviations from nominal demand loads**
 As the model generator automatically aggregates the demand into *VAR_COMPRD* variables, on the process timeslices **s** the constraints for the maximum allowed deviations from the exogenous nominal demand levels can be formulated as follows:
 
 $${VAR\_ SIN(r,t,p,com,s) + VAR\_ SOUT(r,t,p,D,s)\quad \leq \quad STG\_ SIFT(r,t,p,D,s)\mspace{6mu} \times 
-}{\sum_{ts \in RS\_ TREE_{r,s}}^{}\left( \frac{RTCS\_ TSFR_{r,t,D,s,ts}}{COM\_ IE_{r,t,D,ts}} \times VAR\_ COMPRD_{r,t,D,ts} \right)\quad\forall(r,t,s),\mspace{6mu} s \in \left\{ ts|PRC\_ TS_{r,p,ts} \right\}}$$
+} \\ \\ {\sum_{ts \in RS\_ TREE_{r,s}}^{}\left( \frac{RTCS\_ TSFR_{r,t,D,s,ts}}{COM\_ IE_{r,t,D,ts}} \times VAR\_ COMPRD_{r,t,D,ts} \right)\quad\forall(r,t,s),\mspace{6mu} s \in \left\{ ts|PRC\_ TS_{r,p,ts} \right\}}$$
 
 In addition, the user can also define maximum fractions for the total load shifting within each season in proportion to the total demand in that season, by specifying $STG\_ SIFT(r,y,p,'ACT',s)$. In this case, the constraints for the maximum allowed shifting in proportion to the seasonal total demand in season *i* can be formulated as follows:
 
@@ -3421,7 +3419,7 @@ p \in \mathbf{prc}\_\mathbf{vint}
  & VAR\_ ACT_{r,t - 1,t - 1,p,'ANNUAL'} \\
  & \times (1 - STG\_ LOSS_{r,v,p,'ANNUAL'})^{D(t)}
 \end{aligned} \right\rbrack
-}{+ \left\lbrack \sum_{\begin{matrix}
+} \\ \\ {+ \left\lbrack \sum_{\begin{matrix}
 y \in \mathbf{periody}\mathbf{r}_{\mathbf{t},\mathbf{y}} \\
 c \in \mathbf{rpc}\_\mathbf{st}\mathbf{g}_{r,p,c}
 \end{matrix}}^{}{\left( \begin{aligned}
@@ -3470,9 +3468,9 @@ $${EQ(l)\_ STGIN/OUT_{r,t,p,c,s} \ni \left\{ \begin{aligned}
  & (r,t,p,c) \in \mathbf{rtp}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c}} \land STGIN/OUT\_ BND_{r,t,p,c,s,bd} \land s \in \mathbf{rps}\_\mathbf{prct}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}} \land \\
  & \left( \mathbf{prc}\_\mathbf{vin}\mathbf{t}_{\mathbf{r},\mathbf{p}} \vee \left( NOT\mspace{6mu}\mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{s}} \right) \right)
 \end{aligned} \right\}
-}
+} \\ \\ 
 {\sum_{ts \in \left( \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}} \land \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}} \right)}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{VAR\_ SIN/SOUT_{r,v,t,p,c,ts}}}
-}
+} \\ \\ 
 {( \leq / \geq / = )STGIN/OUT\_ BND_{r,t,p,c,s,bd}
 }$$
 
@@ -3694,7 +3692,7 @@ As for LHS user constraints, setting the dollar control parameter VAR_UC to YES 
 
 Growth (or decay) constraints are a special type of dynamic constraints. A growth constraint may for example express that the capacity increase between two periods is limited by an annual growth rate. So, growth constraints relate variables in one period to the ones in the previous or following period as in dynamic constraints described in the previous section. In growth constraints, however, in addition some of the variable coefficients UC_ACT, UC_FLO, UC_IRE, UC_COMNET, UC_COMPRD, UC_NCAP, UC_CAP can represent annual growth (or decay) rates[^45] by specifying the set $UC\_ ATTR_{r,uc_n,\'LHS\',VAR,ATTR}$ with the index ATTR being set to GROWTH. This will cause the coefficient of the corresponding variable being interpreted as an annual growth rate. If for example the input information $UC\_ ATTR_{'REG1','G\_ 1','LHS','CAP','GROWTH'}$ is given for the user constraint G_1, the coefficient $UC\_ CAP_{'G\_ 1','LHS','REG1',t,p}$ of the capacity variable of technology **p** will be interpreted as annual growth rate and the final coefficient of the variable VAR_CAP in the user constraint will be calculated in the following way:
 
-$$\left( UC\_ CAP_{'G\_ 1','LHS','REG1',t,p} \right)^{M(t + 1) - M(t)}$$.
+$$\left( UC\_ CAP_{'G\_ 1','LHS','REG1',t,p} \right)^{M(t + 1) - M(t)$$.
 
 With the help of the input set UC_ATTR, growth coefficients can be defined for the variables in LHS expression (as in the example) or for the variables in RHS expression. If a growth rate is defined for variables on the LHS, the exponent is M(t+1)--M(t), whereas for RHS variables the exponent is equal to M(t)--M(t+1).
 
