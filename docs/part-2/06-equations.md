@@ -2604,17 +2604,18 @@ Dual: The dual value describes for example for a lower bound, the subsidy needed
 
 **Equation:**
 
-$${EQ(l)\_ FLMRK_{r,t,grp,c,s}\forall(r,t,grp,c,s) \in \left( \left\{ \mathbf{rtp}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c}}|PRC\_ MARK_{r,t,p,grp,c,s,l} \neq 0 \right\} \cap \mathbf{mrk}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{grp},\mathbf{c},\mathbf{s}} \right)
-} \\ \\
-{\sum_{\underset{\cap RPCS\_ VAR_{p}}{\underset{\cap RTP\_ VINTYR_{p,t}}{\underset{RPC_{p} \cap COM\_ GMAP_{c}}{(com,v,ts) \in}}}}^{} \\ \\ \left\{ \left\lbrack VAR\_ FLO_{r,v,t,p,com,ts} \times \begin{bmatrix}
-COM\_ IE_{r,com,ts} \mspace{6mu} if \mspace{3mu} output
-1 \mspace{50mu} if \mspace{3mu} input
+${EQ(l)\_ FLMRK_{r,t,grp,c,s}\forall(r,t,grp,c,s) \in \left( \left\{ \mathbf{rtp}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c}}|PRC\_ MARK_{r,t,p,grp,c,s,l} \neq 0 \right\} \cap \mathbf{mrk}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{grp},\mathbf{c},\mathbf{s}} \right)
+}$
+
+$${\sum_{\underset{\cap RPCS\_ VAR_{p}}{\underset{\cap RTP\_ VINTYR_{p,t}}{\underset{RPC_{p} \cap COM\_ GMAP_{c}}{(com,v,ts) \in}}}}^{} \\ \\ \left\{ \left\lbrack VAR\_ FLO_{r,v,t,p,com,ts} \times \begin{bmatrix}
+COM\_ IE_{r,com,ts} \mspace{6mu} if \mspace{3mu} output \\
+1 \mspace{120mu} if \mspace{3mu} input
 \end{bmatrix} + \right.\  \right.\ 
 } \\ \\ {\begin{pmatrix}
 VAR\_ IRE_{r,v,t,p,com,ts,imp} \\
 VAR\_ SOUT_{r,v,t,p,com,ts} \times STG\_ EFF_{r,v,p}
 \end{pmatrix} \times \left\lbrack \begin{aligned}
- & COM\_ IE_{r,com,ts} \mspace{6mu} if \mspace{6mu}} PRC\_ MARK_{r,t,p,grp,c,s,l} \geq 0 \\
+ & COM\_ IE_{r,com,ts} \mspace{6mu} if \mspace{6mu} PRC\_ MARK_{r,t,p,grp,c,s,l} \geq 0 \\
  & 0 \mspace{50mu} if \mspace{6mu} PRC\_ MARK_{r,t,p,grp,c,s,l} < 0
 \end{aligned} \right\rbrack - 
 } \\ \\ {\left. \ \begin{pmatrix}
