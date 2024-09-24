@@ -3818,33 +3818,33 @@ If neither **uc_r_each** nor **uc_r_sum** are given, the default is set to all *
 
 [User-specified coefficients of variables:]{.underline}
 
-- *UC_ACT~uc_n,side,r,t,p,s\ ~*: coefficient of the activity variable *VAR_ACT~r,v,t,p,s~* in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_FLO~uc_n,side,r,t,p,c,s\ ~*: coefficient of the flow variable *VAR_FLO~r,v,t,p,c,s~* in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_IRE~uc_n,side,r,t,p,c,s,ie~*: coefficient of the inter-regional exchange variable *VAR_IRE~r,v,t,p,c,s,ie~* in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_COMCON~uc_n,side,r,t,c,s\ ~*: coefficient of the virtual commodity consumption variable (*VAR_COMPRD~r,t,c,s~--VAR_COMNET~r,t,c,s~*) in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_COMPRD~uc_n,side,r,t,c,s~*: coefficient of the gross commodity production variable *VAR_COMPRD~r,t,c,s~* in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_COMNET~uc_n,side,r,t,c,s~*: coefficient of the net commodity production variable *VAR_COMNET~r,t,c,s~* in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_CUMACT~uc_n,r,p,y1,y2~*: coefficient of the cumulative process activity variable *VAR_CUMFLO~r,p,\'ACT\',y1,y2~* in the user constraint **uc_n** (only in cumulative constraints), 
-- *UC_CUMCOM~uc_n,r,type,c,y1,y2~*: coefficient of the cumulative commodity net or gross production variable *VAR_CUMCOM~r,c,type,y1,y2~* in the user constraint **uc_n**, where type =PRD/NET (only in cumulative constraints), 
-- *UC_CUMFLO~uc_n,r,p,c,y1,y2~*: coefficient of the cumulative process flow variable *VAR_CUMFLO~r,p,c,y1,y2~* in the user constraint **uc_n** (only in cumulative constraints), 
-- *UC_NCAP~uc_n,side,r,t,p\ ~*: coefficient of the investment variable *VAR_NCAP~r,t,p~* in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_CAP~uc_n,side,r,t,p\ ~*: coefficient of the capacity variable *VAR_CAP~r,t,p~* in the user constraint **uc_n** on the LHS or RHS **side**.
+- *UC_ACT*$_{uc\_ n,side,r,t,p,s}$: coefficient of the activity variable $VAR\_ ACT_{r,v,t,p,s} in the user constraint **uc_n** on the LHS or RHS **side**, 
+- *UC_FLO*$_{uc\_ n,side,r,t,p,c,s}$: coefficient of the flow variable $VAR\_ FLO_{r,v,t,p,c,s}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
+- *UC_IRE*$_{uc\_ n,side,r,t,p,c,s,ie}$: coefficient of the inter-regional exchange variable $VAR\_ IRE_{r,v,t,p,c,s,ie}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
+- *UC_COMCON*$_{uc\_ n,side,r,t,c,s}$: coefficient of the virtual commodity consumption variable ($VAR\_ COMPRD_{r,t,c,s}$ $-VAR\_ COMNET_{r,t,c,s}$) in the user constraint **uc_n** on the LHS or RHS **side**, 
+- *UC_COMPRD*$_{uc\_ n,side,r,t,c,s}$: coefficient of the gross commodity production variable $VAR\_ COMPRD_{r,t,c,s} in the user constraint **uc_n** on the LHS or RHS **side**, 
+- *UC_COMNET*$_{uc\_ n,side,r,t,c,s}$: coefficient of the net commodity production variable $VAR\_ COMNET_{r,t,c,s}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
+- *UC_CUMACT*$_{uc\_ n,r,p,y1,y2}$: coefficient of the cumulative process activity variable $VAR\_ CUMFLO_{r,p,'ACT',y1,y2}$ in the user constraint **uc_n** (only in cumulative constraints), 
+- *UC_CUMCOM*$_{uc\_ n,r,type,c,y1,y2}$: coefficient of the cumulative commodity net or gross production variable $VAR\_ CUMCOM_{r,c,type,y1,y2}$ in the user constraint **uc_n**, where type =PRD/NET (only in cumulative constraints), 
+- *UC_CUMFLO*$_{uc\_ n,r,p,c,y1,y2}$: coefficient of the cumulative process flow variable $VAR\_ CUMFLO_{r,p,c,y1,y2}$ in the user constraint **uc_n** (only in cumulative constraints), 
+- *UC_NCAP*$_{uc\_ n,side,r,t,p}$: coefficient of the investment variable $VAR\_ NCAP_{r,t,p}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
+- *UC_CAP*$_{uc\_ n,side,r,t,p}$: coefficient of the capacity variable $VAR\_ CAP_{r,t,p}$ in the user constraint **uc_n** on the LHS or RHS **side**.
 
-[User-specified RHS constants:]{.underline}
+*User-specified RHS constants:*
 
-- *UC_RHS~uc_n,bd~* : RHS constant with bound type **bd** of the user constraint *EQl_UC~uc_n~* of type **l**,
-- *UC_RHSR~r,uc_n,bd\ ~*: RHS constant with bound type **bd** of the user constraint *EQl_UCR~r,uc_n~* of type **l**,
-- *UC_RHST~uc_n,t,bd\ ~*: RHS constant with bound type **bd** of the user constraint *EQl_UCT~uc_n,t~* of type **l**,
-- *UC_RHSRT~r,uc_n,t,bd\ ~*: RHS constant with bound type **bd** of the user constraint *EQl_UCRT~r,uc_n,t~* of type **l**,
-- *UC_RHSTS~uc_n,t,s,bd\ ~*: RHS constant with bound type **bd** of the user constraint *EQl_UCTS~uc_n,t,s~* of type **l**,
-- *UC_RHSRTS~r,uc_n,t,s,bd\ ~*: RHS constant with bound type **bd** of the user constraint *EQl_UCRTS~r,uc_n,t,s~* of type **l**.
-- *UC_TIME~uc_n,r,t\ ~*: Defines an additional term in the RHS constant, which is either the time (in years) covered by the user constraint multiplied by *UC_TIME* (for static and cumulative constraints), or the time between the milestone years of the successive periods in the constraint (for dynamic user constraints).
+- *UC_RHS*$_{uc\_ n,bd}$: RHS constant with bound type **bd** of the user constraint *EQl_UC*$_{uc\_ n}$ of type **l**,
+- *UC_RHSR*$_{r,uc\_ n,bd}$: RHS constant with bound type **bd** of the user constraint *EQl_UCR*$_{r,uc\_ n}$ of type **l**,
+- *UC_RHST*$_{uc\_ n,t,bd}$: RHS constant with bound type **bd** of the user constraint *EQl_UCT*$_{uc\_ n,t}$ of type **l**,
+- *UC_RHSRT*$_{r,uc\_ n,t,bd}$: RHS constant with bound type **bd** of the user constraint *EQl_UCRT*$_{r,uc\_ n,t}$ of type **l**,
+- *UC_RHSTS*$_{uc\_ n,t,s,bd}$: RHS constant with bound type **bd** of the user constraint *EQl_UCTS*$_{uc\_ n,t,s}$ of type **l**,
+- *UC_RHSRTS*$_{r,uc\_ n,t,s,bd}$: RHS constant with bound type **bd** of the user constraint *EQl_UCRTS*${r,uc\_ n,t,s}$ of type **l**.
+- *UC_TIME*$_{uc\_ n,r,t}$: Defines an additional term in the RHS constant, which is either the time (in years) covered by the user constraint multiplied by *UC_TIME* (for static and cumulative constraints), or the time between the milestone years of the successive periods in the constraint (for dynamic user constraints).
 
 ### LHS user constraints
 
 **Mathematical formulation of LHS user constraints**
 
-In the mathematical description of the different variants of LHS user constraints the following placeholders are used for clarity reasons: *ACT~r,t,p,s,\'LHS\'~*, *FLO~r,t,p,s,\'LHS\'~*, *IRE~r,t,p,s,\'LHS\'~*, *COMPRD~r,t,s,\'LHS\'~*, *COMNET~r,t,s,\'LHS\'~*, *NCAP~r,t,p,s,\'LHS\'~*, *CAP~r,t,p,s,\'LHS\'~*, *CUMCOM~r~* and *CUMFLO~r~*. For example the placeholder *ACT~r,t,p,s,\'LHS\'~* includes the part of the user constraint related to the activity variable.
+In the mathematical description of the different variants of LHS user constraints the following placeholders are used for clarity reasons: $ACT_{r,t,p,s,'LHS'}$, $FLO_{r,t,p,s,'LHS'}$, $IRE_{r,t,p,s,'LHS'}$, $COMPRD_{r,t,s,'LHS'}$, $COMNET_{r,t,s,'LHS'}$, $NCAP_{r,t,p,s,'LHS'}$, $CAP_{r,t,p,s,'LHS'}$, $CUMCOM_r$ and $CUMFLO_r$. For example the placeholder $ACT_{r,t,p,s,'LHS'}$ includes the part of the user constraint related to the activity variable.
 
 $${ACT_{r,t,s,'LHS'}
 }{= 
