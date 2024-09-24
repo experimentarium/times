@@ -4186,7 +4186,7 @@ $$VAR\_ UCTS.FX_{uc\_ n,t,s} = UC\_ RHSTS_{uc\_ n,t,s,'FX'}$$
 
 **Mathematical formulation of timeslice-dynamic user constraints**
 
-In the mathematical description of the different variants of timeslice-dynamic user constraints, on the LHS the same placeholders can be used as for pure LHS user constraints: $ACT_{r,t,p,s,'LHS'}$, $FLO_{r,t,p,s,'LHS'\$, $IRE_{r,t,p,s,'LHS'}$, $COMPRD_{r,t,s,'LHS'}$, $COMNET_{r,t,s,'LHS'}$, $NCAP_{r,t,p,s,'LHS'}$, $CAP_{r,t,p,s,'LHS'}$. The LHS placeholder expressions are identical to those of LHS user constraints.
+In the mathematical description of the different variants of timeslice-dynamic user constraints, on the LHS the same placeholders can be used as for pure LHS user constraints: $ACT_{r,t,p,s,'LHS'}$, $FLO_{r,t,p,s,'LHS'}$, $IRE_{r,t,p,s,'LHS'}$, $COMPRD_{r,t,s,'LHS'}$, $COMNET_{r,t,s,'LHS'}$, $NCAP_{r,t,p,s,'LHS'}$, $CAP_{r,t,p,s,'LHS'}$. The LHS placeholder expressions are identical to those of LHS user constraints.
 
 On the RHS (preceding timeslice ***ds*** = *s*--RS_STG(r,s)), the following placeholders can be used: $ACT_{r,t,p,ds,'RHS'}$, $FLO_{r,t,p,ds,'RHS'}$, $IRE_{r,t,p,ds,'RHS'}$, $COMPRD_{r,t,ds,'RHS'}$, $COMNET_{r,t,ds,'RHS'}$, $NCAP_{r,t,p,ds,'RHS'}$, $CAP_{r,t,p,ds,'RHS'}$. The RHS placeholder expressions can be written by replacing in them the timeslice index **s** by **d(s)**.
 
@@ -4363,7 +4363,7 @@ The expressions for the variable terms on the RHS can be written as follows:
 
 $${ACT\_ GROW_{r,t + 1,s,'RHS'}
 }{= 
-} \\ \\ {\sum_{(p,v) \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t} + \mathbf{1},\mathbf{p}}\mspace{6mu}}^{}{\sum_{ts \in \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{}\left( \begin{aligned}
+} \\ \\ {\sum_{(p,v) \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t} + \mathbf{1},\mathbf{p}}\mspace{6mu}}^{}{\sum_{ts \in \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{} \\ \\ \left( \begin{aligned}
  & VAR\_ ACT_{r,v,t + 1,p,ts} \times UC\_ ACT_{uc\_ n,'RHS',,t + 1,p,ts} \times \left( RS\_ FR_{r,s,ts} \right) \\
  & \times \\
  & \left( \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ACOST_{r,t + 1,p,cur}} \right)\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'RHS','ACT','COST'}\mspace{6mu} is\mspace{6mu} given \\
@@ -4375,7 +4375,7 @@ $${ACT\_ GROW_{r,t + 1,s,'RHS'}
 $${FLO\_ GROW_{r,t + 1,s,'RHS'}
 }{= 
 } \\ \\ {\sum_{(p,c,ts) \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t} + \mathbf{1},\mathbf{p},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t} + \mathbf{1},\mathbf{p}}}^{}
-}\left\{ \begin{aligned}
+} \\ \\ \left\{ \begin{aligned}
  & VAR\_ FLO_{r,v,t + 1,p,c,ts} \times UC\_ FLO_{uc\_ n,'RHS',r,t + 1,p,c,ts} \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \\
  & \times \\
  & \left\lbrack \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}\left( \begin{aligned}
@@ -4421,7 +4421,7 @@ uc\_ cost
 \end{aligned} \right)}$$
 
 $${COMNET\_ GROW_{r,t + 1,s,'RHS'}
-}{= \sum_{(c,ts) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t} + 1,\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\left( \begin{aligned}
+} \\ \\ {= \sum_{(c,ts) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t} + 1,\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\left( \begin{aligned}
  & VAR\_ COMNET_{r,t + 1,c,ts} \times UC\_ COMNET_{uc\_ n,'RHS',r,t + 1,c,s} \\
  & \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t + 1,c,s,ts}} \right) \times \\
  & \sum_{\begin{matrix}
@@ -4483,7 +4483,7 @@ $$\left\{ \leq ; = ; \geq \right\}$$
 
 $${UC\_ RHST_{uc\_ n,t,l}
 }{+ 
-}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+} \\ \\ {\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
  & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
  & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
 \end{aligned} \right)}
@@ -4496,7 +4496,7 @@ $$=$$
 
 $${VAR\_ UCT_{uc\_ n,t}
 }{+ 
-}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+} \\ \\ {\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
  & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
  & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
 \end{aligned} \right)}
@@ -4537,7 +4537,7 @@ $$\left\{ \leq ; = ; \geq \right\}$$
 
 $${UC\_ RHSRT_{r,uc\_ n,t,l}
 }{+ 
-}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+} \\ \\ {\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
  & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
  & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
 \end{aligned} \right)
@@ -4604,7 +4604,7 @@ $$=$$
 
 $${VAR\_ UCRTS_{r,uc\_ n,t,s}
 }{+ 
-}{\left( \begin{aligned}
+} \\ \\ {\left( \begin{aligned}
  & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
  & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
 \end{aligned} \right)
@@ -4645,7 +4645,7 @@ $$\left\{ \leq ; = ; \geq \right\}$$
 
 $${UC\_ RHSTS_{uc\_ n,t,s,l}
 }{+ 
-}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( \begin{aligned}
+} \\ \\ {\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( \begin{aligned}
  & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
  & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
 \end{aligned} \right)
@@ -4658,7 +4658,7 @@ $$=$$
 
 $${VAR\_ UCTS_{uc\_ n,t,s}
 }{+ 
-}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( \begin{aligned}
+} \\ \\ {\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( \begin{aligned}
  & ACT\_ GROW_{r,t + 1,s,'RHS'} + FLO\_ GROW_{r,t + 1,s,'RHS'} + IRE\_ GROW_{r,t + 1,s,'RHS'} \\
  & + COMNET\_ GROW_{r,t + 1,s,'RHS'} + COMPRD\_ GROW_{r,t + 1,s,'RHS'}
 \end{aligned} \right)
@@ -4805,12 +4805,12 @@ $$\left\{ \leq ; = ; \geq \right\}$$
 
 $${UC\_ RHST_{uc\_ n,t,l}
 }{+ 
-}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+} \\ \\ {\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
  & ACT\_ GROW_{r,t - 1,s,'RHS'} + FLO\_ GROW_{r,t - 1,s,'RHS'} + IRE\_ GROW_{r,t - 1,s,'RHS'} \\
  & + COMNET\_ GROW_{r,t - 1,s,'RHS'} + COMPRD\_ GROW_{r,t - 1,s,'RHS'}
 \end{aligned} \right)}
 }{+ 
-}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t - 1,'RHS'} + CAP\_ GROW_{r,t - 1,'RHS'} \right)}$$
+} \\ \\ {\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}\left( NCAP\_ GROW_{r,t - 1,'RHS'} + CAP\_ GROW_{r,t - 1,'RHS'} \right)}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as strict equality and the RHS constant UC_RHST is replaced by the variable VAR_UCT. The bounds UC_RHST are then applied to the variable VAR_UCT.
 
