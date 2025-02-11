@@ -2093,8 +2093,7 @@ Dual: The dual variable (shadow price) of the commodity balance describes the in
 
 **Equation:**
 
-$$
-EQ(l)\_COMBAL_{r,t,c,s} \ni \left\lbrack rcs\_combal_{r,t,c,s,bd} \right\rbrack
+$$EQ(l)\_COMBAL_{r,t,c,s} \ni \left\lbrack rcs\_combal_{r,t,c,s,bd} \right\rbrack
 \\ \\
 COM\_IE_{r,t,c} \times \left( \begin{aligned}
  & \sum_{p \in top_{r,p,c,'OUT'}}{\sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_FLOFLO_{r,v,t,p,c,s,'OUT'}}} \\
@@ -2182,8 +2181,7 @@ p \in rpc\_stg_{r,p,c} \\
  & 
 \end{aligned} \right)
 \\ \\
-\left\{ \geq ; = \right\}\quad COEF\_FBRHS
-$$
+\left\{ \geq ; = \right\}\quad COEF\_FBRHS$$
 
 We now show the detailed calculation of the Right-hand-side
 
