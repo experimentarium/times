@@ -2241,16 +2241,16 @@ $$CAL\_IRE_{r,v,t,p,c,s,ie} \ni rpc\_ire_{r,p,c,ie} \hspace{3pt} \wedge NOT \hsp
 \\ \\
 =\sum_{s1 \in rtpcs\_varf_{r,t,p,c,s1}} VAR\_IRE_{r,v,t,p,c,s1,ie} \times RTCS\_TSFR_{r,t,c,s,s1}$$
 
-$$AUX\_IRE_{r,t,c,s,io}
+$$AUX\_IRE_{r,t,c,s,io} = 
 \\ \\
-= \sum_{(p,com,ie)\in \left(rpc\_ire_{r,p,com,ie} \wedge {IRE\_FLOSUM_{r,t,p,com,s,ie,c,io}}\right)} \hspace{3pt} \sum_{v \in rtp\_vintyr_{r,p,com,ie}} \sum_{s1 \in rtpcs\_varf_{r,t,p,com,s1}
-\\ \\
+\sum_{(p,com,ie)\in \left(rpc\_ire_{r,p,com,ie}
+\wedge {IRE\_FLOSUM_{r,t,p,com,s,ie,c,io}}\right)} \hspace{3pt} \sum_{v \in rtp\_vintyr_{r,p,com,ie}} \sum_{s1 \in rtpcs\_varf_{r,t,p,com,s1}}
 \left( \begin{array}{r} IRE\_FLOSUM_{r,t,p,com,s1,ie,c,io} \times VAR\_IRE_{r,v,t,p,c,s1,ie} \\
 if \hspace{6pt} ts\_map_{r,s,s1} \\
 \times 1 \\
 else \\
 \times \frac{G\_YRFR_{r,s}}{G\_YRFR_{r,s1}}
-\end{array} \right)}$$
+\end{array} \right)$$
 
 **Investment Related Flow Coefficients**
 
