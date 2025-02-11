@@ -2406,13 +2406,15 @@ Dual: The dual value of the constraint describes the change in the objective fun
 
 $$EQ(l)\_CUMNET_{r,y1,y2,c} \ni COM\_CUMNET_{r,y1,y2,c,l}
 \\ \\
-\sum_{t = T(y1)}^{t = T(y2)}{\sum_{s \in rtcs\_varc_{r,t,c,s}}{\left\lbrack Min \left\{E(t),y2 \right\} - Max \left\{B(t),y1 \right\} + 1 \right\rbrack \times VAR\_COMNET_{r,t,c,s}}
+\sum_{t = T(y1)}^{t = T(y2)}{\sum_{s \in rtcs\_varc_{r,t,c,s}}{\left\lbrack Min \left\{E(t),y2 \right\} - Max \left\{B(t),y1 \right\} + 1 \right\rbrack \times VAR\_COMNET_{r,t,c,s}}}
 \\ \\ 
-= VAR\_CUMCOM_{r,c,'NET',y1,y2}}$$
+= VAR\_CUMCOM_{r,c,'NET',y1,y2}$$
 
 $$EQ(l)\_CUMPRD_{r,y1,y2,c,s} \ni COM\_CUMPRD_{r,y1,y2,c,l}
 \\ \\ 
-{\sum_{t = T(y1)}^{t = T(y2)}{\sum_{s \in rtcs\_varc_{r,t,c,s}}{\left\lbrack Min \left\{E(t),y2 \right\} - Max \left\{B(t),y1 \right\} + 1 \right\rbrack \times VAR\_COMPRD_{r,t,c,s}}} = VAR\_CUMCOM_{r,c,'PRD',y1,y2}}$$
+\sum_{t = T(y1)}^{t = T(y2)}{\sum_{s \in rtcs\_varc_{r,t,c,s}}{\left\lbrack Min \left\{E(t),y2 \right\} - Max \left\{B(t),y1 \right\} + 1 \right\rbrack \times VAR\_COMPRD_{r,t,c,s}}}
+\\ \\
+= VAR\_CUMCOM_{r,c,'PRD',y1,y2}$$
 
 **Bounds**:
 
