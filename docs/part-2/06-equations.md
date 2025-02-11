@@ -1987,20 +1987,21 @@ $$VAR\_ACT_{r,v,t,p,s} \leq
 AF\_MAX_{r,v,t,p,s} \times \left( \begin{aligned}
  & VAR\_NCAP_{r,tt(v),p} + NCAP\_PASTI_{r,v,p} - \\
  & \sum_{prc\_rcap_{r,p}}{VAR\_SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}}
-\end{aligned} \right) 
+\end{aligned} \right)
+\\ \\
+\cdot{COEF\_CPT_{r,v,p,t} \cdot PRC\_CAPACT_{r,p} \cdot G\_YRFR_{r,s}}
 $$
-$$\cdot{COEF\_CPT_{r,v,p,t} \cdot PRC\_CAPACT_{r,p} \cdot G\_YRFR_{r,s}}$$
 
-
-$$\mathbf{EQ\_ CAPLOA}\mathbf{D}_{\mathbf{r,v,t,p,s,LO}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ vinty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ t}\mathbf{s}_{\mathbf{r,p,s}}\mathbf{\land}\mathbf{(ACT\_ UP}\mathbf{S}_{\mathbf{r,v,p,s,}\mathbf{'}\mathbf{FX}\mathbf{'}}\mathbf{> 0))}$$
+$$EQ\_CAPLOAD_{r,v,t,p,s,'LO'} \quad \ni (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,s,'FX'} > 0))$$
 
 $$VAR\_ACT_{r,v,t,p,s} \geq 
 \\ \\ 
 AF\_MIN_{r,v,p,s} \times \left( \begin{aligned}
  & VAR\_NCAP_{r,tt(v),p} - NCAP\_PASTI_{r,v,p} - \\
  & \sum_{prc\_rcap_{r,p}}{VAR\_SCAP_{r,v,t,p}} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}}
-\end{aligned} \right) \cdot 
-COEF\_CPT_{r,v,p,t} \cdot PRC\_CAPACT_{r,p} \cdot G\_YRFR_{r,s}$$
+\end{aligned} \right) 
+\\ \\
+\cdot COEF\_CPT_{r,v,p,t} \cdot PRC\_CAPACT_{r,p} \cdot G\_YRFR_{r,s}$$
 
 ### Equation: EQ(*l*)\_CPT
 
