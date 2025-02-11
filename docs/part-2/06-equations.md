@@ -2402,35 +2402,33 @@ Primal: The primal value describes the cumulative net release/the cumulative pro
 
 Dual: The dual value of the constraint describes the change in the objective function if the bound parameter is increased by one unit. The increase of an upper bound yields a reduction of the total costs (dual value is negative), since the system wants to use more of this commodity. The increase of a lower bound yields an increase of the total costs (dual value is positive), since the system has to be forced to use more of an uncompetitive commodity (the commodity itself or the technologies utilizing it maybe too expensive). The dual value of a cumulative production constraint can also be interpreted as a tax/subsidy that is applied between the years **y1** and **y2** to reach the same cumulative productions as specified in the bound (the tax/subsidy has to be adjusted by the discount rate).
 
-**\
-**
-
 **Equation:**
 
-$\mathbf{EQ(l)\_ CUMNE}\mathbf{T}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,c}}\mathbf{\ni}\mathbf{COM\_ CUMNE}\mathbf{T}_{\mathbf{r,y1,y}\mathbf{2,c,l}}
-$$$
-{\sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{rtcs\_ var}\mathbf{c}_{\mathbf{r,t,c,s}}}^{}{\left\lbrack \mathbf{Min}\left\{ \mathbf{E(t),y}\mathbf{2} \right\}\mathbf{-}\mathbf{Max}\left\{ \mathbf{B(t),y}\mathbf{1} \right\}\mathbf{+ 1} \right\rbrack\mathbf{\times}\mathbf{VAR\_ COMNE}\mathbf{T}_{\mathbf{r,t,c,s}}}}\mathbf{= VAR\_ CUMCO}\mathbf{M}_{\mathbf{r,c,}\mathbf{'}\mathbf{NET}\mathbf{'}\mathbf{,y}\mathbf{1,y}\mathbf{2}}}$$
+$$EQ(l)\_CUMNET_{r,y1,y2,c} \ni COM\_CUMNET_{r,y1,y2,c,l}
+\\ \\
+\sum_{t = T(y1)}^{t = T(y2)}{\sum_{s \in rtcs\_varc_{r,t,c,s}}{\left\lbrack Min \left\{E(t),y2 \right\} - Max \left\{B(t),y1 \right\} + 1 \right\rbrack \times VAR\_COMNET_{r,t,c,s}}}
+\\ \\ 
+= VAR\_CUMCOM_{r,c,'NET',y1,y2}$$
 
-$${\mathbf{EQ(l)\_ CUMPR}\mathbf{D}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,c,s}}\mathbf{\ni}\mathbf{COM\_ CUMPR}\mathbf{D}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,c,l}}
-}
-{\sum_{\mathbf{t = T(y}\mathbf{1)}}^{\mathbf{t = T(y}\mathbf{2)}}{\sum_{\mathbf{s}\mathbf{\in}\mathbf{rtcs\_ var}\mathbf{c}_{\mathbf{r,t,c,s}}}^{}{\left\lbrack \mathbf{Min}\left\{ \mathbf{E(t),y}\mathbf{2} \right\}\mathbf{-}\mathbf{Max}\left\{ \mathbf{B(t),y}\mathbf{1} \right\}\mathbf{+ 1} \right\rbrack\mathbf{\times}\mathbf{VAR\_ COMPR}\mathbf{D}_{\mathbf{r,t,c,s}}}}\mathbf{= VAR\_ CUMCO}\mathbf{M}_{\mathbf{r,c,}\mathbf{'}\mathbf{PRD}\mathbf{'}\mathbf{,y}\mathbf{1,y}\mathbf{2}}}$$
+$$EQ(l)\_CUMPRD_{r,y1,y2,c,s} \ni COM\_CUMPRD_{r,y1,y2,c,l}
+\\ \\ 
+\sum_{t = T(y1)}^{t = T(y2)}{\sum_{s \in rtcs\_varc_{r,t,c,s}}{\left\lbrack Min \left\{E(t),y2 \right\} - Max \left\{B(t),y1 \right\} + 1 \right\rbrack \times VAR\_COMPRD_{r,t,c,s}}}
+\\ \\
+= VAR\_CUMCOM_{r,c,'PRD',y1,y2}$$
 
-**Bounds**: []{.mark}
+**Bounds**:
 
-*VAR_CUMCOM.LO~r,c,\'NET\',y1,y2~* = *COM_CUMNET ~r,\ y1,y2,c,\'LO\'~*
-
-*VAR_CUMCOM.UP~r,c,\'NET\',y1,y2~* = *COM_CUMNET ~r,\ y1,y2,c,\'UP\'~*
-
-*VAR_CUMCOM.FX~r,c,\'NET\',y1,y2~* = *COM_CUMNET ~r,\ y1,y2,c,\'FX\'~*
-
-*VAR_CUMCOM.LO~r,c,\'PRD\',y1,y2~* = *COM_CUMPRD ~r,\ y1,y2,c,\'LO\'~*
-
-*VAR_CUMCOM.UP~r,c,\'PRD\',y1,y2~* = *COM_CUMPRD ~r,\ y1,y2,c,\'UP\'~*
-
-*VAR_CUMCOM.FX~r,c,\'PRD\',y1,y2~* = *COM_CUMPRD ~r,\ y1,y2,c,\'FX\'~*
-
-[\
-]{.mark}
+$$VAR\_CUMCOM.LO_{r,c,'NET',y1,y2} = COM\_CUMNET_{r,y1,y2,c,'LO'}
+\\ \\ 
+VAR\_CUMCOM.UP_{r,c,'NET',y1,y2} = COM\_CUMNET_{r,y1,y2,c,'UP'}
+\\ \\ 
+VAR\_CUMCOM.FX_{r,c,'NET',y1,y2} = COM\_ CUMNET_{r,y1,y2,c,'FX'}
+\\ \\ 
+VAR\_CUMCOM.LO_{r,c,'PRD',y1,y2} = COM\_CUMPRD_{r,y1,y2,c,'LO'}
+\\ \\ 
+VAR\_CUMCOM.UP_{r,c,'PRD',y1,y2} = COM\_CUMPRD_{r,y1,y2,c,'UP'}
+\\ \\ 
+VAR\_CUMCOM.FX_{r,c,'PRD',y1,y2} = COM\_CUMPRD_{r,y1,y2,c,'FX'}$$
 
 ### Equation: EQ_CUMRET
 
@@ -2446,9 +2444,9 @@ $${\mathbf{EQ(l)\_ CUMPR}\mathbf{D}_{\mathbf{r,y}\mathbf{1,y}\mathbf{2,c,s}}\mat
 
 **Equation:**
 
-$$\mathbf{EQ\_ CUMRE}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{prc\_ rca}\mathbf{p}_{\mathbf{r,p}}\mathbf{)}$$
-
-$\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{= VAR\_ RCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{+}\sum_{\mathbf{t}\mathbf{-}\mathbf{1}\mathbf{\in}\left\{ \mathbf{tt|rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,tt,p}} \right\}}^{}{\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t}\mathbf{-}\mathbf{1,p}}}$
+$$EQ\_CUMRET_{r,v,t,p} \quad \ni (rtp\_cptyr_{r,v,t,p} \land prc\_rcap_{r,p})
+\\ \\
+VAR\_SCAP_{r,v,t,p} = VAR\_RCAP_{r,v,t,p} + \sum_{t - 1 \in \left\{ tt|rtp\_cpty r_{r,v,tt,p} \right\}}{VAR\_SCAP_{r,v,t-1,p}}$$
 
 ### Equation EQ_DSCNCAP
 
@@ -2472,10 +2470,11 @@ $\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{= VAR\_ RCA}\mathbf{P}_{
 
 **Equation:**
 
-$${EQ\_ DSCNCAP_{r,t,p} \ni \left( \mathbf{rp}\_\mathbf{dscnca}\mathbf{p}_{\mathbf{r},\mathbf{p}} \land \mathbf{rt}\mathbf{p}_{\mathbf{r},\mathbf{t},\mathbf{p}} \right)
-}
-{VAR\_ NCAP_{r,t,p} = \sum_{u \in \mathbf{unit}}^{}\left( VAR\_ DNCAP_{r,t,p,u} \times NCAP\_ DSC_{r,t,p,u} \right) + 
-}\left( VAR\_ SNCAP_{r,t,p}\quad if\mspace{6mu} NCAP\_ SEMI_{r,t,p}\mspace{6mu} given \right)$$
+$$EQ\_DSCNCAP_{r,t,p} \ni \left(rp\_dscncap_{r,p} \land rtp_{r,t,p} \right)
+\\ \\ 
+VAR\_NCAP_{r,t,p} = \sum_{u \in unit}\left(VAR\_DNCAP_{r,t,p,u} \times NCAP\_DSC_{r,t,p,u} \right) +
+\\ \\
+\left(VAR\_SNCAP_{r,t,p}\quad if \space NCAP\_SEMI_{r,t,p} \space given \right)$$
 
 ### Equation: EQ_DSCONE 
 
@@ -2491,14 +2490,11 @@ $${EQ\_ DSCNCAP_{r,t,p} \ni \left( \mathbf{rp}\_\mathbf{dscnca}\mathbf{p}_{\math
 
 **Equation**
 
-$${EQ\_ DSCONE_{r,t,p} \ni \left( \mathbf{rp}\_\mathbf{dscnca}\mathbf{p}_{\mathbf{r},\mathbf{p}} \land \mathbf{rt}\mathbf{p}_{\mathbf{r},\mathbf{t},\mathbf{p}} \right)
-}
-{\sum_{u \in \mathbf{unit}}^{}{VAR\_ DNCAP_{r,t,p,u}} = 1
-}
-{NotethatVAR\_ DNCAPmustbedeclaredasabinary{var}iable(takingvalues0or1only)}$$
-
-[\
-]{.mark}
+$$EQ\_DSCONE_{r,t,p} \ni \left(rp\_dscncap_{r,p} \land rtp_{r,t,p} \right)
+\\ \\
+\sum_{u \in unit}{VAR\_DNCAP_{r,t,p,u}} = 1
+\\ \\
+\text{Note that $VAR\_DNCAP$ must be declared as a binary variable (taking values 0 or 1 only)}$$
 
 ### Equation: EQ_DSCRET
 
@@ -2519,15 +2515,17 @@ $${EQ\_ DSCONE_{r,t,p} \ni \left( \mathbf{rp}\_\mathbf{dscnca}\mathbf{p}_{\mathb
 
 **Equation:**
 
-$${\mathbf{EQ\_ DSCRE}\mathbf{T}_{\mathbf{r,v,t,p}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_ cpty}\mathbf{r}_{\mathbf{r,v,t,p}}\mathbf{\land}\mathbf{RCAP\_ BL}\mathbf{K}_{\mathbf{r,v,p}}\mathbf{)}
-}{\mathbf{VAR\_ SCA}\mathbf{P}_{\mathbf{r,v,t,p}}\mathbf{-}\mathbf{RTFOR}\mathbf{C}_{\mathbf{r,v,t,p}}\mathbf{=}
-}{\mathbf{RCAP\_ BL}\mathbf{K}_{\mathbf{r,v,p}}\mathbf{\times}\mathbf{VAR\_ DRCA}\mathbf{P}_{\mathbf{r,v,t,p,2}}\mathbf{+}
-}{\mathbf{(NCAP\_ PAST}\mathbf{I}_{\mathbf{r,v,p}}\mathbf{-}\mathbf{RTFOR}\mathbf{C}_{\mathbf{r,v,t,p}}\mathbf{)}\mathbf{\times}\mathbf{VAR\_ DRCA}\mathbf{P}_{\mathbf{r,v,t,p,1}}}$$
+$$EQ\_DSCRET_{r,v,t,p} \quad \ni (rtp\_cptyr_{r,v,t,p} \land RCAP\_BLK_{r,v,p})
+\\ \\ 
+VAR\_SCAP_{r,v,t,p} - RTFORC_{r,v,t,p} =
+\\ \\ 
+RCAP\_BLK_{r,v,p} \times VAR\_DRCAP_{r,v,t,p,2} +
+\\ \\
+(NCAP\_PASTI_{r,v,p} - RTFORC_{r,v,t,p}) \times VAR\_DRCAP_{r,v,t,p,1}$$
 
 ### Equation: EQ(*l*)\_FLOBND
 
-**Indices: region (r), period (t), process (p), commodity group (cg),
-timeslice (s)**
+**Indices: region (r), period (t), process (p), commodity group (cg), timeslice (s)**
 
 **Type**: Any type, as determined by the bound index **bd** of FLO_BND:
 
@@ -2563,7 +2561,24 @@ Dual: The dual value describes for a lower/upper bound the cost increase/decreas
 
 **Equation:**
 
-$$ missing \space expression $$
+$$EQ(l)\_FLOBND_{r,t,p,cg,s} \ni 
+\left\{
+    \begin{array}{ll}
+        rtp_{r,t,p} \land FLO\_BND_{r,t,p,cg,s,bd} \land \\
+        (prc\_vint_{r,p} \lor \sum\limits_{c \in com\_gmap_{r,cg,c}} \sum\limits_{ts \in rtpcs\_varf_{r,t,p,c,ts}} rs\_below_{r,s,ts} \lor \neg com_{r,cg})
+    \end{array}
+\right\}
+\\ \\
+\sum_{c \in com\_gmap_{r,cg,c}} \sum_{ts \in rtpcs\_varf_{r,t,p,c,ts}} \sum_{v \in rtp\_vintyr_{r,v,t,p}} \left(
+\begin{array}{ll}
+VAR\_FLO_{r,v,t,p,c,ts} \quad if \space rp\_flo_{r,p} \\
+\sum_{ie} VAR\_IRE_{r,v,t,p,c,ts,ie} \times XS_{cg,ie} \quad if \space rp\_ire_{r,p} 
+\end{array}
+\right)
+\\ \\
+(\le / \ge / =) \quad FLO\_BND_{r,t,p,cg,s,bd}$$
+
+where the equation sign is indicated by equation index **l** based on the bound type **bd**. 
 
 ### Equation: EQ(*l*)\_FLOFR
 
@@ -2575,9 +2590,9 @@ $$ missing \space expression $$
 - *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
-**Purpose: 1)** Relationship in period (**t**) between the total annual flow and the flow in a particular timeslice (**s**) for a specific process (**p**). This is the standard usage of the *FLO_FR* parameter, which may be used even for defining a full load curve for a process flow.\
-
-**2**) Relationship in period (**t**) between the the flow level in a particular flow timeslice (**s**) and the average level under all timeslices under its parent timeslice for a specific process (**p**). This variant will only be used when *FLO_FR* is levelized to the flow timeslices (**rpcs_var**), which is triggered by defining any *FLO_FR* value for that process flow at the ANNUAL level.
+**Purpose: 
+1) Relationship in period (**t**) between the total annual flow and the flow in a particular timeslice (**s**) for a specific process (**p**). This is the standard usage of the *FLO_FR* parameter, which may be used even for defining a full load curve for a process flow.
+2) Relationship in period (**t**) between the the flow level in a particular flow timeslice (**s**) and the average level under all timeslices under its parent timeslice for a specific process (**p**). This variant will only be used when *FLO_FR* is levelized to the flow timeslices (**rpcs_var**), which is triggered by defining any *FLO_FR* value for that process flow at the ANNUAL level.
 
 **Remarks:**
 
@@ -2587,29 +2602,28 @@ The sign of the equation determines whether the flow in a given timeslice is rig
 
 **Case A**: Standard EQ(*l*)\_FLOFR: fraction of flow in total ANNUAL flow
 
-$EQ(l)\_ FLOFR_{r,t,p,c,s} \ni \left\{ \sum_{ts \in \mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{r},\mathbf{s},\mathbf{ts}}} \land FLO\_ FR_{r,t,p,c,s,bd} \right\}
-$$$
-{\sum_{ts \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left( VAR\_ FLO_{r,v,t,p,c,ts} \times RTCS\_ TSFR_{r,t,c,s,ts} \right)}
-}
-{( \leq / \geq / = )
-}
-{\sum_{ts \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left\lbrack VAR\_ FLO_{r,v,t,p,c,ts} \times FLO\_ FR_{r,t,p,c,s,bd} \right\rbrack}
-}
+$$EQ(l)\_FLOFR_{r,t,p,c,s} \ni \left\{ \sum_{ts \in rpcs\_var_{r,p,c,ts}}{ts\_map_{r,s,ts}} \land FLO\_FR_{r,t,p,c,s,bd} \right\}
+\\ \\
+\sum_{ts \in rtpcs\_varf_{r,t,p,c,ts}}{\sum_{v \in rtp\_vintyr_{r,v,t,p}}\left( VAR\_FLO_{r,v,t,p,c,ts} \times RTCS\_TSFR_{r,t,c,s,ts} \right)}
+\\ \\ 
+( \leq / \geq / = )
+\\ \\
+\sum_{ts \in rtpcs\_varf_{r,t,p,c,ts}}{\sum_{v \in rtp\_vintyr_{r,v,t,p}}\left\lbrack VAR\_FLO_{r,v,t,p,c,ts} \times FLO\_FR_{r,t,p,c,s,bd} \right\rbrack }$$
 
-{\text{wheretheequationsignisindicatedbyequationindex}\mathbf{l}.}$$
+where the equation sign is indicated by equation index **l**
 
 **Case B**: Levelized EQ(*l*)\_FLOFR: flow level in proportion to average level under parent
 
-$${EQ(l)\_ FLOFR_{r,t,p,c,s} \ni \left\{ \mathbf{rtpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{s}} \land FLO\_ FR_{r,t,p,c,s,bd} \right\}
-}
-{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left( \frac{VAR\_ FLO_{r,v,t,p,c,s}}{G\_ YRFR_{r,s}} \right)
-}
-{( \leq / \geq / = )
-}
-{\sum_{ts \in \mathbf{rs}\_\mathbf{below}\mathbf{1}_{\mathbf{r},\mathbf{ts},\mathbf{s}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\left( \frac{\sum_{sl \in \mathbf{rs}\_\mathbf{below}\mathbf{1}_{\mathbf{r},\mathbf{ts},\mathbf{sl}}}^{}{VAR\_ FLO_{r,v,t,p,c,sl}}}{G\_ YRFR_{r,ts}} \right) \times FLO\_ FR_{r,t,p,c,s,bd}}}
-}
+$$EQ(l)\_FLOFR_{r,t,p,c,s} \ni \left\{ rtpcs\_var_{r,t,p,c,s} \land FLO\_FR_{r,t,p,c,s,bd} \right\}
+\\ \\
+\sum_{v \in rtp\_vintyr_{r,v,t,p}}\left(\frac{VAR\_FLO_{r,v,t,p,c,s}}{G\_YRFR_{r,s}} \right)
+\\ \\
+( \leq / \geq / = )
+\\ \\ 
+\sum_{ts \in rs\_belowl_{r,ts,s}}{\sum_{v \in rtp\_vintyr_{r,v,t,p}}{\left(\frac{\sum\limits_{sl \in rs\_belowl_{r,ts,sl}}{VAR\_FLO_{r,v,t,p,c,sl}}}{G\_YRFR_{r,ts}} \right) \times FLO\_FR_{r,t,p,c,s,bd}}}
+$$
 
-{\text{wheretheequationsignisindicatedbyequationindex}\mathbf{l}.}$$
+where the equation sign is indicated by equation index **l**.
 
 ### Equation: EQ(*l*)\_FLOMRK
 
@@ -2640,22 +2654,20 @@ $${EQ(l)\_ FLOFR_{r,t,p,c,s} \ni \left\{ \mathbf{rtpcs}\_\mathbf{va}\mathbf{r}_{
 - **PRC_MARK(r,t,p,grp,c,l)** -- Market share of a group **grp** of processes in total production of commodity **c**.
 
 **Remarks:**
-
-1. All the FLO_MARK parameters are internally converted to PRC_MARK parameters by the model generator, using the process name of the FLO_MARK parameter as the process group index (**grp**) in PRC_MARK. Therefore, below references to the parameters are mostly given in terms of PRC_MARK only. 
-2. Market-share constraints can be specified for standard processes, as well as for exchange and storage processes. For standard processes, the PRC_MARK parameter value can be unambiguously applied to the process flow, and the value should normally be non-negative. However, because exchange and storage processes may have both input and output flows of the same commodity, for these processes the sign of the parameter value determines whether it is applied to the input or output flow, by using the following simple conventional rules:
-    - Value ≥ 0: Constraint is applied to the output flow (imports or storage discharge)
-    - Value ≤ 0: Constraint is applied to the negative of input flow (exports or storage charge)
-    - Value=EPS: Constraint is applied to the net output flow (output--input flow)
-
-> These simple rules provide reasonable flexibility for specifying market share bounds also for exchange and storage processes, in addition to ordinary processes. Although these rules preclude individually bounding the input or output flow to zero, this could always be accomplished by using the IRE_BND, STG_OUTBND, and STG_INBND parameters when necessary.
-
-3. The default timeslice level of the constraint is the commodity timeslice level for the constraints defined by using FLO_MARK by the user, and ANNUAL level for those defined by using the PRC_MARK parameter. For overriding the default, see remark 4 below. 
-4. The commodity used in the parameter does not actually need to be in the topology, but it should contain some commodity that does exist in the process topology. This feature can be utilized for defining market-share equations at any desired timeslice level. For example, if ELC is a DAYNITE level commodity, the user could define a dummy com­modity ELC_ANN that includes ELC as a group member (through COM_GMAP membership), and use the ELC_ANN commodity in the PRC_MARK parameter instead of ELC. The constraint would then be defined at the timeslice level of the ELC_ANN commodity, which is ANNUAL if not explicitly defined. 
-5. In the equation formulation below, the set **mrk_ts~r,grp,c,s~** denotes the timeslices assigned to the constraints associated with group **grp** and commodity **c** in region **r**, as explained in remarks 3 and 4 above.
-6. Zero market shares are either removed (for bound type \'LO\') or converted into flow bounds (bound types \'UP\' and \'FX\'), because the formulation employs inverse values.
+<ol>
+<li>All the FLO_MARK parameters are internally converted to PRC_MARK parameters by the model generator, using the process name of the FLO_MARK parameter as the process group index (<b>grp</b>) in PRC_MARK. Therefore, below references to the parameters are mostly given in terms of PRC_MARK only.</li>
+<li>Market-share constraints can be specified for standard processes, as well as for exchange and storage processes. For standard processes, the PRC_MARK parameter value can be unambiguously applied to the process flow, and the value should normally be non-negative. However, because exchange and storage processes may have both input and output flows of the same commodity, for these processes the sign of the parameter value determines whether it is applied to the input or output flow, by using the following simple conventional rules:
+<ul>
+<li>Value ≥ 0: Constraint is applied to the output flow (imports or storage discharge)</li><li>Value ≤ 0: Constraint is applied to the negative of input flow (exports or storage charge)</li><li>Value=EPS: Constraint is applied to the net output flow (output-input flow)</li>
+</ul>
+These simple rules provide reasonable flexibility for specifying market share bounds also for exchange and storage processes, in addition to ordinary processes. Although these rules preclude individually bounding the input or output flow to zero, this could always be accomplished by using the IRE_BND, STG_OUTBND, and STG_INBND parameters when necessary.</li>
+<li>The default timeslice level of the constraint is the commodity timeslice level for the constraints defined by using FLO_MARK by the user, and ANNUAL level for those defined by using the PRC_MARK parameter. For overriding the default, see remark 4 below.</li>
+<li>The commodity used in the parameter does not actually need to be in the topology, but it should contain some commodity that does exist in the process topology. This feature can be utilized for defining market-share equations at any desired timeslice level. For example, if ELC is a DAYNITE level commodity, the user could define a dummy com­modity ELC_ANN that includes ELC as a group member (through COM_GMAP membership), and use the ELC_ANN commodity in the PRC_MARK parameter instead of ELC. The constraint would then be defined at the timeslice level of the ELC_ANN commodity, which is ANNUAL if not explicitly defined.</li> 
+<li>In the equation formulation below, the set <b>mrk_ts<sub>r,grp,c,s</sub></b> denotes the timeslices assigned to the constraints associated with group <b>grp</b> and commodity <b>c</b> in region <b>r</b>, as explained in remarks 3 and 4 above.</li>
+<li>Zero market shares are either removed (for bound type 'LO') or converted into flow bounds (bound types 'UP' and 'FX'), because the formulation employs inverse values.</li>
+</ol>
 
 **Examples:**
-
 - Define an upper market share bound of 5% for technology WIND1 in total ELC production in the 2010 period.
 - Define an upper market share of 25% for diesel export (through exchange process DSLXHG) of total DSL production in the 2010 period. Note that because the bound is for exports, in this case the parameter value should be negative and the bound type LO instead of UP.
 
