@@ -3447,7 +3447,7 @@ PRC\_ACTFLO_{r,v,p,c} \times \left(
  & periodyr_{t,y} \\ & y \geq M(t)
  \end{aligned} \right\}}\left(1 - STG\_LOSS_{r,v,p,s} \right)^{(E(t) - y + 0.5)} \right)
 \end{aligned} \right) \\
- & \times \left(\left(1 - STG\_LOSS_{r,v,p,s} \right)^{\left( M(t) - E(t) - Mod(D(t)/2,1) \right)} \right)^{\left(1\space if\spaceprc\_map_{r,'STK',p} \right)}
+ & \times \left(\left(1 - STG\_LOSS_{r,v,p,s} \right)^{\left( M(t) - E(t) - Mod(D(t)/2,1) \right)} \right)^{\left(1\space if \space prc\_map_{r,'STK',p} \right)}
 \end{aligned} \right)
 \\ \\ 
 + sum_{com \in top_{IN}}{VAR\_SIN_{r,v,t,p,com,s} \times \left({COEF\_PTRAN_{r,v,p,com,com,c,s}} \right)}
