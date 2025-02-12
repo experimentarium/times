@@ -2688,34 +2688,43 @@ Dual: The dual value describes for example for a lower bound, the subsidy needed
 
 **Equation:**
 
-$${EQ(l)\_ FLMRK_{r,t,grp,c,s}\forall(r,t,grp,c,s) \in \left( \left\{ \mathbf{rtp}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c}}|PRC\_ MARK_{r,t,p,grp,c,s,l} \neq 0 \right\} \cap \mathbf{mrk}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{grp},\mathbf{c},\mathbf{s}} \right)
-}
-{\sum_{\underset{\cap RPCS\_ VAR_{p}}{\underset{\cap RTP\_ VINTYR_{p,t}}{\underset{RPC_{p} \cap COM\_ GMAP_{c}}{(com,v,ts) \in}}}}^{}\left\{ \left\lbrack VAR\_ FLO_{r,v,t,p,com,ts} \times \begin{bmatrix}
-COM\_ IE_{r,com,ts}ifoutput \\
-1ifinput
+$$EQ(l)\_FLMRK_{r,t,grp,c,s} \forall (r,t,grp,c,s) \in \left(\left\{ rtpc_{r,t,p,c}|PRC\_MARK_{r,t,p,grp,c,s,l} \neq 0 \right\} \cap mrk\_ts_{r,grp,c,s} \right)
+\\ \\
+{\sum_{\underset{\cap RPCS\_VAR_{p}}{\underset{\cap RTP\_VINTYR_{p,t}}{\underset{RPC_{p} \cap COM\_GMAP_{c}}{(com,v,ts) \in}}}}
+\\ \\
+\left \{ \left \lbrack VAR\_FLO_{r,v,t,p,com,ts} \times
+\begin{bmatrix}
+COM\_IE_{r,com,ts} \text{ if output} \\
+1 \text{ if input}
 \end{bmatrix} + \right.\  \right.\ 
-}{\begin{pmatrix}
-VAR\_ IRE_{r,v,t,p,com,ts,imp} \\
-VAR\_ SOUT_{r,v,t,p,com,ts} \times STG\_ EFF_{r,v,p}
-\end{pmatrix} \times \left\lbrack \begin{aligned}
- & COM\_ IE_{r,com,ts}ifPRC\_ MARK_{r,t,p,grp,c,s,l} \geq 0 \\
- & 0ifPRC\_ MARK_{r,t,p,grp,c,s,l} < 0
+}
+\\ \\
+\begin{pmatrix}
+VAR\_IRE_{r,v,t,p,com,ts,imp} \\
+VAR\_SOUT_{r,v,t,p,com,ts} \times STG\_EFF_{r,v,p}
+\end{pmatrix} \times \left\lbrack
+\begin{aligned}
+ & COM\_IE_{r,com,ts} \space if \space PRC\_MARK_{r,t,p,grp,c,s,l} \geq 0 \\
+ & 0 \space if \space PRC\_MARK_{r,t,p,grp,c,s,l} < 0
 \end{aligned} \right\rbrack - 
-}{\left. \ \begin{pmatrix}
-VAR\_ IRE_{r,v,t,p,com,ts,exp} \\
-VAR\_ SIN_{r,v,t,p,com,ts}
+\\ \\
+\left. \begin{pmatrix}
+VAR\_IRE_{r,v,t,p,com,ts,exp} \\
+VAR\_SIN_{r,v,t,p,com,ts}
 \end{pmatrix} \times \begin{bmatrix}
-1ifPRC\_ MARK_{r,t,p,grp,c,s,l} \leq 0 \\
-0ifPRC\_ MARK_{r,t,p,grp,c,s,l} > 0
-\end{bmatrix} \right\rbrack \times \left. \ \left( \frac{RS\_ FR_{r,s,ts}}{PRC\_ MARK_{r,t,p,grp,c,s,l}} \right) \right\}
-}{\overset{\underset{}{}}{\left\{ = ; \leq ; \geq \right\}}
-}{\sum_{\underset{RPC \cap COM\_ GMAP_{c}}{com \in}}^{}{\sum_{\underset{RHS\_ COMPRD_{t,com}}{ts \in}}^{}\left\{ VAR\_ COMPRD_{r,t,com,ts} \times \left( \overset{\underset{}{}}{RS\_ FR_{r,s,ts}} \right) \right\}}}$$
+1 \space if \space PRC\_MARK_{r,t,p,grp,c,s,l} \leq 0 \\
+0 \space if \space PRC\_MARK_{r,t,p,grp,c,s,l} > 0
+\end{bmatrix} \right\rbrack \times \left. \left(\frac{RS\_FR_{r,s,ts}}{PRC\_MARK_{r,t,p,grp,c,s,l}} \right) \right\}
+\\ \\ 
+\left\{ = ; \leq ; \geq \right\} 
+\\ \\ 
+\sum_{\underset{RPC \cap COM\_GMAP_{c}}{com \in}}{\sum_{\underset{RHS\_COMPRD_{t,com}}{ts \in}}\left\{VAR\_COMPRD_{r,t,com,ts} \times \left(RS\_FR_{r,s,ts} \right) \right\}}$$
 
 ### Equations related to exchanges (EQ_IRE, EQ_IREBND, EQ_XBND)
 
 The three equations in this section concern trade between regions. Since these equations involve (directly or indirectly) more than one region, we start their presentation by a complete description of the modeling approach used, which, as we shall see, involves various schemes for representing different types of trade. The description already given in Chapter 4 is also relevant to these equations.
 
-**[Variables]{.underline}**
+<ins><b>Variables</b></ins>
 
 - VAR_IRE(r, v, t, p, c, s, ie)
 
@@ -2726,7 +2735,6 @@ The three equations in this section concern trade between regions. Since these e
 *Bounds*: The amount of commodity imported to a region from each exporting region can be directly constrained by the IRE_BND parameter.
 
 *Remarks*:
-
 - Note that there is a one-to-one correspondence between the VAR_IRE variables and the top_ire entries (one variable for the supply region/commodity and one variable for the demand region/commodity for each instance of top_ire).
 - In market-based trade, the VAR_IRE variables for the market region describe the net imports to, and exports from, the market region, not the total market volume.
 - There is no variable for the total volume of the commodity market in market-based trade. The total volume can only be addressed by means of UC_IRE parameters (summing over all imports to or exports from the market).
@@ -2734,10 +2742,10 @@ The three equations in this section concern trade between regions. Since these e
 - The amount of commodity exported from / imported to a region may also be limited by various user constraints. However, unless the trade is modeled with bilateral processes, such bounds can only apply to the total exports from or imports to a region, and cannot apply to e.g. imports from a specific region.
 
 There are only three trade equations, namely a generic trade balance equation EQ_IRE, and two bounds, EQ(l)\_IREBND and EQ(l)\_XBND. The generic balance equation, EQ_IRE, can be further divided into two flavors:
-
-A. Balance equations for bilateral and other unidirectional trade into a single destination region (Cases 1 and 2).
-
-B. Balance equations for multidirectional trade from single export region and multi-lateral market-based trade (Cases 3 and 4).
+<ol type="A">
+<li>Balance equations for bilateral and other unidirectional trade into a single destination region (Cases 1 and 2).</li>
+<li>Balance equations for multidirectional trade from single export region and multi-lateral market-based trade (Cases 3 and 4).</li>
+</ol>
 
 #### Equation EQ_IRE
 
@@ -2754,7 +2762,6 @@ B. Balance equations for multidirectional trade from single export region and mu
 **Units:** Units of commodity traded. Normally PJ for energy, Mton or kton for materials or emissions.
 
 **Remarks:**
-
 - Flows into individual regions may be limited by the IRE_BND and IRE_XBND parameters.
 - The equation has two flavors: The first one is for bilateral and unidirectional trade with a single destination region, and the second is for market-based trade and multidirectional trade from a single source region.
 
@@ -2762,57 +2769,58 @@ B. Balance equations for multidirectional trade from single export region and mu
 
 **Equation:**
 
-$EQ\_ IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (\mathbf{rt}\mathbf{p}_{\mathbf{r},\mathbf{t},\mathbf{p}} \land \mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{s}} \land \mathbf{rpc}\_\mathbf{eqir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c}}) \right\}:
-$$$
-{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{VAR\_ IRE_{r,v,t,p,c,s,'IMP'}} = 
-}{\sum_{(r2,c2) \in \mathbf{top}\_\mathbf{ir}\mathbf{e}_{\mathbf{r}\mathbf{2},\mathbf{c}\mathbf{2},\mathbf{r},\mathbf{c},\mathbf{p}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r}\mathbf{2},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\sum_{s2 \in IRE\_ TSCVT_{r2,s2,r,s}}^{}{\sum_{ts \in \left( \begin{aligned}
- & \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r}\mathbf{2},\mathbf{t},\mathbf{p},\mathbf{c}\mathbf{2},\mathbf{ts}} \\
- & \cap \mspace{6mu}\mathbf{rs}\_\mathbf{tre}\mathbf{e}_{\mathbf{r},\mathbf{s}\mathbf{2},\mathbf{ts}}
-\end{aligned} \right)}^{}\left( \begin{aligned}
- & VAR\_ IRE_{r2,v,t,p,c2,ts,'EXP'} \times IRE\_ FLO_{r2,v,p,c2,r,c,s} \times \\
- & IRE\_ TSCVT_{r2,s2,r,s} \times IRE\_ CCVT_{r2,c2,r,c} \times \\
- & RTCS\_ TSFR_{´r2,t,c,s2,ts}
+$$EQ\_IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (rtp_{r,t,p} \land rpcs\_var_{r,p,c,s} \land rpc\_eqire_{r,p,c}) \right\}
+\\ \\
+\sum_{v \in rtp\_vintyr_{r,v,t,p}}{VAR\_IRE_{r,v,t,p,c,s,'IMP'}} = 
+\\ \\ 
+{\sum_{(r2,c2) \in top\_ire_{r2,c2,r,c,p}}{\sum_{v \in rtp\_vintyr_{r2,v,t,p}}{\sum_{s2 \in IRE\_TSCVT_{r2,s2,r,s}}{\sum_{ts \in \left(
+\begin{aligned}
+ & rtpcs\_varf_{r2,t,p,c2,ts} \\
+ & \cap \space rs\_tree_{r,s2,ts}
+\end{aligned} \right)}\left(
+\begin{aligned}
+ & VAR\_IRE_{r2,v,t,p,c2,ts,'EXP'} \times IRE\_FLO_{r2,v,p,c2,r,c,s} \times \\
+ & IRE\_TSCVT_{r2,s2,r,s} \times IRE\_CCVT_{r2,c2,r,c} \times \\
+ & RTCS\_TSFR_{r2,t,c,s2,ts}
 \end{aligned} \right)}}}}$$
 
 **Remarks:**
-
 - The IRE_TSCVT conversion coefficients are in practice provided only for some pairs of mapped timeslices between **r2** and **r**. Therefore, the timeslice conversion is actually done in two stages: First, the timeslices of the VAR_IRE variables are converted to the mapped timeslices, and then the mapped timeslices in **r2** to those in **r** as follows: 
 - The mapping coefficients IRE_TSCVT do not have to be provided by the user if the timeslice definitions in both regions are identical.
 - If the timeslice definitions are different, the user provides the mapping coefficients IRE_TSCVT to convert the timeslice **s2** in region **r2** to the timeslice **s** in region **r**. Since the timeslice level of **s2** may be different from the timeslice level **ts** of the exchange variable in region **r2**, the parameter RTCS_TSFR is used to match **ts** and **s2**.
 - Note that the equation is generated for each period in **rtp** only, not for each vintage in **rtp_vintyr** as in the original code. This is because **prc_vint** is region-specific. If **prc_vint** is set to YES in one region and to NO in another, that would create serious sync problems, if the equation were generated for each vintage in **rtp_vintyr**. In addition, differences in e.g. NCAP_PASTI, NCAP_TLIFE, and NCAP_AF could create sync problems, even if **prc_vint** would be set to YES in all regions.
 
-> **\
-> **
-
 ##### Case B. Multidirectional and market-based trade between regions.
 
 **Equation:**
 
-$${EQ\_ IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (\mathbf{rt}\mathbf{p}_{\mathbf{r},\mathbf{t},\mathbf{p}} \land \mathbf{rpcs}\_\mathbf{va}\mathbf{r}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{s}} \land \mathbf{rpc}\_\mathbf{eqir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c}}) \right\}:
-}
-{\sum_{\underset{(\mathbf{top}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{c}\mathbf{1},\mathbf{r}\mathbf{2},\mathbf{c}\mathbf{2},\mathbf{p}} \cap \mathbf{top}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{c}\mathbf{1},\mathbf{r},\mathbf{c},\mathbf{p}} \cap \mathbf{rpc}\_\mathbf{marke}\mathbf{t}_{\mathbf{r},\mathbf{p},\mathbf{c}\mathbf{1}})}{(r2,c1,c2) \in}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r}\mathbf{2},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\sum_{s2 \in IRE\_ TSCVT_{r2,s2,r,s}}^{}{\sum_{ts \in \left( \begin{aligned}
- & \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r}\mathbf{2},\mathbf{t},\mathbf{p},\mathbf{c}\mathbf{2},\mathbf{ts}} \\
- & \cap \mspace{6mu}\mathbf{rs}\_\mathbf{tre}\mathbf{e}_{\mathbf{r},\mathbf{s}\mathbf{2},\mathbf{ts}}
-\end{aligned} \right)}^{}\left( \begin{aligned}
- & VAR\_ IRE_{r2,v,t,p,c2,s2,'IMP'} \times IRE\_ CCVT_{r,c1,r,c} \\
- & \times IRE\_ CCVT_{r2,c2,r,c1} \times IRE\_ TSCVT_{r2,s2,r,s} \\
- & \times RTCS\_ TSFR_{´r2,t,c,s2,ts}
-\end{aligned} \right)}} \times}
-}
-
-{= 
-}
-{\sum_{(r2,c2) \in \mathbf{top}\_\mathbf{ir}\mathbf{e}_{\mathbf{r}\mathbf{2},\mathbf{c}\mathbf{2},\mathbf{r},\mathbf{c},\mathbf{p}}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r}\mathbf{2},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}{\sum_{s2 \in IRE\_ TSCVT_{r2,s2,r,s}}^{}{\sum_{ts \in \left( \begin{aligned}
- & \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r}\mathbf{2},\mathbf{t},\mathbf{p},\mathbf{c}\mathbf{2},\mathbf{ts}} \\
- & \cap \mspace{6mu}\mathbf{rs}\_\mathbf{tre}\mathbf{e}_{\mathbf{r},\mathbf{s}\mathbf{2},\mathbf{ts}}
-\end{aligned} \right)}^{}\left( \begin{aligned}
- & VAR\_ IRE_{r2,v,t,p,c2,ts,'EXP'} \times IRE\_ FLO_{r2,v,p,c2,r,c,s} \times \\
- & IRE\_ TSCVT_{r2,s2,r,s} \times IRE\_ CCVT_{r2,c2,r,c} \times \\
- & RTCS\_ TSFR_{´r2,t,c,s2,ts}
-\end{aligned} \right)}}}}$$
+$$EQ\_IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (rtp_{r,t,p} \land rpcs\_var_{r,p,c,s} \land rpc\_eqire_{r,p,c}) \right\}
+\\ \\ 
+\sum_{\underset{(top\_ire_{r,c1,r2,c2,p} \cap top\_ire_{r,c1,r,c,p} \cap rpc\_market_{r,p,c1})}{(r2,c1,c2) \in}}{\sum_{v \in rtp\_vintyr_{r2,v,t,p}}{\sum_{s2 \in IRE\_TSCVT_{r2,s2,r,s}}{\sum_{ts \in \left(
+\begin{aligned}
+ & rtpcs\_varf_{r2,t,p,c2,ts} \\
+ & \cap \space rs\_tree_{r,s2,ts}
+\end{aligned} \right)}\left(
+\begin{aligned}
+ & VAR\_IRE_{r2,v,t,p,c2,s2,'IMP'} \times IRE\_CCVT_{r,c1,r,c} \\
+ & \times IRE\_CCVT_{r2,c2,r,c1} \times IRE\_TSCVT_{r2,s2,r,s} \\
+ & \times RTCS\_TSFR_{r2,t,c,s2,ts}
+\end{aligned} \right)}}}
+\\ \\
+= 
+\\ \\ 
+\sum_{(r2,c2) \in top\_ire_{r2,c2,r,c,p}}{\sum_{v \in rtp\_vintyr_{r2,v,t,p}}{\sum_{s2 \in IRE\_TSCVT_{r2,s2,r,s}}{\sum_{ts \in \left(
+\begin{aligned}
+ & rtpcs\_varf_{r2,t,p,c2,ts} \\
+ & \cap \space rs\_tree_{r,s2,ts}
+\end{aligned} \right)}\left(
+\begin{aligned}
+ & VAR\_IRE_{r2,v,t,p,c2,ts,'EXP'} \times IRE\_FLO_{r2,v,p,c2,r,c,s} \times \\
+ & IRE\_TSCVT_{r2,s2,r,s} \times IRE\_CCVT_{r2,c2,r,c} \times \\
+ & RTCS\_TSFR_{r2,t,c,s2,ts}
+\end{aligned} \right)}}}$$
 
 **Remarks**:
-
 - The IRE_TSCVT conversion coefficients are in practice provided only for some pairs of mapped timeslices between ***r2*** and ***r***. Therefore, the timeslice conversion is actually done in two stages: First, the timeslices of the VAR_IRE variables are converted to the mapped timeslices, and then the mapped timeslices in ***r2*** to those in ***r***. 
 - In the case of market-based trading, **prc_aoff** can be used to switch off the entire commodity market for periods that fall within a range of years. It is also possible to specify multiple entries of **prc_aoff**, if, for example trading should be possible only between selected years. 
 - The **top_ire** entry between the export and import commodity in the market region itself is automatically defined by the TIMES model generator when necessary, i.e. there is no need to provide it by the user.
@@ -2831,7 +2839,7 @@ $${EQ\_ IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (\mathbf{rt}\mathbf{p}_{\mathb
 
 **Related equations: EQ_IRE, EQ(l)\_XBND, EQ(l)\_COMBAL**
 
-**Description*:*** Sets a bound for the amount of commodity (c) imported/exported (ie) to/from region (r), from/to another region (all_r) in time period (t) and timeslice (s).
+**Description**: Sets a bound for the amount of commodity (c) imported/exported (ie) to/from region (r), from/to another region (all_r) in time period (t) and timeslice (s).
 
 **Purpose:** The equation is optional and can be used to set a bound for a pair-wise inter-regional exchange. The generation of the equation is triggered by the user-specified parameter IRE_BND.
 
@@ -2840,7 +2848,6 @@ $${EQ\_ IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (\mathbf{rt}\mathbf{p}_{\mathb
 **Type:** Set according to the \'l\' index in IRE_BND.
 
 **Remarks:**
-
 - Total trade flows into/from individual regions may be limited by using the IRE_XBND parameter.
 
 **Interpretation of the results**:
@@ -2849,80 +2856,80 @@ Primal: If the primal value equals the bound parameter, the constraint is bindin
 
 Dual: The dual value describes for a lower/upper bound the cost increase/decrease in the objective function, if the bound is increased by one unit. It may also be interpreted as subsidy/tax needed to reach the given bound value.
 
-**\
-Equation:**
+**Equation:**
 
 **Case A. Imports from an external region or market region**
 
-$${EQ(l)\_ IREBND_{r,t,c,s,all\_ r,ie}\forall\left\{ \begin{aligned}
- & r,t,c,s,all\_ r,ie:(RCS\_ COMTS_{r,c,s} \land \\
- & (\exists p:RPC\_ IE_{r,p,c,ie}) \land IRE\_ BND_{r,t,c,s,all\_ r,ie})
-\end{aligned} \right\}:
-}
-{\sum_{p:(\exists c2:TOP\_ IRE_{all\_ r,c2,r,c,p})}^{}{\sum_{v \in RTP\_ VINTYR_{r,v,t,p}}^{}{\sum_{s2}^{}{VAR\_ IRE_{r,v,t,p,c,s2,exp}}}} \times 
-}
-{\begin{pmatrix}
-1ifs2 \in TS\_ MAP(r,s,s2) \\
-\frac{FR(s)}{FR(s2)}ifs2 \in RS\_ BELOW(r,s2,s)
+$$EQ(l)\_IREBND_{r,t,c,s,all\_r,ie}\forall\left\{
+\begin{aligned}
+ & r,t,c,s,all\_r,ie:(RCS\_COMTS_{r,c,s} \land \\
+ & (\exists p:RPC\_IE_{r,p,c,ie}) \land IRE\_BND_{r,t,c,s,all\_r,ie})
+\end{aligned} \right\}
+\\ \\ 
+\sum_{p:(\exists c2:TOP\_IRE_{all\_r,c2,r,c,p})}{\sum_{v \in RTP\_VINTYR_{r,v,t,p}}{\sum_{s2}{VAR\_IRE_{r,v,t,p,c,s2,exp}}}} \times 
+\\ \\
+\begin{pmatrix}
+1 \space if \space s2 \in TS\_MAP(r,s,s2) \\
+\frac{FR(s)}{FR(s2)} \space if \space s2 \in RS\_BELOW(r,s2,s)
 \end{pmatrix}
-}
-{\left\{ \leq ; = ; \geq \right\} IRE\_ BND_{r,t,c,s,all\_ r,ie}}$$
+\\ \\
+\left\{ \leq ; = ; \geq \right\} \space IRE\_BND_{r,t,c,s,all\_r,ie}$$
 
 **Case B. Imports from an internal non-market region**
 
-$${EQ(l)\_ IREBND_{r,t,c,s,all\_ r,ie}\forall\left\{ \begin{aligned}
- & r,t,c,s,all\_ r,ie:(RCS\_ COMTS_{r,c,s} \land \\
- & (\exists p \in RPC\_ IE_{r,p,c,ie}) \land IRE\_ BND_{r,t,c,s,all\_ r,ie})
-\end{aligned} \right\}:
-}
-{\sum_{\underset{s1 \in RPCS\_ VAR_{r,p,c,s1}}{(c2,p) \in TOP\_ IRE_{all\_ r,c2,r,c,p}}}^{}{\sum_{v \in RTP\_ VINTYR_{all\_ r,v,t,p}}^{}{\sum_{s2}^{}{VAR\_ IRE_{all\_ r,v,t,p,c2,s2,exp}}}} \times IRE\_ FLO_{all\_ r,v,p,c2,r,c,s1} \times 
-}
-{IRE\_ CCVT_{all\_ r,c2,r,c} \times IRE\_ TSCVT_{all\_ r,s2,r,s1} \times \begin{pmatrix}
-1ifs1 \in TS\_ MAP(r,s,s1) \\
-\frac{FR(s)}{FR(s1)}ifs1 \in RS\_ BELOW(r,s1,s)
+$$EQ(l)\_IREBND_{r,t,c,s,all\_r,ie}\forall\left\{
+\begin{aligned}
+ & r,t,c,s,all\_r,ie:(RCS\_COMTS_{r,c,s} \land \\
+ & (\exists p \in RPC\_IE_{r,p,c,ie}) \land IRE\_BND_{r,t,c,s,all\_r,ie})
+\end{aligned} \right\}
+\\ \\ 
+\sum_{\underset{s1 \in RPCS\_VAR_{r,p,c,s1}}{(c2,p) \in TOP\_IRE_{all\_r,c2,r,c,p}}}{\sum_{v \in RTP\_VINTYR_{all\_r,v,t,p}}{\sum_{s2}{VAR\_IRE_{all\_r,v,t,p,c2,s2,exp}}}} \times IRE\_FLO_{all\_r,v,p,c2,r,c,s1} \times 
+\\ \\ 
+IRE\_CCVT_{all\_r,c2,r,c} \times IRE\_TSCVT_{all\_r,s2,r,s1} \times
+\begin{pmatrix}
+1 \space if \space s1 \in TS\_MAP(r,s,s1) \\
+\frac{FR(s)}{FR(s1)} \space if \space s1 \in RS\_BELOW(r,s1,s)
 \end{pmatrix}
-}
-{\left\{ \leq ; = ; \geq \right\} IRE\_ BND_{r,t,c,s,all\_ r,ie}}$$
+\\ \\
+\left\{ \leq ; = ; \geq \right\} \space IRE\_BND_{r,t,c,s,all\_r,ie}$$
 
-**Case C. Exports from a non-market region to an internal or external
-region**
+**Case C. Exports from a non-market region to an internal or external region**
 
-$${EQ(l)\_ IREBND_{r,t,c,s,all\_ r,ie}\forall\left\{ \begin{aligned}
- & r,t,c,s,all\_ r,ie:(RCS\_ COMTS_{r,c,s} \land \\
- & (\exists p:RPC\_ IE_{r,p,c,ie}) \land IRE\_ BND_{r,t,c,s,all\_ r,ie})
-\end{aligned} \right\}:
-}
-{\sum_{p:(\exists c2:TOP\_ IRE_{r,c,all\_ r,c2,p})}^{}{\sum_{v \in RTP\_ VINTYR_{r,v,t,p}}^{}{\sum_{s2}^{}{VAR\_ IRE_{r,v,t,p,c,s2,exp}}}} \times 
-}
-{\begin{pmatrix}
-1ifs2 \in TS\_ MAP(r,s,s2) \\
-\frac{FR(s)}{FR(s2)}ifs2 \in RS\_ BELOW(r,s2,s)
+$$EQ(l)\_IREBND_{r,t,c,s,all\_r,ie}\forall\left\{
+\begin{aligned}
+ & r,t,c,s,all\_r,ie:(RCS\_COMTS_{r,c,s} \land \\
+ & (\exists p:RPC\_IE_{r,p,c,ie}) \land IRE\_BND_{r,t,c,s,all\_r,ie})
+\end{aligned} \right\}
+\\ \\
+\sum_{p:(\exists c2:TOP\_IRE_{r,c,all\_r,c2,p})}{\sum_{v \in RTP\_VINTYR_{r,v,t,p}}{\sum_{s2}{VAR\_IRE_{r,v,t,p,c,s2,exp}}}} \times 
+\\ \\
+\begin{pmatrix}
+1 \space if \space s2 \in TS\_MAP(r,s,s2) \\
+\frac{FR(s)}{FR(s2)} \space if \space s2 \in RS\_BELOW(r,s2,s)
 \end{pmatrix}
-}
-{\left\{ \leq ; = ; \geq \right\} IRE\_ BND_{r,t,c,s,all\_ r,ie}}$$
+\\ \\
+\left\{ \leq ; = ; \geq \right\} \space IRE\_BND_{r,t,c,s,all\_r,ie}$$
 
 **Case D. Exports from a market region to an internal region**
 
-$${EQ(l)\_ IREBND_{r,t,c,s,all\_ r,ie}\forall\left\{ \begin{aligned}
- & r,t,c,s,all\_ r,ie:(RCS\_ COMTS_{r,c,s} \land \\
- & (\exists p:RPC\_ IE_{r,p,c,ie}) \land IRE\_ BND_{r,t,c,s,all\_ r,ie})
-\end{aligned} \right\}:
-}
-{\sum_{(c2,p) \in TOP\_ IRE_{r,c,all\_ r,c2,p}}^{}{\sum_{v \in RTP\_ VINTYR_{all\_ r,v,t,p}}^{}{\sum_{s2}^{}{VAR\_ IRE_{all\_ r,v,t,p,c2,s2,exp}}}} \times 
-}
-{IRE\_ CCVT_{all\_ r,c2,r,c} \times IRE\_ TSCVT_{all\_ r,s2,r,s} \times \begin{pmatrix}
-1ifs2 \in TS\_ MAP(r,s,s2) \\
-\frac{FR(s)}{FR(s2)}ifs2 \in RS\_ BELOW(r,s2,s)
+$$EQ(l)\_IREBND_{r,t,c,s,all\_r,ie}\forall\left\{
+\begin{aligned}
+ & r,t,c,s,all\_r,ie:(RCS\_COMTS_{r,c,s} \land \\
+ & (\exists p:RPC\_IE_{r,p,c,ie}) \land IRE\_BND_{r,t,c,s,all\_r,ie})
+\end{aligned} \right\}
+\\ \\
+\sum_{(c2,p) \in TOP\_IRE_{r,c,all\_r,c2,p}}{\sum_{v \in RTP\_VINTYR_{all\_r,v,t,p}}{\sum_{s2}{VAR\_IRE_{all\_r,v,t,p,c2,s2,exp}}}} \times 
+\\ \\ 
+IRE\_CCVT_{all\_r,c2,r,c} \times IRE\_TSCVT_{all\_r,s2,r,s} \times
+\begin{pmatrix}
+1 \space if \space s2 \in TS\_MAP(r,s,s2) \\
+\frac{FR(s)}{FR(s2)} \space if \space s2 \in RS\_BELOW(r,s2,s)
 \end{pmatrix}
-}
-{\left\{ \leq ; = ; \geq \right\} IRE\_ BND_{r,t,c,s,all\_ r,ie}}$$
+\\ \\
+\left\{ \leq ; = ; \geq \right\} \space IRE\_BND_{r,t,c,s,all\_r,ie}$$
 
 **Remarks:**
-
 - The IRE_TSCVT conversion coefficients are in practice provided only for some pairs of mapped timeslices between **all_r** and **r**. Therefore, the timeslice conversion is actually done in two stages: First, the timeslices of the VAR_IRE variables are converted to the mapped timeslices, and then the mapped timeslices in **all_r** to those in **r**.
-
-*\
-*
 
 #### Equation: EQ(*l*)\_XBND 
 
@@ -2954,25 +2961,28 @@ Dual: The dual value describes for a lower/upper bound the cost increase/decreas
 
 **Equation:**
 
-$EQ(l)\_ XBND_{all\_ r,t,c,s,ie} \ni IRE\_ XBND_{all\_ r,t,c,s,ie,bd}
-$$$
+$$EQ(l)\_XBND_{all\_r,t,c,s,ie} \ni IRE\_XBND_{all\_r,t,c,s,ie,bd}$$
 
-{\sum_{p \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{all}\_\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ie}}}^{}{\sum_{s2 \in \left( \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{all}\_\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{s}\mathbf{2}} \cap \mathbf{rs}\_\mathbf{tre}\mathbf{e}_{\mathbf{all}\_\mathbf{r},\mathbf{s},\mathbf{s}\mathbf{2}} \right)}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{all}\_\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\left\lbrack \begin{aligned}
- & VAR\_ IRE_{all\_ r,v,t,p,c,s2,ie} \times \\
- & 1ifs2 \in \mathbf{ts}\_\mathbf{ma}\mathbf{p}_{\mathbf{all}\_\mathbf{r},\mathbf{s},\mathbf{s}\mathbf{2}} \\
- & \frac{G\_ YRFR(s)}{G\_ YRFR(s2)}ifs2 \in \mathbf{rs}\_\mathbf{belo}\mathbf{w}_{\mathbf{all}\_\mathbf{r},\mathbf{s}\mathbf{2},\mathbf{s}}
+$all\_r$ is an internal
+
+$$\sum_{p \in rpc\_ire_{all\_r,p,c,ie}}{\sum_{s2 \in \left(rtpcs\_varf_{all\_r,t,p,c,s2} \cap rs\_tree_{all\_r,s,s2} \right)}{\sum_{v \in rtp\_vintyr_{all\_r,v,t,p}}\left\lbrack
+\begin{aligned}
+ & VAR\_IRE_{all\_r,v,t,p,c,s2,ie} \times \\
+ & 1 \space if \space s2 \in ts\_map_{all\_r,s,s2} \\
+ & \frac{G\_YRFR(s)}{G\_YRFR(s2)} \space if \space s2 \in rs\_below_{all\_r,s2,s}
 \end{aligned} \right\rbrack}}
-}{\left\{ = ; \leq ; \geq \right\} IRE\_ XBND_{all\_ r,t,c,s,ie,bd}
-}
+\\ \\
+\left\{ = ; \leq ; \geq \right\} \space IRE\_XBND_{all\_r,t,c,s,ie,bd}$$
 
+$all\_r$ is an external
 
-{\sum_{p \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{com},\mathbf{impex}}}^{\sum}{\sum_{(ts,s2) \in \left( \mathbf{rs}\_\mathbf{tre}\mathbf{e}_{\mathbf{r},\mathbf{ts},\mathbf{s}\mathbf{2}} \cap \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{com},\mathbf{s}\mathbf{2}} \cap IRE\_ TSCVT_{r,ts,all\_ r,s} \right)}^{\sum}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{\sum}\left\lbrack \begin{aligned}
- & VAR\_ IR{Er,com,all\_ r,c}_{r,v,t,p,com,s2,impexp} \\
- & \times IRE\_ TSCVT(r,ts,all\_ r,s)
+$$\sum_{p \in rpc\_ire_{r,p,com,impex}} {\sum_{(ts,s2) \in \left(rs\_tree_{r,ts,s2} \cap rtpcs\_varf_{r,t,p,com,s2} \cap IRE\_TSCVT_{r,ts,all\_r,s} \right)} {\sum_{v \in rtp\_vintyr_{r,v,t,p}} \left\lbrack
+\begin{aligned}
+ & VAR\_IRE_{r,v,t,p,com,s2,impexp} \times IRE\_CCVT_{r,com,all\_r,c} \\
+ & \times IRE\_TSCVT(r,ts,all\_r,s)
 \end{aligned} \right\rbrack}}
-}
-
-{\left\{ = ; \leq ; \geq \right\} IRE\_ XBND_{all\_ r,t,c,s,ie,bd}}$$
+\\ \\
+\left\{ = ; \leq ; \geq \right\} \space IRE\_XBND_{all\_r,t,c,s,ie,bd}$$
 
 ### Equations: EQ(*l*)\_INSHR, EQ(*l*)\_OUTSHR
 
