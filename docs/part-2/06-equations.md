@@ -3630,33 +3630,45 @@ $$EQ\_STSBAL_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left(rtp\_vintyr_{r,v,t,p} \cap 
 
 **Case A. For CAP:**
 
-$$EQ(l)\_UCRTP_{uc\_n,r,t,p,'CAP',bd} \quad \ni \left(rtp_{r,t,p} \land uc\_dynbnd_{uc\_n,bd} \land\left(\sum_{side}{\left(UC\_CAP_{uc\_n,side,r,t,p} \right) > 0} \right) \right)
+$$EQ(l)\_UCRTP_{uc\_n,r,t,p,'CAP',bd} 
+\\ \\
+\ni \left(rtp_{r,t,p} \land uc\_dynbnd_{uc\_n,bd} \land\left(\sum_{side}{\left(UC\_CAP_{uc\_n,side,r,t,p} \right) > 0} \right) \right)
 \\ \\
 VAR\_CAP_{r,t,p}
 \\ \\
 \left\{ \leq ; = ; \geq \right\}
 \\ \\
-VAR\_CAP_{r,t-1,p} \times \left(UC\_CAP_{uc\_n,'LHS',r,t,p} \right)^{(M(t)-M(t-1))} + UC\_CAP_{uc\_n,'RHS',r,t,p} \times (M(t)-M(t-1))$$
+VAR\_CAP_{r,t-1,p} \times \left(UC\_CAP_{uc\_n,'LHS',r,t,p}\right)^{(M(t)-M(t-1))} + 
+\\ \\
+UC\_CAP_{uc\_n,'RHS',r,t,p} \times (M(t)-M(t-1))$$
 
 **Case B. For NCAP:**
 
-$$EQ(l)\_UCRTP_{uc\_n,r,t,p,'NCAP',bd} \quad \ni \left(rtp_{r,t,p} \land uc\_dynbn d_{uc\_n,bd} \land \left( \sum_{side}{\left(UC\_NCAP_{uc\_n,side,r,t,p} \right) > 0} \right) \right)
+$$EQ(l)\_UCRTP_{uc\_n,r,t,p,'NCAP',bd} \ni 
+\\ \\
+\left(rtp_{r,t,p} \land uc\_dynbn d_{uc\_n,bd} \land \left( \sum_{side}{\left(UC\_NCAP_{uc\_n,side,r,t,p} \right) > 0} \right) \right)
 \\ \\
 VAR\_NCAP_{r,t,p}
 \\ \\
 \left\{ \leq ; = ; \geq \right\}
 \\ \\ 
-VAR\_NCAP_{r,t-1,p} \times \left(UC\_NCAP_{uc\_n,'LHS',r,t,p} \right)^{(M(t)-M(t-1))} + UC\_NCAP_{uc\_n,'RHS',r,t,p} \times (M(t)-M(t-1))$$
+VAR\_NCAP_{r,t-1,p} \times \left(UC\_NCAP_{uc\_n,'LHS',r,t,p} \right)^{(M(t)-M(t-1))} + 
+\\ \\
+UC\_NCAP_{uc\_n,'RHS',r,t,p} \times (M(t)-M(t-1))$$
 
 **Case C. For ACT:**
 
-$${EQ(l)\_UCRTP_{uc\_n,r,t,p,'ACT',bd} \quad \ni \left( rtp_{r,t,p} \land uc\_dynbnd_{uc\_n,bd}\land \left(\sum_{side} {(UC\_ACT_{uc\_n,side,r,t,p,'ANNUAL'}) > 0} \right) \right)}
+$${EQ(l)\_UCRTP_{uc\_n,r,t,p,'ACT',bd} \ni
 \\ \\
-\sum_{v \in rtp\_vintyr_{r,v,t,p}}{\sum_{s \in prc\_ts}{VAR\_ACT_{r,t,p,s}}} \quad \left\{ \leq ; = ; \geq \right\}
+\left( rtp_{r,t,p} \land uc\_dynbnd_{uc\_n,bd}\land \left(\sum_{side} {(UC\_ACT_{uc\_n,side,r,t,p,'ANNUAL'}) > 0} \right) \right)}
 \\ \\
-\sum_{v \in rtp\_vintyr_{r,v,t,p}}{\sum_{s \in prc\_ts}{VAR\_ACT_{r,t-1,p,s}} \times \left(UC\_ACT_{uc\_n,'LHS',r,t,p,'ANNUAL'} \right)^{(M(t)-M(t-1))}}
+\sum_{v \in rtp\_vintyr_{r,v,t,p}}{\sum_{s \in prc\_ts}{VAR\_ACT_{r,t,p,s}}}
 \\ \\
-+ UC\_ACT_{uc\_n,'RHS',r,t,p,'ANNUAL'} \times (M(t)-M(t-1))$$
+\left\{ \leq ; = ; \geq \right\}
+\\ \\
+\sum_{v \in rtp\_vintyr_{r,v,t,p}}{\sum_{s \in prc\_ts}{VAR\_ACT_{r,t-1,p,s}} \times \left(UC\_ACT_{uc\_n,'LHS',r,t,p,'ANNUAL'} \right)^{(M(t)-M(t-1))}} +
+\\ \\
+UC\_ACT_{uc\_n,'RHS',r,t,p,'ANNUAL'} \times (M(t)-M(t-1))$$
 
 ## User Constraints
 
