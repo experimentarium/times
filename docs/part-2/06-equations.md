@@ -3592,20 +3592,16 @@ $$EQ\_STSBAL_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left(rtp\_vintyr_{r,v,t,p} \cap 
 \sum_{rs\_below_{r,'ANNUAL',s - 1}}\left(
 \begin{aligned}
  & VAR\_ACT_{r,v,t,p,s - 1} + VAR\_SOUT_{r,v,t,p,'ACT',s - 1} - \\
- & \sum_{ts \in \left\{ sl|prc\_ts_{r,p,sl} \land rs\_below1_{r,sl,s} \right\}}{VAR\_SOUT_{r,v,t,p,'ACT',ts} \times RS\_FR_{r,s - 1,ts} -} \\
- & \left(\frac{VAR\_ACT_{r,v,t,p,s} + VAR\_ACT_{r,v,t,p,s - 1}}{2} \right) \times STG\_LOSS_{r,v,p,s} \times \frac{G\_YRFR_{r,s}}{RS\_STGPRD_{r,s}}
-\end{aligned} \right) + 
+ & \sum_{ts \in \left\{ sl|prc\_ts_{r,p,sl} \land rs\_below1_{r,sl,s} \right\}}{VAR\_SOUT_{r,v,t,p,'ACT',ts} \times RS\_FR_{r,s - 1,ts}} \\
+ & - \left(\frac{VAR\_ACT_{r,v,t,p,s} + VAR\_ACT_{r,v,t,p,s - 1}}{2} \right) \times STG\_LOSS_{r,v,p,s} \\
+ & \times \frac{G\_YRFR_{r,s}}{RS\_STGPRD_{r,s}}
+\end{aligned} \right)
 \\ \\ 
 + \sum_{s \in \left\{ sl|ANNUAL(sl) \right\}}\left\lbrack
-+ \begin{aligned}
- & \sum_{c \in \left\{
- \begin{aligned}
- & stgips \cap \\ & top_{'IN'}
-\end{aligned} \right\}}\frac{VAR\_SIN_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}} - \sum_{c \in \left\{
-\begin{aligned}
- & stgips \cap \\ & top_{'OUT'}
-\end{aligned} \right\}}\frac{VAR\_SOUT_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}} - \\
- & VAR\_SOUT_{r,v,t,p,'ACT',s}
+\begin{aligned} & \sum_{c \in \left\{
+ \begin{aligned} & stgips \cap \\ & top_{'IN'} \end{aligned} \right\}} \frac{VAR\_SIN_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}} - \\
+& \sum_{c \in \left\{\begin{aligned} & stgips \cap \\ & top_{'OUT'} \end{aligned} \right\}}\frac{VAR\_SOUT_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}} \\
+ & - VAR\_SOUT_{r,v,t,p,'ACT',s}
 \end{aligned} \right\rbrack$$
 
 ### Equations: EQ(*l*)\_UCRTP
