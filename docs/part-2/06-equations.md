@@ -3002,9 +3002,9 @@ $$\sum_{p \in rpc\_ire_{r,p,com,impex}} {\sum_{(ts,s2) \in \left(rs\_tree_{r,ts,
 
 **Quality Control Checks**:
 
-$$\sum_{c \in cg}{FLO\_SHAR_{r,v,p,c,cg,s,'LO'}}\forall(FLO\_SHAR_{r,v,p,c,cg,s,'LO'} \ni l = " \geq ") \leq 1 - \sum_{c \in cg}{FLO\_SHAR_{r,v,p,c,cg,s,'FX'}}
+$$\sum_{c \in cg}{FLO\_SHAR_{r,v,p,c,cg,s,'LO'}}\forall(FLO\_SHAR_{r,v,p,c,cg,s,'LO'} \ni l = \text{"$\geq$"}) \leq 1 - \sum_{c \in cg}{FLO\_SHAR_{r,v,p,c,cg,s,'FX'}}
 \\ \\ 
-\sum_{c \in cg}{FLO\_SHAR_{r,v,p,c,cg,s,'UP'}}\forall(FLO\_SHAR_{r,v,p,c,cg,s,'UP'} \ni l = " \leq ") \geq 1 - \sum_{c \in cg}{FLO\_SHAR_{r,t,p,c,cg,s,'FX'}}
+\sum_{c \in cg}{FLO\_SHAR_{r,v,p,c,cg,s,'UP'}}\forall(FLO\_SHAR_{r,v,p,c,cg,s,'UP'} \ni l = \text{"$\leq$"}) \geq 1 - \sum_{c \in cg}{FLO\_SHAR_{r,t,p,c,cg,s,'FX'}}
 \\ \\
 \forall FLO\_SHAR > 0$$
 
@@ -3024,7 +3024,9 @@ $$EQ(l)\_IN/OUTSHR_{r,v,t,p,c,cg,s} \ni (c \in cg) \land \left(t \in rtp\_vintyr
 \\ \\ 
 (s \in rps\_s1_{r,p,s}) \land FLO\_SHAR_{r,v,p,c,cg,s,bd}
 \\ \\
-FLO\_SHAR_{r,v,p,c,cg,s,bd} \times \sum_{com \in cg}{\sum_{s2 \in rtpcs\_varf_{r,t,p,com,s2}}\left\lbrack VAR\_FLO_{r,v,t,p,com,s2} \times RTCS\_TSFR_{r,t,p,com,s,s2} \right\rbrack}
+FLO\_SHAR_{r,v,p,c,cg,s,bd} \times
+\\ \\
+\sum_{com \in cg}{\sum_{s2 \in rtpcs\_varf_{r,t,p,com,s2}}\left\lbrack VAR\_FLO_{r,v,t,p,com,s2} \times RTCS\_TSFR_{r,t,p,com,s,s2} \right\rbrack}
 \\ \\
 \left\{ \mathbf{= ;}\mathbf{\leq}\mathbf{;}\mathbf{\geq} \right\}
 \\ \\
@@ -3066,53 +3068,38 @@ Dual: The dual value of the peaking equation describes the premium consumers hav
 
 $$EQ\_PEAK_{r,t,cg,s} \ni com\_peak_{r,cg} \land s \in com\_pkts_{r,cg,s}
 \\ \\
-\left\{
-\begin{aligned}
+\left\{ \begin{aligned}
  & \sum_{c \in cg}{1/(1 + COM\_PKRSV_{r,t,c}) \times COM\_IE_{r,t,c} \times}\sum_{p \in \left(top_{r,p,c,'OUT'} \cup rpc\_ire_{r,p,c,'IMP'} \right)} \\
  & \left\lbrack
  \begin{aligned}
- & if \space \left( rpc\_pkc_{r,p,c} \land prc\_cap_{r,p} \right) \\
- & \quad\left(G\_YRFR_{r,s} \times \sum_{v \in rtp\_cptyr_{r,v,t,p}}\left\lbrack 
+ & \\ & if \space \left(rpc\_pkc_{r,p,c} \land prc\_cap_{r,p} \right) \\ & \\
+ & \left(G\_YRFR_{r,s} \times \sum_{v \in rtp\_cptyr_{r,v,t,p}}\left\lbrack 
  \begin{aligned}
- & NCAP\_PKCNT_{r,v,p,s} \times COEF\_CPT_{r,v,t,p} \\
- & \times \left(
+ & NCAP\_PKCNT_{r,v,p,s} \times COEF\_CPT_{r,v,t,p} \times \\ & \left(
  \begin{aligned}
- & VAR\_NCAP_{r,tt(v),p} + NCAP\_PASTI_{r,v,p} - \\
- & VAR\_SCAP_{r,v,t,p} \times (\ni prc\_rcap_{r,p})
+ & VAR\_NCAP_{r,tt(v),p} + NCAP\_PASTI_{r,v,p} \\
+ & - VAR\_SCAP_{r,v,t,p} \times (\ni prc\_rcap_{r,p})
  \end{aligned} \right) \\
- & PRC\_CAPACT_{r,p} \times PRC\_ACTFLO_{r,v,p,c}
- \end{aligned} \right\rbrack \space \right) \\
- & else \\
- & \quad \sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_FLOFLO_{r,v,t,p,c,s,'OUT'} \times \space \times NCAP\_PKCNT_{r,v,p,s}} \\
- & \quad + \\
- & \quad\sum_{
- \begin{aligned}
- & \quad(p,c) \in \\
- & rpc\_stg_{r,p,c}
- \end{aligned}}{\sum_{
- \begin{matrix}
- rtp\_vintyr_{r,v,t,p} \\
-rpcs\_var_{r,p,c,ts}
-\end{matrix}}{VAR\_SOUT_{r,v,t,p,c,ts} \times \space \times RS\_FR_{r,s,ts} \times NCAP\_PKCNT_{r,v,p,s}}} \\
- & \quad + \\
- & \quad\sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_IRE_{r,v,t,p,c,s,'IMP'} \times NCAP\_PKCNT_{r,v,p,s}} \\
- & \quad - \\
- & \quad\sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_IRE_{r,v,t,p,c,s,'EXP'} \times NCAP\_PKCNT_{r,v,p,s} \quad if \space prc\_pkno_{r,p}}
+ & \times PRC\_CAPACT_{r,p} \times PRC\_ACTFLO_{r,v,p,c}
+ \end{aligned} \right\rbrack \space \right) \\ & \\ & else \\
+ & \sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_FLOFLO_{r,v,t,p,c,s,'OUT'} \times NCAP\_PKCNT_{r,v,p,s}} \\ & + \\
+ & \sum_{\begin{matrix} (p,c) \in \\ rpc\_stg_{r,p,c} \end{matrix}}
+ {\sum_{\begin{matrix}
+ rtp\_vintyr_{r,v,t,p} \\ rpcs\_var_{r,p,c,ts}
+ \end{matrix}}{VAR\_SOUT_{r,v,t,p,c,ts} \times RS\_FR_{r,s,ts} \times NCAP\_PKCNT_{r,v,p,s}}} \\ & + \\
+ & \sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_IRE_{r,v,t,p,c,s,'IMP'} \times NCAP\_PKCNT_{r,v,p,s}} \\ & - \\
+ & \sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_IRE_{r,v,t,p,c,s,'EXP'} \times NCAP\_PKCNT_{r,v,p,s} \quad if \space prc\_pkno_{r,p}}
  \end{aligned} \right\rbrack \\
- & \space
- \end{aligned} \right\}
+ & \end{aligned} \right\}
 \\ \\
 \geq \sum_{c \in cg}{(1 + COM\_PKFLX_{r,t,c,s}) \times}
 \\ \\
-\left\lbrack\begin{aligned}
- & \\
- & \sum_{p \in \left(top_{r,p,c,'IN'} \cup rpc\_ire_{r,p,c,'EXP'} \right) \land \left(NOT \space prc\_pkno_{r,p} \right)}{\space\left\{
+\left\lbrack\begin{aligned} & \\
+ & \sum_{\begin{matrix} p \in \\ \left(top_{r,p,c,'IN'} \cup \rpc\_ire_{r,p,c,'EXP'} \right) \\ \land \left(NOT \space prc\_pkno_{r,p} \right) \end{matrix}}{\left\{
  \begin{aligned}
- & \sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_FLOFLO_{r,v,t,p,c,s,'OUT'}\space \times \space FLO\_PKCOI_{r,t,p,c,s}} \\
- & + \\
- & \sum_{p \in rpc\_ire_{r,p,c,'EXP'}}{\sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_IRE_{r,v,t,p,c,s,'EXP'} \times \space FLO\_PKCOI_{r,t,p,c,s}}} \\
- & + \\
- & + \left\lbrack \sum_{(p,v) \in rpc\_capflo_{r,v,p,c}}\left(
+ & \sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_FLOFLO_{r,v,t,p,c,s,'OUT'} \times FLO\_PKCOI_{r,t,p,c,s}}\\ & + \\
+ & \sum_{\begin{matrix} p \in \\ rpc\_ire_{r,p,c,'EXP'}\end{matrix}}{\sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_IRE_{r,v,t,p,c,s,'EXP'} \times FLO\_PKCOI_{r,t,p,c,s}}} \\
+ & + \left\lbrack \sum_{\begin{matrix}(p,v) \in \\ rpc\_capflo_{r,v,p,c}\end{matrix}}\left(
  \begin{aligned}
  & NCAP\_COM_{r,v,p,c,'IN'} \times COEF\_CPT_{r,v,t,p} \times \\
  & \left(
@@ -3120,9 +3107,9 @@ rpcs\_var_{r,p,c,ts}
  & VAR\_NCAP_{r,tt(v),p} + NCAP\_PASTI_{r,v,p} \\
  & VAR\_SCAP_{r,v,t,p} \ni (r,p) \in prc\_rcap
 \end{aligned} \right)
-\end{aligned} \right) \right\rbrack \times G\_YRFR_{r,s} \\
+\end{aligned} \right) \right\rbrack \\ & \\ & \times G\_YRFR_{r,s} \\
  & \\
- & + \left\lbrack \sum_{(p,v) \in rpc\_capflo_{r,v,p,c}}\left(
+ & + \left\lbrack \sum_{\begin{matrix}(p,v) \in \\ rpc\_capflo_{r,v,p,c} \end{matrix}}\left(
  \begin{aligned}
  & COEF\_ICOM_{r,v,t,p,c} \times \\
  & \left(
@@ -3130,26 +3117,17 @@ rpcs\_var_{r,p,c,ts}
  & VAR\_NCAP_{r,tt(v),p} + NCAP\_PASTI_{r,v,p} \\
  & VAR\_SCAP_{r,v,t,p} \ni (r,p) \in prc\_rcap
 \end{aligned} \right)
-\end{aligned} \right) \right\rbrack \times G\_YRFR_{r,s} \\
- & 
-\end{aligned} \right\} +} \\
- & \sum_{
- \begin{aligned}
- & \quad(p,c) \in \\
- & rpc\_stg_{r,p,c}
-\end{aligned}}{\sum_{
-\begin{matrix}
-rtp\_vintyr_{r,v,t,p} \\
-rpcs\_var_{r,p,c,ts}
-\end{matrix}}{VAR\_SIN_{r,v,t,p,c,ts} \times RS\_FR_{r,s,ts}}} + \\
- & \\
- & \sum_{c \in dem_{r,c}}\left(
+\end{aligned} \right) \right\rbrack \\ & \\ & \times G\_YRFR_{r,s} \\
+ & \end{aligned} \right\}} \\ & + \sum_{
+ \begin{matrix} (p,c) \in \\ rpc\_stg_{r,p,c} \end{matrix}}
+ {\sum_{\begin{matrix}
+ rtp\_vintyr_{r,v,t,p} \\ rpcs\_var_{r,p,c,ts}\end{matrix}}
+ {VAR\_SIN_{r,v,t,p,c,ts} \times RS\_FR_{r,s,ts}}} \\
+ & \\ & + \sum_{c \in dem_{r,c}}\left(
  \begin{aligned}
  & COM\_PROJ_{r,t,c} \times COM\_FR_{r,t,c,s} - \\
- & \sum_{j = 1}^{COM\_STEP_{r,c,'LO'}}{VAR\_ELAST_{r,t,c,s,j,'LO'}} + \sum_{j = 1}^{COM\_STEP_{r,c,'UP'}}{VAR\_ELAST_{r,t,c,s,j,'UP'}}
-\end{aligned} \right) \\
- & 
-\end{aligned} \right\rbrack$$
+ & \sum_{j = 1}^{COM\_STEP_{r,c,'LO'}}{VAR\_ELAST_{r,t,c,s,j,'LO'}} + \sum_{j=1}^{COM\_STEP_{r,c,'UP'}}{VAR\_ELAST_{r,t,c,s,j,'UP'}}
+\end{aligned} \right) \\ & \end{aligned} \right\rbrack$$
 
 ### Equation: EQ_PTRANS
 
