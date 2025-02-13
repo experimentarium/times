@@ -3505,18 +3505,16 @@ v \in rtp\_vintyr_{r,v,t - 1,p} \\ p \in prc\_vint
 \begin{aligned}
  & VAR\_ACT_{r,v,t - 1,p,'ANNUAL'} \\
  & \times (1 - STG\_LOSS_{r,v,p,'ANNUAL'})^{D(t)}
-\end{aligned} \right\rbrack
+\end{aligned} \right\rbrack +
 \\ \\ 
-+ \sum_{p \notin prc\_vint}\left\lbrack
+\sum_{p \notin prc\_vint}\left\lbrack
 \begin{aligned}
  & VAR\_ACT_{r,t - 1,t - 1,p,'ANNUAL'} \\
  & \times (1 - STG\_LOSS_{r,v,p,'ANNUAL'})^{D(t)}
-\end{aligned} \right\rbrack
+\end{aligned} \right\rbrack +
 \\ \\ 
-+ \left\lbrack \sum_{
-\begin{matrix}
-y \in periodyr_{t,y} \\ c \in \mathbf{rpc}\_stg_{r,p,c}
-\end{matrix}}{\left(
+\left\lbrack \sum_{
+\begin{matrix} y \in periodyr_{t,y} \\ c \in rpc\_stg_{r,p,c} \end{matrix}}{\left(
 \begin{aligned}
  & \sum_{c \in top_{IN}}\frac{VAR\_SIN_{r,v,t,p,c,'ANNUAL'}}{PRC\_ACTFLO_{r,v,p,c}} - \\
  & \sum_{c \in top_{OUT}}\frac{VAR\_SOUT_{r,v,t,p,c,'ANNUAL'}}{PRC\_ACTFLO_{r,v,p,c}}
