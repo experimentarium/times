@@ -3595,7 +3595,7 @@ $$EQ\_STSBAL_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left(rtp\_vintyr_{r,v,t,p} \cap 
 \begin{aligned}
  & VAR\_ACT_{r,v,t,p,s - 1} + VAR\_SOUT_{r,v,t,p,'ACT',s - 1} - \\
  & \sum_{ts \in \left\{ sl|prc\_ts_{r,p,sl} \land rs\_below1_{r,sl,s} \right\}}{VAR\_SOUT_{r,v,t,p,'ACT',ts} \times RS\_FR_{r,s - 1,ts} -} \\
- & \left(\frac{VAR\_ACT_{r,v,t,p,s} + VAR\_ACT_{r,v,t,p,s - 1}}{} \right) \times STG\_LOSS_{r,v,p,s} \times \frac{G\_YRFR_{r,s}}{RS\_STGPRD_{r,s}}
+ & \left(\frac{VAR\_ACT_{r,v,t,p,s} + VAR\_ACT_{r,v,t,p,s - 1}}{2} \right) \times STG\_LOSS_{r,v,p,s} \times \frac{G\_YRFR_{r,s}}{RS\_STGPRD_{r,s}}
 \end{aligned} \right) + 
 \\ \\ 
 + \sum_{s \in \left\{ sl|ANNUAL(sl) \right\}}\left\lbrack
