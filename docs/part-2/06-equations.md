@@ -3427,6 +3427,7 @@ PRC\_ACTFLO_{r,v,p,c} \times \left(
 + sum_{com \in top_{IN}}{VAR\_SIN_{r,v,t,p,com,s} \times \left({COEF\_PTRAN_{r,v,p,com,com,c,s}} \right)}
 \\ \\ 
 + \sum_{com \in top_{OUT}}{VAR\_SOUT_{r,v,t,p,com,s}
+\\ \\
 \times \left(\frac{1}{COEF\_PTRAN_{r,v,p,c,c,com,s}} \space if \space COEF\_PTRAN_{r,v,p,c,c,com,s} > 0 \right)}$$
 
 ### Equation: EQ_STGTSS/IPS
