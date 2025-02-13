@@ -3161,7 +3161,9 @@ $$VAR\_FLO_{r,v,t,p,c2,s} - FLO\_FUNC_{r,v,t,p,c1,c2,s} \times VAR\_FLO_{r,v,t,p
 \\ \\
 VAR\_FLO_{r,v,t,p,c2,s} - FLO\_FUNC_{r,v,t,p,c1,c2,s} \times VAR\_FLO_{r,v,t,p,c1,s} - 1 = 0
 \\ \\
-VAR\_FLO_{r,v,t,p,c2,s} - \left(FLO\_FUNC_{r,v,t,p,c1,c2,s} + \frac{1}{VAR\_FLO_{r,v,t,p,c1,s}} \right) \times VAR\_FLO_{r,v,t,p,c1,s} = 0$$
+VAR\_FLO_{r,v,t,p,c2,s} - \left(FLO\_FUNC_{r,v,t,p,c1,c2,s} + \frac{1}{VAR\_FLO_{r,v,t,p,c1,s}} \right) 
+\\ \\\
+\times VAR\_FLO_{r,v,t,p,c1,s} = 0$$
 
 **Equation:**
 
@@ -3169,13 +3171,13 @@ $$EQ\_PTRANS_{r,v,t,p,cg1,cg2,s1} \ni (r,v,t,p) \in \left(rp\_flo_{r,p} \cap rtp
 \\ \\ 
 \land \left( s2 \in ts\_map_{r,s2,s1} \land \left(
 \begin{aligned}
- & FLO\_SUM_{r,t,p,cg1,c,cg2,s2} \vee \\
- & FLO\_FUNC_{r,t,p,cg1,cg2,s2} \land NOT \space \left(FLO\_SUM_{r,t,p,cg1,c,cg2,s2} \vee FLO\_SUM_{r,t,p,cg2,c,cg1,s2} \right)
+ & FLO\_SUM_{r,t,p,cg1,c,cg2,s2} \vee FLO\_FUNC_{r,t,p,cg1,cg2,s2} \\
+ & \land NOT \space \left(FLO\_SUM_{r,t,p,cg1,c,cg2,s2} \vee FLO\_SUM_{r,t,p,cg2,c,cg1,s2} \right)
 \end{aligned} \right) \right)
 \\ \\
-\sum_{c \in cg2}{\sum_{s \in \left(ts\_map_{r,s,s1} \cap rtpcs\_varf_{r,t,p,c,s} \right)}{VAR\_FLO_{r,v,t,p,c,s} \times RTCS\_TSFR_{r,t,c,s1,s}}} = 
+\sum_{c \in cg2}{\sum_{\begin{matrix} s \in \\ \left(ts\_map_{r,s,s1} \cap rtpcs\_varf_{r,t,p,c,s} \right) \end{matrix}}{VAR\_FLO_{r,v,t,p,c,s} \times RTCS\_TSFR_{r,t,c,s1,s}}} = 
 \\ \\
-\sum_{c \in cg1}{\sum_{s \in \left(ts\_map_{r,s,s1} \cap rtpcs\_varf_{r,t,p,c,s} \right)}\left(COEF\_PTRAN_{r,v,t,p,cg1,c,cg2,s} \times VAR\_FLO_{r,v,t,p,c,s} \times RTCS\_TSFR_{r,t,c,s1,s} \right)}
+\sum_{c \in cg1}{\sum_{\begin{matrix} s \in \\ \left(ts\_map_{r,s,s1} \cap rtpcs\_varf_{r,t,p,c,s} \right)\end{matrix}}\left(\begin{aligned} & COEF\_PTRAN_{r,v,t,p,cg1,c,cg2,s} \times \\ & VAR\_FLO_{r,v,t,p,c,s} \times RTCS\_TSFR_{r,t,c,s1,s} \end{aligned} \right)}
 \\ \\
 \times \left(1 + RTP\_FFCX_{r,v,t,p,cg1,cg2} \times \left(if \space prc\_vint_{r,p} \right) \right)$$
 
