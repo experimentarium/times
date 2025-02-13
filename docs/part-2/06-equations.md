@@ -3095,7 +3095,7 @@ $$EQ\_PEAK_{r,t,cg,s} \ni com\_peak_{r,cg} \land s \in com\_pkts_{r,cg,s}
 \geq \sum_{c \in cg}{(1 + COM\_PKFLX_{r,t,c,s}) \times}
 \\ \\
 \left\lbrack\begin{aligned} & \\
- & \sum_{\begin{matrix} p \in \\ \left(top_{r,p,c,'IN'} \cup \rpc\_ire_{r,p,c,'EXP'} \right) \\ \land \left(NOT \space prc\_pkno_{r,p} \right) \end{matrix}}{\left\{
+ & \sum_{\begin{matrix} p \in \\ \left(top_{r,p,c,'IN'} \cup rpc\_ire_{r,p,c,'EXP'} \right) \\ \land \left(NOT \space prc\_pkno_{r,p} \right) \end{matrix}}{\left\{
  \begin{aligned}
  & \sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_FLOFLO_{r,v,t,p,c,s,'OUT'} \times FLO\_PKCOI_{r,t,p,c,s}}\\ & + \\
  & \sum_{\begin{matrix} p \in \\ rpc\_ire_{r,p,c,'EXP'}\end{matrix}}{\sum_{v \in rtp\_vintyr_{r,v,t,p}}{CAL\_IRE_{r,v,t,p,c,s,'EXP'} \times FLO\_PKCOI_{r,t,p,c,s}}} \\
