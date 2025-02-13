@@ -3183,15 +3183,12 @@ $$EQ\_PTRANS_{r,v,t,p,cg1,cg2,s1} \ni (r,v,t,p) \in \left(rp\_flo_{r,p} \cap rtp
 
 $$COEF\_PTRAN_{r,v,t,p,cg1,c,cg2,ts}\quad ts \in rpcs\_varc_{r,p,c,ts}
 \\ \\
-= 
+= \sum_{s \in prc\_ts_{r,p,s}}\left(1 \times \left(if \space ts\_map_{r,ts,s} \right) + \frac{G\_YRFR_{r,ts}}{G\_YRFR_{r,s}} \times \left( if \space rs\_below_{r,s,ts} \right) \right)
 \\ \\
-\sum_{s \in prc\_ts_{r,p,s}}\left(1 \times \left(if \space ts\_map_{r,ts,s} \right) + \frac{G\_YRFR_{r,ts}}{G\_YRFR_{r,s}} \times \left( if \space rs\_below_{r,s,ts} \right) \right)
+\frac{FLO\_FUNC_{r,v,t,p,cg1,cg2,s}}{FLO\_FUNC_{r,v,t,p,cg2,cg1,s} \times \left(if \space FLO\_SUM_{r,v,t,p,cg1,c,cg2,s} \right)} \times 
 \\ \\
-\frac{FLO\_FUNC_{r,v,t,p,cg1,cg2,s}}{FLO\_FUNC_{r,v,t,p,cg2,cg1,s} \times \left(if \space FLO\_SUM_{r,v,t,p,cg1,c,cg2,s} \right)} \times \left(
-\begin{aligned}
- & if \space FLO\_FUNC_{r,v,t,p,cg1,cg2,s} \\
- & \vee FLO\_FUNC_{r,v,t,p,cg2,cg1,s}
-\end{aligned} \right) \times 
+\left(if \space FLO\_FUNC_{r,v,t,p,cg1,cg2,s} \vee FLO\_FUNC_{r,v,t,p,cg2,cg1,s}
+\right) \times 
 \\ \\
 \left(1 \space \times \left(if \space NOT \space FLO\_SUM_{r,v,t,p,cg1,c,cg2,s} \right) + FLO\_SUM_{r,v,t,p,cg1,c,cg2,s} \right)$$
 
