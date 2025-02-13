@@ -3560,8 +3560,8 @@ Dual: The dual value describes for a lower/upper bound the cost increase/decreas
 
 $$EQ(l)\_STGIN/OUT_{r,t,p,c,s} \ni \left\{
 \begin{aligned}
- & (r,t,p,c) \in rtpc_{r,t,p,c} \land STGIN/OUT\_BND_{r,t,p,c,s,bd} \land s \in rps\_prcts_{r,p,s} \land \\
- & \left( prc\_vint_{r,p} \vee \left(NOT\space prc\_ts_{r,p,s} \right) \right)
+ & (r,t,p,c) \in rtpc_{r,t,p,c} \land STGIN/OUT\_BND_{r,t,p,c,s,bd} \land \\
+ & s \in rps\_prcts_{r,p,s} \land \left( prc\_vint_{r,p} \vee \left(NOT\space prc\_ts_{r,p,s} \right) \right)
 \end{aligned} \right\}
 \\ \\ 
 \sum_{ts \in \left(prc\_ts_{r,p,ts} \land ts\_map_{r,s,ts} \right)}{\sum_{v \in rtp\_vintyr_{r,v,t,p}}{VAR\_SIN/SOUT_{r,v,t,p,c,ts}}}
