@@ -3704,13 +3704,19 @@ In the following four subsections, the different types of user constraints are b
 
 The so-called LHS user constraints have the following main structure:
 
-$$EQ(l)\_UC(R)(T)(S)_{(r),uc\_n,(t),(s)}\forall \left\{
+$$EQ(l)\_UC(R)(T)(S)_{(r),uc\_n,(t),(s)}\forall
+\\ \
+\left\{
 \begin{aligned}
  & UC\_RHS(R)(T)(S)_{(r),uc\_n,(t),(s),bd} \land \left(r \in uc\_r\_each_{r,uc\_n} \right) \\
  & \land \left(t \in uc\_t\_each_{r,uc\_n,t} \right) \land \left(s \in uc\_ts\_each_{r,uc\_n,s} \right)
 \end{aligned} \right\}
 \\ \\ 
-\left(\sum_{r \in uc\_r\_sum_{r,uc\_n}}{} \right)\left(\sum_{t \in uc\_t\_sum_{r,uc\_n,t}}{} \right)\left(\sum_{s \in uc\_ts\_sum_{r,uc\_n,s}}{} \right)LHS_{r,t,s}\left\{ = / \geq / \leq \right\} UC\_RHS(R)(T)(S)_{(r),uc\_n,(t),(s),bd}$$
+\left(\sum_{r \in uc\_r\_sum_{r,uc\_n}}{} \right)\left(\sum_{t \in uc\_t\_sum_{r,uc\_n,t}}{} \right)\left(\sum_{s \in uc\_ts\_sum_{r,uc\_n,s}}{} \right)LHS_{r,t,s}
+\\ \\
+\left\{ = / \geq / \leq \right\} 
+\\ \\
+UC\_RHS(R)(T)(S)_{(r),uc\_n,(t),(s),bd}$$
 
 To identify the user constraint, the modeller has to give it a unique name **uc_n**. The LHS expression $LHS_{r,t,s}$ consists of the sum of various TIMES variables (VAR_ACT, VAR_FLO, VAR_COMPRD, VAR_COMNET, VAR_NCAP, VAR_CAP), multiplied by corresponding coefficients (UC_ACT, UC_FLO, UC_COMPRD, UC_COMCON, UC_NCAP, UC_CAP). The coefficients are input data given by the modeller and serve thus also as an indicator of which variables are being components of the user constraint.
 
