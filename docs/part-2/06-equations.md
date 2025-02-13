@@ -3465,7 +3465,9 @@ PRC\_ACTFLO_{r,v,p,c} \times \left(
 
 **Equation:**
 
-$$EQ\_STGTSS_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left(rtp\_vintyr_{r,v,t,p} \land rps\_stg_{r,p,s} \land prc\_map_{r,'STG',p} \right)
+$$EQ\_STGTSS_{r,v,t,p,s}\forall(r,v,t,p,s) \in 
+\\ \\
+\left(rtp\_vintyr_{r,v,t,p} \land rps\_stg_{r,p,s} \land prc\_map_{r,'STG',p} \right)
 \\ \\ 
 VAR\_ACT_{r,v,t,p,s} = 
 \\ \\
@@ -3482,7 +3484,8 @@ VAR\_ACT_{r,v,t,p,s} =
  & \quad + \sum_{top_{r,p,c,'IN'}} \frac{VAR\_SIN_{r,v,t,p,c,s - 1}}{PRC\_ACTFLO_{r,v,p,c}} - \sum_{top_{r,p,c,'OUT'}} \frac{VAR\_SOUT_{r,v,t,p,c,s - 1}}{PRC\_ACTFLO_{r,v,p,c}}
 \end{aligned} \right) \\
  & - \sum_{ts \in \{ sl|prc\_ts_{r,p,sl} \cap rs\_below_{r,sl,s}\}}{VAR\_SOUT_{r,v,p,'ACT',ts} \times RS\_FR_{r,s - 1,ts}} \\
- & - \left\lbrack \left( \frac{VAR\_ACT_{r,v,t,p,s} + VAR\_ACT_{r,v,t,p,s - 1}}{2} \right) \right\rbrack \times STG\_LOSS_{r,v,p,s} \times \frac{G\_YRFR_{r,s}}{RS\_STGPRD_{r,s}}
+ & - \left\lbrack \left( \frac{VAR\_ACT_{r,v,t,p,s} + VAR\_ACT_{r,v,t,p,s - 1}}{2} \right) \right\rbrack \\
+ & \times STG\_LOSS_{r,v,p,s} \times \frac{G\_YRFR_{r,s}}{RS\_STGPRD_{r,s}}
 \end{aligned} \right\rbrack
 \\ \\ 
 + STG\_CHRG_{r,t,p,s - 1}$$
