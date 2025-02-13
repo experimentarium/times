@@ -3737,13 +3737,17 @@ In addition to the coefficients UC_ACT, UC_FLO, etc. also some model input attri
 
 Instead of defining different equality types of user constraints depending on the bound type of $UC\_RHS(R)(T)(S)_{(r),uc\_n,(t),(s),bd}$ an alternative formulation can be used in TIMES. In this formulation a variable $VAR\_UC(R)(T)(S)_{(r),uc\_n,(t),(s)}$ is created that is set equal to the LHS expression. The RHS bounds are then applied to these variables.
 
-$$EQE\_UC(R)(T)(S)_{(r),uc\_n,(t),(s)}\forall\left\{
+$$EQE\_UC(R)(T)(S)_{(r),uc\_n,(t),(s)}\forall
+\\ \\
+\left\{
 \begin{aligned}
  & UC\_RHS(R)(T)(S)_{(r),uc\_n,(t),(s),bd} \land \left(r \in uc\_r\_each_{r,uc\_n} \right) \\
  & \land \left(t \in uc\_t\_each_{r,uc\_n,t} \right) \land \left(s \in uc\_ts\_each_{r,uc\_n,s} \right)
 \end{aligned} \right\}
 \\ \\ 
-\left(\sum_{r \in uc\_r\_sum_{r,uc\_n}}{} \right)\left(\sum_{t \in uc\_t\_sum_{r,uc\_n,t}}{} \right)\left(\sum_{s \in uc\_ts\_sum_{r,uc\_n,s}}{} \right)LHS_{r,t,s} = VAR\_UC(R)(T)(S)_{(r),uc\_n,(t),(s)}
+\left(\sum_{r \in uc\_r\_sum_{r,uc\_n}}{} \right)\left(\sum_{t \in uc\_t\_sum_{r,uc\_n,t}}{} \right)\left(\sum_{s \in uc\_ts\_sum_{r,uc\_n,s}}{} \right)LHS_{r,t,s} = 
+\\ \\
+VAR\_UC(R)(T)(S)_{(r),uc\_n,(t),(s)}
 \\ \\
 VAR\_UC(R)(T)(S).LO_{(r),uc\_n,(t),(s)} = UC\_RHS(R)(T)(S)_{(r),uc\_n,(t),(s),'LO'}
 \\ \\
@@ -3757,14 +3761,16 @@ The alternative formulation is created when the dollar control parameter VAR_UC 
 
 Timeslice-dynamic user constraints establish a relationship between two successive timeslices within a timeslice cycle. The LHS expression $LHS_{r,t,s}$ is generated for timeslice **s**, whereas the RHS expression $RHS_{r,t,s-1}$ is generated for the preceding timeslice s - RS_STG(r,s) under the same parent timeslice. Timeslice-dynamic user constraints of type can thus be written as follows:
 
-$$\begin{aligned}
-& EQ(l)\_UCRS_{r,uc\_n,t,tsl,s} \ni \left\{
+$$EQ(l)\_UCRS_{r,uc\_n,t,tsl,s} \ni 
+\\ \\
+\left\{
 \begin{aligned}
    & UC\_RHSRTS_{r,uc\_n,t,s,bd} \land \left(r \in uc\_r\_each_{r,uc\_n} \right) \land \left(t \in uc\_t\_each_{r,uc\_n,t} \right) \\
    & \land (s \in \{ ts|ts\_grp_{r,tsl,s} \land \bigcup_{side}{uc\_tsl_{r,uc\_n,side,tsl}}\})
   \end{aligned} \right\} \\
-& LHS_{r,t,s}\quad\left\{ = / \geq / \leq \right\}\sum_{uc\_tsl(r,ucn,'RHS',tsl)}{RHS_{r,t,s - RS\_STG(r,s)}} + UC\_RHS(R)T(S)_{(r),uc\_n,t,(s),bd}
-\end{aligned}$$
+LHS_{r,t,s}\quad\left\{ = / \geq / \leq \right\}\sum_{uc\_tsl(r,ucn,'RHS',tsl)}{RHS_{r,t,s - RS\_STG(r,s)}} + 
+\\ \\
+UC\_RHS(R)T(S)_{(r),uc\_n,t,(s),bd}$$
 
 Timeslice-dynamic user constraints are always specific to a single region and period. To build a timeslice-dynamic user constraint, the modeller must identify the desired timeslice level of the constraint, by using the set **uc_tsl***$_{r,uc_n,side,tsl}$, and the RHS constants must be defined by using the UC_RHSRTS parameter. As an alternative to using **uc_tsl**, **uc_attr***$_{r,uc_n,side,uc_grptype,tslvl}$ can also be used, with any **uc_grptype** (**ucn** recommended). The constraint will be genuinely dynamic only if **uc_tsl** is specified on the RHS. This is the only type of user constraint for which the RHS constant parameter is levelized, according the timeslice level identified by **uc_tsl**. That can make the RHS specification much easier.
 
@@ -3774,27 +3780,31 @@ Dynamic user constraints establish a relationship between two *consecutive* peri
 
 Dynamic user constraints of type (**t,t+1**) can thus be written as follows:
 
-$$EQ(l)\_UC(R)SU(S)_{(r),uc\_n,t,(s)} \ni \left\{
+$$EQ(l)\_UC(R)SU(S)_{(r),uc\_n,t,(s)} \ni 
+\\ \\
+\left\{
 \begin{aligned}
  & UC\_RHS(R)T(S)_{(r),uc\_n,t,(s),bd} \land \left(r \in uc\_r\_each_{r,uc\_n} \right) \\
  & \land \left(t \in uc\_t\_succ_{r,uc\_n,t} \right) \land \left(s \in uc\_ts\_each_{r,uc\_n,s} \right)
 \end{aligned} \right\}
 \\ \\ 
-\left(\sum_{r \in uc\_r\_sum_{r,uc\_n}}{} \right)\left(\sum_{s \in uc\_ts\_sum_{r,uc\_n,s}}{} \right)LHS_{r,t,s}\left\{ = / \geq / \leq \right\}\left(\sum_{r \in uc\_r\_sum_{r,uc\_n}}{} \right)\left(\sum_{s \in uc\_ts\_sum_{r,uc\_n,s}}{} \right)RHS_{r,t + 1,s} + 
+\left(\sum_{r \in uc\_r\_sum_{r,uc\_n}}{} \right)\left(\sum_{s \in uc\_ts\_sum_{r,uc\_n,s}}{} \right)LHS_{r,t,s}\left\{ = / \geq / \leq \right\}
 \\ \\
-UC\_RHS(R)T(S)_{(r),uc\_n,t,(s),bd}$$
+\left(\sum_{r \in uc\_r\_sum_{r,uc\_n}}{} \right)\left(\sum_{s \in uc\_ts\_sum_{r,uc\_n,s}}{} \right)RHS_{r,t + 1,s} + UC\_RHS(R)T(S)_{(r),uc\_n,t,(s),bd}$$
 
 Similarly, dynamic user constraints of type (**t--1,t**) can be written as follows:
 
-$$EQ(l)\_UC(R)SU(S)_{(r),uc\_n,t,(s)} \ni \left\{
+$$EQ(l)\_UC(R)SU(S)_{(r),uc\_n,t,(s)} \ni 
+\\ \\
+\left\{
 \begin{aligned}
  & UC\_RHS(R)T(S)_{(r),uc\_n,t,(s),bd} \land \left(r \in uc\_r\_each_{r,uc\_n} \right) \\
  & \land \left(t \in uc\_t\_succ_{r,uc\_n,t} \right) \land \left(s \in uc\_ts\_each_{r,uc\_n,s} \right)
 \end{aligned} \right\}
 \\ \\
-\left(\sum_{r \in uc\_r\_sum_{r,uc\_n}}{} \right)\left(\sum_{s \in uc\_ts\_sum_{r,uc\_n,s}}{} \right)LHS_{r,t,s}\left\{ = / \geq / \leq \right\}\left( \sum_{r \in uc\_r\_sum_{r,uc\_n}}{} \right)\left(\sum_{s \in uc\_ts\_sum_{r,uc\_n,s}}{} \right)RHS_{r,t - 1,s} + 
+\left(\sum_{r \in uc\_r\_sum_{r,uc\_n}}{} \right)\left(\sum_{s \in uc\_ts\_sum_{r,uc\_n,s}}{} \right)LHS_{r,t,s}\left\{ = / \geq / \leq \right\}
 \\ \\
-UC\_RHS(R)T(S)_{(r),uc\_n,t,(s),bd}$$
+\left( \sum_{r \in uc\_r\_sum_{r,uc\_n}}{} \right)\left(\sum_{s \in uc\_ts\_sum_{r,uc\_n,s}}{} \right)RHS_{r,t - 1,s} + UC\_RHS(R)T(S)_{(r),uc\_n,t,(s),bd}$$
 
 To build a dynamic user constraint of type (**t,t+1**), between the periods **t** and **t+1**, the modeller identifies the desired set of time periods that will be used as first periods in the pairs (**t**, **t+1**). This set is named **uc_t_succ** (note that the sets **uc_t_sum** and **uc_t_each** are not used in the context of dynamic user constraints, and are reserved for the pure LHS user constraints described in the previous section). In addition, the RHS constant parameter must be defined for all of these time periods.
 
