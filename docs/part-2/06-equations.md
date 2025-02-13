@@ -3383,9 +3383,9 @@ $$VAR\_DAC_{r,t,p,s,UP} + VAR\_DAC_{r,t,p,s,LO} -
 
 **Equation formulation:**
 
-$$\left(COEF\_CPT_{r,v,t,p} \cdot VAR\_NCAP_{r,v,p} + VAR\_STGCC_{r,v,t,p} \right) \times \max_{s}\left( NCAP\_AF_{r,v,p,s} \right) \times 
+$$\left(COEF\_CPT_{r,v,t,p} \cdot VAR\_NCAP_{r,v,p} + VAR\_STGCC_{r,v,t,p} \right) \times 
 \\ \\ 
-PRC\_CAPACT_{r,p} \geq 
+\max_{s}\left( NCAP\_AF_{r,v,p,s} \right) \times PRC\_CAPACT_{r,p} \geq 
 \\ \\ 
 \left(\frac{ncap\_tlife_{r,v,p}}{stg\_maxcyc_{r,v,p}} \times \frac{\sum_{c,s}{VAR\_SOUT_{r,v,t,p,c,s}}}{prc\_actflo_{r,v,p,c}} \right),\quad \forall(r,v,t,p) \in RTP\_VINTYR$$
 
@@ -3412,24 +3412,22 @@ PRC\_ACTFLO_{r,v,p,c} \times \left(
 & \left(
  \begin{aligned}
  & VAR\_ACT_{r,v,t - 1,p,s} \times \frac{G\_YRFR_{r,s}}{RS\_STGPRD_{r,s}} - \\
- & \left(\sum_{c \in \left\{
- \begin{aligned}
- & top_{IN} \\ & prc\_stgips
- \end{aligned} \right\}}\frac{VAR\_SIN_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}} - \sum_{c \in \left\{
-\begin{aligned}
- & top_{OUT} \\ & prc\_stgips
-\end{aligned} \right\}}\frac{VAR\_SOUT_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}} \right) \times \\
- & \left( \sum_{y \in \left\{
- \begin{aligned}
- & periodyr_{t,y} \\ & y \geq M(t)
- \end{aligned} \right\}}\left(1 - STG\_LOSS_{r,v,p,s} \right)^{(E(t) - y + 0.5)} \right)
+ & \left(\begin{aligned} \sum_{
+ c \in \left\{\begin{aligned} & top_{IN} \\ & prc\_stgips \end{aligned}\right\}
+ }\frac{VAR\_SIN_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}} - \\ \sum_{
+ c \in \left\{\begin{aligned} & top_{OUT} \\ & prc\_stgips \end{aligned} \right\}
+ }\frac{VAR\_SOUT_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}}\end{aligned}\right) \times \\
+ & \left( \sum_{
+ y \in \left\{\begin{aligned} & periodyr_{t,y} \\ & y \geq M(t) \end{aligned} \right\}
+ }\left(1 - STG\_LOSS_{r,v,p,s} \right)^{(E(t) - y + 0.5)} \right)
 \end{aligned} \right) \\
  & \times \left(\left(1 - STG\_LOSS_{r,v,p,s} \right)^{\left( M(t) - E(t) - Mod(D(t)/2,1) \right)} \right)^{\left(1\space if \space prc\_map_{r,'STK',p} \right)}
 \end{aligned} \right)
 \\ \\ 
 + sum_{com \in top_{IN}}{VAR\_SIN_{r,v,t,p,com,s} \times \left({COEF\_PTRAN_{r,v,p,com,com,c,s}} \right)}
 \\ \\ 
-+ \sum_{com \in top_{OUT}}{VAR\_SOUT_{r,v,t,p,com,s} \times \left(\frac{1}{COEF\_PTRAN_{r,v,p,c,c,com,s}} \space if \space COEF\_PTRAN_{r,v,p,c,c,com,s} > 0 \right)}$$
++ \sum_{com \in top_{OUT}}{VAR\_SOUT_{r,v,t,p,com,s}
+\times \left(\frac{1}{COEF\_PTRAN_{r,v,p,c,c,com,s}} \space if \space COEF\_PTRAN_{r,v,p,c,c,com,s} > 0 \right)}$$
 
 ### Equation: EQ_STGTSS/IPS
 
