@@ -3424,7 +3424,7 @@ PRC\_ACTFLO_{r,v,p,c} \times \left(
  & \times \left(\left(1 - STG\_LOSS_{r,v,p,s} \right)^{\left( M(t) - E(t) - Mod(D(t)/2,1) \right)} \right)^{\left(1\space if \space prc\_map_{r,'STK',p} \right)}
 \end{aligned} \right)
 \\ \\ 
-+ \sum_{com \in top_{IN}}{VAR\_SIN_{r,v,t,p,com,s} \timesn\left({COEF\_PTRAN_{r,v,p,com,com,c,s}} \right)}
++ \sum_{com \in top_{IN}}{VAR\_SIN_{r,v,t,p,com,s} \times \left({COEF\_PTRAN_{r,v,p,com,com,c,s}} \right)}
 \\ \\ 
 + \sum_{com \in top_{OUT}}{VAR\_SOUT_{r,v,t,p,com,s} \times \left(\frac{1}{COEF\_PTRAN_{r,v,p,c,c,com,s}} \space if \space COEF\_PTRAN_{r,v,p,c,c,com,s} > 0 \right)}$$
 
