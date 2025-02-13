@@ -3658,17 +3658,17 @@ UC\_NCAP_{uc\_n,'RHS',r,t,p} \times (M(t)-M(t-1))$$
 
 **Case C. For ACT:**
 
-$${EQ(l)\_UCRTP_{uc\_n,r,t,p,'ACT',bd} \ni
+$$EQ(l)\_UCRTP_{uc\_n,r,t,p,'ACT',bd} \ni
 \\ \\
-\left( rtp_{r,t,p} \land uc\_dynbnd_{uc\_n,bd}\land \left(\sum_{side} {(UC\_ACT_{uc\_n,side,r,t,p,'ANNUAL'}) > 0} \right) \right)}
+\left( rtp_{r,t,p} \land uc\_dynbnd_{uc\_n,bd}\land \left(\sum_{side} {(UC\_ACT_{uc\_n,side,r,t,p,'ANNUAL'}) > 0} \right) \right)
 \\ \\
 \sum_{v \in rtp\_vintyr_{r,v,t,p}}{\sum_{s \in prc\_ts}{VAR\_ACT_{r,t,p,s}}}
 \\ \\
 \left\{ \leq ; = ; \geq \right\}
 \\ \\
-\sum_{v \in rtp\_vintyr_{r,v,t,p}}{\sum_{s \in prc\_ts}{VAR\_ACT_{r,t-1,p,s}} \times \left(UC\_ACT_{uc\_n,'LHS',r,t,p,'ANNUAL'} \right)^{(M(t)-M(t-1))}} +
+\sum_{v \in rtp\_vintyr_{r,v,t,p}}{\sum_{s \in prc\_ts}{VAR\_ACT_{r,t-1,p,s}} \times \left(UC\_ACT_{uc\_n,'LHS',r,t,p,'ANNUAL'} \right)^{(M(t)-M(t-1))}}
 \\ \\
-UC\_ACT_{uc\_n,'RHS',r,t,p,'ANNUAL'} \times (M(t)-M(t-1))$$
++ UC\_ACT_{uc\_n,'RHS',r,t,p,'ANNUAL'} \times (M(t)-M(t-1))$$
 
 ## User Constraints
 
