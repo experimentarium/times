@@ -3939,29 +3939,28 @@ The following sets and parameters are related to the user constraint framework i
 If neither **uc_r_each** nor **uc_r_sum** are given, the default is set to all **uc_r_each** containing all internal regions. In a similar fashion **uc_t_each** being set to all milestoneyears is the default, if neither **uc_t_each** or **uc_t_sum** are specified. The default for the timeslice dimension is **uc_ts_each** being set to all timeslices for which the RHS constants UC_RHSRS or UC_RHSRTS are being specified.
 
 **Parameters**
-[User-specified coefficients of variables:]{.underline}
 
-- *UC_ACT*$_{uc\_ n,side,r,t,p,s}$: coefficient of the activity variable $VAR\_ ACT_{r,v,t,p,s}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_FLO*$_{uc\_ n,side,r,t,p,c,s}$: coefficient of the flow variable $VAR\_ FLO_{r,v,t,p,c,s}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_IRE*$_{uc\_ n,side,r,t,p,c,s,ie}$: coefficient of the inter-regional exchange variable $VAR\_ IRE_{r,v,t,p,c,s,ie}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_COMCON*$_{uc\_ n,side,r,t,c,s}$: coefficient of the virtual commodity consumption variable ($VAR\_ COMPRD_{r,t,c,s}$ $-VAR\_ COMNET_{r,t,c,s}$) in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_COMPRD*$_{uc\_ n,side,r,t,c,s}$: coefficient of the gross commodity production variable $VAR\_ COMPRD_{r,t,c,s}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_COMNET*$_{uc\_ n,side,r,t,c,s}$: coefficient of the net commodity production variable $VAR\_ COMNET_{r,t,c,s}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_CUMACT*$_{uc\_ n,r,p,y1,y2}$: coefficient of the cumulative process activity variable $VAR\_ CUMFLO_{r,p,'ACT',y1,y2}$ in the user constraint **uc_n** (only in cumulative constraints), 
-- *UC_CUMCOM*$_{uc\_ n,r,type,c,y1,y2}$: coefficient of the cumulative commodity net or gross production variable $VAR\_ CUMCOM_{r,c,type,y1,y2}$ in the user constraint **uc_n**, where type =PRD/NET (only in cumulative constraints), 
-- *UC_CUMFLO*$_{uc\_ n,r,p,c,y1,y2}$: coefficient of the cumulative process flow variable $VAR\_ CUMFLO_{r,p,c,y1,y2}$ in the user constraint **uc_n** (only in cumulative constraints), 
-- *UC_NCAP*$_{uc\_ n,side,r,t,p}$: coefficient of the investment variable $VAR\_ NCAP_{r,t,p}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
-- *UC_CAP*$_{uc\_ n,side,r,t,p}$: coefficient of the capacity variable $VAR\_ CAP_{r,t,p}$ in the user constraint **uc_n** on the LHS or RHS **side**.
+*User-specified coefficients of variables:*
+- $UC\_ACT_{uc\_n,side,r,t,p,s}$: coefficient of the activity variable $VAR\_ACT_{r,v,t,p,s}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
+- $UC\_FLO_{uc\_n,side,r,t,p,c,s}$: coefficient of the flow variable $VAR\_FLO_{r,v,t,p,c,s}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
+- $UC\_IRE_{uc\_n,side,r,t,p,c,s,ie}$: coefficient of the inter-regional exchange variable $VAR\_IRE_{r,v,t,p,c,s,ie}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
+- $UC\_COMCON_{uc\_n,side,r,t,c,s}$: coefficient of the virtual commodity consumption variable ($VAR\_COMPRD_{r,t,c,s} - VAR\_COMNET_{r,t,c,s}$) in the user constraint **uc_n** on the LHS or RHS **side**, 
+- $UC\_COMPRD_{uc\_n,side,r,t,c,s}$: coefficient of the gross commodity production variable $VAR\_COMPRD_{r,t,c,s}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
+- $UC\_COMNET_{uc\_n,side,r,t,c,s}$: coefficient of the net commodity production variable $VAR\_COMNET_{r,t,c,s}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
+- $UC\_CUMACT_{uc\_n,r,p,y1,y2}$: coefficient of the cumulative process activity variable $VAR\_CUMFLO_{r,p,'ACT',y1,y2}$ in the user constraint **uc_n** (only in cumulative constraints), 
+- $UC\_CUMCOM_{uc\_n,r,type,c,y1,y2}$: coefficient of the cumulative commodity net or gross production variable $VAR\_CUMCOM_{r,c,type,y1,y2}$ in the user constraint **uc_n**, where type =PRD/NET (only in cumulative constraints), 
+- $UC\_CUMFLO_{uc\_n,r,p,c,y1,y2}$: coefficient of the cumulative process flow variable $VAR\_CUMFLO_{r,p,c,y1,y2}$ in the user constraint **uc_n** (only in cumulative constraints), 
+- $UC\_NCAP_{uc\_n,side,r,t,p}$: coefficient of the investment variable $VAR\_NCAP_{r,t,p}$ in the user constraint **uc_n** on the LHS or RHS **side**, 
+- $UC\_CAP_{uc\_n,side,r,t,p}$: coefficient of the capacity variable $VAR\_CAP_{r,t,p}$ in the user constraint **uc_n** on the LHS or RHS **side**.
 
 *User-specified RHS constants:*
-
-- *UC_RHS*$_{uc\_ n,bd}$: RHS constant with bound type **bd** of the user constraint *EQl_UC*$_{uc\_ n}$ of type **l**,
-- *UC_RHSR*$_{r,uc\_ n,bd}$: RHS constant with bound type **bd** of the user constraint *EQl_UCR*$_{r,uc\_ n}$ of type **l**,
-- *UC_RHST*$_{uc\_ n,t,bd}$: RHS constant with bound type **bd** of the user constraint *EQl_UCT*$_{uc\_ n,t}$ of type **l**,
-- *UC_RHSRT*$_{r,uc\_ n,t,bd}$: RHS constant with bound type **bd** of the user constraint *EQl_UCRT*$_{r,uc\_ n,t}$ of type **l**,
-- *UC_RHSTS*$_{uc\_ n,t,s,bd}$: RHS constant with bound type **bd** of the user constraint *EQl_UCTS*$_{uc\_ n,t,s}$ of type **l**,
-- *UC_RHSRTS*$_{r,uc\_ n,t,s,bd}$: RHS constant with bound type **bd** of the user constraint *EQl_UCRTS*${r,uc\_ n,t,s}$ of type **l**.
-- *UC_TIME*$_{uc\_ n,r,t}$: Defines an additional term in the RHS constant, which is either the time (in years) covered by the user constraint multiplied by *UC_TIME* (for static and cumulative constraints), or the time between the milestone years of the successive periods in the constraint (for dynamic user constraints).
+- $UC\_RHS_{uc\_n,bd}$: RHS constant with bound type **bd** of the user constraint $EQl\_UC_{uc\_n}$ of type **l**,
+- $UC\_RHSR_{r,uc\_n,bd}$: RHS constant with bound type **bd** of the user constraint $EQl\_UCR_{r,uc\_n}$ of type **l**,
+- $UC\_RHST_{uc\_n,t,bd}$: RHS constant with bound type **bd** of the user constraint $EQl\_UCT_{uc\_n,t}$ of type **l**,
+- $UC\_RHSRT_{r,uc\_n,t,bd}$: RHS constant with bound type **bd** of the user constraint $EQl\_UCRT_{r,uc\_n,t}$ of type **l**,
+- $UC\_RHSTS_{uc\_n,t,s,bd}$: RHS constant with bound type **bd** of the user constraint $EQl\_UCTS_{uc\_n,t,s}$ of type **l**,
+- $UC\_RHSRTS_{r,uc\_n,t,s,bd}$: RHS constant with bound type **bd** of the user constraint $EQl\_UCRTS{r,uc\_n,t,s}$ of type **l**.
+- $UC\_TIME_{uc\_n,r,t}$: Defines an additional term in the RHS constant, which is either the time (in years) covered by the user constraint multiplied by $UC\_TIME$ (for static and cumulative constraints), or the time between the milestone years of the successive periods in the constraint (for dynamic user constraints).
 
 ### LHS user constraints
 
@@ -3969,100 +3968,78 @@ If neither **uc_r_each** nor **uc_r_sum** are given, the default is set to all *
 
 In the mathematical description of the different variants of LHS user constraints the following placeholders are used for clarity reasons: $ACT_{r,t,p,s,'LHS'}$, $FLO_{r,t,p,s,'LHS'}$, $IRE_{r,t,p,s,'LHS'}$, $COMPRD_{r,t,s,'LHS'}$, $COMNET_{r,t,s,'LHS'}$, $NCAP_{r,t,p,s,'LHS'}$, $CAP_{r,t,p,s,'LHS'}$, $CUMCOM_r$ and $CUMFLO_r$. For example the placeholder $ACT_{r,t,p,s,'LHS'}$ includes the part of the user constraint related to the activity variable.
 
-$${ACT_{r,t,s,'LHS'}
-}{= 
-} \\ \\ {\sum_{(v,p) \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}\mspace{6mu}}^{}{\sum_{ts \in \mathbf{prc}\_\mathbf{t}\mathbf{s}_{\mathbf{r},\mathbf{p},\mathbf{ts}}}^{}\left( \begin{aligned}
- & VAR\_ ACT_{r,v,t,p,ts} \times UC\_ ACT_{uc\_ n,'LHS',r,t,p,ts} \times \left( RS\_ FR_{r,s,ts} \right) \\
- & \times \\
- & \left( \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ACOST_{r,t,p,cur}} \right)\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','ACT','COST'}\mspace{6mu} is\mspace{6mu} given \\
- & 
+$$ACT_{r,t,s,'LHS'} = 
+\\ \\
+{\sum_{\begin{matrix}(v,p) \in \\ rtp\_vintyr_{r,v,t,p}\end{matrix}}{\sum_{ts \in prc\_ts_{r,p,ts}}\left(\begin{aligned}
+ & VAR\_ACT_{r,v,t,p,ts} \times UC\_ACT_{uc\_n,'LHS',r,t,p,ts} \times \left(RS\_FR_{r,s,ts} \right) \times \\
+ & \left(\sum_{cur \in rdcur_{r,cur}}{OBJ\_ACOST_{r,t,p,cur}} \right)\text{ if $UC\_ATTR_{r,uc\_n,'LHS','ACT','COST'}$ is given}
 \end{aligned} \right)}}$$
 
-$${FLO_{r,t,s,'LHS'}
-}{= 
-} \\ \\ {\sum_{(p,c,ts) \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}}^{}\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}
-} \\ \\ \left\{ \begin{aligned}
- & VAR\_ FLO_{r,v,t,p,c,ts} \times UC\_ FLO_{uc\_ n,'LHS',r,t,p,c,ts} \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \\
- & \times \\
- & \left\lbrack \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}\left( \begin{aligned}
- & OBJ\_ FCOST_{r,t,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','COST'}\mspace{6mu} is\mspace{6mu} given \\
- & + \\
- & OBJ\_ FDELV_{r,t,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','DELIV'}\mspace{6mu} is\mspace{6mu} given \\
- & - \\
- & OBJ\_ FSUB_{r,t,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','SUB'}\mspace{6mu} is\mspace{6mu} given \\
- & + \\
- & OBJ\_ FTAX_{r,t,p,c,ts,cur}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','FLO','TAX'}\mspace{6mu} is\mspace{6mu} given
-\end{aligned} \right) \right\rbrack \\
- & 
-\end{aligned} \right\}$$
+$$FLO_{r,t,s,'LHS'} =
+\\ \\
+\sum_{(p,c,ts) \in rtpcs\_varf_{r,t,p,c,ts}}\sum_{v \in rtp\_vintyr_{r,v,t,p}}
+\\ \\
+\left\{ \begin{aligned}
+ & VAR\_FLO_{r,v,t,p,c,ts} \times UC\_FLO_{uc\_n,'LHS',r,t,p,c,ts} \times \left(RTCS\_ TSFR_{r,t,c,s,ts}\right) \times \\
+ & \left\lbrack \sum_{cur \in rdcur_{r,cur}}\left(\begin{aligned}
+ & OBJ\_FCOST_{r,t,p,c,ts,cur} \text{ if $UC\_ATTR_{r,uc\_n,'LHS','FLO','COST'}$ is given} \\ & + \\
+ & OBJ\_FDELV_{r,t,p,c,ts,cur} \text{ if $UC\_ATTR_{r,uc\_n,'LHS','FLO','DELIV'}$ is given} \\ & - \\
+ & OBJ\_FSUB_{r,t,p,c,ts,cur} \text{ if $UC\_ATTR_{r,uc\_n,'LHS','FLO','SUB'}$ is given} \\ & + \\
+ & OBJ\_FTAX_{r,t,p,c,ts,cur} \text{ if $UC\_ATTR_{r,uc\_n,'LHS','FLO','TAX'}$ is given}
+\end{aligned} \right) \right\rbrack \\ & \end{aligned} \right\}$$
 
-$${IRE_{r,t,s,'LHS'}
-} \\ \\ {= \sum_{(p,c,ts) \in \mathbf{rtpcs}\_\mathbf{var}\mathbf{f}_{\mathbf{r},\mathbf{t},\mathbf{p},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}{\sum_{v \in \mathbf{rtp}\_\mathbf{vinty}\mathbf{r}_{\mathbf{r},\mathbf{v},\mathbf{t},\mathbf{p}}}^{}\sum_{ie \in \mathbf{rpc}\_\mathbf{ir}\mathbf{e}_{\mathbf{r},\mathbf{p},\mathbf{c},\mathbf{ie}}}^{}}
-} \\ \\ \left\lbrack \begin{aligned}
- & VAR\_ IRE_{r,v,t,p,c,ts,ie} \times UC\_ IRE_{uc\_ n,'LHS',r,t,p,c,ts,ie} \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \\
- & \times \\
- & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{r,cur}}^{}\left( \begin{aligned}
- & OBJ\_ FCOST_{r,t,p,c,s,cur}\mspace{6mu} if \mspace{6mu} \mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','IRE','COST'} \\
- & + \\
- & OBJ\_ FDELV_{r,t,p,c,s,cur}\mspace{6mu} if \mspace{6mu} \mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','IRE','DELIV'} \\
- & - \\
- & OBJ\_ FSUB_{r,t,p,c,s,cur}\mspace{6mu} if \mspace{6mu} \mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','IRE','SUB'} \\
- & + \\
- & OBJ\_ FTAX_{r,t,p,c,s,cur}\mspace{6mu} if \mspace{6mu} \mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','IRE','TAX'}
-\end{aligned} \right) \\
- & 
+$$IRE_{r,t,s,'LHS'} =
+\\ \\ 
+\sum_{\begin{matrix} (p,c,ts) \in \\ rtpcs_varf_{r,t,p,c,ts}\end{matrix}}{\sum_{v \in rtp\_vintyr_{r,v,t,p}}
+\sum_{\begin{matrix}ie \in \\ rpc\_ire_{r,p,c,ie}\end{matrix}}}
+\\ \\
+\left\lbrack \begin{aligned}
+ & VAR\_IRE_{r,v,t,p,c,ts,ie} \times UC\_IRE_{uc\_n,'LHS',r,t,p,c,ts,ie} \times \left(RTCS\_TSFR_{r,t,c,s,ts}\right) \\
+ & \times \sum_{cur \in rdcur_{r,cur}}\left( \begin{aligned}
+ & OBJ\_FCOST_{r,t,p,c,s,cur}\space if \space uc\_attr_{r,uc\_n,'LHS','IRE','COST'} \\ & + \\
+ & OBJ\_FDELV_{r,t,p,c,s,cur}\space if \space uc\_attr_{r,uc\_n,'LHS','IRE','DELIV'} \\ & - \\
+ & OBJ\_FSUB_{r,t,p,c,s,cur}\space if \space uc\_attr_{r,uc\_n,'LHS','IRE','SUB'} \\ & + \\
+ & OBJ\_FTAX_{r,t,p,c,s,cur}\space if \space uc\_attr_{r,uc\_n,'LHS','IRE','TAX'}
+\end{aligned} \right)\end{aligned} \right\rbrack$$
+
+$$COMPRD_{r,t,s,'LHS'} =
+\\ \\
+\sum_{\begin{matrix} (c,ts) \in \\ rtcs\_varc_{r,t,c,ts}\end{matrix}}\left( \begin{aligned}
+ & VAR\_COMPRD_{r,t,c,ts} \times UC\_COMPRD_{uc\_n,'LHS',r,t,c,s} \times \left( RTCS\_TSFR_{r,t,c,s,ts} \right) \times \\ 
+ & \sum_{\begin{matrix} cur \in rdcur_{r,cur} \\ uc\_cost \end{matrix}} \left(OBJ\_COMPD_{r,t,c,ts,uc\_cost,cur}\space if \space uc\_attr_{r,uc\_n,'LHS','COMPRD',uc\_cost} \right) \end{aligned} \right)$$
+
+$$COMNET_{r,t,s,'LHS'} =
+\\ \\ 
+\sum_{\begin{matrix}(c,ts) \in \\ rtcs\_varc_{r,t,c,ts}\end{matrix}}\left( \begin{aligned}
+ & VAR\_COMNET_{r,t,c,ts} \times UC\_COMNET_{uc\_n,'LHS',r,t,c,s} \times \left(RTCS\_TSFR_{r,t,c,s,ts} \right) \times \\
+ & \sum_{\begin{matrix} cur \in rdcur_{r,cur} \\ uc\_cost \end{matrix}}\left(OBJ\_COMNT_{r,t,c,ts,uc\_cost,cur}\space if \space uc\_attr_{r,uc\_n,'LHS','COMNET',uc\_cost} \right)\end{aligned} \right)$$
+
+$$NCAP_{r,t,'LHS'} =
+\\ \\
+\sum_{p}\left\lbrack \begin{aligned}
+ & VAR\_NCAP_{r,t,p} \times UC\_NCAP_{uc\_n,'LHS',r,t,p} \times \\
+ & \left(\begin{aligned}
+ & \sum_{cur \in rdcur_{r,cur}}{OBJ\_ICOST_{r,t,p,cur}}\text{ if $UC\_ATTR_{r,uc\_n,'LHS','NCAP','COST'}$ is given}\\ & - \\
+ & \sum_{cur \in rdcur_{r,cur}}{OBJ\_ISUB_{r,t,p,cur}}\text{ if $UC\_ATTR_{r,uc\_n,'LHS','NCAP','SUB'}$ is given}\\ & + \\
+ & \sum_{cur \in rdcur_{r,cur}}{OBJ\_ITAX_{r,t,p,cur}}\text{ if $UC\_ATTR_{r,uc\_n,'LHS','NCAP','TAX'}$ is given}
+\end{aligned} \right) \\ & \end{aligned} \right\rbrack$$
+
+$$CAP_{r,t,p,'LHS'} =
+\\ \\
+\sum_{p}\left\lbrack \begin{aligned}
+ & VAR\_CAP_{r,t,p} \times UC\_CAP_{uc\_n,'LHS',r,t,p} \times \\
+ & PRC\_CAPACT_{r,p}\text{ if $UC\_ATTR_{r,uc\_n,'LHS','CAP','CAPACT'}$ is given}
 \end{aligned} \right\rbrack$$
 
-$${COMPRD_{r,t,s,'LHS'}
-} \\ \\ {= \sum_{(c,ts) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\left( \begin{aligned}
- & VAR\_ COMPRD_{r,t,c,ts} \times UC\_ COMPRD_{uc\_ n,'LHS',r,t,c,s} \\
- & \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \times \\
- & \sum_{\begin{matrix}
-cur \in \mathbf{rdcu}\mathbf{r}_{r,cur} \\
-uc\_ cost
-\end{matrix}}^{}\left( OBJ\_ COMPD_{r,t,c,ts,uc\_\cos t,cur}\quad if \mspace{6mu} \mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','COMPRD',uc\_ cost} \right)
-\end{aligned} \right)}$$
+$$CUMCOM_{r} =
+\\ \\
+\sum_{rc\_cumcom_{r,com\_var,c}}{VAR\_CUMCOM_{r,c,com\_{var},y1,y2}} \times UC\_CUMCOM_{uc\_n,r,com\_{var,}c,y1,y2}$$
 
-$${COMNET_{r,t,s,'LHS'}
-} \\ \\ {= \sum_{(c,ts) \in \mathbf{rtcs}\_\mathbf{var}\mathbf{c}_{\mathbf{r},\mathbf{t},\mathbf{c},\mathbf{ts}}\mspace{6mu}}^{}\left( \begin{aligned}
- & VAR\_ COMNET_{r,t,c,ts} \times UC\_ COMNET_{uc\_ n,'LHS',r,t,c,s} \\
- & \times \left( \overset{\underset{}{}}{RTCS\_ TSFR_{r,t,c,s,ts}} \right) \times \\
- & \sum_{\begin{matrix}
-cur \in \mathbf{rdcu}\mathbf{r}_{r,cur} \\
-uc\_\cos t
-\end{matrix}}^{}\left( OBJ\_ COMNT_{r,t,c,ts,uc\_\cos t,cur}\quad if \mspace{6mu} \mathbf{uc}\_\mathbf{att}\mathbf{r}_{r,uc\_ n,'LHS','COMNET',uc\_\cos t} \right)
-\end{aligned} \right)}$$
-
-$${NCAP_{r,t,'LHS'}
-} \\ \\ {= 
-} \\ \\ {\sum_{p}^{}\left\lbrack \begin{aligned}
- & VAR\_ NCAP_{r,t,p} \times UC\_ NCAP_{uc\_ n,'LHS',r,t,p} \times \\
- & \left( \begin{aligned}
- & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ICOST_{r,t,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','NCAP','COST'}\mspace{6mu} is\mspace{6mu} given \\
- & - \\
- & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ISUB_{r,t,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','NCAP','SUB'}\mspace{6mu} is\mspace{6mu} given \\
- & + \\
- & \sum_{cur \in \mathbf{rdcu}\mathbf{r}_{\mathbf{r},\mathbf{cur}}}^{}{OBJ\_ ITAX_{r,t,p,cur}}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','NCAP','TAX'}\mspace{6mu} is\mspace{6mu} given
-\end{aligned} \right) \\
- & 
-\end{aligned} \right\rbrack}$$
-
-$${CAP_{r,t,p,'LHS'}
-} \\ \\ {= 
-} \\ \\ {\sum_{p}^{}\left\lbrack \begin{aligned}
- & VAR\_ CAP_{r,t,p} \times UC\_ CAP_{uc\_ n,'LHS',r,t,p} \\
- & \times \\
- & PRC\_ CAPACT_{r,p}\quad if\mspace{6mu} UC\_ ATTR_{r,uc\_ n,'LHS','CAP','CAPACT'}\mspace{6mu} is\mspace{6mu} given
-\end{aligned} \right\rbrack}$$
-
-$${CUMCOM_{r}
-}{= 
-} \\ \\ {\sum_{\mathbf{rc}\_\mathbf{cumco}\mathbf{m}_{\mathbf{r},\mathbf{com}\_\mathbf{var},\mathbf{c}}}^{}{VAR\_ CUMCOM_{r,c,com\_{var},y1,y2}} \times UC\_ CUMCOM_{uc\_ n,r,com\_{var,}c,y1,y2}}$$
-
-$${CUMFLO_{r}
-}{= 
-} \\ \\ {\sum_{\mathbf{rpc}\_\mathbf{cumfl}\mathbf{o}_{\mathbf{r},\mathbf{p},\mathbf{c}}}^{}\left( VAR\_ CUMFLO_{r,p,c,y1,y2} \times UC\_ CUMFLO_{uc\_ n,r,p,c,y1,y2} \right) + 
-} \\ \\ {\sum_{\mathbf{rpc}\_\mathbf{cumfl}\mathbf{o}_{\mathbf{r},\mathbf{p},'\mathbf{ACT}'}}^{}\left( VAR\_ CUMFLO_{r,p,'ACT',y1,y2} \times UC\_ CUMACT_{uc\_ n,r,p,y1,y2} \right)}$$
+$$CUMFLO_{r} = 
+\\ \\
+\sum_{rpc\_cumflo_{r,p,c}}\left(VAR\_CUMFLO_{r,p,c,y1,y2} \times UC\_CUMFLO_{uc\_n,r,p,c,y1,y2} \right) + 
+\\ \\
+\sum_{rpc\_cumflo_{r,p,'ACT'}}\left(VAR\_CUMFLO_{r,p,'ACT',y1,y2} \times UC\_CUMACT_{uc\_n,r,p,y1,y2} \right)$$
 
 #### Equation: EQ(*l*)\_UC / EQE_UC
 
@@ -4074,36 +4051,34 @@ $${CUMFLO_{r}
 
 **Equation:**
 
-$${EQ(l)\_ UC_{uc\_ n} \ni UC\_ RHS_{uc\_ n,bd} \land \mathbf{uc}\_\mathbf{ts}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{s}} \land \mathbf{uc}\_\mathbf{r}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n}}
-}{\land \mathbf{uc}\_\mathbf{t}\_\mathbf{su}\mathbf{m}_{\mathbf{r},\mathbf{uc}\_\mathbf{n},\mathbf{t}}}$$
+$$EQ(l)\_UC_{uc\_n} \ni UC\_RHS_{uc\_n,bd} \land uc\_ts\_sum_{r,uc\_n,s} \land uc\_r\_sum_{r,uc\_n} \land uc\_t\_sum_{r,uc\_n,t}$$
 
-$${\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\mspace{6mu}\sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{sum}}^{}{\mspace{6mu}\sum_{s \in \mathbf{uc}\_\mathbf{ts}\_\mathbf{sum}}^{}\left( \begin{aligned}
+$$\sum_{r \in uc\_r\_sum}{\sum_{\begin{matrix}t \in \\ uc\_t\_sum \end{matrix}}{\sum_{s \in uc\_ts\_sum}\left( \begin{aligned}
  & ACT_{r,t,s,'LHS'} + FLO_{r,t,s,'LHS'} + IRE_{r,t,s,'LHS'} \\
  & + COMNET_{r,t,s,'LHS'} + COMPRD_{r,t,s,'LHS'}
-\end{aligned} \right)}}
-}{+ 
-} \\ \\ {\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{\mspace{6mu}\left( \sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{sum}}^{}\left( NCAP_{r,t,'LHS'} + CAP_{r,t,'LHS'} \right) + \left( CUMCOM_{r} + CUMFLO_{r} \right) \right)}
-}$$
+\end{aligned} \right)}} + 
+\\ \\
+\sum_{r \in uc\_r\_sum}{\left(\sum_{t \in uc\_t\_sum}\left(NCAP_{r,t,'LHS'} + CAP_{r,t,'LHS'} \right) + \left(CUMCOM_{r} + CUMFLO_{r} \right) \right)}$$
 
 when control parameter VAR_UC is set to NO by the user or is missing:
 
 $$\left\{ \leq ; = ; \geq \right\}$$
 
-$$UC\_ RHS_{uc\_ n,l} + \sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{sum}}^{}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{UC\_ TIME_{uc\_ n,r,t}} \times D_{t}}$$
+$$UC\_RHS_{uc\_n,l} + \sum_{\begin{matrix}t \in \\ uc\_t\_sum \end{matrix}}{\sum_{r \in uc\_r\_sum}{UC\_TIME_{uc\_n,r,t}} \times D_{t}}$$
 
 When control parameter VAR_UC=YES, the user constraint is created as strict equality and the LHS is set equal to the variable VAR_UC. The bounds UC_RHS are then applied to the variable VAR_UC.
 
 $$=$$
 
-$$VAR\_ UC_{uc\_ n} + \sum_{t \in \mathbf{uc}\_\mathbf{t}\_\mathbf{sum}}^{}{\sum_{r \in \mathbf{uc}\_\mathbf{r}\_\mathbf{sum}}^{}{UC\_ TIME_{uc\_ n,r,t}} \times D_{t}}$$
+$$VAR\_UC_{uc\_n} + \sum_{\begin{matrix} t \in \\ uc\_t\_sum \end{matrix}}{\sum_{r \in uc\_r\_sum}{UC\_TIME_{uc\_n,r,t}} \times D_{t}}$$
 
 with
 
-$$VAR\_ UC.LO_{uc\_ n} = UC\_ RHS_{uc\_ n,'LO'}$$
-
-$$VAR\_ UC.UP_{uc\_ n} = UC\_ RHS_{uc\_ n,'UP'}$$
-
-$$VAR\_ UC.FX_{uc\_ n} = UC\_ RHS_{uc\_ n,'FX'}$$
+$$VAR\_UC.LO_{uc\_n} = UC\_RHS_{uc\_n,'LO'}
+\\ \\
+VAR\_UC.UP_{uc\_n} = UC\_RHS_{uc\_n,'UP'}
+\\ \\
+VAR\_UC.FX_{uc\_n} = UC\_RHS_{uc\_n,'FX'}$$
 
 #### Equation: EQ(*l*)\_UCR / EQE_UCR
 
