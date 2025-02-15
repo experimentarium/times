@@ -4380,8 +4380,7 @@ $${IRE\_GROW_{r,t,s,'LHS'}
 $$COMPRD\_GROW_{r,t,s,'LHS'} =
 \\ \\
 \sum_{(c,ts) \in rtcs\_varc_{r,t,c,ts}}\left(\begin{aligned}
- & VAR\_COMPRD_{r,t,c,ts} \times UC\_COMPRD_{uc\_n,'LHS',r,t,c,s} \\
- & \times \left(RTCS\_TSFR_{r,t,c,s,ts} \right) \times \\
+ & VAR\_COMPRD_{r,t,c,ts} \times UC\_COMPRD_{uc\_n,'LHS',r,t,c,s}\times \left(RTCS\_TSFR_{r,t,c,s,ts} \right) \times \\
  & \sum_{\begin{matrix} cur \in rdcur_{r,cur} \\ uc\_cost \end{matrix}}\left( OBJ\_COMPD_{r,t,c,ts,uc\_cost,cur}\text{ if $uc\_attr_{r,uc\_n,'LHS','COMPRD',uc\_cost}$} \right) \\
  & \times \left(UC\_COMPRD_{uc\_n,'LHS',r,t,c,s} \right)^{M(t + 1) - M(t) - 1}\text{ if $uc\_attr_{r,uc\_n,'LHS','COMPRD','GROWTH'}$ given}
 \end{aligned} \right)$$
@@ -5096,7 +5095,7 @@ The annuity modifiers are applied to the variable terms by summing the VAR_NACP 
   - Apply coefficients also to anycapacity-related flows
   - FLO
 * - CUMSUM
-  - Sum over all periods up to current or previousperiod \(DYN only)
+  - Sum over all periods up to current or previousperiod (DYN only)
   - All
 * - EFF
   - Multiply by COM_IE (UC_COMPRD), divide by COM_IE (UC_COMCON)
@@ -5111,7 +5110,7 @@ The annuity modifiers are applied to the variable terms by summing the VAR_NACP 
   - Apply coefficient to the flows of the new vintage only
   - ACT, FLO, IRE
 * - ONLINE
-  - Apply coefficient to the on-line capacity only(assumed equal to the full capacity if ACT_MINLD has not been defined).
+  - Apply coefficient to the on-line capacity only (assumed equal to the full capacity if ACT_MINLD has not been defined).
   - CAP
 * - PERDISC
   - Multiply by the NPV of period to get adiscounted value
@@ -5123,7 +5122,7 @@ The annuity modifiers are applied to the variable terms by summing the VAR_NACP 
   - Synchronize LHS and RHS sides to refer to the same period
   - All (RHS only)
 * - \<TSLVL\>
-  - Defines the timeslice level of the constraint, equivalent to UC_TSL(r,uc_n,side,tslvl). Worksonly under VEDA.
+  - Defines the timeslice level of the constraint, equivalent to UC_TSL(r,uc_n,side,tslvl). Works only under VEDA.
   - All
 * - YES
   - Declares the constraint to be dynamic, of type(t--1,t)
@@ -5188,7 +5187,7 @@ The only function of the YES modifier is to declare the user constraint to be dy
 
 ### Non-binding user constraints
 
-Non-binding user constraints of any type (intoduced for reporting purposes) can be defined in the same way as binding constraints, but using the \'N\' lim type when specifying the UC_RHSxxx constant, with any value defined for it (--1 is recommended). Non-binding user constraints can only be defined when user constraint variables are enabled (i.e. when using the option \$SET VAR_UC YES). The levels of the non-ninding constraints (i.e. the levels of the slack variables) are reported in the PAR_UCSL reporting attribute (see Section 3.3).
+Non-binding user constraints of any type (introduced for reporting purposes) can be defined in the same way as binding constraints, but using the \'N\' lim type when specifying the UC_RHSxxx constant, with any value defined for it (--1 is recommended). Non-binding user constraints can only be defined when user constraint variables are enabled (i.e. when using the option `$SET VAR_UC YES`). The levels of the non-binding constraints (i.e. the levels of the slack variables) are reported in the PAR_UCSL reporting attribute (see Section 3.3).
 
 
 [^39]: The actual implementation of OBJ in the GAMS program is different from the one described in the documentation, since the annualizing of the various cost components is not performed in the GAMS code of the OBJ equation, but rather in the reporting section of the program, for improved code performance. However, despite the simplification, the GAMS code results in an objective function that is fully equivalent to the one in this documentation.
