@@ -1233,11 +1233,14 @@ reduction algorithm is activated. Then, in all equations where the flow occurs, 
 **Equation:**
 
 $$EQ\_ACTFLO_{r,v,t,p,s} \ni rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land rtp\_vara_{r,t,p}
-{IF \space NOT \space rpc\_ire
-}{VAR\_ACT_{v,t} = \sum_{c \in prc\_actunt}\frac{VAR\_FLO_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}}
-}
-{IF \space rpc\_ire
-}{VAR\_ACT_{t,v} = \sum_{c \in prc\_actunt}\frac{\sum_{ie \in rp\_aire}{VAR\_IRE_{r,v,t,p,c,s,ie}}}{PRC\_ACTFLO_{r,v,p,c}}}$$
+\\ \\
+\text{IF NOT $rpc\_ire$ (the process is not an interregional process):}
+\\ \\
+VAR\_ACT_{v,t} = \sum_{c \in prc\_actunt}\frac{VAR\_FLO_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}}
+\\ \\
+\text{IF $rpc\_ire$ (the process is an interregional trade process):}
+\\ \\
+VAR\_ACT_{t,v} = \sum_{c \in prc\_actunt}{\frac{\sum_{ie \in rp\_aire}{VAR\_IRE_{r,v,t,p,c,s,ie}}}{PRC\_ACTFLO_{r,v,p,c}}}$$
 
 ### Equation: EQ_ACTPL
 
@@ -1257,11 +1260,11 @@ $$EQ\_ACTFLO_{r,v,t,p,s} \ni rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land r
 - The input parameter ACT_LOSPL(r,y,p,\'LO\') defines the minimum operating level used for the partial load efficiency function; default value is taken from ACT_UPS(r,y,p, \'ANNUAL\',\'FX\'), but if neither is specified, is set to 0.1. 
 - The input parameter ACT_LOSPL(r,y,p,\'UP\') defines the fraction of the feasible load range above the minimum operating level, below which the efficiency losses are assumed to occur; default value = 0.6. 
 - It is recommended that the minimum operating level is defined by the ACT_MINLD(r,v,p) parameter, which is then used as the default value for ACT_LOSPL(r,y,p,\'LO\'). However, if desired, the minimum level to be assumed can also be defined by explicitly specifying ACT_LOSPL(\'LO\'). 
-- When the ACT_CSTPL input parameter is defined instead of (or as a supplement to) ACT_LOSPL, the cost coefficient is applied in the objective function directly to the *VAR_UPS~r,v,t,p,s,\'FX\'~* variable as defined by the EQ_ACTPL equation.
+- When the ACT_CSTPL input parameter is defined instead of (or as a supplement to) ACT_LOSPL, the cost coefficient is applied in the objective function directly to the <i>VAR_UPS<sub>r,v,t,p,s,'FX'</sub></i> variable as defined by the EQ_ACTPL equation.
 
 **Notation:**
-- *AF_MIN~r,v,p,s~* minimum operating level of online capacity of process ***p***, vintage ***v*** in timeslice ***s***, as defined by ACT_MINLD (default) or ACT_LOSPL(\'LO\'); 
-- *PL_LDL~p,v~* the load level below which partial load efficiency losses start to occur for process ***p***, vintage ***v***; 
+- <i>AF_MIN<sub>r,v,p,s</sub></i> minimum operating level of online capacity of process ***p***, vintage ***v*** in timeslice ***s***, as defined by ACT_MINLD (default) or ACT_LOSPL(\'LO\'); 
+- <i>PL_LDL<sub>p,v</sub></i> the load level below which partial load efficiency losses start to occur for process ***p***, vintage ***v***; 
 - *SUP(s)* is the set of timeslices above timeslice ***s*** in the timeslice tree, but including also ***s*** itself; 
 - *UPS(p)* is the set of timeslices with start-ups/shut-downs allowed for process *p*.
 
@@ -1269,11 +1272,14 @@ $$EQ\_ACTFLO_{r,v,t,p,s} \ni rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land r
 
 $$EQ\_ACTPL_{r,v,t,p,s} \quad \ni (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_LOSPL_{r,v,p,'FX'} > 0))$$
 
-$${VAR\_UPS_{r,v,t,p,s,'FX'} \geq 
-}{\left( \begin{aligned}
+$$VAR\_UPS_{r,v,t,p,s,'FX'} \geq 
+\\ \\
+\left( \begin{aligned}
 & COEF\_CPT_{r,v,t,p}\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times \\
 & PL\_LDL_{r,v,p} \cdot PRC\_CAPACT_{r,p} \cdot G\_YRFR_{s} - VAR\_ACT_{r,v,t,p,s}
-\end{aligned} \right) \times \quad \frac{AF\_MIN_{r,v,p,ANNUAL}}{PL\_LDL_{r,v,p} - AF\_MIN_{r,v,p,ANNUAL}}}$$
+\end{aligned} \right) 
+\\ \\
+\times \frac{AF\_MIN_{r,v,p,ANNUAL}}{PL\_LDL_{r,v,p} - AF\_MIN_{r,v,p,ANNUAL}}$$
 
 ### Equation: EQ_ACTRAMP
 
@@ -1296,13 +1302,23 @@ $${VAR\_UPS_{r,v,t,p,s,'FX'} \geq
 
 **Equations:**
 
-$$EQ\_ACTRAMP_{r,v,t,p,s,'UP'} \quad \ni (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,'UP'}> 0))$$
+$$EQ\_ACTRAMP_{r,v,t,p,s,'UP'} \quad \ni 
+\\ \\
+(rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,'UP'}> 0))$$
 
-$${\left( \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \frac{VAR\_ACT_{r,v,t,p,s - 1}}{G\_YRFR_{r,s - 1}} - \left( VAR\_UPS_{r,v,t,p,s,'UP'} - VAR\_UPS_{r,v,t,p,s,'LO'} \right) \cdot ACT\_UPS_{r,v,p,s,'FX'} \right) \times 
-}{\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s - 1} \right)} \leq \left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times 
-}{COEF\_CPT_{r,v,t,p} \times PRC\_CAPACT_{r,p} \times ACT\_UPS_{r,v,p,s,'UP'}}$$
+$$\left( \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \frac{VAR\_ACT_{r,v,t,p,s - 1}}{G\_YRFR_{r,s - 1}} - \left(VAR\_UPS_{r,v,t,p,s,'UP'} - 
+\\ \\
+VAR\_UPS_{r,v,t,p,s,'LO'} \right) \cdot ACT\_UPS_{r,v,p,s,'FX'} \right) \times 
+{\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s - 1} \right)} \leq 
+\\ \\
+\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times 
+}{COEF\_CPT_{r,v,t,p} 
+\\ \\
+\times PRC\_CAPACT_{r,p} \times ACT\_UPS_{r,v,p,s,'UP'}}$$
 
-$$EQ\_ACTRAMP_{r,v,t,p,s,'LO'} \quad \ni (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,'LO'} > 0))$$
+$$EQ\_ACTRAMP_{r,v,t,p,s,'LO'} \quad \ni 
+\\ \\
+(rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,'LO'} > 0))$$
 
 $${\left( \frac{VAR\_ACT_{r,v,t,p,s - 1}}{G\_YRFR_{r,s - 1}} - \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \left( VAR\_UPS_{r,v,t,p,s,'LO'} - VAR\_UPS_{r,v,t,p,s,'UP'} \right) \cdot ACT\_UPS_{r,v,p,s,'FX'} \right) \times 
 }{\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s - 1} \right)} \leq \left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s - 1) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times 
