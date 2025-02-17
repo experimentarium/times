@@ -1103,10 +1103,9 @@ The constraints available in standard TIMES are shown in {numref}`times-equation
 **Purpose**: Upper Bounds on the step variables used to represent the demand when the elasticity is non-zero.
 
 **Remarks:**
-
 - These bounds are applied whenever a demand is price elastic, i.e. when the COM_ELAST (elasticity) and COM_VOC (total range) parameters are specified and not zero.
 - If COM_ELAST and COM_VOC are specified, and COM_STEP (number of steps) is not, the latter defaults to 1 (single step discretization)
-- Attributes COM_VOC and COM_STEP do not have a timeslice index. The user can still control elasticities in each time slice through COM_ELAST~s~.
+- Attributes COM_VOC and COM_STEP do not have a timeslice index. The user can still control elasticities in each time slice through COM_ELAST<sub>s</sub>.
 
 $${BND\_ELAST_{r,t,c,s,j,l} \ni COM\_STEP_{r,c,l} \land (s \in com\_ts_{r,c,s})}$$
 
@@ -1131,9 +1130,8 @@ $${VAR\_ELAST_{r,t,c,s,j,l} \leq \frac{COM\_PROJ_{r,t,c} \times COM\_FR_{r,t,c,s
 **Purpose**: This equation bounds the total activity of a process in a period independently of the vintage years of the installed capacities. The equation will either be generated when the activity bound is specified for a timeslice being at a timeslice level above the timeslice level of the process (**prc_tsl**), e.g. ACT_BND is specified for an ANNUAL timeslice but the process operates on a DAYNITE timeslice level, or irrespectively of the timeslices when the process is characterized as a vintaged one (**prc_vint**). If activity bounds are specified for timeslices below the process timeslice level (**prc_tsl**), the bounds will be aggregated to the process timeslice level by standard aggregation (see Section 3.1.2) and then directly applied to the activity variable for non-vintaged processes. The same is true for activity bounds specified at the process timeslice level of non-vintaged processes.
 
 **Remarks**:
-
 - The equation is required because for the two cases described above (bound specified for a timelslice above the process timeslice level or process is characterized as a vintaged one), no single variable exists which can be bounded directly.
-- The bound is only directly applied to VAR_ACT for non-vintaged processes, when ACT_BND is applied at the level **prc_ts(r,p,s)~.~**
+- The bound is only directly applied to VAR_ACT for non-vintaged processes, when ACT_BND is applied at the level **prc_ts(r,p,s)**.
 
 **Interpretation of the results**:
 
@@ -1143,16 +1141,15 @@ Dual: The dual variable describes in the case of a lower (upper) bound the cost 
 
 **Equation:**
 
-$EQ(l)\_ACTBND_{r,t,p,s} \ni ACT\_BND_{r,t,p,s,bd} \land rtp\_vara_{r,t,p} \land rps\_prcts_{r,p,s}
-$$${\land \left( p \in prc\_vint_{r,p} \vee s \notin prc\_ts_{r,p,s} \right)
-}
-
-{\sum_{v \in rtp\_vintyr}{\sum_{s2 \in prc\_ts}{VAR\_ACT_{r,v,t,p,s2}}}\left\{ = ; \leq ; \geq \right\} ACT\_BND_{r,t,p,s,l}}$$
+$$EQ(l)\_ACTBND_{r,t,p,s} \ni ACT\_BND_{r,t,p,s,bd} \land
+\\ \\
+rtp\_vara_{r,t,p} \land rps\_prcts_{r,p,s} \land \left( p \in prc\_vint_{r,p} \vee s \notin prc\_ts_{r,p,s} \right)
+\\ \\
+\sum_{\begin{matrix} v \in \\ rtp\_vintyr \end{matrix}}{\sum_{s2 \in prc\_ts}{VAR\_ACT_{r,v,t,p,s2}}} \space \left\{ = ; \leq ; \geq \right\} \space ACT\_BND_{r,t,p,s,l}$$
 
 ### Equation: EQE_ACTEFF
 
-**Indices**: **region (r), vintage year (v), period (t), process (p),
-commodity group (cg), side (io), timeslice (s)**
+**Indices**: **region (r), vintage year (v), period (t), process (p), commodity group (cg), side (io), timeslice (s)**
 
 **Type**: =
 
@@ -1160,18 +1157,17 @@ commodity group (cg), side (io), timeslice (s)**
 
 **Related equations**: **EQ_PTRANS, EQ_ACTPL**
 
-**Purpose**: This equation is generated when the process activity efficiency has been defined with the input attribute *ACT_EFF~r,v,p,cg,s~* for a group of flows on the shadow side.
+**Purpose**: This equation is generated when the process activity efficiency has been defined with the input attribute <i>ACT_EFF<sub>r,v,p,cg,s</sub></i> for a group of flows on the shadow side.
 
 **Remarks**:
-
 - The group cg in the equation may be either directly specified in ACT_EFF, or, if *ACT_EFF* is only specified for single commodity, determined as the commodity type, or, if *ACT_EFF* is specified for the reserved group name \'ACT\', determined as the default shadow group of the process. 
-- The parameter *ACT_EFF~r,v,p,cg,s~* can be specified using any of the following as the cg: 
-- commodity groups; these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
-- commodity types (NRG/MAT/ENV/DEM/FIN); as above, these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
-- the predefined commodity group \'ACT\'; this defines a common efficiency for all members of the default shadow group of the process; 
-- single commodities on the shadow side without an associated group efficiency; these define commodity-specific efficiencies, and the shadow group will consist of all commodities of the same type; if no commodity efficiency is defined for some member in the group, the default efficiency 1 is assumed; 
-- single commodities on the shadow side with an associated group efficiency; these define commodity-specific efficiencies as above, but are multiplied by the effi­ciency specified for the group; if no efficiency is defined for some member in the group, the group efficiency is applied directly to that member; 
-- single commodities C that are members of the PCG of the process; these define commodity-specific multipliers for the process efficiency when producing the commodity C; if no efficiencies are additionally defined on the shadow side of the process, the whole standard shadow group of the process is assumed to be involved in the transformation (as when using 'ACT'), with the default efficiency of 1 on the shadow side. 
+- The parameter <i>ACT_EFF<sub>r,v,p,cg,s</sub></i> can be specified using any of the following as the cg: 
+	- commodity groups; these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
+	- commodity types (NRG/MAT/ENV/DEM/FIN); as above, these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
+	- the predefined commodity group \'ACT\'; this defines a common efficiency for all members of the default shadow group of the process; 
+	- single commodities on the shadow side without an associated group efficiency; these define commodity-specific efficiencies, and the shadow group will consist of all commodities of the same type; if no commodity efficiency is defined for some member in the group, the default efficiency 1 is assumed; 
+	- single commodities on the shadow side with an associated group efficiency; these define commodity-specific efficiencies as above, but are multiplied by the effi­ciency specified for the group; if no efficiency is defined for some member in the group, the group efficiency is applied directly to that member; 
+	- single commodities C that are members of the PCG of the process; these define commodity-specific multipliers for the process efficiency when producing the commodity C; if no efficiencies are additionally defined on the shadow side of the process, the whole standard shadow group of the process is assumed to be involved in the transformation (as when using 'ACT'), with the default efficiency of 1 on the shadow side. 
 - The ACT_EFF parameter can also be shaped by using a FLO_FUNCX parameter of the following form: FLO_FUNCX(reg,datayear,p,CG,\'ACT\') = shape index. Here, the CG should correspond to the group of commodities on the shadow side involved in the EQE_ACTEFF equation (the group, commodity type, or \'ACT\' that was either explicitly or implicitly used in the ACT_EFF parameters that should be shaped).
 
 **Equation:**
@@ -1226,7 +1222,6 @@ $$\sum_{\begin{aligned}
 **Purpose**: This equation defines the VAR_ACT activity variable in terms of the "primary flows" of a process. The primary flows are defined by the user through the **prc_actunt** set attribute.
 
 **Remarks**:
-
 - The internal set **rtp_vintyr** ensures that (v,t) expressions are generated for the vintaged processes and (t,t) for the non-vintaged ones.
 - The constraint defines the activity of a process. The activity of a process is limited in the equation EQ(l)\_CAPACT by the available capacity.
 - **rtp_vara(r,t,p)** controls the valid periods in which the process can operate.
