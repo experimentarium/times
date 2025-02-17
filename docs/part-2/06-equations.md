@@ -1177,37 +1177,38 @@ $$EQE\_ACTEFF_{r,v,t,p,cg,io,s} \quad \ni (rtp\_vintyr_{r,v,t,p} \land \neg rp\_
 $$\sum_{\begin{aligned}
  & com\_gmap_{r,cg,c} \\
  & rtcp\_varf_{r,t,p,c,s}
-\end{aligned}}\left( \begin{aligned}
+\end{aligned}}\left(\begin{aligned}
  & VAR\_FLO_{r,v,t,c,ts} \times \\
- & \left( \begin{aligned}
+ & \left(\begin{aligned}
  & ACT\_EFF_{r,v,p,c,ts} \text{ if $ACT\_EFF_{r,v,p,c,ts}$ given} \\
- & 1otherwise
+ & \text{1 otherwise}
 \end{aligned} \right) \\
  & \times RTCS\_TSFR_{r,t,c,s,ts}
 \end{aligned} \right) = 
-{\sum_{\begin{aligned}
- & rpc\_pg_{r,p,c} \\
- & prc\_ts_{r,p,ts}
-\end{aligned}}{\left( \begin{aligned}
+\\ \\
+\sum_{\begin{aligned}
+ & rpc\_pg_{r,p,c} \\ & prc\_ts_{r,p,ts}
+\end{aligned}}\left(\begin{aligned}
  & \left( \begin{aligned}
- & VAR\_ACT_{r,v,t,p,ts} \space if \space RP\_PGACT_{r,p} \\
- & \frac{VAR\_FLO_{r,v,t,p,c,ts}}{PRC\_ACTFLO_{r,v,p,c}} \space otherwise
+ & VAR\_ACT_{r,v,t,p,ts} \text{ if $RP\_PGACT_{r,p}$}\\
+ & \text{$\frac{VAR\_FLO_{r,v,t,p,c,ts}}{PRC\_ACTFLO_{r,v,p,c}}$ otherwise}
 \end{aligned} \right) \times \\
  & \left( \begin{aligned}
  & 1/ACT\_EFF_{r,v,p,cg,ts} \text{ if $ACT\_EFF_{r,v,p,cg,ts}$ given} \\
- & 1 \space otherwise
+ & \text{1 otherwise}
 \end{aligned} \right) \times \\
  & \left( \begin{aligned}
  & 1/ACT\_EFF_{r,v,p,c,ts} \text{ if $ACT\_EFF_{r,v,p,c,ts}$ given} \\
- & 1 \space otherwise
+ & \text{1 otherwise}
 \end{aligned} \right) \\
  & \times RTCS\_TSFR_{r,t,c,s,ts}
-\end{aligned} \right) +}
-}{\sum_{prc\_ts_{r,p,ts}}\left( \begin{aligned}
+\end{aligned} \right) +
+\\ \\
+\sum_{prc\_ts_{r,p,ts}}\left(\begin{aligned}
  & VAR\_UPS_{r,v,t,p,ts,'FX'} \times \\
  & ACT\_LOSPL_{r,v,p,'FX'} \text{ if $ACT\_LOSPL_{r,v,p,'FX'}$ given} \\
  & \times RS\_FR_{r,s,ts}
-\end{aligned} \right)}$$
+\end{aligned} \right)$$
 
 ### Equation: EQ_ACTFLO 
 
