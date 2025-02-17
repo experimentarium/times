@@ -20,15 +20,15 @@ However, in order to improve the writing and legibility of all expressions, we u
 
 When an expression $A(i,j,k,...)$ is summed, the summation must specify the range over which the indexes are allowed to run. Our notational conventions are as follows:
 
-When a single index j runs over a one-dimensional set A, the usual notation is used, as in: $\sum_{j \in A}^{}{Expression_{j}}$ where *A* is a single dimensional set. 
+When a single index j runs over a one-dimensional set A, the usual notation is used, as in: $\sum_{j \in A}{Expression_{j}}$ where *A* is a single dimensional set. 
 
 When a summation must be done over a subset of a multi-dimensional set, we use a simplified notation where some of the running indexes are omitted, if they are not active for this summation.
 
-[Example]{.underline}: consider the 3-dimensional set *top* consisting of all quadruples $\{r,p,c,io\}$ such that process $p$ in region $r$, has a flow of commodity $c$ with orientation $io$ (see table 3 of chapter 2). If is it desired to sum an expression $A_{r,p,c,io}$ over all commodities $c$, keeping the region ($r$), process ($p$) and orientation ($io$) fixed respectively at $r_1$, $p_1$ and 'IN', we will write, by a slight abuse of notation: $\sum_{c \in top(r_{1},p_{1},'IN')}^{}{A(r_{1},p_{1},c,'IN')}$ , or even more simply:
+[Example]{.underline}: consider the 3-dimensional set *top* consisting of all quadruples $\{r,p,c,io\}$ such that process $p$ in region $r$, has a flow of commodity $c$ with orientation $io$ (see table 3 of chapter 2). If is it desired to sum an expression $A_{r,p,c,io}$ over all commodities $c$, keeping the region ($r$), process ($p$) and orientation ($io$) fixed respectively at $r_1$, $p_1$ and 'IN', we will write, by a slight abuse of notation: $\sum_{c \in top(r_{1},p_{1},'IN')}{A(r_{1},p_{1},c,'IN')}$ , or even more simply:
 
-$\sum_{c \in top}^{}{A(r_{1},p_{1},c,'IN')}$, if the context is unambiguous. Either of these notations clearly indicates that $r$, $p$ and $io$ are fixed and that the only active running index is $c$.
+$\sum_{c \in top}{A(r_{1},p_{1},c,'IN')}$, if the context is unambiguous. Either of these notations clearly indicates that $r$, $p$ and $io$ are fixed and that the only active running index is $c$.
 
-(The traditional mathematical notation would have been: $\sum_{\{ r_{1},p_{1},c,'IN'\} \in top}^{}{A(r_{1},p,c_{1},'IN')}$, but this may have hidden the fact that $c$ is the only running index active in the sum).
+(The traditional mathematical notation would have been: $\sum_{\{ r_{1},p_{1},c,'IN'\} \in top}{A(r_{1},p,c_{1},'IN')}$, but this may have hidden the fact that $c$ is the only running index active in the sum).
 
 ### Notation for logical conditions 
 
@@ -222,7 +222,7 @@ Here, we make what appears to be the most natural assumption, i.e. that the inve
 *EQ_INVCOST(y)*
 
 $$
-INVCOST(y) = \sum_{t \in MILESTONE \cup PASTYRS}^{}{INDIC(1.a)} \times \sum_{v = Max\{ M(t) - D(t) + 1,y - ELIFE_{t} + 1\}}^{Min\{ M(t),y\}}\left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right)
+INVCOST(y) = \sum_{t \in MILESTONE \cup PASTYRS}{INDIC(1.a)} \times \sum_{v = Max\{ M(t) - D(t) + 1,y - ELIFE_{t} + 1\}}^{Min\{ M(t),y\}}\left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right)
 \times CRF_{s} \times NCAP\_COST_{v}
 $$
 
@@ -268,8 +268,8 @@ INVCOST(y) =
 \sum_{\begin{aligned}
  & t \in MILESTONEYEARS \\
  & t \leq T(y)
-\end{aligned}}^{}{INDIC(2.a)} \times \sum_{k = Max\{ B(t) + Min(0,ILED_{t}),y - ELIFE_{t} + 1\}}^{Min(B(t) + Max( - \text{1,}Min(\text{0,}ILED_{t}),ILED_{t} - 1),y)}\left( \frac{VAR\_NCAP_{t}}{ILED_{t}} \right) \times CRF_{s} \times NCAP\_COST_{B(t) + Max(0,ILED_{t})} + 
-\sum_{v \in PASTYEARS}^{}{INDIC(2.a)} \times \sum_{k = Max\{ B(v) + Min(0,ILED_{v}),y - ELIFE_{v} + 1\}}^{Min(B(v) + Max( - 1,Min(0,ILED_{v}),ILED_{v} - 1),y)}{}\left( \frac{NCAP\_PASTI_{v}}{ILED_{v}} \right) \times CRF_{s} \times NCAP\_COST_{B(v) + Max(0,ILED_{v})}
+\end{aligned}}{INDIC(2.a)} \times \sum_{k = Max\{ B(t) + Min(0,ILED_{t}),y - ELIFE_{t} + 1\}}^{Min(B(t) + Max( - \text{1,}Min(\text{0,}ILED_{t}),ILED_{t} - 1),y)}\left( \frac{VAR\_NCAP_{t}}{ILED_{t}} \right) \times CRF_{s} \times NCAP\_COST_{B(t) + Max(0,ILED_{t})} + 
+\sum_{v \in PASTYEARS}{INDIC(2.a)} \times \sum_{k = Max\{ B(v) + Min(0,ILED_{v}),y - ELIFE_{v} + 1\}}^{Min(B(v) + Max( - 1,Min(0,ILED_{v}),ILED_{v} - 1),y)}{}\left( \frac{NCAP\_PASTI_{v}}{ILED_{v}} \right) \times CRF_{s} \times NCAP\_COST_{B(v) + Max(0,ILED_{v})}
 $$
 
 Useful Range for $y$:
@@ -328,7 +328,7 @@ $$P_t(y) = \sum_{u=Max\{B(t), y-ELIFE_t+1\}}^{y} {NI_t(u) \times VAR\_CAP_t \tim
 
 **[END ALGORITHM]{.underline}**
 
-$$INVCOST(y) = \sum_{t \in MILESTONES,t \leq T(y)}^{}{INDIC(2.b) \times P_{t}(y)}$$
+$$INVCOST(y) = \sum_{t \in MILESTONES,t \leq T(y)}{INDIC(2.b) \times P_{t}(y)}$$
 
 ### Taxes and subsidies on investments
 
@@ -359,7 +359,7 @@ INVDECOM(y) =
 \sum_{\begin{aligned}
  & t \in MILESTONES \cup PASTYEARS \\
  & t \leq T(y)
-\end{aligned}}^{}{INDIC(1.a) \times \left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right) \times NCAP\_DCOST_{y - TLIFE_{t}}}
+\end{aligned}}{INDIC(1.a) \times \left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right) \times NCAP\_DCOST_{y - TLIFE_{t}}}
 \times \left\{ \begin{aligned}
  & 1 \quad if \space M(t) - D(t) + 1 + TLIFE_{t} + DLAG_{t} \leq y \leq M(t) + TLIFE_{t} + DLAG_{t} \\
  & 0 \quad otherwise
@@ -381,7 +381,7 @@ INVDECOM(y) =
 \sum_{\begin{aligned}
  & t \in MILESTONES \\
  & t \leq T(y)
-\end{aligned}}^{}{INDIC(1.b) \times \left( \frac{VAR\_NCAP_{t}}{TLIFE_t}\right) \times NCAP\_DCOST_{y - TLIFE_{t}}}
+\end{aligned}}{INDIC(1.b) \times \left( \frac{VAR\_NCAP_{t}}{TLIFE_t}\right) \times NCAP\_DCOST_{y - TLIFE_{t}}}
 \times \left\{ \begin{aligned}
  & 1 \quad if \space B(t) + \left[ \frac{TLIFE_t}{2} \right] \leq y \leq B(t) + \left[ \frac{TLIFE_t}{2} \right] + C \cdot TLIFE_t - 1 \\
  & 0 \quad otherwise
@@ -404,9 +404,9 @@ $${INVDECOM(y) =
 }{\sum_{\begin{aligned}
  & t \in MILESTONES \\
  & t \leq T(y)
-\end{aligned}}^{}{INDIC(2.a)} \times \sum_{k = Max\left\{ B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t},y - DELIF_{t} + 1 \right\}}^{Min\{ y,B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} + DLIFE_{t} - 1\}}\left( \frac{VAR\_NCAP_{t}}{DLIFE_{t}} \right) \times CRF_{s} \times NCAP\_DCOST_{B(t) + ILED_{t}}
+\end{aligned}}{INDIC(2.a)} \times \sum_{k = Max\left\{ B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t},y - DELIF_{t} + 1 \right\}}^{Min\{ y,B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} + DLIFE_{t} - 1\}}\left( \frac{VAR\_NCAP_{t}}{DLIFE_{t}} \right) \times CRF_{s} \times NCAP\_DCOST_{B(t) + ILED_{t}}
 }
-{+ \sum_{t \in PASTYEARS}^{}{INDIC(2.a)} \times \sum_{k = Max\left\{ t + TLIFE_{t} + DLAG_{t},y - DELIF_{t} + 1 \right\}}^{Min\{ y,t + TLIFE_{t} + DLAG_{t} + DLIFE_{t} - 1\}}\left( \frac{NCAP\_PASTI_{t}}{DLIFE_{t}} \right) \times CRF_{s} \times NCAP\_DCOST_{t}}$$ (III-2-a)
+{+ \sum_{t \in PASTYEARS}{INDIC(2.a)} \times \sum_{k = Max\left\{ t + TLIFE_{t} + DLAG_{t},y - DELIF_{t} + 1 \right\}}^{Min\{ y,t + TLIFE_{t} + DLAG_{t} + DLIFE_{t} - 1\}}\left( \frac{NCAP\_PASTI_{t}}{DLIFE_{t}} \right) \times CRF_{s} \times NCAP\_DCOST_{t}}$$ (III-2-a)
 
 Useful Range for $y$:
 
@@ -447,7 +447,7 @@ $$
 
 **[END ALGORITHM]{.underline}**
 
-$INVDECOM(y) = \sum_{t \in MILESTONES,t \leq T(y)}^{}{INDIC(III.2.b) \times P_{t}(y)} \times VAR\_NCAP_{t} \times CRF$
+$INVDECOM(y) = \sum_{t \in MILESTONES,t \leq T(y)}{INDIC(III.2.b) \times P_{t}(y)} \times VAR\_NCAP_{t} \times CRF$
 **III.2.b**
 
 ![](assets/case-2b-example-3.svg)
@@ -481,7 +481,7 @@ $$
 The figure of the example shows that payments made in year $y$ may come from investments made at periods before $T(y)$, at $T(y)$ itself, or at periods after $T(y)$. Note that the cost attribute is multiplied by two factors: the *SHAPE*, which takes into account the vintage and age of the technology, and the *MULTI* parameter, which takes into account the pure time at which the cost is paid (the notation below for *SHAPE* and *MULTI* is simplified: it should also specify that these two parameters are those pertaining to the *FOM* attribute).
 
 $${FIXCOST(y) = 
-}{\sum_{t \in MILESTONYR \cup PASTYEARS}^{}{INDIC(1.a)} \times \sum_{v = Max\left\{ M(t) - D(t) + 1,y - TLIFE_{t} + 1 \right\}}^{Min(M(t),y)}\left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right)
+}{\sum_{t \in MILESTONYR \cup PASTYEARS}{INDIC(1.a)} \times \sum_{v = Max\left\{ M(t) - D(t) + 1,y - TLIFE_{t} + 1 \right\}}^{Min(M(t),y)}\left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right)
 }{\times NCAP\_FOM_{v} \times SHAPE(v,y - v) \times MULTI(y)
 }
 {Theusefulrangeforyis:
@@ -501,7 +501,7 @@ Example:
 The figure shows that payments made at year $y$ may come from investments made at, before, or after period $T(y)$. Note that our expression takes into account the vintage and age of the *FOM* being paid, via the *SHAPE* parameter, and also the pure time via *MULTI*, both pertaining to the *FOM* attribute.
 
 $$
-{FIXCOST(y) = \sum_{t \in MILESTONYR}^{}{INDIC(1.b)} \times \sum_{v = Max\left\{ \left\langle B(t) - TLIFE_{t}/2 \right\rangle,y - TLIFE_{t} + 1 \right\}}^{Min(y,\left\langle B(t) - TLIFE_{t}/2 \right\rangle + C \times TLIFE_{t} - 1\}}\left( \frac{VAR\_NCAP_{t}}{TLIFE_{t}} \right) \times NCAP\_FOM_{v}
+{FIXCOST(y) = \sum_{t \in MILESTONYR}{INDIC(1.b)} \times \sum_{v = Max\left\{ \left\langle B(t) - TLIFE_{t}/2 \right\rangle,y - TLIFE_{t} + 1 \right\}}^{Min(y,\left\langle B(t) - TLIFE_{t}/2 \right\rangle + C \times TLIFE_{t} - 1\}}\left( \frac{VAR\_NCAP_{t}}{TLIFE_{t}} \right) \times NCAP\_FOM_{v}
 }{
  \times SHAPE(t,y - v) \times MULTI(y)}
 $$ (IV-1-b)
@@ -532,7 +532,7 @@ i)  $FIXCOST(y)$
 
 The figure of the example shows that payments made in year $y$ may come from investments made at period $T(y)$ or earlier, but not later. Again here the *SHAPE* has the correct vintage year and age, as its two parameters, whereas *MULTI* has the current year as its parameter. Both pertain to *FOM*.
 
-$${FIXCOST(y) = \sum_{t \in MILESTONYR,t \leq T(y)}^{}{INDIC(2.a)} \times \left( VAR\_NCAP_{t} \right) \times NCAP\_FOM_{B(t) + ILED_{t}}
+$${FIXCOST(y) = \sum_{t \in MILESTONYR,t \leq T(y)}{INDIC(2.a)} \times \left( VAR\_NCAP_{t} \right) \times NCAP\_FOM_{B(t) + ILED_{t}}
 }{\times \begin{Bmatrix}
 1ifB(t) + ILED_{t} \leq y \leq B(t) + ILED_{t} + TLIFE_{t} - 1 \\
 0otherwise
@@ -549,7 +549,7 @@ ii) $SURVCOST$ (Surveillance cost for same case 2.a. See same example)
 $$missing \space expression$$
 
 $$
-{+ \sum_{t \in PASTYEARS}^{}{INDIC(2.a)} \times \left( NCAP\_PASTI_{t} \right) \times NCAP\_DLAGC_{t}
+{+ \sum_{t \in PASTYEARS}{INDIC(2.a)} \times \left( NCAP\_PASTI_{t} \right) \times NCAP\_DLAGC_{t}
 }{\times \left\{ \begin{matrix}
 1ift + TLIFE_{t} \leq y \leq t + TLIFE_{t} + DLAG_{t} - 1 \\
 0otherwise
@@ -590,7 +590,7 @@ $$missing \space expression$$ (IV-2-b)
 $${SURVCOST(y) = \sum_{\begin{aligned}
  & t \in MILESTONES \\
  & t \leq T(y)
-\end{aligned}}^{}{INDIC(2.b)} \times \left( VAR\_NCAP_{t} \right) \times NCAP\_DLAGC_{B(t) + ILED_{t} + I \cdot TLIFE_{t}}
+\end{aligned}}{INDIC(2.b)} \times \left( VAR\_NCAP_{t} \right) \times NCAP\_DLAGC_{B(t) + ILED_{t} + I \cdot TLIFE_{t}}
 }{\times \left\{ \begin{matrix}
 1ifB(t) + ILED_{t} + (I + 1) \times TLIFE_{t} \leq y \leq same + DLAG_{t} - 1and0 \leq I \leq C - 1 \\
 0otherwise
@@ -719,7 +719,7 @@ These expressions may now be adapted to each case of investment (and taxes/subsi
 $$
 {SALVINV(EOH + 1)
 =
-}{\sum_{t}^{}{INDIC(I.1.a) \times \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_NCAP_{t}}{D(t)
+}{\sum_{t}{INDIC(I.1.a) \times \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_NCAP_{t}}{D(t)
 } + NCAP\_PASTI_{t} \right)} \times NCAP\_COST_{v} \times SAL(v)}
 $$
 
@@ -802,7 +802,7 @@ We are now ready to write the salvage values of decommissioning cost in each cas
 **(Small divisible projects, non-repetitive, progressive investment in period)**
 
 $${SALVDECOM(EOH + 1) = 
- }{\sum_{t}^{}{INDIC(1.a) \times \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right)} \times 
+ }{\sum_{t}{INDIC(1.a) \times \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right)} \times 
  }{NCAP\_DCOST_{v} \times SAL(v,v + TLIFE_{t})
  }
  {\text{where }SAL(k,l)\ \text{is}\ \text{defined in}\ \text{Result }3.
@@ -816,7 +816,7 @@ $${SALVDECOM(EOH + 1) =
 
 **(Small Projects, repeated investments in period)**
 
-$$SALVDECOM(EOH + 1) = {\sum_{t}^{}{INDIC(1.b) \times \sum_{v = B(t) - \left\langle TL/2 \right\rangle + (C - 1) \times TLIFE_{t}}^{B(t) - \left\langle TL/2 \right\rangle + C \times TLIFE_{t} - 1}\frac{VAR\_NCAP_{t}}{TLIFE_{t}}} \times NCAP\_DCOST_{v} \times SAL(v,v + TLIFE_{t})}$$
+$$SALVDECOM(EOH + 1) = {\sum_{t}{INDIC(1.b) \times \sum_{v = B(t) - \left\langle TL/2 \right\rangle + (C - 1) \times TLIFE_{t}}^{B(t) - \left\langle TL/2 \right\rangle + C \times TLIFE_{t} - 1}\frac{VAR\_NCAP_{t}}{TLIFE_{t}}} \times NCAP\_DCOST_{v} \times SAL(v,v + TLIFE_{t})}$$
 
 Note again here that $SAL(k,l)$ equals 0 if $k + TLIFE \leq EOH + 1$
 
@@ -1143,11 +1143,11 @@ Dual: The dual variable describes in the case of a lower (upper) bound the cost 
 
 **Equation:**
 
-$EQ(l)\_ACTBND_{r,t,p,s} \ni ACT\_BND_{r,t,p,s,bd} \land rtp\_\mathbf{var}\mathbf{a}_{r,t,p} \land \mathbf{rps}\_\mathbf{prct}\mathbf{s}_{r,p,\mathbf{s}}
-$$${\land \left( p \in prc\_vint_{r,p} \vee s \notin prc\_t\mathbf{s}_{r,p,\mathbf{s}} \right)
+$EQ(l)\_ACTBND_{r,t,p,s} \ni ACT\_BND_{r,t,p,s,bd} \land rtp\_vara_{r,t,p} \land rps\_prcts_{r,p,s}
+$$${\land \left( p \in prc\_vint_{r,p} \vee s \notin prc\_ts_{r,p,s} \right)
 }
 
-{\sum_{v \in rtp\_vintyr}^{}{\sum_{s2 \in prc\_\mathbf{ts}}^{}{VAR\_ACT_{r,v,t,p,s2}}}\left\{ = ; \leq ; \geq \right\} ACT\_BND_{r,t,p,s,l}}$$
+{\sum_{v \in rtp\_vintyr}{\sum_{s2 \in prc\_ts}{VAR\_ACT_{r,v,t,p,s2}}}\left\{ = ; \leq ; \geq \right\} ACT\_BND_{r,t,p,s,l}}$$
 
 ### Equation: EQE_ACTEFF
 
@@ -1339,7 +1339,7 @@ In the above equation the variable *var_ldc~r,v,t,p,s,LO~* holds load decreases,
 Having calculated the changes in the dispatchable load, the associated ramping costs are entered into the objective function as the sum of the load changes *var_ldc~r,v,t,p,s,UP~* multiplied by the cost attribute *ACT_CSTRMP~r,v,p,UP,cur~* for the ramping up costs, and the sum of the load changes *var_ldc~r,v,t,p,s,LO~* multiplied by the cost attribute *ACT_CSTRMP~r,v,p,LO,cur~* for the ramping down costs. The costs are discounted to the base year:
 
 $${obj_{RMPC} = 
-}{\sum_{r,t}^{}\left( NPV_{r,t} \cdot \sum_{p,v,bd \in \{ LO,UP\}}^{}{ACT\_CSTRMP_{r,v,p,bd,cur} \cdot \sum_{s \in PRC\_TS_{r,p}}^{}{var\_ldc_{r,v,t,p,s,bd}}} \right)}$$
+}{\sum_{r,t}\left( NPV_{r,t} \cdot \sum_{p,v,bd \in \{ LO,UP\}}{ACT\_CSTRMP_{r,v,p,bd,cur} \cdot \sum_{s \in PRC\_TS_{r,p}}{var\_ldc_{r,v,t,p,s,bd}}} \right)}$$
 
 ### Equation: EQL_ACTUPC
 
@@ -1368,22 +1368,22 @@ $${obj_{RMPC} =
 
 **Case A: Lower limit for consecutive on-line / off-line hours**
 
-$${\mathbf{EQ\_ACTUP}\mathbf{C}_{\mathbf{r,v,t,p,tsl,}'\mathbf{UP}'\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_vinty}r_{\mathbf{r,v,t,p}}\land \mathbf{prc\_t}\mathbf{s}_{\mathbf{r,p,s}}\land \mathbf{ts\_grou}p_{\mathbf{r,tsl,s}}\land 
-}{\mathbf{(ACT\_TIM}E_{\mathbf{r,t,p,}'\mathbf{UP}'}\mathbf{> 0))}}$$
+$${EQ\_ACTUPC_{r,v,t,p,tsl,'UP',s}\quad \ni (rtp\_vintyr_{r,v,t,p}\land prc\_ts_{r,p,s}\land ts_\group_{r,tsl,s}\land 
+}{(ACT\_TIME_{r,t,p,'UP'}> 0))}$$
 
-$${\sum_{ts \in C(P(s))}^{}{VAR\_UPS_{r,v,t,p,ts'UP'}} \times ({mod}(Hour(s) - Hour(ts),24) < ACT\_TIME_{r,v,p,'UP'}) \leq 
-}\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}^{}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right)$$
+$${\sum_{ts \in C(P(s))}{VAR\_UPS_{r,v,t,p,ts'UP'}} \times ({mod}(Hour(s) - Hour(ts),24) < ACT\_TIME_{r,v,p,'UP'}) \leq 
+}\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right)$$
 
-$${\mathbf{EQ\_ACTUP}\mathbf{C}_{\mathbf{r,v,t,p,tsl,}'\mathbf{LO}'\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_vinty}r_{\mathbf{r,v,t,p}}\land \mathbf{prc\_t}\mathbf{s}_{\mathbf{r,p,s}}\land \mathbf{ts\_grou}p_{\mathbf{r,tsl,s}}\land 
-}{\mathbf{(ACT\_TIM}E_{\mathbf{r,t,p,}'\mathbf{LO}'}\mathbf{> 0))}}$$
+$${EQ\_ACTUPC_{r,v,t,p,tsl,'LO',s}\quad \ni (rtp\_vintyr_{r,v,t,p}\land prc\_ts_{r,p,s}\land ts_\group_{r,tsl,s}\land 
+}{(ACT\_TIME_{r,t,p,'LO'}> 0))}$$
 
-$${\sum_{ts \in C(P(s))}^{}{VAR\_UPS_{r,v,t,p,ts,'LO'}} \times ({mod}(Hour(s) - Hour(ts),24) < ACT\_TIME_{r,v,p,'LO'}) \leq 
+$${\sum_{ts \in C(P(s))}{VAR\_UPS_{r,v,t,p,ts,'LO'}} \times ({mod}(Hour(s) - Hour(ts),24) < ACT\_TIME_{r,v,p,'LO'}) \leq 
 }\left( VAR\_UPS_{r,v,t,p,s,'N'} \right)$$
 
 **Case B: Maximum number of start-up cycles within parent timeslice cycle**
 
-$$EQ\_ACTUPC_{\mathbf{r,v,t,p,tsl,}'N'\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\mathbf{(rtp\_vinty}r_{\mathbf{r,v,t,p}}\land \left( \mathbf{s}\mathbf{\in}\bigcup_{\mathbf{ts}}^{}\left\{ \mathbf{P(ts)|prc\_t}\mathbf{s}_{\mathbf{r,p,ts}} \right\} \right)
-\land \mathbf{ts\_grou}p_{\mathbf{r,tsl,s}}\land \mathbf{(ACT\_UP}S_{\mathbf{r,v,p,}'\mathbf{ANNUAL}'\mathbf{,}'N'}\mathbf{> 0))}$$
+$$EQ\_ACTUPC_{r,v,t,p,tsl,'N',s}\quad \ni (rtp\_vintyr_{r,v,t,p}\land \left( s\in \bigcup_{ts}\left\{P(ts)|prc\_ts_{r,p,ts} \right\} \right)
+\land ts_\group_{r,tsl,s}\land (ACT\_UPS_{r,v,p,'ANNUAL','N'}> 0))$$
 
 $$\sum_{ts \in C(s)}{VAR\_UPS_{r,v,t,p,ts,'UP'}} \leq 
 \left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times ACT\_UPS_{r,v,p,'ANNUAL','N'}
@@ -1431,18 +1431,18 @@ timeslice level (tsl), lim_type (l), time slice (s)**
 
 **Case A: lim_type=\'N\'**
 
-$$\mathbf{EQL\_ACTUP}S_{\mathbf{r,v,t,p,tsl,}'N'\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\left( \mathbf{rtp\_vinty}r_{\mathbf{r,v,t,p}}\land \mathbf{UP}S_{\mathbf{r,p,tsl}}^{\mathbf{+}}\land \mathbf{ts\_grou}p_{\mathbf{r,tsl,s}} \right)$$
+$$EQL\_ACTUPS_{r,v,t,p,tsl,'N',s}\quad \ni \left( rtp\_vintyr_{r,v,t,p}\land UPS_{r,p,tsl}^{+}\land ts_\group_{r,tsl,s} \right)$$
 
 $$VAR\_UPS_{r,v,t,p,s,'N'}\quad \leq \quad VAR\_UPS_{p,v,t,P(s),'FX'}$$
 
 **Case B: lim_type=\'FX\'**
 
-$$\mathbf{EQL\_ACTUP}S_{\mathbf{r,v,t,p,tsl,}'\mathbf{FX}'\mathbf{,s}}\mathbf{\quad}\mathbf{\ni}\left( \begin{array}{r}
-\mathbf{\& rtp\_vinty}r_{\mathbf{r,v,t,p}}\land \mathbf{UP}S_{\mathbf{r,p,tsl}}^{\mathbf{+}}\land  \\
-\mathbf{\& ts\_grou}p_{\mathbf{r,tsl,s}}\land \mathbf{s}\mathbf{\in}\left\{ \bigcup_{\mathbf{sl}}^{}{\mathbf{P(sl)|sl}\mathbf{\in}\mathbf{UP}S^{\mathbf{+}}\mathbf{(p)}} \right\}
+$$EQL\_ACTUPS_{r,v,t,p,tsl,'FX',s}\quad \ni \left( \begin{array}{r}
+\& rtp\_vintyr_{r,v,t,p}\land UPS_{r,p,tsl}^{+}\land  \\
+\& ts\_group_{r,tsl,s}\land s\in \left\{ \bigcup_{sl}{P(sl)|sl\in UPS^{+}(p)} \right\}
 \end{array} \right)$$
 
-$$VAR\_UPS_{r,v,t,p,s,'FX'}\quad \leq \quad\sum_{ts \in C(s)}^{}{VAR\_UPS_{r,v,t,p,ts,'UP'}}$$
+$$VAR\_UPS_{r,v,t,p,s,'FX'}\quad \leq \quad\sum_{ts \in C(s)}{VAR\_UPS_{r,v,t,p,ts,'UP'}}$$
 
 ### Equation: EQ(*l*)\_ASHAR
 
@@ -1469,42 +1469,42 @@ time slice (s)**
 - When **c**=**cg**, and **c** is a member of the default shadow group, the share equation is generated for the flow of **c** in the total flow of commodities in the SPG, and either on the group level or on the WEEKLY level, whichever is higher. This feature makes it easy to define e.g. daily share constraints for a DAYNITE level process, such as fuel shares for plug-in hybrid cars. 
 - When the process is a storage process, the only valid share specification is *FLO_SHAR~r,v,p,c,\'ACT\',s,bd~*, where c is the discharge commodity of a timeslice storage. This generates a constraint between the output flow and the storage activity, which can be useful e.g. for preventing the use of the storage for a by-pass operation. The **cg** is set automatically to the SPG when the *FLO_SHAR* is converted into *FLO_ASHAR.*
 
-$$\mathbf{EQ(l)\_ASHA}\mathbf{R}_{\mathbf{r,v,t,p,c,cg,s}}\mathbf{\ni}\left( \begin{array}{r}
-\mathbf{\& rtp\_vinty}r_{\mathbf{r,v,t,p}}\land \left( \mathbf{rpcs\_va}r_{\mathbf{r,p,c,s}}\vee \left( \mathbf{(c =}'\mathbf{ACT}'\mathbf{)}\land \mathbf{annua}\mathbf{l}_{\mathbf{s}} \right) \right) \\
-\mathbf{\&}\land \sum_{\mathbf{ts\_ma}p_{\mathbf{r,s,ts}}}^{}{\mathbf{FLO\_ASHA}\mathbf{R}_{\mathbf{r,v,p,c,cg,ts,bd}}}
+$$EQ(l)\_ASHAR_{r,v,t,p,c,cg,s}\ni \left( \begin{array}{r}
+\& rtp\_vintyr_{r,v,t,p}\land \left( rpcs\_var_{r,p,c,s}\vee \left( (c ='ACT')\land annual_{s} \right) \right) \\
+\& \land \sum_{ts\_map_{r,s,ts}}{FLO\_ASHAR_{r,v,p,c,cg,ts,bd}}
 \end{array} \right)$$
 
 **Case A**: Standard processes:
 
-$${\sum_{\mathbf{rps\_s}\mathbf{2}_{\mathbf{r,p,sl}}}^{}{\mathbf{FLO\_ASHA}\mathbf{R}_{\mathbf{r,v,p,c,cg,sl,bd}}\mathbf{\times}\mathbf{RS\_F}\mathbf{R}_{\mathbf{r,s,sl}}\mathbf{\times}}
-}{\mathbf{\quad}\left( \begin{array}{r}
-\mathbf{\&}\sum_{\mathbf{com}\mathbf{\in}cg}^{}{\sum_{\mathbf{rtpcs\_var}\mathbf{f}_{\mathbf{r,t,p,com,ts}}}^{}{\mathbf{VAR\_FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}\mathbf{\times}\mathbf{RTCS\_TSF}\mathbf{R}_{\mathbf{r,t,p,com,sl,ts}}}}\mathbf{+} \\
-\mathbf{\&}\sum_{\mathbf{com}\mathbf{\in}\begin{Bmatrix}
-\mathbf{rpc\_p}g_{\mathbf{r,p,com}} \\
-\mathbf{|}\mathbf{\space }\mathbf{cg =}'\text{ACT}'
-\end{Bmatrix}}^{}{\sum_{\mathbf{prc\_t}\mathbf{s}_{\mathbf{r,p,ts}}}^{}{\frac{\mathbf{VAR\_FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}}{\mathbf{PRC\_ACTFL}\mathbf{O}_{\mathbf{r,v,p,com}}}\mathbf{\times}\mathbf{RTCS\_TSF}\mathbf{R}_{\mathbf{r,t,p,com,sl,ts}}}}
+$${\sum_{rps\_s2_{r,p,sl}}{FLO\_ASHAR_{r,v,p,c,cg,sl,bd}\times RS\_FR_{r,s,sl}\times }
+}{\quad \left( \begin{array}{r}
+\& \sum_{com\in cg}{\sum_{rtpcs\_varf_{r,t,p,com,ts}}{VAR\_FLO_{r,v,t,p,com,ts}\times RTCS\_TSFR_{r,t,p,com,sl,ts}}}+ \\
+\& \sum_{com\in \begin{Bmatrix}
+rpc\_pg_{r,p,com} \\
+| \space cg =\text{'ACT'}
+\end{Bmatrix}}{\sum_{prc\_ts_{r,p,ts}}{\frac{VAR\_FLO_{r,v,t,p,com,ts}}{PRC\_ACTFLO_{r,v,p,com}}\times RTCS\_TSFR_{r,t,p,com,sl,ts}}}
 \end{array} \right)
-}{\overset{\underset{}{}}{\left\{ \mathbf{= ;}\mathbf{\leq}\mathbf{;}\mathbf{\geq} \right\}}
-}{\sum_{\mathbf{rtpcs\_var}\mathbf{f}_{\mathbf{r,t,p,c,ts}}}^{}{\mathbf{VAR\_FL}\mathbf{O}_{\mathbf{r,v,t,p,c,ts}}\mathbf{\times}\mathbf{RTCS\_TSF}\mathbf{R}_{\mathbf{r,t,p,c,s,ts}}}\mathbf{+}
-}{\sum_{\mathbf{com}\mathbf{\in}\begin{Bmatrix}
-\mathbf{rpc\_p}g_{\mathbf{r,p,com}} \\
-\mathbf{|}\mathbf{\space }\mathbf{c =}'\text{ACT}'
-\end{Bmatrix}}^{}{\sum_{\mathbf{prc\_t}\mathbf{s}_{\mathbf{r,p,ts}}}^{}{\frac{\mathbf{VAR\_FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}}{\mathbf{PRC\_ACTFL}\mathbf{O}_{\mathbf{r,v,p,com}}}\mathbf{\times}\mathbf{RTCS\_TSF}\mathbf{R}_{\mathbf{r,t,p,com,s,ts}}}}}$$
+}{\left\{ = ;\leq ;\geq  \right\}}
+{\sum_{rtpcs\_varf_{r,t,p,c,ts}}{VAR\_FLO_{r,v,t,p,c,ts}\times RTCS\_TSFR_{r,t,p,c,s,ts}}+
+}{\sum_{com\in \begin{Bmatrix}
+rpc\_pg_{r,p,com} \\
+| \space c =\text{'ACT'}
+\end{Bmatrix}}{\sum_{prc\_ts_{r,p,ts}}{\frac{VAR\_FLO_{r,v,t,p,com,ts}}{PRC\_ACTFLO_{r,v,p,com}}\times RTCS\_TSFR_{r,t,p,com,s,ts}}}}$$
 
 **Case B**: Storage processes:
 
-$${\sum_{\mathbf{rps\_s}\mathbf{2}_{\mathbf{r,p,sl}}}^{}{\mathbf{FLO\_ASHA}\mathbf{R}_{\mathbf{r,v,p,c,}'\mathbf{ACT}'\mathbf{,sl,bd}}\mathbf{\times}\mathbf{RS\_F}\mathbf{R}_{\mathbf{r,s,sl}}\mathbf{\times}}
-}{\mathbf{\quad}\left( \sum_{\mathbf{com}\mathbf{\in}\begin{Bmatrix}
-\mathbf{rpc\_p}g_{\mathbf{r,p,com}} \\
-\mathbf{|}\mathbf{\space }\mathbf{cg =}'\text{ACT}'
-\end{Bmatrix}}^{}{\sum_{\mathbf{prc\_t}\mathbf{s}_{\mathbf{r,p,ts}}}^{}{\mathbf{VAR\_FL}\mathbf{O}_{\mathbf{r,v,t,p,com,ts}}\mathbf{\times}\mathbf{RTCS\_TSF}\mathbf{R}_{\mathbf{r,t,p,com,sl,ts}}}} \right)
-}{\overset{\underset{}{}}{\left\{ \mathbf{= ;}\mathbf{\leq}\mathbf{;}\mathbf{\geq} \right\}}
-}$$
+$${\sum_{rps\_s2_{r,p,sl}}{FLO\_ASHAR_{r,v,p,c,'ACT',sl,bd}\times RS\_FR_{r,s,sl}\times }
+}{\quad \left( \sum_{com\in \begin{Bmatrix}
+rpc\_pg_{r,p,com} \\
+| \space cg =\text{'ACT'}
+\end{Bmatrix}}{\sum_{prc\_ts_{r,p,ts}}{VAR\_FLO_{r,v,t,p,com,ts}\times RTCS\_TSFR_{r,t,p,com,sl,ts}}} \right)
+}{\left\{ = ;\leq ;\geq  \right\}}
+$$
 
 $$\sum_{\begin{array}{r}
-\mathbf{\&}\mathbf{\space }\mathbf{rpc\_st}g_{\mathbf{r,p,c}} \\
-\mathbf{\& rpcs\_va}r_{\mathbf{r,p,c,ts}}
-\end{array}}^{}{\frac{\mathbf{VAR\_SOU}\mathbf{T}_{\mathbf{r,v,t,p,c,ts}}}{\mathbf{PRC\_ACTFL}\mathbf{O}_{\mathbf{r,v,p,c}}}\mathbf{\times}\mathbf{RTCS\_TSF}\mathbf{R}_{\mathbf{r,t,p,c,s,ts}}}$$
+\& \space rpc\_stg_{r,p,c} \\
+\& rpcs\_var_{r,p,c,ts}
+\end{array}}{\frac{VAR\_SOUT_{r,v,t,p,c,ts}}{PRC\_ACTFLO_{r,v,p,c}}\times RTCS\_TSFR_{r,t,p,c,s,ts}}$$
 
 ### Equation: EQ(*l*)\_BLND
 
@@ -1531,11 +1531,11 @@ $$\sum_{\begin{array}{r}
 
 $${EQ(l)\_BLND_{r,t,ble,spe} \ni bl\_type_{r,ble,spe}
 }
-{\sum_{opr \in ble\_opr_{r,ble,opr}}^{}{BL\_COM_{r,ble,opr,spe} \cdot RU\_CVT_{r,ble,spe,opr} \cdot VAR\_BLND_{r,t,ble,opr}}
+{\sum_{opr \in ble\_opr_{r,ble,opr}}{BL\_COM_{r,ble,opr,spe} \cdot RU\_CVT_{r,ble,spe,opr} \cdot VAR\_BLND_{r,t,ble,opr}}
 }
 {\left\{ \leq ; = ; \geq \right\}
 }
-{\sum_{opr \in ble\_opr_{r,ble,opr}}^{}{BL\_SPEC_{r,ble,opr,spe} \cdot RU\_CVT_{r,ble,spe,opr} \cdot VAR\_BLND_{r,t,ble,opr}}}$$
+{\sum_{opr \in ble\_opr_{r,ble,opr}}{BL\_SPEC_{r,ble,opr,spe} \cdot RU\_CVT_{r,ble,spe,opr} \cdot VAR\_BLND_{r,t,ble,opr}}}$$
 
 ### Equation: EQ_BNDCST
 
@@ -1673,39 +1673,35 @@ $$\ni \left\{rcs\_comts_{r,c,s} \land (NOT \space com\_ts_{r,c,s}) \land COM\_BN
 
 -   *SX~r,v,p,c,s~* denotes an adjustment coefficient for storage inputs:
 
-$$S\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r} \mathbf{\& 0}\mathbf{if}\mathbf{\space }\mathbf{to}p_{\mathbf{OUT}}\mathbf{(c)}\land \mathbf{to}p_{\mathbf{IN}}\mathbf{(c)}\land \mathbf{\neg}NCAP\_AFCS_{\mathbf{r,v,p,cg,s}} \\
-\mathbf{\&}\left( \frac{NCAP\_AFCS_{\mathbf{r,v,p,c,s}}}{\sum_{\mathbf{rp\_p}g_{\mathbf{r,p,cg}}}^{}{NCAP\_AFCS_{\mathbf{r,v,p,cg,s}}}} \right)\mathbf{\quad}\begin{matrix}
-\mathbf{if}\mathbf{\space }\mathbf{to}p_{\mathbf{OUT}}\mathbf{(c)}\land \mathbf{to}p_{\mathbf{IN}}\mathbf{(c)}\land  \\
-NCAP\_AFCS_{\mathbf{r,v,p,c,s}}\land  \\
-NCAP\_AFCS_{\mathbf{r,v,p,cg,s}}
-\end{matrix} \\
-\mathbf{\& 1}\mathbf{\quad}\mathbf{otherwise}
+$$SX_{r,v,p,c,s}\quad =\left\{ \begin{array}{r} \& 0 \space if \space top_{OUT}(c)\land top_{IN}(c)\land \neg NCAP\_AFCS_{r,v,p,cg,s} \\
+\& \left( \frac{NCAP\_AFCS_{r,v,p,c,s}}{\sum_{rp\_pg_{r,p,cg}}{NCAP\_AFCS_{r,v,p,cg,s}}} \right)\quad \begin{matrix}
+if\space top_{OUT}(c)\land top_{IN}(c)\land  \\
+NCAP\_AFCS_{r,v,p,c,s}\land \\ NCAP\_AFCS_{r,v,p,cg,s}
+\end{matrix} \\ \& 1\quad otherwise
 \end{array} \right\}$$
 
 -   *IX~r,v,p,c,s~* denotes an adjustment coefficient for trade process exports:
 
-$$\mathbf{I}\mathbf{X}_{\mathbf{r,v,p,c,s}}\mathbf{\quad}\mathbf{=}\left\{ \begin{array}{r} \mathbf{\&}\left( \frac{NCAP\_AFCS_{\mathbf{r,v,p,c,s}}}{\sum_{\mathbf{rp\_p}g_{\mathbf{r,p,cg}}}^{}{NCAP\_AFCS_{\mathbf{r,v,p,cg,s}}}} \right)\mathbf{\quad}\begin{matrix} \mathbf{if}\mathbf{\space }\mathbf{imp(c)}\land \mathbf{exp(c)}\land  \\
-NCAP\_AFCS_{\mathbf{r,v,p,c,s}}\land  \\
-NCAP\_AFCS_{\mathbf{r,v,p,cg,s}}
-\end{matrix} \\
-\mathbf{\& 1}\mathbf{\quad}\mathbf{otherwise}
+$$IX_{r,v,p,c,s}\quad =\left\{ \begin{array}{r} \& \left( \frac{NCAP\_AFCS_{r,v,p,c,s}}{\sum_{rp\_pg_{r,p,cg}}{NCAP\_AFCS_{r,v,p,cg,s}}} \right)\quad \begin{matrix} if \space imp(c) \land exp(c)\land  \\
+NCAP\_AFCS_{r,v,p,c,s}\land \\ NCAP\_AFCS_{r,v,p,cg,s}
+\end{matrix} \\ \& 1 \quad otherwise
 \end{array} \right\}$$
 
 **Equation:**
 
-$$\mathbf{EQ(l)\_CAFLA}\mathbf{C}_{\mathbf{r,v,t,p,s}}\mathbf{\quad}\mathbf{\ni}\left( \begin{array}{r}
-\mathbf{\& rtp\_vinty}r_{\mathbf{r,v,t,p}}\land NCAP\_AFCS_{\mathbf{r,v,p,s}}\land  \\
-\mathbf{\&}\left( NCAP\_A\mathbf{F}_{\mathbf{r,v,p,s,bd}}\vee NCAP\_AFS_{\mathbf{r,v,p,s,bd}}\vee NCAP\_AFA_{\mathbf{r,t,p,bd}} \right)
+$$EQ(l)\_CAFLAC_{r,v,t,p,s}\quad \ni \left( \begin{array}{r}
+\& rtp\_vintyr_{r,v,t,p}\land NCAP\_AFCS_{r,v,p,s}\land  \\
+\& \left( NCAP\_AF_{r,v,p,s,bd}\vee NCAP\_AFS_{r,v,p,s,bd}\vee NCAP\_AFA_{r,t,p,bd} \right)
 \end{array} \right)$$
 
 $${\sum_{\begin{aligned}
- & \mathbf{rpc}\_pg_{r,p,c} \\
- & prc\_t\mathbf{s}_{r,p,\mathbf{ts}}
-\end{aligned}}^{}{\left( \begin{aligned}
+ & rpc\_pg_{r,p,c} \\
+ & prc\_ts_{r,p,ts}
+\end{aligned}}{\left( \begin{aligned}
  & \frac{1}{PRC\_ACTFLO_{r,v,p,c}} \times \\
  & \left( \begin{aligned}
  & \quad 1/NCAP\_AFCS_{r,v,p,c,s}if\space  NCAP\_AFCS_{r,v,p,c,s}\space  given \\
- & \sum_{rp\_pg_{r,p,cg}}^{}\frac{1}{NCAP\_AFCS_{r,v,p,cg,s}}elseif\space  NCAP\_AFCS_{r,v,p,cg,s}\space  given \\
+ & \sum_{rp\_pg_{r,p,cg}}\frac{1}{NCAP\_AFCS_{r,v,p,cg,s}}elseif\space  NCAP\_AFCS_{r,v,p,cg,s}\space  given \\
  & 1otherwise
 \end{aligned} \right) \times \\
  & \left( \begin{aligned}
@@ -1722,7 +1718,7 @@ $${\sum_{\begin{aligned}
  & \times RTCS\_TSFR_{r,t,c,s,ts}
 \end{aligned} \right) +}
 }{\left\{ \leq , = \right\}
-}{\sum_{\left\{ v2|rtp\_cptyr_{r,v2,t,p} \right\}}^{}\left( \begin{aligned}
+}{\sum_{\left\{ v2|rtp\_cptyr_{r,v2,t,p} \right\}}\left( \begin{aligned}
  & COEF\_AF_{r,v2,t,p,s} \times COEF\_CPT_{r,v2,t,p} \times \\
  & \left( \begin{aligned}
  & VAR\_NCAP_{r,v2,p} + NCAP\_PASTI_{r,v2,p} - \\
@@ -2197,7 +2193,7 @@ $RTCS\_TSFR(r,t,c,s,s1)$
 
 $IF\hspace{6pt} ts\_map_{r,s,s1}$
 
->>$\mathbf{=1}$
+>>$=1$
 
 *ELSE*
 
@@ -2996,7 +2992,7 @@ FLO\_SHAR_{r,v,p,c,cg,s,bd} \times
 \\ \\
 \sum_{com \in cg}{\sum_{s2 \in rtpcs\_varf_{r,t,p,com,s2}}\left\lbrack VAR\_FLO_{r,v,t,p,com,s2} \times RTCS\_TSFR_{r,t,p,com,s,s2} \right\rbrack}
 \\ \\
-\left\{ \mathbf{= ;}\mathbf{\leq}\mathbf{;}\mathbf{\geq} \right\}
+\left\{ = ;\leq ;\geq  \right\}
 \\ \\
 \sum_{s2 \in rtpcs\_varf_{r,t,p,c,s2}}{VAR\_FLO_{r,v,t,p,c,s2} \times RTCS\_TSFR_{r,t,p,c,s,s2}}$$
 
@@ -3442,7 +3438,7 @@ VAR\_ACT_{r,v,t,p,s} =
 \left\lbrack
 \begin{aligned}
  & VAR\_ACT_{r,v,t,p,s - 1} + \\
- & \sum_{c \in \mathbf{rpc}\_STG} \\
+ & \sum_{c \in rpc\_STG} \\
  & \quad\left(
  \begin{aligned}
  & \text{if $p$ is a night-storage device:} \\
