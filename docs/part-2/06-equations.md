@@ -911,14 +911,10 @@ Because the operating costs can nevertheless be assumed to be spread continuousl
 In TIMES, there is an option to correct this small bias by using mid-year discounting, or even end-of-year discounting. The options can be activated by the switch *MID_YEAR / DISCSHIFT* (see Part III, Control switches). The modifications needed in the discounting are basically quite similar for employing both mid-year and end-of-year discounting. Therefore, only the corrections for mid-year discounting are described in detail below.
 
 The corrections needed for employing mid-year discounting in TIMES can be made in the following two steps:
-
 1. First, simply assume that instead of the beginning of each year, all payments are made in the mid-point of each year in TIMES. As such, this assumption doesn\'t change the objective function in any way; it is only a change in thinking. However, it also means that instead of the beginning of the base year, all costs are assumed to be discounted to the mid-point of the base year.
-
 2. Second, make the necessary corrections to the discounting of all those cost components that cannot be assumed to be actually paid at the mid-point of the year.
 
-By going through the various cost components, the following conclusions
-hold for step 2:
-
+By going through the various cost components, the following conclusions hold for step 2:
 - All variable, fixed operation and surveillance costs can be assumed to be paid in the mid-point of each year, and no change is needed for them in the discounting. 
 - The lump-sum investment costs in Cases 1 *(NCAP_COST/D(T))* should be assumed to occur at the beginning of the investment year instead of the mid-point. 
 - All the lump-sum investment costs in Cases 2 *(NCAP_COST/ILED)* can be assumed to occur in the mid-point of each construction year. Therefore, no change is needed in the discounting of the annualized investment payments. 
@@ -1118,7 +1114,6 @@ $${VAR\_ELAST_{r,t,c,s,j,l} \leq \frac{COM\_PROJ_{r,t,c} \times COM\_FR_{r,t,c,s
 **Indices**: **region (r), model year (t), process (p), time slice (s)**
 
 **Type**: Any type, as determined by the index **bd** of ACT_BND:
-
 -   *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 -   *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 -   *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
@@ -2514,7 +2509,6 @@ RCAP\_BLK_{r,v,p} \times VAR\_DRCAP_{r,v,t,p,2} +
 **Indices: region (r), period (t), process (p), commodity group (cg), timeslice (s)**
 
 **Type**: Any type, as determined by the bound index **bd** of FLO_BND:
-
 - *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 - *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
@@ -2570,7 +2564,6 @@ where the equation sign is indicated by equation index **l** based on the bound 
 **Indices: region (r), period (t), process (p), commodity (c), timeslice (s)**
 
 **Type**: Any type, as determined by the bound index **bd** of FLO_FR:
-
 - *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 - *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
@@ -2708,7 +2701,6 @@ VAR\_SIN_{r,v,t,p,com,ts}
 The three equations in this section concern trade between regions. Since these equations involve (directly or indirectly) more than one region, we start their presentation by a complete description of the modeling approach used, which, as we shall see, involves various schemes for representing different types of trade. The description already given in Chapter 4 is also relevant to these equations.
 
 <ins><b>Variables</b></ins>
-
 - VAR_IRE(r, v, t, p, c, s, ie)
 
 *Description*: The total amount of traded commodity (**c**) imported/exported (**ie**) to/from region (**r**), through process (**p**) vintage (**v**) in each time period (**t**)
@@ -2813,7 +2805,6 @@ $$EQ\_IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (rtp_{r,t,p} \land rpcs\_var_{r,
 **Indices: region (r), year (t), commodity (c), timeslice (s), region2 (all_r), import/export (ie)**
 
 **Type:** Any type, as determined by the bound index **bd** of IRE_BND:
-
 - l = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 - l = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - l = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
@@ -2919,7 +2910,6 @@ IRE\_CCVT_{all\_r,c2,r,c} \times IRE\_TSCVT_{all\_r,s2,r,s} \times
 **Indices: region (r), year (t), commodity (c), timeslice (s), imp/exp (ie)**
 
 **Type:** Any type, as determined by the bound index **bd** of IRE_XBND:
-
 - *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 - *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
@@ -2972,7 +2962,6 @@ $$\sum_{p \in rpc\_ire_{r,p,com,impex}} {\sum_{(ts,s2) \in \left(rs\_tree_{r,ts,
 **Indices: region (r), year (t), process (p), commodity (c), commodity group (cg), time-slice (s)**
 
 **Type:** Any type, as determined by the bound index **bd** of FLO_SHAR:
-
 - *l* = **\'**G**\'** for **bd** = **\'**LO**\'** (lower bound) yields $\geq$.
 - *l* = **\'**E**\'** for **bd** = **\'**FX**\'** (fixed bound) yields $=$.
 - *l* = **\'**L**\'** for **bd** = **\'**UP**\'** (upper bound) yields $\leq$.
@@ -3510,7 +3499,6 @@ v \in rtp\_vintyr_{r,v,t - 1,p} \\ p \in prc\_vint
 **Indices: region (r), period (t), process (p), commodity (c), timeslice (s)**
 
 **Type**: Any type, as determined by the bound index **bd** of STGIN/OUT_BND:
-
 - *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 - *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
@@ -3592,7 +3580,6 @@ $$EQ\_STSBAL_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left(rtp\_vintyr_{r,v,t,p} \cap 
 **Indices: name (uc_n), region (r), period (t), process (p), type (uc_grptype), bound (bd)**
 
 **Type**: Any type, as determined by the bound index **bd** of **uc_dynbnd**:
-
 - *l* = \'N\' for **bd** = \'LO\' (lower bound) yields $\geq$.
 - *l* = \'N\' for **bd** = \'UP\' (upper bound) yields $\leq$.
 - *l* = \'E\' for **bd** = \'FX\' (fixed bound) yields $=$.
@@ -3662,7 +3649,6 @@ This section on TIMES User Constraints explains the framework that may be employ
 **Indexes: region (r), time period (t), time slice (s), user constraint (uc_n)**
 
 **Type:** Any type, as determined by the bound index **bd** of *UC_RHS*(*R*)(*T*)(*S*)$_{(r),uc\_n,(t),(s),bd}$ :
-
 - *l* = \'G\' for **bd** = \'LO\' (lower bound) yields $\geq$.
 - *l* = \'E\' for **bd** = \'FX\' (fixed bound) yields $=$.
 - *l* = \'L\' for **bd** = \'UP\' (upper bound) yields $\leq$.
