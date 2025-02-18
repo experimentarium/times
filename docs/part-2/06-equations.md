@@ -1442,7 +1442,9 @@ $$
 
 $$EQE\_ACTUPS_{r,v,t,p,tsl,s} \quad \ni (rtp\_vintyr_{r,v,t,p} \land UPS_{r,p,tsl}^{+} \land ts\_group_{r,tsl,s})$$
 
-$$VAR\_UPS_{r,v,t,p,s,'UP'} - VAR\_UPS_{r,v,t,p,s,'LO'} = VAR\_UPS_{r,v,t,p,s-1,'N'} - VAR\_UPS_{r,v,t,p,s,'N'}$$
+$$VAR\_UPS_{r,v,t,p,s,'UP'} - VAR\_UPS_{r,v,t,p,s,'LO'} = 
+\\ \\
+VAR\_UPS_{r,v,t,p,s-1,'N'} - VAR\_UPS_{r,v,t,p,s,'N'}$$
 
 ### Equation: EQL_ACTUPS
 
@@ -1470,10 +1472,10 @@ $$VAR\_UPS_{r,v,t,p,s,'N'}\quad \leq \quad VAR\_UPS_{p,v,t,P(s),'FX'}$$
 
 **Case B: lim_type=\'FX\'**
 
-$$EQL\_ACTUPS_{r,v,t,p,tsl,'FX',s}\quad \ni \left( \begin{array}{r}
-\& rtp\_vintyr_{r,v,t,p}\land UPS_{r,p,tsl}^{+}\land  \\
-\& ts\_group_{r,tsl,s}\land s\in \left\{ \bigcup_{sl}{P(sl)|sl\in UPS^{+}(p)} \right\}
-\end{array} \right)$$
+$$EQL\_ACTUPS_{r,v,t,p,tsl,'FX',s}\quad \ni \left(\begin{align}
+& rtp\_vintyr_{r,v,t,p}\land UPS_{r,p,tsl}^{+}\land  \\
+& ts\_group_{r,tsl,s}\land s\in \left\{ \bigcup_{sl}{P(sl)|sl\in UPS^{+}(p)} \right\}
+\end{align} \right)$$
 
 $$VAR\_UPS_{r,v,t,p,s,'FX'}\quad \leq \quad\sum_{ts \in C(s)}{VAR\_UPS_{r,v,t,p,ts,'UP'}}$$
 
