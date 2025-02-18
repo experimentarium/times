@@ -1681,7 +1681,8 @@ $$EQ(l)\_BND(NET/PRD)_{r,t,c,s} \ni
 \left\{rcs\_comts_{r,c,s} \land (NOT \space com\_ts_{r,c,s}) \land COM\_BND(NET/PRD)_{r,t,c,s,bd} \right\}
 \\ \\
 \sum_{\begin{matrix}ts \in \\ rtcs\_varc_{r,t,c,ts} \cap ts\_map_{r,s,ts}\end{matrix}}{VAR\_COM(NET/PRD)_{r,t,c,ts}}
-\quad ( \leq / \geq / = ) \quad
+\quad ( \leq / \geq / = )
+\\ \\
 COM\_BND(NET/PRD)_{r,t,c,s,bd}$$
 
 ### Equation: EQ(*l*)\_CAFLAC
