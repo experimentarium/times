@@ -1306,9 +1306,13 @@ $$EQ\_ACTRAMP_{r,v,t,p,s,'UP'} \quad \ni
 \\ \\
 (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,'UP'}> 0))$$
 
-$$\left( \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \frac{VAR\_ACT_{r,v,t,p,s-1}}{G\_YRFR_{r,s-1}} - \left(VAR\_UPS_{r,v,t,p,s,'UP'} - VAR\_UPS_{r,v,t,p,s,'LO'} \right) \cdot ACT\_UPS_{r,v,p,s,'FX'} \right) \times 
+$$\left(
+\begin{align} \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \frac{VAR\_ACT_{r,v,t,p,s-1}}{G\_YRFR_{r,s-1}} - \\ \left(VAR\_UPS_{r,v,t,p,s,'UP'} - VAR\_UPS_{r,v,t,p,s,'LO'} \right) \cdot \\ ACT\_UPS_{r,v,p,s,'FX'}
+\end{align}\right) \times 
 \\ \\
-\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s-1} \right)} \leq \left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times
+\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s-1} \right)} \leq 
+\\ \\
+\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times
 \\ \\
 COEF\_CPT_{r,v,t,p} \times PRC\_CAPACT_{r,p} \times ACT\_UPS_{r,v,p,s,'UP'}$$
 
@@ -1316,9 +1320,13 @@ $$EQ\_ACTRAMP_{r,v,t,p,s,'LO'} \quad \ni
 \\ \\
 (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,'LO'} > 0))$$
 
-$$\left(\frac{VAR\_ACT_{r,v,t,p,s-1}}{G\_YRFR_{r,s-1}} - \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \left(VAR\_UPS_{r,v,t,p,s,'LO'} - VAR\_UPS_{r,v,t,p,s,'UP'} \right) \cdot ACT\_UPS_{r,v,p,s,'FX'} \right) \times
+$$\left(
+\begin{align}\frac{VAR\_ACT_{r,v,t,p,s-1}}{G\_YRFR_{r,s-1}} - \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \\ \left(VAR\_UPS_{r,v,t,p,s,'LO'} - VAR\_UPS_{r,v,t,p,s,'UP'} \right) \cdot \\ ACT\_UPS_{r,v,p,s,'FX'}
+\end{align} \right) \times
 \\ \\
-\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s-1} \right)} \leq \left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s - 1) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times 
+\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s-1} \right)} \leq 
+\\ \\
+\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s - 1) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times 
 \\ \\
 COEF\_CPT_{r,v,t,p} \times PRC\_CAPACT_{r,p} \times ACT\_UPS_{r,v,p,s,'LO'}$$
 
