@@ -2076,7 +2076,7 @@ VAR\_NCAP_{r,v,p} \times \left(v \in MILESTONYR \right) \\
 
 EQ_COMBAL reads schematically as follows:
 
-*Procurement -- Disposition {*≥ or = *} COEF_FBRHS*
+*Procurement* -- *Disposition* *{≥ or = }* *COEF_FBRHS*
 
 where COEF_FBRHS is 0 for all balance equations, except for demand balances where it is equal to a positive parameter. In addition, COEF_FBRHS is equal to a variable when the equation is used to define the variables VAR_COMPRD or VAR_COMNET.
 
@@ -2182,28 +2182,31 @@ p \in rpc\_stg_{r,p,c} \\
 
 We now show the detailed calculation of the Right-hand-side
 
-$COEF\_FBRHS$:
-
-*Do Case*
-
->$Case \ni COM\_BNDNET \lor COM\_CUMNET \lor COM\_CSTNET \lor COM\_SUBNET \lor COM\_TAXNET$
-
->>$COEF\_FBRHS = VAR\_COMNET$
-
->$Case \ni COM\_BNDPRD \lor COM\_CUMPRD \lor COM\_CSTPRD \lor COM\_SUBPRD \lor COM\_TAXPRD$
-
->>$COEF\_FBRHS = VAR\_COMPRD$
-
->$Case \space COM\_PROJ$
-
->>$COEF\_FBRHS = COM\_PROJ \times COM\_FR$
-
->*Otherwise*
-
->>$COEF\_FBRHS = 0$
-
-*Endcase*
-
+$$COEF\_FBRHS:
+\\ \\
+Do \space Case
+\\ \\ 
+\quad Case \ni COM\_BNDNET \lor COM\_CUMNET
+\\ \\ 
+\quad \quad \lor COM\_CSTNET \lor COM\_SUBNET \lor COM\_TAXNET
+\\ \\ \\ \\
+\quad \quad COEF\_FBRHS = VAR\_COMNET 
+\\ \\
+\quad Case \ni COM\_BNDPRD \lor COM\_CUMPRD
+\\ \\
+\quad \quad \lor COM\_CSTPRD \lor COM\_SUBPRD \lor COM\_TAXPRD
+\\ \\ \\ \\
+\quad \quad COEF\_FBRHS = VAR\_COMPRD
+\\ \\
+\quad Case \space COM\_PROJ
+\\ \\ \\ \\
+\quad \quad COEF\_FBRHS = COM\_PROJ \times COM\_FR
+\\ \\
+\quad Otherwise
+\\ \\ \\ \\
+\quad \quad COEF\_FBRHS = 0
+\\ \\
+End \space Case$$
 
 **Flow Coefficients related to process activity (VAR_FLO)**
 
