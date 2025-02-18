@@ -1806,31 +1806,26 @@ NCAP_AFA(r,v,p,bd):<br>Annual availability factor similar to NCAP_AFS being spec
 
 If the process is defined as a vintaged one (**prc_vint**), for each vintage year (**v**) of the existing capacity stock in period (**t**) a separate capacity-activity constraint will be generated (exception NCAP_AFA), while for a non-vintaged process one capacity-activity constraint is generated that sums over all vintage years. In the latter case the vintage index of the equation (EQ(l)\_CAPACT(r,v,t,p,s)) always equals the period index (**v** = **t**).
 
-**Remarks:**
-- For all process timeslices (**prc_ts**), NCAP_AF(r,t,p,s,'UP') is by default set to 1, unless NCAP_AF('UP') or NCAP_AF('FX') has been specified by the user. Thus, it is ensured that the activity of a process can never exceed its capacity. If for example only NCAP_AFA is specified by the modeler as annual availability for a process with a DAYNITE timeslice resolution, in addition to the annual activity-capacity constraint activity-capacity constraints with an availability of 100% are generated for the DAYNITE process timeslices. 
-- An average value of the availability factors (NCAP_AF/S) over the years in the period is used when an age-dependent 'Shape' is specified for them. 
-- **rtp_cptyr** identifies the capacities installed in period **v** still available in period **t**. This set takes into account that investments may be turned-off for certain periods (by PRC_NOFF). The condition is as under:
-
-> **v,t such that**
->
-> B(v) ≥ B(t) -- (COEF_RPTI\*TLIFE) -- ILED + 1
->
-> *and*
->
-> B(v) ≤ E(t) -- ILED
-
-- **prc_vint** is a set of processes for which attributes are changing over time and vintaging is required.
-- Entries in **rtp_vintyr** are controlled by the same logic as applied to COEF_CPT combined with the vintaging consideration. Note **v** = **t** when no vintaging is required, or vintaging is turned off for a particular processes, where the sum over the previous investments is used instead of individual variables.
-- COEF_AF<sub>r,v,t,p,s,bd</sub> will be read off a pre-processed table, after application of SHAPE and MULTI to the user provided availabilities (NCAP_AF/A/S).
-- COEF_AF is calculated in the following manner:<ol type:>
+**Remarks:**<ul>
+<li>For all process timeslices (<b>prc_ts</b>), NCAP_AF(r,t,p,s,'UP') is by default set to 1, unless NCAP_AF('UP') or NCAP_AF('FX') has been specified by the user. Thus, it is ensured that the activity of a process can never exceed its capacity. If for example only NCAP_AFA is specified by the modeler as annual availability for a process with a DAYNITE timeslice resolution, in addition to the annual activity-capacity constraint activity-capacity constraints with an availability of 100% are generated for the DAYNITE process timeslices. </li>
+<li>An average value of the availability factors (NCAP_AF/S) over the years in the period is used when an age-dependent 'Shape' is specified for them.</li>
+<li><b>rtp_cptyr</b> identifies the capacities installed in period <b>v</b> still available in period <b>t</b>. This set takes into account that investments may be turned-off for certain periods (by PRC_NOFF). The condition is as under:<br>
+&emsp; <b>v,t such that</b><br>
+&emsp; B(v) ≥ B(t) &ndash; (COEF_RPTI*TLIFE) &ndash; ILED + 1<br>
+&emsp; <i>and</i><br>
+&emsp; B(v) ≤ E(t) &ndash; ILED
+</li>
+<li><b>prc_vint</b> is a set of processes for which attributes are changing over time and vintaging is required.</li>
+<li>Entries in <b>rtp_vintyr</b> are controlled by the same logic as applied to COEF_CPT combined with the vintaging consideration. Note <b>v</b> = <b>t</b> when no vintaging is required, or vintaging is turned off for a particular processes, where the sum over the previous investments is used instead of individual variables.</li>
+<li>COEF_AF<sub>r,v,t,p,s,bd</sub> will be read off a pre-processed table, after application of SHAPE and MULTI to the user provided availabilities (NCAP_AF/A/S).</li>
+<li>COEF_AF is calculated in the following manner:<ol type:>
 <li>aggregate if possible (pp_lvlbd.mod), otherwise inherit (in ppmain.mod)</li>
-<li>apply SHAPE and MULTI to NCAP_AF/S</li></ol>
-- For storage processes, the capacity describes the volume of the storage and the activity the storage content. For storage processes between timeslices (**prc_tgtss**, **prc_nstts**) parameter RS_STGPRD is used instead of G_YRFR. RS_STGPRD(r,s) equals the number of storage periods on the timeslice level of timeslice **s** in the whole year multiplied with the duration of its parent timeslice **ts**. Thus, the storage level VAR_ACT (and indirectly the storage in- and output flows VAR_SIN and VAR_SOUT) are scaled-up for the entire year.
-
-Consequently, the value of RS_STGPRD(r,s) is:
-- 1 for a seasonal storage,
-- 365/7\*G_YRFR(r,ts) for a weekly storage, where **ts** is the parent node of **s**,
-- 365\*G_YRFR(r,ts) for a daynite storage, where **ts** is the parent node of **s**.
+<li>apply SHAPE and MULTI to NCAP_AF/S</li></ol></li>
+<li>For storage processes, the capacity describes the volume of the storage and the activity the storage content. For storage processes between timeslices (<b>prc_tgtss</b>, <b>prc_nstts</b>) parameter RS_STGPRD is used instead of G_YRFR. RS_STGPRD(r,s) equals the number of storage periods on the timeslice level of timeslice <b>s</b> in the whole year multiplied with the duration of its parent timeslice <b>ts</b>. Thus, the storage level VAR_ACT (and indirectly the storage in- and output flows VAR_SIN and VAR_SOUT) are scaled-up for the entire year.<br>
+Consequently, the value of RS_STGPRD(r,s) is:<ul>
+<li>1 for a seasonal storage,</li>
+<li>365/7*G_YRFR(r,ts) for a weekly storage, where <b>ts</b> is the parent node of <b>s</b>,</li>
+<li>365*G_YRFR(r,ts) for a daynite storage, where <b>ts</b> is the parent node of <b>s</b>.</li></ul></li></ul>
 
 **Interpretation of the results**:
 
