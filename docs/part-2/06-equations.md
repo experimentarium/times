@@ -2182,31 +2182,22 @@ p \in rpc\_stg_{r,p,c} \\
 
 We now show the detailed calculation of the Right-hand-side
 
-$$COEF\_FBRHS:
-\\ \\
-Do \space Case
-\\ \\ 
-\quad Case \ni COM\_BNDNET \lor COM\_CUMNET
-\\ \\ 
-\quad \quad \lor COM\_CSTNET \lor COM\_SUBNET \lor COM\_TAXNET
-\\ \\ \\ \\
-\quad \quad COEF\_FBRHS = VAR\_COMNET 
-\\ \\
-\quad Case \ni COM\_BNDPRD \lor COM\_CUMPRD
-\\ \\
-\quad \quad \lor COM\_CSTPRD \lor COM\_SUBPRD \lor COM\_TAXPRD
-\\ \\ \\ \\
-\quad \quad COEF\_FBRHS = VAR\_COMPRD
-\\ \\
-\quad Case \space COM\_PROJ
-\\ \\ \\ \\
-\quad \quad COEF\_FBRHS = COM\_PROJ \times COM\_FR
-\\ \\
-\quad Otherwise
-\\ \\ \\ \\
-\quad \quad COEF\_FBRHS = 0
-\\ \\
-End \space Case$$
+$$\begin{align}
+& COEF\_FBRHS: \\ \\
+& Do \space Case \\ 
+& \quad \quad \quad \quad Case \ni COM\_BNDNET \lor COM\_CUMNET \\ 
+& \quad \quad \quad \quad \quad \quad \lor COM\_CSTNET \lor COM\_SUBNET \lor COM\_TAXNET \\ \\
+& \quad \quad \quad \quad \quad \quad COEF\_FBRHS = VAR\_COMNET \\ \\
+& \quad \quad \quad \quad Case \ni COM\_BNDPRD \lor COM\_CUMPRD \\
+& \quad \quad \quad \quad \quad \quad \lor COM\_CSTPRD \lor COM\_SUBPRD \lor COM\_TAXPRD \\ \\
+& \quad \quad \quad \quad \quad \quad COEF\_FBRHS = VAR\_COMPRD \\ \\
+& \quad \quad \quad \quad Case \space COM\_PROJ \\ \\
+& \quad \quad \quad \quad \quad \quad COEF\_FBRHS = COM\_PROJ \times COM\_FR \\ \\
+& \quad \quad \quad \quad  Otherwise \\ \\
+& \quad \quad \quad \quad \quad \quad COEF\_FBRHS = 0 \\ \\
+& End \space Case
+\end{align}
+$$
 
 **Flow Coefficients related to process activity (VAR_FLO)**
 
