@@ -1755,9 +1755,12 @@ $${\sum_{\begin{aligned}
 \end{aligned} \right) \text{ if $rp\_ire_{r,p}$}
 \end{aligned} \right) \\
  & \times RTCS\_TSFR_{r,t,c,s,ts}
-\end{aligned} \right) +}
-}{\left\{ \leq , = \right\}
-}{\sum_{\left\{ v2|rtp\_cptyr_{r,v2,t,p} \right\}}\left( \begin{aligned}
+\end{aligned} \right)}
+}
+\\ \\
+\left\{ \leq , = \right\}
+\\ \\
+\sum_{\left\{ v2|rtp\_cptyr_{r,v2,t,p} \right\}}\left( \begin{aligned}
  & COEF\_AF_{r,v2,t,p,s} \times COEF\_CPT_{r,v2,t,p} \times \\
  & \left( \begin{aligned}
  & VAR\_NCAP_{r,v2,p} + NCAP\_PASTI_{r,v2,p} - \\
@@ -1765,7 +1768,6 @@ $${\sum_{\begin{aligned}
 \end{aligned} \right) \\
 & \times PRC\_CAPACT_{r,p}
 \end{aligned} \right)\quad if\space \neg prc\_vint_{r,p}
-}
 \\ \\
 \quad + \quad\quad\left( \begin{aligned}
  & COEF\_AF_{r,v,t,p,s} \times COEF\_CPT_{r,v,t,p} \times \\
