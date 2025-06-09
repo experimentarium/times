@@ -25,7 +25,12 @@ numfig = True
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+# -- Option for Automatic Label section --------------------------------------
+# https://docs.readthedocs.com/platform/latest/guides/cross-referencing-with-sphinx.html
+# see section "Automatically label section"
 
+extensions = ["sphinx.ext.autosectionlabel",]
+autosectionlabel_prefix_document = True
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -38,11 +43,3 @@ html_static_path = ['_static']
 # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
 
 myst_enable_extensions = ["dollarmath", "colon_fence"]
-
-
-# -- Option for Automatic Label section --------------------------------------
-# https://docs.readthedocs.com/platform/latest/guides/cross-referencing-with-sphinx.html
-# see section "Automatically label section"
-
-extensions = ["sphinx.ext.autosectionlabel",]
-autosectionlabel_prefix_document = True
