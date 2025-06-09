@@ -38,6 +38,3 @@ html_static_path = ['_static']
 # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
 
 myst_enable_extensions = ["dollarmath", "colon_fence", "linkify"]
-
-#auto-generate anchors for h1, h2, h3, h4
-myst_heading_anchors = 4 
