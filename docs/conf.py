@@ -38,3 +38,11 @@ html_static_path = ['_static']
 # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
 
 myst_enable_extensions = ["dollarmath", "colon_fence"]
+
+
+# -- Option for Automatic Label section --------------------------------------
+# https://docs.readthedocs.com/platform/latest/guides/cross-referencing-with-sphinx.html
+# see section "Automatically label section"
+
+extensions = ["sphinx.ext.autosectionlabel",]
+autosectionlabel_prefix_document = True
