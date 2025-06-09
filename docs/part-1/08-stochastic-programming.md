@@ -1,5 +1,7 @@
+(the-stochastic-programming-extensions)=
 # The Stochastic Programming extension
 
+(preamble-to-chapters-8-to-11)=
 ## Preamble to chapters 8 to 11
 
 Recall that the core TIMES paradigm described in chapters 3, 4, and 5 makes several basic assumptions:
@@ -15,6 +17,7 @@ If any or all of these assumptions are violated, the properties of the resulting
 
 <ins>Remark</ins>: None of these four extensions departs from the competitive market assumption. It is *also* possible to simulate certain types of non-competitive behavior using TIMES. For instance, it has been possible to simulate the behavior of the OPEC oil cartel by assuming that OPEC imposes an upper limit on its oil production in order to increase its long term profit (Loulou et al, 2007). Such uses of TIMES are not embodied in new extensions. Rather, they are left to the ingenuity of the user.
 
+(stochastic-programming-concepts-and-formulation)=
 ## Stochastic Programming concepts and formulation
 
 Stochastic Programming is a method for making optimal decisions under risk. The risk consists of facing uncertainty regarding the values of some (or all) of the LP parameters (cost coefficients, matrix coefficients, RHSs). Each uncertain parameter is considered to be a random variable, usually with a discrete, known probability distribution. The objective function thus becomes also a random variable and a criterion must be chosen in order to make the optimization possible. Such a criterion may be expected cost, expected utility, etc., as mentioned by Kanudia and Loulou (1998). Technical note "TIMES-Stochastic" provides a more complete description of the TIMES implementation
@@ -110,6 +113,7 @@ Two alternative candidates for the objective function are:
 - Expected utility criterion with linearized risk aversion
 - Minimax Regret criterion (Raiffa,1968, applied in Loulou and Kanudia, 1999)
 
+(expected-utility-criterion-with-risk-aversion)=
 ### Expected utility criterion with risk aversion
 
 The first alternative has been implemented into the stochastic version of TIMES. This provides a feature for taking into account that a decision maker may be risk averse, by defining a new utility function to replace the expected cost.
@@ -130,6 +134,7 @@ where $λ>0$ is a measure of the risk aversion of the decision maker. For $λ=0$
 
 Taking risk aversion into account by this formulation would lead to a non-linear, non-convex model, with all its ensuing computational restrictions. These would impose serious limitations on model size.
 
+(utility-function-with-linearized-risk-aversion)=
 ### Utility function with linearized risk aversion
 
 To avoid non-linearities, it is possible to replace the semi-variance by the upper-absolute-deviation, defined by:
@@ -142,6 +147,7 @@ $$U = EC + \lambda \times UpsAbsDev(C)$$
 
 This is the expected utility formulation implemented into the TIMES model generator.
 
+(solving-approaches)=
 ## Solving approaches
 
 General multi-stage stochastic programming problems of the type described above can be solved by standard deterministic algorithms by solving the deterministic equivalent of the stochastic model. This is the most straightforward approach, which may be applied to all problem instances. However, the resulting deterministic problem may become very large and thus difficult to solve, especially if integer variables are introduced, but also in the case of linear models with a large number of stochastic scenarios.
@@ -150,6 +156,7 @@ Two-stage stochastic programming problems can also be solved efficiently by usin
 
 The current version of the TIMES implementation for stochastic programming is solely based on directly solving the equivalent deterministic problem. As this may lead to very large problem instances, stochastic TIMES models are in practice limited to a relatively small number of branches of the event tree (SOW\'s).
 
+(economic-interpretation)=
 ## Economic interpretation
 
 The introduction of uncertainty alters the economic interpretation of the TIMES solution. Over the last two decades, economic modeling paradigms have evolved to a class of equilibria called Dynamic Stochastic General Equilibria (DSGE, see references Chen and Crucuni, 2012; de Walque et al., 2005; Smets et al., 2007). In the case of Stochastic TIMES, we are in the presence of a Dynamic Stochastic Partial Equilibria (DSPE), with a much less developed literature. The complete characterization of a DSPE is beyond the scope of this documentation, but it is useful to note some of its properties, which derive from the theory of Linear Programming, as follows: 
