@@ -1,3 +1,4 @@
+(the-lumpy-investment-extension)=
 # The Lumpy Investment extension
 
 In some cases, the linearity property of the TIMES model may become a drawback for the accurate modeling of certain investment decisions. Consider for example a TIMES model for a relatively small community such as a city. For such a scope the *granularity* of some investments may have to be taken into account. For instance, the size of an electricity generation plant proposed by the model would have to conform to an implementable minimum size (it would make no sense to decide to construct a 50 MW nuclear plant). Another example for multi-region modeling might be whether or not to build cross-region electric grid(s) or gas pipeline(s) in discrete size increments. Processes subject to investments of only specific size increments are described as "lumpy" investments.
@@ -12,6 +13,7 @@ The lumpy investment option available in TIMES is slightly more general than the
 
 Imposing such a constraint on an investment is unfortunately impossible to formulate using standard LP constraints and variables. It requires the introduction of *integer variables* into the formulation. The optimization problem resulting from the introduction of integer variables into a Linear Program is called a Mixed Integer Program (MIP).
 
+(formulation-and-solution-of-the-mixed-integer-linear-program)=
 ## Formulation and solution of the Mixed Integer Linear Program
 
 Typically, the modeling of a lumpy investment involves Integer Variables, i.e. variables whose values may only be non-negative integers (0, 1, 2, ...). The mathematical formulation is as follows:
@@ -32,10 +34,12 @@ Although the formulation of lumpy investments *looks* simple, it has a profound 
 
 The reader interested in more technical details on the solution of LPs and of MIPs is referred to references (Hillier and Lieberman, 1990, Nemhauser et al. 1989). In the next section we shall be content to state one important remark on the interpretation of the dual results from MIP optimization.
 
+(discrete-early-retirement-of-capacity)=
 ## Discrete early retirement of capacity
 
 The discrete retirement of capacity that was briefly mentioned in section 5.4.11 requires a treatment quite similar to that of discrete addition to capacity presented here. The complete mathematical formulation mimics that presented above, and is fully described in Part II, section 6.3.26, of the TIMES documentation.
 
+(important-remark-on-the-mip)=
 ## Important remark on the MIP dual solution (shadow prices)
 
 Using MIP rather than LP has an important impact on the interpretation of the TIMES shadow prices. Once the optimal MIP solution has been found, it is customary for MIP solvers to fix all integer variables at their optimal (integer) values, and to perform an additional iteration of the LP algorithm, so as to obtain the dual solution (i.e. the shadow prices of all constraints). However, the interpretation of these prices is different from that of a pure LP. Consider for instance the shadow price of the natural gas balance constraint: in a pure LP, this value represents the price of natural gas. In MIP, this value represents the price of gas *conditional on having fixed the lumpy investments at their optimal integer values.* What does this mean? We shall attempt an explanation via one example: suppose that one lumpy investment was the investment in a gas pipeline; then, *the gas shadow price will not include the investment cost of the pipeline, since that investment was fixed when the dual solution was computed*.
