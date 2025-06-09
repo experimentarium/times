@@ -1,3 +1,4 @@
+(the-endogenous-technological-learning-extension)=
 # The Endogenous Technological Learning extension
 
 In a long-term dynamic model such as TIMES the characteristics of many of the future technologies are almost inevitably changing over the sequence of future periods due to *technological learning*.
@@ -10,6 +11,7 @@ Endogenous technological learning (ETL) is also named *Learning-By-Doing* (LBD) 
 
 Whereas exogenous technological learning does not require any additional modeling, ETL presents a tough challenge in terms of modeling ingenuity and of solution time. In TIMES, there is a provision to represent the effects of endogenous learning on the unit investment cost of technologies. Other parameters (such as efficiency) are not treated, at this time.
 
+(the-basic-etl-challange)=
 ## The basic ETL challenge
 
 Empirical studies of unit investment costs of several technologies have been undertaken in several countries. Many of these studies find an empirical relationship between the unit investment cost of a technology at time $t$, $INVCOST_{t}$, and the cumulative investment in that technology up to time $t$, $C_{t} = \sum_{j = - 1}^{t}{VAR\_ NCAP_{j}}$.
@@ -27,8 +29,10 @@ As experience builds up, the unit investment cost decreases, potentially renderi
 
 With regard to actual implementation, simply using {eq}`11-1` as the objective function coefficient of $VAR\_NCAP_t$ will yield a non-linear, non-convex expression. Therefore, the resulting mathematical optimization is no longer linear, and requires special techniques for its solution. In TIMES, a Mixed Integer Programming (MIP) formulation is used, that we now describe.
 
+(the-times-formulation-of-etl)=
 ## The TIMES formulation of ETL
 
+(the-cumulative-investment-cost)=
 ### The cumulative investment cost
 
 We follow the basic approach described in Barreto, 2001.
@@ -70,6 +74,7 @@ With the Mixed Integer Programming approach implemented in TIMES, the cumulative
 Example of a 4-segment approximation of the cumulative cost curve.
 ```
 
+(calculation-of-break-points-and-segment-lenghts)=
 ### Calculation of break points and segment lengths
 
 The successive interval lengths on the vertical axis are chosen to be in geometric progression, each interval being twice as wide as the preceding one. In this fashion, the intervals near the low values of the curve are smaller so as to better approximate the curve in its high curvature zone. Let $\{TC_{i-1}, TC_{i}\}$ be the $i^{th}$ interval on the vertical axis, for $i = 1, ..., N-1$. Then:
@@ -82,6 +87,7 @@ The break points on the horizontal axis are obtained by plugging the $TC_i$'s in
 
 $$C_{i} = \left( \frac{(1 - b)}{a}\left( TC_{i} \right) \right)^{\frac{1}{1 - b}}, \space i = 1,2,...,N$$
 
+(new-variables)=
 ### New variables
 
 Once intervals are chosen, standard approaches are available to represent a concave function by means of integer (0-1) variables. We describe the approach used in TIMES.
@@ -107,6 +113,7 @@ $$a_{i} = TC_{i - 1} - b_{i} \cdot C_{i - 1}, \space i = 1,2,...,N$$
 The i<sup>th</sup> segment of the step-wise approximation.
 ```
 
+(new-constraints)=
 ### New constraints
 
 For {eq}`11-4` to be valid we must make sure that exactly one $z_i$ is equal to 1, and the others equal to 0. This is done (recalling that the $z_i$ variables are 0-1) via:
@@ -117,10 +124,12 @@ We also need to make sure that each $x_i$ lies within the $i^{th}$ interval when
 
 $$C_{i - 1} \cdot z_{i} \leq x_{i} \leq C_{i} \cdot z_{i}$$
 
+(objective-function-terms)=
 ### Objective function terms
 
 Re-establishing the period index, we see that the objective function term at period $t$, for a learning technology is thus equal to $TC_t - TC_{t-1}$, which needs to be discounted like all other investment costs.
 
+(additional-optional-constraints)=
 ### Additional (optional) constraints
 
 Solving integer programming problems is facilitated if the domain of feasibility of the integer variables is reduced. This may be done via additional constraints that are not strictly needed but that are guaranteed to hold. In our application we know that experience (i.e. cumulative investment) is always increasing as time goes on. Therefore, if the cumulative investment in period $t$ lies in segment $i$, it is certain that it will not lie in segments $i-1, i-2, .., 1$ in time period $t+1$. This leads to two new constraints (re-establishing the period index $t$ for the $z$ variables):
@@ -135,6 +144,7 @@ $$
 
 Summarizing the above formulation, we observe that each learning technology requires the introduction of $N*T$ integer (0-1) variables. For example, if the model has 10 periods and a 5-segment approximation is selected, 50 integer (0-1) variables are created for that learning technology, assuming that the technology is available in the first period of the model. Thus, the formulation may become very onerous in terms of solution time, if many learning technologies are envisioned, and if the model is of large size to begin with. In section 11.5 we provide some comments on ETL, as well as a word of warning.
 
+(clustered-learning)=
 ## Clustered learning
 
 An interesting variation of ETL is also available in TIMES, namely the case where several technologies use the same key technology (or component), itself subject to learning. For instance, {numref}`gas-turbine-tech-cluster` lists 11 technologies using the key Gas Turbine technology. As experience builds up for gas the turbine, each of the 11 technologies in the cluster benefits. The phenomenon of clustered learning is modeled in TIMES via the following modification of the formulation of the previous section.
@@ -167,6 +177,7 @@ $$VAR\_NCAP_{k} - \sum_{l = 1}^{L}{VAR\_NCAP_{l} = 0}$$
 | Biomass gasification: ISTIG+reheat               |
 :::
 
+(learning-in-a-multiregional-times-model)=
 ## Learning in a multiregional TIMES model
 
 Technological learning may be acquired via global or local experience, depending on the technology considered. There are examples of technologies that were developed and perfected in certain regions of the world, but have tended to remain regional, never fully spreading globally. Examples are found in land management, irrigation, and in household heating and cooking devices. Other technologies are truly global in the sense that the same (or close to the same) technology becomes rather rapidly commercially available globally. In the latter case, global experience benefits users of the technology worldwide. Learning is said to *spillover* globally. Examples are found in large electricity plants, in steel production, wind turbines, and many other sectors.
@@ -183,6 +194,7 @@ c) Commodity $c$ may be exported to all other regions.
 
 Finally, in each 'real' region, the LT is represented with all its attributes *except the investment cost NCAP_COST.* Furthermore, the construction of one unit of the LT requires an input of one unit of the learning commodity $c$ (using the $NCAP\_ICOM$ parameter see chapter 3 of PART II). This ensures that the sum of all investments in the LT in the real regions is exactly equal to the investment in the LT in region 0, as desired.
 
+(endogenous-exogenous-learning)=
 ## Endogenous vs. exogenous learning: a discussion
 
 In this section, we formulate a few comments and warnings that may be useful to potential users of the ETL feature.
