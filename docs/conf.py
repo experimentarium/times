@@ -37,4 +37,4 @@ html_static_path = ['_static']
 # -- Options for MyST-Parser -------------------------------------------------
 # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
 
-myst_enable_extensions = ["dollarmath", "colon_fence"]
+myst_enable_extensions = ["dollarmath", "colon_fence", "linkify"]
