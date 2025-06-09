@@ -1,5 +1,7 @@
+(introduction-to-the-times-model)=
 # Introduction to the TIMES model
 
+(a-brief-summary)=
 ## A brief summary
 
 TIMES (an acronym for The Integrated MARKAL-EFOM[^1] System) is an economic model generator for local, national, multi-regional, or global energy systems, which provides a technology-rich basis for representing energy dynamics over a multi-period time horizon. It is usually applied to the analysis of the entire energy sector, but may also be applied to study single sectors such as the electricity and district heat sector.
@@ -12,12 +14,14 @@ The scope of the model extends beyond purely energy-oriented issues, to the repr
 
 In TIMES -- like in its MARKAL forebear -- the quantities and prices of the various commodities are in equilibrium, i.e. their prices and quantities in each time period are such that the suppliers produce exactly the quantities demanded by the consumers. This equilibrium has the property that the total economic surplus is maximized.
 
+(driving-a-times-model-via-scenarios)=
 ## Driving a TIMES model via scenarios
 
 The TIMES model is particularly suited to the *exploration* of possible energy futures based on contrasted *scenarios*. Given the long horizons that are usually simulated with TIMES, the scenario approach is really the only choice (whereas for the shorter term, econometric methods may provide useful projections). Scenarios, unlike forecasts, do not pre-suppose knowledge of the main drivers of the energy system. Instead, a scenario consists of a set of *coherent assumptions* about the future trajectories of these drivers, leading to a coherent organization of the system under study. A scenario builder must therefore carefully test the scenario assumptions for internal coherence, via a credible *storyline*.
 
 In TIMES, a complete scenario consists of four types of inputs: energy service demand curves, primary resource supply curves, a policy setting, and the descriptions of a complete set of technologies. We now present a few comments on each of these four components.
 
+(the-demand-component-of-a-times-scenario)=
 ### The Demand component of a TIMES scenario
 
 In the case of the TIMES model, demand drivers (population, GDP, households, etc.) are obtained externally, via other models or from accepted other sources. As one example, several global instances of TIMES (e.g. Loulou, 2007) use the GEM-E3[^2] to generate a set of *coherent* (national and sectoral) output growth rates in the various regions. Note that GEM-E3 or GEMINI-E3 themselves use other drivers as inputs, in order to derive GDP trajectories. These drivers consist of measures of technological progress, population, degree of market competitiveness, and a few other (perhaps qualitative) assumptions. For population and household projections, TIMES instances use the same exogenous sources (IPCC, Nakicenovic 2000, Moomaw and Moreira, 2001). Other approaches may be used to derive TIMES drivers, whether via models or other means.
@@ -32,20 +36,24 @@ As mentioned above, the demands are user provided for the reference scenario onl
 
 To summarize: the TIMES demand scenario components consist of a set of assumptions on the drivers (GDP, population, households, outputs) and on the elasticities of the demands to the drivers and to their own prices.
 
+(the-supply-component-of-a-times-scenario)=
 ### The Supply component of a TIMES scenario
 
 The second constituent of a scenario is a set of *supply curves* for primary energy and material resources. Multi-stepped supply curves are easily modeled in TIMES, each step representing a certain potential of the resource available at a particular cost. In some cases, the potential may be expressed as a cumulative potential over the model horizon (e.g. reserves of gas, crude oil, etc.), as a cumulative potential over the resource base (e.g. available areas for wind converters differentiated by velocities, available farmland for biocrops, roof areas for PV installations) and in others as an annual potential (e.g. maximum extraction rates, or for renewable resources the available wind, biomass, or hydro potentials). Note that the supply component also includes the identification of trading possibilities, where the amounts and prices of the traded commodities are determined endogenously (optionally within user imposed limits).
 
+(the-policy-component-of-a-times-scenario)=
 ### The Policy component of a TIMES scenario
 
 Insofar as some policies impact on the energy system, they become an integral part of the scenario definition. For instance, a reference scenario may perfectly ignore emissions of various pollutants, while alternate policy scenarios may enforce emission restrictions, or emission taxes, etc. The detailed technological nature of TIMES allows the simulation of a wide variety of both micro measures (e.g. technology portfolios, or targeted subsidies to groups of technologies), and broader policy targets (such as general carbon tax, or permit trading system on air contaminants). A simpler example might be a nuclear policy that limits the future capacity of nuclear plants. Another example might be the imposition of fuel taxes, or of targeted capital subsidies, etc.
 
+(the-techno-economic-component-of-a-times-scenario)=
 ### The Techno-economic component of a TIMES scenario
 
 The fourth and last constituent of a scenario is the set of technical and economic parameters assumed for the transformation of primary resources into energy services. In TIMES, these techno-economic parameters are described in the form of *technologies* (or processes) that transform some commodities into others (fuels, materials, energy services, emissions). In TIMES, some technologies may be user imposed and others may simply be available for the model to choose from. The quality of a TIMES model rests on a rich, well developed set of technologies, both current and future, for the model to choose from. The emphasis put on the technological database is one of the main distinguishing factors of the class of Bottom-up models, to which TIMES belongs. Other classes of models will tend to emphasize other aspects of the system (e.g. interactions with the rest of the economy) and treat the technical system in a more succinct manner via aggregate production functions.
 
 *Remark:* Two scenarios may differ in some or all of their components. For instance, the same demand scenario may very well lead to multiple scenarios by varying the primary resource potentials and/or technologies and/or policies, insofar as the alternative scenario assumptions do not alter the basic demand inputs (drivers and elasticities). The scenario builder must always be careful about the overall coherence of the various assumptions made on the four components of a scenario.
 
+(selected-scenario-types)=
 ## Selected scenario types
 
 The purpose of this section is to show how certain policies may be simulated in a TIMES model. The enormous flexibility of TIMES, especially at the technology level, allows the representation of almost any policy, be it at the national, sector, or subsector level.
