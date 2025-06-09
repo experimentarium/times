@@ -1,3 +1,4 @@
+(economic-rationale-of-the-times-modeling-approach)=
 # Economic rationale of the TIMES modeling approach
 
 This chapter provides a detailed economic interpretation of TIMES and other partial equilibrium models based on maximizing total surplus. Partial equilibrium models have one common feature -- they simultaneously configure the production and consumption of commodities (i.e. fuels, materials, and energy services) and their prices. The price of producing a commodity affects the demand for that commodity, while at the same time the demand affects the commodity's price. A market is said to have reached an equilibrium at prices *p\** and quantities *q\** when no consumer wishes to purchase less than *q\** and no producer wishes to produce more than *q\** at price *p\**. Both *p\** and *q\** are vectors whose dimension is equal to the number of different commodities being modeled. As will be explained below, when all markets are in equilibrium the total economic surplus is maximized.
@@ -6,10 +7,12 @@ The concept of total surplus maximization extends the direct cost minimization a
 
 Section 3.1 provides a brief review of different types of energy models. Section 3.2 discusses the economic rationale of the TIMES model with emphasis on the features that distinguish TIMES from other bottom-up models (such as the early incarnations of MARKAL, see Fishbone and Abilock, 1981 and Berger et al., 1992, though MARKAL has since been extended beyond these early versions). Section 3.3 describes the details of how price elastic demands are modeled in TIMES, and section 3.4 provides additional discussion of the economic properties of the model.
 
+(a-brief-classification-of-energy-models)=
 ## A brief classification of energy models
 
 Many energy models are in current use around the world, each designed to emphasize a particular facet of interest. Differences include: economic rationale, level of disaggregation of the variables, time horizon over which decisions are made (which is closely related to the type of decisions, i.e., only operational planning or also investment decisions), and geographic scope. One of the most significant differentiating features among energy models is the degree of detail with which commodities and technologies are represented, which will guide our classification of models into two major classes, as explained in the following very streamlined classification.
 
+(top-down-models)=
 ### 'Top-down' models
 
 At one end of the spectrum are aggregated *General Equilibrium* (GE) models. In these each sector is represented by a production function designed to simulate the potential substitutions between the main factors of production (also highly aggregated into a few variables such as: energy, capital, and labor) in the production of each sector's output. In this model category are found a number of models of national or global energy systems. These models are usually called "top-down", because they represent an entire economy via a relatively small number of aggregate variables and equations. In these models, production function parameters are calculated for each sector such that inputs and outputs reproduce a single base historical year.[^11] In policy runs, the mix of inputs[^12] required to produce one unit of a sector's output is allowed to vary according to user-selected elasticities of substitution. Sectoral production functions most typically have the following general form:
@@ -28,10 +31,12 @@ where
 
 The choice of *ρ* determines the ease or difficulty with which one production factor may be substituted for another: the smaller $\rho$ is (but still greater than or equal to 1), the easier it is to substitute the factors to produce the same amount of output from sector $S$. Also note that the degree of factor substitutability does not vary among the factors of production --- the ease with which capital can be substituted for labor is equal to the ease with which capital can be substituted for energy, while maintaining the same level of output. GE models may also use alternate forms of production function (3-1), but retain the basic idea of an explicit substitutability of production factors.
 
+(bottom-up-models)=
 ### 'Bottom-up' models
 
 At the other end of the spectrum are the very detailed, *technology explicit* models that focus primarily on the energy sector of an economy. In these models, each important energy-using technology is identified by a detailed description of its inputs, outputs, unit costs, and several other technical and economic characteristics. In these so-called 'bottom-up' models, a sector is constituted by a (usually large) number of logically arranged technologies, linked together by their inputs and outputs (*commodities*, which may be energy forms or carriers, materials, emissions and/or demand services). Some bottom-up models compute a partial equilibrium via maximization of the total net (consumer and producer) surplus, while others simulate other types of behavior by economic agents, as will be discussed below. In bottom-up models, one unit of sectoral output (e.g., a billion vehicle kilometers, one billion tonnes transported by heavy trucks or one petajoule of residential cooling service) is produced using a mix of individual technologies' outputs. Thus the production function of a sector is *implicitly* constructed, rather than explicitly specified as in more aggregated models. Such implicit production functions may be quite complex, depending on the complexity of the reference energy system of each sector (sub-RES).
 
+(hybrid-approaches)=
 ### Hybrid approaches
 
 While the above dichotomy applied fairly well to earlier models, these distinctions now tend to be somewhat blurred by advances in both categories of model. In the case of aggregate top-down models, several general equilibrium models now include a fair amount of fuel and technology disaggregation in the key energy producing sectors (for instance: electricity production, oil and gas supply). This is the case with MERGE[^13] and SGM[^14], among others.
@@ -48,6 +53,7 @@ The top-down vs. bottom-up approach is not the only relevant difference among en
 
 Among technology explicit models also, two main classes are usually distinguished: the first class is that of the partial equilibrium models such as MARKAL, MESSAGE, and TIMES, that use optimization techniques to compute a least cost (or maximum surplus) path for the energy system. The second class is that of *simulation* models, where the emphasis is on representing a system not governed purely by financial costs and profits. In these simulation models (e.g., CIMS, Jaccard et al. 2003), investment decisions taken by a representative agent (firm or consumer) are only partially based on profit maximization, and technologies may capture a share of the market even though their life-cycle cost may be higher than that of other technologies. Simulation models use market-sharing formulas that preclude the easy computation of equilibrium -- at least not in a single pass. The SAGE (US EIA, 2002) incarnation of the MARKAL model possesses a market sharing mechanism that allows it to reproduce certain behavioral characteristics of observed markets.
 
+(the-core-times-paradigm)
 ## The core TIMES paradigm
 
 In the rest of this chapter, we present the properties of the **core TIMES** paradigm. As will be seen in chapters 8 to 12, some of these properties are not applicable to several important TIMES variants. The reader should keep this caveat in mind when contemplating the use of some features that are described in these 5 chapters.
@@ -61,14 +67,17 @@ A brief description of the core TIMES model generator would express that it is:
 
 We now proceed to flesh out each of these properties.
 
+(a-technologically-explicit-integrated-model)=
 ### A technologically explicit integrated model
 
 As already presented in chapter 2 (and described in much more detail in Part II, section 3), each technology is described in TIMES by a number of technical and economic parameters. Thus each technology is explicitly identified (given a unique name) and distinguished from all others in the model. A mature TIMES model may include several thousand technologies in all sectors of the energy system (energy procurement, conversion, processing, transmission, and end-uses) in each region. Thus TIMES is not only technologically explicit, it is technology rich and it is integrated as well. Furthermore, the number of technologies and their relative topology may be changed at will, purely via data input specification, without the user ever having to modify the model's equations. The model is thus to a large extent *data driven*.
 
+(multi-regional)=
 ### Multi-regional
 
 Some existing TIMES models comprise several dozen regional modules, or more. The number of regions in a model is limited only by the difficulty of solving LP's of very large size. The individual regional modules are linked by energy and material trading variables, and by emission permit trading variables, if desired. The linking variables transform the set of regional modules into a *single* multi-regional (possibly global) energy model, where actions taken in one region may affect all other regions. This feature is essential when global as well as regional energy and emission policies are being simulated. Thus a multi-regional TIMES model is geographically integrated.
 
+(partial-equilibrium)=
 ### Partial equilibrium
 
 The core version of TIMES computes a partial equilibrium on energy markets. This means that the model computes both the *flows* of energy forms and materials as well as their *prices*, in such a way that, at the prices computed by the model, the suppliers of energy produce exactly the amounts that the consumers are willing to buy. This equilibrium feature is present at every stage of the energy system: primary energy forms, secondary energy forms, and energy services[^15]. A supply-demand equilibrium model has as its economic rationale the maximization of the total surplus, defined as the sum of all suppliers' and consumers' surpluses. The mathematical method used to maximize the surplus must be adapted to the particular mathematical properties of the model. In TIMES, these properties are as follows:
@@ -80,6 +89,7 @@ As a result of these assumptions the following additional properties hold:
 - The market price of each commodity is equal to its marginal value in the overall system (3.2.4); and
 - Each economic agent maximizes its own profit or utility (3.2.5).
 
+(linearity)=
 #### Linearity
 
 A linear input-to-output relationship first means that each technology represented may be implemented at any capacity, from zero to some upper limit, without economies or diseconomies of scale. In a real economy, a given technology is usually available in discrete sizes, rather than on a continuum. In particular, for some real life technologies, there may be a minimum size below which the technology may not be implemented (or else at a prohibitive cost), as for instance a nuclear power plant, or a hydroelectric project. In such cases, because TIMES assumes that all technologies may be implemented in any size, it may happen that the model's solution shows some technology's capacity at an unrealistically small size. It should however be noted that in most applications, such a situation is relatively infrequent and often innocuous, since the scope of application is at the country or region's level, and thus large enough so that small capacities are unlikely to occur.
@@ -90,6 +100,7 @@ It is the linearity property that allows the TIMES equilibrium to be computed us
 
 We must now mention a common misconception regarding linearity: the fact that TIMES equations are linear *does not mean that production functions behave in a linear fashion; far from it*. Indeed, the TIMES production functions are usually highly non-linear (although convex), consisting of a stepped sequence of linear functions. As a simple example, a supply of some resource is almost always represented as a sequence of segments, each with rising (but constant within an interval) unit cost. The modeler defines the 'width' of each interval so that the resulting supply curve may simulate any non-linear convex function. In brief, diseconomies of scale are easily represented in linear models.
 
+(maximization-of-total-suprlus)=
 #### Maximization of total surplus: Price equals marginal value
 
 The *total surplus* of an economy is the sum of the suppliers' and the consumers' surpluses. The term *supplier* designates any economic agent that produces (and/or sells) one or more commodities i.e., in TIMES, an energy form, a material, an emission permit, and/or an energy service. A *consumer* is a buyer of one or more commodities. In TIMES, the suppliers of a commodity are technologies that procure a given commodity, and the consumers of a commodity are technologies or service segments that consume a given commodity. Some (indeed most) technologies are both suppliers and consumers. Therefore, for each commodity the RES defines a complex set of suppliers and consumers.
@@ -140,7 +151,7 @@ Equilibrium in the case of an energy service: the user explicitly provides the d
 
 Equilibrium when an energy service demand is fixed.
 ```
-
+(competitive-energy-market-with-perfect-foresight)=
 #### Competitive energy markets with perfect foresight
 
 Competitive energy markets are characterized by perfect information and atomic economic agents, which together preclude any of them from exercising market power. That is, neither the level at which any individual producer supplies, nor the level any individual consumer acquires, affects the equilibrium market price (because there are many other buyers and sellers to replace them). It is a standard result of microeconomic theory that the assumption of competitive markets entails that the market price of a commodity is equal to its marginal value in the economy (Samuelson, 1952). This is of course also verified in the TIMES economy, as discussed in the next subsection.
@@ -151,6 +162,7 @@ In the core version of TIMES, the perfect information assumption extends to the 
 
 Note that there are at least two ways in which the perfect foresight assumption may be voided: in one variant, agents are assumed to have foresight over a limited portion of the horizon, say one or a few periods. Such an assumption of limited foresight is embodied in the TIMES feature discussed in chapter 9, as well as in the SAGE variant of MARKAL (US EIA, 2002). In another variant, foresight is assumed to be imperfect, meaning that agents may only *probabilistically* know certain key future events. This assumption is at the basis of the TIMES Stochastic Programming option, discussed in chapter 8.
 
+(marginal-value-pricing)=
 ### Marginal value pricing
 
 We have seen in the preceding subsections that the TIMES equilibrium occurs at the intersection of the inverse supply and inverse demand curves. It follows that the equilibrium prices are equal to the marginal system values of the various commodities. From a different angle, the duality theory of Linear Programming (chapter 14) indicates that for each constraint of the TIMES linear program there is a *dual variable.* This dual variable (when an optimal solution is reached) is also called the constraint's *shadow price*[^23]*,* and is equal to the marginal change of the objective function per unit increase of the constraint's right-hand-side. For instance, the shadow price of the balance constraint of a commodity (whether it be an energy form, material, a service demand, or an emission) represents the competitive market price of the commodity.
@@ -168,6 +180,7 @@ In TIMES the shadow prices of commodities play a very important diagnostic role.
 Case where the equilibrium price is not equal to any marginal supply cost.
 ```
 
+(profit-maximixation)=
 ### Profit maximization: the Invisible Hand
 
 An interesting property may be derived from the assumptions of competitiveness. While the avowed objective of the TIMES model is to maximize the overall surplus, it is also true that each economic agent in TIMES maximizes its own surplus. This property is akin to the famous 'invisible hand' property of competitive markets, and may be established rigorously by the following theorem that we state in an informal manner:
