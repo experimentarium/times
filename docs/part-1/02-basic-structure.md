@@ -174,6 +174,7 @@ Flow related parameters confer enormous flexibility for modeling a large spectru
 
 *Technical parameters,* along with some set attributes, permit full control over the maximum and/or minimum share a given input or output flow may take within the same commodity group. For instance, a flexible turbine may accept oil and/or gas as input, and the modeler may use a parameter to limit the share of oil to, say, at most 40% of the total fuel input. Other parameters and sets define the amount of certain outflows in relation to certain inflows (e.g., efficiency, emission rate by fuel). For instance, in an oil refinery a parameter may be used to set the total amount of refined products equal to 92% of the total amount of crude oils (s) entering the refinery, or to calculate certain emissions as a fixed proportion of the amount of oil consumed. If a flow has a sub-annual time-slice resolution, a load curve can be specified for the flow. It is possible to define not only load curves for a flow, but also bounds on the share of a flow in a specific time-slice relative to the annual flow, e.g. the flow in the time-slice "Winter-Day" has to be at least 10 % of the total annual flow. Refer to section 5.4 describing TIMES constraints for details. Cumulative bounds on a process flow are also allowed.
 
+(economic-and-policy-parameters)=
 #### Economic and policy parameters
 
 *Economic or policy parameters* include delivery and other variable costs, taxes and subsidies attached to an individual process flow.
