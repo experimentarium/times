@@ -78,6 +78,7 @@ A more elaborate form of the subsidy might be to first levy an emission tax, and
 
 An important aspect of any policy is whether it will stay effective under various conditions. Examples of such conditions are oil prices, climate parameters, availability of certain resources, key technology costs or efficiency, etc. A policy that remains effective under a range of values for such conditions, is said to be ***robust***. In TIMES, robustness may be assessed using a variety of features, ranging from sensitivity analysis (chapter 6) to Stochastic Programming (chapter 8).
 
+
 [^1]: MARKAL (MARket ALlocation model, Fishbone et al, 1981, 1983, Berger et al. 1992) and EFOM (Van Voort et al, 1984) are two bottom-up energy models that inspired the structure of TIMES.
 
 [^2]: European Commission, *The GEM-E3 Model*, *General Equilibrium Model for Economy, Energy and Environment*, <https://ec.europa.eu/jrc/en/gem-e3/model>.

@@ -6,10 +6,10 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "TIMES - The Integrated MARKAL-EFOM System"
-copyright = "2023, IEA-ETSAP"
-author = "IEA-ETSAP"
-release = "4.7.2"
+project = 'TIMES - The Integrated MARKAL-EFOM System'
+copyright = '2023, IEA-ETSAP'
+author = 'IEA-ETSAP'
+release = '4.7.2'
 
 rst_prolog = """.. attention::
     This is work in progress and may not be in a usable state yet.
@@ -22,15 +22,16 @@ rst_prolog = """.. attention::
 extensions = ["myst_parser"]
 numfig = True
 
-templates_path = ["_templates"]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+templates_path = ['_templates']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+
 
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "alabaster"
-html_static_path = ["_static"]
+html_theme = 'alabaster'
+html_static_path = ['_static']
 
 
 # -- Options for MyST-Parser -------------------------------------------------

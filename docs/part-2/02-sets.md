@@ -3,7 +3,6 @@
 Sets are used in TIMES to group elements or combinations of elements with the purpose of specifying qualitative characteristics of the energy system. One can distinguish between one-dimensional and multi-dimensional sets. The former sets contain single elements, e.g. the set $prc$ contains all processes of the model, while the elements of multi-dimensional sets are a combination of one-dimensional sets. An example for a multi-dimensional set is the set $top$, which specifies for a process the commodities entering and leaving that process.
 
 Two types of sets are employed in the TIMES framework: user input sets and internal sets. User input sets are created by the user, and used to describe qualitative information and characteristics of the depicted energy system. One can distinguish the following functions associated with user input sets:
-
 - definition of the elements or building blocks of the energy system model (i.e. regions, processes, commodities),
 - definition of the time horizon and the sub-annual time resolution,
 - definition of special characteristics of the elements of the energy system.
@@ -294,10 +293,9 @@ Apart from indexes that are under user control, some indexes have fixed elements
   - Years that can be used in the model; default range 1850-2200; under user control by the dollar control parameters \$SET BOTIME \<y\> and \$SET EOTIME \<y\> in the \<case\>.RUN file.
 ```
 
-## User input sets
+##  User input sets
 
 The user input sets contain the fundamental information regarding the structure and the characteristics of the underlying energy system model. The user input sets can be grouped according to the type of information related to them:
-
 - One dimensional sets defining the components of the energy system: regions, commodities, processes;
 - Sets defining the Reference Energy System (RES) within each region;
 - Sets defining the inter-connections (trade) between regions;
@@ -325,7 +323,6 @@ Example of internal and external regions in TIMES.
 #### Processes
 
 A process may represent an individual plant, e.g. a specific existing nuclear power plant, or a generic technology, e.g. the coal-fired IGCC technology. TIMES distinguishes three main types of processes:
-
 - Standard processes;
 - Inter-regional exchange processes, and
 - Storage processes.
@@ -333,7 +330,6 @@ A process may represent an individual plant, e.g. a specific existing nuclear po
 ##### Standard processes
 
 The so-called standard processes can be used to model the majority of the energy technologies, e.g., condensing power plants, heat plants, CHP plants, demand devices such as boilers, coal extraction processes, etc. Standard processes can be classified into the following groups:
-
 - PRE for generic energy processes;
 - PRW for material processing technologies (by weight);
 - PRV for material processing technologies (by volume);
@@ -527,7 +523,6 @@ All the input sets which are under user control in TIMES are listed in Table 4.
 **Remark**
 
 Sets are used in basically two ways:
-
 - as the domain over which summations must be effected in some mathematical expression, or
 - as the domain over which a particular expression or constraint must be enumerated (replicated).
 
@@ -726,7 +721,7 @@ $$EXPRESSION2_{c,io} = \sum_{r,p,c,io \in top}^{}{B(r)\sum_{p}^{}{A(r,p)}}$$
   - Union of the sets **pastyear** and **t** corresponding to all the years (periods) of a model run (thus actually an internal set).
 ```
 
-## Definition of internal sets
+##  Definition of internal sets
 
 The sets internally derived by the TIMES model generator are given in {numref}`internal-sets`. The list of internal sets presented here concentrates on the ones frequently used in the model generator and the ones used in the description of the model equations in Chapter 6. Some internal sets are omitted from {numref}`internal-sets` as they are strictly auxiliary sets of the preprocessor whose main purpose is the reduction of the computation time for preprocessor operations.
 
@@ -947,26 +942,41 @@ The sets internally derived by the TIMES model generator are given in {numref}`i
   - Union of the input sets **pastyear** and **t**, corresponding to all the periods of a model run (=modlyear). 
 ```
 
+
 [^2]: The meaning and the role of internal and external regions is discussed in Section 2.2.
 
 [^3]: See Section for a more in-depth treatment of commodity groups.
 
+[^4]: This column contains the names of the indexes as used in this document.
 
+[^5]: For programming reasons, alternative names (aliases) may exist for some indexes. This information is only relevant for those users who are interested in gaining an understanding of the underlying GAMS code.
 
+[^6]: This column refers to possible related indexes, e.g. the index set **c** is a subset of the index set **cg**.
 
+[^7]: VEDA/ANSWER compiles the complete list from the union of the commodities defined in each region.
 
+[^8]: VEDA/ANSWER compiles the complete list from the union of the commodity groups defined in each region.
 
+[^9]: VEDA/ANSWER compiles the complete list from the union of processes defined in each region.
 
 [^10]: Important cases are the process type CHP, which activates the CHP attributes, storage process indicators (STG, STS, STK, NST), and material conversion process types PRW and PRV, which may affect the creation of the internal set **prc_spg** (see ).
 
 [^11]: In this case the model may still decide to add additional new capacity, if this is economical and not inhibited by any investment bounds.
 
+[^12]: The purpose of this table is to list those parameters whose year values are independent of the input **datayear**s associated with most of the regular parameters, and therefore need not be included in the set **datayear**. For example, a value for MULTI(j,\'2012\') would not require including 2012 in **datayear**s if 2012 were not relevant to the other input parameters.
 
 [^13]: By setting G_YRFR(r,s)=0 one can exclude any individual timeslices from specific regions, even if only a global timeslice tree is defined for all regions (as it is the case when using VEDA-FE). In this way each region can employ a different subset of the global tree.
 
 [^14]: Note however that some flexibility is lost when using multilateral trade. For instance, it is not possible to express transportation costs in a fully accurate manner, if such cost depends upon the precise pair of trading regions in a specific way.
 
+[^15]: The first row contains the set name. If the set is a one-dimensional subset of another set, the second row contains the parent set in brackets. If the set is a multi-dimensional set, the second row contains the index domain in brackets.
 
+[^16]: For programming reasons, alternative names (aliases) may exist for some indexes. This information is only relevant for those users who are interested in gaining an understanding of the underlying GAMS code.
 
+[^17]: For multidimensional sets such as this one, two definitions are sometimes given, one as an indicator function or mapping, the other (in square brackets) as a set of n-tuples.
 
+[^18]: Name of the internal set as used in this documentation and the GAMS code.
 
+[^19]: Index domain of the internal set is given in brackets (Note: the symbols **y**, **y1**, **y2**, **k**, and **ll** all refer to **year**).
+
+[^20]: The asterisk denotes in the modeling system GAMS a wildcard, so that domain checking is disabled and any index may be used.

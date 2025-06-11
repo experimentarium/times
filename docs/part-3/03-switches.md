@@ -227,7 +227,6 @@ $SET LPOINT <run_name>
 ```
 
 In a model DD file you should include the values for the REG_FIXT parameter:
-
 ```
 PARAMETER REG_FIXT
 /
@@ -235,7 +234,6 @@ AUS 2200, CAN 2200, CHI 2200, IND 2200
 JPN 2200, MEX 2200, ODA 2200, SKO 2200
 /;
 ```
-
 :::
 
 ### Limit foresight stepwise solving \[TIMESTEP\]
@@ -424,7 +422,6 @@ Comparing the non-setting of REDUCE vs. REDUCE=YES the number of equations and v
 - Shadow price of non-generated EQ_PTRANS equations are lost.
 - Reduced cost of upper/fixed ACT_BND of zero are lost. If one needs this information, one should use a very small number instead, e.g. 1.e-5, as value for the activity bound.
 :::
-
 ## GAMS savepoint / loadpoint controls
 
 TIMES includes GAMS control variables that can be used to utilize the GAMS savepoint and loadpoint facilities. The savepoint facility makes it possible to save the basis information (levels and dual values of variables and equations) into a GDX file after model solution. The loadpoint facility makes it possible to load previously saved basis information from a GDX file and utilize it for a so-called warm start to speed up model solution.
@@ -452,14 +449,12 @@ The GAMS control variables that can be used for the savepoint and loadpoint feat
 * - LPOINT filename
   - Indicates that the model generator should load the solution point from the file %LPOINT%\_p.gdx. If the control variable SPOINT has additionally been set to 2 or 3, a subsequent attempt to load from %RUN_NAME%\_p.gdx is also made if the loading from the file %LPOINT%\_p.gdx fails.
 ```
-
 In VEDA-FE the LPOINT can be set from the Case Manager by requesting the loading of a previously GDX, and in ANSWER by means of Run Model Restart files specifications, as shown in {numref}`image23`.
 
 ```{figure} assets/image22.png
 :name: image22
 :align: center
 ```
-
 ```{figure} assets/image23.png
 :name: image23
 :align: center
@@ -694,5 +689,7 @@ Various other \$\<option\> switches control miscellaneous aspects of a TIMES mod
   - Usually the TIMES model generator interpolates the user-defined time-series data only for the Milestone years, and then uses the value at the Milestone year as a representative value for the whole period. An important exception to this common rule are the cost parameters, which are all interpolated densely, and are thus always fully taken into account. However, in some cases it might be desirable to have some other parameters densely interpolated, such that the calculated weighted average over each projection period would be used as the representative value for the period, instead of the value at the Milestone year. Perhaps the most suitable candidates for applying this kind of an interpolation method are parameters representing projected absolute values, such as demands or remaining residual capacities. There is a switch for activating the Weighted Average Interpolation method described above, to be applied for the demand projections (COM_PROJ) and residual capacities (PRC_RESID), as well as the NCAP_PASTI parameters reflecting the available capacity of the installation period.
 ```
 
+
+[^19]: For example, by the U.S. government: <http://www.whitehouse.gov/omb/circulars/a094/a094.html>
 
 [^20]: This structure is only of interest for those modellers who want to programme their own extensions. The modeller who uses an extension in his model does not need to know these programming details.

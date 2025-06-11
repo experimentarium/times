@@ -173,7 +173,6 @@ $SET CLI YES
 ### Calibration
 
 The calibration of the Climate Module to historical values is an important aspect of using the module. The mass balance and temperature equations can be calibrated for the first period by using three alternative calibration years B(1)--1, m(1)--1, and m(1). Whenever D(1)=1, the first two alternatives are equal. The default calibrating year is m(1)--1. The alternative calibration years can be activated by using one of the following two settings in the run-file:
-
 - `$SET CM_CALIB B` ! Calibrate at the end of B(1)--1
 - `$SET CM_CALIB M` ! Calibrate at the end of m(1)
 
@@ -270,6 +269,7 @@ Like all other aspects of TIMES, the user defines the Climate Module components 
   - Maximum level of CO<sub>2</sub> concentration in GtC. 
 ```
 
+
 #### Mapping of regional emissions to global emissions
 
 Conversion from regional emissions to global emissions must be done by using the CM_GHGMAP(r,c,cg) parameter, in adequate units. The labels for the global emissions **cg** are \'CO2-GtC\', \'CH4-Mt\' and \'N2O-Mt\'. The parameter IRE_CCVT(r,c,r,cg) can alternatively be also used, if CM_GHGMAP is not available.
@@ -338,24 +338,24 @@ Units: Watts/m<sup>2</sup>.
 
 #### Parameters for the temperature equations
 
-- CM_CONST(SIGMA1) (also denoted $\sigma_1$): speed of adjustment parameter for atmospheric temperature. $1/\sigma_1$ represents the thermal capacity of the atmospheric + upper ocean layer (W-yr/m<sup>2</sup>/°C). Note however that when SIGMA1 is assumed stochastic, its multiple values are specified via the generic S_CM_CONST parameter described below.
-- CM_CONST(SIGMA2) (also denoted $\sigma_2$): ratio of the thermal capacity of the deep oceans to the transfer rate from shallow to deep ocean (W/m<sup>2</sup>/°C).
-- CM_CONST(SIGMA3) (also denoted $\sigma_3$): $1/\sigma_3$ is the transfer rate (per year) from the upper level of the ocean to the deep ocean (yr<sup>-1</sup>).
-- CM_CONST(GAMMA) (also denoted γ): radiative forcing sensitivity to a doubling of the atmospheric CO<sub>2</sub> concentration. Units: Watts/m<sup>2</sup>.
-- CM_CONST(CS): $C_s$, the temperature sensitivity to a doubling of the CO<sub>2</sub> concentration (°C).
-- CM_CONST(LAMBDA) (also denoted $\lambda$): a feedback parameter, representing the equilibrium impact of CO<sub>2</sub> concentrations doubling on climate. $\lambda = \gamma / C_s$. Note however that when $C_s$ is assumed stochastic, its multiple values are specified via the generic S_CM_CONST parameter described below. If all three of $\lambda$, $\gamma$ and $C_s$ are specified, the user-specified $\lambda$ is overridden by the derived value $\gamma / C_s$.
+- CM_CONST(SIGMA1) (also denoted $\sigma_1$): speed of adjustment parameter for atmospheric temperature. $1/\sigma_1$ represents the thermal capacity of the atmospheric + upper ocean layer (W-yr/m<sup>2</sup>/°C). Note however that when SIGMA1 is assumed stochastic, its multiple values are specified via the generic S_CM_CONST parameter described below. 
+- CM_CONST(SIGMA2) (also denoted $\sigma_2$): ratio of the thermal capacity of the deep oceans to the transfer rate from shallow to deep ocean (W/m<sup>2</sup>/°C). 
+- CM_CONST(SIGMA3) (also denoted $\sigma_3$): $1/\sigma_3$ is the transfer rate (per year) from the upper level of the ocean to the deep ocean (yr<sup>-1</sup>). 
+- CM_CONST(GAMMA) (also denoted γ): radiative forcing sensitivity to a doubling of the atmospheric CO<sub>2</sub> concentration. Units: Watts/m<sup>2</sup>. 
+- CM_CONST(CS): $C_s$, the temperature sensitivity to a doubling of the CO<sub>2</sub> concentration (°C). 
+- CM_CONST(LAMBDA) (also denoted $\lambda$): a feedback parameter, representing the equilibrium impact of CO<sub>2</sub> concentrations doubling on climate. $\lambda = \gamma / C_s$. Note however that when $C_s$ is assumed stochastic, its multiple values are specified via the generic S_CM_CONST parameter described below. If all three of $\lambda$, $\gamma$ and $C_s$ are specified, the user-specified $\lambda$ is overridden by the derived value $\gamma / C_s$. 
 - CM_HISTORY(y,{DELTA_ATM, DELTA_LOW}): values at the end of the calibration year *y* of the temperature changes (wrt to pre-industrial time) in atmosphere and deep layer, respectively. Units: °C
 
 #### Upper bounds on climate variables
 
 The following parameters are needed if constraints on some climate variables are desired. In TIMES, several climate upper bounds may be specified at any year. These upper bounds are specified via the single generic parameter CM_MAXC(datayear,item), where *datayear* is the year at which the bound applies, and *item* may be any of the following nine choices:
 
-- CO2-ATM: for bounding the ***ratio*** of GHG concentration to the preindustrial concentration (where the pre-industrial concentration is defined by CO2-PREIND);
+- CO2-ATM: for bounding the ***ratio*** of GHG concentration to the preindustrial concentration (where the pre-industrial concentration is defined by CO2-PREIND); 
 - CO2-PPM: for bounding the CO<sub>2</sub> concentration expressed in ppm;
 - CH4_PPB: for bounding the CH<sub>4</sub> concentration expressed in ppbv;
 - N2O-PPB: for bounding the N<sub>2</sub>O concentration expressed in ppbv;
-- FORCING: for bounding the total atmospheric radiative forcing expressed in W/m<sup>2</sup>. (If this bound or the next one on temperature is used, the linearized forcing equation is used rather than the exact forcing equation);
-- DELTA-ATM: for bounding the change in global atmospheric temperature over pre-industrial temperature, expressed in °C;
+- FORCING: for bounding the total atmospheric radiative forcing expressed in W/m<sup>2</sup>. (If this bound or the next one on temperature is used, the linearized forcing equation is used rather than the exact forcing equation); 
+- DELTA-ATM: for bounding the change in global atmospheric temperature over pre-industrial temperature, expressed in °C; 
 - CO2-GTC: for bounding the global CO<sub>2</sub> emissions expressed in GtC;
 - CH4-MT: for bounding the global CH<sub>4</sub> emissions expressed in Mt;
 - N2O-MT: for bounding the global N<sub>2</sub>O emissions expressed in Mt.
@@ -448,9 +448,9 @@ The **reporting years** for the climate variables are the same as the calculatio
 ### Internal parameters
 
 - *CM_PPM<sub>cm_var</sub>*: The densities of the greenhouse gases are hard coded in TIMES (via the internal parameter), with the following values:
- 	- density of CH<sub>4</sub>: 2.84 Mt / ppbv
- 	- density of N<sub>2</sub>O: 7.81 Mt / ppbv
- 	- density of CO<sub>2</sub>: 2.13 Gt / ppm.
+	- density of CH<sub>4</sub>: 2.84 Mt / ppbv
+	- density of N<sub>2</sub>O: 7.81 Mt / ppbv
+	- density of CO<sub>2</sub>: 2.13 Gt / ppm.
 - *CM_PHI<sub>cm_var,t,i,j</sub>*: The transition matrix for climate indicator cm_var between reservoirs i and j and successive years t--1 and t;
 - *CM_AA<sub>cm_var,t,i,j</sub>*: The transition matrix for climate indicator cm_var between reservoirs i and j and between the milestone years of periods t--1 and t;
 - *CM_BB<sub>cm_var,t,i,j</sub>*: The transition matrix for climate indicator cm_var from emissions in period t to reservoir contents in the same period;
@@ -475,7 +475,6 @@ CM_MAXC_M is indexed by year *y* and constraint type. The values are reported fo
 ### Default values of the climate parameters
 
 {numref}`cli-parameters` shows the default values of all parameters of the Climate Module except exogenous forcing. All defaults may be modified by the user.
-
 - CS and SIGMA1 may be assumed random, in which case the default values are not used. The user must specify their values explicitly using the appropriate parameter names described earlier.
 - The parameters highlighted blue are upper bounds on five climate variables (in this example, they are set high enough to be inoperative).
 - The three parameters highlighted pink concern the extension of emissions beyond EOH, as described in the separate note on this subject.
@@ -651,7 +650,6 @@ This equation is generated in each time period for all indicators considered.
 *Dual variable:* The dual variables represent the marginal prices of the global emissions / forcing (when undiscounted).
 
 **Remarks**:
-
 - For CO<sub>2</sub>, the linear forcing function parameters $CM\_LINFOR_{t,cm\_emis,'FX'}$ and $CM\_LINFOR_{t,cm\_emis,'N'}$ are automatically calculated by the model generator from any user-defined $CM\_LINFOR_{t,cm\_emis,'LO'}$ and $CM\_LINFOR_{t,cm\_emis,'UP'}$.
 
 **Equation:**
@@ -671,7 +669,7 @@ $${\sum_{\begin{aligned}
 \end{aligned}}
 {VAR\_CLIBOX_{cm\_var}} \right) \\
 & CM\_LINFOR_{t,cm\_emis,'FX'}
-\end{aligned} \right) +
+\end{aligned} \right) + 
 } \\ \\ {+ CM\_EXOFORC_{t}
 } \\ \\ {\left\{ = \right\}
 } \\ \\ {VAR\_CLITOT_{cm\_tkind,t}}$$
@@ -700,9 +698,9 @@ $${\sum_{\begin{aligned}
 
 $$EQ\_CLICONC_{cm\_emis,cm\_box,t}\forall\left\lbrack \left( t \in milestonyr \right) \right\rbrack$$
 
-$${\sum_{cm\_boxmap_{cm\_emis,cm\_var,cm\_box2}}{VAR\_CLIBOX_{cm\_var,t - 1} \times CM\_AA_{cm\_emis,t,cm\_box,cm\_box2}} +
-} \\ \\ {CM\_BB_{cm\_emis,t,cm\_box} \times VAR\_CLITOT_{cm\_emis,t} +
-} \\ \\ {CM\_CC_{cm\_emis,t,cm\_box} \times VAR\_CLITOT_{cm\_emis,t - 1} +
+$${\sum_{cm\_boxmap_{cm\_emis,cm\_var,cm\_box2}}{VAR\_CLIBOX_{cm\_var,t - 1} \times CM\_AA_{cm\_emis,t,cm\_box,cm\_box2}} + 
+} \\ \\ {CM\_BB_{cm\_emis,t,cm\_box} \times VAR\_CLITOT_{cm\_emis,t} + 
+} \\ \\ {CM\_CC_{cm\_emis,t,cm\_box} \times VAR\_CLITOT_{cm\_emis,t - 1} + 
 } \\ \\ {\sum_{\begin{matrix}
 miyr\_1_{t} \\
 cm\_boxmap_{cm\_emis,cm\_var,cm\_box2}
@@ -752,9 +750,9 @@ PHI\_AT\_UP & (1 - PHI\_U\_AT - PHI\_UP\_LO) & PHI\_LO\_UP \\
 
 $$EQ\_CLITEMP_{cm\_box,t}\forall\left\lbrack \left( t \in milestonyr \right) \right\rbrack$$
 
-$${\sum_{cm\_boxmap_{'FORCING',cm\_var,cm\_box2}}{VAR\_CLIBOX_{cm\_var,t - 1} \times CM\_AA_{'FORCING',t,cm\_box,cm\_box2}} +
-} \\ \\ {CM\_BB_{'FORCING',t,cm\_box} \times VAR\_CLITOT_{'FORCING',t} +
-} \\ \\ {CM\_CC_{'FORCING',t,cm\_box} \times VAR\_CLITOT_{'FORCING',t - 1} +
+$${\sum_{cm\_boxmap_{'FORCING',cm\_var,cm\_box2}}{VAR\_CLIBOX_{cm\_var,t - 1} \times CM\_AA_{'FORCING',t,cm\_box,cm\_box2}} + 
+} \\ \\ {CM\_BB_{'FORCING',t,cm\_box} \times VAR\_CLITOT_{'FORCING',t} + 
+} \\ \\ {CM\_CC_{'FORCING',t,cm\_box} \times VAR\_CLITOT_{'FORCING',t - 1} + 
 } \\ \\ {\sum_{\begin{matrix}
 miyr\_1_t \\
 cm\_boxmap_{'FORCING',cm\_var,cm\_box2}
@@ -852,6 +850,8 @@ Nordhaus, W. D. and J. Boyer. 1999. *Roll the DICE Again: Economic Models of Glo
 
 Wigley, T.M.L., Solomon, M. and S.C.B. Raper. 1994. *Model for the Assessment of Greenhouse-Gas Induced Climate Change*. Version 1.2. Climate Research Unit, University of East Anglia, UK.
 
+
 [^46]: There exists another well-known representation of CO<sub>2</sub> accumulation equations, using a five-box model.
 
 [^47]: Note that the subscripts *atm* and *up*, which for the CO<sub>2</sub> equations referred to the atmosphere and upper reservoirs, have been reused for the CH<sub>4</sub> and N<sub>2</sub>O equations to stand for anthropogenic and natural concentrations.
+

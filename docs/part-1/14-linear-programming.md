@@ -17,7 +17,6 @@ $$x ≥ 0$$ (14-3)
 where $x$ is a vector of *decision variables*, $c^tx$ is a linear function representing the *objective* to maximize, and $Ax ≤ b$ is a set of inequality *constraints*. Assume that the LP has a finite optimal solution, $x$.
 
 Then each decision variable, $x_j^*$ falls into one of three categories. $x_j^*$ may be:
-
 - equal to its lower bound (as defined in a constraint), or
 - equal to its upper bound, or
 - strictly between the two bounds.
@@ -57,7 +56,6 @@ Note that the optimal values of the dual variables are also called the *shadow p
 *Complementary Slackness theorem*
 
 At an optimal solution to an LP problem:
-
 - If $y_i^*$ is $> 0$ then the corresponding primal constraint is satisfied at equality (i.e. $A_ix^* = b_i$ and the $i^{th}$ primal constraint is called *tight*. Conversely, if the $i^{th}$ primal constraint is *slack* (not tight), then $y_i^* = 0$,
 - If $x_j^*$ is basic, then the corresponding dual constraint is satisfied at equality, (i.e. $A_j^ty^* = c_j$, where $A_j^ty^*$ is the $j^{th}$ row of $A^t$, i.e. the $j^{th}$ column of $A$. Conversely, if the $j^{th}$ dual constraint is slack, then $x_j^*$ is equal to one of its bounds.
 
@@ -72,19 +70,17 @@ Loosely speaking[^49], one may say that the partial derivative of the optimal pr
 ### Economic interpretation of the dual variables
 
 If the primal problem consists of maximizing the surplus (objective function $c^tx^*$), by choosing an activity vector $x*$, subject to upper limits on several resources (the $b$ vector) then:
-
 - Each $a_{ij}$ coefficient of the dual problem matrix, $A$, then represents the consumption of resource $b_j$ by activity $x_i$;
 - The optimal dual variable value $y_j$ is the unit price of resource $j$, and
 - The total optimal surplus derived from the optimal activity vector, $x^*$, is equal to the total value of all resources, $b$, priced at the optimal dual values $y^*$ (strong duality theorem).
 
-Furthermore, each dual constraint $A^t_jy^* ≥ c_j$  has an important economic interpretation. Based on the Complementary Slackness theorem, if an LP solution $x^*$ is optimal, then for each $x^*_j$ that is not equal to its upper or lower bound (i.e. each basic variable $x^*_j$), there corresponds a *tight* dual constraint $y^*A'_j = c_j$, which means that the revenue coefficient $c_j$ must be exactly equal to the cost of purchasing the resources needed to produce one unit of $x_j$. *In economists' terms,*marginal cost equals marginal revenue, and both are equal to the market price of $x^*_j$. If a variable is not basic, then by definition it is equal to its lower bound or to its upper bound. In both cases, the unit revenue $c_j$ need not be equal to the cost of the required resources. The technology is then either non-competitive (if it is at its lower bound) or it is super competitive and makes a surplus (if it is at its upper bound).
+Furthermore, each dual constraint $A^t_jy^* ≥ c_j$  has an important economic interpretation. Based on the Complementary Slackness theorem, if an LP solution $x^*$ is optimal, then for each $x^*_j$ that is not equal to its upper or lower bound (i.e. each basic variable $x^*_j$), there corresponds a *tight* dual constraint $y^*A'_j = c_j$, which means that the revenue coefficient $c_j$ must be exactly equal to the cost of purchasing the resources needed to produce one unit of $x_j$. *In economists' terms, *marginal cost equals marginal revenue, and both are equal to the market price of $x^*_j$. If a variable is not basic, then by definition it is equal to its lower bound or to its upper bound. In both cases, the unit revenue $c_j$ need not be equal to the cost of the required resources. The technology is then either non-competitive (if it is at its lower bound) or it is super competitive and makes a surplus (if it is at its upper bound).
 
 *Example*: The optimal dual value attached to the balance constraint of commodity $c$ represents the change in objective function value resulting from one additional unit of the commodity. This is precisely the internal unit price of that commodity.
 
 ### Reduced surplus and reduced cost
 
 In a maximization problem, the difference $y \times A'_j - c_j$ is called the *reduced surplus* of technology $j$, and is available from the solution of a TIMES problem. It is a useful indicator of the competitiveness of a technology, as follows:
-
 - If $x^*_j$ is at its lower bound, its unit revenue $c_j$ is *less* than the resource cost (i.e. its reduced surplus is positive). The technology is not competitive (and stays at its lower bound in the equilibrium);
 - If $x^*_j$ is at its upper bound, revenue $c_j$ is *larger* than the cost of resources (i.e. its reduced surplus is negative). The technology is super competitive and produces a surplus; and
 - If $x^*_j$ is basic, its reduced surplus is equal to 0. The technology is competitive but does not produce a surplus.
@@ -98,12 +94,12 @@ $$s.t. \quad Ax ≥ b$$
 $$x ≥ 0$$
 
 In a minimization problem (such as the usual formulation of TIMES), the difference $c_j - y^*A'_j$ is called the *reduced cost* of technology $j$. The following holds:
-
 - If $x^*_j$ is at its lower bound, its unit cost $c_j$ is *larger* than the value created (i.e. its reduced cost is positive). The technology is not competitive (and stays at its lower bound in the equilibrium);
 - if $x^*_j$ is at its upper bound, its cost $c_j$ is *less* than the value created (i.e. its reduced cost is negative). The technology is super competitive and produces a profit; and
 - if $x^*_j$ is basic, its reduced cost is equal to 0. The technology is competitive but does not produce a profit
 
 The reduced costs/surpluses may thus be used to rank all technologies, *including those that are not selected by the model*.
+
 
 [^48]: Their proofs may be found in the textbooks on Linear Programming already referenced.
 

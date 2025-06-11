@@ -27,4 +27,5 @@ The standard TIMES formulation has optional features, such as lumpy investments 
 
 To build, run, and analyse a TIMES model, several software tools have been developed in the past or are currently under development, so that the modeller does not need to provide the input information needed to build a TIMES model directly in GAMS. These tools are the model interfaces VEDA-FE and ANSWER-TIMES, as well as the reporting and analysing tool VEDA-BE.
 
+
 [^1]: *GAMS A User's Guide*, A. Brooke, D. Kendrick, A. Meeraus, R. Raman, GAMS Development Corporation, December 1998.

@@ -39,7 +39,6 @@ $$s.t.\space \sum_{k}{VAR\_ACT_{k,j}}(t) \geq {DM}_{i}(t) \quad i = 1,2,\ldots,I
 $$and \quad B \cdot X \geq b$$ (4-4)
 
 where $X$ is the vector of all TIMES variables and $I$ is the number of demand categories. In words:
-
 - {eq}`4-2` expresses the total discounted cost to be minimized. See chapter 5 for details on the list of TIMES variables $X$, and on the cost vector $c$.
 - {eq}`4-3` is the set of demand satisfaction constraints (where the $VAR\_ACT$ variables are the activity levels of end-use technologies, and the $DM$ right-hand-sides are the exogenous demands to satisfy).
 - {eq}`4-4` is the set of all other TIMES constraints, which need not be explicated here, and are presented in chapter 5.

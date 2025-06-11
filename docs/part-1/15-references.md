@@ -10,7 +10,7 @@ Birge, J. R., and Rosa, C. H. (1996), "Incorporating Investment Uncertainty into
 
 Brooke, A, D. Kendrick, A. Meeraus, and R. Raman, 1998, *The Solver Manual of the GAMS: A USER\'S GUIDE*, December 1998.
 
-Chen, K., M. Crucini (2012), \"Comparing General and Partial Equilibrium Approaches to the Study of Real Business Cycles\", *Vanderbilt University Research paper,* June 2012 (<kan.chen@vanderbilt.edu>, <mario.crucini@vanderbilt.edu>)
+Chen, K., M. Crucini (2012), \"Comparing General and Partial Equilibrium Approaches to the Study of Real Business Cycles\", *Vanderbilt University Research paper,* June 2012 (kan.chen@vanderbilt.edu, <mario.crucini@vanderbilt.edu>)
 
 Chvátal, V. (1983), *Linear Programming*, Freeman and Co, New-York, 1983
 
@@ -104,7 +104,7 @@ Moomaw, W.R. and J.R. Moreira (2001)," Technological and Economic Potential of 
 
 Nakicenovic, N. (ed.) (2000), Special Report on Emissions Scenarios. A Special Report of Working III of the Intergovernmental Panel on Climate Change.Cambridge : Cambridge University Press, p.599.
 
-Negishi, T. (1960), \"Welfare eoconomics and existence of an equilibrium for a competitive economy\", *Metroeconomic*a, [12,  2-3,](http://onlinelibrary.wiley.com/doi/10.1111/meca.1960.12.issue-2-3/issuetoc)pp. 92--97, June 1960.
+Negishi, T. (1960), \"Welfare eoconomics and existence of an equilibrium for a competitive economy\", *Metroeconomic*a, [12,  2-3, ](http://onlinelibrary.wiley.com/doi/10.1111/meca.1960.12.issue-2-3/issuetoc)pp. 92--97, June 1960.
 
 Nemhauser, G.L., A.H.G. Rinnooy Kan, and M.J. Todd editors (1989), *Handbooks in Operations Research and Management Science*, *Vol I: Optimization*, North-Holland, 1989.
 

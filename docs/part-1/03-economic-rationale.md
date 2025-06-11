@@ -16,14 +16,14 @@ At one end of the spectrum are aggregated *General Equilibrium* (GE) models. In 
 
 $X_{s} = A_{0}\left( B_{K} \cdot K_{s}^{\rho} + B_{L} \cdot L_{S}^{\rho} + B_{E} \cdot E_{S}^{\rho} \right)^{1/\rho}$ (3-1)
 
-where
+where 
 
 > $X_{S}$ is the output of sector $S$,
->
+> 
 > $K_{S}$, $L_{S}$, and $E_{S}$ are the inputs of capital, labor and energy needed to produce one unit of output in sector $S$,
->
+> 
 > $\rho$ is the elasticity of substitution parameter,
->
+> 
 > $A_{0}$ and the $B$ 's are scaling coefficients.
 
 The choice of *ρ* determines the ease or difficulty with which one production factor may be substituted for another: the smaller $\rho$ is (but still greater than or equal to 1), the easier it is to substitute the factors to produce the same amount of output from sector $S$. Also note that the degree of factor substitutability does not vary among the factors of production --- the ease with which capital can be substituted for labor is equal to the ease with which capital can be substituted for energy, while maintaining the same level of output. GE models may also use alternate forms of production function (3-1), but retain the basic idea of an explicit substitutability of production factors.
@@ -41,7 +41,6 @@ In the other direction, the more advanced bottom-up models are 'reaching up' to 
 MARKAL-MACRO (Manne and Wene, 1992) and TIMES-MACRO (Kypreos and Lehtila, 2013) are hybrid models combining the technological detail of MARKAL with a succinct representation of the macro-economy consisting of a single producing sector in a single region. Because of its succinct single-sector production function, MARKAL-MACRO is able to compute a general equilibrium in a single optimization step. More recently, TIMES_MACRO-MSA (section 12.2) is based on the computation of a multi-regional global equilibrium, but requires an iterative process to do so. MESSAGE (Messner and Strubegger, 1995) links a bottom-up model based on the EFOM paradigm with a macro module, and computes a global, multi-regional equilibrium iteratively. The NEMS (US EIA, 2000) model is another example of a full linkage between several technology rich modules of the various energy subsectors and a set of macro-economic equations, and requires iterative resolution methods.
 
 In spite of these advances in both classes of models, there remain important differences. Specifically:
-
 - Top-down models encompass macroeconomic variables beyond the energy sector proper, such as wages, consumption, and interest rates, and
 - Bottom-up models have a rich representation of the variety of technologies (existing and/or future) available to meet energy needs, and, they often have the capability to track a much wider variety of traded commodities. They are also more adapted to the representation of micro policies targeting specific technologies or commodities.
 
@@ -56,7 +55,6 @@ In the rest of this chapter, we present the properties of the **core TIMES** par
 Since certain portions of this and the next sections require an understanding of the concepts and terminology of Linear Programming, the reader requiring a brush-up on this topic may first read Appendix B, and then, if needed, some standard textbook on LP, such as Hillier and Lieberman (2009), Chvàtal (1983), or Schrijver (1986). The application of Linear Programming to microeconomic theory is covered in two historically important references, Gale (1960 and 11th edition 1989), and in Dorfman, Samuelson, and Solow (1958, and 1987 reprint).
 
 A brief description of the core TIMES model generator would express that it is:
-
 - *Technologically explicit, integrated*;
 - *Multi-regional*; and
 - *Partial equilibrium* (with *price elastic* demands for energy services) in *competitive markets* with *perfect foresight*. It will be seen that such an equilibrium entails *marginal value pricing* of all commodities.
@@ -74,13 +72,11 @@ Some existing TIMES models comprise several dozen regional modules, or more. The
 ### Partial equilibrium
 
 The core version of TIMES computes a partial equilibrium on energy markets. This means that the model computes both the *flows* of energy forms and materials as well as their *prices*, in such a way that, at the prices computed by the model, the suppliers of energy produce exactly the amounts that the consumers are willing to buy. This equilibrium feature is present at every stage of the energy system: primary energy forms, secondary energy forms, and energy services[^15]. A supply-demand equilibrium model has as its economic rationale the maximization of the total surplus, defined as the sum of all suppliers' and consumers' surpluses. The mathematical method used to maximize the surplus must be adapted to the particular mathematical properties of the model. In TIMES, these properties are as follows:
-
 - Outputs of a technology are linear functions of its inputs (subsection 3.2.3.1)[^16];
 - Total economic surplus is maximized over the entire horizon (3.2.3.2); and
 - Energy markets are competitive, with perfect foresight (3.2.3.3)[^17].
 
 As a result of these assumptions the following additional properties hold:
-
 - The market price of each commodity is equal to its marginal value in the overall system (3.2.4); and
 - Each economic agent maximizes its own profit or utility (3.2.5).
 
@@ -179,6 +175,7 @@ An interesting property may be derived from the assumptions of competitiveness. 
 > *<ins>Theorem:</ins> Let (p\*,q\*) be a pair of equilibrium vectors that maximize total surplus. If we now replace the original TIMES linear program by one where all commodity prices are <ins>fixed</ins> at value p\*, and we let each agent maximize its own surplus, the vector of optimal quantities produced or purchased by the agents also maximizes the total surplus*[^24]*.*
 
 This property is important inasmuch as it provides an alternative justification for the class of equilibria based on the maximization of total surplus. It is now possible to shift the model's rationale from a global, societal one (total surplus maximization), to a local, decentralized one (individual utility maximization). Of course, the equivalence suggested by the theorem is valid only insofar as the marginal value pricing mechanism is strictly enforced --- that is, neither an individual producer nor an individual consumer may affect market prices --- both are price takers. Clearly, some markets are not competitive in the sense the term has been used here. For example, the behavior of a few oil producers has a dramatic impact on world oil prices, which then depart from their marginal system value. Market power[^25] may also exist in cases where a few consumers dominate a market.
+
 
 [^11]: These models assume that the relationships (as defined by the form of the production functions as well as the calculated parameters) between sector level inputs and outputs are in equilibrium in the base year.
 

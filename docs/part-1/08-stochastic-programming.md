@@ -3,13 +3,11 @@
 ## Preamble to chapters 8 to 11
 
 Recall that the core TIMES paradigm described in chapters 3, 4, and 5 makes several basic assumptions:
-
 - Linearity of the equations and objective function
 - Perfect foresight of all agents over the entire horizon
 - Competitive markets (i.e. no market power by any agent)
 
 If any or all of these assumptions are violated, the properties of the resulting equilibrium are no longer entirely valid. In the following four chapters, we present four variants of the TIMES paradigm that depart from the core model. Each of these variants (extensions) departs from one or more assumptions above, as follows:
-
 - Stochastic Programming TIMES extension: departs from the perfect foresight assumption and instead assumes that certain key model parameters are random. This extension requires the use of stochastic programming rather than the usual deterministic linear programming algorithm;
 - Limited horizon TIMES extension: departs from the perfect foresight assumption and replaces it by an assumption of limited (in time) foresight. This extension requires the use of sequential linear programming rather than a single global linear optimization;
 - Lumpy investments extension: departs from the linearity assumption and replaces it by the assumption that certain investments may only be made in discrete units rather than in infinitely divisible quantities. This extension requires the use of mixed integer programming (MIP) instead of Linear programming;
@@ -109,7 +107,6 @@ In addition, in TIMES there is also an experimental variant for the modeling of 
 The preceding description of stochastic programming assumes that the policy maker accepts the expected cost as his optimizing criterion. This is equivalent to saying that he is risk neutral. In many situations, the assumption of risk neutrality is only an approximation of the true utility function of a decision maker.
 
 Two alternative candidates for the objective function are:
-
 - Expected utility criterion with linearized risk aversion
 - Minimax Regret criterion (Raiffa,1968, applied in Loulou and Kanudia, 1999)
 
@@ -155,9 +152,9 @@ The current version of the TIMES implementation for stochastic programming is so
 
 ## Economic interpretation
 
-The introduction of uncertainty alters the economic interpretation of the TIMES solution. Over the last two decades, economic modeling paradigms have evolved to a class of equilibria called Dynamic Stochastic General Equilibria (DSGE, see references Chen and Crucuni, 2012; de Walque et al., 2005; Smets et al., 2007). In the case of Stochastic TIMES, we are in the presence of a Dynamic Stochastic Partial Equilibria (DSPE), with a much less developed literature. The complete characterization of a DSPE is beyond the scope of this documentation, but it is useful to note some of its properties, which derive from the theory of Linear Programming, as follows:
-
+The introduction of uncertainty alters the economic interpretation of the TIMES solution. Over the last two decades, economic modeling paradigms have evolved to a class of equilibria called Dynamic Stochastic General Equilibria (DSGE, see references Chen and Crucuni, 2012; de Walque et al., 2005; Smets et al., 2007). In the case of Stochastic TIMES, we are in the presence of a Dynamic Stochastic Partial Equilibria (DSPE), with a much less developed literature. The complete characterization of a DSPE is beyond the scope of this documentation, but it is useful to note some of its properties, which derive from the theory of Linear Programming, as follows: 
 - During the first stage (i.e. before resolution of any uncertainties), the meaning of the primal solution is identical to that of a deterministic TIMES run, i.e. of a set of optimal decisions, whereas the meaning of the shadow prices is that of *expected prices*(resp. expected marginal utility changes) of the various commodities. This is so because the shadow price is the marginal change in objective function when a commodity\'s balance is marginally altered, and the objective function is an expected cost (resp. an expected utility function).
 - During subsequent stages, the primal values of any given branch of the event tree represent the optimal decisions *conditional on the corresponding outcome being true*, and the shadow prices are the *expected*[^35] *prices* of the commodities also conditional on the corresponding outcome being true.
+
 
 [^35]: The expected prices become deterministic prices if the stage is the last one, so that there is no uncertainty remaining at or after the current period.

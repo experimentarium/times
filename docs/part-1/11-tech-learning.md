@@ -19,7 +19,6 @@ A typical relationship between unit investment cost and cumulative investments i
 $$INVCOST_{t} = a \times C_{t}^{- b}$$ (11-1)
 
 where
-
 - $INVCOST$ [^37] is the unit cost of creating one unit of the technology, which is no longer a constant, but evolves as more units of the technology are produced;
 - $a$ is the value of $INVCOST$ for the first unit of the technology (when $C_{t}$ is equal to 1) and;
 - $b$ is the learning index, representing the speed of learning[^38].
@@ -195,6 +194,7 @@ ETL modelers are well aware of this phenomenon, and they use additional constrai
 In view of the preceding discussion, a fundamental question arises: is it worthwhile for the modeler to go to the trouble of modeling *endogenous* learning (with all the attendant computational burdens) when the results are to a large extent conditioned by *exogenous* upper bounds? We do not have a clear and unambiguous answer to this question; that is left for each modeler to evaluate.
 
 However, given the above caveat, a possible alternative to ETL would consist in using exogenous learning trajectories. To do so, the same sequence of 'realistic' upper bounds on capacity would be selected by the modeler, and the values of the unit investment costs ($INVCOST$) would be externally computed by plugging these upper bounds into the learning formula {eq}`11-1`. This approach makes use of the same exogenous upper bounds as the ETL approach, but avoids the MIP computational burden of ETL. Of course, the running of exogenous learning scenarios is not entirely foolproof, since there is no absolute guarantee that the capacity of a learning technology will turn out to be exactly equal to its exogenous upper bound. If that were not the case, a modified scenario would have to be run, with upper bounds adjusted downward. This trial-and-error approach may seem inelegant, but it should be remembered that it (or some other heuristic approach) might prove to be necessary in those cases where the number of learning technologies and the model size are both large (thus making the rigorous ETL formulation computationally intractable).
+
 
 [^37]: The notation in this chapter is sometimes different from the standard notation for parameters and variables, in order to conform to the more detailed technical note on the subject.
 
