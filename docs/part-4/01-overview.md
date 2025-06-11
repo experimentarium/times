@@ -5,6 +5,7 @@ This Part of the TIMES documentation provides an introduction to VEDA2.0 (Versio
 ## Downloading and Registering VEDA2.0
 
 To download and install VEDA2.0 it is recommend that the new user first takes a look at the YouTube video on this topic noted in Section 2. Once downloaded, unzipped and starting VEDA2.0 the user is presented with an Activation screen where one proceeds by:
+
 - Hitting **Get Trail Key**
 - Completing the **Registration Form**
 - Grabbing **the Trail Key** from your email,
@@ -21,6 +22,7 @@ This will then bring you to the VEDA2.0 Start Page discussed in Section 2.
 ## Obtaining and Setting Up GAMS for TIMES
 
 As part of registering VEDA2.0 a request is sent to the ETSAP Liaison Officer who will arrange for an evaluation GAMS license file to be created, sending it to the new user along with the download and install procedures here:
+
 1. Copy the GAMSLICE someplace on your computer.
 2. Head to <http://www.gams.com/download/> and select the Windows download option for either Win-64/32, as appropriate
 3. Run Setup by clicking on it in Windows Explore
@@ -50,4 +52,3 @@ Figure 1. StartPage Model Selection & News
 Note that once a model has been selected the StartPage will have the Module buttons displayed at the top of the form, see Figure 3.
 
 ![](assets/image5.png)
-

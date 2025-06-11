@@ -171,4 +171,3 @@
 \* p = *process*, c= *commodity*, r = *region*, t = *period*, s = *timeslice*, and v = *vintage*
 
 In addition, the r,t,s,v dimensions are involved for attributes involving processes, and the r,t,s dimensions for attributes involving commodities only.
-
