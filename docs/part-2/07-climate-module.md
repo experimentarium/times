@@ -1,4 +1,4 @@
-# The TIMES Climate Module
+# Appendix A: The TIMES Climate Module
 
 ## Introduction
 
