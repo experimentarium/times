@@ -10,3 +10,11 @@ glob:
 ---
 ??-[!r]*
 ```
+
+```{toctree}
+---
+titlesonly:
+glob:
+---
+??-r*
+```
