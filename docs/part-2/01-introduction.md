@@ -1,3 +1,10 @@
+---
+myst:
+    numbering:
+        title: true
+        headings: true
+---
+
 # Introduction
 
 ## Basic notation and conventions
