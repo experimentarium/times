@@ -17,7 +17,6 @@ This documentation is composed of four Parts.
 **[Part IV]** provides a step-by-step introduction to building a TIMES model in the VEDA2.0 user interface for model management and results analysis. It first offers an orientation to the basic features of VEDA2.0, including software layout, data files and tables, and model management features, both for handling the input and examining the results. It then describes in detail twelve Demo models (available for download from the ETSAP website) that progressively introduce VEDA-TIMES principles and modeling techniques.
 
 .. toctree::
-   :numbered:
    :maxdepth: 2
    :titlesonly:
    

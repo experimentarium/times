@@ -17,6 +17,7 @@ The Reference Manual is organized as follows:
 	
 ```{toctree}
 ---
+numbered:
 titlesonly:
 glob:
 ---
