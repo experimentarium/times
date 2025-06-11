@@ -5,6 +5,7 @@ This chapter describes each variable name, definition, and role in the TIMES Lin
 {numref}`times-variables-by-category` is a list of TIMES variables by category, with brief description of each variable.
 
 **Remarks on {numref}`times-variables-by-category`:**
+
 - Many variables that are related to a process have two period indexes: **t** represents the current period, and **v** represents the vintage of a process, i.e. the period when the investment in that process was decided. For the VAR_NCAP variable, **t** is by definition equal to **v**. For other variables, **t** ≥ **v**, if the process is vintaged (**prc_vint**), i.e., the characteristics of the process depend on the vintage year. If the process is non-vintaged, the characteristics of the capacity of a process are not differentiated by its vintage structure, so that the vintage index is actually not needed for the variables of a non-vintaged process. In these cases, the vintage index **v** is by convention set equal to the period index **t**.
 - In {numref}`times-variables-by-category`, the variables are listed according to five categories, depending on what TIMES entity they represent. In the rest of the chapter, the variables are listed and fully described in alphabetical order.
 - {numref}`times-variables-by-category` does not list the variables used in the Climate Module, Damage Cost and ETL extensions of TIMES, which are fully documented in Appendices A, B, and C, respectively.
@@ -219,11 +220,12 @@ This chapter describes each variable name, definition, and role in the TIMES Lin
 >
 > **User constraints:** Cannot be referred to in user constraints.
 
-## $VAR\_CAP(r,t,p)$ 
+## $VAR\_CAP(r,t,p)$
 
 > **Definition:** the installed capacity in place in any given year **t**, of all vintages of a process determined by the equation EQ(*l*)\_CPT. The variable is equal to the sum of all previously made investments in new capacity, plus any remaining residual capacity installed before the modeling horizon, that has not yet reached the end of its technical lifetime, and minus any capacity that has been retired early.
 >
 > **Role:** Its main purpose is to allow the total capacity of a process to be bounded. The variable is only created when
+
 - capacity bounds (CAP_BND) for the total capacity installed are specified. In case only one lower or one upper capacity bound is specified, the variable is not generated, but the bound is directly used in the EQ(l)\_CPT constraint.
 - the capacity variable is needed in a user constraint, or
 - the process is a learning technology (**teg**) in case that endogenous technological learning is used.
@@ -315,7 +317,7 @@ This chapter describes each variable name, definition, and role in the TIMES Lin
 >
 > **User constraints:** Not available
 
-## $VAR\_FLO(r,v,t,p,c,s)$ 
+## $VAR\_FLO(r,v,t,p,c,s)$
 
 > **Definition**: these variables stand for the individual commodity flows in and out of a process. If the process is not vintaged, the vintage index **v** is by convention set equal to the period index **t**.
 >
@@ -476,7 +478,7 @@ Example of a repeated investment in same period.
 >
 > **User constraints:** Not directly available
 
-## Variables used in User Constraints 
+## Variables used in User Constraints
 
 The remaining TIMES variables are all attached to user constraints. User constraints are quite flexible, and may involve any of the usual TIMES variables. Two variants of formulating user constraints exist. In the first case a LHS expression, containing expressions involving the different TIMES variables, are bounded by a RHS constant (given by the input parameter UC_RHS(R)(T)(S)). In the second case, the constant on the RHS is replaced by a variable. The bound UC_RHS(R)(T)(S) is then applied to this variable. In the latter case, the user constraints are always generated as strict equalities, while in the first case the equation sign of the user constraint is determined by the bound type.
 
@@ -512,6 +514,3 @@ Variable representing the LHS expression of the user constraint EQE_UCTS(uc_n,t,
 ### $VAR\_UCRTS(uc\_n,r,t,s)$
 
 Variable representing the LHS expression of the user constraint EQE_UCRTS(r,uc_n,t,s) and the combined LHS--RHS expression of the user constraint EQE_UCRSUS(r,uc_n,t,s), being generated for the regions speci­fied in **uc_r_each**, the periods in **uc_t_each/uc_t_succ** and the timeslices in **uc_ts_each**.
-
-
-[^38]: In case the dollar control parameter VAR_UC is set to YES, the user constraints are always strict equalities (***l***=E) with the RHS constants replaced by the user constraint variables given in the table. The RHS bound parameter (UC_RHS(R)(T)(S)) are then applied to these user constraint related variables. See Section 5.20.

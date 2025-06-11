@@ -43,6 +43,7 @@ These two features combine to make a change in the definition of periods quite e
 ## The components of a Reference Energy System (RES): processes, commodities, flows
 
 The TIMES energy economy consists of three types of entities:
+
 - *Technologies* (also called *processes*) are representations of physical plants, vehicles, or other devices that transform some commodities into other commodities. They may be primary sources of commodities (e.g. mining processes, import processes), or transformation activities such as conversion plants that produce electricity, energy-processing plants such as refineries, or end-use demand devices such as cars and heating systems, that transform energy into a demand service;
 - *Commodities* consisting of energy carriers, energy services, materials, monetary flows, and emissions. A commodity is produced by one or more processes and/or consumed by other processes; and
 - *Commodity flows* are the links between processes and commodities. A flow is of the same nature as a commodity but is attached to a particular process, and represents one input or one output of that process. For instance, electricity produced by wind turbine type A at period *p*, time-slice *s*, in region *r*, is a commodity flow.
@@ -125,6 +126,7 @@ TIMES process-oriented parameters fall into several general categories.
 *Technical parameters* include process efficiency, availability factor(s)[^8], commodity consumptions per unit of activity, shares of fuels per unit activity, technical life of the process, construction lead time, dismantling lead-time and duration, amounts of the commodities consumed (respectively released) by the construction (respectively dismantling) of one unit of the process, and contribution to the peak equations. The efficiency, availability factors, and commodity inputs and outputs of a process may be defined in several flexible ways depending on the desired process flexibility, on the time-slice resolution chosen for the process and on the time-slice resolution of the commodities involved. Certain parameters are only relevant to special processes, such as storage processes or processes that implement trade between regions.
 
 (economic-and-policy-parameters)=
+
 #### Economic and policy parameters
 
 A second class of process parameters comprises *economic and policy parameters* that include a variety of costs attached to the investment, dismantling, maintenance, and operation of a process. The investment cost of the technology is incurred once at the time of acquisition; the fixed annual cost is incurred each year per unit of the capacity of the technology, as long as the technology is kept alive (even if it is not actively functioning); the annual variable cost is incurred per unit of the activity of the technology. In addition to costs, taxes and subsidies (on investment and/or on activity) may be defined in a very flexible manner. Other economic parameters are: the economic life of a process (the time during which the investment cost of a process is amortized, which may differ from the operational lifetime) and the process specific discount rate, also called *hurdle rate*. Both these parameters serve to calculate the annualized payments on the process investment cost, which enters the expression for the total cost of the run (section 5.2).
@@ -151,11 +153,11 @@ Finally, another advanced TIMES feature renders some parameters dependent *also 
 
 This subsection concerns parameters attached to each commodity, irrespective of how the commodity is produced or consumed. The next subsection concerns commodity flows. Commodity-oriented parameters fall into the same categories as those attached to processes.
 
-#### Technical parameters 
+#### Technical parameters
 
 *Technical parameters* associated with commodities include overall efficiency (for instance the overall electric grid efficiency), and the time-slices over which that commodity is to be tracked. For demand commodities, in addition, the annual projected demand and load curves (if the commodity has a sub-annual time-slice resolution) can be specified.
 
-#### Economic and policy parameters 
+#### Economic and policy parameters
 
 *Economic parameters* include additional costs, taxes, and subsidies on the overall or net production of a commodity. These cost elements are then added to all other (implicit) costs of that commodity. In the case of a demand service, additional parameters define the demand curve (i.e. the relationship between the quantity of demand and its price). These parameters are: the demand's own-price elasticity, the total allowed range of variation of the demand value, and the number of steps to use for the discrete approximation of the curve.
 
@@ -202,7 +204,6 @@ Besides the definition of *pcg*\'s and that of VEDA reporting sets, there is a t
 Similarly, energy services may be labeled so that they are more easily recognized. For instance, the first letter may indicate the broad sector (e.g. 'T' for transport) and the second letter designate any homogenous sub-sectors (e.g. 'R' for road transport), the third character being free.
 
 In the same fashion, fuels, materials, and emissions may be identified so as to immediately designate the sector and sub-sector where they are produced or consumed. To achieve this, some fuels have to change names when they change sectors. This is accomplished via processes whose primary role is to change the name of a fuel. In addition, such a process may serve as a bearer of sector wide parameters such as distribution cost, price markup, tax, that are specific to that sector and fuel. For instance, a tax may be levied on industrial distillate use but not on agricultural distillate use, even though the two commodities are physically identical.
-
 
 [^4]: However, there are TIMES variants -- discussed in chapters 8 to 12, that depart significantly from these assumptions
 

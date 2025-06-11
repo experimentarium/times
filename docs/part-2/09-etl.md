@@ -225,7 +225,7 @@ Finally, this binary variable appears in two constraints EQ_EXPE1 and EQ_EXPE2, 
 
 **Bounds:** This binary variable is not directly bounded.
 
-###  VAR_IC(r,t,p)
+### VAR_IC(r,t,p)
 
 **Description:** The portion of the cumulative cost of investment in capacity for an ETL technology (VAR_CCOST) that is incurred in period t.
 
@@ -338,7 +338,7 @@ $$VAR\_CCAP_{r,t,p}$$
 
 $$\{ = \}$$
 
-Sum over all intervals $k$ (in the piecewise linear approximation of the cumulative cost curve) of the _continuous_ variables VAR_LAMBD in the current period $t$.
+Sum over all intervals $k$ (in the piecewise linear approximation of the cumulative cost curve) of the *continuous* variables VAR_LAMBD in the current period $t$.
 
 $$\sum_k {VAR\_LAMBD_{r,t,p,k}}$$
 
@@ -378,7 +378,7 @@ $$missing \ expression$$
 
 **Description:** The Cumulative Cost Interpolation constraint for an ETL technology.
 
-**Purpose and Occurrence:** This constraint defines the interpolated cumulative cost of investment in 
+**Purpose and Occurrence:** This constraint defines the interpolated cumulative cost of investment in
  capacity for a technology in a period (VAR_CCOST) in terms of the binary variables VAR_DELTA and the continuous variables VAR_LAMBD, and the internal model parameters ALPH and BETA, where ALPH and BETA represent the intercepts on the vertical axis and the slopes, respectively, of the line segments in the piecewise linear approximation of the cumulative cost curve. For a more precise definition, see "Equation" below. In combination with other ETL constraints, it is fundamental to ensuring the validity of the piecewise linear approximation of the cumulative cost curve. This equation is generated in each time for which the ETL technology is available.
 
 **Units:** Money units, e.g., million 2000 US\$, or any other unit in which costs are tracked.
@@ -458,7 +458,7 @@ $$\sum_{u \in rtp_{r,u,p} \land u \leq t} {VAR\_NCAP_{r,u,p}}$$
 
 $$EQ\_DEL_{r,t,p}\forall[(p \in teg) \land ((r,t,p) \in rtp)]$$
 
-Sum over all intervals $k$ (in the piecewise linear approximation of the cumulative cost curve) of the _binary_ variables VAR_DELTA in the current period $t$.
+Sum over all intervals $k$ (in the piecewise linear approximation of the cumulative cost curve) of the *binary* variables VAR_DELTA in the current period $t$.
 
 $$\{ = \} \space 1$$
 
@@ -710,7 +710,7 @@ The calculated salvage value associated with the ETL technologies. The internall
 
 $$+ \sum_{t,p \in teg} [OBJSIC_{r,t,p} \times VAR\_IC_{r,t,p}]$$
 
-### EQ_OBJINV(r,cur) 
+### EQ_OBJINV(r,cur)
 
 *- see EQ_OBJINV in section 5.2.2 for a general description without ETL*
 
@@ -729,6 +729,3 @@ $$...$$
 The calculated investments costs associated with the ETL technologies.
 
 $$+ \sum_{t, p \in teg} [DISC_{r,t,p} \times VAR\_IC_{r,t,p}]$$
-
-
-[^42]: Parameters that occur in the ETL-specific equations but that also occur in non-ETL equations (e.g., TCH_LIFE) are not listed in this table.

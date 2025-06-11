@@ -5,6 +5,7 @@ This Part of the TIMES documentation provides an introduction to VEDA2.0 (Versio
 ## Downloading and Registering VEDA2.0
 
 To download and install VEDA2.0 it is recommend that the new user first takes a look at the YouTube video on this topic noted in Section 2. Once downloaded, unzipped and starting VEDA2.0 the user is presented with an Activation screen where one proceeds by:
+
 - Hitting **Get Trail Key**
 - Completing the **Registration Form**
 - Grabbing **the Trail Key** from your email,
@@ -21,6 +22,7 @@ This will then bring you to the VEDA2.0 Start Page discussed in Section 2.
 ## Obtaining and Setting Up GAMS for TIMES
 
 As part of registering VEDA2.0 a request is sent to the ETSAP Liaison Officer who will arrange for an evaluation GAMS license file to be created, sending it to the new user along with the download and install procedures here:
+
 1. Copy the GAMSLICE someplace on your computer.
 2. Head to <http://www.gams.com/download/> and select the Windows download option for either Win-64/32, as appropriate
 3. Run Setup by clicking on it in Windows Explore
@@ -51,11 +53,12 @@ Note that once a model has been selected the StartPage will have the Module butt
 
 ![](assets/image5.png)
 
-# Introduction to VEDA2.0 
+# Introduction to VEDA2.0
 
 This section provides a brief introduction to the VEDA Excel template workbooks for specifying and building a model, and using VEDA2.0 to access and manage the templates, browsing the data, viewing the underlying Reference Energy System (RES) network depicting the energy system, and running a TIMES model.
 
 To assist with getting setup with and oriented to VEDA2.0 you may want to start by engaging with the short YouTube tutorials:
+
 1. [Installation & Quick Tour](https://www.youtube.com/watch?v=OnYIDiftNgM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=1)
 2. [VEDA2.0 Menu](https://www.youtube.com/watch?v=OnYIDiftNgM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=2)
 3. [Navigator](https://www.youtube.com/watch?v=OnYIDiftNgM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=3)
@@ -66,11 +69,12 @@ To assist with getting setup with and oriented to VEDA2.0 you may want to start 
 8. [ETSAP VEDA2.0 Tutorial Webinar (1.5hrs)](https://www.youtube.com/watch?v=OmDjlePsbsM&list=PLED97cPMXPOm60xOKSwvmXaGIsQrjoM8Y&index=10)
 
 The main modules available in VEDA2.0, available from the StartPage, Modules menu, or \[Function Keys\] are:
+
 - **Navigator \[F6\]:** to oversee the management of the Excel workbooks;
 - **Browse \[F7\]:** to view all model data (based on filter and search facilities) in a dynamic data cube;
 - **Items List** indicating all the process/commodities appearing in the model, as well as user constraints;
 - **Items Details \[F8\]:** to view and cascade thru the RES (indicating any UCs the component is involved in), with process/commodity declaration information and cube data views;
-- **Run Manager \[F9\]:** for composing and submitting model runs, and 
+- **Run Manager \[F9\]:** for composing and submitting model runs, and
 - **Results \[F10\]:** for model results analysis.
 
 These are described in Section 2.5, after a description of the VEDA2.0 template folder structure, file types, tables used to create model input and results module VEDA2.0 for analysis of model runs.
@@ -82,6 +86,7 @@ All VEDA-TIMES model input data is organized in Excel workbooks (or files). VEDA
 ![](assets/image6.png)
 
 Figure 2. Sub-folders Structure for each VEDA2.0 Model (showing the DemoS_012 files)
+
 - The **B-Y Templates**, the **SysSettings** files, the **BY_Trans** file and **Sets**.
 - A sub-folder (**SubRES_TMPL**) to store all SubRES files and associated transformation files.
 - A sub-folder (**SuppXLS**) to store all scenario files, as well sub-folders for trade files (**Trades**) and demand files (**Demands**) (Figure 2, right side).
@@ -90,6 +95,7 @@ Figure 2. Sub-folders Structure for each VEDA2.0 Model (showing the DemoS_012 fi
 ## VEDA2.0 StartPage
 
 VEDA2.0 opens displaying the StartPage (), which enables the launch of any of the individual components of VEDA by double-clicking on the associate box. The components may also be launch from the Modules pulldown menu, as well as via function keys as noted above. The main components most often used are readily accessible via the StartPage:
+
 - **Navigator:** oversee the management of the Excel workbooks;
 - **Browse:** access model data via dynamic cube tables;
 - **Items List:** list of all process, commodity, commodity groups and user constraint in a model;
@@ -123,12 +129,12 @@ The specific folder associated with the active model can be opened by clicking o
 
 The VEDA-Navigator is the main vehicle for accessing, importing, and coordinating the various files that make up a model. Any template may be opened from the Navigator by double-clicking on its name, or in the case of SysSettings/BaseTrans using the ![](assets/image13.png) icon alongside the file name. The Navigator form is divided into sub-windows/panes/quadrants according to the various types of files managed by VEDA2.0:
 
-- **Base Scenario \[BS\]**: templates used to set up the base-year (B-Y) structure of the model (existing commodities and current processes stock, and the base-year end-use demand levels), according to the energy flows reflect the overall energy balance. Thus the start year of the model can be calibrated to the energy balance according the B-Y Templates. The B-Y templates are named as VT\_\<workbook name\>\_\<sector\>\_\<Version\> (e.g. VT_REG_PRI_V1, as seen in ). The number of B-Y templates and their names depend on both the model structure (e.g., the number of regions and sectors) and the organisation of the input data (e.g., how many regions and sectors in each file). The B-Y templates are introduced in DemoS_001 (Section ) and are modified throughout the evolution of the 12 DemoS steps. 
-    - **BY_Trans**: are transformation files used to update the information included in the B-Y templates (update existing values for existing attributes) and/or to insert new information (insert new attributes for existing processes) in the B-Y templates. They work like a scenario file (described below), but the rule-based filters and the update/insert changes apply only to those processes and commodities already existing in the B-Y templates. The BY_Trans file is introduced in DemoS_009 (Section 3.9.1.2). 
-- **SysSettings**: is used to declare the very basic structure of the model including regions, time slices, start year, etc. It also contains some settings for the synchronization process and can include some additional information. There is only one such file; it has a fixed name that stands for System Settings. The SysSettings file is described in Section . 
-- **SubRES \[SR\]**: SubRES files are used to introduce new commodities and processes in the RES that are not part of the B-Y templates. However, while the B-Y templates are region-specific, the SubRES are region independent. For each SubRES file there is a corresponding transformation (Trans) file allowing the introduction of region-specific process attributes, including the availability (or not) of processes in each region. To make changes to the SubRES_Trans-\_\<sector\> files use the Navigator to open the associated model subfolder and access the file via Window Explorer. The naming conventions are: SubRES\_\<name\> and SubRES\_\<name\>\_Trans. SubRES files are introduced in DemoS_006 (Section 3.6.3). 
-- **Regular Scenario \[RS}**: Scenario files are used to update existing information and/or to insert new information in any part of the RES, including B-Y templates, SubRES files, and Trade files (see below). They are also used to include any additional user constraints in the model. The naming convention is: Scen\_\<scenario name\>. These files can only manipulate (insert or update) information associated with previously declared RES components. New commodities and processes may not be added via Scenario files, only new attributes. Scenario files are introduced in DemoS_004 (Section ). Several different applications of scenario files are illustrated through the remainder of the DemoS. 
-- **Demand Scenario \[DS\]**: Demand Templates Include all the information necessary to project end-use demands for energy services in each region, such as macroeconomic drivers and sensitivity series. Multiple demand files may be used, to model different demand growth scenarios for instance. The naming convention is: ScenDem\_\<scenario name\>. This section of the Navigator also contains a single file permitting assignment of a demand driver as well as a sensitivity (or elasticity) series each end-use demand to its driver in each region: Dem_Alloc+Series. Demand files and tables are described in DemoS_010 (Section 3.10.1). 
+- **Base Scenario \[BS\]**: templates used to set up the base-year (B-Y) structure of the model (existing commodities and current processes stock, and the base-year end-use demand levels), according to the energy flows reflect the overall energy balance. Thus the start year of the model can be calibrated to the energy balance according the B-Y Templates. The B-Y templates are named as VT\_\<workbook name\>\_\<sector\>\_\<Version\> (e.g. VT_REG_PRI_V1, as seen in ). The number of B-Y templates and their names depend on both the model structure (e.g., the number of regions and sectors) and the organisation of the input data (e.g., how many regions and sectors in each file). The B-Y templates are introduced in DemoS_001 (Section ) and are modified throughout the evolution of the 12 DemoS steps.
+  - **BY_Trans**: are transformation files used to update the information included in the B-Y templates (update existing values for existing attributes) and/or to insert new information (insert new attributes for existing processes) in the B-Y templates. They work like a scenario file (described below), but the rule-based filters and the update/insert changes apply only to those processes and commodities already existing in the B-Y templates. The BY_Trans file is introduced in DemoS_009 (Section 3.9.1.2).
+- **SysSettings**: is used to declare the very basic structure of the model including regions, time slices, start year, etc. It also contains some settings for the synchronization process and can include some additional information. There is only one such file; it has a fixed name that stands for System Settings. The SysSettings file is described in Section .
+- **SubRES \[SR\]**: SubRES files are used to introduce new commodities and processes in the RES that are not part of the B-Y templates. However, while the B-Y templates are region-specific, the SubRES are region independent. For each SubRES file there is a corresponding transformation (Trans) file allowing the introduction of region-specific process attributes, including the availability (or not) of processes in each region. To make changes to the SubRES_Trans-\_\<sector\> files use the Navigator to open the associated model subfolder and access the file via Window Explorer. The naming conventions are: SubRES\_\<name\> and SubRES\_\<name\>\_Trans. SubRES files are introduced in DemoS_006 (Section 3.6.3).
+- **Regular Scenario \[RS\]**: Scenario files are used to update existing information and/or to insert new information in any part of the RES, including B-Y templates, SubRES files, and Trade files (see below). They are also used to include any additional user constraints in the model. The naming convention is: Scen\_\<scenario name\>. These files can only manipulate (insert or update) information associated with previously declared RES components. New commodities and processes may not be added via Scenario files, only new attributes. Scenario files are introduced in DemoS_004 (Section ). Several different applications of scenario files are illustrated through the remainder of the DemoS.
+- **Demand Scenario \[DS\]**: Demand Templates Include all the information necessary to project end-use demands for energy services in each region, such as macroeconomic drivers and sensitivity series. Multiple demand files may be used, to model different demand growth scenarios for instance. The naming convention is: ScenDem\_\<scenario name\>. This section of the Navigator also contains a single file permitting assignment of a demand driver as well as a sensitivity (or elasticity) series each end-use demand to its driver in each region: Dem_Alloc+Series. Demand files and tables are described in DemoS_010 (Section 3.10.1).
 - **Trade Scenario \[TS\]**. This section of the Navigator contains a file in which all unilateral and/or bilateral trade links between regions are declared: ScenTrade\_\_Trade_Links, and associate data provided when appropriate. The latter contains all of the attribute specifications for the trade processes. Multiple trade files may be used, to model different trade scenarios or for different commodities. The naming convention is: ScenTrade\_\<scenario name\>. Trade files are introduced in DemoS_005 (Section 3.5.3).
 
 For more advanced modelling there are also control panels for the Parametrisation facilities of VEDA2.0, and well as for more complex model input setups a couple of ways to look at inter-decencies between templates -- though these are beyond the scope of the basic DemoS models.
@@ -211,7 +217,7 @@ The valid column headers for a commodity table \~FI_COMM are described in {numre
 
 > \* Note: Comma separated elements are allowed.
 
-### Process definition tables \~FI_PROCESS 
+### Process definition tables \~FI_PROCESS
 
 Process definition tables (\~FI_Process) are used to declare the non-numerical characteristics of processes. The columns headers are described in the table below and their order can be changed. Each process needs to be declared (only) once in such a table as shown in Figure 8. They are supported in B-Y Templates and SubRES files.
 
@@ -307,14 +313,14 @@ The \~FI_T table has six distinct regions. Valid entries in each of these are li
 
 - **Row Identifiers**: elements of the dimension indicated in the row ID column headers.
 - **Data Area Column Headers**: Elements of the following dimensions (elements of multiple dimensions can be separated by \~):
-    - Attribute
-    - Year
-    - TimeSlice
-    - LimType
-    - Commodity
-    - CommGrp (only the internal VEDA commodity groups: DEMO/DEMI/NRGO/ NRGI/MATO/MATI/ENVO/ENVI/FINO/FINI can be used as column headers)
-    - Region
-    - Currency
+  - Attribute
+  - Year
+  - TimeSlice
+  - LimType
+  - Commodity
+  - CommGrp (only the internal VEDA commodity groups: DEMO/DEMI/NRGO/ NRGI/MATO/MATI/ENVO/ENVI/FINO/FINI can be used as column headers)
+  - Region
+  - Currency
 - **Data**: numerical entries.
 - **Table level declarations**: Declarations like those made in column headers can be included in the table header (following a colon) and will apply to all data that doesn't have a different value for that index specified. For example, \~FI_T: DEMAND would assign DEMAND as the attribute for all values in the table that don't have an attribute specification at the column or row level.
 - **Comments**: a comment row is identified by the character \" **\*** \" or "\\I:" as the first character in any of the cells below the Row ID Col Headers or the first character in any of the column headers. (However, caution should be exercised in using \" **\*** \" to indicate a comment, because it may also be used to indicate a wildcard or an operation in some cells. "\\I:" is the safer choice to indicate a comment row/column.)
@@ -399,11 +405,11 @@ Transformation tables may be used only in scenario and transformation files. Val
 >
 ><sup>2</sup> Comma separated elements and wild cards characters are allowed. The possible wild cards are:
 >
->  "\*" is used as wild card; for example \*GAS\* would refer to all elements that have GAS in the name with any possible characters before and after GAS.
->  
->  "-" before the text used for exclusions; for example, \*GAS\*,-ELCGAS would refer to all elements that have GAS in the name except for ELCGAS.
->  
->  "?" can be used to specify a single character; for example, ???GAS means there are 3 characters before GAS.
+> "\*" is used as wild card; for example \*GAS\* would refer to all elements that have GAS in the name with any possible characters before and after GAS.
+> 
+> "-" before the text used for exclusions; for example, \*GAS\*,-ELCGAS would refer to all elements that have GAS in the name except for ELCGAS.
+> 
+> "?" can be used to specify a single character; for example, ???GAS means there are 3 characters before GAS.
 
 ### Advanced tables
 
@@ -416,10 +422,10 @@ The following tables are special and/or advanced tables that can be used in diff
 **\~COMAGG** to define an aggregated commodity such as TOTCO2 accumulating the emissions from each \<sector\>CO2 commodity.
 
 - Fill tables in scenario files **(\~TFM_FILL**) allow extraction of values from the rest of the model database for use in Update or Insert tables. An example is shown in Section .
-    - TFM_FILL table is also available in SubRES transformation file, though note that it can only be populated with numbers from the BASE scenario.
-    -   The fill operation will color the Region cells upon processing to indicate the number of records found, as follow:
-        - Blue color represents only one record found, and
-        - Purple color represents that more than one record was found for the specified parameter and its dimensions while filling the region value in the relevant row.
+  - TFM_FILL table is also available in SubRES transformation file, though note that it can only be populated with numbers from the BASE scenario.
+  - The fill operation will color the Region cells upon processing to indicate the number of records found, as follow:
+    - Blue color represents only one record found, and
+    - Purple color represents that more than one record was found for the specified parameter and its dimensions while filling the region value in the relevant row.
 
 The user can specify whether multiple values are to be summed, averaged, or counted.
 
@@ -436,7 +442,7 @@ The user can specify whether multiple values are to be summed, averaged, or coun
 **\~DRVR_Table** to define demand driver indexes (base-year =1).
 
 - Special tables that exist only in the Trade module: **\~TradeLinks** to declare uni- or bilateral trade links between regions.
--   User constraints are identified with specific identifiers **\~UC_Sets.**
+- User constraints are identified with specific identifiers **\~UC_Sets.**
 
 ### User constraints and their tables
 
@@ -523,6 +529,7 @@ A UC table is then structured similarly to a Flexible Import table, with the **\
 > \* Wild cards allowed, comma separated list permitted
 
 Valid data column headers are:
+
 - Any of the UC attributes available in the current TIMES code;
 - Years (including 0 for interpolation setting);
 - Region;
@@ -539,7 +546,7 @@ Once the templates have been imported and assembled as a model database within V
 
 More information on VEDA2.0 and description of additional features are available at <http://support.kanors-emr.org/> \[note: at the time of writing the website described original VEDA-FE and VEDA-BE.\] Each of the remaining main sections of this document describes one incremental step of the VEDA-TIMES Demo Models.
 
-### Navigator 
+### Navigator
 
 The Navigator was introduced in Section 2.3. Here we expand to further explain the important role the Navigator plays below.
 
@@ -647,7 +654,6 @@ Once a case has been fully specified a model run can be submitted by selecting t
 
 ![](assets/image37.png){
 
-
 ![](assets/image38.png)
 
 Figure 20. Model Run
@@ -678,9 +684,7 @@ There are three main filtering mechanisms available to the user, shown in the in
 
 ![](assets/image40.png)
 
-
 ![](assets/image41.png)
-
 
 ![](assets/image42.png)
 
@@ -697,7 +701,6 @@ Another powerful facility in VEDA2.0 is the quick charting facility available in
 Figure 24, and the chart then tailored by means of the Settings form.
 
 ![](assets/image48.png)
-
 
 ![](assets/image49.png)
 
@@ -743,7 +746,6 @@ Figure 27. Sets-\<model\> Rules Workbook
 
 ![](assets/image54.png)
 
-
 ![](assets/image55.png)
 
 Figure 28. Set Brower
@@ -759,13 +761,13 @@ Figure 28. Set Brower
 - Information
 - VEDA Tags -- indicates where each tilde (\~) specification is found in all the templates of a model (see Figure 6)
 - Model
-    - SYNC Log -- displays All or most recent synchronize error/warning log;
-    - NSV Candidates -- the list of templates that VEDA2.0 observes that there is No Seed Value (that is direct dependency) between scenario files, enabling parallel process during SYNC operations, and
-    - UC Set Usage -- displays all templates in which a user-defined Set appears.
+  - SYNC Log -- displays All or most recent synchronize error/warning log;
+  - NSV Candidates -- the list of templates that VEDA2.0 observes that there is No Seed Value (that is direct dependency) between scenario files, enabling parallel process during SYNC operations, and
+  - UC Set Usage -- displays all templates in which a user-defined Set appears.
 - Tools
 - User Options
-    - Syncing options -- indication of how many cores to use during SYNC operations for various RES component processing, and
-    - Layout Setting -- check a module and click Delete to reset the layout of said pane to its default.
+  - Syncing options -- indication of how many cores to use during SYNC operations for various RES component processing, and
+  - Layout Setting -- check a module and click Delete to reset the layout of said pane to its default.
 - Sync App Folder - to copy user-defined stuff like result views and run manager groups and cases.
 - Update TIMES Code -- will check the web for the current version of the TIMES GAMS model generator source code. Note that to use this code for new model runs the Case definitions in the RunManager will need to be changed to the new Source TIMES folder for each one to use said code.
 - Delete Log / Flat File -- get rid of Log files;
@@ -923,9 +925,9 @@ Figure 34. Dummy Import Prices in SysSettings
 This sheet contains one table (Figure 35):
 
 - **\~TFM_INS global attributes**: is a transformation table used to insert new attributes and values in a rule-based manner. In this first step, it is used to declare three new TIMES attributes:
-    - **G_DYEAR** - discounting year; this is a user input and in this example is 2005;
-    - **DISCOUNT** - overall discount rate for the energy system, including for depreciation of investments; this is a user input and in this example is 5% and is constant for the entire modelling horizon, and
-    - **YRFR** - fraction of year for each time slice; this is a user input and in this example is 100% for the single ANNUAL time slice.
+  - **G_DYEAR** - discounting year; this is a user input and in this example is 2005;
+  - **DISCOUNT** - overall discount rate for the energy system, including for depreciation of investments; this is a user input and in this example is 5% and is constant for the entire modelling horizon, and
+  - **YRFR** - fraction of year for each time slice; this is a user input and in this example is 100% for the single ANNUAL time slice.
 
 ![](assets/image21.png)
 
@@ -934,6 +936,7 @@ Figure 35. Global Constants Declarations in SysSettings
 #### Defaults sheet
 
 This sheet contains two tables shown in Figure 36:
+
 - **\~Currencies**: to define a default currency for the whole model; this is a user input. In this example the default unit is million 2005 euros (MEuro05). \[It is important to note that for TIMES this is just a label called MEuro05, it is the user's responsibility to be consistent with costs and units in the model.\], and
 - **\~DefUnits**: to define units for activity, capacity and commodity for each sector in the model: petajoules (PJ) and petajoules per year (Pja) in this case. \[Again, it is the user's responsibility to ensure consistency in the units used in any TIMES model. It is possible to use any units, but it is important to be coherent across the model.\].
 - **\~UnitConversion**: enables unit conversion in the Results module. Use a common unit in **to_unit** to declare new conversions. For example, for a new energy unit, use PJ in **to_unit**.
@@ -945,6 +948,7 @@ Figure 36. Default Currency and Units Declarations in SysSettings
 ### SysSetting template
 
 This file is used to declare the very basic structure of any VEDA-TIMES model, including its regions, time slices, start year, etc. It also contains some settings for the synchronization process and can include some additional information. In this example, this file contains the following sheets:
+
 - Region-Time slices;
 - TimePeriods;
 - Interpol_Extrapol_Defaults;
@@ -962,6 +966,7 @@ Figure 37. Key SysSettings Options (DemoS_012)
 #### Region-Time slices
 
 This sheet contains two tables (see Figure 38):
+
 - \~BookRegions_Map is used to define:
 - The workbook name (here, REG), which needs to be the same for each B-Y Template of a region, and
 - The list of model region names (REG1).
@@ -975,8 +980,9 @@ Figure 38. Regions and Time-slices Definition in SysSettings
 #### TimePeriods sheet
 
 This sheet contains three tables (Figure 33):
-- \~StartYear is used to define the start year of the model (2005 for this example and all the other steps). 
-- \~ActivePDef is used to select the set of active periods (Pdef-1, by default) from all those defined in the following table. 
+
+- \~StartYear is used to define the start year of the model (2005 for this example and all the other steps).
+- \~ActivePDef is used to select the set of active periods (Pdef-1, by default) from all those defined in the following table.
 - \~TimePeriods is used to specify period definitions by specifying the number of years for each period. In this step, only a single period definition has been created (Pdef-1), which contains 1 year for the first period (start year) and 2 years for the second period.
 
 ![](assets/image65.png)
@@ -996,10 +1002,11 @@ Figure 40. Dummy Import Prices in SysSettings
 #### Constants sheet
 
 This sheet contains one table (Figure 41):
-- **\~TFM_INS global attributes**: is a transformation table used to insert new attributes and values in a rule-based manner. In this first step, it is used to declare three new TIMES attributes: 
-    - **G_DYEAR** - discounting year; this is a user input and in this example is 2005; 
-    - **DISCOUNT** - overall discount rate for the energy system, including for depreciation of investments; this is a user input and in this example is 5% and is constant for the entire modelling horizon, and 
-    - **YRFR** - fraction of year for each time slice; this is a user input and in this example is 100% for the single ANNUAL time slice.
+
+- **\~TFM_INS global attributes**: is a transformation table used to insert new attributes and values in a rule-based manner. In this first step, it is used to declare three new TIMES attributes:
+  - **G_DYEAR** - discounting year; this is a user input and in this example is 2005;
+  - **DISCOUNT** - overall discount rate for the energy system, including for depreciation of investments; this is a user input and in this example is 5% and is constant for the entire modelling horizon, and
+  - **YRFR** - fraction of year for each time slice; this is a user input and in this example is 100% for the single ANNUAL time slice.
 
 ![](assets/image21.png)
 
@@ -1008,7 +1015,8 @@ Figure 41. Global Constants Declarations in SysSettings
 #### Defaults sheet
 
 This sheet contains two tables shown in Figure 42:
-- **\~Currencies**: to define a default currency for the whole model; this is a user input. In this example the default unit is million 2005 euros (MEuro05). \[It is important to note that for TIMES this is just a label called MEuro05, it is the user's responsibility to be consistent with costs and units in the model.\], and 
+
+- **\~Currencies**: to define a default currency for the whole model; this is a user input. In this example the default unit is million 2005 euros (MEuro05). \[It is important to note that for TIMES this is just a label called MEuro05, it is the user's responsibility to be consistent with costs and units in the model.\], and
 - **\~DefUnits**: to define units for activity, capacity and commodity for each sector in the model: petajoules (PJ) and petajoules per year (Pja) in this case. \[Again, it is the user's responsibility to ensure consistency in the units used in any TIMES model. It is possible to use any units, but it is important to be coherent across the model.\].
 
 ![](assets/image66.png)
@@ -1034,7 +1042,8 @@ This sheet shows the RES covered and the normal completion of a run VEDA2.0with 
 #### EnergyBalance sheet
 
 This sheet contains the energy balance for the model start year (2005) for REG1 (Figure 43). The energy balance in itself is not imported into the model; the table is not identified with any VEDA table header (cell starting with the character "\~"). However, it allows the user to calibrate the model start year with appropriate historical energy flows. A typical energy balance comprises two dimensions:
-- Different types of energy commodities in columns. In this simple example, the different types of energies are partially aggregated in categories (e.g. solid fuels, renewable energies, etc.). The first row of the table includes codes defined by the modeller that are used to name the energy commodities in the model. 
+
+- Different types of energy commodities in columns. In this simple example, the different types of energies are partially aggregated in categories (e.g. solid fuels, renewable energies, etc.). The first row of the table includes codes defined by the modeller that are used to name the energy commodities in the model.
 - Components of the entire supply-demand chain is reflected in rows. This simple example shows three main sections: primary energy supply, energy conversion and final energy consumption. For each energy commodity, the primary energy supply minus the energy used for conversion yield the remainder for final energy consumption. The first column of the table includes codes specified by the modeller that are used to designate the various sectors and then used as part of naming energy processes in a uniform manner in the model.
 
 ![](assets/image68.png)
@@ -1063,6 +1072,7 @@ Unlike the tables used to declare commodities and processes, the tables used to 
 
 In the first model step, a flexible import table is used to describe the
 primary supply options for COA (Figure 46):
+
 - A 3-step domestic coal supply curve through three mining processes (MINCOA\*), each characterized with the cumulative amount of resources available over the modelling horizon (CUM), the annual cost per unit of energy (COST) and a bound on the annual production (ACT_BND) for the start year 2005 and the following period 2006. Bounds need to be combined with the LimType (UP), which is indicated in a specific column in this example. When not specified, it is UP by default (see Attribute Master Table, Section ).
 - Import and export options are characterized with the COST and ACT_BND attributes.
 
@@ -1133,7 +1143,7 @@ Figure 52. \_\_Check Dummy Imports
 - In an healthy model this table should be empty. If not, it means the model has some infeasibilities and is using some dummy technologies (built by default in VEDA2.0) to satisfy the commodity/demand production.
 - This table is built by selecting the attribute VAR_FOUT and the ProcessSet DUMIMP (this is a user-defined process set).
 - \_System Cost Tables
-    - This table (Figure 53), built selecting the attribute Reg_Obj, shows the total system cost discounted to the G_DYEAR defined in the SysSettings file (in this example 2005). Figure 54 shows the total system cost in million euros for the model run to 2006, based on two periods (2005 and 2006) for a total of three years.
+  - This table (Figure 53), built selecting the attribute Reg_Obj, shows the total system cost discounted to the G_DYEAR defined in the SysSettings file (in this example 2005). Figure 54 shows the total system cost in million euros for the model run to 2006, based on two periods (2005 and 2006) for a total of three years.
 
 ![](assets/image76.png)
 
@@ -1146,7 +1156,7 @@ Figure 54. Total System Cost in DemoS_001
 - The Scenario label shows the scenario name (DemoS_001) for the run we are viewing, while under the column Region we see the region name (REG1) and the value of the objective function. The column Total is shows the total by row (over regions). In this case, we only have the single region REG1, so the value is the same.
 - The \_SysCost table provides a key model run indicator. In TIMES models, the Objective-Function is to minimize the total discounted cost of the system, properly augmented by the 'cost' of lost demand (when using the elastic demand features). See Parts I and II of the TIMES documentation for more on the model objective function.
 - All costs
-    - This table can be used to show the undiscounted cost elements of the model solution (Figure 55).
+  - This table can be used to show the undiscounted cost elements of the model solution (Figure 55).
 
 ![](assets/image78.png)
 
@@ -1161,7 +1171,7 @@ Figure 56. All System Costs Results by Component
 
 - The attribute column in this case shows both the attribute name and description, while the Period columns show the value of each attribute in each model period, except the salvage value (Cost_Salv), which does not take a period index.
 - Demands
-    - The Demands able (Figure 57) is used to show the energy service demand(s). In this case there is only the single demand called TPSCOA, which is in PJ (Figure 58).
+  - The Demands able (Figure 57) is used to show the energy service demand(s). In this case there is only the single demand called TPSCOA, which is in PJ (Figure 58).
 
 ![](assets/image81.png)
 
@@ -1174,8 +1184,8 @@ Figure 57. Demands Table Definition
 Figure 58. TPSCOA Demand Results Table
 
 - Fuel Supply
-    - The Fuel Supply table (Figure 59) is built selecting the attribute VAR_FOut (flow out) and the process set IRE (that includes all the process defined in \~FI_PROCESS tables as MIN, IMP and EXP). In other words, this table can be used to check the output from all the processes that belong to import and mining sets. The export process is characterised with an input and not an output, so it not possible to check the behavior of the export process by selecting only VAR_FOut.
-    - The COA demand is met in a significant proportion with imports (6,462.67 PJ) and the rest with domestic resources through the first two steps of the supply curve. (The third step is not used, because it has higher COST than the imports, see Figure 60.) The demand and supply balance of COA is constant between 2005 and 2006, as described above in Section 3.1.4.5.
+  - The Fuel Supply table (Figure 59) is built selecting the attribute VAR_FOut (flow out) and the process set IRE (that includes all the process defined in \~FI_PROCESS tables as MIN, IMP and EXP). In other words, this table can be used to check the output from all the processes that belong to import and mining sets. The export process is characterised with an input and not an output, so it not possible to check the behavior of the export process by selecting only VAR_FOut.
+  - The COA demand is met in a significant proportion with imports (6,462.67 PJ) and the rest with domestic resources through the first two steps of the supply curve. (The third step is not used, because it has higher COST than the imports, see Figure 60.) The demand and supply balance of COA is constant between 2005 and 2006, as described above in Section 3.1.4.5.
 
 ![](assets/image83.png)
 
@@ -1188,7 +1198,7 @@ Figure 59. Fuel Supply Results Table
 Figure 60. Fuel Supply results by process and period
 
 - Prices
-    - The Prices_All table (Figure 61), built selecting the attribute EQ_CombalM, can be used for showing commodities' marginal prices in the run.
+  - The Prices_All table (Figure 61), built selecting the attribute EQ_CombalM, can be used for showing commodities' marginal prices in the run.
 
 ![](assets/image85.png)
 
@@ -1231,6 +1241,7 @@ Figure 63. Energy balance at start year 2005 for REG1 -- Covered in DemoS_002
 #### Pri_COA/GAS/OIL sheets
 
 These new Pri_GAS and the Pri_OIL sheets have exactly the same structure as the Pri_COA sheet (which has not been modified from the first step) including:
+
 - A commodity table to declare additional energy commodities (NRG): GAS - Natural gas (PJ) and OIL - Crude oil (PJ).
 - A process table to declare additional supply options for GAS and OIL: mining processes (MINGAS\* and MINOIL\*), import processes (IMPGAS1, IMPOIL1), and export processes (EXPGAS1, EXPOIL1).
 - A flexible import table to describe the primary supply options for GAS and OIL: 3-step domestic supply curves through three mining processes, as well as import and export options. All are characterized with the same attributes.
@@ -1247,9 +1258,9 @@ Figure 64. Introduction of Sector Fuel Processes
 
 Demand processes (DMD) are introduced in these sheets (Figure 65). They consume an energy commodity (RSDGAS, TRAOIL) to produce directly the energy service commodity: residential--other (DROT) and transport (DTD1) in this example. In both sectors, there are existing (ROTEGAS and TOTEOIL) and new processes (ROTNGAS and TOTNOIL).
 
-- The existing processes are characterized with their existing installed capacity (STOCK), corresponding in this case to the energy consumption required to produce these energy services in the base year as given by the energy balance and the additional fuel split assumptions. They also have an efficiency (EFF), an annual availability factor (AFA) and a life time (LIFE). 
-- Existing processes characterised in VEDA B-Y Templates with a base year STOCK can not increase their capacity endogenously through new investment because when synchronizing the templates, by default VEDA2.0 inserts the attribute NCAP_BND with interpolation/extrapolation rule number 2, setting an upper bound of EPS (epsilon, or effectively zero) for all years. (For more information on interpolation/extrapolation see {numref}`p4-times-ie-codes` in Section ) New technologies thus are needed to replace the existing capacity as it retires or increase the amount of capacity available after the base year. 
-- The new processes do not have an existing installed capacity, but they are available in the database to be invested in to replace the existing ones and meet the demand for energy services. They are characterized with an investment cost (INVCOST), a fixed operation and maintenance cost (FIXOM), and the year in which they become available (START). The model can invest in these new technologies only beginning in that START year. 
+- The existing processes are characterized with their existing installed capacity (STOCK), corresponding in this case to the energy consumption required to produce these energy services in the base year as given by the energy balance and the additional fuel split assumptions. They also have an efficiency (EFF), an annual availability factor (AFA) and a life time (LIFE).
+- Existing processes characterised in VEDA B-Y Templates with a base year STOCK can not increase their capacity endogenously through new investment because when synchronizing the templates, by default VEDA2.0 inserts the attribute NCAP_BND with interpolation/extrapolation rule number 2, setting an upper bound of EPS (epsilon, or effectively zero) for all years. (For more information on interpolation/extrapolation see {numref}`p4-times-ie-codes` in Section ) New technologies thus are needed to replace the existing capacity as it retires or increase the amount of capacity available after the base year.
+- The new processes do not have an existing installed capacity, but they are available in the database to be invested in to replace the existing ones and meet the demand for energy services. They are characterized with an investment cost (INVCOST), a fixed operation and maintenance cost (FIXOM), and the year in which they become available (START). The model can invest in these new technologies only beginning in that START year.
 - Finally, emission commodities (ENV) are also introduced along with these processes: CO2 emissions in the residential (RSDCO2) and the transport (TRACO2) sectors in this example (in kt). An emission coefficient (ENV_ACT in kt/PJ~output~) is provided for each process based on the technology output. It is also possible to define emissions coefficients based on fuel input (see Section ).
 
 ![](assets/image90.png)
@@ -1265,6 +1276,7 @@ The demand table is expanded to include the demand for the new energy services c
 There are more demands for energy services (Figure 66) and fuel supply options (Figure 67) in this second step model compared with the first step. Also, a new piece of information available at this second step is CO2 emissions by sector (Figure 68), which are computed from the input coefficients provided for each process and the activity of each process. These three tables can be viewed in the same way as explained for DemoS_001, and if results for both DemoS_001 and DemoS_002 have been imported, then it will be possible to see and compare results for the two scenarios. \[Note that in order to get the DemoS_001 results into the DemoS_002 database the Tools/Import VD files option must be used to grad them from the GAMS_WrkTIMES subfolder for the model.
 
 The main findings from the results analysis are:
+
 - The domestic demand for transportation (DTC1) represents the major proportion (44%) of total domestic demand for energy. This sector relies on oil and also accounts for the largest part of the CO2 emissions (TRACO2), although no coefficient was provided for solid fuels combustion emissions.
 
 ![](assets/image91.png)
@@ -1308,6 +1320,7 @@ Figure 70. Marginal Price of Process Activity Table in DemoS_002
 | CAP2ACT               | VT_REG_PRI_v03 |
 
 **Files**. The third step model is built by modifying:
+
 - the SysSettings file to add more time periods and declare the transmission efficiency of the electricity network.
 - the B-Y Template (VT_REG_PRI_V03) to model the power sector and insert interpolation/extrapolation rules.
 
@@ -1419,9 +1432,9 @@ Additional sector fuel processes (FTE-\*) are defined and characterized in this 
 
 A series of processes are created to represent different types of power plants (Figure 76). These are conversion processes that consume electricity sector fuels (ELCGAS, ELCNUC, etc.) to produce electricity (ELC).
 
-- The existing processes are characterized with their existing installed capacity (STOCK) in GW (calculated from the information given in the energy balance in terms of energy consumption for electricity production and technical attribute values). They also have an efficiency (EFF), an annual availability factor (AFA), fixed and variable O&M costs (FIXOM, VAROM), a life time (LIFE), and a CO2 emission coefficient (ENV_ACT). 
-- By default, all attribute values apply to the base year 2005 when not specified. It is possible to declare any attribute values for future years using the command \"\~\" followed by the year, as for the installed capacity attribute in this case (STOCK\~2030). By default, an existing installed capacity (STOCK) decreases to zero at the end of its lifetime (e.g., after 30 years for ELCTECOA00). By specifying an installed capacity value for 2030, as for ELCTENUC00, a new retirement profile is defined (constant in this example), and it is not necessary to specify a life duration. 
-- The new processes do not have an existing installed capacity, but they are available in the database to be invested in to replace the existing ones and meet the demand for electricity. They are characterized in addition with an investment cost (INVCOST) as well as the year where they become available (START). 
+- The existing processes are characterized with their existing installed capacity (STOCK) in GW (calculated from the information given in the energy balance in terms of energy consumption for electricity production and technical attribute values). They also have an efficiency (EFF), an annual availability factor (AFA), fixed and variable O&M costs (FIXOM, VAROM), a life time (LIFE), and a CO2 emission coefficient (ENV_ACT).
+- By default, all attribute values apply to the base year 2005 when not specified. It is possible to declare any attribute values for future years using the command \"\~\" followed by the year, as for the installed capacity attribute in this case (STOCK\~2030). By default, an existing installed capacity (STOCK) decreases to zero at the end of its lifetime (e.g., after 30 years for ELCTECOA00). By specifying an installed capacity value for 2030, as for ELCTENUC00, a new retirement profile is defined (constant in this example), and it is not necessary to specify a life duration.
+- The new processes do not have an existing installed capacity, but they are available in the database to be invested in to replace the existing ones and meet the demand for electricity. They are characterized in addition with an investment cost (INVCOST) as well as the year where they become available (START).
 - A new attribute is introduced (CAP2ACT) allowing the conversion between the process capacity and activity units. In this example a coefficient of 31.536 PJ/GW is needed (1GW \* 365 days \* 24 hours = 8760 GWh = 31.536 PJ). When not specified and when both capacity and activity are tracked in the same unit, the CAP2ACT is equal to 1.
 
 The same approach is used to declare the new commodities and processes in their respective tables (Figure 77) including the declaration of existing and new power plants as ELE processes. The process names follow a convention where T=thermal, C=CHP, R=Renewable, N=Nuclear.
@@ -1437,6 +1450,7 @@ Figure 77. Declaration of Electricity Commodities and Processes
 #### DemTechs_ELC sheet
 
 The total demand for electricity (ELC) is modelled in a simplistic manner as for solids fuels (COA). A flexible table is used to describe the demand device for electricity (Figure 78):
+
 - A process for the total demand of ELC (DTPSELC) is characterized with an efficiency (EFF), an annual availability factor (AFA), an investment cost (INVCOST) a fixed operation and maintenance cost (FIXOM), and a life time (LIFE).
 
 ![](assets/image103.png)
@@ -1492,6 +1506,7 @@ Table in DemoS_003
 | COM_PKFLX             |                   |
 
 **Files**. The forth step model is built:
+
 - by modifying the SysSettings file to add new time slices and to insert default interpolation/extrapolation options;
 - by modifying the B-Y Template (VT_REG_PRI_V04) to declare the contribution of power plants to the peak and add the load curve of electricity demand;
 - by creating scenario files to illustrate the peak reserve capacity requirement (Figure 84).
@@ -1577,6 +1592,7 @@ Figure 92. Demand Technology Producing TPSELC
 #### Scen_Peak_RSV and Scen_Peak_RSV-FLX
 
 Two scenario files are created to insert new information in the RES that can be retained or not in the configuration of the model at the time of solving the model (see Section 2.5.5). A transformation table **\~TFM_INS** is used to declare new attributes (Figure 93):
+
 - COM_Peak - Specify that the peaking equation will be generated for the ELC commodity.
 - COM_PKRSV - Declare the capacity fraction (%) that is required for the peak reserve. This is the option used in the first scenario file (Peak_RSV).
 - COM_PKFLX - Declare the fraction (%) by which the actual peak demand exceeds the average calculated demand, by time slice. This is the option used in the second scenario file (Peak_RSV- FLX) for the Summer-Day time slice (SD), although in practice COM_PKFLX is typically used alongside COM_PKRSV.
@@ -1639,6 +1655,7 @@ Figure 97. Slack and Dual Values of the Peak Equations in DemoS_004
 |                       | Scen_Peak_RSV-FLX  |
 
 **Files**. The fifth step model is built:
+
 1. by modifying the SysSettings file to add one region;
 2. by modifying the B-Y Template (VT_REG_PRI_V05) to disaggregate the energy balance between two regions and to regionalize some process attributes;
 3. by creating trade files to capture the trade movements between the two regions;
@@ -1702,6 +1719,7 @@ Figure 103. Regionalization of process attributes using additional columns
 
 The \~ TradeLinks tables are used to declare the traded commodities and their links between regions (Figure 104): either bilateral links between regions (e.g. ELC trade between REG 1 (importer/exporter) and REG2 (importer/exporter) or unilateral links between regions (e.g. GAS trade between REG 1 (importer) and REG2 (exporter). For each link declared (1=active links), VEDA2.0 will automatically create an IRE (inter-regional trade) process to which attributes may then be associated (e.g., bounds, investment costs, etc.). The naming convention
 for IRE processes is:
+
 - Bilateral trade: TB\_\<fuel name\>\_\<exporter region\>\_\<importer region\>\_\<01\> (e.g. TB_ELC_REG1_REG2_01)
 - Unilateral trade: TU\_\<fuel name\>\_\<exporter region\>\_\<importer region\>\_\<01\> (e.g. TU_GAS_REG2_REG1_01)
 
@@ -1742,6 +1760,7 @@ These upper bounds (or limits) are again calculated as a percentage reduction ta
 Figure 107. Declaration of emission bounds using a user constraint
 
 The UC scenario template is set up as described in Section 2.4.7. The sets declarations above the table indicate:
+
 - \~UC_Sets: R_E: AllRegions: The constraints are to be applied to all regions in the model, individually (E=each). That is, the bounds imposed for REG1 and REG2 are separate, and there is no emissions trading between regions.
 - \~UC_Sets: T_E: The constraints are imposed to each time period individually. There is no banking or borrowing between periods.
 
@@ -1759,8 +1778,9 @@ Figure 108. Fuel Supply (by Region) in DemoS_005
 
 A second sample of results shows the evolution of the emissions in the
 different sectors of the two regions (Figure 109):
-- Emissions from the power and the transportation sectors as projected in the DemoS_005 case were used to compute the emissions limits in the other two cases. 
-- A limit on the CO2 from the power sector in REG1 (DemoS_005a) leads to a lower electricity production from solid fuels, and an emission increase in REG2, which produces more electricity from natural gas to supply REG1 (Figure 110). 
+
+- Emissions from the power and the transportation sectors as projected in the DemoS_005 case were used to compute the emissions limits in the other two cases.
+- A limit on the CO2 from the power sector in REG1 (DemoS_005a) leads to a lower electricity production from solid fuels, and an emission increase in REG2, which produces more electricity from natural gas to supply REG1 (Figure 110).
 - With a limit on the CO2 from both the power and the transportation sector in REG1 and in REG2 (DemoS_005b), all the emission reductions are coming from the power sector in both regions. Emissions from the transportation sector are not affected compared with the reference case (DemoS_005) meaning that the power sector of both regions could provide enough reduction options at a lower cost to meet the target. Because there is no trading in emissions between regions, REG2 must cut back on its electricity generation from natural gas, and it begins importing natural gas-fired electricity from REG1, which in turn imports natural gas from REG2 (Figure 110).
 
 ![](assets/image136.png)
@@ -1862,6 +1882,7 @@ Figure 117. Fuel Supply by Region in DemoS_005
 **Objectives**. The objective is to show how to model a more comprehensive RES covering more details of the energy balance with more complex processes along its two dimensions: number of commodities and the number of transformation steps in the whole supply-demand chain. In this step refined petroleum products are broken out into different commodities (e.g., gasoline, diesel, heavy fuel, etc.) to better describe the transport sector, where different types of vehicles are introduced. This enhancement of the RES requires the modelling of additional and more complex processes (e.g., refineries and dual demand cars) and the need to introduce the primary commodity group (PCG) concept.
 
 Several more techniques are also introduced in this step:
+
 - We present an easier way to account for combustion-based emissions, by directly linking emission coefficients with each unit of fuel burnt.
 - We illustrate how to build end-use demand projections starting from base year values and different growth rates. This is done using the fill table feature to grab base year information from the initial files (e.g. B-Y Templates).
 - We show how to build a user constraint that specific the minimum (or maximum) annual growth rate for a set of processes using the CAP, GROWTH attribute.
@@ -1880,6 +1901,7 @@ Several more techniques are also introduced in this step:
 |                       | Scen_UC Growth     |
 
 **Files**. The seventh step model is built:
+
 - by modifying the SysSettings file to add interpolation rules;
 - by modifying the two B-Y Template (VT_REG1_PRI_v07, VT_REG2_PRI_v07) and the SubRES file (SubRES_NewTechs) to add more commodities, more complex processes, and emission coefficients, and to introduce the PCG concept;
 - by creating a scenario file to project demand from base year values;
@@ -1916,7 +1938,7 @@ Figure 120. Disaggregated Initial Energy Balance (2005) for REG2 in DemoS_007
 
 A flexible refinery (REFEOIL00) is introduced in this sheet (Figure 121) to convert crude oil (OIL) into refined products (DSL, KER, LPG, GSL, etc.) that will be used in the transportation sector.
 
-- The existing refinery is characterized with an efficiency (EFF) and an annual activity bound (ACT_BND) equivalent to the sum of the refined products produced at base year 2005 as given in the energy balance. In this example the efficiency is represented by the ratio of the crude oil in input to the refinery on the sum of the petroleum products in output. For this reason we get an efficiency greater than 1. This behaviour depends on the definition of the commodity group of a technology (see below for more details). 
+- The existing refinery is characterized with an efficiency (EFF) and an annual activity bound (ACT_BND) equivalent to the sum of the refined products produced at base year 2005 as given in the energy balance. In this example the efficiency is represented by the ratio of the crude oil in input to the refinery on the sum of the petroleum products in output. For this reason we get an efficiency greater than 1. This behaviour depends on the definition of the commodity group of a technology (see below for more details).
 - This more complex process with multiple outputs commodities is also characterized with a new attribute: the maximum share for each commodity output in the total production (Share-O\~UP). In this example, the maximum shares for all outputs sum to 100%, meaning that they are equivalent to fixed shares. It would be possible to have a sum of maximum shares greater than 100%, leaving some flexibility to the model to optimize the output mix.
 
 The same approach is used to declare the new commodities and processes in their definition tables, where the refinery is declared as a PRE process, and the concept of Primary Commodity Group (PCG) is introduced (Figure 122). The activity of a standard process is equal to the sum of the commodity flow(s) on either the input side or the output side of a process, as defined by the PCG. The activity of a process is limited by the available capacity, so that the activity variable establishes a link between the installed capacity of a process and the maximum possible commodity flows entering or leaving the process during a year or a subdivision of a year.
@@ -1928,6 +1950,7 @@ Figure 121. Refinery
 In a simple process, one consuming a single commodity and producing a single commodity, the modeler simply chooses one of these two flows to define the activity, and thereby the process normalization (input or output). In complex processes, with several commodities (perhaps of different types) as inputs and/or outputs, the definition of the activity variable requires designation of the PCG to serve as the activity-defining group. The PCG is defined as a subset of the commodities of the same nature entering or leaving a process. For instance, the PCG may be the group of energy carriers, or the group of materials of a given type, on either the input or output side of the process. More about PCGs and their use can be found in Section 2.2.1 of Part II of the TIMES documentation.
 
 VEDA2.0 establishes default PCGs for any process involving multiple inputs and/or outputs, based upon the assumption first that all processes are output normalized and then according to the commodities' nature. In case of different commodity types on the output (or input) side, the default PCG is based on the following order:
+
 - DEM -- demands;
 - MAT -- materials;
 - NRG -- energy;
@@ -1960,10 +1983,10 @@ Figure 124. Additional Sector Fuel Processes with Multiple Input Commodities
 
 The single demand process consuming an energy commodity (TRAOIL) and producing directly the transport demand commodity (DTD1) is replaced with more sophisticated processes representing cars and characterized with non-energy units (Figure 125). The declaration of these processes is shown below (Figure 126): their activity units are in billions passengers-kilometres (BpK) rather than PJ, and their capacity units are in thousands of units (000_units) rather than PJa.
 
-- The existing processes are characterized with their existing installed capacity (STOCK) in thousands of car units (000_units) as indicated above. The stock values correspond to the amount of fuel consumption (e.g. TRADSL) required to produce the transportation demand (DTCAR) as given by the energy balance and taking into account the efficiency (EFF), the annual availability factor (AFA) and the conversion between capacity unit and activity unit (CAP2ACT). 
-- The efficiency (EFF) is specified in terms of billions of vehicle-kilometres per petajoule (BVkm/PJ), and can be interpreted as the number of kilometres a vehicle can travel with 1 PJ of energy. 
+- The existing processes are characterized with their existing installed capacity (STOCK) in thousands of car units (000_units) as indicated above. The stock values correspond to the amount of fuel consumption (e.g. TRADSL) required to produce the transportation demand (DTCAR) as given by the energy balance and taking into account the efficiency (EFF), the annual availability factor (AFA) and the conversion between capacity unit and activity unit (CAP2ACT).
+- The efficiency (EFF) is specified in terms of billions of vehicle-kilometres per petajoule (BVkm/PJ), and can be interpreted as the number of kilometres a vehicle can travel with 1 PJ of energy.
 - The annual availability factor (AFA) represents the average thousand kilometres (\'000 km) a car is traveling each year.
-- A new attribute is introduced to capture the relation between the process activity and the commodity flow (ACTFLO), the commodity being the output demand, in terms of passengers per car unit (Passenger/Car). This TIMES parameter requires an additional index that is the specification of the commodity group: DEMO (demand out) in this example. 
+- A new attribute is introduced to capture the relation between the process activity and the commodity flow (ACTFLO), the commodity being the output demand, in terms of passengers per car unit (Passenger/Car). This TIMES parameter requires an additional index that is the specification of the commodity group: DEMO (demand out) in this example.
 - The life time (LIFE) is specified in number of years as for the other processes.
 - The conversion factor between capacity unit and activity unit (CAP2ACT) is not equal to 1 because the units are different: the activity is in billion vehicle-kilometres, the stock is in thousands of units (000_units or vehicles) and the utilization factor (AFA) is in thousand kilometres per vehicle. The CAP2ACT is translating mvkm into bvkm.
 
@@ -2058,6 +2081,7 @@ Figure 134. Specifying Growth Rates with a User Constraint
 This file is used to introduce price-elasticities for end-use demands (Figure 135), so that demands can react to changes in their prices under a constrained energy system (e.g., under limits or tax on emissions, etc.). (See Section 4.2 of Part I of the TIMES documentation for more on the elastic demand formulation.)
 
 In this example, price-elasticities are declared for the transportation demand by cars (DTCAR). Three attributes need to be declared:
+
 - COM_ELAST: Elasticity of demand indicating how much the demand rises/falls in response to a unit change in the marginal cost of meeting a demand that is elastic.
 - COM_VOC: Maximum possible variation of demand in both directions when using the elastic demand formulation (15% in this example).
 - COM_STEP: Number of steps for the linear approximation of the demand curve (10 steps in this example).
@@ -2084,7 +2108,7 @@ Figure 137. Include the B Elastic Demand and Emission Constraint
 
 The effect of price elasticities on the new projected demand for car transportation in thousand passengers-kilometres (kpass\*km) to the 2020 horizon is visible (Figure 138) in the scenarios where it was activated (DemoS_007b and DemoS_007c). Demands are decreasing by about 9% in both regions, less than the maximum decrease of 15%, meaning than more cost-effective emission reduction options exist elsewhere in the system beyond that level.
 
-The impacts of the emissions constraints and the growth rate constraint on the optimal process mix selected to meet the car transportation demand (kpass\*km) is shown (Figure 139) for both regions together: 
+The impacts of the emissions constraints and the growth rate constraint on the optimal process mix selected to meet the car transportation demand (kpass\*km) is shown (Figure 139) for both regions together:
 
 ![](assets/image166.png)
 
@@ -2094,8 +2118,8 @@ Figure 138. Results - Effect of Price Elasticities on Car Transportation Demand 
 
 Figure 139. Results -- Car Transport Vehicle Type Mix in DemoS_007
 
-- In the reference case (DemoS_007), new diesel cars satisfy the entire demand for car transportation from 2015 and beyond. The output mix of the refinery is shown below (Figure 140). 
-- The limits on the transportation sector emissions (DemoS_007a) lead to a switch toward less polluting options such as electric, natural gas and LPG cars. 
+- In the reference case (DemoS_007), new diesel cars satisfy the entire demand for car transportation from 2015 and beyond. The output mix of the refinery is shown below (Figure 140).
+- The limits on the transportation sector emissions (DemoS_007a) lead to a switch toward less polluting options such as electric, natural gas and LPG cars.
 - The activation of elastic demand (DemoS_007b) leads to a reduction in the use of the most expensive option to meet demand -- electric cars.
 - The addition of a growth rate constraint on diesel cars (DemoS_007c) leads to a switch toward natural gas cars.
 
@@ -2182,10 +2206,9 @@ Mining processes for the uranium resources and the new renewable potentials are 
 
 ![](assets/image173.png)
 
-
 ![](assets/image174.png)
 
-Figure 145. New Renewables Supply Options 
+Figure 145. New Renewables Supply Options
 
 #### Pri_ELC
 
@@ -2329,15 +2352,15 @@ Figure 159. Emissions by Sector in DemoS_008
 
 **Objective-Function** = 19,119,653 M euros (see the \_SysCost table) with 9,068,703 M euros for REG1 and 10,050,950 M euros for REG2. These costs are again much higher to those computed in the previous step model DemoS_007 because of the expansion of the RES. The total cost is 4% higher with the emission limits for the electricity and the transportation sectors (19,358,261 M euros), and is only slightly reduced by the activation of the elastic demands (19,352,675 M euros). The additional user constraint on nuclear power increases the system cost by 11% (19,699,008 M euros).
 
-## DemoS_009 - SubRES sophistication (CHP, district heating) and Trans files 
+## DemoS_009 - SubRES sophistication (CHP, district heating) and Trans files
 
 **Description.** At the ninth step, the model database is developed further by adding more SubRES with more complex processes. Because SubRES are used to add new processes in different sectors they can be considered as separate modules that can be included in model runs as part of the reference energy system or not. This approach is convenient when different individuals work in parallel on different sectors.
 
 **Objective**. The objective is to give more examples of possible SubRES including more complex processes: one that introduces iron and steel production in the industrial sector, and one that introduces combined heat and power (CHP) processes, centralised heating plants, and heat exchanger + district heating network. Additional objectives include:
 
-- To show how to use the BY Trans file to move or add data and reduce the size of tables in the B-Y Templates. Here we specify the availability factor by time slice for existing wind and solar processes and add an interpolation rule for new hydro capacity (NCAP_BND). 
-- To show how to use the transformation file associated with each SubRES to declare the availability or non-availability of each process in each region: new hydro power plants in this example. 
-- To give an example of a scenario used to insert/update information in the B-Y Templates and SubRES: the demands and the retirement profile for the iron and steel processes. 
+- To show how to use the BY Trans file to move or add data and reduce the size of tables in the B-Y Templates. Here we specify the availability factor by time slice for existing wind and solar processes and add an interpolation rule for new hydro capacity (NCAP_BND).
+- To show how to use the transformation file associated with each SubRES to declare the availability or non-availability of each process in each region: new hydro power plants in this example.
+- To give an example of a scenario used to insert/update information in the B-Y Templates and SubRES: the demands and the retirement profile for the iron and steel processes.
 - To illustrate how to build a user constraint to limit the penetration of some processes, such as the district heating system between 2020 and 2050.
 
 | Attributes Introduced | Files Updated         |
@@ -2352,6 +2375,7 @@ Figure 159. Emissions by Sector in DemoS_008
 |                       | Scen_UC_DH_MinProd    |
 
 **Files**. The ninth step model is built by:
+
 - modifying two B-Y Templates (VT_REG1_ELC_v09, VT_REG2_ELC_v09) to introduce past investment information;
 - using the BY Transformation file (BY_Trans) to insert base year information (availability factor by time slice for existing wind and solar plants and interpolation rules);
 - using a SubRES Transformation file (SubRES_NewTechs_Trans) to insert information for new processes (availability factor by time slice for new wind and solar plants) and to declare the availability or non-availability of each process in each region;
@@ -2508,6 +2532,7 @@ Figure 172. Residential Space Heating Fuel Use in DemoS_009
 |                       | ScenDem_DEM_Ref   |
 
 **Files**. The tenth step model is built:
+
 - by creating one file that allocates a demand driver to each end-use demand (Dem_Alloc+Series) and defines sensitivity and calibration series, and one file (ScenDem_DEM_Ref) that defines demand drivers;
 - by modifying the elastic demand scenarios to cover all end-use demands for energy services (Figure 173).
 
@@ -2622,6 +2647,7 @@ Figure 180. Generation in DemoS_010/011
 |                       | Scen_NUC_DiscInv     |
 
 **Files**. The twelfth step model is built by:
+
 - updating two B-Y Templates (VT_REG1_PRI_v12, VT_REG2_PRI_v12) to create an aggregated CO2 emission commodity;
 - updating the SubRES_NewTechs file to specify discrete investment options;
 - creating scenario files for introducing taxes, subsidies, and an emission constraint for all sectors and regions, as well as for discrete investments for nuclear power plants.
@@ -2657,9 +2683,10 @@ The second step necessary to enable lumpy investments is to specify allowable di
 Figure 183. Discrete Capacity at Specific Years for Nuclear PowerPplants
 
 In summary, the TIMES lumpy investment variant can be enabled following four steps:
-- Specify the SET DSCINV for the process for which lumpy investment is to be enabled (here new power plants (ELCNNUC01) in the ELC sheet of the SubRES_NewTechs file). 
-- Build a scenario file with the discrete capacity modules to be allowed: capacities for the new power plants (ELCNNUC01) in the NUC_DSCINV sheet of the Scen_NUC_DiscInv scenario. 
-- Before solving the model, it is necessary to enable the variant discrete investment in VEDA2.0. From the FE Case Manager, select the **Control Panel** button, check the box for Discrete Investment at the top right in the TIMES Extensions section (Figure 184), and click the **OK** button. Back in the FE Case Manager, the inscription DSC YES in the yellow section at the bottom of the window shows that the option is enabled. 
+
+- Specify the SET DSCINV for the process for which lumpy investment is to be enabled (here new power plants (ELCNNUC01) in the ELC sheet of the SubRES_NewTechs file).
+- Build a scenario file with the discrete capacity modules to be allowed: capacities for the new power plants (ELCNNUC01) in the NUC_DSCINV sheet of the Scen_NUC_DiscInv scenario.
+- Before solving the model, it is necessary to enable the variant discrete investment in VEDA2.0. From the FE Case Manager, select the **Control Panel** button, check the box for Discrete Investment at the top right in the TIMES Extensions section (Figure 184), and click the **OK** button. Back in the FE Case Manager, the inscription DSC YES in the yellow section at the bottom of the window shows that the option is enabled.
 - In the Control Panel, set OPTCR (optimization criterion, or tolerance) to 0, in order to get a truly optimal solution.  For example, if you leave OPTCR at its default value 0.1, in most models this will leave room for very different MIP solutions that would satisfy the optimality tolerance, and thus you could see lots of flip-flopping between model runs (even when using exactly the same scenario data).
 
 ![](assets/image216.png)
@@ -2709,6 +2736,7 @@ The impacts of the different taxes and subsidies, as well as the effects of the 
 Figure 189. Final Energy Fuel Consumption in Transport
 
 The impact on fuel consumption in the Transport section in are discussed below.
+
 - The tax on diesel consumption in the transportation sector (DemoS_012a) leads to a rapid decrease in refined products, reaching zero by 2025, to the benefit of renewable energies, which meet most of the demand by 2050.
 - The tax on total CO2 emissions (DemoS_012b) leads to an even more drastic decrease of refined products, reaching zero by 2010, to the benefit of renewable energies.
 - The limit on total CO2 emissions (DemoS_012d) does not have an impact on the transportation fuel mix but affects other parts of the whole energy system. The tax puts much higher pressure on the energy system than the limit.
@@ -3425,7 +3453,6 @@ The \<scenarioname\>.VDT file contains all the Reference Energy System (RES) top
 \"REG1\",\"COTEOIL\",\"DCOT\",\"OUT\"
 
 \"REG1\",\"COTEOIL\",\"DEMO\",\"OUT\"
-
 
 [^2]: The meaning of all the attributes, along with their qualifier indexes, as said above can be found in VEDA2.0, Information / TIMES Attributes.
 

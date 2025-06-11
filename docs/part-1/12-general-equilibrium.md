@@ -22,6 +22,7 @@ Energy, Labor, and Monetary flows between TIMES and MACRO.
 We now turn to the mathematical description of the above, starting with the MACRO portion of the hybrid model.
 
 ### Formulation of the MACRO model
+
 We start our description of the hybrid model by stating the MACRO equations {eq}`12-1` -- {eq}`12-6`[^39]:
 
 $$Max \quad \sum_{t = 1}^{T - 1}{dfact_{t}} \times \ln(C_{t}) + \frac{dfact_{T - 1} \times dfactcur{r_{T - 1}}^{\frac{d_{T - 1} + d_{T}}{2}}}{1 - dfactcur{r_{T}}^{\frac{d_{T - 1} + d_{T}}{2}}} \times \ln(C_{T})$$ (12-1)
@@ -39,41 +40,41 @@ $$K_{T} \times \left( growv_{T} + depr \right) \leq INV_{T}$$ (12-6)
 with the model **variables**:
 
 > $C_{t}$: annual consumption in period $t$,
-> 
+>
 > $DEM\_ M_{t,dm}$: annual energy demand in MACRO for commodity $dm$ in period $t$,
-> 
+>
 > $Y_{t}$: annual production in period $t$,
-> 
+>
 > $INV_{t}$: annual investments in period $t$,
-> 
+>
 > $EC_{t}$: annual energy costs in period $t$,
-> 
+>
 > $K_{t}$: total capital in period $t$
 
 and the **exogenous parameters**:
 
 > $akl$: production function constant,
-> 
+>
 > $b_{dm}$: demand coefficient,
-> 
+>
 > $d_{t}$: duration of period $t$ in years,
-> 
+>
 > $depr$: depreciation rate,
-> 
+>
 > $dfact_{t}$: utility discount factor,
-> 
+>
 > $dfactcurr_{t}$: annual discount rate,
-> 
+>
 > $growv_{t}$: growth rate in period $t$,
-> 
+>
 > $kpvs$ capital value share,
-> 
+>
 > $l_{t}$: annual labor index in period $t$,
-> 
+>
 > $\rho$: substitution constant,
-> 
+>
 > $T$: period index of the last period,
-> 
+>
 > $tsrv_{t}$: capital survival factor between two periods.
 
 The objective function {eq}`12-1` of the MACRO model is the maximization of the summation of discounted utility at each period. The utility is defined as the logarithm of consumption $C_{t}$ of the households. A logarithmic utility function embodies a decreasing marginal utility property (Manne, 1977). Note that the discount factor $dfact_{t}$ for period t must take into account both the length of the period and the time elapsed between the period\'s start and the base year. Note also that the discount factor of the last period has a larger impact since it is assumed to apply to the infinite time horizon after the last model period (alternatively, the user may decide to limit the number of years in the last term, in those cases where it is deemed important to confer less weight to the indefinite future).
@@ -111,6 +112,7 @@ s.t. $E \times x = DEM\_T_{dm,t}$ (A)
 $A \times x = b$ (B)
 
 where
+
 - $x$ is the vector of TIMES variables
 - ${COST\_ T_{t}}_{}(x)$ is the annual undiscounted cost TIMES expression
 - $dfact_t$ is the discount factor for period $t$
@@ -132,15 +134,15 @@ $$COST\_T_{t} + \frac{1}{2}qfac\sum_{p}^{}{\frac{cstinv_{t,p}}{expf_{t} \times c
 with
 
 > $XCAP_{t,p}$: portion of the capacity expansion for technology $p$ in period $t$ that is penalized. Constraint {eq}`12-11` below states that it is the portion exceeding a predefined tolerable expansion rate $expf_{t}$,
-> 
+>
 > $EC_{t}$: costs for the production factor energy in the MACRO model,
-> 
+>
 > $qfac$: trigger to activate penalty term (0 for turning-off penalty, 1 for using penalty term),
-> 
+>
 > $cstinv_{t,p}$: specific annualized investment costs of technology $p$ in period $t$,
-> 
+>
 > $capfy_{p}$: maximum level of capacity for technology $p$,
-> 
+>
 > $expf_{t}$: tolerable expansion between two periods.
 
 Just like in the pure MACRO model, the quadratic penalty term added on the left hand side of equation {eq}`12-10` serves to slow down the penetration of technologies. This term plays a somewhat similar role as the growth constraints do in the stand-alone TIMES model. The variable $XCAP_{t,p}$ is the amount of capacity exceeding a predefined expansion level expressed by the expansion factor $\exp f_{t}$ and is determined by the following equation:
@@ -190,7 +192,6 @@ and is subject to the conservation constraint: $\sum_{r}^{}{NTX_{r,t}\  = \text{
 <ins>Second step</ins>: once the TIMES solution is obtained, it is used to form a quadratic expression representing an approximation of the aggregate energy cost, to be used in MACRO-MSA. Defining this approximation is the crux of Rutherford decomposition idea. It replaces the entire TIMES model, thus greatly simplifying the resolution of Step 2. The global objective function of MACRO-MSA is a weighted sum (over all regions) of the regional MACRO welfare functions, where the weights are the Negishi weights for each region. The thus modified global objective function is maximized. Then, a convergence criterion is checked. If convergence is not observed, the new demands are fed into TIMES and a new iteration is started. The Negishi weights are also updated at each iteration, leading to a new version of the objective, until the algorithm converges to the Pareto-optimal equilibrium.
 
 The adaptation of Rutherford algorithm to TIMES-MACRO was formalized by Kypreos (2006) and implemented by Kypreos and Lettila as the above-mentioned technical note.
-
 
 [^39]: The concrete implementation in the TIMES-MACRO model differs in some points, e.g. the consumption variable in the utility function is substituted by equations {eq}`12-2` and {eq}`12-3`.
 

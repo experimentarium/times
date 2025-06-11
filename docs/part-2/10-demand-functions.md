@@ -27,6 +27,7 @@ Consider then a utility function of the general CES form:
 $$U_{k} = \left( \sum_{i}^{}{\alpha_{i}^{\frac{1}{\sigma}}x_{i}^{\frac{\sigma - 1}{\sigma}}} \right)^{\frac{\sigma}{\sigma - 1}}$$ (2-10-4)
 
 where:
+
 - $U_{k}$ is the total aggregate utility of demand *k*
 - $x_{i}$ is the demand for commodity *i* (component of the aggregate demand)
 - $α_{i}$ is a share parameter (the sum of which over *i* needs not be equal to 1)
@@ -130,10 +131,10 @@ Like all other aspects of TIMES the user describes the demand functions for the 
 **Important remarks:**
 
 - *COM_PROJ* should be explicitly defined by the user only for the component demands, and never for the aggregate demands.
-- As mentioned in {numref}`dem-input-parameters`, the substitution elasticities can be defined by specifying *COM_ELAST*(r,t,com,ANNUAL,\'N\') for the aggregate demands. However, \'FX\' elasticities for the *component demands* can be optionally specified for defining component-differentiated substitution elasticities. Nonetheless, even when doing so, *COM_ELAST*(r,t,com, ANNUAL,\'N\') always defines the minimum substitution elasticity among the component demands of ***com***. 
-- Note that the aggregate demands are always at the ANNUAL level only, and thus only ANNUAL level own-price demand elasticities are supported for the demand aggregates. 
-- When using the non-linear formulation, demand substitution is supported only at the ANNUAL level for the component demands of the CES aggregates. The demand variations will thus be proportionally the same for all timeslices. 
-- Multi-level nested CES demand aggregations are also fully supported both in the non-linear and in the linearized case. 
+- As mentioned in {numref}`dem-input-parameters`, the substitution elasticities can be defined by specifying *COM_ELAST*(r,t,com,ANNUAL,\'N\') for the aggregate demands. However, \'FX\' elasticities for the *component demands* can be optionally specified for defining component-differentiated substitution elasticities. Nonetheless, even when doing so, *COM_ELAST*(r,t,com, ANNUAL,\'N\') always defines the minimum substitution elasticity among the component demands of ***com***.
+- Note that the aggregate demands are always at the ANNUAL level only, and thus only ANNUAL level own-price demand elasticities are supported for the demand aggregates.
+- When using the non-linear formulation, demand substitution is supported only at the ANNUAL level for the component demands of the CES aggregates. The demand variations will thus be proportionally the same for all timeslices.
+- Multi-level nested CES demand aggregations are also fully supported both in the non-linear and in the linearized case.
 - Recursive CES demand aggregations are not supported, neither in the non-linear nor in the linearized case.
 - The Cobb-Douglas case ($σ_{k}=1$) is also supported, but in the non-linear formulation it is handled by setting $σ_{k}$ very close to unity.
 

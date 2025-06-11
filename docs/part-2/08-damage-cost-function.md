@@ -21,8 +21,8 @@ With respect to optimization, two distinct approaches to account for damage cost
 
 In both approaches, a number of assumptions are made:
 
-- Emissions in each region may be assumed to cause damage only in the same region or, due to trans-boundary pollution, also in other regions; however, all damage costs are allocated to the polluters in the source region, in accordance with the Polluter Pays Principle, or Extended Polluter Responsibility; 
-- Damages in a given time period are linked to emissions in that same period only (damages are not delayed, nor are they cumulative); and 
+- Emissions in each region may be assumed to cause damage only in the same region or, due to trans-boundary pollution, also in other regions; however, all damage costs are allocated to the polluters in the source region, in accordance with the Polluter Pays Principle, or Extended Polluter Responsibility;
+- Damages in a given time period are linked to emissions in that same period only (damages are not delayed, nor are they cumulative); and
 - Damages due to several pollutants are the sum of damages due to each pollutant (no cross impacts).
 
 In a given time period, and for a given pollutant, the damage cost is modeled as follows:
@@ -62,7 +62,7 @@ $$DAM(EM) = \sum_{i = 1}^{m}{MC_{i}^{lo} \cdot S_{i}^{lo}} + MC_{0} \cdot S^{mid
 
 where:
 
-- $MC_{i}^{lo}$ and $MC_{i}^{up}$ are the approximate marginal costs at each step below and above the reference level as shown in {eq}`2-8-7` below; and 
+- $MC_{i}^{lo}$ and $MC_{i}^{up}$ are the approximate marginal costs at each step below and above the reference level as shown in {eq}`2-8-7` below; and
 - $S_{i}^{lo}$, $S^{mid}$ and $S_{i}^{up}$ are the non-negative step variables for emissions. Apart from the final step, each step variable has an upper bound equal to the width of the interval. In this formulation we choose intervals of uniform width on each side of the reference level. However, the intervals below and above the reference level can have different sizes. The width of the middle interval is always the average of the widths below and above the reference level.
 
 The approximate marginal costs at each step can be assumed to be the marginal costs at the center of each step. If all the steps intervals are of equal size, the marginal costs for the steps below the reference level are obtained by the following formula:
@@ -102,13 +102,14 @@ Note that owing to the non-linear nature of the modified objective function that
 ### Input parameters
 
 All the parameters for describing damage functions are available in the VEDA-FE shell, where they may be specified. All parameters have a prefix \'DAM\_\' in the GAMS code of the model generator. The parameters are discussed in more detail below:
+
 1. The parameter **DAM_COST** is used to specify the marginal damage cost at the reference level of emissions. The parameter has a year index, which can be utilized also for turning damage accounting on/off for an emission in a period (by specifying an EPS value for the cost). **DAM_COST** is interpolated/extrapolated by default, but unlike other cost parameters, the interpolation is sparse, and the costs are assumed to be constant within each period.
 2. The parameter **DAM_BQTY** is used to specify the reference level of emissions. If not specified or set to zero, the marginal damage costs will be assumed constant, and no emission steps are used.
 3. The parameter **DAM_ELAST** is used to specify the elasticity of marginal damage costs to emissions in the lower and upper direction. If specified in one direction only, the elasticity is assumed in both directions. If neither is specified, the marginal damage costs will be constant in both directions.
 4. The parameter **DAM_STEP** can be used for specifying the number of emission steps below and above the reference level of emissions. The last step above the reference level will always have an infinite bound. If the number of steps is not provided in either direction, but the elasticity is, one step is assumed in that direction. If a non-zero **DAM_STEP**(r,c,\'N\') is specified, the damage costs for commodity **c** in region **r** are not included in the objective. If the NLP formulation is used (DAMAGE=NLP), all **DAM_STEP** parameters will be ignored.
 5. The parameter **DAM_VOC** can be used for specifying the variation in emissions covered by the emission steps, both in the lower an upper direction. The variation in the lower direction should be less than or equal to the reference level of emissions. If the lower variation is smaller than **DAM_BQTY**, the damage costs are zero for emissions below the difference. The lower variance can thus be used for defining a threshold level for the damage costs. If **DAM_VOC** is not specified in the lower direction, it is assumed to be equal to **DAM_BQTY**. If **DAM_VOC** is not specified in the upper direction, the emission step size in the upper direction is assumed to be equal to that in the lower direction. The limtype 'N' can be used for defining step sizes in proportion to the reference level. If the NLP formulation is used (DAMAGE\=\=NLP), any **DAM_VOC** parameters specified in the upper direction will be ignored.  However, even in the NLP formulation the lower **DAM_VOC** can be used for defining a threshold emission level for the costs.
 
-The input parameters are listed in {numref}`dam-input-parameters`. 
+The input parameters are listed in {numref}`dam-input-parameters`.
 
 ```{list-table} Input parameters for the TIMES Damage Cost Functions.
 :name: dam-input-parameters
@@ -325,7 +326,7 @@ $$EQ\_DAMAGE_{r,t,c} \ni \left(rtc_{r,t,c} \land \exists(cur):DAM\_COST_{r,t,c,c
 $$\sum_{(jj,bd) \in dam\_num_{r,c,jj,bd}}
 \sum_{j \leq jj}VAR\_DAM_{r,t,c,bd,j}
 \left\{ = \right\}
-\sum_{com\_ts_{r,c,ts}} 
+\sum_{com\_ts_{r,c,ts}}
 \left (\begin{aligned}
 & DAM\_COEF_{r,t,c,ts} \times \\
 & \left (\begin{aligned}
@@ -354,7 +355,7 @@ $$EQ\_OBJDAM_{r,cur} \ni \left( rdcur_{r,cur} \right)$$
 
 **Case A: Linearized functions**
 
-$${\sum_{(t,c) \in \left\{rtc_{r,t,c}|(DAM\_COST_{r,t} > 0) \right\}} DAM\_COST_{r,t,c,cur} \times OBJ\_PVT_{r,t,cur} \times 
+$${\sum_{(t,c) \in \left\{rtc_{r,t,c}|(DAM\_COST_{r,t} > 0) \right\}} DAM\_COST_{r,t,c,cur} \times OBJ\_PVT_{r,t,cur} \times
 } \\ \\ {\left\lbrack \begin{aligned}
 & \sum_{\begin{matrix}
 jj \in dam\_num_{r,c,jj,'LO'} \\
@@ -384,7 +385,7 @@ j \leq ORD(jj)
 **\
 Case B: Non-linear functions**
 
-$${\sum_{(t,c) \in \left\{ rtc_{r,t,c}|(DAM\_COST_{r,t} > 0) \right\}}{DAM\_COST_{r,t,c,cur} \times OBJ\_PVT_{r,t,cur}} \times 
+$${\sum_{(t,c) \in \left\{ rtc_{r,t,c}|(DAM\_COST_{r,t} > 0) \right\}}{DAM\_COST_{r,t,c,cur} \times OBJ\_PVT_{r,t,cur}} \times
 } \\ \\ {\left\lbrack \begin{aligned}
 & \\
 & \frac{\left( \begin{aligned}
@@ -412,7 +413,6 @@ Loulou, R., Goldstein, G. & Noble, K. 2004. *Documentation for the MARKAL Family
 Loulou, R., Remme, U., Kanudia, A., Lehtilä, A. & Goldstein, G. 2005. *Documentation for the TIMES Model*. Energy Technology Systems Ananlysis Programme (ETSAP), April 2005. <http://www.iea-etsap.org/web/Documentation.asp>
 
 Nemhauser, G.L., Rinnooy Kan, A.H.G. & Todd, M.J. (eds.) 1989. Handbooks in Operations Research and Management Science, Vol I: Optimization. North-Holland.
-
 
 [^48]: The first row contains the parameter name, the second row contains in brackets the index domain over which the parameter is defined.
 

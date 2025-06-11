@@ -51,6 +51,7 @@ where:
 > $maxdev(uc)$ = user-specified fraction defining the maximum proportional deviation in the value of $LHS(uc)$ compared to the solution in Phase 1
 
 Remarks:
+
 1. Use of the two-phase tradeoff analysis facility requires that a weight has been defined for at least one objective component in the first phase.
 2. If no deviation bounds are specified, the second phase will be omitted.
 3. Automatic discounting of any commodity or flow-based UC component is possible by using a new UC_ATTR option 'PERDISC' which could be applied e.g. to the user-defined objective components in Phase 1.

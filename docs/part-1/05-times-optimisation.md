@@ -7,6 +7,7 @@ Mathematically, a TIMES instance is a Linear Program, as was mentioned in the pr
 Very large instances of Linear Programs involving sometimes millions of constraints and variables may be formulated using modern modeling languages such as [GAMS](http://www.gams.com), and solved via powerful Linear Programming *optimizers*[^27]. The Linear Program described in this chapter is much simplified, since it ignores many exceptions and complexities that are not essential to a basic understanding of the principles of the model. Chapter 14 gives additional details on general Linear Programming concepts. The full details of the parameters, variables, objective function, and constraints of TIMES are given in Part II of this documentation (sections 3, 5, and 6).
 
 A linear optimization problem formulation consists of three types of entities:
+
 - *the decision variables:* i.e. the unknowns, or endogenous quantities, to be determined by the optimization;
 - *the objective function*: expressing the criterion to be minimized or maximized; and;
 - *the constraints*: equations or inequalities involving the decision variables that must be satisfied by the optimal solution.
@@ -94,6 +95,7 @@ $$DAM(EM) = MC_{0} \times \frac{EM^{\beta + 1}}{(\beta + 1) \times EM_{0}^{\beta
 ### Cash flow tracking
 
 As already mentioned, in TIMES, special care is taken to precisely track the cash flows related to process investments and dismantling in each year of the horizon. Such tracking is made complex by several factors:
+
 - First, TIMES recognizes that there may be a lead-time (ILED) between the beginning and the end of the construction of some large processes, thus spreading the investment installments over several years. A recent TIMES feature allows the definition of a negative lead-time, with the meaning that the construction of the technology starts before the year the investment decision is made (this is useful for properly accounting for interest during construction, and is especially needed when using the time-stepped version of TIMES described in chapter 9.)
 - Second, TIMES also recognizes that for some other processes (e.g. new cars), the investment in new capacity occurs *progressively* over the years constituting the time period (whose length is denoted by $D(t)$), rather than in one lumped amount.
 - Third, there is the possibility that a certain investment decision made at period $t$ will have to be repeated more than once during that same period. (This will occur if the period is long compared to the process technical life.)
@@ -111,6 +113,7 @@ Illustration of yearly investments and payments for one of four investment track
 ### Aggregating the various costs
 
 The above considerations, while adding precision and realism to the cost profile, also introduce complex mathematical expressions into the objective function. In this simplified formulation, we do not provide much detail on these complex expressions, which are fully described in section 6.2 of Part II. We limit our description to giving general indications on the cost elements comprising the objective function, as follows:
+
 - The capital costs (investment and dismantling) are first transformed into streams of annual payments, computed for each year of the horizon (and beyond, in the case of dismantling costs and recycling revenues), along the lines presented above.
 - A *salvage value* of all investments still active at the end of the horizon (EOH) is calculated as a lump sum revenue which is subtracted from the other costs and assumed to be accrued in the (single) year following the EOH.[^30]It is then discounted to the user selected reference year.
 - The other costs listed above, which are all annual costs, are added to the annualized capital cost payments, to form the $ANNCOST$ quantity below.
@@ -147,14 +150,15 @@ Unfortunately, it is a well-known fact that the original choice of defining mile
 These were remedied by making changes in parts of the **OBJ** cost representation. Four options are now available, three of which apply to the original definition of TIMES variables, the fourth one applying to the alternate definition of TIMES variables. The fourth option (named **LIN**) is discussed separately in section 5.5, since it concerns not only the objective function but also several constraints.
 
 The three options are as follows:
+
 - The original OBJ with minor changes made to it, activated via the **OBLONG** switch.
 - The modified objective function (**MOD**). The **MOD** formulation adds only a few modifications to the standard formulation:
-    - The model periods are defined in a different way; and
-    - The investment spreads in the investment Cases 1a and 1b (see section 6.2 of Part II for a list of all cases) are defined slightly differently.
+  - The model periods are defined in a different way; and
+  - The investment spreads in the investment Cases 1a and 1b (see section 6.2 of Part II for a list of all cases) are defined slightly differently.
 - The **ALT** formulation includes all the modifications made in the MOD formulation. In addition, it includes the following further modifications that eliminate basically all of the remaining problems in the standard formulation:
-    - The investment spreads in the investment Case 1b are defined slightly differently;
-    - The capacity transfer coefficients for newly installed capacities are defined slightly differently, so that the effective lifetime of technologies is calculated taking into account discounting;
-    - Variable costs are adjusted to be in sync with the available capacity.
+  - The investment spreads in the investment Case 1b are defined slightly differently;
+  - The capacity transfer coefficients for newly installed capacities are defined slightly differently, so that the effective lifetime of technologies is calculated taking into account discounting;
+  - Variable costs are adjusted to be in sync with the available capacity.
 
 It has been observed that these three options yield results that have practically the same degree of accuracy and reliability. There is however an advantage to the MOD and ALT options, as the milestone years need no longer be at the middle of a period.
 
@@ -217,23 +221,23 @@ For each commodity $c$, time period $t$ (vintage $v$), region $r$, and time-slic
 #### $EQ\_COMBAL(r,t,c,s)$ -- Commodity balance
 
 $$\sum_{p,c \in TOP(r,p,c,out)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SOUT(r,v,t,p,c,s) \times STG\_EFF(r,v,p) + \sum_{p,c \in RPC\_IRE(r,p,c,imp)} VAR\_IRE(r,t,p,c,s,imp) + \sum_{p} Release(r,t,p,c) \times VAR\_NCAP(r,t,p,c) ≥ or = \sum_{p,c \in TOP(r,p,c,in)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SIN(r,v,t,p,c,s) + \sum_{p,c \in RPC\_IRE(r,p,c,exp)} VAR\_IRE(r,t,p,c,s,exp) + \sum_{p} Sink(r,t,p,c) \times VAR\_NCAP(r,t,p,c) + FR(c,s) \times VAR\_DEM(c,t)$$ (5-4)
- 
+
 > where:
 >
 > The constraint is ≥ for energy forms and = for materials and emissions (unless these defaults are overridden by the user, see Part II).
-> 
+>
 > $TOP(r,p,c,in/out)$ identifies that there is an input/output flow of commodity $c$ into/from process $p$ in region $r$;
-> 
+>
 > $RPC\_IRE(r,p,c,imp/exp)$ identifies that there is an import/export flow into/from region $r$ of commodity $c$ via process $p$;
-> 
+>
 > $STG\_EFF(r,v,p)$ is the efficiency of storage process $p$;
-> 
+>
 > $COM\_IE(r,t,c)$ is the infrastructure efficiency of commodity $c$;
-> 
+>
 > $Release(r,t,p,c)$ is the amount of commodity $c$ recuperated per unit of capacity of process $p$ dismantled (useful to represent some materials or fuels that are recuperated while dismantling a facility);
-> 
+>
 > $Sink(r,t,p,c)$ is the quantity of commodity $c$ required per unit of new capacity of process $p$ (useful to represent some materials or fuels consumed for the construction of a facility);
-> 
+>
 > $FR(s)$ is the fraction of the year covered by time-slice $s$ (equal to 1 for non- time-sliced commodities).
 
 **<ins>Example</ins>**: Gasoline consumed by vehicles plus gasoline exported to other regions must not exceed gasoline produced from refineries plus gasoline imported from other regions.
@@ -287,6 +291,7 @@ where:
 > For simplicity it has been assumed in {eq}`5-7` that the time-slice resolution of the peaking commodity and the time-slice resolution of the commodity flows (FLO, TRADE) are the same. In practice, this is not the case and additional conversion factors or summation operations are necessary to match different time-slice levels.
 
 *Remark*: to establish the peak capacity, two cases must be distinguished in constraint ***EQ_PEAK***.
+
 - For production processes where the peaking commodity is the only commodity in the primary commodity group (denoted $c=pcg$), the capacity of the process may be assumed to contribute to the peak.
 - For processes where the peaking commodity is not the only member of the pcg, there are several commodities included in the pcg. Therefore, the capacity as such cannot be used in the equation. In this case, the actual production is taken into account in the contribution to the peak, instead of the capacity. For example, in the case of CHP only the production of electricity contributes to the peak electricity supply, not the entire capacity of the plant, because the activity of the process consists of both electricity and heat generation in either fixed or flexible proportions, and, depending on the modeler\'s choice, the capacity may represent either the electric power of the turbine in condensing or back-pressure mode, or the sum of power and heat capacities in back-pressure mode. There is therefore a slight inconsistency between these two cases, since in the first case, a technology may contribute to the peak requirement without producing any energy, whereas this is impossible in the second case.
 
@@ -402,6 +407,7 @@ The traditional way to represent the nodes and arcs of a grid is shown in {numre
 
 Connection of a grid node with other nodes.
 ```
+
 The basic energy conservation equation of a grid is as follows:
 
 $G_{i} - L_{i} = \sum_{j = 1}^{M} P_{i,j}$ *for each i=1,2,\...,M*
@@ -409,11 +415,11 @@ $G_{i} - L_{i} = \sum_{j = 1}^{M} P_{i,j}$ *for each i=1,2,\...,M*
 where:
 
 > $M$ the number of nodes connected with node $i$
-> 
+>
 > $G_{i}$ active power injected into node $i$ by generators
-> 
+>
 > $L_{i}$ active power withdrawn from node $i$ by consumer loads
-> 
+>
 > $P_{i,j}$ branch flow from node $i$ to node $j$
 
 As mentioned above, these constraints are then modified so as to include important technical requirements on the electrical properties (reactance and phase angle) of each line. Suffice it to say here that the resulting new equations remain linear in the flow and other variables.
@@ -443,21 +449,21 @@ $$LEC = \frac{\sum_{t = 1}^{n}{\frac{IC_{t}}{(1 + r)^{t - 1}} + \frac{OC_{t} + V
 where
 
 > $r$ discount rate (e.g. 5%)
-> 
+>
 > $IC_{t}$ investment expenditure in (the beginning of) year $t$
-> 
+>
 > $OC_{t}$ fixed operating expenditure in year $t$
-> 
+>
 > $VC_{t}$ variable operating expenditure in year $t$
-> 
+>
 > $FC_{i,t}$ fuel-specific operating expenditure for fuel $i$ in year $t$
-> 
+>
 > $FD_{i,t}$ fuel-specific acquisition expenditure for fuel $i$ in year $t$
-> 
+>
 > $ED_{j,t}$ emission-specific allowance expenditure for emission $j$ in year $t$ (optional)
-> 
+>
 > $BD_{k,t}$ revenues from commodity $k$ produced by the process in year $t$ (optional)
-> 
+>
 > $MO_{m,t}$ output of main product $m$ in year $t$, i.e. a member of the $pcg$
 
 Comments:
@@ -477,13 +483,13 @@ Choosing the LIN formulation affects the variable costs in the objective functio
 Significant modifications in the LIN formulation concern the variable cost accounting, since the latter are no longer constant in all years of any given period, but evolve linearly between successive milestone years. The objective function components for all variable costs have been modified accordingly.
 
 The following further modifications are done in the LIN formulation:
+
 - The cumulative constraints on commodity production (EQ(l)\_CUMNET and EQ(l)\_CUMPRD) are modified to include linear interpolation of the commodity variables involved;
 - The cumulative constraints on commodity and flow taxes and subsidies (EQ(l)\_CUMCST) are modified to include linear interpolation of the commodity and flow variables involved;
 - The dynamic equations of the Climate module are modified to include linear interpolation of the variables involved;
 - The inter-period storage equations are modified to include linear interpolation of the flow variables involved;
 - The cumulative user constraints for activities and flows are also modified in a similar manner.
 - Note that in the LIN formulation the activity of ***inter-period storage*** equations is measured at the milestone year (in the standard formulation it is measured at the end of each period). In addition, new EQ_STGIPS equations are added to ensure that the storage level remains non-negative at the end of each period. (Without these additional constraints, the linear interpolation of storage could lead to a negative storage level if the period contains more than a single year.)
-
 
 [^26]: This rather improper term includes equality as well as inequality relationships between mathematical expressions.
 
