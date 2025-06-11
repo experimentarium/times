@@ -1,4 +1,4 @@
-# Endogenous Technological Learning (ETL)
+# Appendix C: Endogenous Technological Learning (ETL)
 
 ## Introduction
 
