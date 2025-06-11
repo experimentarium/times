@@ -21,5 +21,13 @@ numbered:
 titlesonly:
 glob:
 ---
-*
+?[!7890]*
+```
+
+```{toctree}
+---
+titlesonly:
+glob:
+---
+?[7890]*
 ```
