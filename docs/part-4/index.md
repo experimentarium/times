@@ -8,5 +8,5 @@ numbered:
 titlesonly:
 glob:
 ---
-*[!results]
+??-[!r]*
 ```
