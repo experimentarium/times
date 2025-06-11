@@ -1,8 +1,7 @@
 ---
-myst:
-    numbering:
-        title: true
-        headings: true
+numbering:
+    title: true
+    headings: true
 ---
 
 # Introduction
