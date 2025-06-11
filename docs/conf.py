@@ -20,7 +20,7 @@ rst_prolog = """.. attention::
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ["myst_parser"]
-myst_numbering_title = True
+myst_numbering = {"title": True, "headings": True}
 numfig = True
 
 templates_path = ["_templates"]
