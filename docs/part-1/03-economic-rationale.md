@@ -6,6 +6,7 @@ The concept of total surplus maximization extends the direct cost minimization a
 
 Section 3.1 provides a brief review of different types of energy models. Section 3.2 discusses the economic rationale of the TIMES model with emphasis on the features that distinguish TIMES from other bottom-up models (such as the early incarnations of MARKAL, see Fishbone and Abilock, 1981 and Berger et al., 1992, though MARKAL has since been extended beyond these early versions). Section 3.3 describes the details of how price elastic demands are modeled in TIMES, and section 3.4 provides additional discussion of the economic properties of the model.
 
+(brief-classification-of-energy-models)=
 ## A brief classification of energy models
 
 Many energy models are in current use around the world, each designed to emphasize a particular facet of interest. Differences include: economic rationale, level of disaggregation of the variables, time horizon over which decisions are made (which is closely related to the type of decisions, i.e., only operational planning or also investment decisions), and geographic scope. One of the most significant differentiating features among energy models is the degree of detail with which commodities and technologies are represented, which will guide our classification of models into two major classes, as explained in the following very streamlined classification.
@@ -48,6 +49,7 @@ The top-down vs. bottom-up approach is not the only relevant difference among en
 
 Among technology explicit models also, two main classes are usually distinguished: the first class is that of the partial equilibrium models such as MARKAL, MESSAGE, and TIMES, that use optimization techniques to compute a least cost (or maximum surplus) path for the energy system. The second class is that of *simulation* models, where the emphasis is on representing a system not governed purely by financial costs and profits. In these simulation models (e.g., CIMS, Jaccard et al. 2003), investment decisions taken by a representative agent (firm or consumer) are only partially based on profit maximization, and technologies may capture a share of the market even though their life-cycle cost may be higher than that of other technologies. Simulation models use market-sharing formulas that preclude the easy computation of equilibrium -- at least not in a single pass. The SAGE (US EIA, 2002) incarnation of the MARKAL model possesses a market sharing mechanism that allows it to reproduce certain behavioral characteristics of observed markets.
 
+(core-times-paradigm)=
 ## The core TIMES paradigm
 
 In the rest of this chapter, we present the properties of the **core TIMES** paradigm. As will be seen in chapters 8 to 12, some of these properties are not applicable to several important TIMES variants. The reader should keep this caveat in mind when contemplating the use of some features that are described in these 5 chapters.
@@ -80,6 +82,7 @@ As a result of these assumptions the following additional properties hold:
 - The market price of each commodity is equal to its marginal value in the overall system (3.2.4); and
 - Each economic agent maximizes its own profit or utility (3.2.5).
 
+(partial-equilibrium-linearity)=
 #### Linearity
 
 A linear input-to-output relationship first means that each technology represented may be implemented at any capacity, from zero to some upper limit, without economies or diseconomies of scale. In a real economy, a given technology is usually available in discrete sizes, rather than on a continuum. In particular, for some real life technologies, there may be a minimum size below which the technology may not be implemented (or else at a prohibitive cost), as for instance a nuclear power plant, or a hydroelectric project. In such cases, because TIMES assumes that all technologies may be implemented in any size, it may happen that the model's solution shows some technology's capacity at an unrealistically small size. It should however be noted that in most applications, such a situation is relatively infrequent and often innocuous, since the scope of application is at the country or region's level, and thus large enough so that small capacities are unlikely to occur.
@@ -90,6 +93,7 @@ It is the linearity property that allows the TIMES equilibrium to be computed us
 
 We must now mention a common misconception regarding linearity: the fact that TIMES equations are linear *does not mean that production functions behave in a linear fashion; far from it*. Indeed, the TIMES production functions are usually highly non-linear (although convex), consisting of a stepped sequence of linear functions. As a simple example, a supply of some resource is almost always represented as a sequence of segments, each with rising (but constant within an interval) unit cost. The modeler defines the 'width' of each interval so that the resulting supply curve may simulate any non-linear convex function. In brief, diseconomies of scale are easily represented in linear models.
 
+(maximization-of-total-surplus)=
 #### Maximization of total surplus: Price equals marginal value
 
 The *total surplus* of an economy is the sum of the suppliers' and the consumers' surpluses. The term *supplier* designates any economic agent that produces (and/or sells) one or more commodities i.e., in TIMES, an energy form, a material, an emission permit, and/or an energy service. A *consumer* is a buyer of one or more commodities. In TIMES, the suppliers of a commodity are technologies that procure a given commodity, and the consumers of a commodity are technologies or service segments that consume a given commodity. Some (indeed most) technologies are both suppliers and consumers. Therefore, for each commodity the RES defines a complex set of suppliers and consumers.
@@ -141,6 +145,7 @@ Equilibrium in the case of an energy service: the user explicitly provides the d
 Equilibrium when an energy service demand is fixed.
 ```
 
+(competitive-energy-markets-with-perfect-foresight)=
 #### Competitive energy markets with perfect foresight
 
 Competitive energy markets are characterized by perfect information and atomic economic agents, which together preclude any of them from exercising market power. That is, neither the level at which any individual producer supplies, nor the level any individual consumer acquires, affects the equilibrium market price (because there are many other buyers and sellers to replace them). It is a standard result of microeconomic theory that the assumption of competitive markets entails that the market price of a commodity is equal to its marginal value in the economy (Samuelson, 1952). This is of course also verified in the TIMES economy, as discussed in the next subsection.
@@ -151,6 +156,7 @@ In the core version of TIMES, the perfect information assumption extends to the 
 
 Note that there are at least two ways in which the perfect foresight assumption may be voided: in one variant, agents are assumed to have foresight over a limited portion of the horizon, say one or a few periods. Such an assumption of limited foresight is embodied in the TIMES feature discussed in chapter 9, as well as in the SAGE variant of MARKAL (US EIA, 2002). In another variant, foresight is assumed to be imperfect, meaning that agents may only *probabilistically* know certain key future events. This assumption is at the basis of the TIMES Stochastic Programming option, discussed in chapter 8.
 
+(marginal-value-pricing)=
 ### Marginal value pricing
 
 We have seen in the preceding subsections that the TIMES equilibrium occurs at the intersection of the inverse supply and inverse demand curves. It follows that the equilibrium prices are equal to the marginal system values of the various commodities. From a different angle, the duality theory of Linear Programming (chapter 14) indicates that for each constraint of the TIMES linear program there is a *dual variable.* This dual variable (when an optimal solution is reached) is also called the constraint's *shadow price*[^23]*,* and is equal to the marginal change of the objective function per unit increase of the constraint's right-hand-side. For instance, the shadow price of the balance constraint of a commodity (whether it be an energy form, material, a service demand, or an emission) represents the competitive market price of the commodity.
@@ -168,6 +174,7 @@ In TIMES the shadow prices of commodities play a very important diagnostic role.
 Case where the equilibrium price is not equal to any marginal supply cost.
 ```
 
+(profit-maximization-the-invisible-hand)=
 ### Profit maximization: the Invisible Hand
 
 An interesting property may be derived from the assumptions of competitiveness. While the avowed objective of the TIMES model is to maximize the overall surplus, it is also true that each economic agent in TIMES maximizes its own surplus. This property is akin to the famous 'invisible hand' property of competitive markets, and may be established rigorously by the following theorem that we state in an informal manner:
