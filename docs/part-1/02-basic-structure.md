@@ -129,6 +129,7 @@ TIMES process-oriented parameters fall into several general categories.
 
 A second class of process parameters comprises *economic and policy parameters* that include a variety of costs attached to the investment, dismantling, maintenance, and operation of a process. The investment cost of the technology is incurred once at the time of acquisition; the fixed annual cost is incurred each year per unit of the capacity of the technology, as long as the technology is kept alive (even if it is not actively functioning); the annual variable cost is incurred per unit of the activity of the technology. In addition to costs, taxes and subsidies (on investment and/or on activity) may be defined in a very flexible manner. Other economic parameters are: the economic life of a process (the time during which the investment cost of a process is amortized, which may differ from the operational lifetime) and the process specific discount rate, also called *hurdle rate*. Both these parameters serve to calculate the annualized payments on the process investment cost, which enters the expression for the total cost of the run (section 5.2).
 
+(processes-bounds)=
 #### Bounds
 
 Another class of parameter is used to define the right-hand-side of some constraint. Such a parameter represents a ***bound*** and its specification triggers the constraint on the quantity concerned. Most frequently used bounds are those imposed on period investment, capacity, or activity of a process. Newly defined bounds allow the user to impose limits on the annual or annualized payments at some period or set of consecutive years.
@@ -161,6 +162,7 @@ This subsection concerns parameters attached to each commodity, irrespective of 
 
 *Policy based parameters* include bounds (at each period or cumulative over user defined years) on the gross or net production of a commodity, or on the imports or exports of a commodity by a region.
 
+(commodities-bounds)=
 #### Bounds
 
 In TIMES the net or the total production of each commodity may be explicitly represented by a variable, if needed for imposing a bound or a tax. A similar variety of bounding parameters exists for commodities as for processes.
