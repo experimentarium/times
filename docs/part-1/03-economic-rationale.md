@@ -1,3 +1,4 @@
+(economic-rationale-of-the-times)=
 # Economic rationale of the TIMES modeling approach
 
 This chapter provides a detailed economic interpretation of TIMES and other partial equilibrium models based on maximizing total surplus. Partial equilibrium models have one common feature -- they simultaneously configure the production and consumption of commodities (i.e. fuels, materials, and energy services) and their prices. The price of producing a commodity affects the demand for that commodity, while at the same time the demand affects the commodity's price. A market is said to have reached an equilibrium at prices *p\** and quantities *q\** when no consumer wishes to purchase less than *q\** and no producer wishes to produce more than *q\** at price *p\**. Both *p\** and *q\** are vectors whose dimension is equal to the number of different commodities being modeled. As will be explained below, when all markets are in equilibrium the total economic surplus is maximized.
