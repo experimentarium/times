@@ -1,4 +1,4 @@
-# Damage Cost Functions
+# Appendix B: Damage Cost Functions
 
 ## Introduction
 

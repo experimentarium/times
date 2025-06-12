@@ -8,7 +8,7 @@ In the subsections that follow, unless otherwise stated, the basic syntax for th
 
 The use of the RUN_NAME control variable is practically mandatory when running TIMES. By setting the RUN_NAME control variable, the user gives a name to the model run, which will be used when generating various output files and/or loading information from a previously generated file that has the same name. The control variable is used in the following way:
 
-```
+```gams
 $SET RUN_NAME runname
 ```
 
@@ -50,7 +50,7 @@ TIMES has a number of variants or model instances embedded in the within the ful
 
 The TIMESED control variable is one of the most important TIMES control variables. It has to be used whenever the full partial equilibrium features of TIMES (that is, employing elastic demands) are to be utilized. For running a baseline scenario to be subsequently used as the reference scenario for partial equilibrium analyses with elastic demands, the following setting should be used:
 
-```
+```gams
 $SET TIMESED NO
 ```
 
@@ -61,7 +61,7 @@ This setting indicates that the user plans to use the resulting price levels fro
 
 For running any policy scenarios with elastic demands, using price levels from a previous run as reference prices, one must use the following setting:
 
-```
+```gams
 $SET TIMESED YES
 ```
 
@@ -157,7 +157,7 @@ In addition to controlling how the objective function is assembled, as described
 
 The stochastic mode of TIMES can be activated with the STAGES control variable, by using the following setting:
 
-```
+```gams
 $SET STAGES YES
 ```
 
@@ -170,7 +170,7 @@ each other in only in a few parameter values. In such cases the so-called warm s
 
 The use of the warm start facilities can be automatically enabled in sensitivity and tradeoff analysis by using the following setting instead of `$SET STAGES YES`:
 
-```
+```gams
 $SET SENSIS YES
 ```
 
@@ -184,13 +184,13 @@ For modeling recurring uncertainties, such as hydrological conditions or fuel-pr
 
 This variant of the stochastic mode can be activated by using the following control variable setting:
 
-```
+```gams
 $SET SPINES YES
 ```
 
 In addition, under the SPINES option all the remaining equations that define dynamic or cumulative relationships between variables can additionally be requested to be based on the expected values instead of imposing the inter-period equations separately for each SOW. Doing so will ensure that the uncertainties represented by the SOW-indexed variables will be independent in successive periods. This further model simplification can be requested by using the SOLVEDA switch, as follows:
 
-```
+```gams
 $SET SOLVEDA 1
 ```
 
@@ -206,7 +206,7 @@ The SPINES control variable is available only in TIMES versions 3.3.0 and above,
 
 The purpose of the FIXBOH option is to bind the first years of a model run to the same values determined during a previous optimization. The approach first requires that a reference case be run, and then by using FIXBOH the model generator sets fixed bounds for a subsequent run according to the solution values from the reference case up to the last Milestone year less than or equal to the year specified by the FIXBOH control variable. The FIXBOH control has to be used together with the LPOINT control variable, in the following way:
 
-```
+```gams
 $SET FIXBOH 2050
 $SET LPOINT <run_name>
 ```
@@ -221,19 +221,21 @@ Assume that you would like to analyze the 15-region ETSAP TIAM model with some s
 
 In the RUN file you should specify the control switches described above:
 
-```
+```gams
 $SET FIXBOH 2030
 $SET LPOINT <run_name>
 ```
 
 In a model DD file you should include the values for the REG_FIXT parameter:
-```
+
+```gams
 PARAMETER REG_FIXT
 /
 AUS 2200, CAN 2200, CHI 2200, IND 2200
 JPN 2200, MEX 2200, ODA 2200, SKO 2200
 /;
 ```
+
 :::
 
 ### Limit foresight stepwise solving \[TIMESTEP\]
@@ -325,7 +327,7 @@ Besides the core extensions discussed in the previous section, the model managem
 
 The user extension(s) that are to be included in the current model run need to be activated in the \<case\>.run file, and passed to inimty.mod, e.g.:
 
-```
+```gams
 $BATINCLUDE initmty.mod IER FIA
 ```
 
@@ -422,6 +424,7 @@ Comparing the non-setting of REDUCE vs. REDUCE=YES the number of equations and v
 - Shadow price of non-generated EQ_PTRANS equations are lost.
 - Reduced cost of upper/fixed ACT_BND of zero are lost. If one needs this information, one should use a very small number instead, e.g. 1.e-5, as value for the activity bound.
 :::
+
 ## GAMS savepoint / loadpoint controls
 
 TIMES includes GAMS control variables that can be used to utilize the GAMS savepoint and loadpoint facilities. The savepoint facility makes it possible to save the basis information (levels and dual values of variables and equations) into a GDX file after model solution. The loadpoint facility makes it possible to load previously saved basis information from a GDX file and utilize it for a so-called warm start to speed up model solution.
@@ -449,12 +452,14 @@ The GAMS control variables that can be used for the savepoint and loadpoint feat
 * - LPOINT filename
   - Indicates that the model generator should load the solution point from the file %LPOINT%\_p.gdx. If the control variable SPOINT has additionally been set to 2 or 3, a subsequent attempt to load from %RUN_NAME%\_p.gdx is also made if the loading from the file %LPOINT%\_p.gdx fails.
 ```
+
 In VEDA-FE the LPOINT can be set from the Case Manager by requesting the loading of a previously GDX, and in ANSWER by means of Run Model Restart files specifications, as shown in {numref}`image23`.
 
 ```{figure} assets/image22.png
 :name: image22
 :align: center
 ```
+
 ```{figure} assets/image23.png
 :name: image23
 :align: center
@@ -465,7 +470,7 @@ Setting LPOINT
 
 By using the DEBUG control, the user can request dumping out all user/system data structures into a file, and turn on extended quality assurance checks. The switch is activated by means of:
 
-```
+```gams
 $SET DEBUG YES
 ```
 
@@ -556,7 +561,7 @@ The various \$\<switch\> \<value\> switches controlling reporting of the model r
 
 For the BENCOST report, all of the absolute indicators are expressed in terms of undiscounted investment costs (like those specified by NCAP_COST). For example, the competitiveness gap represents the amount of change in investment costs that would bring the technology competitive (the VAR_NCAP variable would enter the solution basis). Ranging information can only be reported when the CPLEX ranging option has been used. The ranging option can be activated by adding the following two lines into the CPLEX options file (CPLEX.OPT):
 
-```
+```gams
 objrng VAR_NCAP
 rngrestart timesrng.inc
 ```
