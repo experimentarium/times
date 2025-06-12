@@ -54,7 +54,7 @@ The purpose of this section is to show how certain policies may be simulated in 
 
 A tax is levied on emissions of CO<sub>2</sub> at point of source.
 
-This policy is easily represented in TIMES a) making sure that all technologies that emit CO<sub>2</sub> have an emission coefficient, and then defining a tax on these emissions {numref}`(see section %s) <economic-and-policy-parameters>`. The policy may indicate that the tax be levied upstream for some end-use sectors (e.g. automobiles), in which case the emission coefficient is defined at the oil refinery level rather than at the level of individual car types.
+This policy is easily represented in TIMES a) making sure that all technologies that emit CO<sub>2</sub> have an emission coefficient, and then defining a tax on these emissions (see{numref}`%s <economic-and-policy-parameters>`). The policy may indicate that the tax be levied upstream for some end-use sectors (e.g. automobiles), in which case the emission coefficient is defined at the oil refinery level rather than at the level of individual car types.
 
 **Policy 2: Cap-and-trade on CO<sub>2</sub>**
 
