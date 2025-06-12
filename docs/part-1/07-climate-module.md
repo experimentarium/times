@@ -1,3 +1,4 @@
+(the-times-climate-module)=
 # The TIMES Climate Module
 
 This chapter provides a detailed description of the theoretical approach taken to model changes in atmospheric greenhouse gas concentrations, radiative forcing, and global mean temperatures in the TIMES Climate Module. Appendix A of Part II contains a full description of the implementation of the Climate Module in TIMES, including parameters, variables, and equations, as represented in the TIMES code.
@@ -17,6 +18,7 @@ The temperature equations have been kept as in Nordhaus and Boyer.
 
 We now describe the mathematical equations used at each of the three steps of the climate module.
 
+(concentrations-accumulation-of-co2)=
 ## Concentrations (accumulation of CO<sub>2</sub>, CH<sub>4</sub>, N<sub>2</sub>O[^33])
 
 a) CO<sub>2</sub> accumulation is represented as the linear three-reservoir model below: the atmosphere, the quickly mixing upper ocean + biosphere, and the deep ocean. CO<sub>2</sub> flows in both directions between adjacent reservoirs. The 3-reservoir model is represented by the following 3 equations when the step of the recursion is equal to one year:
@@ -65,6 +67,7 @@ $$
 \end{aligned}
 $$
 
+(radiative-forcing)=
 ## Radiative forcing
 
 We assume, as is routinely done in atmospheric science, that the atmospheric radiative forcings caused by the various gases are additive (IPCC, 2007). Thus:
@@ -110,6 +113,7 @@ d) $EXOFOR(y)$ is the increase in total radiative forcing at period t relative t
 
 The parameterization of the three forcing equations ({eq}`7-8`, {eq}`7-9`, and {eq}`7-10`) is not controversial and relies on the results reported by Working Group I of the IPCC. IPCC (2001, Table 6.2, p.358) provides a value of 3.7 for $γ$, smaller than the one used by Nordhaus and Boyer ($γ = 4.1$). We have adopted this lower value of 3.7 $W/m^2$ as default in TIMES. Users are free to experiment with other values of the γ parameter. The same reference provides the entire expressions for all three forcing equations.
 
+(linear-approximation-of-the-three-forcings)=
 ## Linear approximations of the three forcings
 
 In TIMES, each of the three forcing expressions is replaced by a linear approximation, in order to preserve linearity of the entire model. All three forcing expressions are concave functions. Therefore, two linear approximations are obvious candidates. The first one is an approximation from below, consisting of the chord of the graph between two selected end-points. The second one has the same slope as the chord and is tangent to the graph, thus approximating the function from above. The final approximation is the arithmetic average of the two approximations. These linear expressions are easily derived once a range of interest is defined by the user.
@@ -138,6 +142,7 @@ By denoting the pre-industrial concentration level as $M_0$, the general formula
   
   $$F_{3}(M) = \frac{F_{1}(M) + F_{2}(M)}{2}$$
 
+(temperature-increase)=
 ## Temperature increase
 
 In the TIMES Climate Module as in many other integrated models, climate change is represented by the global mean surface temperature. The idea behind the two-reservoir model is that a higher radiative forcing warms the atmospheric layer, which then quickly warms the upper ocean. In this model, the atmosphere and upper ocean form a single layer, which slowly warms the second layer consisting of the deep ocean.

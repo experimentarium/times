@@ -1,3 +1,4 @@
+(core-times-model-mathematics-of-the)=
 # Core TIMES model: Mathematics of the computation of the supply-demand equilibrium
 
 In the preceding chapter, we have seen that TIMES does more than minimize the cost of supplying energy services. Instead, it computes a supply-demand equilibrium where both the energy supplies and the energy service demands are endogenously determined by the model. The equilibrium is driven by the user-defined specification of demand functions, which determine how each energy service demand varies as a function of the current market price of that energy service. The TIMES code assumes that each demand has constant own-price elasticity in a given time period, and that cross price elasticities are zero. We have also seen that economic theory establishes that the equilibrium thus computed corresponds to the maximization of the net total surplus, defined as the sum of the suppliers' and consumers' surpluses. We have argued in section 3.2 that the total net surplus has often been considered a valid metric of societal welfare in microeconomic literature, and this fact confers strong validity to the equilibrium computed by TIMES. Thus although TIMES falls short of computing a general equilibrium, it does capture a major element of the feedback effects not previously accounted for in bottom-up energy models.
@@ -6,6 +7,7 @@ In this chapter we provide the details on how the equilibrium is transformed int
 
 Historically, the approach was first used in the Project Independence Energy System (PIES, see Hogan, 1975), although in the context of demands for final energy rather than for energy services as in TIMES or MARKAL. It was then proposed for MARKAL model by Tosato (1980) and Altdorfer (1982), and later made available as a standard MARKAL option by Loulou and Lavigne (1995). The TIMES implementation is identical to the MARKAL one.
 
+(theoretical-considerations)=
 ## Theoretical considerations: the Equivalence Theorem
 
 The computational method is based on the equivalence theorem presented in chapter 3, which we restate here:
@@ -14,8 +16,10 @@ The computational method is based on the equivalence theorem presented in chapte
 
 {numref}`eq-demand-curve` of Chapter 3 provides a graphical illustration of this theorem in a case where only one commodity is considered.
 
+(mathematics-of-the-times-equilibrium)=
 ## Mathematics of the TIMES equilibrium
 
+(defining-demand-functions)=
 ### Defining demand functions
 
 From chapter 3, we have the following demand function for each demand category $i$:
@@ -28,6 +32,7 @@ $$p_{i} = p_{i}^{0} \cdot (DM_{i}/D{M_{i}}^{0})^{1/E_{i}}$$
 
 where the superscript '0' indicates the reference case, and the elasticity $E_i$ is negative. Note also that the elasticity may have two different values, one for upward changes in demand, the other for downward changes.
 
+(formulating-the-times-equilibrium)=
 ### Formulating the TIMES equilibrium
 
 With inelastic demands (i.e. pure cost minimization), the TIMES model may be written as the following Linear Program:
@@ -61,6 +66,7 @@ $$and \quad B \cdot X \geq b$$ (4-7-tick)
 
 We are almost there, but not quite, since the $[DM_i(t)]^{-1/E_i}$ are non linear expressions and thus not directly usable in an LP.
 
+(linearization-of-the-mathematical-program)=
 ### Linearization of the Mathematical Program
 
 The Mathematical Program embodied in {eq}`4-5-tick`, {eq}`4-6-tick` and {eq}`4-7-tick` has a non-linear objective function. Because the latter is separable (i.e. does not include cross terms) and concave in the $DM_i$ variables, each of its terms is easily linearized by piece-wise linear functions which approximate the integrals in {eq}`4-5`. This is the same as saying that the inverse demand curves are approximated by staircase functions, as illustrated in {numref}`approx-non-linear-obj-function`. By so doing, the resulting optimization problem becomes linear again. The linearization proceeds as follows.
@@ -90,14 +96,17 @@ Since the $A_{j,i,t}$ terms have decreasing values (due to the concavity of the 
 Step-wise constant approximation of the non-linear terms in the objective function.
 ```
 
+(calibration-of-the-demand-function)=
 ### Calibration of the demand functions
 
 Besides selecting elasticities for the various demand categories, the user must evaluate each constant $K_i(t)$. To do so, we have seen that one needs to know one point on each demand function in each time period, $\{p^0_i(t),DM^0_i(t)\}$. To determine such a point, we perform a single preliminary run of the inelastic TIMES model (with exogenous $DM^0_i(t)$), and use the resulting shadow prices $p^0_i(t)$ for all demand constraints, in all time periods for each region.
 
+(computational-considerations)=
 ### Computational considerations
 
 Each demand segment that is elastic to its own price requires the definition of as many variables as there are steps in the discrete representation of the demand curve (both upward and down if desired), for each period and region. Each such variable has an upper bound, but is otherwise involved in no new constraint. Therefore, the linear program is augmented by a number of variables, but does not have more constraints than the initial inelastic LP (with the exception of the upper bounds). It is well known that with modern LP codes the number of variables has little or no impact on computational time in Linear Programming, whether the variables are upper bounded or not. Therefore, the inclusion in TIMES of elastic demands has a very minor impact on computational time or on the tractability of the resulting LP. This is an important observation in view of the very large LP's that result from representing multi-regional and global models in TIMES.
 
+(interpreting-times-costs-surplus-and-prices)=
 ### Interpreting TIMES costs, surplus, and prices
 
 It is important to note that, instead of maximizing the net total surplus, TIMES minimizes its negative (plus a constant), obtained by changing the signs in expression {eq}`4-5`. For this and other reasons, it is inappropriate to pay too much attention to the meaning of the *absolute* objective function values. Rather, examining the difference between the objective function values of two scenarios is a far more useful exercise. That difference is of course, the negative of the difference between the net total surpluses of the two scenario runs.

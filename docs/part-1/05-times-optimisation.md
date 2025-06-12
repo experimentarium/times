@@ -1,3 +1,4 @@
+(core-times-model-a-simplified-description)=
 # Core TIMES Model: A simplified description of the Optimization Program (variables, objective, constraints)
 
 This chapter contains a simplified formulation of the core TIMES Linear Program.
@@ -11,6 +12,7 @@ A linear optimization problem formulation consists of three types of entities:
 - *the objective function*: expressing the criterion to be minimized or maximized; and;
 - *the constraints*: equations or inequalities involving the decision variables that must be satisfied by the optimal solution.
 
+(indices)=
 ## Indices
 
 The model data structures (sets and parameters), variables and equations use the following indices:
@@ -25,6 +27,7 @@ The model data structures (sets and parameters), variables and equations use the
 >
 > $c$: commodity (energy, material, emission, demand).
 
+(decision-variables)=
 ## Decision variables
 
 The decision variables represent the *choices* to be made by the model, i.e. the *unknowns*. All TIMES variables are prefixed with the three letters VAR followed by an underscore.
@@ -67,8 +70,10 @@ $VAR\_DEM(r,t,d)$: demand for end-use energy service $d$ in region $r$ and perio
 
 *<ins>Important remark</ins>*: It is useful to know that many variables (for instance the above two accounting variables, but also the flow variables described earlier) add only a moderate computational burden to the optimization process, thanks to the use of a *reduction algorithm* to detect and eliminate redundant variables and constraints before solving the LP. These variables and constraints are later reinstated in the solution file for reporting purposes.
 
+(times-objective-function)=
 ## TIMES objective function: discounted total system cost
 
+(the-costs-accounted-for-in-the-objective-function)=
 ### The costs accounted for in the objective function
 
 The Surplus Maximization objective is first transformed into an equivalent Cost Minimization objective by taking the negative of the surplus, and calling this value the *total system cost*. This practice is in part inspired from historical custom from the days of the fixed demand MARKAL model. The TIMES objective is therefore to minimize the total \'cost\' of the system, properly augmented by the 'cost' of lost demand. All cost elements are appropriately discounted to a user-selected year.
@@ -91,6 +96,7 @@ $$DAM(EM) = MC_{0} \times \frac{EM^{\beta + 1}}{(\beta + 1) \times EM_{0}^{\beta
 - *Salvage value* of processes and embedded commodities at the end of the planning horizon. This revenue appears with a negative sign in the cost expressions. It should also be stressed that the calculation of the salvage value at the end of the planning horizon is very complex and that the original TIMES expressions accounting for it contained some biases (over- or under-estimations of the salvage values in some cases). These biases have been corrected in the present version of TIMES as explained in sections 5.3.4 and 5.5.
 - *Welfare loss* resulting from reduced end-use demands. Chapter 4 has presented the mathematical derivation of this quantity.
 
+(cash-flow-tracking)=
 ### Cash flow tracking
 
 As already mentioned, in TIMES, special care is taken to precisely track the cash flows related to process investments and dismantling in each year of the horizon. Such tracking is made complex by several factors:
@@ -108,6 +114,7 @@ To illustrate the above complexities, we present a diagram taken from Part II th
 Illustration of yearly investments and payments for one of four investment tracking cases.
 ```
 
+(aggregating-the-various-costs)=
 ### Aggregating the various costs
 
 The above considerations, while adding precision and realism to the cost profile, also introduce complex mathematical expressions into the objective function. In this simplified formulation, we do not provide much detail on these complex expressions, which are fully described in section 6.2 of Part II. We limit our description to giving general indications on the cost elements comprising the objective function, as follows:
@@ -134,6 +141,7 @@ where:
 
 As already mentioned, the exact computation of $ANNCOST$ is quite complex and is postponed until section 6.2 of PART II
 
+(variants-for-the-objective-function)=
 ### Variants for the objective function
 
 There are some cases where the standard formulation described above leads to small distortions in the cost accounting between capacity-related costs and the corresponding activity-related costs. This occurs even without discounting but may be increased by discounting. These distortions may occur at the end of the model horizon, either due to excessive or deficient salvage value.
@@ -162,40 +170,47 @@ Additional details and comments are provided on all three options in technical n
 
 <ins>Conclusion on the variants</ins>: The multiplicity of options may confuse the modeler. Extensive experience with their use has shown that the distortions discussed above remain quite small. In practice, old TIMES users seem to stick to the classical OBJ with the OBLONG switch. And, as mentioned above, using MOD allows the further flexibility of freely choosing milestone years. Finally, using the LIN option (described in section 5.5) is a more serious decision, since it implies a different meaning for the TIMES variables; some modelers are more comfortable with this choice, which has also implications for the reporting of results.
 
+(constraints)=
 ## Constraints
 
 While minimizing total discounted cost, the TIMES model must satisfy a large number of constraints (the so-called *equations* of the model) which express the physical and logical relationships that must be satisfied in order to properly depict the associated energy system. TIMES constraints are of several kinds. Here we list and briefly discuss the main types of constraints. A full, mathematically more precise description is given in Part II. If any constraint is not satisfied, the model is said to be *infeasible*, a condition caused by a data error or an over-specification of some requirement.
 
 In the descriptions of the equations that follow, the equation and variable names (and their indexes) are in ***bold italic*** type, and the parameters (and their indexes), corresponding to the input data, are in regular *italic* typeset. Furthermore, some parameter indexes have been omitted in order to provide a streamlined presentation.
 
+(capacity-transfer)=
 ### Capacity transfer (conservation of investments)
 
 Investing in a particular technology increases its installed capacity for the duration of the physical life of the technology. At the end of that life, the total capacity for this technology is decreased by the same amount. When computing the available capacity in some time period, the model takes into account the capacity resulting from all investments up to that period, some of which may have been made prior to the initial period but are still in operating condition (embodied by the residual capacity of the technology), and others that have been decided by the model at, or after, the initial period, up to and including the period in question.
 
 The total available capacity for each technology *p,* in region *r*, in period *t* (all vintages),is equal to the sum of investments made by the model in past and current periods, and whose physical life has not yet ended, plus capacity in place prior to the modeling horizon that is still available. The exact formulation of this constraint is made quite complex by the fact that TIMES accepts variable time periods, and therefore the end of life of an investment may well fall in the middle of a future time period. We ignore here these complexities and provide a streamlined version of this constraint. Full details are shown in section 6.3.18 of Part II.
 
+(eq-cpt-capacity-transfer)=
 #### $EQ\_CPT(r,t,p)$ -- Capacity transfer
 
 $$VAR\_CAPT(r,t,p) = \sum_{t' \in \{t-t'< LIFE(r,t',p)\}} VAR\_NCAP(r,t',p) + RESID(r,t,p)$$ (5-1)
 
 > where $RESID(r,t,p)$ is the (exogenously provided) capacity of technology $p$ due to investments that were made prior to the initial model period and still exist in region $r$ at time $t$.
 
+(definition-of-process-activity-variables)=
 ### Definition of process activity variables
 
 Since TIMES recognizes activity variables as well as flow variables, it is necessary to relate these two types of variables. This is done by introducing a constraint that equates an overall activity variable, $VAR\_ACT(r,v,t,p,s)$, with the appropriate set of flow variables, $VAR\_FLO(r,v,t,p,c,s)$, properly weighted. This is accomplished by first identifying the group of commodities that defines the activity (and thereby the capacity as well) of the process. In a simple process, one consuming a single commodity and producing a single commodity, the modeler simply chooses one of these two flows to define the activity, and thereby the process normalization (input or output). In more complex processes, with several commodities (perhaps of different types) as inputs and/or outputs, the definition of the activity variable requires first to choose the *primary commodity group (pcg)* that will serve as the activity-defining group. For instance, the *pcg* may be the group of energy carriers, or the group of materials of a given type, or the group of GHG emissions, etc. The modeler then identifies whether the activity is defined via inputs or via outputs that belong to the selected *pcg*. Conceptually, this leads to the following relationship:
 
+(eq-actflo-activity-definition)=
 #### $EQ\_ACTFLO(r,v,t,p,s)$ -- Activity definition
 
 $$VAR\_ACT(r,v,t,p,s) = \sum_{c \in pcg} VAR\_FLO(r,v,t,p,c,s) / ACTFLO(r,v,p,c)$$ (5-2)
 
 > where $ACTFLO(r,v,p,c)$ is a conversion factor (often equal to 1) from the activity of the process to the flow of a particular commodity.
 
+(use-of-capacity)=
 ### Use of capacity
 
 In each time period the model may use some or all of the installed capacity according to the Availability Factor (AF) of that technology. Note that the model may decide to use *less* than the available capacity during certain time-slices, or even throughout one or more whole periods, if such a decision contributes to minimizing the overall cost. Optionally, there is a provision for the modeler to force specific technologies to use their capacity to their full potential.
 
 For each technology $p$, period $t$, vintage $v$, region $r$, and time-slice $s$, the activity of the technology may not exceed its available capacity, as specified by a user defined availability factor.
 
+(eq-capact-use-of-capacity)=
 #### $EQ\_CAPACT (r,v,t,p,s)$ -- Use of capacity
 
 $$VAR\_ACT(r,v,t,p,s) ≤ or = AF(r,v,t,p,s) \times PRC\_CAPACT(r,p)) \times FR(r,s) \times VAR\_CAP(r,v,t,p)$$ (5-3)
@@ -206,6 +221,7 @@ $$VAR\_ACT(r,v,t,p,s) ≤ or = AF(r,v,t,p,s) \times PRC\_CAPACT(r,p)) \times FR(
 
 The $s$ index of the $AF$ coefficient in equation {eq}`5-3` indicates that the user may specify time-sliced dependency on the availability of the installed capacity of some technologies, if desirable. This is especially needed when the operation of the equipment depends on the availability of a resource that cannot be stored, such as wind and sun, or that can be only partially stored, such as water in a reservoir. In other cases, the user may provide an $AF$ factor that does not depend on $s$, which is then applied to the entire year. The operation profile of a technology within a year, if the technology has a sub-annual process resolution, is determined by the optimization routine. The number of $EQ\_CAPACT$ constraints is at least equal to the number of time-slices in which the equipment operates. For technologies with only an annual characterization the number of constraints is reduced to one per period (where $s$="ANNUAL").
 
+(commodity-balance-equation)=
 ### Commodity balance equation
 
 In each time period, the production by a region plus imports from other regions of each commodity must balance the amount consumed in the region or exported to other regions. In TIMES, the sense of each balance constraint (**≥** or **=**) is user controlled, via a special parameter attached to each commodity. However, the constraint defaults to an equality in the case of materials (i.e. the quantity produced and imported is *exactly* equal to that consumed and exported), and to an inequality in the case of energy carriers, emissions and demands (thus allowing some surplus production). For those commodities for which time-slices have been defined, the balance constraint must be satisfied in each time-slice.
@@ -214,6 +230,7 @@ The balance constraint is very complex, due to the many terms involving producti
 
 For each commodity $c$, time period $t$ (vintage $v$), region $r$, and time-slice $s$ (if necessary or "ANNUAL" if not), this constraint requires that the disposition of each commodity balances its procurement. The disposition includes consumption in the region plus exports; the procurement includes production in the region plus imports.
 
+(eq-combal-commodity-balance)=
 #### $EQ\_COMBAL(r,t,c,s)$ -- Commodity balance
 
 $$\sum_{p,c \in TOP(r,p,c,out)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SOUT(r,v,t,p,c,s) \times STG\_EFF(r,v,p) + \sum_{p,c \in RPC\_IRE(r,p,c,imp)} VAR\_IRE(r,t,p,c,s,imp) + \sum_{p} Release(r,t,p,c) \times VAR\_NCAP(r,t,p,c) ≥ or = \sum_{p,c \in TOP(r,p,c,in)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SIN(r,v,t,p,c,s) + \sum_{p,c \in RPC\_IRE(r,p,c,exp)} VAR\_IRE(r,t,p,c,s,exp) + \sum_{p} Sink(r,t,p,c) \times VAR\_NCAP(r,t,p,c) + FR(c,s) \times VAR\_DEM(c,t)$$ (5-4)
@@ -238,16 +255,19 @@ $$\sum_{p,c \in TOP(r,p,c,out)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SOUT(r,v,t,p,c,s) \
 
 **<ins>Example</ins>**: Gasoline consumed by vehicles plus gasoline exported to other regions must not exceed gasoline produced from refineries plus gasoline imported from other regions.
 
+(defining-flow-relationships-in-a-process)=
 ### Defining flow relationships in a process
 
 A process with one or more (perhaps heterogeneous) commodity flows is essentially defined by one or more input and output flow variables. In the absence of relationships between these flows, the process would be completely undetermined, i.e. its outputs would be independent from its inputs. We therefore need one or more constraints stating in a most general case that the ratio of the sum of some of its output flows to the sum of some of its input flows is equal to a constant. In the case of a single commodity in, and a single commodity out of a process, this equation defines the traditional efficiency of the process. With several commodities, this constraint may leave some freedom to individual output (or input) flows, as long as their sum is in fixed proportion to the sum of input (or output) flows. An important rule for this constraint is that *each sum must be taken over commodities of the same type* (i.e. in the same group, say: energy carriers, or emissions, etc.). In TIMES, for each process the modeler identifies the input commodity group $cg1$, and the output commodity group $cg2$, and chooses a value for the efficiency ratio, named $FLO\_FUNC(p,cg1,cg2)$. The following equation embodies this:
 
+(eq-ptrans-efficiency-definition)=
 #### $EQ\_PTRANS(r,v,t,p,cg1,cg2,s)$ -- Efficiency definition
 
 $$\sum_{c \in cg2} VAR\_FLO(r,v,t,p,c,s) = FLO\_FUNC(r,v,cg1,cg2,s) \times \sum_{c \in cg1} COEFF(r,v,p,cg1,c,cg2,s) \times VAR\_FLO(r,v,t,p,c,s)$$ (5-5)
 
 > where $COEFF(r,v,p,cg1,c,cg2,s)$ takes into account the harmonization of different time-slice resolution of the flow variables, which have been omitted here for simplicity, as well as commodity-dependent transformation efficiencies.
 
+(limiting-flow-shares-in-flexible-processes)=
 ### Limiting flow shares in flexible processes
 
 When either of the commodity groups $cg1$ or $cg2$ contains more than one element, the previous constraint allows a lot of freedom on the values of flows. The process is therefore quite flexible. The flow share constraint is intended to limit the flexibility, by constraining the share of each flow within its own group. For instance, a refinery output might consist of three refined products: $c_1$ is light, $c_2$ is medium, and $c_3$ is heavy distillate. If losses are 9% of the input, then the user must specify $FLO\_FUNC = 0.91$ to define the overall efficiency. The user may then want to limit the flexibility of the slate of outputs by means of three $FLO\_SHAR(c_i)$ coefficients, say 0.4, 0.5, 0.6, resulting in three flow share constraints as follows (ignoring some indices for clarity):
@@ -268,12 +288,14 @@ A recent modification of TIMES simplifies the above constraints by allowing the 
 
 <ins>Warning</ins>: It is quite possible (and regrettable) to over specify flow related equations such as {eq}`5-6`, especially when the constraint is an equality. Such an over specification leads to an infeasible LP. A new feature of TIMES consists in deleting some of the flow constraints in order to re-establish feasibility, in which case a warning message is issued.
 
+(peaking-rezerve-constraint)=
 ### Peaking reserve constraint (time-sliced commodities only)
 
 This constraint imposes that the total capacity of all processes producing a commodity at each time period and in each region must exceed the average demand in the time-slice where peaking occurs by a certain percentage. This percentage is the Peak Reserve Factor, $COM_PKRSV(r,t,c,s)$, and is chosen to insure against several contingencies, such as: possible commodity shortfall due to uncertainty regarding its supply (e.g. water availability in a reservoir); unplanned equipment down time; and random peak demand that exceeds the average demand during the time-slice when the peak occurs. This constraint is therefore akin to a safety margin to protect against random events not explicitly represented in the model. In a typical cold country the peaking time-slice for electricity (or natural gas) will be Winter-Day, and the total electric plant generating capacity (or gas supply plant) must exceed the Winter-Day demand load by a certain percentage. In a warm country the peaking time-slice may be Summer-Day for electricity (due to heavy air conditioning demand). The user keeps full control regarding which time-slices have a peaking equation.
 
 For each time period $t$ and for region $r$, there must be enough installed capacity to exceed the required capacity in the season with largest demand for commodity $c$ by a safety factor $E$ called the *peak reserve factor*.
 
+(eq-peak-commodity-peak-requirement)=
 #### $EQ\_PEAK(r,t,c,s)$ -- Commodity peak requirement
 
 $$\sum_{p,c=pcg} PRC\_CAPACT(r,p) \times Peak(r,v,p,c,s) \times FR(s) \times VAR\_CAP(r,v,t,p) \times PRC\_ACTFLO(r,v,p,c) + \sum_{p,c≠pcg} NCAP\_PKCNT(r,v,p,c,s) \times VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,i) ≥ (1+ COM\_PKRSV(r,t,c,s))(\sum_{p,c} VAR\_FLO(r,v,t,p,c,s) + VAR\_IRE(r,t,p,c,s,e))$$ (5-7)
@@ -292,12 +314,14 @@ where:
 
 Note also that in the peak equation {eq}`5-7`, it is assumed that imports of the commodity are contributing to the peak of the importing region (thus, exports are implicitly considered to be of the *firm power* type).
 
+(constraints-on-commodities)=
 ### Constraints on commodities
 
 In TIMES variables are optionally attached to various quantities related to commodities, such as total quantity produced. Therefore it is quite easy to put constraints on these quantities, by simply bounding the commodity variables in each period. It is also possible to impose cumulative bounds on commodities over more than one period, a particularly useful feature for cumulatively bounding emissions or modeling reserves of fossil fuels. By introducing suitable naming conventions for emissions the user may constrain emissions from specific sectors. Furthermore, the user may also impose global emission constraints that apply to several regions taken together, by allowing emissions to be traded across regions. Alternatively or concurrently a tax or penalty may be applied to each produced (or consumed) unit of a commodity (energy form, emission), via specific parameters.
 
 A specific type of constraint may be defined to limit the share of process (p) in the total production of commodity (c). The constraint indicates that the flow of commodity (c) from/to process (p) is bounded by a given fraction of the total production of commodity (c). In the present implementation, the same given fraction is applied to all timeslices.
 
+(user-constraints)=
 ### User constraints
 
 In addition to the standard TIMES constraints discussed above, the user may create a wide variety of so-called User Constraints (UC\'s), whose coefficients follow certain rules. Thanks to recent enhancements of the TIMES code, user defined constraints may involve virtually any TIMES variable. For example, there may a user-defined constraint limiting investment in new nuclear capacity (regardless of the type of reactor), or dictating that a certain percentage of new electricity generation capacity must be powered by a portfolio of renewable energy sources. User constraints may be employed across time periods, for example to model options for retrofitting existing processes or extending their technical lives. A frequent use of UC\'s involves cumulative quantities (over time) of commodities, flows, or process capacities or activities. Recent TIMES code changes make the definition of the right-hand-sides of such UC\'s fairly independent of the horizon chosen for the scenario, and thus make it unnecessary to redefine the RHS\'s when the horizon is changed.
@@ -306,6 +330,7 @@ In order to facilitate the creation of a new user constraint, TIMES provides a *
 
 The details of how to build different types of UC are included in section 6.4 of Part II of the documentation.
 
+(growth-constraints)=
 ### Growth constraints
 
 These are special cases of UC\'s that are frequently used to maintain the growth (or the decay) of the capacity of a process within certain bounds, thus avoiding excessive abrupt investment in new capacity. Such bounding of the growth is often justified by the reality of real life constraints on technological adoption and evolution. The user is however advised to exert caution on the choice of the maximum rates of technological change, the risk being to restrict it too much and thus \"railroad\" the model.
@@ -318,6 +343,7 @@ The $GROWTH$ coefficient is defined as a new attribute of the technology, and re
 
 Note that the sign of the constraint may also be of the \"larger than or equal to\" type to express a maximum rate of abandonment, in which case the \"+\" sign is replaced by a \"--\" sign in the right-hand-side of the constraint. Equality is also allowed, but must be used only exceptionally in order to avoid railroading of the model.
 
+(early-retirement-of-capacity)=
 ### Early retirement of capacity
 
 With this new TIMES feature the user may allow the model to retire some technologies before the end of their technical lives. The retirement may be continuous or discrete. In the former case, the model may retire any amount of the remaining capacity (if any) at each period. In the latter case, the retirement may be effected by the model either in a single block (i.e. the remaining capacity is completely retired) or in multiples of a user chosen block. Please refer to chapter 10 of this document *The lumpy investment option*, for additional discussion of the mathematical formulation of MIP problems.
@@ -384,6 +410,7 @@ The user is advised to use the discrete early retirement feature sparingly, as i
   - To reflect the effect of capacity that is retired early in capacity-related flows
 ```
 
+(electricity-grid-modeling)=
 ### Electricity grid modeling
 
 The electricity sector plays a central role in any energy model, and particularly so in TIMES. The electricity commodity has features that present particular challenges for its representation, in that it is difficult to store, and requires a network infrastructure to be transported and delivered. The considerable development of new renewable electricity generation technologies adds to the complexity, inasmuch as the technical requirements of integrating interruptible generation facilities (such as wind turbines and solar plants) to a set of traditional plants, must be satisfied for the integration to be feasible. Such considerations become even more relevant in large regions or countries, where the distances between potential generation areas and consumption areas are quite large.
@@ -392,6 +419,7 @@ Such considerations have led to the introduction of an optional grid modeling fe
 
 The purpose of this section is to indicate the broad principles and characteristics of the grid representation feature in TIMES. The modeler wishing to implement the feature is urged to read to the detailed Technical Note "TIMES Grid modeling feature", which contains the complete mathematical derivations of the equations, and their implementation in TIMES. What follows is a much streamlined version outlining only the main approach and ignoring the many details of the mathematical equations.
 
+(a-much-simplified-sketch-of-the-grid-constraints)=
 #### A much simplified sketch of the grid constraints
 
 The traditional way to represent the nodes and arcs of a grid is shown in {numref}`grid-connection-nodes`, where each node is shown as a horizontal segment, and the nodes are connected via bi-directional arcs.
@@ -418,6 +446,7 @@ where:
 
 As mentioned above, these constraints are then modified so as to include important technical requirements on the electrical properties (reactance and phase angle) of each line. Suffice it to say here that the resulting new equations remain linear in the flow and other variables.
 
+(integrating-grid-equations-into-times)=
 #### Integrating grid equations into TIMES
 
 It should be clear that the variables $G_{i}$ and $L_{i}$ must be tightly related to the rest of the TIMES variables that concern the electricity commodities. In fact, the modeler must first decide on an allocation of the set of generation technologies into $M$ subsets, each subset being attached to a node of the grid. Similarly, the set of all technologies that consume electricity must also be partitioned into $M$ subsets, each attached to a node. These two partitions are effected via new parameters specifying the fractions of each generation type to be allocated to each grid node, and similarly for the fractions of each technology consuming electricity to be allocated to grid each node. This indeed amounts to a partial regionalization of the model concerning the electricity sector. Thus, variables $G_{i}$ and $L_{i}$ are defined in relation to the existing TIMES variables.
@@ -426,10 +455,12 @@ Of course, the introduction of the grid requires modifying the electricity balan
 
 Finally, additional a security constraint is added in the case of a multi-regional model, expressing that the total net export or import of electricity from region $r$ does not exceed a certain (user-defined) fraction of the capacity of the portion of the grid linking region $r$ to other regions.
 
+(costs)=
 #### Costs
 
 New costs attached to the grid are also modeled, and form a new component of the objective function for the region. For this, a new cost coefficient is defined and attached to each node of the grid. TIMES multiplies this cost coefficient by the proper new grid variables and discounts the expression in order to form the new OBJ component.
 
+(reporting-constraints)=
 ### Reporting \"constraints\"
 
 These are not constraints proper but expressions representing certain quantities useful for reporting, after the run is completed. They have no impact on the optimization. We have already mentioned $CAP(r,v,t,p)$, which represents the capacity of a process by vintage.
@@ -468,6 +499,7 @@ The unit values of the first four costs are simply equal the process input data,
 
 Note also that the user may choose to ignore the last two costs or to include them. Furthermore, concerning the last cost (which is indeed a revenue), the user may decide to ignore the revenue from the main commodities produced by the process and retain only the revenues from the by-products. The choice is specified via the parameter RPT_OPT('NCAP','1'). Technical note \"Levelized costs-TIMES\" provides details on the parameter values.
 
+(the-linear-variant-of-times)=
 ## The \'Linear\' variant of TIMES
 
 This alternate TIMES formulation (called the LIN variant) assumes a different meaning for the activity and flow variables of TIMES. More precisely, instead of assuming that flows and activities are constant in all years within the same period, the variant assumes that the flow and activity variables apply to only one milestone year within each period. The variables\' values at other years of a period are interpolated between successive milestone years\' values. See section 5.2 for a figure depicting the two alternate definitions.

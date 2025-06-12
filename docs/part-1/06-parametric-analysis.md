@@ -1,3 +1,4 @@
+(parametric-analysis-with-times)=
 # Parametric analysis with TIMES
 
 Dealing with uncertainty in modeling is a complex endeavour that may be accomplished via a number of (sometimes widely different) approaches. In the case of TIMES, two different features are available: ***Stochastic Programming*** (treated in chapter 8) and ***parametric analysis***, also known as ***sensitivity analysis***, which is the subject of this chapter. In sensitivity analysis, the values of some important exogenous assumptions are varied, and a series of model runs is performed over a discrete set of combinations of these assumptions. Sensitivity analysis is often combined with ***tradeoff analysis***, where the tradeoff relation between several objectives is analyzed.
@@ -16,6 +17,7 @@ C.  Multiphase tradeoff analysis over N phases, which is a generalization of the
 
 Analyzing tradeoffs between the standard objective function and some other possible objectives (for which the market is not able to give a price) was not possible in an effective way with earlier versions of TIMES.
 
+(two-phase-tradeoff-analysis)=
 ## Two-phase tradeoff analysis
 
 In the ***first phase*** of the TIMES two-phase tradeoff analysis facility, the objective function is user defined as a weighted sum of any number of components, each component being a user constraint\'s left-hand-side. All UC\'s must be of the global type, (i.e. aggregated over regions and periods). Optionally, each of the component UCs may also be constrained by upper/lower bounds. The components are defined by the user, via the specification of non-zero weight coefficients for the UC\'s to be included in the objective. The original objective function (total discounted costs) is automatically pre-defined as a non-constraining user constraint with the name $OBJZ$, and can therefore always be directly used as one of the component UCs, if desired.
@@ -56,6 +58,7 @@ Remarks:
 3. Automatic discounting of any commodity or flow-based UC component is possible by using a new UC_ATTR option 'PERDISC' which could be applied e.g. to the user-defined objective components in Phase 1.
 4. The two-phase tradeoff analysis can be carried over a set of distinct cases, each identified by a unique SOW index.
 
+(multiphase-tradeoff-analysis)=
 ## Multiphase tradeoff analysis
 
 The multiphase tradeoff analysis is otherwise similar to the two-phase analysis, but in this case the objective function can be defined in the same way as in the Phase 1 described above also in all subsequent phases. The different objective functions in each phase are distinguished by using an additional phase index (the SOW index). Deviation bounds can be specified in each phase, such that they will be in force over all subsequent phases (any user constraints), or only in some of the succeeding phases (any user constraints excluding $OBJ1$). The deviation bounds defined on any of the user-defined objectives $OBJ1$ will thus always be preserved over all subsequent phases.

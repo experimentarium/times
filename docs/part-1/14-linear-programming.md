@@ -1,9 +1,12 @@
+(linear-programming-complements)=
 # Appendix B: Linear Programming complements
 
 This section is not strictly needed for a basic understanding of the TIMES model and may be skipped a first reading. However, it provides additional insight into the microeconomics of the TIMES equilibrium. In particular, it contains a review of the theoretical foundation of Linear Programming and Duality Theory. This knowledge may help the user to better understand the central role shadow prices and reduced costs play in the economics of the TIMES model. More complete treatments of Linear Programming and Duality Theory may be found in several standard textbooks such as Chvátal (1983) or Hillier and Lieberman (1990 and subsequent editions). Samuelson and Nordhaus (1977) contains a treatment of micro-economics based on mathematical programming.
 
+(a-brief-primer-on-linear)=
 ## A brief primer on Linear Programming and Duality Theory
 
+(basic-definitions)=
 ### Basic definitions
 
 In this subsection, the superscript *t* following a vector or matrix represents the transpose of that vector or matrix. A Linear Program may always be represented as the following *Primal Problem* in canonical form:
@@ -33,6 +36,7 @@ $$y ≥ 0$$ (14-6)
 
 Note that the number of dual variables equals the number of constraints in the primal problem. In fact, each dual variable $y_i$ may be assigned to its corresponding primal constraint, which we represent as: $A_ix ≤ b_i$, where $A_i$ is the $i^{th}$ *row of matrix A*.
 
+(duality-theory)=
 ### Duality Theory
 
 Duality theory consists mainly of three theorems[^48]: weak duality, strong duality, and complementary slackness.
@@ -61,12 +65,14 @@ At an optimal solution to an LP problem:
 
 *Remark*: Note however that a primal constraint may have zero slack and yet have a dual equal to 0. And, a primal variable may be non basic (i.e. be equal to one of its bounds), and yet the corresponding dual slack be still equal to 0. These situations are different cases of the so-called degeneracy of the LP. They often occur when constraints are over specified (a trivial case occurs if a constraint is repeated twice in the LP)
 
+(sensitivity-analysis-and-the-economic)=
 ## Sensitivity analysis and the economic interpretation of dual variables
 
 It may be shown that if the $j^{th}$ RHS $b_j$ of the primal is changed by an infinitesimal amount $d$, and if the primal LP is solved again, then its new optimal objective value is equal to the old optimal value plus the quantity $y_j^*.d$, where $y_j^*$ is the *optimal dual variable value*.
 
 Loosely speaking[^49], one may say that the partial derivative of the optimal primal objective function's value with respect to the RHS of the $i^{th}$ primal constraint is equal to the optimal shadow price of that constraint.
 
+(economic-interpretation-of-the-dual-variables)=
 ### Economic interpretation of the dual variables
 
 If the primal problem consists of maximizing the surplus (objective function $c^tx^*$), by choosing an activity vector $x*$, subject to upper limits on several resources (the $b$ vector) then:
@@ -78,6 +84,7 @@ Furthermore, each dual constraint $A^t_jy^* ≥ c_j$  has an important economic 
 
 *Example*: The optimal dual value attached to the balance constraint of commodity $c$ represents the change in objective function value resulting from one additional unit of the commodity. This is precisely the internal unit price of that commodity.
 
+(reduced-surplus-and-reduced-cost)=
 ### Reduced surplus and reduced cost
 
 In a maximization problem, the difference $y \times A'_j - c_j$ is called the *reduced surplus* of technology $j$, and is available from the solution of a TIMES problem. It is a useful indicator of the competitiveness of a technology, as follows:

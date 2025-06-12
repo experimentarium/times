@@ -1,5 +1,7 @@
+(general-equilibrium-extensions)=
 # General equilibrium extensions
 
+(preamble)=
 ## Preamble
 
 In order to achieve a general (as opposed to partial) equilibrium, the energy system described in TIMES must be linked to a representation of the rest of the economy. The idea of hard-linking an energy model with the economy while still keeping the resulting model as an optimization program, dates back to the ETA-MACRO model (Manne, 1977), where both the energy system and the rest of the economy were succinctly represented by a small number of equations. This approach differs from the one taken by the so-called Computable General Equilibrium (CGE), models (Johanssen 1960, Rutherford 1992), where the calculation of the equilibrium relies on the resolution of simultaneous non-linear equations. In CGE\'s, the use of (non-linear, non-convex) equation solvers limits the size of the problem and thus the level of detail in the energy system description. This computational difficulty is somewhat (but not completely) alleviated when the computation relies on a single non-linear optimization program. Note however that MACRO is a much simplified representation of the economy as a single producing sector and no government sector, thus precluding the endogenous representation of taxes, subsidies, multi-sector interactions, etc. Therefore, the idea of a linked TIMES-MACRO model is not to replace the CGE\'s but rather to create an energy model where the feedbacks from the economy goes beyond the endogenization of demands (which TIMES does) to include the endogenization of capital.
@@ -8,6 +10,7 @@ Some years after ETA-MACRO, MARKAL-MACRO (Manne-Wene, 1992) was obtained by repl
 
 In this chapter, we describe the single region and the multi-region versions of TIMES-MACRO, focusing on the concepts and mathematical representation, whereas the implementation details are left to Part II of the TIMES documentation and to technical notes.
 
+(the-single-region-times-macro-model)=
 ## The single-region TIMES-MACRO model
 
 As was already discussed in chapter 4, the main physical link between a TIMES model and the rest of the economy occurs at the level of the consumption of energy by the end-use sectors. There are however other links, such as capital and labor, which are common to the energy system and the rest of the economy. {numref}`energy-labor-monetary-flows` shows the articulation of the three links in TIMES-MACRO. Energy flows from TIMES to MACRO, whereas money flows in the reverse direction. Labor would also flow from MACRO to TIMES, but here a simplification is used, namely that the representation of labor is purely exogenous in both sub-models. Thus, TIMES-MACRO is not suitable for analyzing the impact of policies on labor, or on taxation, etc.
@@ -21,6 +24,7 @@ Energy, Labor, and Monetary flows between TIMES and MACRO.
 
 We now turn to the mathematical description of the above, starting with the MACRO portion of the hybrid model.
 
+(formulation-of-the-macro-model)=
 ### Formulation of the MACRO model
 We start our description of the hybrid model by stating the MACRO equations {eq}`12-1` -- {eq}`12-6`[^39]:
 
@@ -100,6 +104,7 @@ $$INV_{0} = K_{0} \times \left( depr + growv_{0} \right)$$ (12-8)
 
 Since the model horizon is finite, one has to ensure that the capital stock is not fully exhausted (which would maximize the utility in the model horizon). Therefore a terminal condition {eq}`12-6` is added, which guarantees that after the end of the model horizon a capital stock for the following generations exists. It is assumed that the capital stock beyond the end of horizon grows with the labor growth rate $growv_{T}$. This is coherent with the last term of the utility function.
 
+(linking-macro-with-times)=
 ### Linking MACRO with TIMES
 
 TIMES is represented via the following condensed LP
@@ -155,6 +160,7 @@ As long as the total installed capacity in period $t+1$ is below $\left( 1 + exp
 
 The quadratic term in equation {eq}`12-10` introduces a large number of nonlinear terms (one for each technology and period) that may constitute a considerable computational burden for large models. These constraints are therefore replaced in the current implementation of TIMES, by linear piece-wise approximations in a way quite similar to what was done to linearize the surplus in chapter 4.
 
+(a-brief-comment)=
 ### A brief comment
 
 In spite of the linearization of the penalty terms in equation {eq}`12-10`, TIMES-Macro still contains non-linearities: its objective function is a concave function, a good property when maximizing, but there are $T$ nonlinear, non convex constraints as per equation {eq}`12-3` that introduce a non trivial computational obstacle to large size instances of the model.
@@ -163,10 +169,12 @@ Although not discussed here, the calibration of the TIMES-MACRO model is an exce
 
 Overall, the experience with TIMES-MACRO has been good, with sizable model instances solved in reasonable time. But the modeler would benefit from carefully weighing the limitation of model size imposed by the non-linear nature of TIMES-MACRO, against the advantage of using a (single sector) general equilibrium model.
 
+(the-multi-regional-times-macro-model)=
 ## The multi-regional TIMES-MACRO model (MSA)
 
 In this section, we only sketch the generalization of TIMES-MACRO to a multi-regional setting. Full details, including the important calibration step and other implementation issues, appear in technical note "TIMES-Macro: Decomposition into Hard-Linked LP and NLP Problems".
 
+(theoretical-background)=
 ### Theoretical background
 
 In a multi-regional setting, inter-regional trade introduces an important new complication in the calculation of the equilibrium[^41]. Indeed, the fact that the utility function used in the MACRO module is highly non linear also means that the global utility is not equal to the sum of the national utilities. Also, it would be impractical and conceptually wrong to define a single consumption function for the entire set of regions, since the calibration of the model may only be done using national statistics, and furthermore, there may be large differences in the parameters of each region\'s production function, etc.
@@ -175,6 +183,7 @@ It follows from the above that it is not possible to use a single optimization s
 
 Such a situation has been studied in the economics literature, starting with the seminal paper by Negishi (1960) that established the existence of equilibria that are Pareto-optimal in the Welfare functions. Manne (1999) applied the theory to the MACRO model, and Rutherford (1992) proposed a decomposition algorithm that makes the equilibrium computation more tractable. The Rutherford algorithm is used in the TIMES-MACRO model. An interesting review of the applications of Negishi theory to integrated assessment models appeared in Stanton (2010).
 
+(a-shetch-of-the-algorithm)=
 ### A sketch of the algorithm to solve TIMES-MACRO-MSA
 
 Rutherford\'s procedure is an iterative decomposition algorithm. Each iteration has two steps. The first step optimizes a large TIMES LP and the second step optimizes a stand-alone *reduced* non-linear program which is an alteration of MACRO, and is named MACRO-MSA. These two steps are repeated until convergence occurs.

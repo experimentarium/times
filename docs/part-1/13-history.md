@@ -1,5 +1,7 @@
+(history-and-comparison-of-markal)=
 # Appendix A: History and comparison of MARKAL and TIMES
 
+(a-brief-history-of-times)=
 ## A brief history of TIMES[^43] and MARKAL
 
 The TIMES (<ins>[T]</ins>he <ins>[I]</ins>ntegrated <ins>[M]</ins>arkal-<ins>[E]</ins>fom <ins>[S]</ins>ystem) and the MARKAL (<ins>[Mar]</ins>ket <ins>[Al]</ins>location) models have a common history beginning in the 1970\'s when a formal decision of the International Energy Agency (IEA) led to the creation of a common tool for analyzing energy systems, to be shared by the participating OECD nations. MARKAL became a reality by the year 1980 and became a common tool of the members of the Energy Technology Systems Analysis Programme (ETSAP), an IEA Implementing Agreement (IA).
@@ -41,20 +43,25 @@ At the same time other major new features were implemented, some of them found i
 
 Increasingly as TIMES benefitted from many enhancements and gained prominence in the community of modellers, and while some features found their way into the MARKAL model, in order to provide similar capabilities to the large existing MARKAL user base, ETSAP decided that there would be no further development of MARKAL though support would continue to be provided to the existing users. By the early 2010\'s, TIMES (and MARKAL) models were recognized as major contributors within the community of energy and climate change researchers, and the number of outreach projects increased tremendously. Today it is estimated that MARKAL/TIMES has been introduced to well over 300 institutions in more than 80 countries, and is generally considered the benchmark integrated energy system optimization platform available for use around the world.
 
+(a-comparison-of-the-times-and)=
 ## A comparison of the TIMES and MARKAL models
 
 This section contains a point-by-point comparison of highlights of the TIMES and MARKAL models. It is of interest primarily to modelers already familiar with MARKAL, and to provide a sense of the advancements embodied in TIMES. The descriptions of the features given below are not detailed, since they are repeated elsewhere in the documentation of both models. Rather, the function of this section is to guide the reader, by mentioning the features that are present or improved in one model that are not found or only in a simplified form in the other.
 
+(similarities)=
 ### Similarities
 
 The TIMES and the MARKAL models share the same basic modeling paradigm. Both models are technology explicit, dynamic partial equilibrium models of energy markets[^45]. In both cases the equilibrium is obtained by maximizing the total surplus of consumers and suppliers via Linear Programming, while minimizing total discounted energy system cost. Both models are by default clairvoyant, that is, they optimize over the entire modeling horizon, though partial look-ahead (or myopic) may also be employed. The two models also share the multi-regional feature, which allows the modeler to construct geographically integrated (even global) instances, though in MARKAL there are no inter-regional exchange process making the representation of trade (much) more cumbersome. These fundamental features were described in Chapter 3 of this documentation, and Section 1.3, PART I of the MARKAL documentation, and constitute the backbone of the common paradigm. However, there are also significant differences in the two models, which we now outline. These differences do not affect the basic paradigm common to the two models, but rather some of their technical features and properties.
 
+(times-features-not-in-markal)=
 ### TIMES features not in MARKAL
 
+(variable-lenght-time-periods)=
 #### Variable length time periods
 
 MARKAL has fixed length time periods, whereas TIMES allows the user to define period lengths in a completely flexible way. This is a major model difference, which indeed required a complete re-definition of the mathematics of most TIMES constraints and of the TIMES objective function. The variable period length feature is very useful in two instances: first if the user wishes to use a single year as initial period (quite useful for calibration purposes), and second when the user contemplates long horizons, where the first few periods may be described in some detail by relatively short periods (say 5 years), while the longer term may be regrouped into a few periods with long durations (perhaps 20 or more years).
 
+(data-decoupling)=
 #### Data decoupling 
 
 This somewhat misunderstood feature does not confer additional power to TIMES, but it greatly simplifies the maintenance of the model database and allows the user great flexibility in modifying the new definition of the planning horizon. In TIMES all input data are specified by the user independently from the definition of the time periods employed for a particular model run. All time-dependent input data are specified by the year in which the data applies. The model then takes care of matching the data with the periods, wherever required. If necessary the data is interpolated (or extrapolated) by the model preprocessor code to provide data points at those time periods required for the current model run. In addition, the user has control over the interpolation and extrapolation of each time series.
@@ -63,6 +70,7 @@ The general rule of data decoupling applies also to past data: whereas in MARKAL
 
 One instance when the data decoupling feature immensely simplifies model management is when the user wishes to change the initial period, and/or the lengths of the periods. In TIMES, there is essentially nothing to do, except declaring the dates of the new periods. In MARKAL, such a change represents a much larger effort requiring a substantive revision of the database.
 
+(flexible-time-slices-and-storage-processes)=
 #### Flexible time slices and storage processes
 
 In MARKAL, only two commodities have time-slices: electricity and low temperature heat, with electricity having seasonal and day/night time-slices, and heat having seasonal time-slices. In TIMES, any commodity and process may have its own, user-chosen time-slices. These flexible time-slices are segregated into three groups, seasonal (or monthly), weekly (weekday vs. weekend), and daily (day/night or hourly), where any level may be expanded (contracted) or omitted.
@@ -71,38 +79,46 @@ The flexible nature of the TIMES time-slices supports storage processes that 'co
 
 Note that many TIMES parameters may be time-slice dependent (such as availability factor ($AF$), basic efficiency ($ACT\_EFF$), etc.
 
+(process-generality)=
 #### Process generality
 
 In MARKAL processes in different RES sectors are endowed with different (data and mathematical) properties. For instance, end-use processes do not have activity variables (activity is then equated to capacity), and resource processes have no investment variables. In TIMES, all processes have the same basic features, which are activated or not solely via data specification, with some additional special features relevant to trade and storage processes.
 
+(flexible-processes)=
 #### Flexible processes
 
 In MARKAL processes are by definition rigid, except for some specialized processes which permit flexible output (such as limit refineries or pass-out turbine CHPs), and thus outputs and inputs are in fixed proportions with one another. In TIMES, the situation is reversed, and each process starts by being entirely flexible, unless the user specifies certain attributes to rigidly link inputs to outputs. This feature permits better modeling of many real-life processes as a single technology, where MARKAL may require several technologies (as well as dummy commodities) to achieve the same result. A typical example is that of a boiler that accepts any of 3 fuels as input, but whose efficiency depends on the fuel used. In MARKAL, to model this situation requires four processes (one per possible fuel plus one that carries the investment cost and other parameters), plus one dummy fuel representing the output of the three "blending" process. In TIMES one process is sufficient, and no dummy fuel is required. Note also that TIMES has a number of parameters that can limit the input share of each fuel, whereas in MARKAL, imposing such limits requires that several user constraints be defined.[^46]
 
+(investment-and-dismantling-lead-times)=
 #### Investment and dismantling lead-times and costs
 
 New TIMES parameters allow the user to model the construction phase and dismantling of facilities that have reached their end-of-life. These are: lead times attached to the construction or to the dismantling of facilities, capital costs for dismantling, and surveillance costs during dismantling. Like in MARKAL, there is also the possibility to define flows of commodities consumed at construction time, or released at dismantling times, thus allowing the representation of life-cycle energy and emission accounting.
 
+(vintaged-processes-and)=
 #### Vintaged processes and age-dependent parameters
 
 The variables associated with user declared vintaged processes employ both the time period *p* and vintage period *v* (in which new investments are made and associated input data is obtained). The user indicates that a process is to be modeled as a vintaged process by using a special vintage parameter. Note that in MARKAL vintaging is possible only for end-use devices (for which there is no activity variable) and only applies to the device efficiency (and investment cost, which is always vintaged by definition for all technologies) or via the definition of several replicas of a process, each replica being a different vintage. In TIMES, the same process name is used for all vintages of the same process.[^47]
 
 In addition, some parameters may be specified to have different values according to the age of the process. In the current version of TIMES, these parameters include the availability factors, the in/out flow ratios (equivalent to efficiencies), and the fixed cost parameters only. Several other parameters could, in principle, be defined to be age-dependent, but such extensions have not been implemented yet.
 
+(commodity-related-variables)=
 #### Commodity related variables
 
 MARKAL has very few commodity related variables, namely exports/imports, and emissions. TIMES has a large number of commodity-related variables such as: total production, total consumption, but also (and most importantly) specific variables representing the flows of commodities entering or exiting each process. These variables provide the user with many "handles" to define bounds and costs on commodity flows, and foster easier setup of user constraints looking to impose shares across technology groups (e.g., renewable electricity generation targets, maximum share of demand that can be met by a (set of) devices).
 
+(more-accurate-and-realistic-depiction)=
 #### More accurate and realistic depiction of investment cost payments
 
 In MARKAL each investment is assumed to be paid in its entirety at the beginning of thetime period in which it becomes available. In TIMES the timing of investment payments is quite detailed. For large facilities (e.g. a nuclear plant), capital is progressively laid out in yearly increments over the facility's construction time, and furthermore, the payment of each increment is made in installments spread over the economic life (which may differ from the technical lifetime) of a facility. For small processes (e.g. a car) the capacity expansion is assumed to occur regularly each year rather than in one large lump, and the payments are therefore also spread over time. Furthermore, when a time period is quite long (i.e. longer that the life of the investment), TIMES has an automatic mechanism to repeat the investment more than once over the period. These features allow for a much smoother (and more realistic) representation of the stream of capital outlays in TIMES than in MARKAL.
 
 Moreover, in TIMES all discount rates can be defined to be time-dependent, whereas in MARKAL both the general and technology-specific discount rates are constant over time.
 
+(stochastic-programming)=
 #### Stochastic Programming
 
 Both MARKAL and TIMES support stochastic programming (SP, Chapter 8) as a means for examining uncertainty and formulating hedging strategies to deal with same. In MARKAL only 2-stage SP was implemented, and thus the resolution of the uncertainty could only occur at one particular time period, whereas in TIMES uncertainty may be resolved progressively at different successive periods (e.g., mitigation level at one period and demand level at another).
 
+(climate-module1)=
 #### Climate module
 
 TIMES possesses a set of variables and equations that endogenize the concentration of $CO_2$, $CH_4$, and $N_2O$, and also calculate the radiative forcing and global temperature changes resulting from GHG emissions and accumulation here. This new feature is described in Chapter 7.

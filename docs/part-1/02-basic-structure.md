@@ -1,11 +1,14 @@
+(the-basic-structure-of-the-core-times-model)=
 # The basic structure of the core TIMES model
 
+(the-times-economy)=
 ## The TIMES economy
 
 The TIMES energy economy is made up of producers and consumers of *commodities* such as energy carriers, materials, energy services, and emissions. By default, TIMES assumes competitive markets for all commodities, unless the modeler voluntarily imposes regulatory or other constraints on some parts of the energy system, in which case the equilibrium is (partially) regulated. The result is a supply-demand equilibrium that maximizes the *net total surplus* (i.e. the sum of producers' and consumers' surpluses) as fully discussed in chapters 3 and 4. TIMES may however depart from perfectly competitive market assumptions by the introduction of user-defined explicit constraints, such as limits to technological penetration, constraints on emissions, exogenous oil price, etc. Market imperfections can also be introduced in the form of taxes, subsidies and hurdle rates.
 
 While computing the equilibrium, a TIMES run configures the *energy system* of a *set of regions*, over a certain *time horizon,* in such a way as to *minimize the net total cost* (or equivalently *maximize the net total surplus*) of the system, while satisfying a number of *constraints*. TIMES is run in a dynamic manner, which is to say that all investment decisions are made in each period with full knowledge of future events. The model is said to have *perfect foresight*[^4] (or to be *clairvoyant*). The next subsection describes in detail the time dimension of the model.
 
+(time-horizon)=
 ## Time horizon
 
 The time horizon is divided into a user-chosen number of time-periods, each period containing a (possibly different) number of years.
@@ -30,6 +33,7 @@ The net result of these conditions is that the deployment in time of the various
 Example of a time-slice tree.
 ```
 
+(decoupling-of-data-and-model-horizon)=
 ## Decoupling of data and model horizon
 
 In TIMES, special efforts have been made to decouple the specification of data from the definition of the time periods for which a model is run. Two TIMES features facilitate this decoupling.
@@ -40,6 +44,7 @@ Second, the specification of process and demand input data in TIMES is made by s
 
 These two features combine to make a change in the definition of periods quite easy and error-free. For instance, if a modeler decides to change the initial year from 2010 to 2015, and perhaps change the number and durations of all other periods as well, only one type of data change is needed, namely to define the investments made from 2011 to 2015 as past investments. All other data specifications need not be altered[^6]. This feature represents a great simplification of the modeler's work. In particular, it enables the user to define time periods that have varying lengths, without changing the input data.
 
+(the-components-of-a-reference-energy-system)=
 ## The components of a Reference Energy System (RES): processes, commodities, flows
 
 The TIMES energy economy consists of three types of entities:
@@ -47,6 +52,7 @@ The TIMES energy economy consists of three types of entities:
 - *Commodities* consisting of energy carriers, energy services, materials, monetary flows, and emissions. A commodity is produced by one or more processes and/or consumed by other processes; and
 - *Commodity flows* are the links between processes and commodities. A flow is of the same nature as a commodity but is attached to a particular process, and represents one input or one output of that process. For instance, electricity produced by wind turbine type A at period *p*, time-slice *s*, in region *r*, is a commodity flow.
 
+(the-res)=
 ### The RES
 
 It is helpful to picture the relationships among these various entities using a network diagram, referred to as a *Reference Energy System* (RES). In a TIMES RES, processes are represented as boxes and commodities as vertical lines. Commodity flows are represented as links between process boxes and commodity lines.
@@ -64,12 +70,14 @@ To complete the production chain on the primary energy side, the diagram also re
 
 To organize the RES, and inform the modeling system of the nature of its components, the various technologies, commodities, and flows may be classified into *sets*. Each set regroups components of a similar nature. The entities belonging to a set are referred to as *members, items* or *elements* of that set. The same item may appear in multiple technology or commodity sets. While the topology of the RES can be represented by a multi-dimensional network, which maps the flow of the commodities to and from the various technologies, the set membership conveys the nature of the individual components and is often most relevant to post-processing (reporting) rather than influencing the model structure itself. However, the TIMES commodities are still classified into several *Major Groups*. There are five such groups: energy carriers, materials, energy services, emissions, and monetary flows. The use of these groups is essential in the definition of some TIMES constraints, as discussed in chapter 5.
 
+(three-classes-of-processes)=
 ### Three classes of processes
 
 We now give a brief overview of three classes of processes that need to be distinguished.
 
 Processes are *general processes, storage processes*, and *inter-regional trading processes* (also called *inter-regional exchange processes*). The latter two classes need to be distinguished from general processes due to their special function requiring special rules and sometimes a different set of indices.
 
+(general-processes)=
 #### General processes
 
 In TIMES most processes are endowed with essentially the same attributes (with the exceptions of storage and inter-regional exchange processes, see below), and unless the user decides otherwise (e.g. by providing values for some attributes and ignoring others), they have the same variables attached to them, and must obey similar constraints. Therefore, the differentiation between the various species of processes (or commodities) is made through data specification only, thus eliminating the need to define specialized membership sets, unless desired for processing results. Most of the TIMES features (e.g. sub-annual time-slice resolution, vintaging) are available for all processes and the modeler chooses the features being assigned to a particular process by specifying a corresponding indicator set (e.g. PRC_TSL, PRC_VINT).
@@ -78,6 +86,7 @@ A general process receives one or more commodity inputs (inflows) and produces o
 
 As already mentioned, two classes of process do not follow these rules and deserve separate descriptions, namely *storage processes* and *inter-regional exchange processes*.
 
+(storage-processes)=
 #### Storage processes (class STG)
 
 This advanced feature of TIMES allows the modeller to represent very intricate storage activities from real life energy systems. Storage processes are used to store a commodity either between periods or between time-slices in the same period. A process $p$ is specified to be an ***inter-period storage (IPS) process*** for commodity $c$, or as ***general time-slice storage (TSS)***. A special case of time-slice storage is a so-called ***night-storage device (NST)*** where the commodity for charging and the one for discharging the storage are different.
@@ -90,6 +99,7 @@ An example of an inter-period storage process is a plant that accumulates organi
 
 Besides the commodity being stored, other (auxiliary) commodity flows are also permitted and may be defined in relation to the stored commodity using the FLO_FUNC and/or the ACT_FLO parameters. The activity of a storage process is interpreted as the amount of the commodity being stored in the storage process. Accordingly the capacity of a storage process describes the maximum commodity amount that can be kept in storage.
 
+(inter-regional-exchange-processes)=
 #### Inter-regional exchange processes (class IRE)
 
 Inter-regional exchange (IRE) processes are used for trading commodities between regions. Note that the name of the traded commodity is allowed to be different in both regions, depending on the chosen commodity names in both regions. There are two types of trade in TIMES, bi-lateral or multi-lateral.
@@ -98,6 +108,7 @@ Bi-lateral trade is the most detailed way to specify trade between regions. It t
 
 There are cases when it is not important to fully specify the pair of trading regions. An example is the trading of greenhouse gas (GHG) emission permits in a global market. In such cases, the *multi-lateral trade* option decreases the size of the model. Multi-lateral trade is based on the idea that a common marketplace exists for a traded commodity with several selling and several buying regions for the commodity (e.g. GHG emission permits). To model a marketplace the user must first identify (or create) one region that participates both in the production and consumption of the traded commodity. Then a single exchange process is used to link all regions with the marketplace region. Note however that some flexibility is lost when using multilateral trade. For instance, it is not possible to express transportation costs in a fully accurate manner, if such cost depends upon the precise pair of trading regions in a specific way.
 
+(data-driven-model-structure)=
 ## Data-driven model structure
 
 It is useful to distinguish between a model's *structure* and a particular *instance* of its implementation. A model's structure exemplifies its fundamental approach for representing a problem --- it does not change from one implementation to the next. All TIMES models exploit an identical underlying structure. However, because TIMES is *data*[^7] *driven*, the *effective structure* of a particular instance of a model will vary according to the data inputs. This means that some of the TIMES features will not be activated if the corresponding data is not specified. For example, in a multi-region model one region may, as a matter of user data input, have undiscovered domestic oil reserves. Accordingly, TIMES automatically generates technologies and processes that account for the cost of discovery and field development. If, alternatively, user supplied data indicate that a region does not have undiscovered oil reserves no such technologies and processes would be included in the representation of that region's Reference Energy System (RES, see section 2.4). Due to this property TIMES may also be called a *model generator* that, based on the input information provided by the modeler, generates an instance of a model. In the following, if not stated otherwise, the word \'model\' is used with two meanings indifferently: the instance of a TIMES model or more generally the model generator TIMES.
@@ -108,6 +119,7 @@ The *qualitative data* includes, for example, the list of commodities, and the l
 
 *Quantitative data*, in contrast, contains the technological and economic parameter assumptions specific to each technology, region, and time period. When constructing multi-region models it is often the case that a given technology is available for use in two or more regions; however, cost and performance assumptions may be quite different. The word ***attribute*** designates both qualitative and quantitative elements of the TIMES modeling system.
 
+(a-brief-overview-of-the-times-attributes)=
 ## A brief overview of the TIMES attributes
 
 Due to the data driven nature of TIMES (see section 2.5), all TIMES constraints are activated and defined by specifying some attributes. Attributes are attached to processes, to commodities, to flows, or to special variables that have been created to define new TIMES features. Indeed, TIMES has many new attributes that were not available in earlier versions, corresponding to powerful new features that confer additional modeling flexibility. The complete list of attributes is fully described in section 3 of PART II, and we provide below only succinct comments on the types of attribute attached to each entity of the RES or to the RES as a whole. Additional attribute definitions may also be included in the chapters describing new features or variants of the TIMES generator.
@@ -116,19 +128,22 @@ Attributes may be *cardinal* (numbers) or *ordinal* (lists, sets). For example, 
 
 The cardinal attributes are usually called *parameters*. We give below a brief idea of the main types of parameters available in the TIMES model generator.
 
+(parameteres-attached-to-processes)=
 ### Parameters attached to processes
 
 TIMES process-oriented parameters fall into several general categories.
 
+(technical-parameters-1)=
 #### Technical parameters
 
 *Technical parameters* include process efficiency, availability factor(s)[^8], commodity consumptions per unit of activity, shares of fuels per unit activity, technical life of the process, construction lead time, dismantling lead-time and duration, amounts of the commodities consumed (respectively released) by the construction (respectively dismantling) of one unit of the process, and contribution to the peak equations. The efficiency, availability factors, and commodity inputs and outputs of a process may be defined in several flexible ways depending on the desired process flexibility, on the time-slice resolution chosen for the process and on the time-slice resolution of the commodities involved. Certain parameters are only relevant to special processes, such as storage processes or processes that implement trade between regions.
 
-(economic-and-policy-parameters)=
+(economic-and-policy-parameters-1)=
 #### Economic and policy parameters
 
 A second class of process parameters comprises *economic and policy parameters* that include a variety of costs attached to the investment, dismantling, maintenance, and operation of a process. The investment cost of the technology is incurred once at the time of acquisition; the fixed annual cost is incurred each year per unit of the capacity of the technology, as long as the technology is kept alive (even if it is not actively functioning); the annual variable cost is incurred per unit of the activity of the technology. In addition to costs, taxes and subsidies (on investment and/or on activity) may be defined in a very flexible manner. Other economic parameters are: the economic life of a process (the time during which the investment cost of a process is amortized, which may differ from the operational lifetime) and the process specific discount rate, also called *hurdle rate*. Both these parameters serve to calculate the annualized payments on the process investment cost, which enters the expression for the total cost of the run (section 5.2).
 
+(bounds-1)=
 #### Bounds
 
 Another class of parameter is used to define the right-hand-side of some constraint. Such a parameter represents a ***bound*** and its specification triggers the constraint on the quantity concerned. Most frequently used bounds are those imposed on period investment, capacity, or activity of a process. Newly defined bounds allow the user to impose limits on the annual or annualized payments at some period or set of consecutive years.
@@ -139,6 +154,7 @@ The growth constraints belong to the class of ***dynamic bounds*** that involve 
 
 All bounds may be of four types: lower (LO), upper (UP), equality (FX), or neutral (N). The latter case does not introduce any restriction on the optimization, and is used only to generate a new reporting quantity.
 
+(other-parameters-1)=
 #### Other parameters
 
 Features that were added to TIMES over the years require new parameters. For instance, the Climate Module of TIMES (chapter 7), the Lumpy Investment feature (chapter 10), and several others. These will be alluded to in the corresponding chapters of this Part I, and more completely described in section 2 and Appendices of Part II.
@@ -147,46 +163,56 @@ An advanced feature allows the user to define certain process parameters as *vin
 
 Finally, another advanced TIMES feature renders some parameters dependent *also on the age* of the technology. For instance, the annual maintenance cost of an automobile could be defined to remain constant for say 3 years and then increase in a specified manner each year after the third year.
 
+(parameters-attached-to-commodities)=
 ### Parameters attached to commodities
 
 This subsection concerns parameters attached to each commodity, irrespective of how the commodity is produced or consumed. The next subsection concerns commodity flows. Commodity-oriented parameters fall into the same categories as those attached to processes.
 
+(technical-parameteres-2)
 #### Technical parameters 
 
 *Technical parameters* associated with commodities include overall efficiency (for instance the overall electric grid efficiency), and the time-slices over which that commodity is to be tracked. For demand commodities, in addition, the annual projected demand and load curves (if the commodity has a sub-annual time-slice resolution) can be specified.
 
+(economic-and-policy-parameters-2)=
 #### Economic and policy parameters 
 
 *Economic parameters* include additional costs, taxes, and subsidies on the overall or net production of a commodity. These cost elements are then added to all other (implicit) costs of that commodity. In the case of a demand service, additional parameters define the demand curve (i.e. the relationship between the quantity of demand and its price). These parameters are: the demand's own-price elasticity, the total allowed range of variation of the demand value, and the number of steps to use for the discrete approximation of the curve.
 
 *Policy based parameters* include bounds (at each period or cumulative over user defined years) on the gross or net production of a commodity, or on the imports or exports of a commodity by a region.
 
+(bounds-2)=
 #### Bounds
 
 In TIMES the net or the total production of each commodity may be explicitly represented by a variable, if needed for imposing a bound or a tax. A similar variety of bounding parameters exists for commodities as for processes.
 
+(parameters-attached-to-commodity-flows)=
 ### Parameters attached to commodity flows
 
 A *commodity flow* (more simply, a *flow*) is an amount of a given commodity produced or consumed by a given process. Some processes have several flows entering or leaving them, perhaps of different types (fuels, materials, demands, or emissions). In TIMES, each flow has a variable attached to it, as well as several attributes (parameters or sets).
 
 Flow related parameters confer enormous flexibility for modeling a large spectrum of conditions.
 
+(technical-parameters-3)=
 #### Technical parameters
 
 *Technical parameters,* along with some set attributes, permit full control over the maximum and/or minimum share a given input or output flow may take within the same commodity group. For instance, a flexible turbine may accept oil and/or gas as input, and the modeler may use a parameter to limit the share of oil to, say, at most 40% of the total fuel input. Other parameters and sets define the amount of certain outflows in relation to certain inflows (e.g., efficiency, emission rate by fuel). For instance, in an oil refinery a parameter may be used to set the total amount of refined products equal to 92% of the total amount of crude oils (s) entering the refinery, or to calculate certain emissions as a fixed proportion of the amount of oil consumed. If a flow has a sub-annual time-slice resolution, a load curve can be specified for the flow. It is possible to define not only load curves for a flow, but also bounds on the share of a flow in a specific time-slice relative to the annual flow, e.g. the flow in the time-slice "Winter-Day" has to be at least 10 % of the total annual flow. Refer to section 5.4 describing TIMES constraints for details. Cumulative bounds on a process flow are also allowed.
 
+(economic-and-policy-parameters-3)=
 #### Economic and policy parameters
 
 *Economic or policy parameters* include delivery and other variable costs, taxes and subsidies attached to an individual process flow.
 
+(bounds-3)=
 #### Bounds
 
 Bounds may be defined for flows in similar variety that exists for commodities.
 
+(parameteres-attached-to-the-entire-res)=
 ### Parameters attached to the entire RES
 
 These parameters include currency conversion factors (in a multi-regional model), region-specific time-slice definitions, a region-specific general discount rate, and reference year for calculating the discounted total cost (objective function). In addition, certain switches are needed to control the activation of the data interpolation procedure as well as special model features to be used. The complete set of switches is described in Part III.
 
+(process-and-commodity-classifications)=
 ## Process and commodity classification
 
 Although TIMES does not explicitly differentiate processes or commodities that belong to different portions of the RES (with the notable exceptions of storage and trading processes), there are three ways in which some differentiation does occur.
