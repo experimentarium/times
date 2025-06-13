@@ -1,3 +1,4 @@
+(the-lumpy-investment-extension)=
 # The Lumpy Investment extension
 
 In some cases, the linearity property of the TIMES model may become a drawback for the accurate modeling of certain investment decisions. Consider for example a TIMES model for a relatively small community such as a city. For such a scope the *granularity* of some investments may have to be taken into account. For instance, the size of an electricity generation plant proposed by the model would have to conform to an implementable minimum size (it would make no sense to decide to construct a 50 MW nuclear plant). Another example for multi-region modeling might be whether or not to build cross-region electric grid(s) or gas pipeline(s) in discrete size increments. Processes subject to investments of only specific size increments are described as "lumpy" investments.
