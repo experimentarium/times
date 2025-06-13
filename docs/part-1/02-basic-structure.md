@@ -1,3 +1,4 @@
+(the-basic-structure-of-the-core)=
 # The basic structure of the core TIMES model
 
 ## The TIMES economy
