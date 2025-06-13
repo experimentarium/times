@@ -46,6 +46,7 @@ The fourth and last constituent of a scenario is the set of technical and econom
 
 *Remark:* Two scenarios may differ in some or all of their components. For instance, the same demand scenario may very well lead to multiple scenarios by varying the primary resource potentials and/or technologies and/or policies, insofar as the alternative scenario assumptions do not alter the basic demand inputs (drivers and elasticities). The scenario builder must always be careful about the overall coherence of the various assumptions made on the four components of a scenario.
 
+(selected-scenario-types)=
 ## Selected scenario types
 
 The purpose of this section is to show how certain policies may be simulated in a TIMES model. The enormous flexibility of TIMES, especially at the technology level, allows the representation of almost any policy, be it at the national, sector, or subsector level.

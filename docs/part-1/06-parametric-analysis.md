@@ -1,3 +1,4 @@
+(parametric-analysis-with-times)=
 # Parametric analysis with TIMES
 
 Dealing with uncertainty in modeling is a complex endeavour that may be accomplished via a number of (sometimes widely different) approaches. In the case of TIMES, two different features are available: ***Stochastic Programming*** (treated in chapter 8) and ***parametric analysis***, also known as ***sensitivity analysis***, which is the subject of this chapter. In sensitivity analysis, the values of some important exogenous assumptions are varied, and a series of model runs is performed over a discrete set of combinations of these assumptions. Sensitivity analysis is often combined with ***tradeoff analysis***, where the tradeoff relation between several objectives is analyzed.

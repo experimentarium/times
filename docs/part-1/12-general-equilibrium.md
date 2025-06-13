@@ -1,3 +1,4 @@
+(general-equilibrium-extensions)=
 # General equilibrium extensions
 
 ## Preamble
@@ -8,6 +9,7 @@ Some years after ETA-MACRO, MARKAL-MACRO (Manne-Wene, 1992) was obtained by repl
 
 In this chapter, we describe the single region and the multi-region versions of TIMES-MACRO, focusing on the concepts and mathematical representation, whereas the implementation details are left to Part II of the TIMES documentation and to technical notes.
 
+(the-single-region-times-macro-model)=
 ## The single-region TIMES-MACRO model
 
 As was already discussed in chapter 4, the main physical link between a TIMES model and the rest of the economy occurs at the level of the consumption of energy by the end-use sectors. There are however other links, such as capital and labor, which are common to the energy system and the rest of the economy. {numref}`energy-labor-monetary-flows` shows the articulation of the three links in TIMES-MACRO. Energy flows from TIMES to MACRO, whereas money flows in the reverse direction. Labor would also flow from MACRO to TIMES, but here a simplification is used, namely that the representation of labor is purely exogenous in both sub-models. Thus, TIMES-MACRO is not suitable for analyzing the impact of policies on labor, or on taxation, etc.

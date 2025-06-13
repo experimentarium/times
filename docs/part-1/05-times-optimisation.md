@@ -1,3 +1,4 @@
+(core-times-model-a-simplified)=
 # Core TIMES Model: A simplified description of the Optimization Program (variables, objective, constraints)
 
 This chapter contains a simplified formulation of the core TIMES Linear Program.
@@ -25,6 +26,7 @@ The model data structures (sets and parameters), variables and equations use the
 >
 > $c$: commodity (energy, material, emission, demand).
 
+(indices-decision-variables)=
 ## Decision variables
 
 The decision variables represent the *choices* to be made by the model, i.e. the *unknowns*. All TIMES variables are prefixed with the three letters VAR followed by an underscore.
@@ -69,6 +71,7 @@ $VAR\_DEM(r,t,d)$: demand for end-use energy service $d$ in region $r$ and perio
 
 ## TIMES objective function: discounted total system cost
 
+(the-costs-accounted-for-in-the)=
 ### The costs accounted for in the objective function
 
 The Surplus Maximization objective is first transformed into an equivalent Cost Minimization objective by taking the negative of the surplus, and calling this value the *total system cost*. This practice is in part inspired from historical custom from the days of the fixed demand MARKAL model. The TIMES objective is therefore to minimize the total \'cost\' of the system, properly augmented by the 'cost' of lost demand. All cost elements are appropriately discounted to a user-selected year.
@@ -134,6 +137,7 @@ where:
 
 As already mentioned, the exact computation of $ANNCOST$ is quite complex and is postponed until section 6.2 of PART II
 
+(variants-for-the-objective-function)=
 ### Variants for the objective function
 
 There are some cases where the standard formulation described above leads to small distortions in the cost accounting between capacity-related costs and the corresponding activity-related costs. This occurs even without discounting but may be increased by discounting. These distortions may occur at the end of the model horizon, either due to excessive or deficient salvage value.
@@ -162,6 +166,7 @@ Additional details and comments are provided on all three options in technical n
 
 <ins>Conclusion on the variants</ins>: The multiplicity of options may confuse the modeler. Extensive experience with their use has shown that the distortions discussed above remain quite small. In practice, old TIMES users seem to stick to the classical OBJ with the OBLONG switch. And, as mentioned above, using MOD allows the further flexibility of freely choosing milestone years. Finally, using the LIN option (described in section 5.5) is a more serious decision, since it implies a different meaning for the TIMES variables; some modelers are more comfortable with this choice, which has also implications for the reporting of results.
 
+(constraints)=
 ## Constraints
 
 While minimizing total discounted cost, the TIMES model must satisfy a large number of constraints (the so-called *equations* of the model) which express the physical and logical relationships that must be satisfied in order to properly depict the associated energy system. TIMES constraints are of several kinds. Here we list and briefly discuss the main types of constraints. A full, mathematically more precise description is given in Part II. If any constraint is not satisfied, the model is said to be *infeasible*, a condition caused by a data error or an over-specification of some requirement.
@@ -298,6 +303,7 @@ In TIMES variables are optionally attached to various quantities related to comm
 
 A specific type of constraint may be defined to limit the share of process (p) in the total production of commodity (c). The constraint indicates that the flow of commodity (c) from/to process (p) is bounded by a given fraction of the total production of commodity (c). In the present implementation, the same given fraction is applied to all timeslices.
 
+(user-constraints)=
 ### User constraints
 
 In addition to the standard TIMES constraints discussed above, the user may create a wide variety of so-called User Constraints (UC\'s), whose coefficients follow certain rules. Thanks to recent enhancements of the TIMES code, user defined constraints may involve virtually any TIMES variable. For example, there may a user-defined constraint limiting investment in new nuclear capacity (regardless of the type of reactor), or dictating that a certain percentage of new electricity generation capacity must be powered by a portfolio of renewable energy sources. User constraints may be employed across time periods, for example to model options for retrofitting existing processes or extending their technical lives. A frequent use of UC\'s involves cumulative quantities (over time) of commodities, flows, or process capacities or activities. Recent TIMES code changes make the definition of the right-hand-sides of such UC\'s fairly independent of the horizon chosen for the scenario, and thus make it unnecessary to redefine the RHS\'s when the horizon is changed.
@@ -384,6 +390,7 @@ The user is advised to use the discrete early retirement feature sparingly, as i
   - To reflect the effect of capacity that is retired early in capacity-related flows
 ```
 
+(electricity-grid-modeling)=
 ### Electricity grid modeling
 
 The electricity sector plays a central role in any energy model, and particularly so in TIMES. The electricity commodity has features that present particular challenges for its representation, in that it is difficult to store, and requires a network infrastructure to be transported and delivered. The considerable development of new renewable electricity generation technologies adds to the complexity, inasmuch as the technical requirements of integrating interruptible generation facilities (such as wind turbines and solar plants) to a set of traditional plants, must be satisfied for the integration to be feasible. Such considerations become even more relevant in large regions or countries, where the distances between potential generation areas and consumption areas are quite large.
@@ -468,6 +475,7 @@ The unit values of the first four costs are simply equal the process input data,
 
 Note also that the user may choose to ignore the last two costs or to include them. Furthermore, concerning the last cost (which is indeed a revenue), the user may decide to ignore the revenue from the main commodities produced by the process and retain only the revenues from the by-products. The choice is specified via the parameter RPT_OPT('NCAP','1'). Technical note \"Levelized costs-TIMES\" provides details on the parameter values.
 
+(the-linear-variant-of-times)=
 ## The \'Linear\' variant of TIMES
 
 This alternate TIMES formulation (called the LIN variant) assumes a different meaning for the activity and flow variables of TIMES. More precisely, instead of assuming that flows and activities are constant in all years within the same period, the variant assumes that the flow and activity variables apply to only one milestone year within each period. The variables\' values at other years of a period are interpolated between successive milestone years\' values. See section 5.2 for a figure depicting the two alternate definitions.
