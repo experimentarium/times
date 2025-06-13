@@ -137,6 +137,7 @@ where:
 
 As already mentioned, the exact computation of $ANNCOST$ is quite complex and is postponed until section 6.2 of PART II
 
+(variants-for-the-objective-function)=
 ### Variants for the objective function
 
 There are some cases where the standard formulation described above leads to small distortions in the cost accounting between capacity-related costs and the corresponding activity-related costs. This occurs even without discounting but may be increased by discounting. These distortions may occur at the end of the model horizon, either due to excessive or deficient salvage value.
