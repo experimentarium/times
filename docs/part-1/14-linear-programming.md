@@ -1,3 +1,4 @@
+(appendix-b-linear-programming)=
 # Appendix B: Linear Programming complements
 
 This section is not strictly needed for a basic understanding of the TIMES model and may be skipped a first reading. However, it provides additional insight into the microeconomics of the TIMES equilibrium. In particular, it contains a review of the theoretical foundation of Linear Programming and Duality Theory. This knowledge may help the user to better understand the central role shadow prices and reduced costs play in the economics of the TIMES model. More complete treatments of Linear Programming and Duality Theory may be found in several standard textbooks such as Chvátal (1983) or Hillier and Lieberman (1990 and subsequent editions). Samuelson and Nordhaus (1977) contains a treatment of micro-economics based on mathematical programming.
