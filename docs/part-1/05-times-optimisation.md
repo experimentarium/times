@@ -25,6 +25,7 @@ The model data structures (sets and parameters), variables and equations use the
 >
 > $c$: commodity (energy, material, emission, demand).
 
+(indices-decision-variables)=
 ## Decision variables
 
 The decision variables represent the *choices* to be made by the model, i.e. the *unknowns*. All TIMES variables are prefixed with the three letters VAR followed by an underscore.
@@ -298,6 +299,7 @@ In TIMES variables are optionally attached to various quantities related to comm
 
 A specific type of constraint may be defined to limit the share of process (p) in the total production of commodity (c). The constraint indicates that the flow of commodity (c) from/to process (p) is bounded by a given fraction of the total production of commodity (c). In the present implementation, the same given fraction is applied to all timeslices.
 
+(user-constraints)=
 ### User constraints
 
 In addition to the standard TIMES constraints discussed above, the user may create a wide variety of so-called User Constraints (UC\'s), whose coefficients follow certain rules. Thanks to recent enhancements of the TIMES code, user defined constraints may involve virtually any TIMES variable. For example, there may a user-defined constraint limiting investment in new nuclear capacity (regardless of the type of reactor), or dictating that a certain percentage of new electricity generation capacity must be powered by a portfolio of renewable energy sources. User constraints may be employed across time periods, for example to model options for retrofitting existing processes or extending their technical lives. A frequent use of UC\'s involves cumulative quantities (over time) of commodities, flows, or process capacities or activities. Recent TIMES code changes make the definition of the right-hand-sides of such UC\'s fairly independent of the horizon chosen for the scenario, and thus make it unnecessary to redefine the RHS\'s when the horizon is changed.

@@ -40,6 +40,7 @@ Second, the specification of process and demand input data in TIMES is made by s
 
 These two features combine to make a change in the definition of periods quite easy and error-free. For instance, if a modeler decides to change the initial year from 2010 to 2015, and perhaps change the number and durations of all other periods as well, only one type of data change is needed, namely to define the investments made from 2011 to 2015 as past investments. All other data specifications need not be altered[^6]. This feature represents a great simplification of the modeler's work. In particular, it enables the user to define time periods that have varying lengths, without changing the input data.
 
+(reference-energy-system-res)=
 ## The components of a Reference Energy System (RES): processes, commodities, flows
 
 The TIMES energy economy consists of three types of entities:
@@ -98,6 +99,7 @@ Bi-lateral trade is the most detailed way to specify trade between regions. It t
 
 There are cases when it is not important to fully specify the pair of trading regions. An example is the trading of greenhouse gas (GHG) emission permits in a global market. In such cases, the *multi-lateral trade* option decreases the size of the model. Multi-lateral trade is based on the idea that a common marketplace exists for a traded commodity with several selling and several buying regions for the commodity (e.g. GHG emission permits). To model a marketplace the user must first identify (or create) one region that participates both in the production and consumption of the traded commodity. Then a single exchange process is used to link all regions with the marketplace region. Note however that some flexibility is lost when using multilateral trade. For instance, it is not possible to express transportation costs in a fully accurate manner, if such cost depends upon the precise pair of trading regions in a specific way.
 
+(data-driven-model-structure)=
 ## Data-driven model structure
 
 It is useful to distinguish between a model's *structure* and a particular *instance* of its implementation. A model's structure exemplifies its fundamental approach for representing a problem --- it does not change from one implementation to the next. All TIMES models exploit an identical underlying structure. However, because TIMES is *data*[^7] *driven*, the *effective structure* of a particular instance of a model will vary according to the data inputs. This means that some of the TIMES features will not be activated if the corresponding data is not specified. For example, in a multi-region model one region may, as a matter of user data input, have undiscovered domestic oil reserves. Accordingly, TIMES automatically generates technologies and processes that account for the cost of discovery and field development. If, alternatively, user supplied data indicate that a region does not have undiscovered oil reserves no such technologies and processes would be included in the representation of that region's Reference Energy System (RES, see section 2.4). Due to this property TIMES may also be called a *model generator* that, based on the input information provided by the modeler, generates an instance of a model. In the following, if not stated otherwise, the word \'model\' is used with two meanings indifferently: the instance of a TIMES model or more generally the model generator TIMES.
@@ -129,6 +131,7 @@ TIMES process-oriented parameters fall into several general categories.
 
 A second class of process parameters comprises *economic and policy parameters* that include a variety of costs attached to the investment, dismantling, maintenance, and operation of a process. The investment cost of the technology is incurred once at the time of acquisition; the fixed annual cost is incurred each year per unit of the capacity of the technology, as long as the technology is kept alive (even if it is not actively functioning); the annual variable cost is incurred per unit of the activity of the technology. In addition to costs, taxes and subsidies (on investment and/or on activity) may be defined in a very flexible manner. Other economic parameters are: the economic life of a process (the time during which the investment cost of a process is amortized, which may differ from the operational lifetime) and the process specific discount rate, also called *hurdle rate*. Both these parameters serve to calculate the annualized payments on the process investment cost, which enters the expression for the total cost of the run (section 5.2).
 
+(processes-bounds)=
 #### Bounds
 
 Another class of parameter is used to define the right-hand-side of some constraint. Such a parameter represents a ***bound*** and its specification triggers the constraint on the quantity concerned. Most frequently used bounds are those imposed on period investment, capacity, or activity of a process. Newly defined bounds allow the user to impose limits on the annual or annualized payments at some period or set of consecutive years.
@@ -161,6 +164,7 @@ This subsection concerns parameters attached to each commodity, irrespective of 
 
 *Policy based parameters* include bounds (at each period or cumulative over user defined years) on the gross or net production of a commodity, or on the imports or exports of a commodity by a region.
 
+(commodities-bounds)=
 #### Bounds
 
 In TIMES the net or the total production of each commodity may be explicitly represented by a variable, if needed for imposing a bound or a tax. A similar variety of bounding parameters exists for commodities as for processes.
