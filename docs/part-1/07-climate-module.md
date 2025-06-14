@@ -1,3 +1,4 @@
+(the-times-climate-module)=
 # The TIMES Climate Module
 
 This chapter provides a detailed description of the theoretical approach taken to model changes in atmospheric greenhouse gas concentrations, radiative forcing, and global mean temperatures in the TIMES Climate Module. Appendix A of Part II contains a full description of the implementation of the Climate Module in TIMES, including parameters, variables, and equations, as represented in the TIMES code.

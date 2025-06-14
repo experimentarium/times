@@ -1,3 +1,4 @@
+(the-endogenous-technological-learning-extension)=
 # The Endogenous Technological Learning extension
 
 In a long-term dynamic model such as TIMES the characteristics of many of the future technologies are almost inevitably changing over the sequence of future periods due to *technological learning*.
@@ -133,7 +134,7 @@ $$
 \end{aligned}
 $$
 
-Summarizing the above formulation, we observe that each learning technology requires the introduction of $N*T$ integer (0-1) variables. For example, if the model has 10 periods and a 5-segment approximation is selected, 50 integer (0-1) variables are created for that learning technology, assuming that the technology is available in the first period of the model. Thus, the formulation may become very onerous in terms of solution time, if many learning technologies are envisioned, and if the model is of large size to begin with. In section 11.5 we provide some comments on ETL, as well as a word of warning.
+Summarizing the above formulation, we observe that each learning technology requires the introduction of $N*T$ integer (0-1) variables. For example, if the model has 10 periods and a 5-segment approximation is selected, 50 integer (0-1) variables are created for that learning technology, assuming that the technology is available in the first period of the model. Thus, the formulation may become very onerous in terms of solution time, if many learning technologies are envisioned, and if the model is of large size to begin with. In section {numref}`%s <endogenous-exogenous-learning>` we provide some comments on ETL, as well as a word of warning.
 
 ## Clustered learning
 
@@ -183,6 +184,7 @@ c) Commodity $c$ may be exported to all other regions.
 
 Finally, in each 'real' region, the LT is represented with all its attributes *except the investment cost NCAP_COST.* Furthermore, the construction of one unit of the LT requires an input of one unit of the learning commodity $c$ (using the $NCAP\_ICOM$ parameter see chapter 3 of PART II). This ensures that the sum of all investments in the LT in the real regions is exactly equal to the investment in the LT in region 0, as desired.
 
+(endogenous-exogenous-learning)=
 ## Endogenous vs. exogenous learning: a discussion
 
 In this section, we formulate a few comments and warnings that may be useful to potential users of the ETL feature.

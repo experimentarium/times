@@ -1,3 +1,4 @@
+(using-times-with-limited-foresight)=
 # Using TIMES with limited foresight (time-stepped)
 
 It may be useful to simulate market conditions where all agents take decisions with only a limited foresight of a few years or decades, rather than the very long term. By so doing, a modeler may attempt to simulate \"real-world\" decision making conditions, rather than socially optimal ones. Both objectives are valid provided the modeler is well aware of each approach\'s characteristics.
