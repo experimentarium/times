@@ -61,23 +61,23 @@ This policy is easily represented in TIMES a) making sure that all technologies 
 
 An upper limit on CO<sub>2</sub> emissions is imposed at the national level (alternatively, separate upper limits are imposed at the sector level). If the model is multi-country, trade of emission permits is allowed between countries (and/or between sectors). The trade may also be upper bounded by a maximum percentage of the actual emissions, thus representing a form of the subsidiarity principle.
 
-This type of policy is simulated by defining upper bounds on emissions, a straightforward feature in TIMES (sections2.6.1.3 and 2.6.2.3). By defining total sector emissions as a new commodity, the sector-restricted cap is just as easily implemented. The trade of national emissions makes use of the standard trade variables of TIMES (section 5.2).
+This type of policy is simulated by defining upper bounds on emissions, a straightforward feature in TIMES ({numref}`%s <processes-bounds>` and {numref}`%s <commodities-bounds>`). By defining total sector emissions as a new commodity, the sector-restricted cap is just as easily implemented. The trade of national emissions makes use of the standard trade variables of TIMES (section {numref}`%s <indices-decision-variables>`).
 
 **Policy 3: Portfolio standard**
 
 A sector is submitted to a lower limit on its efficiency. For instance, the electricity subsector using fossil fuels must have an overall efficiency of 50%[^3]. A similar example is an overall lower limit on the efficiency of light road vehicles.
 
-This type of policy requires the definition of a new constraint that expresses that the ratio of electricity produced (via fossil fueled plants) over the amount of fuel used be more than 0.5. TIMES allows the modeller to define such new constraints via the user constraints (section 5.4.9).
+This type of policy requires the definition of a new constraint that expresses that the ratio of electricity produced (via fossil fueled plants) over the amount of fuel used be more than 0.5. TIMES allows the modeller to define such new constraints via the user constraints (section {numref}`%s <user-constraints>`).
 
 **Policy 4: Subsidies for some classes of technologies**
 
-The representation of this policy requires defining a capital subsidy for every new capacity of a class of technologies. This is quite straightforward in TIMES using the subsidy parameters (section 2.6.1.2.)
+The representation of this policy requires defining a capital subsidy for every new capacity of a class of technologies. This is quite straightforward in TIMES using the subsidy parameters (section {numref}`%s <economic-and-policy-parameters>`)
 
 A more elaborate form of the subsidy might be to first levy an emission tax, and then use the proceeds of the tax to subsidize low-emitting and non-emitting technologies. Such a compound policy requires several sequential runs of TIMES, the first run establishing the proceeds of the carbon tax, followed by subsequent runs that distribute the proceeds among the targeted technologies. Several passes of these two runs may well be required in order to balance exactly the proceeds of the tax and the use of them as subsidies.
 
 **Assessing the robustness of policies**
 
-An important aspect of any policy is whether it will stay effective under various conditions. Examples of such conditions are oil prices, climate parameters, availability of certain resources, key technology costs or efficiency, etc. A policy that remains effective under a range of values for such conditions, is said to be ***robust***. In TIMES, robustness may be assessed using a variety of features, ranging from sensitivity analysis (chapter 6) to Stochastic Programming (chapter 8).
+An important aspect of any policy is whether it will stay effective under various conditions. Examples of such conditions are oil prices, climate parameters, availability of certain resources, key technology costs or efficiency, etc. A policy that remains effective under a range of values for such conditions, is said to be ***robust***. In TIMES, robustness may be assessed using a variety of features, ranging from sensitivity analysis (chapter {numref}`%s <parametric-analysis-with-times>`) to Stochastic Programming (chapter {numref}`%s <stochastic-programming-extension>`).
 
 [^1]: MARKAL (MARket ALlocation model, Fishbone et al, 1981, 1983, Berger et al. 1992) and EFOM (Van Voort et al, 1984) are two bottom-up energy models that inspired the structure of TIMES.
 
