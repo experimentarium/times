@@ -303,7 +303,7 @@ The user input sets contain the fundamental information regarding the structure 
 - Sets defining the time structure of the model: periods, timeslices, timeslice hierarchy;
 - Sets defining various properties of processes or commodities.
 
-The formulation of user constraints also uses sets to specify the type and the features of a constraint. The structure and the input information required to construct a user constraint is covered in detail in Chapter 6, and therefore will not be presented here.
+The formulation of user constraints also uses sets to specify the type and the features of a constraint. The structure and the input information required to construct a user constraint is covered in detail in Chapter {numref}`%s <equations>`, and therefore will not be presented here.
 
 Most of the set specifications are handled for the user by the user shell through process and commodity characterization, and the user does not need to input these sets directly.
 
