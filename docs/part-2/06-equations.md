@@ -638,7 +638,6 @@ $$
 
 $y \leq EOH$ **(VI)**
 
-(cost-of-demand-reductions)=
 ### Cost of demand reductions ELASTCOST(y) 
 
 When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See PART I for a theoretical justification, and Appendix {numref}`%s <times-demand-functions>` for formulations involving more generalized demand functions.
@@ -651,6 +650,7 @@ $${- \sum_{j = 1}^{COM\_STEP_{up}}{COM\_BPRICE_{T(y)} \times \left\{ \left( 1 + 
 
 **(VII)**
 
+(salvage-value-salvage)=
 ### Salvage value: SALVAGE (EOH+1)
 
 Investments whose technical lives exceed the model's horizon receive a SALVAGE value for the unused portion of their technical lives. Salvage applies to several types of costs: investment costs, sunk material costs, as well as decommissioning costs and surveillance costs. SALVAGE is reported as a single lump sum revenue accruing precisely at the end of the horizon (and then discounted to the base year like all other costs).
@@ -855,7 +855,7 @@ Note again that $SAL$ is 0 whenever $B(t) + C \times TLIFE_{t} + ILED_{t} \leq E
 
 **C) Salvage Value of Surveillance Costs**
 
-Similarly to the salvaging of decommissioning costs, the basic salvage value fractions $S(k,m)$ defined in *Result 1* at the beginning of Section {numref}`%s <cost-of-demand-reductions>` are used as the basis for the salvage value of surveillance costs. However, unlike with decommissioning costs, there is no need to make corrections for technology-specific discount rates, as the costs do not represent capital costs. In addition, the discounting to $EOH+1$ must be made separately for each surveillance year. Note that only Cases 2 have surveillance costs.
+Similarly to the salvaging of decommissioning costs, the basic salvage value fractions $S(k,m)$ defined in *Result 1* at the beginning of Section {numref}`%s <salvage-value-salvage>` are used as the basis for the salvage value of surveillance costs. However, unlike with decommissioning costs, there is no need to make corrections for technology-specific discount rates, as the costs do not represent capital costs. In addition, the discounting to $EOH+1$ must be made separately for each surveillance year. Note that only Cases 2 have surveillance costs.
 
 **Case 2.a:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${ILED}_{t} + {TLIFE}_{t} \geq {D(t)}$
 
