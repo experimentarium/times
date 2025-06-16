@@ -284,6 +284,7 @@ This chapter describes each variable name, definition, and role in the TIMES Lin
 >
 > **User constraints:** Can be directly referred to by UC_CUMFLO/UC_CUMACT
 
+(var-dncap)=
 ## $VAR\_DNCAP(r,t,p,u)$ / $VAR\_SNCAP(r,t,p)$
 
 > **Definition:** VAR_DNCAP is only used for processes selected by the user as being discrete, i.e. for which the new capacity in period **t** may only be equal to one of a set of discrete sizes, specified by the user. For such processes, VAR_DNCAP is a binary decision variable equal to 1 if the investment is equal to size **'u'** and 0 otherwise. Thanks to an additional constraint, only one of the various potential sizes allowed for the investment at period **t** is indeed allowed.
