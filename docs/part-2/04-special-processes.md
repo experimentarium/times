@@ -287,12 +287,13 @@ In TIMES, capacity by default bounds only the activity. However, with the $NCAP\
 
 The rules for defining the availabilities for trade flows can be summarized as follows:
 - If the import/export commodities are different ($c1$/$c2$): Use $NCAP\_AFC(c1)$ for bounding the import flow and $NCAP\_AFC(c2)$ for bounding the export flow, or use $NCAP\_AFC('NRG')$ for applying the same availability to both flows.
-- If $input=output=c$, specifying ***either*** $NCAP\_AFC(c)$ ***or*** $NCAP\_AFC('NRG')$ alone applies to both imports and exports (unless the process type is DISTR, see Section 4.2.4 below). However, if they are both specified, then $NCAP\_AFC(c)$ applies to the import flow while $NCAP\_AFC('NRG')$ applies to the export flow.
+- If $input=output=c$, specifying ***either*** $NCAP\_AFC(c)$ ***or*** $NCAP\_AFC('NRG')$ alone applies to both imports and exports (unless the process type is DISTR, see Section {numref}`%s <notes-on-other-attributes>` below). However, if they are both specified, then $NCAP\_AFC(c)$ applies to the import flow while $NCAP\_AFC('NRG')$ applies to the export flow.
 
 *<ins>Remarks:</ins>*
 1. As any process has only a single capacity variable, the availabilities specified for the import/export flows are always proportional to the same overall capacity.
 2. Note that the availability factors defined by $NCAP\_AFC$ are multiplied by any $NCAP\_AF$/$NCAP\_AFS$/$NCAP\_AFA$ value if defined for the same timeslice.
 
+(notes-on-other-attributes)=
 ### Notes on other attributes for trade processes
 
 There are important limitations of using the parameters for standard processes for IRE processes. The most important limitations are summarized in {numref}`standard-parameters-limitations-for-ire` with regard to the parameters with the prefixes $ACT\_$, $FLO\_$ and $PRC\_$. In addition, none of the CHP parameters, storage parameters ($STG\_*$), or dispatching parameters ($ACT\_MINLD$, $ACT\_UPS$, $ACT\_CSTUP$, $ACT\_LOSPL$, $ACT\_CSTPL$, $ACT\_TIME$), can be used for IRE processes, and are ignored if used.
