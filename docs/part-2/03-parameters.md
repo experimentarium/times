@@ -429,7 +429,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Levelized to the timeslice level of the flow variables in the shadow group.
   <br>Direct inheritance. Weighted aggregation.
   - Activity efficiency for process, i.e. amount of activity per unit of commodity flows in the group cg.
-  <br>For more information on usage, see Section 6.3 for details about EQE_ACTEFF.
+  <br>For more information on usage, see Section {numref}`%s <constraints>` for details about EQE_ACTEFF.
   - Generates instances of the activity efficiency constraint (EQE_ACTEFF)
 * - ACT_FLO
   <br>(r,datayear,p,cg,s)
@@ -2033,7 +2033,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Default i/e: MIG
   - Upper bound for the capacity must be defined by NCAP_BND; if not defined, assumed to be equal to the lower bound.
   <br>Requires MIP.
-  - Semi-continuous new capacity, lower bound. (See Section 5.9)
+  - Semi-continuous new capacity, lower bound. (See Section {numref}`%s <var-dncap>`)
   - Applied to the semi-continuous investment variable VAR_SNCAP in the discrete investment equation EQ_DSCNCAP
 * - NCAP_START
   <br>(r,p)
@@ -2716,7 +2716,7 @@ Indexing of auxiliary consumption/emission.
 * - COR_SALVI
   <br>(r,v,p,cur)
   - For each process extending past the end of the modelling horizon adjustment in the objective function.
-  - Correction factor for investment costs taking into account technical discount rates, economic lifetimes and a user-defined discount shift (triggered by the control switch MIDYEAR (see Section 6.2 EQ_OBJ).
+  - Correction factor for investment costs taking into account technical discount rates, economic lifetimes and a user-defined discount shift (triggered by the control switch MIDYEAR (see Section {numref}`%s <objective-function-eq-obj>` EQ_OBJ).
 * - D
   <br>(t)
   - For each period, D(t) = E(t)--B(t)+1.
