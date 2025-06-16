@@ -290,7 +290,7 @@ This chapter describes each variable name, definition, and role in the TIMES Lin
 >
 > VAR_SNCAP is only used for processes selected by the user as having semi-continuous amounts of new capacity, i.e. for which new capacity in period **t** may only be zero or between positive lower and upper bounds specified by the user.
 >
-> **Role:** useful to mathematically express the fact that investment in process **p** at period **t** may only be done in discrete or semi-continuous sizes. See equation EQ_DSCNCAP in Chapter 6.
+> **Role:** useful to mathematically express the fact that investment in process **p** at period **t** may only be done in discrete or semi-continuous sizes. See equation EQ_DSCNCAP in Chapter {numref}`%s <equations>`.
 >
 > **Bounds:** Direct bounding not available, indirectly by NCAP_BND
 >
@@ -300,7 +300,7 @@ This chapter describes each variable name, definition, and role in the TIMES Lin
 
 > **Definition:** this variable is used only for processes selected by the user as having discrete early capacity retirements, i.e. for which the retirement at period **t** may only be a multiple of a block size, specified by the user. For such processes, VAR_DRCAP is an integer decision variable equal to the number of blocks retired.
 >
-> **Role:** needed for mathematically expressing the fact that early retirement in capacity of process **p** at period **t** may only be done in discrete amounts. See equation EQ_DSCRET in Chapter 6.
+> **Role:** needed for mathematically expressing the fact that early retirement in capacity of process **p** at period **t** may only be done in discrete amounts. See equation EQ_DSCRET in Chapter {numref}`%s <equations>`.
 >
 > **Bounds:** Direct bounding not available, indirectly by RCAP_BND
 >
@@ -338,7 +338,7 @@ This chapter describes each variable name, definition, and role in the TIMES Lin
 
 ## $VAR\_NCAP(r,v,p)$
 
-> **Definition:** the amount of new capacity (or what has traditionally been called "investment" in new capacity, or capacity build-up) at period **v**. As will be explained in Section 6.2.2, VAR_NCAP represents the total investment in technology **p** at period **v** only when ILED+TLIFE ≥ D(v), where D(v) is the period length. And, as discussed further in that Section, when ILED+TLIFE \< D(v), the model assumes that the investment is repeated as many times as necessary within the period so that the life of the last repetition is beyond the end of period **v**. In this case VAR_NCAP represents the capacity level of the single investments. {numref}`repeated-investment-same-period` illustrates a case where the investment is made twice in period **v** (and some capacity still remains after period **v**). The average capacity in period **v** resulting from the investment VAR_NCAP(v) is less than VAR_NCAP(v), due to the delay ILED (it is equal to VAR_NCAP(v)\* D(v)/TLIFE). The average capacity in period **v+1** due to VAR_NCAP(v) is also less than VAR_NCAP(v) because the end of life of the second round of investment occurs before the end of period **v+1**. These adjustments are made in every equation involving VAR_NCAP by the internal parameter COEF_CPT.
+> **Definition:** the amount of new capacity (or what has traditionally been called "investment" in new capacity, or capacity build-up) at period **v**. As will be explained in Section {numref}`%s <investment-costs-invcost>`, VAR_NCAP represents the total investment in technology **p** at period **v** only when ILED+TLIFE ≥ D(v), where D(v) is the period length. And, as discussed further in that Section, when ILED+TLIFE \< D(v), the model assumes that the investment is repeated as many times as necessary within the period so that the life of the last repetition is beyond the end of period **v**. In this case VAR_NCAP represents the capacity level of the single investments. {numref}`repeated-investment-same-period` illustrates a case where the investment is made twice in period **v** (and some capacity still remains after period **v**). The average capacity in period **v** resulting from the investment VAR_NCAP(v) is less than VAR_NCAP(v), due to the delay ILED (it is equal to VAR_NCAP(v)\* D(v)/TLIFE). The average capacity in period **v+1** due to VAR_NCAP(v) is also less than VAR_NCAP(v) because the end of life of the second round of investment occurs before the end of period **v+1**. These adjustments are made in every equation involving VAR_NCAP by the internal parameter COEF_CPT.
 
  ```{figure} assets/repeated-investment-example.svg
 :name: repeated-investment-same-period
@@ -359,7 +359,7 @@ Example of a repeated investment in same period.
 >
 > **Role:** this is the quantity that is minimized by the TIMES optimizer.
 >
-> **Remark:** The next 10 'variables' do not directly correspond to GAMS variables. They are used in the documentation (especially Section 6.2) as convenient intermediate placeholders that capture certain portions of the cost objective function. The reader is invited to look at Section 6.2 for detailed explanations on how these various costs enter the composition of the objective function. Most of these 'variables' are defined as reporting parameters that are made available to the VEDA-BE results analyser, as shown in Section 3.3.
+> **Remark:** The next 10 'variables' do not directly correspond to GAMS variables. They are used in the documentation (especially Section {numref}`%s <objective-function-eq-obj>`) as convenient intermediate placeholders that capture certain portions of the cost objective function. The reader is invited to look at Section {numref}`%s <objective-function-eq-obj>` for detailed explanations on how these various costs enter the composition of the objective function. Most of these 'variables' are defined as reporting parameters that are made available to the VEDA-BE results analyser, as shown in Section {numref}`%s <report-parameters>`.
 
 ### $VAR\_OBJR(r, y_0)$
 
@@ -485,7 +485,7 @@ The remaining TIMES variables are all attached to user constraints. User constra
 - Case 1 (RHS constants): \<LHS expression\> ≤/=/≥ UC_RHS(R)(T)(S)
 - Case 2 (UC variables): \<LHS expression\> = VAR_UC(R)(T)(S)
 
-These user constraint variables are in fact redundant, but quite useful in providing streamlined expressions constraints (see Chapter 6), and allow for reporting the slack level of each UC. Moreover, in the case of range constraints, they will reduce model size and the amount of input data. By setting the dollar control parameter VAR_UC to YES in the run-file, the variable based formulation is activated (second case). By default, the formulation without user constraint variables will be used, and only the marginals of the equations are reported.
+These user constraint variables are in fact redundant, but quite useful in providing streamlined expressions constraints (see Chapter {numref}`%s <equations>`), and allow for reporting the slack level of each UC. Moreover, in the case of range constraints, they will reduce model size and the amount of input data. By setting the dollar control parameter VAR_UC to YES in the run-file, the variable based formulation is activated (second case). By default, the formulation without user constraint variables will be used, and only the marginals of the equations are reported.
 
 Non-binding user constraints (introduced for reporting purposes) can only be defined when the user constraint variables are used (i.e. VAR_UC == YES).
 
@@ -516,4 +516,4 @@ Variable representing the LHS expression of the user constraint EQE_UCTS(uc_n,t,
 Variable representing the LHS expression of the user constraint EQE_UCRTS(r,uc_n,t,s) and the combined LHS--RHS expression of the user constraint EQE_UCRSUS(r,uc_n,t,s), being generated for the regions speci­fied in **uc_r_each**, the periods in **uc_t_each/uc_t_succ** and the timeslices in **uc_ts_each**.
 
 
-[^38]: In case the dollar control parameter VAR_UC is set to YES, the user constraints are always strict equalities (***l***=E) with the RHS constants replaced by the user constraint variables given in the table. The RHS bound parameter (UC_RHS(R)(T)(S)) are then applied to these user constraint related variables. See Section 5.20.
+[^38]: In case the dollar control parameter VAR_UC is set to YES, the user constraints are always strict equalities (***l***=E) with the RHS constants replaced by the user constraint variables given in the table. The RHS bound parameter (UC_RHS(R)(T)(S)) are then applied to these user constraint related variables. See Section {numref}`%s <var-upd>`.
