@@ -350,9 +350,9 @@ The TIMES model generator provides tools for specifying the following types of s
 - Day/night storage (STG+NST, or just NST if at ANNUAL level)
 - Inter-period storage (STG+STK)
 
-The process type indicator STG is automatically assigned also to all processes that have been defined to be of type STS, NST or STK, with the exception of ANNUAL level NST processes, which are implemented as normal processes (see Section 4.3.3 below). Therefore, the user only needs to specify one of {STG, STS, NST, STK} as the process type of a storage process.
+The process type indicator STG is automatically assigned also to all processes that have been defined to be of type STS, NST or STK, with the exception of ANNUAL level NST processes, which are implemented as normal processes (see Section {numref}`%s <day-night-storage>` below). Therefore, the user only needs to specify one of {STG, STS, NST, STK} as the process type of a storage process.
 
-In addition to the charged and discharged commodity, storage processes can also produce and consume auxiliary commodities (emissions, electricity, fuels, waste etc.). The flows of such auxiliary commodities can be defined to be proportional either to the activity, the main input flows, or the main output flows of the storage (see Section below).
+In addition to the charged and discharged commodity, storage processes can also produce and consume auxiliary commodities (emissions, electricity, fuels, waste etc.). The flows of such auxiliary commodities can be defined to be proportional either to the activity, the main input flows, or the main output flows of the storage (see Section {numref}`%s <auxiliary-storage-flows>` below).
 
 ### Timeslice storage
 
@@ -435,7 +435,7 @@ The TIMES input parameters that are specific to storage processes or have a spec
 * - STG_MAXCYC (r,y,p)
   - Defines a limit for the storage cycling within each period, by giving the maximum number of cycles over the full lifetime for process **p**, region **r**.
 * - STG_SIFT (r,y,p,c,s)
-  - Defines the storage process **p** as a special load-shifting storage process for commodity **c**, and defines the maximum fraction of shifted loads in proportion to the demand. See section 4.3.9 for additional information.
+  - Defines the storage process **p** as a special load-shifting storage process for commodity **c**, and defines the maximum fraction of shifted loads in proportion to the demand. See section {numref}`%s <load-shifting-storage>` for additional information.
 * - STGIN_BND (r,y,p,c,s,bd)
   - Bound on the input flow of commodity **c** of storage process **p** in a timeslice **s**. Units: Unit of the storage input flow. (Default value: none)
 * - STGOUT_BND (r,y,p,c,s,bd)
@@ -445,7 +445,7 @@ The TIMES input parameters that are specific to storage processes or have a spec
 * - PRC_ACTFLO (r,y,p,c)
   - Defines a conversion coefficient between the activity and the flow in commodity **c**. For storage processes, PRC_ACTFLO can be used for the commodities in the PCG in the standard way, but also for defining the amount of auxiliary flow of **c** per unit of activity.
 * - NCAP_AFC (r,y,p,cg,tslvl)
-  - Can be used for defining availability factors for the process activity (amount stored), process output flow, or process input flow, or any combination of these. See Section 6.3 for additional information.
+  - Can be used for defining availability factors for the process activity (amount stored), process output flow, or process input flow, or any combination of these. See Section {numref}`%s <constraints>` for additional information.
 * - NCAP_AFCS (r,y,p,cg,s)
   - As NCAP_AFC above, but can be specified for individual timeslices. NCAP_AFCs values override NCAP_AFC values defined at the same level.
 ```
