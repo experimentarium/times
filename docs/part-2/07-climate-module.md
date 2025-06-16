@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This Appendix contains the updated (November 2010) documentation on the Climate Module option for the TIMES model. It provides is a streamlined version of the older version, and contains 5 sections: section 2 contains a detailed description of the theoretical approach taken, section 3 describes the parameters of the climate module, section 4 the variables and section 5 the equations. This version of the documentation does not include the complete formulations for all of the Climate equations (in GAMS form), and neither does it include the full GAMS specifications. However, it should be sufficient to gain a complete understanding of the equations in mathematical form, and should enable the user to define the parameters of the climate module.
+This Appendix contains the updated (November 2010) documentation on the Climate Module option for the TIMES model. It provides is a streamlined version of the older version, and contains 5 sections: section {numref}`%s <a-mathematical-formulation>` contains a detailed description of the theoretical approach taken, section {numref}`%s <a-switches-and-parameters>` describes the parameters of the climate module, section {numref}`%s <a-variables>` the variables and section {numref}`%s <a-equations>` the equations. This version of the documentation does not include the complete formulations for all of the Climate equations (in GAMS form), and neither does it include the full GAMS specifications. However, it should be sufficient to gain a complete understanding of the equations in mathematical form, and should enable the user to define the parameters of the climate module.
 
 (a-mathematical-formulation)=
 ## Mathematical formulation
@@ -295,7 +295,7 @@ CM_GHGMAP(R,'TOTCO2','CO2-GtC') = 2.727272E-7;
 
 ### Parameters for the linear CO<sub>2</sub> forcing approximation
 
-CM_LINFOR(datayear,item,lim): lower and upper limit for the concentration of CO<sub>2</sub> in atmosphere, used in the approximation of the radiative forcing equation for CO<sub>2</sub> (see section 2.2 above). *item* may be equal to CO2-ATM (in which case the limit is expressed as a ratio of concentration over pre-industrial concentration), or to CO2-PPM (in which case the limit is expressed in ppm of CO2-equivalent). The index *lim* is either equal to LO or to UP, depending on whether the lower or the upper limit of the range is being specified. For example, the following specifications may be used to select a range from 375 to 550 ppm for the approximation at year 2020:
+CM_LINFOR(datayear,item,lim): lower and upper limit for the concentration of CO<sub>2</sub> in atmosphere, used in the approximation of the radiative forcing equation for CO<sub>2</sub> (see section {numref}`%s <a-radiative-forcing>` above). *item* may be equal to CO2-ATM (in which case the limit is expressed as a ratio of concentration over pre-industrial concentration), or to CO2-PPM (in which case the limit is expressed in ppm of CO2-equivalent). The index *lim* is either equal to LO or to UP, depending on whether the lower or the upper limit of the range is being specified. For example, the following specifications may be used to select a range from 375 to 550 ppm for the approximation at year 2020:
 
 ```
 CM_LINFOR('2020','CO2-PPM','LO') = 375;
@@ -472,7 +472,7 @@ CM_RESULT is indexed by year *y* and result type {e.g. CO2-ATM, CO2-PPM, FORCING
 - CO2-ATM(y): the value of the atmospheric mass of CO<sub>2</sub>-equivalent at the end of year **y**, obtained directly from the variable **VAR_CLIBOX(\'CO2-ATM\',y)**.
 - CO2-PPM(y): the value of the atmospheric concentration of CO<sub>2</sub>-equivalent at the end of year **y**.
 - FORCING(y): forcing value at end of year y, calculated using the linearized forcing functions as defined by the user.
-- FORC+TOT(y): exact forcing value at end of year y, calculated using the logarithmic forcing equation defined in section 2.2 and the CO2-ATM(y) value.
+- FORC+TOT(y): exact forcing value at end of year y, calculated using the logarithmic forcing equation defined in section {numref}`%s <a-radiative-forcing>` and the CO2-ATM(y) value.
 - DELTA_ATM(y): exact atmospheric temperature value at end of year y, calculated using the forcing FORC+TOT(y).
 - DELTA_LOW(y): exact lower ocean temperature value at end of year y, calculated using the forcing FORC+TOT(y).
 
@@ -560,7 +560,7 @@ CM_MAXC_M is indexed by year *y* and constraint type. The values are reported fo
 (a-variables)=
 ## Variables
 
-The variables that are used in the Climate Module in TIMES are presented in {numref}`cli-specific-variables` below. The climate indicators represented in the Climate Module are grouped according to the following internal sets, which are referred to in the GAMS formulation, presented in Section 5:
+The variables that are used in the Climate Module in TIMES are presented in {numref}`cli-specific-variables` below. The climate indicators represented in the Climate Module are grouped according to the following internal sets, which are referred to in the GAMS formulation, presented in Section {numref}`%s <a-equations>`:
 
 - **cm_var**: the set of all climate indicators
 - **cm_tkind**: aggregate total indicators (CO2-GtC, CH4-Mt, N2O-Mt, FORCING)
@@ -606,7 +606,7 @@ The variables that are used in the Climate Module in TIMES are presented in {num
 
 There are three blocks of definitional equations: the first block of equations calculates the global emissions of GHG (either all in CO<sub>2</sub> eq., or separately for CO<sub>2</sub>, CH<sub>4</sub> and N<sub>2</sub>O) as well as the total (linearized) radiative forcing, the next block calculates the concentrations of the greenhouse gases in the reservoirs, and the third block calculates the atmospheric temperature and lower ocean temperature at period t.
 
-In addition, there is a generic block of equations expressing the upper bounding of the five climate quantities discussed in subsection 3.4.6. This generic equation is generated as many times as an upper bound on any climate variable is specified by the user, and is not generated if no upper bound is specified.
+In addition, there is a generic block of equations expressing the upper bounding of the five climate quantities discussed in subsection {numref}`%s <a-upport-bounds-on-climate-variablaes>`. This generic equation is generated as many times as an upper bound on any climate variable is specified by the user, and is not generated if no upper bound is specified.
 
 We now give the formulations of these constraints.
 
@@ -621,7 +621,7 @@ General notation:
 - *B(t):* first year in period *t, t=1 to T*
 - *m(t):* milestone year of period t (approximate middle year of period, defined as $m(t) = B(t) + \left\lfloor (D(t) - 1)/2 \right\rfloor$
 - *y:* designates a year, while *t* designates a period (ranging from 1 to T)
-- *Υ:* designates the calibration year, which can be chosen by the user to be either *B*(1)--1, *m*(1)--1, or *m*(1)*,* see section 3.2 above.
+- *Υ:* designates the calibration year, which can be chosen by the user to be either *B*(1)--1, *m*(1)--1, or *m*(1)*,* see section {numref}`%s <a-calibration>` above.
 
 ```{list-table} Climate Module specific constraints (all in the GAMS file equ_ext.cli).
 :name: cli-specific-constraints
