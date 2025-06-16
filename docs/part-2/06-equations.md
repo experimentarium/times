@@ -1,3 +1,4 @@
+(equations)=
 # Equations 
 
 This chapter is divided into four sections: the first section describes the main notational conventions adopted in writing the mathematical expressions of the entire chapter. The next two sections treat respectively the TIMES objective function and the standard linear constraints of the model. The fourth section is devoted to the facility for defining various kinds of user constraints. Additional constraints and objective function additions that are required for the Climate Module, Damage Cost and Endogenous Technology Learning options are described in Appendices A, B and C, respectively.
@@ -6,6 +7,7 @@ Each equation has a unique name and is described in a separate subsection. The e
 
 The mathematical formulation of an equation starts with the name of the equation in the format: $EQ\_XXX_{i,j,k,l}$, where $XXX$ is a unique equation identifier, and $i,j,k,..,$ are the *equation indexes*, among those described in chapter 2. Some equation names also include an index *l* controlling the sense of the equation. Next to the equation name is a *logical condition* that the equation indexes must satisfy. That condition constitutes the *domain of definition* of the equation. It is useful to remember that the equation is created in multiple instances, one for each combination of the equation indexes that satisfies the logical condition, and that each index in the equation's index list remains *fixed* in the expressions constituting each instance of the equation.
 
+(notational-conventions)=
 ## Notational conventions 
 
 We use the following mathematical symbols for the mathematical expressions and relations constituting the equations:
@@ -52,6 +54,7 @@ where it is understood that the notation (Cond) is the *indicator function* of t
 
 This notation often makes equations more legible and compact. A good example appears in EQ_CAPACT.
 
+(objective-function-eq-obj)=
 ## Objective function EQ_OBJ
 
 **Equation EQ_OBJ**
@@ -189,6 +192,7 @@ The regional index *r* is omitted from the nine components for simplicity of not
 
 The first and second terms are linked to investment costs. The third term is linked to decommissioning capital costs, the fourth and fifth terms to fixed annual costs, the seventh and eighth terms to all variable costs (costs proportional to some activity), and the ninth to demand loss costs. The tenth cost (actually a revenue) accounts for commodity recycling occurring after *EOH*, and the eleventh term is the salvage value of all capital costs of technologies whose life extends beyond *EOH*. The 11 components are presented in the nine subsections 6.2.2 to 6.2.10.
 
+(investment-costs-invcost)=
 ### Investment costs: INVCOST(y)
 
 This subsection presents the components of the objective function related to investment costs, which occur in the year an investment is decided and/or during the construction lead-time of a facility.
@@ -330,10 +334,12 @@ $$P_t(y) = \sum_{u=Max\{B(t), y-ELIFE_t+1\}}^{y} {NI_t(u) \times VAR\_CAP_t \tim
 
 $$INVCOST(y) = \sum_{t \in MILESTONES,t \leq T(y)}{INDIC(2.b) \times P_{t}(y)}$$
 
+(taxes-and-subsidies-on-investments)=
 ### Taxes and subsidies on investments
 
 We assume that taxes/subsidies on investments occur at precisely the same time as the investment. Therefore, the expressions *INVTAXSUB(y)* for taxes/subsidies are identical to those for investment costs, with *NCAP_COST* replaced by: *(NCAP_ITAX -- NCAP_ISUB).*
 
+(decommissionning-capital-costs)=
 ### Decommissioning (dismantling) capital costs: *INVDECOM(y)*
 
 **Remarks**
@@ -452,6 +458,7 @@ $INVDECOM(y) = \sum_{t \in MILESTONES,t \leq T(y)}{INDIC(III.2.b) \times P_{t}(y
 
 ![](assets/case-2b-example-3.svg)
 
+(fixed-annual-costs)=
 ### Fixed annual costs: FIXCOST(y), SURVCOST(y) 
 
 The fixed annual costs are assumed to be paid in the same year as the actual operation of the facility. However, the spreading of the investment described in subsection 5.1.1 results in a tapering in and a tapering out of these costs. Taxes and subsidies on fixed annual costs are also accepted by the model.
@@ -631,6 +638,7 @@ $$
 
 $y \leq EOH$ **(VI)**
 
+(cost-of-demand-reductions)=
 ### Cost of demand reductions ELASTCOST(y) 
 
 When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See PART I for a theoretical justification, and Appendix D for formulations involving more generalized demand functions.
@@ -871,6 +879,7 @@ Note again that $S(k,m) = 0$ whenever $k + m \leq EOH + 1$.
 
 **(X.2.b)**
 
+(late-revenues-from-endogenous-commodity)=
 ### Late revenues from endogenous commodity recycling after EOH LATEREVENUE(y)
 
 Late revenues consist of revenues from any materials and energy which had been embedded in some processes, and which are released after *EOH*. Such revenues exist only if an exogenous salvage value was declared by the user for the sunk material.
@@ -937,6 +946,7 @@ $$CRF_{2,mid} = CFR_{mid}^{proper} \times (1+d(T(y)))^{-0.5} = CRF_{beg} \times 
 
 Consequently, in both cases the annualized investment payments are then assumed to occur at the mid-point of each fiscal year starting at the time of the lump-sum investment, and the annual payments are equivalent to the lump-sum investment when discounted back to that point by the technology-specific discount rate. The implementation of the optional corrections for mid-year discounting corresponds to equations ({eq}`XI-1` to {eq}`XI-3`). To be consistent, the expression {eq}`XI-3` for $CRF_{2,mid}$ should also be used for decommissioning costs.
 
+(constraints)=
 ## Constraints
 
 The constraints available in standard TIMES are shown in {numref}`times-equations`, and later fully described in the following subsections. The constraints related to the Climate Module (CLI), Damage Cost Functions (DAM) and Endogenous Technology Learning (ETL) are shown and described in three separate chapters (Appendices A, B and C respectively). The constraints related to the advanced unit commitment formulation are described in detail in a separate document \"*Dispatching and Unit Commitment in TIMES*\", and the constraints related to the balancing services extension are described in a separate document \"*Enhancing the flexibility in TIMES: Introducing Ancillary Services Markets*\".
@@ -1205,6 +1215,7 @@ $$\sum_{\begin{aligned}
  & \times RS\_FR_{r,s,ts}
 \end{aligned} \right)$$
 
+(equation-eq-actflo)=
 ### Equation: EQ_ACTFLO 
 
 **Indice**s: **region (r), vintage year (v), milestone year (t), process (p), time slice (s)**
@@ -3261,6 +3272,7 @@ $$EQL\_SCAP_{r,v,p,ips} \quad \ni \left(rtp_{r,v,p}\land\left(
  & prc\_rcap_{r,p}
 \end{aligned}}{VAR\_SCAP_{r,v,'0',p}}\space}$$
 
+(equations-eq-slsift)=
 ### Equations: EQ_SLSIFT
 
 This block of equations implements the load shifting constraints. Enabling load-shifting for demand or final energy commodities is supported by introducing load-shifting processes. Load shifting processes must be characterized as timeslice storage processes, and must have $STG\_SIFT_{r,t,p,D,s}$ specified for the load commodity *D*. The constraints for the load-shifting can be divided into different types, as described below.
@@ -3931,6 +3943,7 @@ If neither **uc_r_each** nor **uc_r_sum** are given, the default is set to all *
 - $UC\_RHSRTS_{r,uc\_n,t,s,bd}$: RHS constant with bound type **bd** of the user constraint $EQl\_UCRTS{r,uc\_n,t,s}$ of type **l**.
 - $UC\_TIME_{uc\_n,r,t}$: Defines an additional term in the RHS constant, which is either the time (in years) covered by the user constraint multiplied by $UC\_TIME$ (for static and cumulative constraints), or the time between the milestone years of the successive periods in the constraint (for dynamic user constraints).
 
+(lhs-user-constraints)=
 ### LHS user constraints
 
 **Mathematical formulation of LHS user constraints**
