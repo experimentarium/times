@@ -10,6 +10,7 @@ Until recently, in most studies involving bottom-up models, emission externaliti
 
 It is however possible to extend these two approaches by introducing an option to better model the cost of damages created by emissions. The damage function option discussed in this document extends the concept of an emission tax by modeling more accurately the assumed cost of damages due to emissions of a pollutant.
 
+(b-mathematical-formulations)=
 ## Mathematical formulation
 
 We now describe the mathematical formulation used for the damage cost functions.
@@ -75,6 +76,7 @@ The TIMES implementation basically follows the equations shown above. Both the n
 
 In addition, the implementation supports different elasticities and step sizes to be used below and above the reference level. See Section 3 for more details.
 
+(b-switches-and-parameters)=
 ## Switches and Parameters
 
 ### Activating the Damage Cost Functions
@@ -186,6 +188,7 @@ The damage costs are always reported by using the accurate non-linear expression
   - Damage costs by region, period and emission (stochastic TIMES)
 ```
 
+(b-examples)=
 ## Examples
 
 Assume that we wish to define linearized damage costs for the emission commodity \'EM\' so that the cost function has the following properties:
@@ -235,6 +238,7 @@ The resulting damage cost function is illustrated in {numref}`example-linearized
 Example of a linearized damage function with 1+5+1+3 steps (one zero cost step, 5 lower steps, one middle step, 3 upper steps).
 ```
 
+(b-variables)=
 ## Variables
 
 There are only two sets of new variables in the damage cost formulation, VAR_DAM and VAR_OBJDAM, which are shown below in {numref}`dam-variables`. The variables VAR_DAM represent the steps in the emissions in each period. In the linearized formulation, there are DAM_STEP(\...,\'LO\') number of step variables on the lower side and DAM_STEP(\...\'UP\') number of step variables on the higher side of emissions. In addition, one step variable of type \'FX\' corresponds to the middle step that includes the reference level of emissions, and an optional additional step variable of type \'FX\' corresponds to the zero-damage fraction of emissions, as defined by the difference between DAM_BQTY(..) and DAM_VOC(\...,\'LO\').
@@ -277,6 +281,7 @@ The variables VAR_OBJDAM represent the total discounted damage costs by region. 
 
 **Bounds:** This variable cannot be directly bounded by the user.
 
+(b-equations)=
 ## Equations
 
 There are two blocks of equations generated for damage cost functions, whenever they are included in the objective function. The two equations related to the damage functions are listed and briefly described below in {numref}`dam-constraints`. The equations include the balance of stepped emissions, the objective component for damage costs, and the augmented total objective function.
