@@ -1,3 +1,4 @@
+(variables)=
 # Variables
 
 This chapter describes each variable name, definition, and role in the TIMES Linear Program. To facilitate identification of the variables when examining the model's source code, all variable names start with the prefix VAR\_. The value assigned to each variable indexed by some time period, represents the average value in that time period, but the case of VAR_NCAP(v) is an exception, since that variable represents a point-wise investment decided at time period **v**. VAR_NCAP is discussed in detail below.
@@ -466,6 +467,7 @@ Example of a repeated investment in same period.
 >
 > **User constraints:** Not directly available; in timeslice-dynamic constraints on-line capacity can be referred by UC_CAP, using the ONLINE modifier for CAP
 
+(var-upd)=
 ## $VAR\_UDP(r,v,t,p,s,l)$
 
 > **Definition:** amount of on-line capacity by cycling/continuously (l=\'N\'/\'FX\'), or load change due to ramping (l=\'UP\'/\'LO\') in period **t** process **p** vintage index **v**.
