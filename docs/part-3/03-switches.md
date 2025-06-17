@@ -299,7 +299,7 @@ VEDA-FE Case Manager and ANSWER Run Model Options form along with the GEN templa
 * - ETL
   - Option to use endogenous technology learning formulation. Since the usage of this option leads to a Mixed-Integer Programming (MIP) problem, the solve statement in the file solve.mod is automatically altered by TIMES. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file, as follows:
   <br>`$SET ETL YES`
-  <br>See Parts {numref}`%s <the-endogenous-technological-learning-extension>`--[Part 2, Appendix C](endogenous-technological-learning) for more information on the use of Endogenous Technology Learning.
+  <br>See Parts [I](part1)--[II](part2) for more information on the use of Endogenous Technology Learning.
 * - MACRO
   - Option to use the MACRO formulation. Since the usage of the MACRO options leads to a Non-linear Programming (NLP) problem, the solve statement in the file solve.mod has to be altered. To activate this extension manually, the \$SET MACRO \<value\> control switch needs to be provided in the \<Case\>.run file, with the following valid values:
   <br>YES -- activate the integrated MACRO algorithm
