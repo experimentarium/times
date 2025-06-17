@@ -638,6 +638,7 @@ $$
 
 $y \leq EOH$ **(VI)**
 
+(cost-of-demand-reductions)=
 ### Cost of demand reductions ELASTCOST(y) 
 
 When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See PART I for a theoretical justification, and Appendix [D](times-demand-functions) for formulations involving more generalized demand functions.

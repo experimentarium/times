@@ -324,6 +324,7 @@ The $GROWTH$ coefficient is defined as a new attribute of the technology, and re
 
 Note that the sign of the constraint may also be of the \"larger than or equal to\" type to express a maximum rate of abandonment, in which case the \"+\" sign is replaced by a \"--\" sign in the right-hand-side of the constraint. Equality is also allowed, but must be used only exceptionally in order to avoid railroading of the model.
 
+(early-capacity-retirement)=
 ### Early retirement of capacity
 
 With this new TIMES feature the user may allow the model to retire some technologies before the end of their technical lives. The retirement may be continuous or discrete. In the former case, the model may retire any amount of the remaining capacity (if any) at each period. In the latter case, the retirement may be effected by the model either in a single block (i.e. the remaining capacity is completely retired) or in multiples of a user chosen block. Please refer to chapter {numref}`%s <the-lumpy-investment-extension>` of this document *The lumpy investment option*, for additional discussion of the mathematical formulation of MIP problems.

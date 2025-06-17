@@ -516,5 +516,4 @@ Variable representing the LHS expression of the user constraint EQE_UCTS(uc_n,t,
 
 Variable representing the LHS expression of the user constraint EQE_UCRTS(r,uc_n,t,s) and the combined LHS--RHS expression of the user constraint EQE_UCRSUS(r,uc_n,t,s), being generated for the regions speci­fied in **uc_r_each**, the periods in **uc_t_each/uc_t_succ** and the timeslices in **uc_ts_each**.
 
-
 [^38]: In case the dollar control parameter VAR_UC is set to YES, the user constraints are always strict equalities (***l***=E) with the RHS constants replaced by the user constraint variables given in the table. The RHS bound parameter (UC_RHS(R)(T)(S)) are then applied to these user constraint related variables. See Section {numref}`%s <var-upd>`.

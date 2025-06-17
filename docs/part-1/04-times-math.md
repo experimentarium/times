@@ -21,7 +21,7 @@ The computational method is based on the equivalence theorem presented in chapte
 
 From chapter {numref}`%s <economic-rationale-of-the-times>`, we have the following demand function for each demand category $i$:
 
-$${DM_{i}/D{M_{i}}^{0} = (p_{i}/p_{i}^{0})^{E_{i}}(4 - 1)}$$
+$$DM_{i}/D{M_{i}}^{0} = (p_{i}/p_{i}^{0})^{E_{i}}$$ (4-1)
 
 Or its inverse:
 

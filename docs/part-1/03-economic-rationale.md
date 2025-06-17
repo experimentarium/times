@@ -53,9 +53,9 @@ Among technology explicit models also, two main classes are usually distinguishe
 (core-times-paradigm)=
 ## The core TIMES paradigm
 
-In the rest of this chapter, we present the properties of the **core TIMES** paradigm. As will be seen in chapters {numref}`%s <stochastic-programming-extension>` to {numref}`%s <general-equilibrium-extensions>`, some of these properties are not applicable to several important TIMES variants. The reader should keep this caveat in mind when contemplating the use of some features that are described in these {numref}`%s <core-times-model-a-simplified>` chapters.
+In the rest of this chapter, we present the properties of the **core TIMES** paradigm. As will be seen in chapters {numref}`%s <stochastic-programming-extension>` to {numref}`%s <general-equilibrium-extensions>`, some of these properties are not applicable to several important TIMES variants. The reader should keep this caveat in mind when contemplating the use of some features that are described in these 5 chapters.
 
-Since certain portions of this and the next sections require an understanding of the concepts and terminology of Linear Programming, the reader requiring a brush-up on this topic may first read Appendix B (see {numref}`%s <appendix-b-linear-programming>`), and then, if needed, some standard textbook on LP, such as Hillier and Lieberman (2009), Chvàtal (1983), or Schrijver (1986). The application of Linear Programming to microeconomic theory is covered in two historically important references, Gale (1960 and 11th edition 1989), and in Dorfman, Samuelson, and Solow (1958, and 1987 reprint).
+Since certain portions of this and the next sections require an understanding of the concepts and terminology of Linear Programming, the reader requiring a brush-up on this topic may first read [Appendix B](appendix-b-linear-programming), and then, if needed, some standard textbook on LP, such as Hillier and Lieberman (2009), Chvàtal (1983), or Schrijver (1986). The application of Linear Programming to microeconomic theory is covered in two historically important references, Gale (1960 and 11th edition 1989), and in Dorfman, Samuelson, and Solow (1958, and 1987 reprint).
 
 A brief description of the core TIMES model generator would express that it is:
 - *Technologically explicit, integrated*;

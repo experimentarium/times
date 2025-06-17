@@ -61,7 +61,7 @@ This policy is easily represented in TIMES a) making sure that all technologies 
 
 An upper limit on CO<sub>2</sub> emissions is imposed at the national level (alternatively, separate upper limits are imposed at the sector level). If the model is multi-country, trade of emission permits is allowed between countries (and/or between sectors). The trade may also be upper bounded by a maximum percentage of the actual emissions, thus representing a form of the subsidiarity principle.
 
-This type of policy is simulated by defining upper bounds on emissions, a straightforward feature in TIMES ({numref}`%s <processes-bounds>` and {numref}`%s <commodities-bounds>`). By defining total sector emissions as a new commodity, the sector-restricted cap is just as easily implemented. The trade of national emissions makes use of the standard trade variables of TIMES (section {numref}`%s <indices-decision-variables>`).
+This type of policy is simulated by defining upper bounds on emissions, a straightforward feature in TIMES (sections {numref}`%s <processes-bounds>` and {numref}`%s <commodities-bounds>`). By defining total sector emissions as a new commodity, the sector-restricted cap is just as easily implemented. The trade of national emissions makes use of the standard trade variables of TIMES (section {numref}`%s <indices-decision-variables>`).
 
 **Policy 3: Portfolio standard**
 
