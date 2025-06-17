@@ -321,7 +321,7 @@ VEDA-FE Case Manager and ANSWER Run Model Options form along with the GEN templa
 * - VDA
   - The VDA control variable can be used to enable the VDA pre-processor extension of TIMES, which implements new features and handles advanced parameters specified by VEDA-FE/ANSWER that are transformed into their equivalent TIMES core parameters to make specification easier (e.g., VDA_FLOP becomes FLO_FUNC/FLO_SUM), with the following setting:
   <br>`$SET VDA YES`
-  <br>The VDA extension is always automatically enabled by both VEDA-FE and ANSWER. The attributes implemented are documented in Part II.
+  <br>The VDA extension is always automatically enabled by both VEDA-FE and ANSWER. The attributes implemented are documented in Part [II](part2).
 ```
 
 ### User extensions
