@@ -1,11 +1,14 @@
+(parameters)=
 # Parameters
 
 While sets describe structural information of the energy system or qualitative characteristics of its entities (e.g. processes or commodities), parameters contain numerical information. Examples of parameters are the import price of an energy carrier or the investment cost of a technology. Most parameters are time-series where a value is provided (or interpolated) for each year ($datayear$). The TIMES model generator distinguishes between user input parameters and internal parameters. The former are provided by the modeller (usually by way of a data handling system or "shell" such a VEDA-FE or ANSWER-TIMES), while the latter are internally derived from the user input parameters, in combination with information given by sets, in order to calculate for example the cost coefficients in the objective function. This Chapter first covers the user input parameters in Section 3.1 and then describes the most important internal parameters as far as they are relevant for the basic understanding of the equations (Section 3.2). Section 3.3 presents the parameters used for reporting the results of a model run.
 
+(user-input-parameters)=
 ## User input parameters
 
 This section provides an overview of the user input parameters that are available in TIMES to describe the energy system. Before presenting the various parameters in detail in Section 3.1.3 two preprocessing algorithms applied to the user input data are presented, namely the inter-/extrapolation and the inheritance/aggregation routines. User input parameters that are time-dependent can be provided by the user for those years for which statistical information or future projections are available, and the inter-/extrapolation routine described in Section 3.1.1 used to adjust the input data to the years required for the model run. Timeslice dependent parameters do not have to be provided on the timelice level of a process, commodity or commodity flow. Instead the so-called inheritance/aggregation routine described in Section 3.1.2 assigns the input data from the user provided timeslice level to the appropriate timeslice level as necessary.
 
+(inter-and-extrapolation-of-user)=
 ### Inter- and extrapolation of user input parameters
 
 Time-dependent user input parameters are specified for specific years, the so-called *data years* ($datayear$). These data years do not have to coincide with the model years ($v$ or $modelyear$) needed for the current run. Reasons for differences between these two sets are for example that the period definition for the model has been altered after having provided the initial set of input data leading to different milestone years ($t$ or $milestoneyr$) or that data are only available for certain years that do not match the model years. In order to avoid burdening the user with the cumbersome adjustment of the input data to the model years, an inter-/extrapolation (I/E) routine is embedded in the TIMES model generator. The inter-/extrapolation routine distinguishes between a default inter-/extrapolation that is automatically applied to the input data and an enhanced user-controlled inter-/extrapolation that allows the user to specify an inter-/extrapolation rule for each time-series explicitly. Independent of the default or user-controlled I/E options, TIMES inter-/extrapolates (using the standard algorithm) all cost parameters in the objective function to the individual years of the model as part of calculating the annual cost details (see section 3.1.1.3 below).
@@ -83,6 +86,7 @@ Log-linear interpolation means that the values in the data series are interprete
 
 The standard default method of inter-/extrapolation corresponds to the option 3, which interpolates linearly between data points, while it extrapolates the first/last data point constantly backward/forward. This method, full interpolation and extrapolation, is by default applied to most TIMES time series parameters. However, the parameters listed in {numref}`no-default-full-ie` are by default **NOT** inter/extrapolated in this way, but have a different default method.
 
+(interpolation-of-cost-parameters)=
 #### Interpolation of cost parameters
 
 As a general rule, all cost parameters in TIMES are densely interpolated and extrapolated. This means that the parameters will have a value for every single year within the range of years they apply, and the changes in costs over years will thus be accurately taken into account in the objective function. The user can use the interpolation options 1--5 for even cost parameters. Whenever an option is specified for a cost parameter, it will be first sparsely interpolated/extrapolated according to the user option over the union of modelyear and datayear, and any remaining empty data points are filled with the EPS value. The EPS values will ensure that despite the subsequent dense interpolation the effect of user option will be preserved to the extent possible. However, one should note that due to dense interpolation, the effects of the user options will inevitably be smoothed.
@@ -239,6 +243,7 @@ NCAP_AFX('REG', '2010', 'PRC1') = 13;
  
  In this case, all model years ($v$) between 1995 and 2010 will get the shape index 12. No extrapolation is done for model years ($v$) beyond 2010 or before 1995.
 
+(inheritance-and-aggregation-of)=
 ### Inheritance and aggregation of timesliced input parameters
 
 As mentioned before, processes and commodities can be modelled in TIMES on different timeslice levels. Some of the input parameters that describe a process or a commodity are timeslice specific, i.e. they have to be provided by the user for specific timeslices, e.g. the availability factor $NCAP\_AF$ of a power plant operating on a \'DAYNITE\' timeslice level. During the process of developing a model, the timeslice resolution of some processes or even the entire model may be refined. One could imagine for example the situation that a user starts developing a model on an \'ANNUAL\' timeslice level and refines the model later by refining the timeslice definition of the processes and commodities. In order to avoid the need for all the timeslice related parameters to be re-entered again for the finer timeslices, TIMES supports inheritance and aggregation of parameter values along the timeslice tree.
@@ -279,6 +284,7 @@ Bound parameters are in most cases not levelized by inheritance, only by aggrega
 Inheritance and aggregation rules for timeslice specific parameters in TIMES.
 ```
 
+(overview-of-user-input-parameters)=
 ### Overview of user input parameters
 
 A list of all user input parameters (except for those specific to the TIMES-MACRO variants) is given in {numref}`user-input-parameters`. For the MACRO input parameters, the reader is advised to consult the separate documentation. In order to facilitate the recognition by the user of to which part of the model a parameter relates the following naming conventions apply to the prefixes of the parameters ({numref}`uip-naming-conventions`).
@@ -2635,6 +2641,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
 Indexing of auxiliary consumption/emission.
 ```
 
+(internal-parameters)=
 ##  Internal parameters
 
 {numref}`internal-parameters` gives an overview of internal parameters generated by the TIMES preprocessor. Similar to the description of the internal sets, not all internal parameters used within TIMES are discussed. The list given in {numref}`internal-parameters` focuses mainly on the parameters used in the preparation and creation of the equations in Chapter 6. In addition to the internal parameters listed here, the TIMES preprocessor computes additional internal parameters which are either used only as auxiliary parameters being valid only in a short section of the code or which are introduced to improve the performance of the code regarding computational time.
@@ -2922,6 +2929,7 @@ Indexing of auxiliary consumption/emission.
   - Numerical value of year index (e.g. YEARVAL(\'1984\') equals 1984).
 ```
 
+(report-parameters)=
 ##  Report parameters
 
 ### Overview of report parameters

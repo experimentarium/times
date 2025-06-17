@@ -1,3 +1,4 @@
+(usage-notes-on-special-types)=
 # Usage notes on special types of processes
 
 ## Combined heat and power
@@ -361,6 +362,7 @@ The activity of a timeslice storage represents the storage level, i.e. the amoun
 
 If a storage technology is capable of storing energy for longer periods than over daily cycles, one may consider combining a SEASON/WEEKLY level storage process with a DAYNITE storage. However, a DAYNITE level storage may also be generalized to provide a storage capability between seasons, and even between periods, by using the generalized timeslice storage type qualifier \'STS\' (and both \'STS\' and \'STK\', if the inter-period storage capability should be included). Because the same storage capacity can be utilized on all timeslice levels, the general storage process type may thus provide a somewhat improved modeling of a multi-cycle storage.
 
+(day-night-storage)=
 ### Day/Night storage
 
 Day/Night storage (NST) is a timeslice storage, which can store energy over the day-night cycles, but not over weekly or seasonal cycles. In its basic functionality, an NST storage does not differ much from a standard timeslice storage, the main difference being that one can define the charging timeslices by specifying them in the set $prc\_nstts$.
@@ -379,6 +381,7 @@ The initial stock of an inter-period storage process can be specified by using t
 
 The activity of an inter-period storage is measured at the end of each period. Therefore, either by setting a lower bound on the activity or on the process availability, the storage can be prevented from getting fully discharged during any period. However, as there is no explicit accounting of the salvage value of the remaining contents of an inter-period storage, it may also be considered reasonable to allow discharging the storage fully in the last period, for taking into account the value of the storage.
 
+(auxiliary-storage-flows)=
 ### Auxiliary storage flows
 
 Storage processes can have any amount of auxiliary input or output commodities, as long as they are distinct from the main storage commodity. The flows of the auxiliary commodities can only be defined to be fixedly proportional either to the activity, the main input flows, or the main output flows. The main flows of timeslice and inter-period storage processes are the flows of the charged and discharged commodities included in the set primary commodity group PCG of the process. In the day/night storage processes, the main flows consist of all commodities in the primary and shadow groups of the process (see documentation).
@@ -513,6 +516,7 @@ There are important limitations of using standard processes parameters for stora
 
 In peaking equations, processes that have a peaking commodity as the PCG (as an output) are by default taken into account by their capacity on the supply side. This holds also for storage processes, which are thus by default not contributing to the peak by their flows (charging / discharging). However, by defining the storage process as a member of the set $PRC\_PKNO$, and also defining $NCAP\_PKCNT>0$, the discharge from the storage is taken into account on the supply side instead of the capacity, and the charging into the storage is included on the consumption side (should such happen in the peak timeslice). This can be recommended, whenever the capacity represents the amount stored, and not the output capacity, and may be reasonable even for storage processes where the capacity represents the nominal maximum output flow. Conversely, if the PG of a storage process is a commodity group (e.g. NRG), only the flows are by default contributing to the peak.  Should contribution by capacity be preferred, one can request that by defining $PRC\_PKAF$ for the process and the appropriate $NCAP\_PKCNT$ factors for the capacity.
 
+(load-shifting-storage)=
 ### Load-shifting storage processes
 
 In TIMES, load-shifting for demands can be modelled by introducing load shifting processes, which are special storage processes where the input / output flows represent demand shifting upwards and downwards. For utilizing this built-in support for modelling demand shifting operation for a demand or final energy commodity *D*, the user would thus need to define a storage process *P*, such that the *D* is both an input and an output (or more generally, the input could also be another commodity upstream). In addition, the user only needs to define the proportional limits for the allowed demand shifting, by using the attribute $STG\_SIFT(r,t,p,c,s)$, on the DAYNITE level, optionally also on next the level above. The dedicated load shifting constraints will then be generated for the process (see Equation $EQ\_SLSIFT$ for the constraint formulations).

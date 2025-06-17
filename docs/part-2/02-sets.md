@@ -1,3 +1,4 @@
+(sets)=
 # Sets
 
 Sets are used in TIMES to group elements or combinations of elements with the purpose of specifying qualitative characteristics of the energy system. One can distinguish between one-dimensional and multi-dimensional sets. The former sets contain single elements, e.g. the set $prc$ contains all processes of the model, while the elements of multi-dimensional sets are a combination of one-dimensional sets. An example for a multi-dimensional set is the set $top$, which specifies for a process the commodities entering and leaving that process.
@@ -308,6 +309,7 @@ Most of the set specifications are handled for the user by the user shell throug
 
 In the following subsections first the sets related to the definition of the RES will be described (subsection 2.2.1), then the sets related to the time horizon and the sub-annual representation of the energy system will be presented (subsection 2.2.2). The mechanism for defining trade between regions of a multi-regional model is discussed in subsection 2.2.3. Finally, an overview of all possible user input sets is given in subsection 2.2.4.
 
+(definition-of-the-reference)=
 ### Definition of the Reference Energy System (RES)
 
 A TIMES model is structured by regions ($all\_r$). One can distinguish between external regions and internal regions. The internal regions ($r$) correspond to regions within the area of study, and for which a RES has been defined by the user. Each internal region may contain processes and commodities to depict an energy system, whereas external regions serve only as origins of commodities (e.g. for import of primary energy resources or for the import of energy carriers) or as destination for the export of commodities. A region is defined as an internal region by putting it in the internal region set ($r$), which is a subset of the set of all regions **all_r**. An external region needs no explicit definition, all regions that are member of the set $all\_r$ but not member of $r$ are external regions. A TIMES model must consist of at least one internal region, the number of external regions is arbitrary. The main building blocks of the RES are processes ($p$) and commodities ($c$), which are connected by commodity flows to form a network. An example of a RES with one internal region (UTOPIA) and two external regions (IMPEXP, MINRNW) is given in {numref}`inter-external-regions`.
@@ -397,6 +399,7 @@ Internally, a $prc\_map(r,'STG',p)$ entry is always generated for all storage pr
 
 As mentioned before, the set of commodities ($c$) is a subset of the commodity group set ($cg$). A commodity in TIMES is characterised by its type, which may be an energy carrier (\'NRG\'), a material (\'MAT\'), an emission or environmental impact (\'ENV\'), a demand commodity (\'DEM\') or a financial resource (\'FIN\'). The commodity type is indicated by membership in the commodity type mapping set ($com\_tmap(r,com\_type,c)$). The commodity type affects the default sense of the commodity balance equation. For NRG, ENV and DEM the commodity production is normally greater than or equal to consumption, while for MAT and FIN the default commodity balance constraint is generated as an equality. The type of the commodity balance can be modified by the user for individual commodities by means of the commodity limit set ($com\_lim(r,c,lim)$). The unit in which a commodity is measured is indicated by the commodity unit set ($com\_unit(r,c,units\_com)$). The user should note that within the GAMS code of TIMES no unit conversion, e.g., of import prices, takes place when the commodity unit is changed from one unit to another one. Therefore, the proper handling of the units is entirely the responsibility of the user (or the user interface).
 
+(definition-of-the-time-structure)=
 ### Definition of the time structure
 
 #### Time horizon
@@ -464,6 +467,7 @@ Commodities may be tracked and process operation controlled at a particular time
 
 The timeslice level of the commodity flows entering and leaving a process are determined internally by the preprocessor. The timeslice level of a flow variable equals the timeslice level of the process when the flow variable is part of the primary commodity group (PCG) defining the activity of the process. Otherwise the timeslice level of a flow variable is set to whichever level is finer, that of the commodity or the process.
 
+(multi-regional-models)=
 ### Multi-regional models
 
 If a TIMES model consists of several internal regions, it is called a multi-regional model. Each of the internal regions contains a unique RES to represent the particularities of the region. As already mentioned, the regions can be connected by inter-regional exchange processes to enable trade of commodities between the regions. Two types of trade activities can be depicted in TIMES: bi-lateral trade between two regions and multilateral trade between several supply and demand regions.
@@ -516,6 +520,7 @@ SET PRC_ACTUNT /
 
 These definitions are sufficient for setting up of the market-based trade. Additionally, the user can of course specify various other data for the exchange processes, for example investment and distribution costs, and efficiencies.
 
+(overview-of-all-user-input)=
 ### Overview of all user input sets
 
 All the input sets which are under user control in TIMES are listed in Table 4. For a few sets default settings exist that are applied if no user input information is given. Set names starting with the prefix $com\_$ are associated with commodities, the prefix $prc\_$ denotes process information and the prefix $uc\_$ is reserved for sets related to user constraints. Column 3 of Table 4 is a description of each set. In some cases (especially for complex sets), two (equivalent) descriptions may be given, the first in general terms, followed by a more precise description within square brackets, given in terms of n-tuples of indices.
