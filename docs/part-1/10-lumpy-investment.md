@@ -35,7 +35,7 @@ The reader interested in more technical details on the solution of LPs and of MI
 
 ## Discrete early retirement of capacity
 
-The discrete retirement of capacity that was briefly mentioned in section {numref}`%s <electricity-grid-modeling>` requires a treatment quite similar to that of discrete addition to capacity presented here. The complete mathematical formulation mimics that presented above, and is fully described in Part II, section 6.3.26, of the TIMES documentation.
+The discrete retirement of capacity that was briefly mentioned in section {numref}`%s <early-capacity-retirement>` requires a treatment quite similar to that of discrete addition to capacity presented here. The complete mathematical formulation mimics that presented above, and is fully described in Part II, section 6.3.26, of the TIMES documentation.
 
 (important-remanr-on-the-mip)=
 ## Important remark on the MIP dual solution (shadow prices)
