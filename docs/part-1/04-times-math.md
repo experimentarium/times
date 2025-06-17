@@ -1,7 +1,7 @@
 (core-times-model-mathematics)=
 # Core TIMES model: Mathematics of the computation of the supply-demand equilibrium
 
-In the preceding chapter, we have seen that TIMES does more than minimize the cost of supplying energy services. Instead, it computes a supply-demand equilibrium where both the energy supplies and the energy service demands are endogenously determined by the model. The equilibrium is driven by the user-defined specification of demand functions, which determine how each energy service demand varies as a function of the current market price of that energy service. The TIMES code assumes that each demand has constant own-price elasticity in a given time period, and that cross price elasticities are zero. We have also seen that economic theory establishes that the equilibrium thus computed corresponds to the maximization of the net total surplus, defined as the sum of the suppliers' and consumers' surpluses. We have argued in section 3.2 that the total net surplus has often been considered a valid metric of societal welfare in microeconomic literature, and this fact confers strong validity to the equilibrium computed by TIMES. Thus although TIMES falls short of computing a general equilibrium, it does capture a major element of the feedback effects not previously accounted for in bottom-up energy models.
+In the preceding chapter, we have seen that TIMES does more than minimize the cost of supplying energy services. Instead, it computes a supply-demand equilibrium where both the energy supplies and the energy service demands are endogenously determined by the model. The equilibrium is driven by the user-defined specification of demand functions, which determine how each energy service demand varies as a function of the current market price of that energy service. The TIMES code assumes that each demand has constant own-price elasticity in a given time period, and that cross price elasticities are zero. We have also seen that economic theory establishes that the equilibrium thus computed corresponds to the maximization of the net total surplus, defined as the sum of the suppliers' and consumers' surpluses. We have argued in section {numref}`%s <core-times-paradigm>` that the total net surplus has often been considered a valid metric of societal welfare in microeconomic literature, and this fact confers strong validity to the equilibrium computed by TIMES. Thus although TIMES falls short of computing a general equilibrium, it does capture a major element of the feedback effects not previously accounted for in bottom-up energy models.
 
 In this chapter we provide the details on how the equilibrium is transformed into an optimization problem and solved accordingly.
 
@@ -9,19 +9,19 @@ Historically, the approach was first used in the Project Independence Energy Sys
 
 ## Theoretical considerations: the Equivalence Theorem
 
-The computational method is based on the equivalence theorem presented in chapter 3, which we restate here:
+The computational method is based on the equivalence theorem presented in chapter {numref}`%s <economic-rationale-of-the-times>`, which we restate here:
 
 *\"A supply/demand economic equilibrium is reached when the sum of the producers and the consumers surpluses is maximized\"*
 
-{numref}`eq-demand-curve` of Chapter 3 provides a graphical illustration of this theorem in a case where only one commodity is considered.
+{numref}`eq-demand-curve` of Chapter {numref}`%s <economic-rationale-of-the-times>` provides a graphical illustration of this theorem in a case where only one commodity is considered.
 
 ## Mathematics of the TIMES equilibrium
 
 ### Defining demand functions
 
-From chapter 3, we have the following demand function for each demand category $i$:
+From chapter {numref}`%s <economic-rationale-of-the-times>`, we have the following demand function for each demand category $i$:
 
-$${DM_{i}/D{M_{i}}^{0} = (p_{i}/p_{i}^{0})^{E_{i}}(4 - 1)}$$
+$$DM_{i}/D{M_{i}}^{0} = (p_{i}/p_{i}^{0})^{E_{i}}$$ (4-1)
 
 Or its inverse:
 
@@ -40,9 +40,9 @@ $$s.t.\space \sum_{k}{VAR\_ACT_{k,j}}(t) \geq {DM}_{i}(t) \quad i = 1,2,\ldots,I
 $$and \quad B \cdot X \geq b$$ (4-4)
 
 where $X$ is the vector of all TIMES variables and $I$ is the number of demand categories. In words:
-- {eq}`4-2` expresses the total discounted cost to be minimized. See chapter 5 for details on the list of TIMES variables $X$, and on the cost vector $c$.
+- {eq}`4-2` expresses the total discounted cost to be minimized. See chapter {numref}`%s <core-times-model-a-simplified>` for details on the list of TIMES variables $X$, and on the cost vector $c$.
 - {eq}`4-3` is the set of demand satisfaction constraints (where the $VAR\_ACT$ variables are the activity levels of end-use technologies, and the $DM$ right-hand-sides are the exogenous demands to satisfy).
-- {eq}`4-4` is the set of all other TIMES constraints, which need not be explicated here, and are presented in chapter 5.
+- {eq}`4-4` is the set of all other TIMES constraints, which need not be explicated here, and are presented in chapter {numref}`%s <core-times-model-a-simplified>`.
 
 When demand are elastic, TIMES must compute a supply/demand equilibrium of the optimization problem {eq}`4-2` through {eq}`4-4`, where the demand side adjusts to changes in prices, and the prevailing demand prices are the marginal costs of the demand categories (i.e. $p_i$ is the marginal cost of producing demand $DM_i$). *A priori* this seems to be a difficult task, because the demand prices are computed as part of the dual solution to that optimization problem. The Equivalence Theorem, however, states that the equilibrium is reached as the solution of the following mathematical program, where the objective is to maximize the net total surplus:
 

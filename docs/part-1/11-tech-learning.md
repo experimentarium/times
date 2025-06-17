@@ -134,7 +134,7 @@ $$
 \end{aligned}
 $$
 
-Summarizing the above formulation, we observe that each learning technology requires the introduction of $N*T$ integer (0-1) variables. For example, if the model has 10 periods and a 5-segment approximation is selected, 50 integer (0-1) variables are created for that learning technology, assuming that the technology is available in the first period of the model. Thus, the formulation may become very onerous in terms of solution time, if many learning technologies are envisioned, and if the model is of large size to begin with. In section 11.5 we provide some comments on ETL, as well as a word of warning.
+Summarizing the above formulation, we observe that each learning technology requires the introduction of $N*T$ integer (0-1) variables. For example, if the model has 10 periods and a 5-segment approximation is selected, 50 integer (0-1) variables are created for that learning technology, assuming that the technology is available in the first period of the model. Thus, the formulation may become very onerous in terms of solution time, if many learning technologies are envisioned, and if the model is of large size to begin with. In section {numref}`%s <endogenous-exogenous-learning>` we provide some comments on ETL, as well as a word of warning.
 
 ## Clustered learning
 

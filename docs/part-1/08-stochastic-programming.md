@@ -3,7 +3,7 @@
 
 ## Preamble to chapters 8 to 11
 
-Recall that the core TIMES paradigm described in chapters 3, 4, and 5 makes several basic assumptions:
+Recall that the core TIMES paradigm described in chapters {numref}`%s <economic-rationale-of-the-times>`, {numref}`%s <core-times-model-mathematics>`, and {numref}`%s <core-times-model-a-simplified>` makes several basic assumptions:
 - Linearity of the equations and objective function
 - Perfect foresight of all agents over the entire horizon
 - Competitive markets (i.e. no market power by any agent)

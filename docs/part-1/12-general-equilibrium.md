@@ -12,7 +12,7 @@ In this chapter, we describe the single region and the multi-region versions of 
 (the-single-region-times-macro-model)=
 ## The single-region TIMES-MACRO model
 
-As was already discussed in chapter 4, the main physical link between a TIMES model and the rest of the economy occurs at the level of the consumption of energy by the end-use sectors. There are however other links, such as capital and labor, which are common to the energy system and the rest of the economy. {numref}`energy-labor-monetary-flows` shows the articulation of the three links in TIMES-MACRO. Energy flows from TIMES to MACRO, whereas money flows in the reverse direction. Labor would also flow from MACRO to TIMES, but here a simplification is used, namely that the representation of labor is purely exogenous in both sub-models. Thus, TIMES-MACRO is not suitable for analyzing the impact of policies on labor, or on taxation, etc.
+As was already discussed in chapter {numref}`%s <core-times-model-mathematics>`, the main physical link between a TIMES model and the rest of the economy occurs at the level of the consumption of energy by the end-use sectors. There are however other links, such as capital and labor, which are common to the energy system and the rest of the economy. {numref}`energy-labor-monetary-flows` shows the articulation of the three links in TIMES-MACRO. Energy flows from TIMES to MACRO, whereas money flows in the reverse direction. Labor would also flow from MACRO to TIMES, but here a simplification is used, namely that the representation of labor is purely exogenous in both sub-models. Thus, TIMES-MACRO is not suitable for analyzing the impact of policies on labor, or on taxation, etc.
 
 ```{figure} assets/times-macro-flows.svg
 :name: energy-labor-monetary-flows
