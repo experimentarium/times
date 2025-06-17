@@ -27,6 +27,7 @@ In terms of the Windows operating system, any version (32 or 64 bit) from Versio
 
 For hardware, a \"high-end\" personal computer with a minimum of 8GB RAM (16GB or more for larger models), ideally a multi-core/CPU processor (dual quad core for large models), and up to 250GB (depending upon the size of the model and studies to be undertaken) of hard disk storage for the modeling is recommended.
 
+(general-layout-of-the-software)=
 ## General layout of the software
 
 Each of the components mentioned above -- GAMS, VEDA, and ANSWER -- reside in their own Windows folder of the **ROOT** on whatever drive the user wishes. When installing the software, the user is strongly encouraged to follow this \"install in the root\" recommendation, as the complex nature of the software systems and their interdependencies are most smoothly handled when the system is setup in this manner (rather than installing under Program Files for example).
@@ -77,7 +78,7 @@ If you are using a non-default solver (e.g., CPLEX is the default for LP and MIP
 
 4. If using a non-default solver, upon completion use Windows Explorer to go to the GAMS system folder and run the GAMSINST program to set the default solver for each type to the solvers supported by your license GAMSLICE file by entering the associated number in the list and hitting return or just hitting return (if your solver is the default or not listed).
 
-Which solver to use is a function of the TIMES model variant to be solved and the solver(s) purchased by the user with GAMS. Basically the solvers used for TIMES fall into three categories, linear (LP), mixed integer (MIP) and non-linear (NLP), where {numref}`times-model-variants-and-solvers` provides a partial list of the GAMS solvers generally used with TIMES for each main model variant. For a complete list of the solvers available refer to the GAMS website. The various Model Instances mentioned in the table are discussed further in Section , as well as in Parts I and II.
+Which solver to use is a function of the TIMES model variant to be solved and the solver(s) purchased by the user with GAMS. Basically the solvers used for TIMES fall into three categories, linear (LP), mixed integer (MIP) and non-linear (NLP), where {numref}`times-model-variants-and-solvers` provides a partial list of the GAMS solvers generally used with TIMES for each main model variant. For a complete list of the solvers available refer to the GAMS website. The various Model Instances mentioned in the table are discussed further in Section {numref}`%s <times-extensions>`, as well as in Parts {numref}`%s <part1>` and {numref}`%s <part2>`.
 
 ```{list-table} TIMES Model Variants and GAMS Solvers
 :name: times-model-variants-and-solvers
@@ -99,7 +100,7 @@ Which solver to use is a function of the TIMES model variant to be solved and th
 
 ## Organization of Part III
 
-Section 2 lays out more specifically how the various components of the TIMES modeling platform interact and accomplish their tasks. Following an overview of the run process, the routines comprising the TIMES source code are described, discussing how they guide the model through compilation, execution, solve, and reporting. Section 2.3 then describes the various files produced by the run process and their use. Finally, Section 2.4 discusses identifying and resolving errors that may occur during the run process. Section 3 then details the various switches that control the execution of the TIMES code.
+Section 2 lays out more specifically how the various components of the TIMES modeling platform interact and accomplish their tasks. Following an overview of the run process, the routines comprising the TIMES source code are described, discussing how they guide the model through compilation, execution, solve, and reporting. Section {numref}`%s <files-produced-during-the-run>` then describes the various files produced by the run process and their use. Finally, Section {numref}`%s <errors-and-their-resolution>` discusses identifying and resolving errors that may occur during the run process. Section {numref}`%s <switches-to-control-the>` then details the various switches that control the execution of the TIMES code.
 
 
 [^1]: MARKAL is the legacy ETSAP model generator superseded by its advanced TIMES successor.
