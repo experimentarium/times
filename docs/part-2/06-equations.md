@@ -1,7 +1,7 @@
 (equations)=
 # Equations 
 
-This chapter is divided into four sections: the first section describes the main notational conventions adopted in writing the mathematical expressions of the entire chapter. The next two sections treat respectively the TIMES objective function and the standard linear constraints of the model. The fourth section is devoted to the facility for defining various kinds of user constraints. Additional constraints and objective function additions that are required for the Climate Module, Damage Cost and Endogenous Technology Learning options are described in Appendices [A] (the-times-climate-module), [B] (damage-cost-functions) and [C] (endogenous-technological-learning), respectively.
+This chapter is divided into four sections: the first section describes the main notational conventions adopted in writing the mathematical expressions of the entire chapter. The next two sections treat respectively the TIMES objective function and the standard linear constraints of the model. The fourth section is devoted to the facility for defining various kinds of user constraints. Additional constraints and objective function additions that are required for the Climate Module, Damage Cost and Endogenous Technology Learning options are described in Appendices [A](the-times-climate-module), [B](damage-cost-functions) and [C](endogenous-technological-learning), respectively.
 
 Each equation has a unique name and is described in a separate subsection. The equations are listed in alphabetical order in each section. Each subsection contains successively the name, list of indices, and type of the equation, the related variables and other equations, the purpose of the equation, any particular remarks applying to it, and finally the mathematical expression of the constraint or objective function.
 
@@ -640,7 +640,7 @@ $y \leq EOH$ **(VI)**
 
 ### Cost of demand reductions ELASTCOST(y) 
 
-When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See PART I for a theoretical justification, and Appendix [D] (times-demand-functions) for formulations involving more generalized demand functions.
+When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See PART I for a theoretical justification, and Appendix [D](times-demand-functions) for formulations involving more generalized demand functions.
 
 $${ELASTCOST(y) = 
 }{\quad\sum_{j = 1}^{COM\_STEP_{lo}}{COM\_BPRICE_{T(y)} \times \left\{ \left( 1 - \frac{(j - 1/2) \times COM\_VOC_{lo,T(y)}}{COM\_STEP_{lo}} \right)^{\frac{1}{COM\_ELAST_{lo,T(y)}}} \right\}} \times VAR\_ELAST_{lo,j,T(y)}}$$
@@ -949,7 +949,7 @@ Consequently, in both cases the annualized investment payments are then assumed 
 (constraints)=
 ## Constraints
 
-The constraints available in standard TIMES are shown in {numref}`times-equations`, and later fully described in the following subsections. The constraints related to the Climate Module (CLI), Damage Cost Functions (DAM) and Endogenous Technology Learning (ETL) are shown and described in three separate chapters (Appendices [A] (the-times-climate-module), [B] (damage-cost-functions) and [C] (endogenous-technological-learning) respectively). The constraints related to the advanced unit commitment formulation are described in detail in a separate document \"*Dispatching and Unit Commitment in TIMES*\", and the constraints related to the balancing services extension are described in a separate document \"*Enhancing the flexibility in TIMES: Introducing Ancillary Services Markets*\".
+The constraints available in standard TIMES are shown in {numref}`times-equations`, and later fully described in the following subsections. The constraints related to the Climate Module (CLI), Damage Cost Functions (DAM) and Endogenous Technology Learning (ETL) are shown and described in three separate chapters (Appendices [A](the-times-climate-module), [B](damage-cost-functions) and [C](endogenous-technological-learning) respectively). The constraints related to the advanced unit commitment formulation are described in detail in a separate document \"*Dispatching and Unit Commitment in TIMES*\", and the constraints related to the balancing services extension are described in a separate document \"*Enhancing the flexibility in TIMES: Introducing Ancillary Services Markets*\".
 
 ```{list-table} List of TIMES equations.
 :name: times-equations
