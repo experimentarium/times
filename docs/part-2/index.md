@@ -1,3 +1,4 @@
+(part2)=
 # PART II: REFERENCE MANUAL
 
 The purpose of the Reference Manual is to lay out the full details of the TIMES model, including data specification, internal data structures, and mathematical formulation of the model's Linear Program (LP) formulation, as well as the Mixed Integer Programming (MIP) formulations required by some of its options. As such, it provides the TIMES modeller/programmer with sufficiently detailed information to fully understand the nature and purpose of the data components, model equations and variables. A solid understanding of the material in this Manual is a necessary prerequisite for anyone considering making programming changes in the TIMES source code.
