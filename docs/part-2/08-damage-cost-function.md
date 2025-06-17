@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This Appendix contains the documentation on the Damage Cost Function extensions for the TIMES model. The chapter contains 6 sections: section {numref}`%s <b-mathematical-formulations>` contains the mathematical formulation, section {numref}`%s <b-switches-and-parameters>` describes the parameters for the Damage Cost Functions, and section {numref}`%s <b-examples>` gives two examples. Finally, section {numref}`%s <b-variables>` describes the variables and section {numref}`%s <b-equations>` describes the equations.
+This Appendix contains the documentation on the Damage Cost Function extensions for the TIMES model. The chapter contains 6 sections: section [2](b-mathematical-formulations) contains the mathematical formulation, section [3](b-switches-and-parameters) describes the parameters for the Damage Cost Functions, and section [4](b-examples) gives two examples. Finally, section [5](b-variables) describes the variables and section [6](b-equations) describes the equations.
 
 The Damage Cost Function option of TIMES is intended for modelers who wish to evaluate the environmental externalities caused by an energy system. For instance, emissions of toxic or environmentally harmful pollutants from the energy system create social costs linked to impacts of the pollution on human health and the environment. In another example, in global studies of GHG emissions, it may be of interest to evaluate the impact of GHG emissions on concentrations and ultimately on damages created by climate change induced by increased concentration of GHGs.
 
@@ -75,7 +75,7 @@ Formulas for the marginal costs of the other steps can be derived similarly.
 
 The TIMES implementation basically follows the equations shown above. Both the non-linear and linearized approaches can be used. However, in order to provide some additional flexibility, the implementation supports also defining a threshold level of emissions, below which the damage costs are zero. This refinement can be taken into account in the balance equation {eq}`2-8-5` by adding one additional step variable having an upper bound equal to the threshold level, and by adjusting the widths of the other steps accordingly. The threshold level can also easily be taken into account in the formulas for the approximate marginal costs.
 
-In addition, the implementation supports different elasticities and step sizes to be used below and above the reference level. See Section {numref}`%s <b-switches-and-parameters>` for more details.
+In addition, the implementation supports different elasticities and step sizes to be used below and above the reference level. See Section [3](b-switches-and-parameters) for more details.
 
 (b-switches-and-parameters)=
 ## Switches and Parameters
@@ -84,7 +84,7 @@ In addition, the implementation supports different elasticities and step sizes t
 
 Like all other aspects of TIMES, the user describes the Damage Cost Functions by means of a Set and the Parameters and Switches described in this chapter.
 
-As discussed in Section {numref}`%s <b-mathematical-formulations>`, the TIMES Damage Cost Function facility permits the assessment of environmental externalities by means of two approaches to determine the impact or cost of damages arising from emissions: ex-post calculation and internalized damage costs. The second approach can be further divided into the non-linear and linear formulations, and therefore the following three approaches are available in Standard TIMES:
+As discussed in Section [2](b-mathematical-formulations), the TIMES Damage Cost Function facility permits the assessment of environmental externalities by means of two approaches to determine the impact or cost of damages arising from emissions: ex-post calculation and internalized damage costs. The second approach can be further divided into the non-linear and linear formulations, and therefore the following three approaches are available in Standard TIMES:
 
 1. The environmental damages are computed ex-post, without feedback into the optimization process;
 2. The environmental damages are a linearized part of the objective function and therefore taken into account in the optimization process;
@@ -244,7 +244,7 @@ Example of a linearized damage function with 1+5+1+3 steps (one zero cost step, 
 
 There are only two sets of new variables in the damage cost formulation, VAR_DAM and VAR_OBJDAM, which are shown below in {numref}`dam-variables`. The variables VAR_DAM represent the steps in the emissions in each period. In the linearized formulation, there are DAM_STEP(\...,\'LO\') number of step variables on the lower side and DAM_STEP(\...\'UP\') number of step variables on the higher side of emissions. In addition, one step variable of type \'FX\' corresponds to the middle step that includes the reference level of emissions, and an optional additional step variable of type \'FX\' corresponds to the zero-damage fraction of emissions, as defined by the difference between DAM_BQTY(..) and DAM_VOC(\...,\'LO\').
 
-The variables VAR_OBJDAM represent the total discounted damage costs by region. The undiscounted costs in each period described in Section {numref}`%s <b-mathematical-formulations>` are discounted and summed over all periods and emissions in each region. As emissions are in TIMES assumed to be constant within each period, damage costs are likewise assumed to be constant within each period.
+The variables VAR_OBJDAM represent the total discounted damage costs by region. The undiscounted costs in each period described in Section [2](b-mathematical-formulations) are discounted and summed over all periods and emissions in each region. As emissions are in TIMES assumed to be constant within each period, damage costs are likewise assumed to be constant within each period.
 
 ```{list-table} Model variables specific to the Damage Cost Functions.
 :name: dam-variables
@@ -352,7 +352,7 @@ $$\sum_{(jj,bd) \in dam\_num_{r,c,jj,bd}}
 
 **Remarks:**
 
-- The internal parameter $DAM\_SIZE_{r,c,bd}$ represents the sizes of cost steps of the linearized damage cost function, for both directions (bd=LO/UP) and for the middle step (bd=FX), as described above in Section {numref}`%s <b-mathematical-formulations>`.
+- The internal parameter $DAM\_SIZE_{r,c,bd}$ represents the sizes of cost steps of the linearized damage cost function, for both directions (bd=LO/UP) and for the middle step (bd=FX), as described above in Section [2](b-mathematical-formulations).
 
 **Equation:**
 
