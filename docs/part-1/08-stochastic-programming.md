@@ -1,3 +1,4 @@
+(stochastic-programming-extension)=
 # The Stochastic Programming extension
 
 ## Preamble to chapters 8 to 11
