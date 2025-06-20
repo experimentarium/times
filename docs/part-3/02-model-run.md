@@ -1,4 +1,4 @@
-(the-times-source-code-and)=
+(source-code-and-model-run)=
 # The TIMES source code and the model run process
 
 As discussed in the previous section, the heart of TIMES is embodied in the GAMS source code, comprised of the matrix generator that digests the input data prepared from ANSWER or VEDA-FE and prepares the mathematical representation of the model instance, an optimizer to solve the resulting mathematical programming problem, and a report writer that post-processes the solution and prepares results files for ANSWER and VEDA-BE. It is this collection of GAMS source code routines that correspond to the TIMES model, where each TIMES model run proceeds through the appropriate path in the source code based upon the user specified runtime switches, described in Section {numref}`%s <execution-ctrl-switches>`, and the provided input data.
@@ -33,7 +33,7 @@ In addition to these output files, TIMES may create a file called QA_CHECK.LOG t
 
 For the ETSAP Runtime GAMS license, which does not allow for adjustments to the TIMES source code by users (which in general is not encouraged anyway), a special TIMES.g00 file is used that contains the declaration of each variable and equation that is part of the model definition, thereby initializing the basic model structure.
 
-(the-times-source-code)=
+(times-source-code)=
 ## The TIMES source code
 
 The TIMES model generator is comprised of a host of GAMS source code routines, which are simple text files that reside in the user\'s \\VEDA\\VEDA-FE\\GAMS_SrcTIMESv### folder, as discussed in Section {numref}`%s <general-layout-of-the-software>` (or \\AnswerTIMESv6\\GAMS_SrcTI). Careful naming conventions are employed for all the source code routines. These conventions are characterized, for the most part, by prefixes and extensions corresponding to collections of files handling each aspect of the code (e.g., set bounds, prepare coefficients, specify equations), as summarized in {numref}`times-routines-naming`.

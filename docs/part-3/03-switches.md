@@ -1,7 +1,7 @@
 (execution-ctrl-switches)=
 # Switches to control the execution of the TIMES code
 
-This Section describes the various GAMS control variables available in TIMES as control switches that can be set by the user in the model \<case\>.RUN/GEN file for VEDA-FE/ANSWER respectively. As discussed in Section {numref}`%s <the-times-source-code-and>`, VEDA-FE and ANSWER, in most cases automatically take care of inserting the proper switches into the run file, so the user normally does not have to modify the run file at all. The switches are set in the highly user-friendly GUI interface of the user shell, which uses a run file template and inserts all run-specific switches correctly into the run file of each model run. These are managed by the user via the Case Manager (Control Panel) and Run/Edit GEN Template parts of VEDA-FE and ANSWER respectively.
+This Section describes the various GAMS control variables available in TIMES as control switches that can be set by the user in the model \<case\>.RUN/GEN file for VEDA-FE/ANSWER respectively. As discussed in Section {numref}`%s <source-code-and-model-run>`, VEDA-FE and ANSWER, in most cases automatically take care of inserting the proper switches into the run file, so the user normally does not have to modify the run file at all. The switches are set in the highly user-friendly GUI interface of the user shell, which uses a run file template and inserts all run-specific switches correctly into the run file of each model run. These are managed by the user via the Case Manager (Control Panel) and Run/Edit GEN Template parts of VEDA-FE and ANSWER respectively.
 
 In the subsections that follow, unless otherwise stated, the basic syntax for the inclusion of control switch options in the main \<case\>.RUN/GEN GAMS directive file is `$SET <option> <value>`. The various options are grouped according to the nature of their usage by subsection.
 
@@ -336,7 +336,7 @@ $BATINCLUDE initmty.mod IER FIA
 
 As shown in this example, it is possible to add several extension in the \$BATINCLUDE line above at the same time. In this case two user extensions, IER and FIA, are incorporated with the standard TIMES code.
 
-The GAMS source code related to an extension \<ext\> has to be structured by using the following file structure in order to allow the model generator to recognize the extension[^20] (see also Section {numref}`%s <the-times-source-code>`). The placeholder \<ext\> stands for the extension name, e.g. CLI in case of the climate module extension.
+The GAMS source code related to an extension \<ext\> has to be structured by using the following file structure in order to allow the model generator to recognize the extension[^20] (see also Section {numref}`%s <times-source-code>`). The placeholder \<ext\> stands for the extension name, e.g. CLI in case of the climate module extension.
 
 - **initmty.\<ext\>**: contains the declaration of new sets and parameters, which are only used in the context of the extension;
 - **init_ext.\<ext\>**: contains the initialization and assignment of default values for the new sets and parameters defined in initmty.\<ext\>;
