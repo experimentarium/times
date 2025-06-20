@@ -1,4 +1,3 @@
-(part4)=
 # PART IV: VEDA 2.0 MODEL MANAGEMENT SYSTEM
 
 ```{toctree}

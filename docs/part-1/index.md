@@ -1,4 +1,3 @@
-(part1)=
 # PART I: TIMES CONCEPTS AND THEORY
 
 Part I comprises five divisions, each containing a number of chapters:
