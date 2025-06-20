@@ -21,7 +21,7 @@ numbered:
 titlesonly:
 glob:
 ---
-?[!7890]*
+*
 ```
 
 ```{toctree}
@@ -29,13 +29,8 @@ glob:
 maxdepth: 1
 titlesonly:
 ---
-a-climate-module/index.md
-```
-
-```{toctree}
----
-titlesonly:
-glob:
----
-?[7890]*
+07-climate-module/index.md
+08-damage-cost-function/index.md
+09-etl/index.md
+10-demand-functions/index.md
 ```
