@@ -111,7 +111,6 @@ Like all other aspects of TIMES, the user defines the Climate Module components 
   - Maximum level of CO<sub>2</sub> concentration in GtC. 
 ```
 
-
 ### Mapping of regional emissions to global emissions
 
 Conversion from regional emissions to global emissions must be done by using the CM_GHGMAP(r,c,cg) parameter, in adequate units. The labels for the global emissions **cg** are \'CO2-GtC\', \'CH4-Mt\' and \'N2O-Mt\'. The parameter IRE_CCVT(r,c,r,cg) can alternatively be also used, if CM_GHGMAP is not available.
@@ -130,7 +129,7 @@ CM_GHGMAP(R,'TOTCO2','CO2-GtC') = 2.727272E-7;
 - CM_HISTORY(y,{CO2-ATM, CO2-UP, CO2-LO}): Values at the end of the calibration year *y* of the masses of CO<sub>2</sub> in the atmosphere, the upper ocean layer, and the deep ocean layer, respectively. Note that these values are time- indexed so that the model generator can pick up the correct value according to the calibration year chosen by the user. Units: GtC, Mt(CH<sub>4</sub>), Mt(N<sub>2</sub>O).
 - CM_CONST(CO2-PREIND): Pre-industrial atmospheric mass of CO<sub>2</sub>. Units = GtC
 
-## Parameters for the linear CO<sub>2</sub> forcing approximation
+### Parameters for the linear CO<sub>2</sub> forcing approximation
 
 CM_LINFOR(datayear,item,lim): lower and upper limit for the concentration of CO<sub>2</sub> in atmosphere, used in the approximation of the radiative forcing equation for CO<sub>2</sub> (see section {numref}`%s <a-radiative-forcing>` above). *item* may be equal to CO2-ATM (in which case the limit is expressed as a ratio of concentration over pre-industrial concentration), or to CO2-PPM (in which case the limit is expressed in ppm of CO2-equivalent). The index *lim* is either equal to LO or to UP, depending on whether the lower or the upper limit of the range is being specified. For example, the following specifications may be used to select a range from 375 to 550 ppm for the approximation at year 2020:
 
