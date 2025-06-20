@@ -429,7 +429,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>Levelized to the timeslice level of the flow variables in the shadow group.
   <br>Direct inheritance. Weighted aggregation.
   - Activity efficiency for process, i.e. amount of activity per unit of commodity flows in the group cg.
-  <br>For more information on usage, see Section {numref}`%s <constraints>` for details about EQE_ACTEFF.
+  <br>For more information on usage, see Section {numref}`%s <equations-constraints>` for details about EQE_ACTEFF.
   - Generates instances of the activity efficiency constraint (EQE_ACTEFF)
 * - ACT_FLO
   <br>(r,datayear,p,cg,s)

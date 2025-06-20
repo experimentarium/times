@@ -1,7 +1,7 @@
 (equations)=
 # Equations 
 
-This chapter is divided into four sections: the first section describes the main notational conventions adopted in writing the mathematical expressions of the entire chapter. The next two sections treat respectively the TIMES objective function and the standard linear constraints of the model. The fourth section is devoted to the facility for defining various kinds of user constraints. Additional constraints and objective function additions that are required for the Climate Module, Damage Cost and Endogenous Technology Learning options are described in Appendices [A](the-times-climate-module), [B](damage-cost-functions) and [C](endogenous-technological-learning), respectively.
+This chapter is divided into four sections: the first section describes the main notational conventions adopted in writing the mathematical expressions of the entire chapter. The next two sections treat respectively the TIMES objective function and the standard linear constraints of the model. The fourth section is devoted to the facility for defining various kinds of user constraints. Additional constraints and objective function additions that are required for the Climate Module, Damage Cost and Endogenous Technology Learning options are described in Appendices [A](part2-climate-module), [B](damage-cost-functions) and [C](endogenous-technological-learning), respectively.
 
 Each equation has a unique name and is described in a separate subsection. The equations are listed in alphabetical order in each section. Each subsection contains successively the name, list of indices, and type of the equation, the related variables and other equations, the purpose of the equation, any particular remarks applying to it, and finally the mathematical expression of the constraint or objective function.
 
@@ -947,10 +947,10 @@ $$CRF_{2,mid} = CFR_{mid}^{proper} \times (1+d(T(y)))^{-0.5} = CRF_{beg} \times 
 
 Consequently, in both cases the annualized investment payments are then assumed to occur at the mid-point of each fiscal year starting at the time of the lump-sum investment, and the annual payments are equivalent to the lump-sum investment when discounted back to that point by the technology-specific discount rate. The implementation of the optional corrections for mid-year discounting corresponds to equations ({eq}`XI-1` to {eq}`XI-3`). To be consistent, the expression {eq}`XI-3` for $CRF_{2,mid}$ should also be used for decommissioning costs.
 
-(constraints)=
+(equations-constraints)=
 ## Constraints
 
-The constraints available in standard TIMES are shown in {numref}`times-equations`, and later fully described in the following subsections. The constraints related to the Climate Module (CLI), Damage Cost Functions (DAM) and Endogenous Technology Learning (ETL) are shown and described in three separate chapters (Appendices [A](the-times-climate-module), [B](damage-cost-functions) and [C](endogenous-technological-learning) respectively). The constraints related to the advanced unit commitment formulation are described in detail in a separate document \"*Dispatching and Unit Commitment in TIMES*\", and the constraints related to the balancing services extension are described in a separate document \"*Enhancing the flexibility in TIMES: Introducing Ancillary Services Markets*\".
+The constraints available in standard TIMES are shown in {numref}`times-equations`, and later fully described in the following subsections. The constraints related to the Climate Module (CLI), Damage Cost Functions (DAM) and Endogenous Technology Learning (ETL) are shown and described in three separate chapters (Appendices [A](part2-climate-module), [B](damage-cost-functions) and [C](endogenous-technological-learning) respectively). The constraints related to the advanced unit commitment formulation are described in detail in a separate document \"*Dispatching and Unit Commitment in TIMES*\", and the constraints related to the balancing services extension are described in a separate document \"*Enhancing the flexibility in TIMES: Introducing Ancillary Services Markets*\".
 
 ```{list-table} List of TIMES equations.
 :name: times-equations

@@ -436,7 +436,7 @@ The TIMES input parameters that are specific to storage processes or have a spec
 * - STG_MAXCYC (r,y,p)
   - Defines a limit for the storage cycling within each period, by giving the maximum number of cycles over the full lifetime for process **p**, region **r**.
 * - STG_SIFT (r,y,p,c,s)
-  - Defines the storage process **p** as a special load-shifting storage process for commodity **c**, and defines the maximum fraction of shifted loads in proportion to the demand. See section {numref}`%s <load-shifting-storage>` for additional information.
+  - Defines the storage process **p** as a special load-shifting storage process for commodity **c**, and defines the maximum fraction of shifted loads in proportion to the demand. See section {numref}`%s <load-shifting-storage-processes>` for additional information.
 * - STGIN_BND (r,y,p,c,s,bd)
   - Bound on the input flow of commodity **c** of storage process **p** in a timeslice **s**. Units: Unit of the storage input flow. (Default value: none)
 * - STGOUT_BND (r,y,p,c,s,bd)
@@ -446,7 +446,7 @@ The TIMES input parameters that are specific to storage processes or have a spec
 * - PRC_ACTFLO (r,y,p,c)
   - Defines a conversion coefficient between the activity and the flow in commodity **c**. For storage processes, PRC_ACTFLO can be used for the commodities in the PCG in the standard way, but also for defining the amount of auxiliary flow of **c** per unit of activity.
 * - NCAP_AFC (r,y,p,cg,tslvl)
-  - Can be used for defining availability factors for the process activity (amount stored), process output flow, or process input flow, or any combination of these. See Section {numref}`%s <constraints>` for additional information.
+  - Can be used for defining availability factors for the process activity (amount stored), process output flow, or process input flow, or any combination of these. See Section {numref}`%s <equations-constraints>` for additional information.
 * - NCAP_AFCS (r,y,p,cg,s)
   - As NCAP_AFC above, but can be specified for individual timeslices. NCAP_AFCs values override NCAP_AFC values defined at the same level.
 ```

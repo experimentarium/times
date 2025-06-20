@@ -1,4 +1,4 @@
-(the-times-climate-module)=
+(part2-climate-module)=
 # Appendix A: The TIMES Climate Module
 
 ## Introduction
