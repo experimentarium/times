@@ -634,7 +634,7 @@ Here, KEY1, KEY2, ... refer to the main option group and N1, N2, ... refer to su
 * - NCAP
   - 1
   - \<\>0
-  - Activate levelised cost calculation (see Part II for details)
+  - Activate levelised cost calculation (see [Part II](project:/part-2/index.md) for details)
 * - NCAP
   - 9
   - \>0
