@@ -126,13 +126,13 @@ CM_GHGMAP(R,'TOTCO2','CO2-GtC') = 2.727272E-7;
 
 ### Deterministic input parameters for CO<sub>2</sub>
 
-- CM_CONST({PHI_AT_UP, PHI_UP_AT, PHI_UP_LO, PHI_LO_UP}) (also denoted $\varphi_{atm-up}$, $\varphi_{up-atm}$, etc, in the equations of section 2): annual CO<sub>2</sub> flow coefficients between the three reservoirs (AT=Atmosphere, UP=Upper ocean layer, LO=Deep ocean layer). These are time-independent coefficients. Units: none
+- CM_CONST({PHI_AT_UP, PHI_UP_AT, PHI_UP_LO, PHI_LO_UP}) (also denoted $\varphi_{atm-up}$, $\varphi_{up-atm}$, etc, in the equations of section {numref}`%s <a-mathematical-formulation>`): annual CO<sub>2</sub> flow coefficients between the three reservoirs (AT=Atmosphere, UP=Upper ocean layer, LO=Deep ocean layer). These are time-independent coefficients. Units: none
 - CM_HISTORY(y,{CO2-ATM, CO2-UP, CO2-LO}): Values at the end of the calibration year *y* of the masses of CO<sub>2</sub> in the atmosphere, the upper ocean layer, and the deep ocean layer, respectively. Note that these values are time- indexed so that the model generator can pick up the correct value according to the calibration year chosen by the user. Units: GtC, Mt(CH<sub>4</sub>), Mt(N<sub>2</sub>O).
 - CM_CONST(CO2-PREIND): Pre-industrial atmospheric mass of CO<sub>2</sub>. Units = GtC
 
 ## Parameters for the linear CO<sub>2</sub> forcing approximation
 
-CM_LINFOR(datayear,item,lim): lower and upper limit for the concentration of CO<sub>2</sub> in atmosphere, used in the approximation of the radiative forcing equation for CO<sub>2</sub> (see section [2.2](a-radiative-forcing) above). *item* may be equal to CO2-ATM (in which case the limit is expressed as a ratio of concentration over pre-industrial concentration), or to CO2-PPM (in which case the limit is expressed in ppm of CO2-equivalent). The index *lim* is either equal to LO or to UP, depending on whether the lower or the upper limit of the range is being specified. For example, the following specifications may be used to select a range from 375 to 550 ppm for the approximation at year 2020:
+CM_LINFOR(datayear,item,lim): lower and upper limit for the concentration of CO<sub>2</sub> in atmosphere, used in the approximation of the radiative forcing equation for CO<sub>2</sub> (see section {numref}`%s <a-radiative-forcing>` above). *item* may be equal to CO2-ATM (in which case the limit is expressed as a ratio of concentration over pre-industrial concentration), or to CO2-PPM (in which case the limit is expressed in ppm of CO2-equivalent). The index *lim* is either equal to LO or to UP, depending on whether the lower or the upper limit of the range is being specified. For example, the following specifications may be used to select a range from 375 to 550 ppm for the approximation at year 2020:
 
 ```
 CM_LINFOR('2020','CO2-PPM','LO') = 375;
@@ -309,7 +309,7 @@ CM_RESULT is indexed by year *y* and result type {e.g. CO2-ATM, CO2-PPM, FORCING
 - CO2-ATM(y): the value of the atmospheric mass of CO<sub>2</sub>-equivalent at the end of year **y**, obtained directly from the variable **VAR_CLIBOX(\'CO2-ATM\',y)**.
 - CO2-PPM(y): the value of the atmospheric concentration of CO<sub>2</sub>-equivalent at the end of year **y**.
 - FORCING(y): forcing value at end of year y, calculated using the linearized forcing functions as defined by the user.
-- FORC+TOT(y): exact forcing value at end of year y, calculated using the logarithmic forcing equation defined in section [2.2](a-radiative-forcing) and the CO2-ATM(y) value.
+- FORC+TOT(y): exact forcing value at end of year y, calculated using the logarithmic forcing equation defined in section {numref}`%s <a-radiative-forcing>` and the CO2-ATM(y) value.
 - DELTA_ATM(y): exact atmospheric temperature value at end of year y, calculated using the forcing FORC+TOT(y).
 - DELTA_LOW(y): exact lower ocean temperature value at end of year y, calculated using the forcing FORC+TOT(y).
 

@@ -1,7 +1,7 @@
 (a-variables)=
 # Variables
 
-The variables that are used in the Climate Module in TIMES are presented in {numref}`cli-specific-variables` below. The climate indicators represented in the Climate Module are grouped according to the following internal sets, which are referred to in the GAMS formulation, presented in Section [5](a-equations):
+The variables that are used in the Climate Module in TIMES are presented in {numref}`cli-specific-variables` below. The climate indicators represented in the Climate Module are grouped according to the following internal sets, which are referred to in the GAMS formulation, presented in Section {numref}`%s <a-equations>`:
 
 - **cm_var**: the set of all climate indicators
 - **cm_tkind**: aggregate total indicators (CO2-GtC, CH4-Mt, N2O-Mt, FORCING)

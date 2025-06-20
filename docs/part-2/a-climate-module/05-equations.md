@@ -3,7 +3,7 @@
 
 There are three blocks of definitional equations: the first block of equations calculates the global emissions of GHG (either all in CO<sub>2</sub> eq., or separately for CO<sub>2</sub>, CH<sub>4</sub> and N<sub>2</sub>O) as well as the total (linearized) radiative forcing, the next block calculates the concentrations of the greenhouse gases in the reservoirs, and the third block calculates the atmospheric temperature and lower ocean temperature at period t.
 
-In addition, there is a generic block of equations expressing the upper bounding of the five climate quantities discussed in subsection [3.4.6](a-upport-bounds-on-climate-variablaes). This generic equation is generated as many times as an upper bound on any climate variable is specified by the user, and is not generated if no upper bound is specified.
+In addition, there is a generic block of equations expressing the upper bounding of the five climate quantities discussed in subsection {numref}`%s <a-upport-bounds-on-climate-variablaes>`. This generic equation is generated as many times as an upper bound on any climate variable is specified by the user, and is not generated if no upper bound is specified.
 
 We now give the formulations of these constraints.
 
@@ -16,9 +16,9 @@ General notation:
 
 - *D(t):* duration of period *t, t=1 to T*
 - *B(t):* first year in period *t, t=1 to T*
-- *m(t):* milestone year of period t (approximate middle year of period, defined as $m(t) = B(t) + \left\lfloor (D(t) - 1)/2 \right\rfloor$
+- *m(t):* milestone year of period t (approximate middle year of period, defined as $m(t) = B(t) + \left\lfloor (D(t) - 1)/2 \right\rfloor$)
 - *y:* designates a year, while *t* designates a period (ranging from 1 to T)
-- *Υ:* designates the calibration year, which can be chosen by the user to be either *B*(1)--1, *m*(1)--1, or *m*(1)*,* see section [3.2](a-calibration) above.
+- *Υ:* designates the calibration year, which can be chosen by the user to be either *B*(1)--1, *m*(1)--1, or *m*(1)*,* see section {numref}`%s <a-calibration>` above.
 
 ```{list-table} Climate Module specific constraints (all in the GAMS file equ_ext.cli).
 :name: cli-specific-constraints
