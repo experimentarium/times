@@ -27,6 +27,13 @@ glob:
 ```{toctree}
 ---
 titlesonly:
+---
+a-climate-module/index.md
+```
+
+```{toctree}
+---
+titlesonly:
 glob:
 ---
 ?[7890]*
