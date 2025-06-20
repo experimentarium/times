@@ -10,7 +10,7 @@ For the most part, this process is seamless to the user, as the model management
 
 Once a model is readied, a run can be initiated from the model management systems by means of the Case Manager in VEDA-FE or the Run Model option on the ANSWER Home screen. In both systems the user assembles the list of scenarios to comprise the model run, taking care to ensure that the order of the scenarios is such that all RES components are first declared (that is their item name and set membership specified) and then assigned data.
 
-In the model management shells, the user can also adjust the TIMES model variant, run control switches, and solver options. For VEDA-FE this is done through the Case Manager, via the Control Panel, RUNFile template, and solver settings. {numref}`case-manager-control-form` shows an example of the VEDA-FE Control Panel. See [Part IV](/part-4/) for more on the use of the Case Manager in VEDA-FE.
+In the model management shells, the user can also adjust the TIMES model variant, run control switches, and solver options. For VEDA-FE this is done through the Case Manager, via the Control Panel, RUNFile template, and solver settings. {numref}`case-manager-control-form` shows an example of the VEDA-FE Control Panel. See [Part IV](part-4/index) for more on the use of the Case Manager in VEDA-FE.
 
 In ANSWER, the Run Model button brings up the Run Model Form, from which the model variant and most run control switches can be set. (The others need to be set using the Edit GAMS Control Options feature.) However the \<Solver\>.OPT file needs to be handled manually outside of ANSWER. See the separate ANSWER documentation for more details on these ANSWER facilities.
 

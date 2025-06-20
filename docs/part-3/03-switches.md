@@ -162,7 +162,7 @@ The stochastic mode of TIMES can be activated with the STAGES control variable, 
 $SET STAGES YES
 ```
 
-This setting is required for using the multi-stage stochastic programming features of TIMES. It can also be used for enabling sensitivity and tradeoff analysis features. See [Part I](/part-1/) for more details on stochastic programming and tradeoff analysis in TIMES.
+This setting is required for using the multi-stage stochastic programming features of TIMES. It can also be used for enabling sensitivity and tradeoff analysis features. See [Part I](part-1/index) for more details on stochastic programming and tradeoff analysis in TIMES.
 
 ### Sensitivity \[SENSIS\]
 
@@ -299,7 +299,7 @@ VEDA-FE Case Manager and ANSWER Run Model Options form along with the GEN templa
 * - ETL
   - Option to use endogenous technology learning formulation. Since the usage of this option leads to a Mixed-Integer Programming (MIP) problem, the solve statement in the file solve.mod is automatically altered by TIMES. To activate this extension manually, the following control switch needs to be provided in the \<Case\>.run file, as follows:
   <br>`$SET ETL YES`
-  <br>See Parts [I](/part-1/)--[II](/part-2/) for more information on the use of Endogenous Technology Learning.
+  <br>See Parts [I](part-1/index)--[II](part-2/) for more information on the use of Endogenous Technology Learning.
 * - MACRO
   - Option to use the MACRO formulation. Since the usage of the MACRO options leads to a Non-linear Programming (NLP) problem, the solve statement in the file solve.mod has to be altered. To activate this extension manually, the \$SET MACRO \<value\> control switch needs to be provided in the \<Case\>.run file, with the following valid values:
   <br>YES -- activate the integrated MACRO algorithm
