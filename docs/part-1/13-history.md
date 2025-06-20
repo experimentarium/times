@@ -1,3 +1,4 @@
+(history-of-times)=
 # Appendix A: History and comparison of MARKAL and TIMES
 
 ## A brief history of TIMES[^43] and MARKAL
