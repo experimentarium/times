@@ -68,7 +68,7 @@ $$\sum_{(jj,bd) \in dam\_num_{r,c,jj,bd}}
 
 **Remarks:**
 
-- The internal parameter $DAM\_SIZE_{r,c,bd}$ represents the sizes of cost steps of the linearized damage cost function, for both directions (bd=LO/UP) and for the middle step (bd=FX), as described above in Section {numref}`<b-mathematical-formulations>`.
+- The internal parameter $DAM\_SIZE_{r,c,bd}$ represents the sizes of cost steps of the linearized damage cost function, for both directions (bd=LO/UP) and for the middle step (bd=FX), as described above in Section {numref}`%s <b-mathematical-formulations>`.
 
 **Equation:**
 
