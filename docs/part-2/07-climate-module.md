@@ -1,5 +1,7 @@
 ---
-headings: true
+numbering:
+  heading_2: true
+  heading_3: true
 ---
 
 (part2-climate-module)=
