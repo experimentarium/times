@@ -101,7 +101,7 @@ Which solver to use is a function of the TIMES model variant to be solved and th
 
 ## Organization of Part III
 
-Section 2 lays out more specifically how the various components of the TIMES modeling platform interact and accomplish their tasks. Following an overview of the run process, the routines comprising the TIMES source code are described, discussing how they guide the model through compilation, execution, solve, and reporting. Section {numref}`%s <files-produced-during-the-run>` then describes the various files produced by the run process and their use. Finally, Section {numref}`%s <errors-and-their-resolution>` discusses identifying and resolving errors that may occur during the run process. Section {numref}`%s <switches-to-control-the>` then details the various switches that control the execution of the TIMES code.
+Section 2 lays out more specifically how the various components of the TIMES modeling platform interact and accomplish their tasks. Following an overview of the run process, the routines comprising the TIMES source code are described, discussing how they guide the model through compilation, execution, solve, and reporting. Section {numref}`%s <files-produced-during-the-run>` then describes the various files produced by the run process and their use. Finally, Section {numref}`%s <errors-and-their-resolution>` discusses identifying and resolving errors that may occur during the run process. Section {numref}`%s <execution-ctrl-switches>` then details the various switches that control the execution of the TIMES code.
 
 
 [^1]: MARKAL is the legacy ETSAP model generator superseded by its advanced TIMES successor.
