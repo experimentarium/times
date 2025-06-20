@@ -1141,7 +1141,7 @@ Figure 118. Templates Included in DemoS_007
 
 More interpolation/extrapolation rules are added to the transformation table (Figure 119). The same interpolation/extrapolation rule (number 5) is also used for the maximum input shares (Share-I) and the maximum output shares (Share-O) of all processes at once. These new attributes are defined in the next section.
 
-![](assets/image147.png)
+![](assets/image147.bmp)
 
 Figure 119. Updated Interpolation/Extrapolation Rules
 
