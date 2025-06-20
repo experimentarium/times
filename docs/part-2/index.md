@@ -26,6 +26,7 @@ glob:
 
 ```{toctree}
 ---
+maxdepth: 1
 titlesonly:
 ---
 a-climate-module/index.md
