@@ -1,5 +1,5 @@
 (a-equations)=
-## Equations
+# Equations
 
 There are three blocks of definitional equations: the first block of equations calculates the global emissions of GHG (either all in CO<sub>2</sub> eq., or separately for CO<sub>2</sub>, CH<sub>4</sub> and N<sub>2</sub>O) as well as the total (linearized) radiative forcing, the next block calculates the concentrations of the greenhouse gases in the reservoirs, and the third block calculates the atmospheric temperature and lower ocean temperature at period t.
 
@@ -36,7 +36,7 @@ General notation:
   - Imposes an upper bound on any or all of the climate variables *cm_var* (*CO2-GTC, CH4-MT, N2O-MT, CO2-ATM, CO2-PPM, CH4-PPB, N2O-PPB, FORCING, DELTA-ATM)*, at any desired year *y*, according to the user-defined input parameter CM_MAXC.
 ```
 
-### EQ_CLITOT(cm_var,t)
+## EQ_CLITOT(cm_var,t)
 
 **Description:** Defines the total amount of aggregate climate indicator in period t.
 
@@ -79,7 +79,7 @@ $${\sum_{\begin{aligned}
 } \\ \\ {\left\{ = \right\}
 } \\ \\ {VAR\_CLITOT_{cm\_tkind,t}}$$
 
-### EQ_CLICONC(cm_var,cm_box,t)
+## EQ_CLICONC(cm_var,cm_box,t)
 
 **Description:** Defines the reservoir-specific amounts of concentration indicator in each period.
 
@@ -131,7 +131,7 @@ PHI\_AT\_UP & (1 - PHI\_U\_AT - PHI\_UP\_LO) & PHI\_LO\_UP \\
 } \\ \\ {m(t) = B(t) + \left\lfloor \frac{D(t) - 1}{2} \right\rfloor
 } \\ \\ {\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to} \space x}$$
 
-### EQ_CLITEMP(cm_var,cm_box,t)
+## EQ_CLITEMP(cm_var,cm_box,t)
 
 **Description:** Defines the reservoir-specific amounts of temperature indicator in each period.
 
@@ -181,7 +181,7 @@ SIGMA3 & (1 - SIGMA3) & 0 \\
 } \\ \\ {m(t) = B(t) + \left\lfloor \frac{D(t) - 1}{2} \right\rfloor
 } \\ \\ {\left\lfloor x \right\rfloor\ \text{ denotes the largest integer smaller than or equal to} \space x}$$
 
-### EQ_CLIMAX(y,cm_var)
+## EQ_CLIMAX(y,cm_var)
 
 **Description:** Constraint that sets an upper bound on the climate indicator in a give year.
 

@@ -1,5 +1,5 @@
 (a-variables)=
-## Variables
+# Variables
 
 The variables that are used in the Climate Module in TIMES are presented in {numref}`cli-specific-variables` below. The climate indicators represented in the Climate Module are grouped according to the following internal sets, which are referred to in the GAMS formulation, presented in Section [5](a-equations):
 
@@ -22,7 +22,7 @@ The variables that are used in the Climate Module in TIMES are presented in {num
   - Represents the amount of reservoir indicator *cm_var* in a single reservoir/box in year y, where *cm_var* is one of {CO2-ATM, CO2-UP, CO2-LO, CH4-ATM, CH4-UP, N2O-ATM, N2O-UP, DELTA-ATM, DELTA-LO}.
 ```
 
-### VAR_CLITOT(cm_var,y)
+## VAR_CLITOT(cm_var,y)
 
 **Description:** The total amount of aggregate climate indicator in year y.
 
@@ -32,7 +32,7 @@ The variables that are used in the Climate Module in TIMES are presented in {num
 
 **Bounds:** This variable can be directly bounded with the CM_MAXC attribute.
 
-### VAR_CLIBOX(cm_var,y)
+## VAR_CLIBOX(cm_var,y)
 
 **Description:** The amount of climate indicator in a reservoir.
 

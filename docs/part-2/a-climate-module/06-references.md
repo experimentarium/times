@@ -1,4 +1,4 @@
-## References
+# References
 
 Drouet L., Edwards N.R. and A. Haurie (2004). "Coupling Climate and Economic Models in a Cost-Benefit Framework: A Convex Optimization Approach". Submitted to *Environmental Modeling and Assessment.*
 

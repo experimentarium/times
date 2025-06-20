@@ -1,7 +1,7 @@
 (a-switches-and-parameters)=
-## Switches and Parameters
+# Switches and Parameters
 
-### Activating the Climate Module
+## Activating the Climate Module
 
 The Climate Module (CLI) extension of TIMES can be activated and employed by using the Parameters and Switches described in this chapter.
 
@@ -12,13 +12,13 @@ $SET CLI YES
 ```
 
 (a-calibration)=
-### Calibration
+## Calibration
 
 The calibration of the Climate Module to historical values is an important aspect of using the module. The mass balance and temperature equations can be calibrated for the first period by using three alternative calibration years B(1)--1, m(1)--1, and m(1). Whenever D(1)=1, the first two alternatives are equal. The default calibrating year is m(1)--1. The alternative calibration years can be activated by using one of the following two settings in the run-file:
 - `$SET CM_CALIB B` ! Calibrate at the end of B(1)--1
 - `$SET CM_CALIB M` ! Calibrate at the end of m(1)
 
-### Controlling the years considered beyond EOH
+## Controlling the years considered beyond EOH
 
 The Climate Equations will be calculated beyond EOH at each of the years for which either a user-defined emission target or a temperature or concentration bound is specified. The years considered thus span between the EOH and the last year for which a CM_MAXC is specified.
 
@@ -30,7 +30,7 @@ $SET EOTIME 2300
 
 The **reporting years** for the climate variables are the same as the calculation years.
 
-### Input parameters
+## Input parameters
 
 Like all other aspects of TIMES, the user defines the Climate Module components of the energy system by means of input parameters, which are described in this section. {numref}`cli-user-input-parameters` describes the User Input Parameters that are associated with the Climate Module option.
 
@@ -112,7 +112,7 @@ Like all other aspects of TIMES, the user defines the Climate Module components 
 ```
 
 
-#### Mapping of regional emissions to global emissions
+### Mapping of regional emissions to global emissions
 
 Conversion from regional emissions to global emissions must be done by using the CM_GHGMAP(r,c,cg) parameter, in adequate units. The labels for the global emissions **cg** are \'CO2-GtC\', \'CH4-Mt\' and \'N2O-Mt\'. The parameter IRE_CCVT(r,c,r,cg) can alternatively be also used, if CM_GHGMAP is not available.
 
@@ -124,13 +124,13 @@ CM_GHGMAP(R,'TOTN2O','N2O-MT') = 1E-3;
 CM_GHGMAP(R,'TOTCO2','CO2-GtC') = 2.727272E-7;
 ```
 
-#### Deterministic input parameters for CO<sub>2</sub>
+### Deterministic input parameters for CO<sub>2</sub>
 
 - CM_CONST({PHI_AT_UP, PHI_UP_AT, PHI_UP_LO, PHI_LO_UP}) (also denoted $\varphi_{atm-up}$, $\varphi_{up-atm}$, etc, in the equations of section 2): annual CO<sub>2</sub> flow coefficients between the three reservoirs (AT=Atmosphere, UP=Upper ocean layer, LO=Deep ocean layer). These are time-independent coefficients. Units: none
 - CM_HISTORY(y,{CO2-ATM, CO2-UP, CO2-LO}): Values at the end of the calibration year *y* of the masses of CO<sub>2</sub> in the atmosphere, the upper ocean layer, and the deep ocean layer, respectively. Note that these values are time- indexed so that the model generator can pick up the correct value according to the calibration year chosen by the user. Units: GtC, Mt(CH<sub>4</sub>), Mt(N<sub>2</sub>O).
 - CM_CONST(CO2-PREIND): Pre-industrial atmospheric mass of CO<sub>2</sub>. Units = GtC
 
-### Parameters for the linear CO<sub>2</sub> forcing approximation
+## Parameters for the linear CO<sub>2</sub> forcing approximation
 
 CM_LINFOR(datayear,item,lim): lower and upper limit for the concentration of CO<sub>2</sub> in atmosphere, used in the approximation of the radiative forcing equation for CO<sub>2</sub> (see section [2.2](a-radiative-forcing) above). *item* may be equal to CO2-ATM (in which case the limit is expressed as a ratio of concentration over pre-industrial concentration), or to CO2-PPM (in which case the limit is expressed in ppm of CO2-equivalent). The index *lim* is either equal to LO or to UP, depending on whether the lower or the upper limit of the range is being specified. For example, the following specifications may be used to select a range from 375 to 550 ppm for the approximation at year 2020:
 
@@ -141,7 +141,7 @@ CM_LINFOR('2020','CO2-PPM','UP') = 550;
 
 Note that the values of LINFOR are systematically interpolated. The range can also be specified in a time-dependent manner taking into account the gradual increase in the expected range of possible concentration levels over time. That would further improve the accuracy of the linearization. For example, for 2005 the range could be specified to consist of only a single value, because the actual concentration in 2005 is well-known.
 
-#### Parameters for modeling the concentrations and forcings of other greenhouse gases
+### Parameters for modeling the concentrations and forcings of other greenhouse gases
 
 **Historical base year values of natural (UP) and anthropogenic (ATM) concentrations** (in Mt), needed at for the base year of the model (default 2005):
 
@@ -178,7 +178,7 @@ CM_LINFOR('2010','N2O-PPB','FX') = -0.769;
 
 Units: Watts/m<sup>2</sup>.
 
-#### Parameters for the temperature equations
+### Parameters for the temperature equations
 
 - CM_CONST(SIGMA1) (also denoted $\sigma_1$): speed of adjustment parameter for atmospheric temperature. $1/\sigma_1$ represents the thermal capacity of the atmospheric + upper ocean layer (W-yr/m<sup>2</sup>/°C). Note however that when SIGMA1 is assumed stochastic, its multiple values are specified via the generic S_CM_CONST parameter described below. 
 - CM_CONST(SIGMA2) (also denoted $\sigma_2$): ratio of the thermal capacity of the deep oceans to the transfer rate from shallow to deep ocean (W/m<sup>2</sup>/°C). 
@@ -189,7 +189,7 @@ Units: Watts/m<sup>2</sup>.
 - CM_HISTORY(y,{DELTA_ATM, DELTA_LOW}): values at the end of the calibration year *y* of the temperature changes (wrt to pre-industrial time) in atmosphere and deep layer, respectively. Units: °C
 
 (a-upport-bounds-on-climate-variablaes)=
-#### Upper bounds on climate variables
+### Upper bounds on climate variables
 
 The following parameters are needed if constraints on some climate variables are desired. In TIMES, several climate upper bounds may be specified at any year. These upper bounds are specified via the single generic parameter CM_MAXC(datayear,item), where *datayear* is the year at which the bound applies, and *item* may be any of the following nine choices:
 
@@ -205,7 +205,7 @@ The following parameters are needed if constraints on some climate variables are
 
 In addition, the user can also bound the CO<sub>2</sub> concentration expressed in GtC, by using CM_MAXCO2C.
 
-#### Incorporating climate variables in UC constraints
+### Incorporating climate variables in UC constraints
 
 When using the Climate Module extension, one can also refer to the climate variables in user constraints. The UC attribute for that purpose is the following:
 
@@ -223,7 +223,7 @@ This parameter can be used to define climate variable coefficients in any period
 
 The attribute can be used for defining custom relation­ships by each region, between any of the climate variables and e.g. process flows, activities or capacities, or total commodity flows. However, if used in a global constraint, one should normally define the UC_CLI attribute only for one region (e.g. GLB).
 
-#### Random climate parameters (refer to documentation on stochastic TIMES)
+### Random climate parameters (refer to documentation on stochastic TIMES)
 
 If the stochastic programming version of TIMES is used, several climate parameters may be assumed random. These fall into two categories: the upper bounds on climate quantities discussed in the previous section, and the two climate coefficients, **Cs** and **SIGMA1.**
 
@@ -238,7 +238,7 @@ The reader is referred to Chapter 8 of Part I and the documentation of the stoch
 In addition to the possible values of the random parameters, the user must specify the probabilities attached to each ***sow***. This is also explained in the documentation on stochastic TIMES.
 :::
 
-#### Parameters for extending the Climate Module equations beyond EOH
+### Parameters for extending the Climate Module equations beyond EOH
 
 The main purpose of extending the climate equations beyond EOH is to be able to set climate targets beyond EOH. This is particularly useful for DeltaT targets, because there is a con­siderable time lag between the decline of emissions and the peak of DeltaT.
 
@@ -288,7 +288,7 @@ PARAMETER CM_CONST / BEOHMOD 10 /;
 
 The **reporting years** for the climate variables are the same as the calculation years.
 
-### Internal parameters
+## Internal parameters
 
 - *CM_PPM<sub>cm_var</sub>*: The densities of the greenhouse gases are hard coded in TIMES (via the internal parameter), with the following values:
 	- density of CH<sub>4</sub>: 2.84 Mt / ppbv
@@ -299,7 +299,7 @@ The **reporting years** for the climate variables are the same as the calculatio
 - *CM_BB<sub>cm_var,t,i,j</sub>*: The transition matrix for climate indicator cm_var from emissions in period t to reservoir contents in the same period;
 - *CM_CC<sub>cm_var,t,i,j</sub>*: The transition matrix for climate indicator cm_var from emissions in period t--1 to reservoir contents in the period t.
 
-### Reporting parameters
+## Reporting parameters
 
 There are two reporting parameters, CM_RESULT and CM_MAXC_M, which contain the results on the levels of the climate variables (or reporting quantities) and the dual values of the constraints defined by using CM_MAXC.
 
@@ -315,7 +315,7 @@ CM_RESULT is indexed by year *y* and result type {e.g. CO2-ATM, CO2-PPM, FORCING
 
 CM_MAXC_M is indexed by year *y* and constraint type. The values are reported for each of the EQ_CLITOT and EQ_CLIMAX equations. The values represent directly the dual values of these constraints at year y.
 
-### Default values of the climate parameters
+## Default values of the climate parameters
 
 {numref}`cli-parameters` shows the default values of all parameters of the Climate Module except exogenous forcing. All defaults may be modified by the user.
 - CS and SIGMA1 may be assumed random, in which case the default values are not used. The user must specify their values explicitly using the appropriate parameter names described earlier.
