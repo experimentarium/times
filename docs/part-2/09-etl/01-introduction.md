@@ -1,6 +1,6 @@
 # Introduction
 
-As discussed in Chapter 11 of Part I, there are situations in which the rate at which a technology's unit investment cost changes over time is a function of cumulative investment in the technology. In these situations, technological learning is called endogenous.
+As discussed in Chapter {numref}`%s <the-endogenous-technological-learning-extension>` of Part I, there are situations in which the rate at which a technology's unit investment cost changes over time is a function of cumulative investment in the technology. In these situations, technological learning is called endogenous.
 
 Mixed Integer Programming (MIP) is employed in order to model Endogenous Technological Learning (ETL) in TIMES. As has already been noted in the case of Lumpy Investments, MIP problems are much more difficult to solve than standard LP problems, and so the ETL feature should be applied only where it is deemed necessary to model a limited number of technologies as candidates for Endogenous Technological Learning. This caution is especially required for large-scale TIMES instances. Another important caveat is that ETL is relevant when the modeling scope is broad e.g. when a large portion of (or perhaps the entire) world energy system is being modeled, since the technological learning phenomenon rests on global cumulative capacity of a technology, and not on the capacity implemented in a small portion of the world.
 
