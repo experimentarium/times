@@ -1,11 +1,13 @@
+(equations)=
 # Equations 
 
-This chapter is divided into four sections: the first section describes the main notational conventions adopted in writing the mathematical expressions of the entire chapter. The next two sections treat respectively the TIMES objective function and the standard linear constraints of the model. The fourth section is devoted to the facility for defining various kinds of user constraints. Additional constraints and objective function additions that are required for the Climate Module, Damage Cost and Endogenous Technology Learning options are described in Appendices A, B and C, respectively.
+This chapter is divided into four sections: the first section describes the main notational conventions adopted in writing the mathematical expressions of the entire chapter. The next two sections treat respectively the TIMES objective function and the standard linear constraints of the model. The fourth section is devoted to the facility for defining various kinds of user constraints. Additional constraints and objective function additions that are required for the Climate Module, Damage Cost and Endogenous Technology Learning options are described in Appendices [A](part2-climate-module), [B](damage-cost-functions) and [C](endogenous-technological-learning), respectively.
 
 Each equation has a unique name and is described in a separate subsection. The equations are listed in alphabetical order in each section. Each subsection contains successively the name, list of indices, and type of the equation, the related variables and other equations, the purpose of the equation, any particular remarks applying to it, and finally the mathematical expression of the constraint or objective function.
 
-The mathematical formulation of an equation starts with the name of the equation in the format: $EQ\_XXX_{i,j,k,l}$, where $XXX$ is a unique equation identifier, and $i,j,k,..,$ are the *equation indexes*, among those described in chapter 2. Some equation names also include an index *l* controlling the sense of the equation. Next to the equation name is a *logical condition* that the equation indexes must satisfy. That condition constitutes the *domain of definition* of the equation. It is useful to remember that the equation is created in multiple instances, one for each combination of the equation indexes that satisfies the logical condition, and that each index in the equation's index list remains *fixed* in the expressions constituting each instance of the equation.
+The mathematical formulation of an equation starts with the name of the equation in the format: $EQ\_XXX_{i,j,k,l}$, where $XXX$ is a unique equation identifier, and $i,j,k,..,$ are the *equation indexes*, among those described in chapter {numref}`%s <sets>`. Some equation names also include an index *l* controlling the sense of the equation. Next to the equation name is a *logical condition* that the equation indexes must satisfy. That condition constitutes the *domain of definition* of the equation. It is useful to remember that the equation is created in multiple instances, one for each combination of the equation indexes that satisfies the logical condition, and that each index in the equation's index list remains *fixed* in the expressions constituting each instance of the equation.
 
+(notational-conventions)=
 ## Notational conventions 
 
 We use the following mathematical symbols for the mathematical expressions and relations constituting the equations:
@@ -24,7 +26,7 @@ When a single index j runs over a one-dimensional set A, the usual notation is u
 
 When a summation must be done over a subset of a multi-dimensional set, we use a simplified notation where some of the running indexes are omitted, if they are not active for this summation.
 
-[Example]{.underline}: consider the 3-dimensional set *top* consisting of all quadruples $\{r,p,c,io\}$ such that process $p$ in region $r$, has a flow of commodity $c$ with orientation $io$ (see table 3 of chapter 2). If is it desired to sum an expression $A_{r,p,c,io}$ over all commodities $c$, keeping the region ($r$), process ($p$) and orientation ($io$) fixed respectively at $r_1$, $p_1$ and 'IN', we will write, by a slight abuse of notation: $\sum_{c \in top(r_{1},p_{1},'IN')}{A(r_{1},p_{1},c,'IN')}$ , or even more simply:
+[Example]{.underline}: consider the 3-dimensional set *top* consisting of all quadruples $\{r,p,c,io\}$ such that process $p$ in region $r$, has a flow of commodity $c$ with orientation $io$ (see table 3 of {numref}`%s <sets>`). If is it desired to sum an expression $A_{r,p,c,io}$ over all commodities $c$, keeping the region ($r$), process ($p$) and orientation ($io$) fixed respectively at $r_1$, $p_1$ and 'IN', we will write, by a slight abuse of notation: $\sum_{c \in top(r_{1},p_{1},'IN')}{A(r_{1},p_{1},c,'IN')}$ , or even more simply:
 
 $\sum_{c \in top}{A(r_{1},p_{1},c,'IN')}$, if the context is unambiguous. Either of these notations clearly indicates that $r$, $p$ and $io$ are fixed and that the only active running index is $c$.
 
@@ -36,7 +38,7 @@ We use similar simplifying notation in writing the logical conditions of each eq
 
 A typical example of the former would be written as: $\ni$*ACTBND~r,t,p,s,bd~*, which reads: "the user has defined an activity bound for process *p* in region *r*, time-period *t*, timeslice *s* and sense *bd*". The indexes may sometimes be omitted, when they are the same as those attached to the equation name.
 
-A typical example of the latter is the first condition for equation *EQ_ACTFLO~r,v,t,p,s~* (see section 6.3.4), which we write simply as: $rtp\_vintyr$, which is short for: $\{ r,v,t,p\} \in rtp\_vintyr$, with the meaning that "some capacity of process *p* in region *r*, created at period *v*, exists at period *t*". Again here, the indices have been omitted from the notation since they are already listed as indices of the equation name.
+A typical example of the latter is the first condition for equation *EQ_ACTFLO~r,v,t,p,s~* (see section {numref}`%s <equation-eq-actflo>`), which we write simply as: $rtp\_vintyr$, which is short for: $\{ r,v,t,p\} \in rtp\_vintyr$, with the meaning that "some capacity of process *p* in region *r*, created at period *v*, exists at period *t*". Again here, the indices have been omitted from the notation since they are already listed as indices of the equation name.
 
 ### Using Indicator functions in arithmetic expressions
 
@@ -52,6 +54,7 @@ where it is understood that the notation (Cond) is the *indicator function* of t
 
 This notation often makes equations more legible and compact. A good example appears in EQ_CAPACT.
 
+(objective-function-eq-obj)=
 ## Objective function EQ_OBJ
 
 **Equation EQ_OBJ**
@@ -72,7 +75,7 @@ The TIMES objective function includes a number of innovations compared to those 
 
 - The model uses a general discount rate *d(y)* (year dependent), as well as technology specific discount rates *d~s~(t)* (period dependent). The former is used to: a) discount fixed and variable operating costs, and b) discount investment cost payments from the point of time when the investment actually occurs to the base year chosen for the computation of the present value of the total system cost. The latter are used only to calculate the annual payments resulting from a lump-sum investment in some year. Thus, the only place where *d~s~(t)* intervenes is to compute the Capital Recovery Factors *(CRF)* discussed further down.
 
-For convenience, we summarize below the notation which is more especially used in the objective function formulation (see Section 6.1 for general notes on the notation) .
+For convenience, we summarize below the notation which is more especially used in the objective function formulation (see Section {numref}`%s <notational-conventions>` for general notes on the notation) .
 
 #### Notation relative to time
 
@@ -187,8 +190,9 @@ REG\_OBJ(z,r) = & \sum_{y \in ( - \infty, + \infty)}{DISC(y,z) \times \left\{
 
 The regional index *r* is omitted from the nine components for simplicity of notation.
 
-The first and second terms are linked to investment costs. The third term is linked to decommissioning capital costs, the fourth and fifth terms to fixed annual costs, the seventh and eighth terms to all variable costs (costs proportional to some activity), and the ninth to demand loss costs. The tenth cost (actually a revenue) accounts for commodity recycling occurring after *EOH*, and the eleventh term is the salvage value of all capital costs of technologies whose life extends beyond *EOH*. The 11 components are presented in the nine subsections 6.2.2 to 6.2.10.
+The first and second terms are linked to investment costs. The third term is linked to decommissioning capital costs, the fourth and fifth terms to fixed annual costs, the seventh and eighth terms to all variable costs (costs proportional to some activity), and the ninth to demand loss costs. The tenth cost (actually a revenue) accounts for commodity recycling occurring after *EOH*, and the eleventh term is the salvage value of all capital costs of technologies whose life extends beyond *EOH*. The 11 components are presented in the nine subsections {numref}`%s <investment-costs-invcost>` to {numref}`%s <late-revenues-from-endogenous-commodity>`.
 
+(investment-costs-invcost)=
 ### Investment costs: INVCOST(y)
 
 This subsection presents the components of the objective function related to investment costs, which occur in the year an investment is decided and/or during the construction lead-time of a facility.
@@ -330,10 +334,12 @@ $$P_t(y) = \sum_{u=Max\{B(t), y-ELIFE_t+1\}}^{y} {NI_t(u) \times VAR\_CAP_t \tim
 
 $$INVCOST(y) = \sum_{t \in MILESTONES,t \leq T(y)}{INDIC(2.b) \times P_{t}(y)}$$
 
+(taxes-and-subsidies-on-investments)=
 ### Taxes and subsidies on investments
 
 We assume that taxes/subsidies on investments occur at precisely the same time as the investment. Therefore, the expressions *INVTAXSUB(y)* for taxes/subsidies are identical to those for investment costs, with *NCAP_COST* replaced by: *(NCAP_ITAX -- NCAP_ISUB).*
 
+(decommissionning-capital-costs)=
 ### Decommissioning (dismantling) capital costs: *INVDECOM(y)*
 
 **Remarks**
@@ -452,6 +458,7 @@ $INVDECOM(y) = \sum_{t \in MILESTONES,t \leq T(y)}{INDIC(III.2.b) \times P_{t}(y
 
 ![](assets/case-2b-example-3.svg)
 
+(fixed-annual-costs)=
 ### Fixed annual costs: FIXCOST(y), SURVCOST(y) 
 
 The fixed annual costs are assumed to be paid in the same year as the actual operation of the facility. However, the spreading of the investment described in subsection 5.1.1 results in a tapering in and a tapering out of these costs. Taxes and subsidies on fixed annual costs are also accepted by the model.
@@ -631,9 +638,10 @@ $$
 
 $y \leq EOH$ **(VI)**
 
+(cost-of-demand-reductions)=
 ### Cost of demand reductions ELASTCOST(y) 
 
-When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See PART I for a theoretical justification, and Appendix D for formulations involving more generalized demand functions.
+When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See PART I for a theoretical justification, and Appendix [D](times-demand-functions) for formulations involving more generalized demand functions.
 
 $${ELASTCOST(y) = 
 }{\quad\sum_{j = 1}^{COM\_STEP_{lo}}{COM\_BPRICE_{T(y)} \times \left\{ \left( 1 - \frac{(j - 1/2) \times COM\_VOC_{lo,T(y)}}{COM\_STEP_{lo}} \right)^{\frac{1}{COM\_ELAST_{lo,T(y)}}} \right\}} \times VAR\_ELAST_{lo,j,T(y)}}$$
@@ -643,13 +651,14 @@ $${- \sum_{j = 1}^{COM\_STEP_{up}}{COM\_BPRICE_{T(y)} \times \left\{ \left( 1 + 
 
 **(VII)**
 
+(salvage-value-salvage)=
 ### Salvage value: SALVAGE (EOH+1)
 
 Investments whose technical lives exceed the model's horizon receive a SALVAGE value for the unused portion of their technical lives. Salvage applies to several types of costs: investment costs, sunk material costs, as well as decommissioning costs and surveillance costs. SALVAGE is reported as a single lump sum revenue accruing precisely at the end of the horizon (and then discounted to the base year like all other costs).
 
 The salvaging of a technology's costs is an extremely important feature of any dynamic planning model with finite horizon. Without it, investment decisions made toward the end of the horizon would be seriously distorted, since their full value would be paid, but only a fraction of their technical life would lie within the horizon and produce useful outputs.
 
-What are the costs that should trigger a salvage value? The answer is: any costs that are directly or indirectly attached to an investment. These include investment costs and decommissioning costs. Fixed annual costs and variable costs do not require salvage values, since they are paid each year in which they occur, and their computation involves only years within the horizon. However, surveillance costs should be salvaged, because when we computed them in section 6.2.5, we allowed *y* to lie beyond EOH (for convenience). Finally, note that any capacity prematurely retired within the model horizon is not assumed to have a salvage value (although this detail is not explicitly shown in the formulation below).
+What are the costs that should trigger a salvage value? The answer is: any costs that are directly or indirectly attached to an investment. These include investment costs and decommissioning costs. Fixed annual costs and variable costs do not require salvage values, since they are paid each year in which they occur, and their computation involves only years within the horizon. However, surveillance costs should be salvaged, because when we computed them in section {numref}`%s <fixed-annual-costs>`, we allowed *y* to lie beyond EOH (for convenience). Finally, note that any capacity prematurely retired within the model horizon is not assumed to have a salvage value (although this detail is not explicitly shown in the formulation below).
 
 Thus, *SALVAGE* is the sum of three salvage values
 
@@ -657,7 +666,7 @@ $$SALVAGE(EOH + 1) = SALVINV(EOH + 1) + SALVDECOM(EOH + 1) + SALVSURV(EOH + 1)$$
 
 We treat each component separately, starting with *SALVINV.*
 
-**A). Salvaging investment costs (from subsections 6.2.2 and 6.2.3)**
+**A). Salvaging investment costs (from subsections {numref}`%s <investment-costs-invcost>` and {numref}`%s <taxes-and-subsidies-on-investments>`)**
 
 The principle of salvaging is simple, and is used in other technology models such as MARKAL, etc: a technology with technical life *TLIFE*, but which has only spent *x* years within the planning horizon, should trigger a repayment to compensate for the unused portion *TLIFE-x* of its active life.
 
@@ -761,7 +770,7 @@ Note again that $SAL (B(t) + (C-1) \times TLIFE_{t} + ILED_{t}) = 0$ whenever $B
 
 **NOTE:** salvage cost of taxes/subsidies on investment costs are identical to the above, replacing NCAP_COST by {NCAP_ITAX -- NCAP_ISUB}*.*
 
-**B). Savage value of decommissioning costs (from subsection 6.2.4)**
+**B). Savage value of decommissioning costs (from subsection {numref}`%s <decommissionning-capital-costs>`)**
 
 For decommissioning costs, it should be clear that the triggering of salvage is still the fact that some residual life of the *investment itself* exists at $EOH+1$. What matters is *not* that the decommissioning occurs after EOH, but that some of the investment life extends beyond EOH. Therefore, Result 1 derived above for investment costs, still applies to decommissioning. Furthermore, the correction factor due to the use of technology specific discount rates is also still applicable (with *ELIFE* replaced by *DELIF*).
 
@@ -847,7 +856,7 @@ Note again that $SAL$ is 0 whenever $B(t) + C \times TLIFE_{t} + ILED_{t} \leq E
 
 **C) Salvage Value of Surveillance Costs**
 
-Similarly to the salvaging of decommissioning costs, the basic salvage value fractions $S(k,m)$ defined in *Result 1* at the beginning of Section 6.2.9 are used as the basis for the salvage value of surveillance costs. However, unlike with decommissioning costs, there is no need to make corrections for technology-specific discount rates, as the costs do not represent capital costs. In addition, the discounting to $EOH+1$ must be made separately for each surveillance year. Note that only Cases 2 have surveillance costs.
+Similarly to the salvaging of decommissioning costs, the basic salvage value fractions $S(k,m)$ defined in *Result 1* at the beginning of Section {numref}`%s <salvage-value-salvage>` are used as the basis for the salvage value of surveillance costs. However, unlike with decommissioning costs, there is no need to make corrections for technology-specific discount rates, as the costs do not represent capital costs. In addition, the discounting to $EOH+1$ must be made separately for each surveillance year. Note that only Cases 2 have surveillance costs.
 
 **Case 2.a:** ${ILED}_{t} > {ILED}_{Min,t}$ and ${ILED}_{t} + {TLIFE}_{t} \geq {D(t)}$
 
@@ -871,6 +880,7 @@ Note again that $S(k,m) = 0$ whenever $k + m \leq EOH + 1$.
 
 **(X.2.b)**
 
+(late-revenues-from-endogenous-commodity)=
 ### Late revenues from endogenous commodity recycling after EOH LATEREVENUE(y)
 
 Late revenues consist of revenues from any materials and energy which had been embedded in some processes, and which are released after *EOH*. Such revenues exist only if an exogenous salvage value was declared by the user for the sunk material.
@@ -937,9 +947,10 @@ $$CRF_{2,mid} = CFR_{mid}^{proper} \times (1+d(T(y)))^{-0.5} = CRF_{beg} \times 
 
 Consequently, in both cases the annualized investment payments are then assumed to occur at the mid-point of each fiscal year starting at the time of the lump-sum investment, and the annual payments are equivalent to the lump-sum investment when discounted back to that point by the technology-specific discount rate. The implementation of the optional corrections for mid-year discounting corresponds to equations ({eq}`XI-1` to {eq}`XI-3`). To be consistent, the expression {eq}`XI-3` for $CRF_{2,mid}$ should also be used for decommissioning costs.
 
+(equations-constraints)=
 ## Constraints
 
-The constraints available in standard TIMES are shown in {numref}`times-equations`, and later fully described in the following subsections. The constraints related to the Climate Module (CLI), Damage Cost Functions (DAM) and Endogenous Technology Learning (ETL) are shown and described in three separate chapters (Appendices A, B and C respectively). The constraints related to the advanced unit commitment formulation are described in detail in a separate document \"*Dispatching and Unit Commitment in TIMES*\", and the constraints related to the balancing services extension are described in a separate document \"*Enhancing the flexibility in TIMES: Introducing Ancillary Services Markets*\".
+The constraints available in standard TIMES are shown in {numref}`times-equations`, and later fully described in the following subsections. The constraints related to the Climate Module (CLI), Damage Cost Functions (DAM) and Endogenous Technology Learning (ETL) are shown and described in three separate chapters (Appendices [A](part2-climate-module), [B](damage-cost-functions) and [C](endogenous-technological-learning) respectively). The constraints related to the advanced unit commitment formulation are described in detail in a separate document \"*Dispatching and Unit Commitment in TIMES*\", and the constraints related to the balancing services extension are described in a separate document \"*Enhancing the flexibility in TIMES: Introducing Ancillary Services Markets*\".
 
 ```{list-table} List of TIMES equations.
 :name: times-equations
@@ -1028,7 +1039,7 @@ The constraints available in standard TIMES are shown in {numref}`times-equation
 * - EQL_SCAP
   - Bounds the amount of capacity salvaged if early retirements are active.
 * - EQ_SLSIFT
-  - Implements the load shifting constraints (see 6.3.37 EQ_SLSIFT).
+  - Implements the load shifting constraints (see {numref}`%s <equations-eq-slsift>` EQ_SLSIFT).
 * - EQ_STGAUX
   - Establishes an equality relationship between storage main flows or activity and an auxiliary storage flow
 * - EQL_STGCCL
@@ -1122,7 +1133,7 @@ $${VAR\_ELAST_{r,t,c,s,j,l} \leq \frac{COM\_PROJ_{r,t,c} \times COM\_FR_{r,t,c,s
 
 **Related equations**: **EQ_COMBAL, EQ_ACTFLO, EQ_PTRANS**
 
-**Purpose**: This equation bounds the total activity of a process in a period independently of the vintage years of the installed capacities. The equation will either be generated when the activity bound is specified for a timeslice being at a timeslice level above the timeslice level of the process (**prc_tsl**), e.g. ACT_BND is specified for an ANNUAL timeslice but the process operates on a DAYNITE timeslice level, or irrespectively of the timeslices when the process is characterized as a vintaged one (**prc_vint**). If activity bounds are specified for timeslices below the process timeslice level (**prc_tsl**), the bounds will be aggregated to the process timeslice level by standard aggregation (see Section 3.1.2) and then directly applied to the activity variable for non-vintaged processes. The same is true for activity bounds specified at the process timeslice level of non-vintaged processes.
+**Purpose**: This equation bounds the total activity of a process in a period independently of the vintage years of the installed capacities. The equation will either be generated when the activity bound is specified for a timeslice being at a timeslice level above the timeslice level of the process (**prc_tsl**), e.g. ACT_BND is specified for an ANNUAL timeslice but the process operates on a DAYNITE timeslice level, or irrespectively of the timeslices when the process is characterized as a vintaged one (**prc_vint**). If activity bounds are specified for timeslices below the process timeslice level (**prc_tsl**), the bounds will be aggregated to the process timeslice level by standard aggregation (see Section {numref}`%s <inheritance-and-aggregation-of>`) and then directly applied to the activity variable for non-vintaged processes. The same is true for activity bounds specified at the process timeslice level of non-vintaged processes.
 
 **Remarks**:
 - The equation is required because for the two cases described above (bound specified for a timelslice above the process timeslice level or process is characterized as a vintaged one), no single variable exists which can be bounded directly.
@@ -1205,6 +1216,7 @@ $$\sum_{\begin{aligned}
  & \times RS\_FR_{r,s,ts}
 \end{aligned} \right)$$
 
+(equation-eq-actflo)=
 ### Equation: EQ_ACTFLO 
 
 **Indice**s: **region (r), vintage year (v), milestone year (t), process (p), time slice (s)**
@@ -2698,7 +2710,7 @@ VAR\_SIN_{r,v,t,p,com,ts}
 
 ### Equations related to exchanges (EQ_IRE, EQ_IREBND, EQ_XBND)
 
-The three equations in this section concern trade between regions. Since these equations involve (directly or indirectly) more than one region, we start their presentation by a complete description of the modeling approach used, which, as we shall see, involves various schemes for representing different types of trade. The description already given in Chapter 4 is also relevant to these equations.
+The three equations in this section concern trade between regions. Since these equations involve (directly or indirectly) more than one region, we start their presentation by a complete description of the modeling approach used, which, as we shall see, involves various schemes for representing different types of trade. The description already given in Chapter {numref}`%s <usage-notes-on-special-types>` is also relevant to these equations.
 
 <ins><b>Variables</b></ins>
 - VAR_IRE(r, v, t, p, c, s, ie)
@@ -3261,6 +3273,7 @@ $$EQL\_SCAP_{r,v,p,ips} \quad \ni \left(rtp_{r,v,p}\land\left(
  & prc\_rcap_{r,p}
 \end{aligned}}{VAR\_SCAP_{r,v,'0',p}}\space}$$
 
+(equations-eq-slsift)=
 ### Equations: EQ_SLSIFT
 
 This block of equations implements the load shifting constraints. Enabling load-shifting for demand or final energy commodities is supported by introducing load-shifting processes. Load shifting processes must be characterized as timeslice storage processes, and must have $STG\_SIFT_{r,t,p,D,s}$ specified for the load commodity *D*. The constraints for the load-shifting can be divided into different types, as described below.
@@ -3277,7 +3290,7 @@ This block of equations implements the load shifting constraints. Enabling load-
 
 A. **Seasonal balances**
 
-**Purpose:** To impose an equality balance for the storage input and output flows on the seasonal or weekly level (the first level above DAYNITE in the model). See section 4.3.9 for some more detailed discussion of load-shifting processes.
+**Purpose:** To impose an equality balance for the storage input and output flows on the seasonal or weekly level (the first level above DAYNITE in the model). See section {numref}`%s <load-shifting-storage-processes>` for some more detailed discussion of load-shifting processes.
 
 **Type**: =
 
@@ -3931,6 +3944,7 @@ If neither **uc_r_each** nor **uc_r_sum** are given, the default is set to all *
 - $UC\_RHSRTS_{r,uc\_n,t,s,bd}$: RHS constant with bound type **bd** of the user constraint $EQl\_UCRTS{r,uc\_n,t,s}$ of type **l**.
 - $UC\_TIME_{uc\_n,r,t}$: Defines an additional term in the RHS constant, which is either the time (in years) covered by the user constraint multiplied by $UC\_TIME$ (for static and cumulative constraints), or the time between the milestone years of the successive periods in the constraint (for dynamic user constraints).
 
+(lhs-user-constraints)=
 ### LHS user constraints
 
 **Mathematical formulation of LHS user constraints**
@@ -5046,7 +5060,7 @@ As indicated in {numref}`uc-modifier-attributes`, one can easily specify, for ex
 
 #### Cost modifiers (COST, TAX, SUB, DELIV)
 
-The cost modifiers are applied to the variable terms by multiplying them with the corresponding cost attribute, or with the sum of multiple cost attributes, if several cost modifiers are specified. The expressions for the $FLO_{r,t,p,s,'LHS'}$ term above in section 6.4.2 give a detailed example of how the cost attributes are applied. The cost attributes applied are the following (where the SUB terms are taken as negative
+The cost modifiers are applied to the variable terms by multiplying them with the corresponding cost attribute, or with the sum of multiple cost attributes, if several cost modifiers are specified. The expressions for the $FLO_{r,t,p,s,'LHS'}$ term above in section {numref}`%s <lhs-user-constraints>` give a detailed example of how the cost attributes are applied. The cost attributes applied are the following (where the SUB terms are taken as negative
 values):
 
 - COST: ACT_COST for ACT, FLO_COST for FLO/IRE, NCAP_COST for NCAP, COM_CSTNET for COMNET, and COM_CSTPRD for COMPRD
@@ -5188,7 +5202,7 @@ The only function of the YES modifier is to declare the user constraint to be dy
 
 ### Non-binding user constraints
 
-Non-binding user constraints of any type (introduced for reporting purposes) can be defined in the same way as binding constraints, but using the \'N\' lim type when specifying the UC_RHSxxx constant, with any value defined for it (--1 is recommended). Non-binding user constraints can only be defined when user constraint variables are enabled (i.e. when using the option `$SET VAR_UC YES`). The levels of the non-binding constraints (i.e. the levels of the slack variables) are reported in the PAR_UCSL reporting attribute (see Section 3.3).
+Non-binding user constraints of any type (introduced for reporting purposes) can be defined in the same way as binding constraints, but using the \'N\' lim type when specifying the UC_RHSxxx constant, with any value defined for it (--1 is recommended). Non-binding user constraints can only be defined when user constraint variables are enabled (i.e. when using the option `$SET VAR_UC YES`). The levels of the non-binding constraints (i.e. the levels of the slack variables) are reported in the PAR_UCSL reporting attribute (see Section {numref}`%s <report-parameters>`).
 
 
 [^39]: The actual implementation of OBJ in the GAMS program is different from the one described in the documentation, since the annualizing of the various cost components is not performed in the GAMS code of the OBJ equation, but rather in the reporting section of the program, for improved code performance. However, despite the simplification, the GAMS code results in an objective function that is fully equivalent to the one in this documentation.

@@ -1,3 +1,4 @@
+(usage-notes-on-special-types)=
 # Usage notes on special types of processes
 
 ## Combined heat and power
@@ -286,12 +287,13 @@ In TIMES, capacity by default bounds only the activity. However, with the $NCAP\
 
 The rules for defining the availabilities for trade flows can be summarized as follows:
 - If the import/export commodities are different ($c1$/$c2$): Use $NCAP\_AFC(c1)$ for bounding the import flow and $NCAP\_AFC(c2)$ for bounding the export flow, or use $NCAP\_AFC('NRG')$ for applying the same availability to both flows.
-- If $input=output=c$, specifying ***either*** $NCAP\_AFC(c)$ ***or*** $NCAP\_AFC('NRG')$ alone applies to both imports and exports (unless the process type is DISTR, see Section 4.2.4 below). However, if they are both specified, then $NCAP\_AFC(c)$ applies to the import flow while $NCAP\_AFC('NRG')$ applies to the export flow.
+- If $input=output=c$, specifying ***either*** $NCAP\_AFC(c)$ ***or*** $NCAP\_AFC('NRG')$ alone applies to both imports and exports (unless the process type is DISTR, see Section {numref}`%s <notes-on-other-attributes>` below). However, if they are both specified, then $NCAP\_AFC(c)$ applies to the import flow while $NCAP\_AFC('NRG')$ applies to the export flow.
 
 *<ins>Remarks:</ins>*
 1. As any process has only a single capacity variable, the availabilities specified for the import/export flows are always proportional to the same overall capacity.
 2. Note that the availability factors defined by $NCAP\_AFC$ are multiplied by any $NCAP\_AF$/$NCAP\_AFS$/$NCAP\_AFA$ value if defined for the same timeslice.
 
+(notes-on-other-attributes)=
 ### Notes on other attributes for trade processes
 
 There are important limitations of using the parameters for standard processes for IRE processes. The most important limitations are summarized in {numref}`standard-parameters-limitations-for-ire` with regard to the parameters with the prefixes $ACT\_$, $FLO\_$ and $PRC\_$. In addition, none of the CHP parameters, storage parameters ($STG\_*$), or dispatching parameters ($ACT\_MINLD$, $ACT\_UPS$, $ACT\_CSTUP$, $ACT\_LOSPL$, $ACT\_CSTPL$, $ACT\_TIME$), can be used for IRE processes, and are ignored if used.
@@ -349,9 +351,9 @@ The TIMES model generator provides tools for specifying the following types of s
 - Day/night storage (STG+NST, or just NST if at ANNUAL level)
 - Inter-period storage (STG+STK)
 
-The process type indicator STG is automatically assigned also to all processes that have been defined to be of type STS, NST or STK, with the exception of ANNUAL level NST processes, which are implemented as normal processes (see Section 4.3.3 below). Therefore, the user only needs to specify one of {STG, STS, NST, STK} as the process type of a storage process.
+The process type indicator STG is automatically assigned also to all processes that have been defined to be of type STS, NST or STK, with the exception of ANNUAL level NST processes, which are implemented as normal processes (see Section {numref}`%s <day-night-storage>` below). Therefore, the user only needs to specify one of {STG, STS, NST, STK} as the process type of a storage process.
 
-In addition to the charged and discharged commodity, storage processes can also produce and consume auxiliary commodities (emissions, electricity, fuels, waste etc.). The flows of such auxiliary commodities can be defined to be proportional either to the activity, the main input flows, or the main output flows of the storage (see Section below).
+In addition to the charged and discharged commodity, storage processes can also produce and consume auxiliary commodities (emissions, electricity, fuels, waste etc.). The flows of such auxiliary commodities can be defined to be proportional either to the activity, the main input flows, or the main output flows of the storage (see Section {numref}`%s <auxiliary-storage-flows>` below).
 
 ### Timeslice storage
 
@@ -361,6 +363,7 @@ The activity of a timeslice storage represents the storage level, i.e. the amoun
 
 If a storage technology is capable of storing energy for longer periods than over daily cycles, one may consider combining a SEASON/WEEKLY level storage process with a DAYNITE storage. However, a DAYNITE level storage may also be generalized to provide a storage capability between seasons, and even between periods, by using the generalized timeslice storage type qualifier \'STS\' (and both \'STS\' and \'STK\', if the inter-period storage capability should be included). Because the same storage capacity can be utilized on all timeslice levels, the general storage process type may thus provide a somewhat improved modeling of a multi-cycle storage.
 
+(day-night-storage)=
 ### Day/Night storage
 
 Day/Night storage (NST) is a timeslice storage, which can store energy over the day-night cycles, but not over weekly or seasonal cycles. In its basic functionality, an NST storage does not differ much from a standard timeslice storage, the main difference being that one can define the charging timeslices by specifying them in the set $prc\_nstts$.
@@ -379,6 +382,7 @@ The initial stock of an inter-period storage process can be specified by using t
 
 The activity of an inter-period storage is measured at the end of each period. Therefore, either by setting a lower bound on the activity or on the process availability, the storage can be prevented from getting fully discharged during any period. However, as there is no explicit accounting of the salvage value of the remaining contents of an inter-period storage, it may also be considered reasonable to allow discharging the storage fully in the last period, for taking into account the value of the storage.
 
+(auxiliary-storage-flows)=
 ### Auxiliary storage flows
 
 Storage processes can have any amount of auxiliary input or output commodities, as long as they are distinct from the main storage commodity. The flows of the auxiliary commodities can only be defined to be fixedly proportional either to the activity, the main input flows, or the main output flows. The main flows of timeslice and inter-period storage processes are the flows of the charged and discharged commodities included in the set primary commodity group PCG of the process. In the day/night storage processes, the main flows consist of all commodities in the primary and shadow groups of the process (see documentation).
@@ -432,7 +436,7 @@ The TIMES input parameters that are specific to storage processes or have a spec
 * - STG_MAXCYC (r,y,p)
   - Defines a limit for the storage cycling within each period, by giving the maximum number of cycles over the full lifetime for process **p**, region **r**.
 * - STG_SIFT (r,y,p,c,s)
-  - Defines the storage process **p** as a special load-shifting storage process for commodity **c**, and defines the maximum fraction of shifted loads in proportion to the demand. See section 4.3.9 for additional information.
+  - Defines the storage process **p** as a special load-shifting storage process for commodity **c**, and defines the maximum fraction of shifted loads in proportion to the demand. See section {numref}`%s <load-shifting-storage-processes>` for additional information.
 * - STGIN_BND (r,y,p,c,s,bd)
   - Bound on the input flow of commodity **c** of storage process **p** in a timeslice **s**. Units: Unit of the storage input flow. (Default value: none)
 * - STGOUT_BND (r,y,p,c,s,bd)
@@ -442,7 +446,7 @@ The TIMES input parameters that are specific to storage processes or have a spec
 * - PRC_ACTFLO (r,y,p,c)
   - Defines a conversion coefficient between the activity and the flow in commodity **c**. For storage processes, PRC_ACTFLO can be used for the commodities in the PCG in the standard way, but also for defining the amount of auxiliary flow of **c** per unit of activity.
 * - NCAP_AFC (r,y,p,cg,tslvl)
-  - Can be used for defining availability factors for the process activity (amount stored), process output flow, or process input flow, or any combination of these. See Section 6.3 for additional information.
+  - Can be used for defining availability factors for the process activity (amount stored), process output flow, or process input flow, or any combination of these. See Section {numref}`%s <equations-constraints>` for additional information.
 * - NCAP_AFCS (r,y,p,cg,s)
   - As NCAP_AFC above, but can be specified for individual timeslices. NCAP_AFCs values override NCAP_AFC values defined at the same level.
 ```
@@ -513,6 +517,7 @@ There are important limitations of using standard processes parameters for stora
 
 In peaking equations, processes that have a peaking commodity as the PCG (as an output) are by default taken into account by their capacity on the supply side. This holds also for storage processes, which are thus by default not contributing to the peak by their flows (charging / discharging). However, by defining the storage process as a member of the set $PRC\_PKNO$, and also defining $NCAP\_PKCNT>0$, the discharge from the storage is taken into account on the supply side instead of the capacity, and the charging into the storage is included on the consumption side (should such happen in the peak timeslice). This can be recommended, whenever the capacity represents the amount stored, and not the output capacity, and may be reasonable even for storage processes where the capacity represents the nominal maximum output flow. Conversely, if the PG of a storage process is a commodity group (e.g. NRG), only the flows are by default contributing to the peak.  Should contribution by capacity be preferred, one can request that by defining $PRC\_PKAF$ for the process and the appropriate $NCAP\_PKCNT$ factors for the capacity.
 
+(load-shifting-storage-processes)=
 ### Load-shifting storage processes
 
 In TIMES, load-shifting for demands can be modelled by introducing load shifting processes, which are special storage processes where the input / output flows represent demand shifting upwards and downwards. For utilizing this built-in support for modelling demand shifting operation for a demand or final energy commodity *D*, the user would thus need to define a storage process *P*, such that the *D* is both an input and an output (or more generally, the input could also be another commodity upstream). In addition, the user only needs to define the proportional limits for the allowed demand shifting, by using the attribute $STG\_SIFT(r,t,p,c,s)$, on the DAYNITE level, optionally also on next the level above. The dedicated load shifting constraints will then be generated for the process (see Equation $EQ\_SLSIFT$ for the constraint formulations).

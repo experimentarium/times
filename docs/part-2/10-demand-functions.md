@@ -1,3 +1,4 @@
+(times-demand-functions)=
 # Appendix D: TIMES Demand Functions
 
 ## Introduction
