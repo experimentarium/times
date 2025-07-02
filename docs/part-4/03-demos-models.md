@@ -324,6 +324,7 @@ A flexible import table is used to provide the data depicting the demand option 
 
 Figure 48. Description of a simple demand processes
 
+(p3145-demands)=
 #### Demands
 
 This sheet is used to specify the demand (DEMAND) value for the TPSCOA for the base year 2005 (Figure 49). This value comes from the energy balance and represents the total final COA consumption and the total consumed for energy conversion. This demand is constant over the time horizon of the analysis due to the default interpolation/extrapolation applied to the attribute Demand. The future values can be changed by specifying new inputs for the future years/periods.
@@ -1501,7 +1502,6 @@ The energy consumed in the commercial and the residential sectors is modelled th
 
 Figure 151. Existing Residential Sector Processes
 
-(p3145-demands)=
 #### Demands
 
 The demand table includes all end-use demands for energy services from the three sectors (Figure 152). The values come from the process sheets where the values are already computed in the pink column (Figure 151): STOCK\*AFA\*PRC_CAPACT. This sheet also includes the fractional shares of each end-use demand by time slice (Figure 153). These shares are relevant to capture the annual variation in the electricity (ELC) consumption levels and prices, the only commodity tracked at the time slice level. In this example, the annual variations are significant for those end-use demands affected by seasonal changes (e.g. space heating).
