@@ -812,6 +812,7 @@ The TPSELC commodity is the demand commodity produced by a demand technology (en
 
 Figure 92. Demand Technology Producing TPSELC
 
+(p343-scenario-files)=
 ### Scenario files
 
 (p3431-scen-peak-rsv)=
@@ -1255,7 +1256,6 @@ Figure 128. Combustion Emissions from the Transportation Sector
 
 This sheet is updated to model the new cars using the same approach as described above for the existing cars.
 
-(p341-scenario-files)=
 ### Scenario files
 
 Several scenario files are created at this seventh step.
