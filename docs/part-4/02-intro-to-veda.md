@@ -492,6 +492,7 @@ Multiple values can be separated by "\~". Any specification without a region ide
 
 A user constraint definition can span multiple rows of the table (to attach numbers/attributes and other indexes to different sets of processes/commodities).
 
+(p25-veda20-data-management)=
 ## VEDA2.0 Data Management, Model Visualization and Run Submission Tools
 
 Once the templates have been imported and assembled as a model database within VEDA2.0 by means of the Navigator (Figure 5) and a Synchronize done, one can review the resulting data by means of powerful visualization tools and dynamic data cubes (pivot tables), as well as to view the RES by requesting that the network diagram be displayed. As is the case in the earlier sections screenshot below are taken for the DemoS_012 model.
