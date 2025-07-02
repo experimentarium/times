@@ -1,4 +1,4 @@
-(p2-introduction-to-veda)=
+(p2-introduction-to-veda)
 # Introduction to VEDA2.0
 
 This section provides a brief introduction to the VEDA Excel template workbooks for specifying and building a model, and using VEDA2.0 to access and manage the templates, browsing the data, viewing the underlying Reference Energy System (RES) network depicting the energy system, and running a TIMES model.
