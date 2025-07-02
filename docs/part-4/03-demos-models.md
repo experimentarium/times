@@ -90,7 +90,7 @@ Figure 30. Commodity RES (COA) and Item Details
 
 The next two sections explain VEDA2.0 sheet-by-sheet for the two templates of this first simple DemoS model how this TIMES model for delivering the commodity TPSCOA at the minimum cost is built in VEDA2.0. Note that in the minimal model there is only one region and two files.
 
-(p311-syssetting-syssetting)=
+(p311-syssetting-templete)=
 ### SysSetting template
 
 This file is used to declare the very basic structure of any VEDA-TIMES model, including its regions, time slices, start year, etc. It also contains some settings for the synchronization process and can include some additional information. In this example, this file contains the following sheets:
