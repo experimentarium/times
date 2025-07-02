@@ -23,7 +23,7 @@ The main modules available in VEDA2.0, available from the StartPage, Modules men
 - **Run Manager \[F9\]:** for composing and submitting model runs, and
 - **Results \[F10\]:** for model results analysis.
 
-These are described in Section 2.5, after a description of the VEDA2.0 template folder structure, file types, tables used to create model input and results module VEDA2.0 for analysis of model runs.
+These are described in Section {numref}`%s <p25-veda20-data-management>`, after a description of the VEDA2.0 template folder structure, file types, tables used to create model input and results module VEDA2.0 for analysis of model runs.
 
 ## Model Folder Organization
 
@@ -55,6 +55,7 @@ The current model (DemoS_001) and version of VEDA2.0 are shown on the top line o
 
 Figure 3. Model StartPage
 
+(p23-veda20-navigator)=
 ## VEDA2.0 Navigator and Types of Templates
 
 The VEDA2.0 Navigator (Figure 4) provides a comprehensive view of all Templates In the various folders managed by VEDA2.0 for the current model. The form opens with the last model loaded. To bring in your first or another model hit the Add New button in the upper left of the Navigator form, which opens Windows Explorer -- move to the VEDA_Models sub-folder of interest and click on it to start the process. VEDA2.0 may ask if you want to open a New Window, where "Yes" will start another instance of VEDA2.0 and "No" will replace the currently viewed model with the one requested, which also happens if you reselect the current model folder. You may reopen previously opened models via ![](assets/image8.png), which will again ask if you want to open a new instance or replace the only currently open.
@@ -75,19 +76,19 @@ The specific folder associated with the active model can be opened by clicking o
 
 The VEDA-Navigator is the main vehicle for accessing, importing, and coordinating the various files that make up a model. Any template may be opened from the Navigator by double-clicking on its name, or in the case of SysSettings/BaseTrans using the ![](assets/image13.png) icon alongside the file name. The Navigator form is divided into sub-windows/panes/quadrants according to the various types of files managed by VEDA2.0:
 
-- **Base Scenario \[BS\]**: templates used to set up the base-year (B-Y) structure of the model (existing commodities and current processes stock, and the base-year end-use demand levels), according to the energy flows reflect the overall energy balance. Thus the start year of the model can be calibrated to the energy balance according the B-Y Templates. The B-Y templates are named as VT\_\<workbook name\>\_\<sector\>\_\<Version\> (e.g. VT_REG_PRI_V1, as seen in ). The number of B-Y templates and their names depend on both the model structure (e.g., the number of regions and sectors) and the organisation of the input data (e.g., how many regions and sectors in each file). The B-Y templates are introduced in DemoS_001 (Section ) and are modified throughout the evolution of the 12 DemoS steps.
-  - **BY_Trans**: are transformation files used to update the information included in the B-Y templates (update existing values for existing attributes) and/or to insert new information (insert new attributes for existing processes) in the B-Y templates. They work like a scenario file (described below), but the rule-based filters and the update/insert changes apply only to those processes and commodities already existing in the B-Y templates. The BY_Trans file is introduced in DemoS_009 (Section 3.9.1.2).
-- **SysSettings**: is used to declare the very basic structure of the model including regions, time slices, start year, etc. It also contains some settings for the synchronization process and can include some additional information. There is only one such file; it has a fixed name that stands for System Settings. The SysSettings file is described in Section .
-- **SubRES \[SR\]**: SubRES files are used to introduce new commodities and processes in the RES that are not part of the B-Y templates. However, while the B-Y templates are region-specific, the SubRES are region independent. For each SubRES file there is a corresponding transformation (Trans) file allowing the introduction of region-specific process attributes, including the availability (or not) of processes in each region. To make changes to the SubRES_Trans-\_\<sector\> files use the Navigator to open the associated model subfolder and access the file via Window Explorer. The naming conventions are: SubRES\_\<name\> and SubRES\_\<name\>\_Trans. SubRES files are introduced in DemoS_006 (Section 3.6.3).
-- **Regular Scenario \[RS}**: Scenario files are used to update existing information and/or to insert new information in any part of the RES, including B-Y templates, SubRES files, and Trade files (see below). They are also used to include any additional user constraints in the model. The naming convention is: Scen\_\<scenario name\>. These files can only manipulate (insert or update) information associated with previously declared RES components. New commodities and processes may not be added via Scenario files, only new attributes. Scenario files are introduced in DemoS_004 (Section ). Several different applications of scenario files are illustrated through the remainder of the DemoS.
-- **Demand Scenario \[DS\]**: Demand Templates Include all the information necessary to project end-use demands for energy services in each region, such as macroeconomic drivers and sensitivity series. Multiple demand files may be used, to model different demand growth scenarios for instance. The naming convention is: ScenDem\_\<scenario name\>. This section of the Navigator also contains a single file permitting assignment of a demand driver as well as a sensitivity (or elasticity) series each end-use demand to its driver in each region: Dem_Alloc+Series. Demand files and tables are described in DemoS_010 (Section 3.10.1).
-- **Trade Scenario \[TS\]**. This section of the Navigator contains a file in which all unilateral and/or bilateral trade links between regions are declared: ScenTrade\_\_Trade_Links, and associate data provided when appropriate. The latter contains all of the attribute specifications for the trade processes. Multiple trade files may be used, to model different trade scenarios or for different commodities. The naming convention is: ScenTrade\_\<scenario name\>. Trade files are introduced in DemoS_005 (Section 3.5.3).
+- **Base Scenario \[BS\]**: templates used to set up the base-year (B-Y) structure of the model (existing commodities and current processes stock, and the base-year end-use demand levels), according to the energy flows reflect the overall energy balance. Thus the start year of the model can be calibrated to the energy balance according the B-Y Templates. The B-Y templates are named as VT\_\<workbook name\>\_\<sector\>\_\<Version\> (e.g. VT_REG_PRI_V1, as seen in ). The number of B-Y templates and their names depend on both the model structure (e.g., the number of regions and sectors) and the organisation of the input data (e.g., how many regions and sectors in each file). The B-Y templates are introduced in DemoS_001 (Section {numref}`%s <p31-demos001>`) and are modified throughout the evolution of the 12 DemoS steps.
+  - **BY_Trans**: are transformation files used to update the information included in the B-Y templates (update existing values for existing attributes) and/or to insert new information (insert new attributes for existing processes) in the B-Y templates. They work like a scenario file (described below), but the rule-based filters and the update/insert changes apply only to those processes and commodities already existing in the B-Y templates. The BY_Trans file is introduced in DemoS_009 (Section {numref}`%s <p3912-by-trans>`).
+- **SysSettings**: is used to declare the very basic structure of the model including regions, time slices, start year, etc. It also contains some settings for the synchronization process and can include some additional information. There is only one such file; it has a fixed name that stands for System Settings. The SysSettings file is described in Section {numref}`%s <p311-syssetting-syssetting>`.
+- **SubRES \[SR\]**: SubRES files are used to introduce new commodities and processes in the RES that are not part of the B-Y templates. However, while the B-Y templates are region-specific, the SubRES are region independent. For each SubRES file there is a corresponding transformation (Trans) file allowing the introduction of region-specific process attributes, including the availability (or not) of processes in each region. To make changes to the SubRES_Trans-\_\<sector\> files use the Navigator to open the associated model subfolder and access the file via Window Explorer. The naming conventions are: SubRES\_\<name\> and SubRES\_\<name\>\_Trans. SubRES files are introduced in DemoS_006 (Section {numref}`%s <p363-subres-newtechs>`).
+- **Regular Scenario \[RS}**: Scenario files are used to update existing information and/or to insert new information in any part of the RES, including B-Y templates, SubRES files, and Trade files (see below). They are also used to include any additional user constraints in the model. The naming convention is: Scen\_\<scenario name\>. These files can only manipulate (insert or update) information associated with previously declared RES components. New commodities and processes may not be added via Scenario files, only new attributes. Scenario files are introduced in DemoS_004 (Section {numref}`%s <p341-scenario-files>`). Several different applications of scenario files are illustrated through the remainder of the DemoS.
+- **Demand Scenario \[DS\]**: Demand Templates Include all the information necessary to project end-use demands for energy services in each region, such as macroeconomic drivers and sensitivity series. Multiple demand files may be used, to model different demand growth scenarios for instance. The naming convention is: ScenDem\_\<scenario name\>. This section of the Navigator also contains a single file permitting assignment of a demand driver as well as a sensitivity (or elasticity) series each end-use demand to its driver in each region: Dem_Alloc+Series. Demand files and tables are described in DemoS_010 (Section {numref}`%s <p3101-demand-files>`).
+- **Trade Scenario \[TS\]**. This section of the Navigator contains a file in which all unilateral and/or bilateral trade links between regions are declared: ScenTrade\_\_Trade_Links, and associate data provided when appropriate. The latter contains all of the attribute specifications for the trade processes. Multiple trade files may be used, to model different trade scenarios or for different commodities. The naming convention is: ScenTrade\_\<scenario name\>. Trade files are introduced in DemoS_005 (Section {numref}`%s <p353-trade-files>`).
 
 For more advanced modelling there are also control panels for the Parametrisation facilities of VEDA2.0, and well as for more complex model input setups a couple of ways to look at inter-decencies between templates -- though these are beyond the scope of the basic DemoS models.
 
 As shown in Figure 4, the Navigator provides feedback as to the status of the various files and the integrated database managed by VEDA2.0. The consistency of the files and database is immediately evident based upon whether any of the template files are highlighted in orange (to ToImport) or red (Inconsistent). The status of individual templates is indicated by their colors in the template lists, according to the legend at the bottom of the form. A file is shown as Inconsistent when it has a newer date/time stamp than in the database. [Note]{.underline}: you may need to do a refresh via ![](assets/image14.png) to update the current status of the files after a recent change(s).
 
-Hitting ![](assets/image15.png) will import all Templates In the application folder marked as inconsistent. You may force synchronization of other files by checking the checkbox next to their names before hitting ![](assets/image16.png). The synchronize operation and resulting log is discussed in Section 2.5.1. When opening the DemoS_001 model the single model input template (PRE_PRI_V01) will be tagged as ToImport.
+Hitting ![](assets/image15.png) will import all Templates In the application folder marked as inconsistent. You may force synchronization of other files by checking the checkbox next to their names before hitting ![](assets/image16.png). The synchronize operation and resulting log is discussed in Section {numref}`%s <p251-navigator>`. When opening the DemoS_001 model the single model input template (PRE_PRI_V01) will be tagged as ToImport.
 
 ## VEDA2.0 Templates Tables
 
@@ -103,7 +104,7 @@ Figure 6. VEDA Tags Overview
 
 The following tables are needed in any VEDA-TIMES model.
 
-- Tables that exist only in the SysSetting file (Section 3.1.1 describes how to use these tables):
+- Tables that exist only in the SysSetting file (Section {numref}`%s <p311-syssetting-templete>` describes how to use these tables):
 
 **\~BookRegions_Map:** declare the workbook name and the list of region names;
 
@@ -121,10 +122,11 @@ The following tables are needed in any VEDA-TIMES model.
 
 **\~DefUnits:** define default units by activity, capacity, and commodity for each sector in the model.
 
-- **Commodity Definition Tables** **(\~FI_COMM):** commodity declaration and definition; may only appear in B-Y, SubRES and SysSetting files (described further in Section 2.4.2).
-- **Process Definition Tables** **(\~FI_PROCESS):** process declaration and definition; may only appear in B-Y, SubRES and SysSetting files (described further in Section 2.4.3).
-- **Flexible** **Input Tables** **(\~FI_T)** for topology and parameter definition; used in BY and SubRES files (described further in Section 2.4.4).
+- **Commodity Definition Tables** **(\~FI_COMM):** commodity declaration and definition; may only appear in B-Y, SubRES and SysSetting files (described further in Section {numref}`%s <p242-commodity-definition-tables>`).
+- **Process Definition Tables** **(\~FI_PROCESS):** process declaration and definition; may only appear in B-Y, SubRES and SysSetting files (described further in Section {numref}`%s <p243-process-definition-tables>`).
+- **Flexible** **Input Tables** **(\~FI_T)** for topology and parameter definition; used in BY and SubRES files (described further in Section {numref}`%s <p244-flexible-import-tables>`).
 
+(p242-commodity-definition-tables)=
 ### Commodity definition tables \~FI_COMM
 
 Commodity definition tables (\~FI_Comm) are used to declare the non-numerical characteristics of commodities. The columns headers are described in the table below and their order can be changed. Each commodity needs to be declared (only) once in such a table as shown in Figure 7. They are supported in B-Y Templates, SubRES files, and the SysSettings template.. Care must be taken that commodities are declared only once, as problems can arise if the same commodity is declared twice with conflicting attributes, such as different time slice levels. In large complex models, therefore, a best practice would be to declare them in a single template location only, such as the SysSettings template.
@@ -163,6 +165,7 @@ The valid column headers for a commodity table \~FI_COMM are described in {numre
 
 > \* Note: Comma separated elements are allowed.
 
+(p243-process-definition-tables)=
 ### Process definition tables \~FI_PROCESS
 
 Process definition tables (\~FI_Process) are used to declare the non-numerical characteristics of processes. The columns headers are described in the table below and their order can be changed. Each process needs to be declared (only) once in such a table as shown in Figure 8. They are supported in B-Y Templates and SubRES files.
@@ -201,11 +204,12 @@ The valid column headers for a process table \~FI_PROCESS are described in {numr
 
 > \* Note: Comma separated elements are allowed.
 
+(p244-flexible-import-tables)=
 ### Flexible import tables \~FI_T
 
 The Flexible Import Table **(\~FI_T**) is the main workhorse used to create model topology (process inputs and outputs) in B-Y templates and SubRES, provides a very flexible structure (hence the name) for specifying parameters and their numerical values. With this identifier the information is imported as provided, and not modified during the import process.
 
-Unlike in most other table types (with the exception of UC tables, described in Section 2.4.7), the \~FI_T table tag is not placed directly above the upper-leftmost table cell. Instead it is placed in the row immediately above the table headers and in the column before the first column containing values. This placement allows any number of columns to be designated for row identifiers, rather than data, as shown in Figure 9 and defined in {numref}`flexible-import-tables-column-headers`.
+Unlike in most other table types (with the exception of UC tables, described in Section {numref}`%s <p247-user-constraint-and-their-tables>`), the \~FI_T table tag is not placed directly above the upper-leftmost table cell. Instead it is placed in the row immediately above the table headers and in the column before the first column containing values. This placement allows any number of columns to be designated for row identifiers, rather than data, as shown in Figure 9 and defined in {numref}`flexible-import-tables-column-headers`.
 
 ![](assets/image20.png)
 
@@ -357,17 +361,18 @@ Transformation tables may be used only in scenario and transformation files. Val
 > 
 > "?" can be used to specify a single character; for example, ???GAS means there are 3 characters before GAS.
 
+(p246-advanced-tables)=
 ### Advanced tables
 
 The following tables are special and/or advanced tables that can be used in different types of templates to support model building.
 
 - Special tags exist for emission commodity tables. With this table identifier the data are manipulated during the import process to provide for special calculations on emissions factors.
 
-**\~COMEMI** to link emissions to commodity consumption. An example on how to use this table is shown in Section .
+**\~COMEMI** to link emissions to commodity consumption. An example on how to use this table is shown in Section {numref}`%s <p3727-emi>`.
 
 **\~COMAGG** to define an aggregated commodity such as TOTCO2 accumulating the emissions from each \<sector\>CO2 commodity.
 
-- Fill tables in scenario files **(\~TFM_FILL**) allow extraction of values from the rest of the model database for use in Update or Insert tables. An example is shown in Section .
+- Fill tables in scenario files **(\~TFM_FILL**) allow extraction of values from the rest of the model database for use in Update or Insert tables. An example is shown in Section {numref}`%s <p3741-scen-demproj>`.
   - TFM_FILL table is also available in SubRES transformation file, though note that it can only be populated with numbers from the BASE scenario.
   - The fill operation will color the Region cells upon processing to indicate the number of records found, as follow:
     - Blue color represents only one record found, and
@@ -390,9 +395,10 @@ The user can specify whether multiple values are to be summed, averaged, or coun
 - Special tables that exist only in the Trade module: **\~TradeLinks** to declare uni- or bilateral trade links between regions.
 - User constraints are identified with specific identifiers **\~UC_Sets.**
 
+(p247-user-constraint-and-their-tables)=
 ### User constraints and their tables
 
-User constraints provide the modeller with a flexible framework to add case-study specific constraints to the standard equation set embodied in TIMES model generator. With the help of user constraints, virtually any possible linear relationship between core components of the RES (as represented by variables in TIMES) can be formulated, and some input attributes can also be brought in as coefficients. User constraints can also be written to link variables across consecutive time slices or periods. Section 6.4 of Part II of the TIMES documentation contains an extensive discussion of the user constraint types available and their mathematics.
+User constraints provide the modeller with a flexible framework to add case-study specific constraints to the standard equation set embodied in TIMES model generator. With the help of user constraints, virtually any possible linear relationship between core components of the RES (as represented by variables in TIMES) can be formulated, and some input attributes can also be brought in as coefficients. User constraints can also be written to link variables across consecutive time slices or periods. Section {numref}`%s <p64-user-constraints>` of Part II of the TIMES documentation contains an extensive discussion of the user constraint types available and their mathematics.
 
 Defining user constraints in VEDA2.0 templates is a two-step process. They are first declared with one or more **\~UC_SETS:** tags, which indicate their type and domain of coverage. Then their data is specified using a table with similar structure to that of a **\~FI_T** table, as shown in Figure 12. This example puts an upper limit on the CO2 arising from the Transportation plus Power sectors of the model from 2010 on, interpolation between 2010-2020 and the extending constant for the remainder of the modelling horizon (owing to interpolation rule (5) specified in the UC_RHSRTS\~0 column).
 
@@ -463,7 +469,7 @@ A UC table is then structured similarly to a Flexible Import table, with the **\
 * - Attribute
   - Any of the UC attributes available in the current TIMES code (refer to Part II of the TIMES system documentation).
 * - UC_ATTR
-  - <div><ul><li>Allows modifiers to be applied to the variables used in the UC. These include the GROWTH modifier, to create a constraint that limits the percentage growth in a variable over periods; modifiers to pull input data, such as COST and EFF, into the UC's coefficients; and the NEWFLO modifier that applies the UC coefficient to the flows of the new vintage of a process only. More details are found in Section 6.4.6 of Part II.</li> <li>The contents of this column are comma separated values of UC_Name and UC_GrpType. Several pairs can be separated by ";".</li><br><li>A pair can have UC_Name/GrpType in any order; any element in the list ACT, CAP, NCAP, FLO, IRE, COMCON, COMPRD, COMNET is taken as GrpType and the other one is designated as the UC_Name. Valid UC_Names are provided and described in Section 6.4.6 of Part II.</li><br><li>UC_ATTR can have a \~ appended to it; the default is LHS</li></ul></div>
+  - <div><ul><li>Allows modifiers to be applied to the variables used in the UC. These include the GROWTH modifier, to create a constraint that limits the percentage growth in a variable over periods; modifiers to pull input data, such as COST and EFF, into the UC's coefficients; and the NEWFLO modifier that applies the UC coefficient to the flows of the new vintage of a process only. More details are found in Section {numref}`%s <p646-user-constraints-modifiers>` of Part II.</li> <li>The contents of this column are comma separated values of UC_Name and UC_GrpType. Several pairs can be separated by ";".</li><br><li>A pair can have UC_Name/GrpType in any order; any element in the list ACT, CAP, NCAP, FLO, IRE, COMCON, COMPRD, COMNET is taken as GrpType and the other one is designated as the UC_Name. Valid UC_Names are provided and described in Section 6.4.6 of Part II.</li><br><li>UC_ATTR can have a \~ appended to it; the default is LHS</li></ul></div>
 * - Year
   - Years, comma separated list allowed
 * - LimType
@@ -492,9 +498,10 @@ Once the templates have been imported and assembled as a model database within V
 
 More information on VEDA2.0 and description of additional features are available at <http://support.kanors-emr.org/> \[note: at the time of writing the website described original VEDA-FE and VEDA-BE.\] Each of the remaining main sections of this document describes one incremental step of the VEDA-TIMES Demo Models.
 
+(p251-navigator)=
 ### Navigator
 
-The Navigator was introduced in Section 2.3. Here we expand to further explain the important role the Navigator plays below.
+The Navigator was introduced in Section {numref}`%s <p23-veda20-navigator>`. Here we expand to further explain the important role the Navigator plays below.
 
 - Enables easy access to any of the Excel templates constituting the currently open model.
 - Double-clicking directly on any file name (or click the Excel icon next to it, in the case of the *BY_Trans* and *SysSettings* files) will open that file in Excel.
@@ -525,7 +532,7 @@ The database Browser can be accessed from the StartPage, or Modules menu or by p
 
 Figure 13. Browser for the model database
 
-First, elements are selected manually, limited to those belonging to a particular Set via the pulldown menu above the Process/Commodity or via the search box at the top of each column. For the items then selected the information is displayed in a default layout, or last layout used. As was mentioned earlier, in Section 2.3, the Browse pane may be rearranged as desired. It is possible to rearrange the layout of the cube by adding/removing dimensions (columns and rows) to/from the table by dragging/dropping components from/to the area above the current row designator columns, where above unwanted indexes are dragged up to (outside of the cube) and the columns reordered (by putting the cursor on the column header and holding the left mouse button down) to present a clean look at the process information.
+First, elements are selected manually, limited to those belonging to a particular Set via the pulldown menu above the Process/Commodity or via the search box at the top of each column. For the items then selected the information is displayed in a default layout, or last layout used. As was mentioned earlier, in Section {numref}`%s <p23-veda20-navigator>`, the Browse pane may be rearranged as desired. It is possible to rearrange the layout of the cube by adding/removing dimensions (columns and rows) to/from the table by dragging/dropping components from/to the area above the current row designator columns, where above unwanted indexes are dragged up to (outside of the cube) and the columns reordered (by putting the cursor on the column header and holding the left mouse button down) to present a clean look at the process information.
 
 Any dimension not positioned as part of the row/column table layout definition appears at the top of the page. These dimensions have their values summed in the cube. Note that for any dimension where only a single value exists, said dimension is automatically moved up top. Using the ![](assets/image28.png) associated with each header, individual entries may temporarily be removed by unselecting them from the list of elements.
 
@@ -537,6 +544,7 @@ The Items List provides a look at all the data assembled from Templates Into the
 
 Figure 14. Process Items List
 
+(p253-item-details)=
 ### Item Details (RES viewer)
 
 The Items Details form may be accessed from the StartPage, or Modules menu or by pressing **F8**. When first entering the form an item much be selected (by double-click) for the associated list (Process, Commodity, User Constraints (UC), Commodity Groups (CommGrp)) presented to the left. It is possible to navigate around the model by clicking on the name of a commodity or process, allowing the user to see: 1) in the case of a commodity, all processes producing and consuming that commodity; and/or 2) in the case of a process, all input and output flows. The upper right panel of Figure 15 shows the RES viewer as zoomed in on process ELCNUCCC01. We see the process consumes nuclear fuel (ELCNUC) and produces electricity (ELC). The area in the top left panel provide the process (or commodity) declaration information. By clicking on any item, the user can cascade through the RES to better visualize the interrelationships and competing processes throughout the network, as shown in Figure 16 after clicking on ELC. A Browse window with the data associated with the focus component is presented below the RES, and may be rearranged by means of drag-and-drop, as was discussed earlier.
@@ -557,6 +565,7 @@ There is also a facility for examining the Commodity Groups, not shown here as D
 
 Figure 17. Master Schematic Representation of User Constraints
 
+(p255-run-manager)=
 ### Run Manager
 
 The Run Manager, available from the **StartPage**, **Module** menu, or by pressing **F9**, is used to compose and submit a model run or set of runs.
@@ -658,6 +667,7 @@ Figure 24. Results Data and Chart
 
 Figure 25. Results ExRES Facility Component Detail
 
+(p257-times-attribute-table)=
 ### TIMES Attribute Table
 
 The Attribute Master may be accessed from the StartPage or via the Modules menu. The Attribute Master table (Figure 26) shows all the TIMES attributes/parameters supported by VEDA2.0.
