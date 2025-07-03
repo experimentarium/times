@@ -65,7 +65,7 @@ This notation often makes equations more legible and compact. A good example app
 
 **Related Variables: All**
 
-**Purpose**: the objective function is the criterion that is minimized by the TIMES model. It represents the total discounted cost of the entire, possibly multi-regional system over the selected planning horizon. It is also equal to the negative of the discounted total surplus (plus a constant), as discussed in PART I, chapters 3 and 4.
+**Purpose**: the objective function is the criterion that is minimized by the TIMES model. It represents the total discounted cost of the entire, possibly multi-regional system over the selected planning horizon. It is also equal to the negative of the discounted total surplus (plus a constant), as discussed in PART I, chapters {numref}`%s <economic-rationale-of-the-times>` and {numref}`%s <core-times-model-mathematics>`.
 
 ### Introduction and notation
 
