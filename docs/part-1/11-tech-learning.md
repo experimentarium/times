@@ -182,7 +182,7 @@ b) The LT has only one output, a new commodity $c$ representing the 'learning'. 
 
 c) Commodity $c$ may be exported to all other regions.
 
-Finally, in each 'real' region, the LT is represented with all its attributes *except the investment cost NCAP_COST.* Furthermore, the construction of one unit of the LT requires an input of one unit of the learning commodity $c$ (using the $NCAP\_ICOM$ parameter see chapter 3 of PART II). This ensures that the sum of all investments in the LT in the real regions is exactly equal to the investment in the LT in region 0, as desired.
+Finally, in each 'real' region, the LT is represented with all its attributes *except the investment cost NCAP_COST.* Furthermore, the construction of one unit of the LT requires an input of one unit of the learning commodity $c$ (using the $NCAP\_ICOM$ parameter see chapter {numref}`%s <parameters>` of PART II). This ensures that the sum of all investments in the LT in the real regions is exactly equal to the investment in the LT in region 0, as desired.
 
 (endogenous-exogenous-learning)=
 ## Endogenous vs. exogenous learning: a discussion
