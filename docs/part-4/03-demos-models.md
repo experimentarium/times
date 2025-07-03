@@ -379,7 +379,7 @@ Figure 53. \_SysCost Results Table Definition
 Figure 54. Total System Cost in DemoS_001
 
 - The Scenario label shows the scenario name (DemoS_001) for the run we are viewing, while under the column Region we see the region name (REG1) and the value of the objective function. The column Total is shows the total by row (over regions). In this case, we only have the single region REG1, so the value is the same.
-- The \_SysCost table provides a key model run indicator. In TIMES models, the Objective-Function is to minimize the total discounted cost of the system, properly augmented by the 'cost' of lost demand (when using the elastic demand features). See Parts I and II of the TIMES documentation for more on the model objective function.
+- The \_SysCost table provides a key model run indicator. In TIMES models, the Objective-Function is to minimize the total discounted cost of the system, properly augmented by the 'cost' of lost demand (when using the elastic demand features). See [Part I](part1) and [Part II](part2) of the TIMES documentation for more on the model objective function.
 - All costs
   - This table can be used to show the undiscounted cost elements of the model solution (Figure 55).
 
@@ -1243,7 +1243,7 @@ Figure 127. Demand for Transportation by Car (physical units)
 
 A new sheet is added to introduce a comprehensive and convenient approach to account for combustion emissions by sector. Indeed, the easiest way to account for combustion emissions is to directly associate the fuel-based emission coefficients with fuel consumption throughout the whole energy system.
 
-A new \~COMEMI table is added (Figure 128) to define fuel-based emission coefficients instead of defining emission coefficients for each process in all \~FI_T tables. The special tag \~COMEMI is used to link emissions to commodity consumption through special processing in the VEDA2.0 SYNC process. (The VEDA-TIMES parameters VDA-EMCB and FLO-EMIS provide alternative ways to declare consumption-linked emissions. See Part II of the TIMES documentation for more on the use of these parameters.)
+A new \~COMEMI table is added (Figure 128) to define fuel-based emission coefficients instead of defining emission coefficients for each process in all \~FI_T tables. The special tag \~COMEMI is used to link emissions to commodity consumption through special processing in the VEDA2.0 SYNC process. (The VEDA-TIMES parameters VDA-EMCB and FLO-EMIS provide alternative ways to declare consumption-linked emissions. See [Part II](part2) of the TIMES documentation for more on the use of these parameters.)
 
 In this example, emissions of TRACO2 are associated with six fuels (LPG, gasoline, kerosene, diesel, heavy fuel oil, natural gas,) for which a coefficient (kt/PJ) is provided. These coefficients are applied to all the fuel consumption by all the individual processes in the transportation sector.
 
