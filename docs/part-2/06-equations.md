@@ -2427,6 +2427,7 @@ VAR\_CUMCOM.UP_{r,c,'PRD',y1,y2} = COM\_CUMPRD_{r,y1,y2,c,'UP'}
 \\ \\ 
 VAR\_CUMCOM.FX_{r,c,'PRD',y1,y2} = COM\_CUMPRD_{r,y1,y2,c,'FX'}$$
 
+(equation-eq-cumret)=
 ### Equation: EQ_CUMRET
 
 **Indices**: **region (r), vintage year (v), period (t), process (p)**
@@ -2472,6 +2473,7 @@ VAR\_NCAP_{r,t,p} = \sum_{u \in unit}\left(VAR\_DNCAP_{r,t,p,u} \times NCAP\_DSC
 \\ \\
 \left(VAR\_SNCAP_{r,t,p}\quad if \space NCAP\_SEMI_{r,t,p} \space given \right)$$
 
+(equation-eq-dscone)=
 ### Equation: EQ_DSCONE 
 
 **Indices**: **region (r),** **milestoneyear (t), process (p)**
