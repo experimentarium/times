@@ -331,7 +331,7 @@ With this new TIMES feature the user may allow the model to retire some technolo
 
 This feature requires the definition of three new constraints, as listed and briefly described in {numref}`new-early-retirement-constraints`, as well as the alteration of many existing constraints and the objective function, as described in {numref}`retirement-affected-constraints`. Part II and the special separate note *TIMES Early Retirement of Capacity* provide additional detail.
 
-The user is advised to use the discrete early retirement feature sparingly, as it implies the use of mixed integer programming optimizer, rather than the computationally much more efficient linear programming optimizer. The user should also be aware that using the discrete option voids some of the economic properties of the equilibrium, as discussed in section {numref}`%s <important-remanr-on-the-mip>`.
+The user is advised to use the discrete early retirement feature sparingly, as it implies the use of mixed integer programming optimizer, rather than the computationally much more efficient linear programming optimizer. The user should also be aware that using the discrete option voids some of the economic properties of the equilibrium, as discussed in section {numref}`%s <important-remark-on-the-mip>`.
 
 ```{list-table} The new constraints required to implement early retirement of capacity.
 :name: new-early-retirement-constraints
