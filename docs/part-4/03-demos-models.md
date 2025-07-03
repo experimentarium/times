@@ -1697,7 +1697,7 @@ If it is 1, the activity represents the total energy output and the capacity rep
     b. on total electricity and heat output at backpressure point.
 4. Ratio of heat produced to electricity produced (**CHPR**): Ratio of heat to power at backpressure point; at least a maximum value is required, but in addition also a minimum value may be specified.
 
-See [Section 4.1]{.mark} of Part II of the TIMES documentation for more on CHP processes and their attributes.
+See [Section {numref}`%s <p41-combined-heat-and-power>`]{.mark} of Part II of the TIMES documentation for more on CHP processes and their attributes.
 
 The CHP processes are declared as CHP processes in the process declaration table with a time slice level of activity (DAYNITE). The heat (HET) is also declared as a new energy commodity in the commodity declaration table.
 
