@@ -3654,6 +3654,7 @@ $$EQ(l)\_UCRTP_{uc\_n,r,t,p,'ACT',bd} \ni
 \\ \\
 + UC\_ACT_{uc\_n,'RHS',r,t,p,'ANNUAL'} \times (M(t)-M(t-1))$$
 
+(p64-user-constraints)=
 ## User Constraints
 
 This section on TIMES User Constraints explains the framework that may be employed by modellers to formulate additional linear constraints, which are not part of the generic constraint set of TIMES, without having to bother with any GAMS programming.
@@ -5051,6 +5052,7 @@ VAR\_UCTS.UP_{uc\_n,t,s} = UC\_RHSTS_{uc\_n,t,s,'UP'}
 \\ \\
 VAR\_UCTS.FX_{uc\_n,t,s} = UC\_RHSTS_{uc\_n,t,s,'FX'}$$
 
+(p646-user-constraints-modifiers)=
 ### User constraint modifiers
 
 #### Overview
