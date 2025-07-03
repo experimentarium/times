@@ -588,7 +588,7 @@ To activate an interpolation/extrapolation (I/E) rule for a specific process, in
 
 In this example, MINCOA1 has an activity bound of 6074 PJ in the year 2005, and due to the I/E rule, the 2005 value is kept constant over the time horizon. Just remember that the ACT_BND is not I/E by default, so when no I/E rule is explicitly specified in the template, the bound will be applied only to the periods defined in the year column.
 
-Default interpolation/extrapolation mechanisms are embedded in the TIMES code itself (for more information see Section 3.1.1 of Part II of the TIMES documentation). It is also useful to check the Attribute Master table in VEDA2.0 (see Section {numref}`%s <p257-times-attribute-table>`) for more information about which attributes are interpolated/extrapolated by default and which are not.
+Default interpolation/extrapolation mechanisms are embedded in the TIMES code itself (for more information see Section {numref}`%s <inter-and-extrapolation-of-user>` of Part II of the TIMES documentation). It is also useful to check the Attribute Master table in VEDA2.0 (see Section {numref}`%s <p257-times-attribute-table>`) for more information about which attributes are interpolated/extrapolated by default and which are not.
 
 ![](assets/image99.png)
 
