@@ -1,3 +1,4 @@
+(pa4-appendix-b)=
 # Appendix B TIMES Results Files
 
 There are three files produced for the Results module by the GDX2VEDA utility: the \<scenarioname\>.VD data dump with the attributes, \<scenarioname\>.VDE (set elements), and \<scenarioname\>.VDS (sets definition). In addition, VEDA2.0 produces a \<scenarioname\>.VDT (topology) file with the RES connectivity information. These files are dumped in comma delimited format. They never require user intervention, though they may be processed by other software if desired. Snippets of each file are shown below, after a brief description of the layout of each.
