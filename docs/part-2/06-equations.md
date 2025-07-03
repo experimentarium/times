@@ -1963,6 +1963,7 @@ NCAP\_AFC_{r,v,t,p,c,s} \times \left( \begin{aligned}
 \\ \\
 \times COEF\_CPT_{r,v,p,t} \times PRC\_CAPACT_{r,p} \times G\_YRFR_{r,s}$$
 
+(equation-eq-capload)=
 ### Equation: EQ_CAPLOAD
 
 **Indices**: **region (r), vintage year (v), period (t), process (p), time slice (s), lim_type (l)**
