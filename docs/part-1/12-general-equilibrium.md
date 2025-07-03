@@ -155,7 +155,7 @@ $VAR\_CAP_{t,p}$: total installed capacity of technology $p$ in period $t$.
 
 As long as the total installed capacity in period $t+1$ is below $\left( 1 + expf_{t} \right) \cdot CAP_{t,p}$ no penalty costs are applied. For the capacity amount $XCAP_{t + 1,p}$ exceeding this tolerated capacity level penalty costs are added to the regular costs of the TIMES model in Equation {eq}`12-10`.
 
-The quadratic term in equation {eq}`12-10` introduces a large number of nonlinear terms (one for each technology and period) that may constitute a considerable computational burden for large models. These constraints are therefore replaced in the current implementation of TIMES, by linear piece-wise approximations in a way quite similar to what was done to linearize the surplus in chapter 4.
+The quadratic term in equation {eq}`12-10` introduces a large number of nonlinear terms (one for each technology and period) that may constitute a considerable computational burden for large models. These constraints are therefore replaced in the current implementation of TIMES, by linear piece-wise approximations in a way quite similar to what was done to linearize the surplus in chapter {numref}`%s <core-times-model-mathematics>`.
 
 ### A brief comment
 

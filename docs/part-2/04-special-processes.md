@@ -1,6 +1,7 @@
 (usage-notes-on-special-types)=
 # Usage notes on special types of processes
 
+(p41-combined-heat-and-power)=
 ## Combined heat and power
 
 ### Overview

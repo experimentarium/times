@@ -230,7 +230,7 @@ Regarding the random upper bounds, their multiple values are specified via the s
 
 Regarding the two random coefficients, their multiple values are then declared via the single generic parameter **S_CM_CONST(item,stage,sow)**, where **item** may be equal to **CS** or to **SIGMA1**, **stage** is the stage number, and **sow** is the state-of-the-world. Note that this single generic parameter will be specified as many times as there are stages and sow's in the stochastic event tree. If this parameter is specified, the corresponding values of the deterministic parameter (**LAMBDA** and/or **SIGMA1**) are superseded.
 
-The reader is referred to Chapter 8 of Part I and the documentation of the stochastic programming version of TIMES for the precise meaning of the **stage** and **sow** concepts.
+The reader is referred to Chapter {numref}`%s <stochastic-programming-extension>` of Part I and the documentation of the stochastic programming version of TIMES for the precise meaning of the **stage** and **sow** concepts.
 
 :::{admonition} Remark
 

@@ -2932,6 +2932,7 @@ Indexing of auxiliary consumption/emission.
 (report-parameters)=
 ##  Report parameters
 
+(p331-overview-of-report)=
 ### Overview of report parameters
 
 The parameters generated internally by TIMES to document the results of a model run are listed in Table 15. These parameters can be imported into the **VEDA-BE** tool for further result analysis. They are converted out of the **GDX**[^32] file via the **gdx2veda** GAMS utility into a **VEDA-BE** compatible format according to the file **times2veda.vdd**[^33]. Note that some of the results are not transferred into parameters, but are directly accessed through the **times2veda.vdd** file (levels of commodity balances and peaking equation, total discounted value of objective function). The following naming conventions apply to the prefixes of the report parameters:
@@ -3034,12 +3035,12 @@ The parameters generated internally by TIMES to document the results of a model 
   <br>(uc_n,r,c)
   - Cost_NPV
   - Total discounted costs by commodity (optional, activate by setting RPT_OPT(\'OBJ\',\'1\')=1):
-  <br>Total present value of commodity-related costs in the base year, by type (with types COM, ELS, DAM). See Part III, Section 3.10 on the reporting options, and Table 16 below for acronym explanations.
+  <br>Total present value of commodity-related costs in the base year, by type (with types COM, ELS, DAM). See Part III, Section {numref}`%s <controls-affecting-solution-reporting>` on the reporting options, and Table 16 below for acronym explanations.
 * - CST_PVP
   <br>(uc_n,r,p)
   - Cost_NPV
   - Total discounted costs by process (optional, activate by setting RPT_OPT(\'OBJ\',\'1\')=1):
-  <br>Total present value of process-related costs in the base year, by type (with types INV, INV+, FIX, ACT, FLO, IRE, where INV+ is only used for the split according to hurdle rate). See Part III, Section 3.10 on the reporting options, and Table 16 below for acronym explanations.
+  <br>Total present value of process-related costs in the base year, by type (with types INV, INV+, FIX, ACT, FLO, IRE, where INV+ is only used for the split according to hurdle rate). See Part III, Section {numref}`%s <controls-affecting-solution-reporting>` on the reporting options, and Table 16 below for acronym explanations.
 * - CST_SALV
   <br>(r,v,p)
   - Cost_Salv
@@ -3165,7 +3166,7 @@ The parameters generated internally by TIMES to document the results of a model 
   - VAR_Eout
   - Electricity supply by technology and energy source (optional):
   <br>Electricity output of electricity supply processes by energy source; based on using NRG_TMAP to identify electricity commodities, but excludes standard and storage processes having electricity as input.
-  <br>(Opted out by default -- set RPT_OPT(\'FLO\',\'5\')=1 to activate; see Part III, Section 3.10).
+  <br>(Opted out by default -- set RPT_OPT(\'FLO\',\'5\')=1 to activate; see Part III, Section {numref}`%s <controls-affecting-solution-reporting>`).
 * - PAR_FLO
   <br>(r,v,t,p,c,s)
   - see: F_IN/F_OUT
@@ -3200,7 +3201,7 @@ The parameters generated internally by TIMES to document the results of a model 
 * - PAR_NCAPR
   <br>(r,t,p,uc_n)
   - VAR_NcapR
-  - Technology Investment -- BenCost + ObjRange (see Part III, Section 3.10 for more details):
+  - Technology Investment -- BenCost + ObjRange (see Part III, Section {numref}`%s <controls-affecting-solution-reporting>` for more details):
   <br>Cost-benefit and ranging indicators for process (p) in period (t), where uc_n is the name of the indicator:
   <br>COST - the total unit costs of VAR_NCAP (in terms of an equivalent investment cost)
   <br>CGAP - competitiveness gap (in terms of investment costs), obtained directly from the VAR_NCAP marginals (and optional ranging information)
@@ -3324,6 +3325,7 @@ The acronyms used in the reporting parameters for referring to certain types of 
   <br>DAM Damage costs
 ```
 
+(p333-the-levelized-cost)=
 ### The levelized cost reporting option
 
 As indicated in {numref}`times-report-parameters` above, the reporting of levelized costs for each process can be requested by setting the option RPT_OPT(\'NCAP\', \'1\'). The results are stored in the VEDA-BE $Var\_NcapR$ result attribute, with the qualifier \'LEVCOST\' (with a possible system label prefix).

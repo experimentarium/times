@@ -5,7 +5,7 @@ In some cases, the linearity property of the TIMES model may become a drawback f
 
 For other types of investments, size does not matter: for instance the model may decide to purchase $10950.52$ electric cars, which is easily rounded to $10950$ without any serious inconvenience, especially since this number is an annual figure. The situation is similar for a number of residential or commercial heating devices; or for the capacity of wind turbines; or of industrial boilers; in short, for any technologies with relatively small minimum feasible sizes. Such technologies would not be candidates for treatment as "lumpy" investments.
 
-This chapter describes the basic concept and mathematics of lumpy investment option, whereas the implementation details are available in Part II, section 6.3.24. We simply note here that this option, while introducing new variables and constraints, does not affect existing TIMES constraints.
+This chapter describes the basic concept and mathematics of lumpy investment option, whereas the implementation details are available in Part II, section {numref}`%s <equation-eq-cumret>`. We simply note here that this option, while introducing new variables and constraints, does not affect existing TIMES constraints.
 
 It is the user's responsibility to decide whether or not certain technologies should respect the minimum size constraint, weighing the pros and cons of so doing. This chapter explains how the TIMES LP is transformed into a Mixed Integer Program (MIP) to accommodate minimum or multiple size constraints, and states the consequences of so doing on computational time and on the interpretation of duality results.
 
@@ -35,9 +35,9 @@ The reader interested in more technical details on the solution of LPs and of MI
 
 ## Discrete early retirement of capacity
 
-The discrete retirement of capacity that was briefly mentioned in section {numref}`%s <early-capacity-retirement>` requires a treatment quite similar to that of discrete addition to capacity presented here. The complete mathematical formulation mimics that presented above, and is fully described in Part II, section 6.3.26, of the TIMES documentation.
+The discrete retirement of capacity that was briefly mentioned in section {numref}`%s <early-capacity-retirement>` requires a treatment quite similar to that of discrete addition to capacity presented here. The complete mathematical formulation mimics that presented above, and is fully described in Part II, section {numref}`%s <equation-eq-dscone>`, of the TIMES documentation.
 
-(important-remanr-on-the-mip)=
+(important-remark-on-the-mip)=
 ## Important remark on the MIP dual solution (shadow prices)
 
 Using MIP rather than LP has an important impact on the interpretation of the TIMES shadow prices. Once the optimal MIP solution has been found, it is customary for MIP solvers to fix all integer variables at their optimal (integer) values, and to perform an additional iteration of the LP algorithm, so as to obtain the dual solution (i.e. the shadow prices of all constraints). However, the interpretation of these prices is different from that of a pure LP. Consider for instance the shadow price of the natural gas balance constraint: in a pure LP, this value represents the price of natural gas. In MIP, this value represents the price of gas *conditional on having fixed the lumpy investments at their optimal integer values.* What does this mean? We shall attempt an explanation via one example: suppose that one lumpy investment was the investment in a gas pipeline; then, *the gas shadow price will not include the investment cost of the pipeline, since that investment was fixed when the dual solution was computed*.

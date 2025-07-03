@@ -5,7 +5,7 @@ This chapter contains a simplified formulation of the core TIMES Linear Program.
 
 Mathematically, a TIMES instance is a Linear Program, as was mentioned in the previous chapter. A Linear Program (LP for short) consists in the minimization or maximization of an *objective function* (defined as a linear mathematical expression of *decision variables)*, subject to linear *constraints,* also called *equations*[^26].
 
-Very large instances of Linear Programs involving sometimes millions of constraints and variables may be formulated using modern modeling languages such as [GAMS](http://www.gams.com), and solved via powerful Linear Programming *optimizers*[^27]. The Linear Program described in this chapter is much simplified, since it ignores many exceptions and complexities that are not essential to a basic understanding of the principles of the model. Chapter {numref}`%s <appendix-b-linear-programming>` gives additional details on general Linear Programming concepts. The full details of the parameters, variables, objective function, and constraints of TIMES are given in Part II of this documentation (sections 3, 5, and 6).
+Very large instances of Linear Programs involving sometimes millions of constraints and variables may be formulated using modern modeling languages such as [GAMS](http://www.gams.com), and solved via powerful Linear Programming *optimizers*[^27]. The Linear Program described in this chapter is much simplified, since it ignores many exceptions and complexities that are not essential to a basic understanding of the principles of the model. Chapter {numref}`%s <appendix-b-linear-programming>` gives additional details on general Linear Programming concepts. The full details of the parameters, variables, objective function, and constraints of TIMES are given in Part II of this documentation (sections {numref}`%s <parameters>`, {numref}`%s <variables>`, and {numref}`%s <equations>`).
 
 A linear optimization problem formulation consists of three types of entities:
 - *the decision variables:* i.e. the unknowns, or endogenous quantities, to be determined by the optimization;
@@ -31,7 +31,7 @@ The model data structures (sets and parameters), variables and equations use the
 
 The decision variables represent the *choices* to be made by the model, i.e. the *unknowns*. All TIMES variables are prefixed with the three letters VAR followed by an underscore.
 
-**Important remark**: There are two possible choices concerning the very *meaning* of some decision variables, namely those variables that represent yearly flows or process activities. In the original TIMES formulation, the activity of a process during some period $t$ is considered to be constant in all years constituting the period. This is illustrated in panel M.a of {numref}`process-act-original-TIMES-linear-variant`). In the alternative option the activity variable is considered to represent the value *in a milestone year* of each period, and the values at all other years is linearly interpolated between the consecutive milestone year values, as illustrated in panel M.b). A milestone year is chosen close to the middle of a period. This second option is similar to that of the EFOM and the MESSAGE models. The user is free to choose either option. The constraints and objective function presented below apply to the first option (constant value of activity variables within a period). Appropriate changes in constraints and objective function are made for the alternative option, as explained in section {numref}`%s <the-linear-variant-of-times>`, and more completely in Part II, section 6.
+**Important remark**: There are two possible choices concerning the very *meaning* of some decision variables, namely those variables that represent yearly flows or process activities. In the original TIMES formulation, the activity of a process during some period $t$ is considered to be constant in all years constituting the period. This is illustrated in panel M.a of {numref}`process-act-original-TIMES-linear-variant`). In the alternative option the activity variable is considered to represent the value *in a milestone year* of each period, and the values at all other years is linearly interpolated between the consecutive milestone year values, as illustrated in panel M.b). A milestone year is chosen close to the middle of a period. This second option is similar to that of the EFOM and the MESSAGE models. The user is free to choose either option. The constraints and objective function presented below apply to the first option (constant value of activity variables within a period). Appropriate changes in constraints and objective function are made for the alternative option, as explained in section {numref}`%s <the-linear-variant-of-times>`, and more completely in Part II, section {numref}`%s <equations>`.
 
 The main kinds of decision variables in a TIMES model are:
 
@@ -65,7 +65,7 @@ $VAR\_IRE(r,v,t,p,c,s,exp)$ and $VAR\_IRE(r,v,t,p,c,s,imp)$[^28]: quantity of co
 
 $VAR\_DEM(r,t,d)$: demand for end-use energy service $d$ in region $r$ and period $t$. It is a true variable, even though in the reference scenario, this variable is fixed by the user. In alternate scenarios however, $VAR\_DEM(r,t,d)$ may differ from the reference case demand due to the responsiveness of demands to their own prices (based on each service demand's own-price elasticity). Note that in this simplified formulation, we do not show the variables used to decompose $DEM(r,t,d)$ into a sum of step-wise quantities, as was presented in chapter {numref}`%s <core-times-model-mathematics>`.
 
-*Other variables:* Several options that have been added to TIMES over the successive versions require the definition of additional variables. They are alluded to in the sections describing the new options, and described more precisely in Part II, and in additional technical notes. Also, TIMES has a number of commodity related variables that are not strictly needed but are convenient for reporting purposes and/or for applying certain bounds to them. Examples of such variables are: the total amount produced of a commodity ($VAR\_COMPRD$), or the total amount consumed of a commodity ($VAR\_COMCON$).
+*Other variables:* Several options that have been added to TIMES over the successive versions require the definition of additional variables. They are alluded to in the sections describing the new options, and described more precisely in [Part II](part2), and in additional technical notes. Also, TIMES has a number of commodity related variables that are not strictly needed but are convenient for reporting purposes and/or for applying certain bounds to them. Examples of such variables are: the total amount produced of a commodity ($VAR\_COMPRD$), or the total amount consumed of a commodity ($VAR\_COMCON$).
 
 *<ins>Important remark</ins>*: It is useful to know that many variables (for instance the above two accounting variables, but also the flow variables described earlier) add only a moderate computational burden to the optimization process, thanks to the use of a *reduction algorithm* to detect and eliminate redundant variables and constraints before solving the LP. These variables and constraints are later reinstated in the solution file for reporting purposes.
 
@@ -89,7 +89,7 @@ In TIMES, the cost elements are defined at a finer level than the period. While 
 
 $$DAM(EM) = MC_{0} \times \frac{EM^{\beta + 1}}{(\beta + 1) \times EM_{0}^{\beta}}$$
 
-> Where $\beta$ is non-negative (i.e. marginal damage costs are non decreasing). Hence, the damage cost function is linear ($\beta = 0$) or non linear but convex ($\beta > 0$). Therefore, the same linearization procedure that was used for the surplus may be applied here in order to linearize the damage cost[^29]. Appendix B of Part II and Technical note \"TIMES Damage\", explain how to declare the various parameters required to define the damage functions, to specify the linearization parameters, and to define the switches used to control the optimization. It should be noted that global emissions such as GHG\'s should not be treated via this feature but rather should make use of the Climate Module option described in chapter {numref}`%s <the-times-climate-module>`.
+> Where $\beta$ is non-negative (i.e. marginal damage costs are non decreasing). Hence, the damage cost function is linear ($\beta = 0$) or non linear but convex ($\beta > 0$). Therefore, the same linearization procedure that was used for the surplus may be applied here in order to linearize the damage cost[^29]. [Appendix B](damage-cost-functions) of Part II and Technical note \"TIMES Damage\", explain how to declare the various parameters required to define the damage functions, to specify the linearization parameters, and to define the switches used to control the optimization. It should be noted that global emissions such as GHG\'s should not be treated via this feature but rather should make use of the Climate Module option described in chapter {numref}`%s <the-times-climate-module>`.
 
 - *Salvage value* of processes and embedded commodities at the end of the planning horizon. This revenue appears with a negative sign in the cost expressions. It should also be stressed that the calculation of the salvage value at the end of the planning horizon is very complex and that the original TIMES expressions accounting for it contained some biases (over- or under-estimations of the salvage values in some cases). These biases have been corrected in the present version of TIMES as explained in sections {numref}`%s <variants-for-the-objective-function>` and {numref}`%s <the-linear-variant-of-times>`.
 - *Welfare loss* resulting from reduced end-use demands. Chapter {numref}`%s <core-times-model-mathematics>` has presented the mathematical derivation of this quantity.
@@ -103,7 +103,7 @@ As already mentioned, in TIMES, special care is taken to precisely track the cas
 - Fourth, TIMES recognizes that there may be dismantling capital costs at the end-of-life of some processes (e.g. a nuclear plant), and that these costs, while attached to the investment variable indexed by period $t$, are actually incurred much later.
 - Finally, TIMES permits the payment of any capital cost to be spread over an *economic life (ELIFE)* that is different from the *technical life (TLIFE)* of the process. Furthermore it may be annualized at a different rate than the overall discount rate.
 
-To illustrate the above complexities, we present a diagram taken from Part II that pictures the yearly investments and yearly outlays of capital in one particular instance where there is no lead time and no dismantling of the technology, and the technical life of the technology does not exceed the period length. There are 4 distinct such instances, discussed in detail in section 6.2 of Part II.
+To illustrate the above complexities, we present a diagram taken from [Part II](part2) that pictures the yearly investments and yearly outlays of capital in one particular instance where there is no lead time and no dismantling of the technology, and the technical life of the technology does not exceed the period length. There are 4 distinct such instances, discussed in detail in section {numref}`%s <objective-function-eq-obj>` of Part II.
 
 ```{figure} ../assets/case-1a-example.svg
 :name: year-inv-tracking-case
@@ -113,7 +113,7 @@ Illustration of yearly investments and payments for one of four investment track
 
 ### Aggregating the various costs
 
-The above considerations, while adding precision and realism to the cost profile, also introduce complex mathematical expressions into the objective function. In this simplified formulation, we do not provide much detail on these complex expressions, which are fully described in section 6.2 of Part II. We limit our description to giving general indications on the cost elements comprising the objective function, as follows:
+The above considerations, while adding precision and realism to the cost profile, also introduce complex mathematical expressions into the objective function. In this simplified formulation, we do not provide much detail on these complex expressions, which are fully described in section {numref}`%s <objective-function-eq-obj>` of Part II. We limit our description to giving general indications on the cost elements comprising the objective function, as follows:
 - The capital costs (investment and dismantling) are first transformed into streams of annual payments, computed for each year of the horizon (and beyond, in the case of dismantling costs and recycling revenues), along the lines presented above.
 - A *salvage value* of all investments still active at the end of the horizon (EOH) is calculated as a lump sum revenue which is subtracted from the other costs and assumed to be accrued in the (single) year following the EOH.[^30]It is then discounted to the user selected reference year.
 - The other costs listed above, which are all annual costs, are added to the annualized capital cost payments, to form the $ANNCOST$ quantity below.
@@ -135,7 +135,7 @@ where:
 >
 > $R$ is the set of regions in the area of study.
 
-As already mentioned, the exact computation of $ANNCOST$ is quite complex and is postponed until section 6.2 of PART II
+As already mentioned, the exact computation of $ANNCOST$ is quite complex and is postponed until section {numref}`%s <objective-function-eq-obj>` of PART II
 
 (variants-for-the-objective-function)=
 ### Variants for the objective function
@@ -154,7 +154,7 @@ The three options are as follows:
 - The original OBJ with minor changes made to it, activated via the **OBLONG** switch.
 - The modified objective function (**MOD**). The **MOD** formulation adds only a few modifications to the standard formulation:
     - The model periods are defined in a different way; and
-    - The investment spreads in the investment Cases 1a and 1b (see section 6.2 of Part II for a list of all cases) are defined slightly differently.
+    - The investment spreads in the investment Cases 1a and 1b (see section {numref}`%s <objective-function-eq-obj>` of Part II for a list of all cases) are defined slightly differently.
 - The **ALT** formulation includes all the modifications made in the MOD formulation. In addition, it includes the following further modifications that eliminate basically all of the remaining problems in the standard formulation:
     - The investment spreads in the investment Case 1b are defined slightly differently;
     - The capacity transfer coefficients for newly installed capacities are defined slightly differently, so that the effective lifetime of technologies is calculated taking into account discounting;
@@ -169,7 +169,7 @@ Additional details and comments are provided on all three options in technical n
 (constraints)=
 ## Constraints
 
-While minimizing total discounted cost, the TIMES model must satisfy a large number of constraints (the so-called *equations* of the model) which express the physical and logical relationships that must be satisfied in order to properly depict the associated energy system. TIMES constraints are of several kinds. Here we list and briefly discuss the main types of constraints. A full, mathematically more precise description is given in Part II. If any constraint is not satisfied, the model is said to be *infeasible*, a condition caused by a data error or an over-specification of some requirement.
+While minimizing total discounted cost, the TIMES model must satisfy a large number of constraints (the so-called *equations* of the model) which express the physical and logical relationships that must be satisfied in order to properly depict the associated energy system. TIMES constraints are of several kinds. Here we list and briefly discuss the main types of constraints. A full, mathematically more precise description is given in [Part II](part2). If any constraint is not satisfied, the model is said to be *infeasible*, a condition caused by a data error or an over-specification of some requirement.
 
 In the descriptions of the equations that follow, the equation and variable names (and their indexes) are in ***bold italic*** type, and the parameters (and their indexes), corresponding to the input data, are in regular *italic* typeset. Furthermore, some parameter indexes have been omitted in order to provide a streamlined presentation.
 
@@ -177,7 +177,7 @@ In the descriptions of the equations that follow, the equation and variable name
 
 Investing in a particular technology increases its installed capacity for the duration of the physical life of the technology. At the end of that life, the total capacity for this technology is decreased by the same amount. When computing the available capacity in some time period, the model takes into account the capacity resulting from all investments up to that period, some of which may have been made prior to the initial period but are still in operating condition (embodied by the residual capacity of the technology), and others that have been decided by the model at, or after, the initial period, up to and including the period in question.
 
-The total available capacity for each technology *p,* in region *r*, in period *t* (all vintages),is equal to the sum of investments made by the model in past and current periods, and whose physical life has not yet ended, plus capacity in place prior to the modeling horizon that is still available. The exact formulation of this constraint is made quite complex by the fact that TIMES accepts variable time periods, and therefore the end of life of an investment may well fall in the middle of a future time period. We ignore here these complexities and provide a streamlined version of this constraint. Full details are shown in section 6.3.18 of Part II.
+The total available capacity for each technology *p,* in region *r*, in period *t* (all vintages),is equal to the sum of investments made by the model in past and current periods, and whose physical life has not yet ended, plus capacity in place prior to the modeling horizon that is still available. The exact formulation of this constraint is made quite complex by the fact that TIMES accepts variable time periods, and therefore the end of life of an investment may well fall in the middle of a future time period. We ignore here these complexities and provide a streamlined version of this constraint. Full details are shown in section {numref}`%s <equation-eq-capload>` of Part II.
 
 #### $EQ\_CPT(r,t,p)$ -- Capacity transfer
 
@@ -225,7 +225,7 @@ $$\sum_{p,c \in TOP(r,p,c,out)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SOUT(r,v,t,p,c,s) \
  
 > where:
 >
-> The constraint is ≥ for energy forms and = for materials and emissions (unless these defaults are overridden by the user, see Part II).
+> The constraint is ≥ for energy forms and = for materials and emissions (unless these defaults are overridden by the user, see [Part II](part2)).
 > 
 > $TOP(r,p,c,in/out)$ identifies that there is an input/output flow of commodity $c$ into/from process $p$ in region $r$;
 > 
@@ -310,7 +310,7 @@ In addition to the standard TIMES constraints discussed above, the user may crea
 
 In order to facilitate the creation of a new user constraint, TIMES provides a *template* for indicating a) the set of variables involved in the constraint, and b) the user-defined coefficients needed in the constraint.
 
-The details of how to build different types of UC are included in section 6.4 of Part II of the documentation.
+The details of how to build different types of UC are included in section {numref}`%s <p64-user-constraints>` of Part II of the documentation.
 
 ### Growth constraints
 
@@ -331,7 +331,7 @@ With this new TIMES feature the user may allow the model to retire some technolo
 
 This feature requires the definition of three new constraints, as listed and briefly described in {numref}`new-early-retirement-constraints`, as well as the alteration of many existing constraints and the objective function, as described in {numref}`retirement-affected-constraints`. Part II and the special separate note *TIMES Early Retirement of Capacity* provide additional detail.
 
-The user is advised to use the discrete early retirement feature sparingly, as it implies the use of mixed integer programming optimizer, rather than the computationally much more efficient linear programming optimizer. The user should also be aware that using the discrete option voids some of the economic properties of the equilibrium, as discussed in section {numref}`%s <important-remanr-on-the-mip>`.
+The user is advised to use the discrete early retirement feature sparingly, as it implies the use of mixed integer programming optimizer, rather than the computationally much more efficient linear programming optimizer. The user should also be aware that using the discrete option voids some of the economic properties of the equilibrium, as discussed in section {numref}`%s <important-remark-on-the-mip>`.
 
 ```{list-table} The new constraints required to implement early retirement of capacity.
 :name: new-early-retirement-constraints
