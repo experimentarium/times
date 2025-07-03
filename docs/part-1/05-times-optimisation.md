@@ -65,7 +65,7 @@ $VAR\_IRE(r,v,t,p,c,s,exp)$ and $VAR\_IRE(r,v,t,p,c,s,imp)$[^28]: quantity of co
 
 $VAR\_DEM(r,t,d)$: demand for end-use energy service $d$ in region $r$ and period $t$. It is a true variable, even though in the reference scenario, this variable is fixed by the user. In alternate scenarios however, $VAR\_DEM(r,t,d)$ may differ from the reference case demand due to the responsiveness of demands to their own prices (based on each service demand's own-price elasticity). Note that in this simplified formulation, we do not show the variables used to decompose $DEM(r,t,d)$ into a sum of step-wise quantities, as was presented in chapter {numref}`%s <core-times-model-mathematics>`.
 
-*Other variables:* Several options that have been added to TIMES over the successive versions require the definition of additional variables. They are alluded to in the sections describing the new options, and described more precisely in Part II, and in additional technical notes. Also, TIMES has a number of commodity related variables that are not strictly needed but are convenient for reporting purposes and/or for applying certain bounds to them. Examples of such variables are: the total amount produced of a commodity ($VAR\_COMPRD$), or the total amount consumed of a commodity ($VAR\_COMCON$).
+*Other variables:* Several options that have been added to TIMES over the successive versions require the definition of additional variables. They are alluded to in the sections describing the new options, and described more precisely in [Part II](part2), and in additional technical notes. Also, TIMES has a number of commodity related variables that are not strictly needed but are convenient for reporting purposes and/or for applying certain bounds to them. Examples of such variables are: the total amount produced of a commodity ($VAR\_COMPRD$), or the total amount consumed of a commodity ($VAR\_COMCON$).
 
 *<ins>Important remark</ins>*: It is useful to know that many variables (for instance the above two accounting variables, but also the flow variables described earlier) add only a moderate computational burden to the optimization process, thanks to the use of a *reduction algorithm* to detect and eliminate redundant variables and constraints before solving the LP. These variables and constraints are later reinstated in the solution file for reporting purposes.
 
@@ -89,7 +89,7 @@ In TIMES, the cost elements are defined at a finer level than the period. While 
 
 $$DAM(EM) = MC_{0} \times \frac{EM^{\beta + 1}}{(\beta + 1) \times EM_{0}^{\beta}}$$
 
-> Where $\beta$ is non-negative (i.e. marginal damage costs are non decreasing). Hence, the damage cost function is linear ($\beta = 0$) or non linear but convex ($\beta > 0$). Therefore, the same linearization procedure that was used for the surplus may be applied here in order to linearize the damage cost[^29]. Appendix B of Part II and Technical note \"TIMES Damage\", explain how to declare the various parameters required to define the damage functions, to specify the linearization parameters, and to define the switches used to control the optimization. It should be noted that global emissions such as GHG\'s should not be treated via this feature but rather should make use of the Climate Module option described in chapter {numref}`%s <the-times-climate-module>`.
+> Where $\beta$ is non-negative (i.e. marginal damage costs are non decreasing). Hence, the damage cost function is linear ($\beta = 0$) or non linear but convex ($\beta > 0$). Therefore, the same linearization procedure that was used for the surplus may be applied here in order to linearize the damage cost[^29]. [Appendix B](p2appb) of Part II and Technical note \"TIMES Damage\", explain how to declare the various parameters required to define the damage functions, to specify the linearization parameters, and to define the switches used to control the optimization. It should be noted that global emissions such as GHG\'s should not be treated via this feature but rather should make use of the Climate Module option described in chapter {numref}`%s <the-times-climate-module>`.
 
 - *Salvage value* of processes and embedded commodities at the end of the planning horizon. This revenue appears with a negative sign in the cost expressions. It should also be stressed that the calculation of the salvage value at the end of the planning horizon is very complex and that the original TIMES expressions accounting for it contained some biases (over- or under-estimations of the salvage values in some cases). These biases have been corrected in the present version of TIMES as explained in sections {numref}`%s <variants-for-the-objective-function>` and {numref}`%s <the-linear-variant-of-times>`.
 - *Welfare loss* resulting from reduced end-use demands. Chapter {numref}`%s <core-times-model-mathematics>` has presented the mathematical derivation of this quantity.
@@ -103,7 +103,7 @@ As already mentioned, in TIMES, special care is taken to precisely track the cas
 - Fourth, TIMES recognizes that there may be dismantling capital costs at the end-of-life of some processes (e.g. a nuclear plant), and that these costs, while attached to the investment variable indexed by period $t$, are actually incurred much later.
 - Finally, TIMES permits the payment of any capital cost to be spread over an *economic life (ELIFE)* that is different from the *technical life (TLIFE)* of the process. Furthermore it may be annualized at a different rate than the overall discount rate.
 
-To illustrate the above complexities, we present a diagram taken from Part II that pictures the yearly investments and yearly outlays of capital in one particular instance where there is no lead time and no dismantling of the technology, and the technical life of the technology does not exceed the period length. There are 4 distinct such instances, discussed in detail in section {numref}`%s <objective-function-eq-obj>` of Part II.
+To illustrate the above complexities, we present a diagram taken from [Part II](part2) that pictures the yearly investments and yearly outlays of capital in one particular instance where there is no lead time and no dismantling of the technology, and the technical life of the technology does not exceed the period length. There are 4 distinct such instances, discussed in detail in section {numref}`%s <objective-function-eq-obj>` of Part II.
 
 ```{figure} ../assets/case-1a-example.svg
 :name: year-inv-tracking-case
@@ -225,7 +225,7 @@ $$\sum_{p,c \in TOP(r,p,c,out)} VAR\_FLO(r,v,t,p,c,s) + VAR\_SOUT(r,v,t,p,c,s) \
  
 > where:
 >
-> The constraint is ≥ for energy forms and = for materials and emissions (unless these defaults are overridden by the user, see Part II).
+> The constraint is ≥ for energy forms and = for materials and emissions (unless these defaults are overridden by the user, see [Part II](part2)).
 > 
 > $TOP(r,p,c,in/out)$ identifies that there is an input/output flow of commodity $c$ into/from process $p$ in region $r$;
 > 
