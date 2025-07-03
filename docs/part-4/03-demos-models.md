@@ -1310,7 +1310,7 @@ Figure 134. Specifying Growth Rates with a User Constraint
 
 #### Scen_ElasticDem
 
-This file is used to introduce price-elasticities for end-use demands (Figure 135), so that demands can react to changes in their prices under a constrained energy system (e.g., under limits or tax on emissions, etc.). (See Section 4.2 of Part I of the TIMES documentation for more on the elastic demand formulation.)
+This file is used to introduce price-elasticities for end-use demands (Figure 135), so that demands can react to changes in their prices under a constrained energy system (e.g., under limits or tax on emissions, etc.). (See Section {numref}`%s <p42-mathematics-of-the-times-equilibrium>` of Part I of the TIMES documentation for more on the elastic demand formulation.)
 
 In this example, price-elasticities are declared for the transportation demand by cars (DTCAR). Three attributes need to be declared:
 
