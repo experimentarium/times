@@ -2932,6 +2932,7 @@ Indexing of auxiliary consumption/emission.
 (report-parameters)=
 ##  Report parameters
 
+(p331-overview-of-report)=
 ### Overview of report parameters
 
 The parameters generated internally by TIMES to document the results of a model run are listed in Table 15. These parameters can be imported into the **VEDA-BE** tool for further result analysis. They are converted out of the **GDX**[^32] file via the **gdx2veda** GAMS utility into a **VEDA-BE** compatible format according to the file **times2veda.vdd**[^33]. Note that some of the results are not transferred into parameters, but are directly accessed through the **times2veda.vdd** file (levels of commodity balances and peaking equation, total discounted value of objective function). The following naming conventions apply to the prefixes of the report parameters:
@@ -3324,6 +3325,7 @@ The acronyms used in the reporting parameters for referring to certain types of 
   <br>DAM Damage costs
 ```
 
+(p333-the-levelized-cost)=
 ### The levelized cost reporting option
 
 As indicated in {numref}`times-report-parameters` above, the reporting of levelized costs for each process can be requested by setting the option RPT_OPT(\'NCAP\', \'1\'). The results are stored in the VEDA-BE $Var\_NcapR$ result attribute, with the qualifier \'LEVCOST\' (with a possible system label prefix).
