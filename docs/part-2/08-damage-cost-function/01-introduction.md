@@ -1,3 +1,4 @@
+(p2appb)=
 # Introduction
 
 This Appendix contains the documentation on the Damage Cost Function extensions for the TIMES model. The chapter contains 6 sections: section {numref}`%s <b-mathematical-formulations>` contains the mathematical formulation, section {numref}`%s <b-switches-and-parameters>` describes the parameters for the Damage Cost Functions, and section {numref}`%s <b-examples>` gives two examples. Finally, section {numref}`%s <b-variables>` describes the variables and section {numref}`%s <b-equations>` describes the equations.
