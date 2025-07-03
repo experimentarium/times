@@ -1,6 +1,6 @@
 # Appendix A RESULTS TIMES Attributes
 
-{numref}`p4-times-results-attributes` provides a list of TIMES results attributes produced by the **gdx2veda** GAMS utility from a TIMES run **GDX** file, according to the **times2veda.vdd** directives (see Appendix B) and the reporting options (see Part III, Section 3.10) invoked with the run. Not all attributes listed will appear in every Results database. Many attributes will not appear if the driving input attributes were not used in the model input. See Part II, Section {numref}`%s <p331-overview-of-report>` for more details on the TIMES reporting parameters.
+{numref}`p4-times-results-attributes` provides a list of TIMES results attributes produced by the **gdx2veda** GAMS utility from a TIMES run **GDX** file, according to the **times2veda.vdd** directives (see Appendix B) and the reporting options (see Part III, Section {numref}`%s <controls-affecting-solution-reporting>`) invoked with the run. Not all attributes listed will appear in every Results database. Many attributes will not appear if the driving input attributes were not used in the model input. See Part II, Section {numref}`%s <p331-overview-of-report>` for more details on the TIMES reporting parameters.
 
 ```{list-table} : TIMES Results Attributes.
 :name: p4-times-results-attributes
@@ -53,7 +53,7 @@
   - Annual implied costs of endogenous trade, valued according to the marginal(s) of the trade equation of process p. Undiscounted
 * - Cost_NPV
   - p,c
-  - Total discounted costs by component. See Table XX below for components, and Part III, Section 3.10 for reporting options.
+  - Total discounted costs by component. See Table XX below for components, and Part III, Section {numref}`%s <controls-affecting-solution-reporting>` for reporting options.
 * - COST_Salv
   - p
   - Salvage value of investment cost, taxes and subsidies of process (p) with vintage period (v), for which the technical lifetime exceeds the end of the model horizon, value at year EOH+1.
@@ -149,7 +149,7 @@
   - Cumulative costs by type (if constrained).
 * - VAR_Eout
   - 
-  - Electricity output of electricity supply processes by energy source. (Opted out by default -- set RPT_OPT(\'FLO\',\'5\')=1 to activate; see Part III, Section 3.10).
+  - Electricity output of electricity supply processes by energy source. (Opted out by default -- set RPT_OPT(\'FLO\',\'5\')=1 to activate; see Part III, Section {numref}`%s <controls-affecting-solution-reporting>`).
 * - VAR_Fin
   - p,c
   - Commodity consumption by process
