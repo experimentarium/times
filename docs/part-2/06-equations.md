@@ -161,7 +161,7 @@ $\left\langle E \right\rangle$ is the smallest integer larger than of equal to *
 
 #### Discounting options
 
-There are alternate discounting methods in TIMES. The default method is to assume that all payments occur at the beginning of some year. Alternate methods (activated by a switch, see PART III) assume that investments are incurred at the beginning of some year, but that all annual (or annualized) payments occur at the middle or at the end of the corresponding year. Section 0 explains the different methods.
+There are alternate discounting methods in TIMES. The default method is to assume that all payments occur at the beginning of some year. Alternate methods (activated by a switch, see [PART III](part3)) assume that investments are incurred at the beginning of some year, but that all annual (or annualized) payments occur at the middle or at the end of the corresponding year. Section 0 explains the different methods.
 
 #### Components of the Objective function
 
@@ -641,7 +641,7 @@ $y \leq EOH$ **(VI)**
 (cost-of-demand-reductions)=
 ### Cost of demand reductions ELASTCOST(y) 
 
-When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See PART I for a theoretical justification, and Appendix [D](times-demand-functions) for formulations involving more generalized demand functions.
+When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See [PART I](part1) for a theoretical justification, and Appendix [D](times-demand-functions) for formulations involving more generalized demand functions.
 
 $${ELASTCOST(y) = 
 }{\quad\sum_{j = 1}^{COM\_STEP_{lo}}{COM\_BPRICE_{T(y)} \times \left\{ \left( 1 - \frac{(j - 1/2) \times COM\_VOC_{lo,T(y)}}{COM\_STEP_{lo}} \right)^{\frac{1}{COM\_ELAST_{lo,T(y)}}} \right\}} \times VAR\_ELAST_{lo,j,T(y)}}$$
