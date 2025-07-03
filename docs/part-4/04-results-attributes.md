@@ -1,6 +1,6 @@
 # Appendix A RESULTS TIMES Attributes
 
-{numref}`p4-times-results-attributes` provides a list of TIMES results attributes produced by the **gdx2veda** GAMS utility from a TIMES run **GDX** file, according to the **times2veda.vdd** directives (see Appendix {numref}`%s <pa4-appendix-b>`) and the reporting options (see Part III, Section {numref}`%s <controls-affecting-solution-reporting>`) invoked with the run. Not all attributes listed will appear in every Results database. Many attributes will not appear if the driving input attributes were not used in the model input. See Part II, Section {numref}`%s <p331-overview-of-report>` for more details on the TIMES reporting parameters.
+{numref}`p4-times-results-attributes` provides a list of TIMES results attributes produced by the **gdx2veda** GAMS utility from a TIMES run **GDX** file, according to the **times2veda.vdd** directives (see [Appendix B]`%s <pa4-appendix-b>`) and the reporting options (see Part III, Section {numref}`%s <controls-affecting-solution-reporting>`) invoked with the run. Not all attributes listed will appear in every Results database. Many attributes will not appear if the driving input attributes were not used in the model input. See Part II, Section {numref}`%s <p331-overview-of-report>` for more details on the TIMES reporting parameters.
 
 ```{list-table} : TIMES Results Attributes.
 :name: p4-times-results-attributes
