@@ -489,7 +489,7 @@ $$
     \begin{aligned}
       &\mathrm{VAR\_NCAP}_{r,v,p}\,(\exists\, \mathbf{t}_v) \\
       &+\, \mathrm{NCAP\_PASTI}_{r,v,p} \\
-      &-\, \sum_{\substack{\mathrm{prc\_rcap}_{r,p} \\ \mathrm{period}t_{v,y}}}
+      &-\, \sum_{\substack{\mathrm{prc\_rcap}_{r,p} \\ \mathrm{period}yr_{t,y}}}
         \mathrm{VAR\_SCAP}_{r,v,t,p}
     \end{aligned}
 \right)
