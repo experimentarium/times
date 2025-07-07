@@ -511,8 +511,8 @@ The figure of the example shows that payments made in year $y$ may come from inv
 $${FIXCOST(y) = 
 }{\sum_{t \in MILESTONYR \cup PASTYEARS}{INDIC(1.a)} \times \sum_{v = Max\left\{ M(t) - D(t) + 1,y - TLIFE_{t} + 1 \right\}}^{Min(M(t),y)}\left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right)
 }{\times NCAP\_FOM_{v} \times SHAPE(v,y - v) \times MULTI(y)
-}
-{Theusefulrangeforyis:
+}\\
+{The useful range for y is:
 }{\{ M(t) - D(t) + 1,M(t) + TLIFE_{t} - 1\}
 }
 $$
