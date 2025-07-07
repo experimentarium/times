@@ -1,10 +1,11 @@
+(p1-overview)=
 # Overview
 
-This Part of the TIMES documentation provides an introduction to VEDA2.0 (Version 1.190.1.1), a flexible, user-friendly tool that oversees all aspects of the management and use TIMES energy system models, incorporating modules for handling the model input templates (data) and run results. The manual does so by presenting a step-by-step introduction to building a TIMES model using a series of twelve DemoS models (available for download from the [ETSAP website](https://iea-etsap.org/index.php/documentation) to progressively demonstrate VEDA-TIMES principles and modeling techniques. The remainder of Section 1 describes how to access and set up the TIMES DemoS models. Section 2 provides an orientation to the basic features of VEDA2.0, including software layout, commonly used data files and tables, and model management features. Section 3 then walks through the twelve DemoS models, providing for each a summary of the VEDA-TIMES features and model attributes introduced, a detailed guide to the templates and tables used, and a look at the model results.
+This Part of the TIMES documentation provides an introduction to VEDA2.0 (Version 1.190.1.1), a flexible, user-friendly tool that oversees all aspects of the management and use TIMES energy system models, incorporating modules for handling the model input templates (data) and run results. The manual does so by presenting a step-by-step introduction to building a TIMES model using a series of twelve DemoS models (available for download from the [ETSAP website](https://iea-etsap.org/index.php/documentation) to progressively demonstrate VEDA-TIMES principles and modeling techniques. The remainder of section {numref}`%s <p1-overview>` describes how to access and set up the TIMES DemoS models. Section {numref}`%s <p2-introduction-to-veda>` provides an orientation to the basic features of VEDA2.0, including software layout, commonly used data files and tables, and model management features. Section {numref}`%s <p3-times-demos-models>` then walks through the twelve DemoS models, providing for each a summary of the VEDA-TIMES features and model attributes introduced, a detailed guide to the templates and tables used, and a look at the model results.
 
 ## Downloading and Registering VEDA2.0
 
-To download and install VEDA2.0 it is recommend that the new user first takes a look at the YouTube video on this topic noted in Section 2. Once downloaded, unzipped and starting VEDA2.0 the user is presented with an Activation screen where one proceeds by:
+To download and install VEDA2.0 it is recommend that the new user first takes a look at the YouTube video on this topic noted in Section {numref}`%s <p2-introduction-to-veda>`. Once downloaded, unzipped and starting VEDA2.0 the user is presented with an Activation screen where one proceeds by:
 
 - Hitting **Get Trail Key**
 - Completing the **Registration Form**
@@ -17,7 +18,7 @@ To download and install VEDA2.0 it is recommend that the new user first takes a 
 
 ![](assets/image3.png)
 
-This will then bring you to the VEDA2.0 Start Page discussed in Section 2.
+This will then bring you to the VEDA2.0 Start Page discussed in Section {numref}`%s <p2-introduction-to-veda>`.
 
 ## Obtaining and Setting Up GAMS for TIMES
 

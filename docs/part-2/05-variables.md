@@ -311,7 +311,7 @@ This chapter describes each variable name, definition, and role in the TIMES Lin
 
 > **Definition:** these variables are defined whenever a demand is declared to be price elastic. These variables are indexed by **j**, where **j** runs over the number of steps used for discretizing the demand curve of commodity **c** (**c** = energy service only). The $j^{th}$ variable stands for the portion of the demand that lies within discretization interval **j**, on side ***l*** (***l*** indicates either increase or decrease of demand w.r.t. the reference case demand). Each ELAST variable is bounded upward via virtual equation EQ_BNDELAS.
 >
-> **Role:** Each elastic demand is expressed as the sum of these variables. In the objective function, these variables are used to bear the cost of demand losses as explained in Part I, Chapter 4.
+> **Role:** Each elastic demand is expressed as the sum of these variables. In the objective function, these variables are used to bear the cost of demand losses as explained in Part I, Chapter {numref}`%s <core-times-model-mathematics>`.
 >
 > **Bounds:** Direct bounding not available, indirectly by COM_VOC/COM_STEP
 >
