@@ -692,17 +692,18 @@ $$
 
 *where:*
 
-\[
+$$
 I = \left\lfloor \frac{y - B(t) - ILED_t - TLIFE_t}{TLIFE_t} \right\rfloor
-\]
+$$
 
 *and*
 
-\[
+$$
 C = \left\langle \frac{D(t) - ILED_t}{TLIFE_t} \right\rangle
-\]
+$$
 
 *note that y may exceed EOH*
+
 (IV-2-b-tick)
 
 ![](assets/case-2b-example-4.svg)
@@ -808,9 +809,9 @@ The final result of these expressions is *Result 2* expressing the salvage value
 *Result 2*
 
 $$
-{SAL(k,TL) = 0if\overset{\underset{}{}}{k} + TL \leq EOH
+{SAL(k,TL) = 0\quad    if \quad\overset{\underset{}{}}{k} + TL \leq EOH
 }$$
-$${SAL(k,TL) = \frac{CRF_{s}}{CRF}if\overset{\underset{}{}}{k} \geq EOH + 1
+$${SAL(k,TL) = \frac{CRF_{s}}{CRF}\quad if \quad\overset{\underset{}{}}{k} \geq EOH + 1
 }$$
 $${SAL(k,TL) = \frac{1 - (1 + d)^{EOH + 1 - k - TL}}{1 - (1 + d)^{- TL}} \times \frac{CRF_{s}}{CRF} \times \frac{S(k,TL,FDR)}{S(k,TL,0)}\quad otherwise}
 $$
@@ -889,13 +890,17 @@ It is helpful to look at the examples for each case in order to understand these
 Finally, the equivalent of Result 2 is given as Result 3, for decommissioning.
 
 *Result 3*
-$${\text{The Salvage}\text{Value}\text{of}a\text{decommissioning cost occuring at year}l,\text{for}
-}{\text{an investment taking place at year}k,\text{is}:
+
+$${\text{The Salvage }\text{Value }\text{of }a\text{ decommissioning cost occuring at year }l,\text{for }
+}{\text{an investment taking place at year }k,\text{ is }:
 }$$
-$${SAL(k,l) = 0 \text{if }k + TL \leq EOH
+
+$${SAL(k,l) = 0 \text{           if }k + TL \leq EOH
 }$$
-$${SAL(k,l) = \frac{CRF_{s}}{CRF} \times (1 + i)^{EOH + 1 - l}\text{if }k \geq EOH + 1
+
+$${SAL(k,l) = \frac{CRF_{s}}{CRF} \times (1 + i)^{EOH + 1 - l}\text{           if }k \geq EOH + 1
 }$$
+
 $${SAL(k,l) = \frac{(1 + d)^{TLIFE + k - l} - (1 + d)^{EOH + 1 - l}}{(1 + d)^{TLIFE} - 1} \times \frac{CRF_{s}}{CRF}\text{ otherwise}
 }$$
 
