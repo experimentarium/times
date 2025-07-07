@@ -616,9 +616,7 @@ $$
 0 & \text{otherwise}
 \end{cases}
 \end{aligned}
-$$
-(IV-2-a-tick)
-\vspace{1em}
+$$ (IV-2-a-tick)
 
 **Useful Range for $y$:**
 
