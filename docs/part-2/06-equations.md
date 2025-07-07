@@ -470,15 +470,6 @@ There are two types of fixed annual costs, *FIXCOST(y)*, which is incurred each 
 
 In TIMES, any capacity may also be retired before the end of its technical lifetime, if so-called early retirements are enabled for a process. In such cases, the plant is assumed to be irrevocably shut down, and therefore fixed O&M costs would no longer occur. This situation is not taken into account in the standard formulations given below, but it has been taken into account in the model generator. To see that the expressions for the fixed annual costs, taxes and subsidies could be easily adjusted for early retirements, consider the standard expressions for *FIXCOST(y)*, which can all be written as follows.
 
-$$missing \space expression$$
-
-$$
-FIXCOST(r,y) = 
-\sum_{\begin{aligned}
- & (r,v,p) \in rtp
-\end{aligned}} ( {VAR\_NCAP_{r,v,p}} (\out t_v) + {NCAP\_PATSI_{r,v,p}} ) \times CF_{r,v,p,y}}
-$$
-
 $$
 \mathrm{FIXCOST}(r, y) =
 \sum_{\substack{(r, v, p) \in rtp}}
@@ -489,10 +480,21 @@ $$
 \times CF_{r,v,p,y}
 $$
 
-
 Here, $CF_{r,v,p,y}$ is the compound fixed cost coefficient for each capacity vintage in year $y$, as obtained from the original expressions for $FIXCOST(y)$. Recalling that fixed costs are accounted only within the model horizon, these expressions can be adjusted as follows:
 
-$$missing \space expression$$
+$$
+\mathrm{FIXCOST}^{\circ}(r, y) =
+\sum_{(r, v, p) \in rtp}
+\left(
+    \begin{aligned}
+      &\mathrm{VAR\_NCAP}_{r,v,p}\,(\exists\, \mathbf{t}_v) \\
+      &+\, \mathrm{NCAP\_PASTI}_{r,v,p} \\
+      &-\, \sum_{\substack{\mathrm{prc\_rcap}_{r,p} \\ \mathrm{period}t_{v,y}}}
+        \mathrm{VAR\_SCAP}_{r,v,t,p}
+    \end{aligned}
+\right)
+\times CF_{r,v,p,y}
+$$
 
 As one can see, the expressions for $FIXCOST(r,y)$ can be augmented in a straightforward manner, obtaining the expressions $FIXCOST°(r,y)$ that take into account early capacity retirements of each vintage, represented by the $VAR\_SCAP_{r,v,t,p}$ variables.
 
