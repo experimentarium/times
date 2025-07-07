@@ -823,7 +823,7 @@ The sets internally derived by the TIMES model generator are given in {numref}`i
   - Indicator of which timeslices (**s**) associate with commodity **c** in region **r** for time period **t** the commodity production equation (EQ(l)\_COMBAL) is to be generated, with a constraint type according to **bd,** when a corresponding **rhs_comprd** indicator exists.
 * - rcs_comts (r,c,s)
   - All timeslices **s** being at or above timeslice level (**com_tsl**) of commodity **c** in region **r**.
-* - rdcur\ (r,cur)
+* - rdcur (r,cur)
   - List of currencies **cur** that are discounted (G_DRATE provided) in each region **r**.
 * - rhs_combal (r,t,c,s)
   - Indicator that the commodity net variable (VAR_COMNET) is required in commodity balance (EQE_COMBAL), owing to bounds/costs imposed on the net amount.
@@ -831,7 +831,7 @@ The sets internally derived by the TIMES model generator are given in {numref}`i
   - Indicator that the commodity production variable (VAR_COMPRD) is required in commodity balance (EQE_COMPRD), owing to a limit/costs imposed on the production.
 * - rp (r,p)
   - List of processes (**p**) in each region (**r**).
-* - rp_aire\ (r,p,ie)
+* - rp_aire (r,p,ie)
   - List of exchange processes (**p**) in each region (**r**) with indicators (**ie**) corresponding to the activity being defined by imports/exports or both.
 * - rp_flo (r,p)
   - List of all processes in region (**r)**, except inter-regional exchange processes (**ire**).
