@@ -44,11 +44,12 @@ A typical example of the latter is the first condition for equation *EQ_ACTFLO~r
 
 There are situations where an expression A is either equal to B or to C, depending on whether a certain condition holds or not, i.e.:
 
-$${A = BifCond}{A = CifNOTCond}$$
+$${A = B if Cond}$$
+$${A = C if NOT Cond}$$
 
 This may also be written as:
 
-$$A = B \times (Cond) + C \times (NOTCond)$$
+$$A = B \times (Cond) + C \times (NOT Cond)$$
 
 where it is understood that the notation (Cond) is the *indicator function* of the logical condition, i.e. (Cond)=1 if Cond holds, and 0 if not.
 
