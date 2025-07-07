@@ -513,7 +513,7 @@ $${FIXCOST(y) =
 }{\times NCAP\_FOM_{v} \times SHAPE(v,y - v) \times MULTI(y)
 }$$
 
-$The useful range for y is:$
+The useful range for y is:
 
 $${\{ M(t) - D(t) + 1,M(t) + TLIFE_{t} - 1\}}$$
 
