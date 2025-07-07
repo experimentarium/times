@@ -355,7 +355,7 @@ g) Decommissioning activities may also receive taxes or subsidies which are prop
 
 $$EQ\_COSTDECOM(y) \ni y \in ALLYEARS$$
 
-**Case 1.a:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} \geq {D(t)}$
+**Case 1.a:** If ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED}_{t} \geq {D(t)}$
 
 **(Small divisible projects, non-repetitive, progressive investment in period)**
 
@@ -442,14 +442,14 @@ $$C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle$$
 [Step 1]{.underline}: Compute payment vector
 
 $$
-{For \space I = 1 \space to \space C}
+{For \space I = 1 \space to \space C}//
 {For \space J = 1 \space to \space DLIFE_{t}
-}{For \space L = 1 \space to \space DELIF_{t}
-}{P_{t}\left( B(t) + ILED_{t} + I \times TLIFE_{t} + DLAG_{t} + J + L - 2 \right): = 
-}{same + \frac{NCAP\_DCOST_{B(t) + ILED_{t} + (I - 1) \times TLIFE_{t}}}{DLIFE_{t}}
-}{Next \space L
-}{Next \space J
-}{Next \space I}
+}//{For \space L = 1 \space to \space DELIF_{t}
+}//{P_{t}\left( B(t) + ILED_{t} + I \times TLIFE_{t} + DLAG_{t} + J + L - 2 \right): = 
+}//{same + \frac{NCAP\_DCOST_{B(t) + ILED_{t} + (I - 1) \times TLIFE_{t}}}{DLIFE_{t}}
+}//{Next \space L
+}//{Next \space J
+}//{Next \space I}
 $$
 
 **[END ALGORITHM]{.underline}**
