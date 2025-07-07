@@ -637,7 +637,21 @@ $$
 
 The cost expression takes into account the vintage and the age of the *FIXOM* being paid at any given year $y$. See note in formula and figure for an explanation.
 
-$$missing \space expression$$
+$$
+\sum_{\substack{t \in \mathrm{MILESTONES} \\ t \leq T(y)}}
+\mathrm{INDIC}(2.b) \times (\mathrm{VAR\_NCAP}_t) \times \mathrm{NCAP\_FOM}_{B(t)+\mathrm{ILED}_t+I \cdot \mathrm{TLIFE}_t}
+$$
+
+$$
+\times\ \mathrm{SHAPE}(t,\, y - B(t) - \mathrm{ILED}_t - I \cdot \mathrm{TLIFE}_t)
+\times
+\begin{cases}
+1 & \text{if } 0 \leq I \leq C-1 \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+I is the index of the investment cycle where y lies. I varies from 0 to C-1.
 
 where:
 
@@ -649,29 +663,47 @@ $$
 
 *Range for y:*
 
-$$missing \space expression$$ (IV-2-b)
+$$
+\{ B(t) + ILED_t,\; B(t) + ILED_t + C \times TLIFE_t - 1 \}
+$$
+
+*and*
+
+$$
+y \leq EOH
+$$ (IV-2-b)
 
 *Remark:* same as above, concerning the indexing of the cost attribute
 
 *ii. $SURVCOST(y)$ (surveillance cost for same case; the same example applies)*
 
-$${SURVCOST(y) = \sum_{\begin{aligned}
- & t \in MILESTONES \\
- & t \leq T(y)
-\end{aligned}}{INDIC(2.b)} \times \left( VAR\_NCAP_{t} \right) \times NCAP\_DLAGC_{B(t) + ILED_{t} + I \cdot TLIFE_{t}}
-}{\times \left\{ \begin{matrix}
-1ifB(t) + ILED_{t} + (I + 1) \times TLIFE_{t} \leq y \leq same + DLAG_{t} - 1and0 \leq I \leq C - 1 \\
-0otherwise
-\end{matrix} \right.\ }$$
-
-where:
-
 $$
-{I = \left\lbrack \frac{y - B(t) - ILED_{t} - TLIFE_{t}}{TLIFE_{t}} \right\rbrack
-}{and
-}{C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle
-}{NotethatymayexceedEOH}
-$$ (IV-2-b-tick)
+\begin{aligned}
+\mathrm{SURVCOST}(y) =\ & 
+\sum_{\substack{t \in \mathrm{MILESTONES} \\ t \leq T(y)}}
+\mathrm{INDIC}(2.b) \times (\mathrm{VAR\_NCAP}_t) \times \mathrm{NCAP\_DLAGC}_{B(t)+\mathrm{ILED}_t+I \cdot \mathrm{TLIFE}_t} \\
+& \qquad \times 
+\begin{cases}
+1 & \text{if } B(t) + \mathrm{ILED}_t + (I+1) \cdot \mathrm{TLIFE}_t \leq y \leq \text{same} + \mathrm{DLAG}_t - 1 \text{ and } 0 \leq I \leq C-1 \\
+0 & \text{otherwise}
+\end{cases}
+\end{aligned}
+$$
+
+*where:*
+
+\[
+I = \left\lfloor \frac{y - B(t) - ILED_t - TLIFE_t}{TLIFE_t} \right\rfloor
+\]
+
+*and*
+
+\[
+C = \left\langle \frac{D(t) - ILED_t}{TLIFE_t} \right\rangle
+\]
+
+*note that y may exceed EOH*
+(IV-2-b-tick)
 
 ![](assets/case-2b-example-4.svg)
 
@@ -679,7 +711,7 @@ $$ (IV-2-b-tick)
 
 ### Annual taxes/subsidies on capacity: FIXTAXSUB(Y) 
 
-It is assumed that these taxes (subsidies) are paid (accrued) at exactly the same time as the fixed annual costs. Therefore, the expressions **IV** of subsection 5.1.4 are valid, replacing the cost attributes by *NCAP_FTAX -- NCAP_FSUB. []{.mark}*
+It is assumed that these taxes (subsidies) are paid (accrued) at exactly the same time as the fixed annual costs. Therefore, the expressions **IV** of subsection 5.1.4 are valid, replacing the cost attributes by *NCAP_FTAX -- NCAP_FSUB*
 
 ### Variable annual costs *VARCOST(y), y ≤ EOH*
 
@@ -692,9 +724,10 @@ Finally, the expressions are written only for the years within horizon, since pa
 As stated in the introduction, the payment of variable costs is constant over each period. Therefore, the expressions below are particularly simple.
 
 $$
-{VARCOST(y) = VAR\_XXX_{v,T(y)} \times XXX\_COST_{y}
-}{VARTAXSUB(y) = VAR\_XXX_{v,T(y)} \times (XXX\_TAX_{y} - XXX\_SUB_{y})
-}
+{VARCOST(y) = VAR\_XXX_{v,T(y)} \times XXX\_COST_{y}}
+$$
+$$
+{VARTAXSUB(y) = VAR\_XXX_{v,T(y)} \times (XXX\_TAX_{y} - XXX\_SUB_{y})}
 $$
 
 $y \leq EOH$ **(VI)**
@@ -708,7 +741,9 @@ $${ELASTCOST(y) =
 }{\quad\sum_{j = 1}^{COM\_STEP_{lo}}{COM\_BPRICE_{T(y)} \times \left\{ \left( 1 - \frac{(j - 1/2) \times COM\_VOC_{lo,T(y)}}{COM\_STEP_{lo}} \right)^{\frac{1}{COM\_ELAST_{lo,T(y)}}} \right\}} \times VAR\_ELAST_{lo,j,T(y)}}$$
 
 $${- \sum_{j = 1}^{COM\_STEP_{up}}{COM\_BPRICE_{T(y)} \times \left\{ \left( 1 + \frac{(j - 1/2) \times COM\_VOC_{up,T(y)}}{COM\_STEP_{up}} \right)^{\frac{1}{COM\_ELAST_{up, ⥂ T(y)}}} \right\}} \times VAR\_ELAST_{up,j,T(y)}
-}{y \leq EOH}$$
+}$$
+
+$${y \leq EOH}$$
 
 **(VII)**
 
@@ -741,9 +776,9 @@ The salvage value (calculated at year *k*) of a unit investment made in
 year *k*,\
 and whose technical life is *TL*, is:
 
-$${S(k,TL,FDR) = 0 if\overset{\underset{}{}}{k} + TL \leq EOH
-}{S(k,TL,FDR) = 1if\overset{\underset{}{}}{k} > EOH
-}{S(k,TL,FDR) = \frac{\left( (1 + d) \cdot \exp(FDR) \right)^{TL - EOH - 1 + k} - 1}{\left( (1 + d) \cdot \exp(FDR) \right)^{TL} - 1}\quad otherwise}$$
+$${S(k,TL,FDR) = 0 if\overset{\underset{}{}}{k} + TL \leq EOH}$$
+$${S(k,TL,FDR) = 1if\overset{\underset{}{}}{k} > EOH}$$
+$${S(k,TL,FDR) = \frac{\left( (1 + d) \cdot \exp(FDR) \right)^{TL - EOH - 1 + k} - 1}{\left( (1 + d) \cdot \exp(FDR) \right)^{TL} - 1}\quad otherwise}$$
 
 where d is the general discount rate and FDR is the optional functional depreciation rate
 
@@ -774,8 +809,10 @@ The final result of these expressions is *Result 2* expressing the salvage value
 
 $$
 {SAL(k,TL) = 0if\overset{\underset{}{}}{k} + TL \leq EOH
-}{SAL(k,TL) = \frac{CRF_{s}}{CRF}if\overset{\underset{}{}}{k} \geq EOH + 1
-}{SAL(k,TL) = \frac{1 - (1 + d)^{EOH + 1 - k - TL}}{1 - (1 + d)^{- TL}} \times \frac{CRF_{s}}{CRF} \times \frac{S(k,TL,FDR)}{S(k,TL,0)}\quad otherwise}
+}$$
+$${SAL(k,TL) = \frac{CRF_{s}}{CRF}if\overset{\underset{}{}}{k} \geq EOH + 1
+}$$
+$${SAL(k,TL) = \frac{1 - (1 + d)^{EOH + 1 - k - TL}}{1 - (1 + d)^{- TL}} \times \frac{CRF_{s}}{CRF} \times \frac{S(k,TL,FDR)}{S(k,TL,0)}\quad otherwise}
 $$
 
 where $d$ is the general discount rate, $CRF_s$ is the technology-specific capital recovery factor and $FDR$ is the functional depreciation rate.
@@ -851,19 +888,19 @@ It is helpful to look at the examples for each case in order to understand these
 
 Finally, the equivalent of Result 2 is given as Result 3, for decommissioning.
 
-$${\text{Result 3}
-}
-{\text{TheSalvage}\text{Value}\text{of}a\text{decommissioningcostoccuringatyear}l,\text{for}
-}{\text{aninvestmenttakingplaceatyear}k,\text{is}:
-}
-{SAL(k,l) = 0ifk + TL \leq EOH
-}
-{SAL(k,l) = \frac{CRF_{s}}{CRF} \times (1 + i)^{EOH + 1 - l}ifk \geq EOH + 1
-}
-{SAL(k,l) = \frac{(1 + d)^{TLIFE + k - l} - (1 + d)^{EOH + 1 - l}}{(1 + d)^{TLIFE} - 1} \times \frac{CRF_{s}}{CRF}otherwise
-}
-{\text{where }d\ \text{is the general discountrate}
-}{\text{and}d_{s}\text{isthetechnologyspecificdiscountrate}}$$
+*Result 3*
+$${\text{The Salvage}\text{Value}\text{of}a\text{decommissioning cost occuring at year}l,\text{for}
+}{\text{an investment taking place at year}k,\text{is}:
+}$$
+$${SAL(k,l) = 0 \text{if }k + TL \leq EOH
+}$$
+$${SAL(k,l) = \frac{CRF_{s}}{CRF} \times (1 + i)^{EOH + 1 - l}\text{if }k \geq EOH + 1
+}$$
+$${SAL(k,l) = \frac{(1 + d)^{TLIFE + k - l} - (1 + d)^{EOH + 1 - l}}{(1 + d)^{TLIFE} - 1} \times \frac{CRF_{s}}{CRF}\text{ otherwise}
+}$$
+
+where d is the general discount rate
+and d_s is the technology specific discount rate
 
 We are now ready to write the salvage values of decommissioning cost in each case.
 
@@ -871,16 +908,25 @@ We are now ready to write the salvage values of decommissioning cost in each cas
 
 **(Small divisible projects, non-repetitive, progressive investment in period)**
 
-$${SALVDECOM(EOH + 1) = 
- }{\sum_{t}{INDIC(1.a) \times \sum_{v = M(t) - D(t) + 1}^{M(t)}\left( \frac{VAR\_NCAP_{t}}{D(t)} + NCAP\_PASTI_{t} \right)} \times 
- }{NCAP\_DCOST_{v} \times SAL(v,v + TLIFE_{t})
- }
- {\text{where }SAL(k,l)\ \text{is}\ \text{defined in}\ \text{Result }3.
- }
- {\text{Note  that }SAL(v,x)\ \text{is always 0 whenever}\ v + TLIFE \leq EOH + 1
- }$$
- 
- (IX.1.a)
+$$
+\mathrm{SALVDECOM}(EOH + 1) =
+\sum_{t}
+\mathrm{INDIC}(1.a) \times
+\sum_{v = M(t) - D(t) + 1}^{M(t)}
+\left(
+    \frac{\mathrm{VAR\_NCAP}_t}{D(t)} + \mathrm{NCAP\_PASTI}_t
+\right)
+\times \mathrm{NCAP\_DCOST}_v \times SAL(v, v + TLIFE_t)
+$$
+
+$$
+\text{where } SAL(k, l) \text{ is defined in Result 3.}
+$$
+
+$$
+\text{Note that } SAL(v, x) \text{ is always 0 whenever } v + TLIFE_t \leq EOH + 1
+$$
+(IX.1.a)
  
 **Case 1.b:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED} < {D(t)}$
 
@@ -1825,7 +1871,7 @@ $${\sum_{\begin{aligned}
 \end{aligned} \right) \\
  & \times RTCS\_TSFR_{r,t,c,s,ts}
 \end{aligned} \right)}
-}
+}+
 \\ \\
 \left\{ \leq , = \right\}
 \\ \\
