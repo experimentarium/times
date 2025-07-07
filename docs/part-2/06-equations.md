@@ -317,7 +317,7 @@ Compute:
 
 $For \space I=1 \space to \space C$
      $For \space u=B(t)+(I-1) \cdot TLIFE_t \space to \space B(t) + (I-1) \cdot TLIFE_t + ILED_t -1$
-           $NI_t(t):=NI_t(u)+\frac{NCAP\_COST_{B(t)+(I-1)\times TLIFE_t + ILED_t}}{ILED_t}$
+           $NI_t(u):=NI_t(u)+\frac{NCAP\_COST_{B(t)+(I-1)\times TLIFE_t + ILED_t}}{ILED_t}$
      $Next \space u$
 $Next \space I$
 
