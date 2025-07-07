@@ -564,14 +564,49 @@ The figure of the example shows that payments made in year $y$ may come from inv
 $${FIXCOST(y) = \sum_{t \in MILESTONYR,t \leq T(y)}{INDIC(2.a)} \times \left( VAR\_NCAP_{t} \right) \times NCAP\_FOM_{B(t) + ILED_{t}}
 }{\times \begin{Bmatrix}
 1ifB(t) + ILED_{t} \leq y \leq B(t) + ILED_{t} + TLIFE_{t} - 1 \\
-0otherwise
+0\qquad otherwise
 \end{Bmatrix} \times SHAPE(t,y - B(t) + ILED_{t}) \times MULTI(y)}$$
 
 $$missing \space expression$$ (IV-2-a)
 
 $$missing \space expression$$
 
+$$
+\begin{aligned}
+\mathrm{FIXCOST}(y) =\ & 
+\sum_{\substack{t \in \mathrm{MILESTONYR} \\ t \leq T(y)}}
+\mathrm{INDIC}(2.a) \times (\mathrm{VAR\_NCAP}_t) \times \mathrm{NCAP\_FOM}_{B(t)+\mathrm{ILED}_t} \\
+& \qquad \times 
+\begin{cases}
+1 & \text{if } B(t) + \mathrm{ILED}_t \leq y \leq B(t) + \mathrm{ILED}_t + \mathrm{TLIFE}_t - 1 \\
+0 & \text{otherwise}
+\end{cases} \\
+& \qquad \times \mathrm{SHAPE}(t, y - B(t) + \mathrm{ILED}_t) \times \mathrm{MULTI}(y) \\
+\\
+& + \sum_{t \in \mathrm{PASTYEARS}}
+\mathrm{INDIC}(2.a) \times (\mathrm{NCAP\_PASTI}_t) \times \mathrm{NCAP\_FOM}_t \\
+& \qquad \times
+\begin{cases}
+1 & \text{if } t \leq y \leq t + \mathrm{TLIFE}_t - 1 \\
+0 & \text{otherwise}
+\end{cases} \\
+& \qquad \times \mathrm{SHAPE}(t, y - t) \times \mathrm{MULTI}(y)
+\end{aligned}
+$$
+
 *Useful Range for y:*
+
+$$
+\{ B(t) + ILED_t,\; B(t) + ILED_t + TLIFE_t - 1 \}
+$$
+
+\[
+\text{and}
+\]
+
+$$
+y \leq EOH
+$$
 
 ii) $SURVCOST$ (Surveillance cost for same case 2.a. See same example)
 
