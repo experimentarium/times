@@ -479,6 +479,17 @@ FIXCOST(r,y) =
 \end{aligned}} ( {VAR\_NCAP_{r,v,p}} (\out t_v) + {NCAP\_PATSI_{r,v,p}} ) \times CF_{r,v,p,y}}
 $$
 
+$$
+\mathrm{FIXCOST}(r, y) =
+\sum_{\substack{(r, v, p) \in rtp}}
+\left(
+    \mathrm{VAR\_NCAP}_{r,v,p}\,(\exists\, t_v)
+    + \mathrm{NCAP\_PASTI}_{r,v,p}
+\right)
+\times CF_{r,v,p,y}
+$$
+
+
 Here, $CF_{r,v,p,y}$ is the compound fixed cost coefficient for each capacity vintage in year $y$, as obtained from the original expressions for $FIXCOST(y)$. Recalling that fixed costs are accounted only within the model horizon, these expressions can be adjusted as follows:
 
 $$missing \space expression$$
