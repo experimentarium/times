@@ -561,16 +561,6 @@ i)  $FIXCOST(y)$
 
 The figure of the example shows that payments made in year $y$ may come from investments made at period $T(y)$ or earlier, but not later. Again here the *SHAPE* has the correct vintage year and age, as its two parameters, whereas *MULTI* has the current year as its parameter. Both pertain to *FOM*.
 
-$${FIXCOST(y) = \sum_{t \in MILESTONYR,t \leq T(y)}{INDIC(2.a)} \times \left( VAR\_NCAP_{t} \right) \times NCAP\_FOM_{B(t) + ILED_{t}}
-}{\times \begin{Bmatrix}
-1ifB(t) + ILED_{t} \leq y \leq B(t) + ILED_{t} + TLIFE_{t} - 1 \\
-0\qquad otherwise
-\end{Bmatrix} \times SHAPE(t,y - B(t) + ILED_{t}) \times MULTI(y)}$$
-
-$$missing \space expression$$ (IV-2-a)
-
-$$missing \space expression$$
-
 $$
 \begin{aligned}
 \mathrm{FIXCOST}(y) =\ & 
@@ -592,7 +582,7 @@ $$
 \end{cases} \\
 & \qquad \times \mathrm{SHAPE}(t, y - t) \times \mathrm{MULTI}(y)
 \end{aligned}
-$$
+$$ (IV-2-a)
 
 *Useful Range for y:*
 
@@ -600,9 +590,7 @@ $$
 \{ B(t) + ILED_t,\; B(t) + ILED_t + TLIFE_t - 1 \}
 $$
 
-\[
-\text{and}
-\]
+*and*
 
 $$
 y \leq EOH
@@ -610,16 +598,34 @@ $$
 
 ii) $SURVCOST$ (Surveillance cost for same case 2.a. See same example)
 
-$$missing \space expression$$
+$$
+\begin{aligned}
+\mathrm{SURVCOST}(y) =\ & 
+\sum_{\substack{t \in \mathrm{MILESTONYR} \\ t \leq T(y)}}
+\mathrm{INDIC}(2.a) \times (\mathrm{VAR\_NCAP}_t) \times \mathrm{NCAP\_DLAGC}_{B(t)+\mathrm{ILED}_t} \\
+& \qquad \times 
+\begin{cases}
+1 & \text{if } B(t) + \mathrm{ILED}_t + \mathrm{TLIFE}_t \leq y \leq B(t) + \mathrm{ILED}_t + \mathrm{TLIFE}_t + \mathrm{DLAG}_t - 1 \\
+0 & \text{otherwise}
+\end{cases} \\[2em]
+& + \sum_{t \in \mathrm{PASTYEARS}}
+\mathrm{INDIC}(2.a) \times (\mathrm{NCAP\_PASTI}_t) \times \mathrm{NCAP\_DLAGC}_t \\
+& \qquad \times
+\begin{cases}
+1 & \text{if } t + \mathrm{TLIFE}_t \leq y \leq t + \mathrm{TLIFE}_t + \mathrm{DLAG}_t - 1 \\
+0 & \text{otherwise}
+\end{cases}
+\end{aligned}
+$$
+(IV-2-a-tick)
+\vspace{1em}
+
+**Useful Range for $y$:**
 
 $$
-{+ \sum_{t \in PASTYEARS}{INDIC(2.a)} \times \left( NCAP\_PASTI_{t} \right) \times NCAP\_DLAGC_{t}
-}{\times \left\{ \begin{matrix}
-1ift + TLIFE_{t} \leq y \leq t + TLIFE_{t} + DLAG_{t} - 1 \\
-0otherwise
-\end{matrix} \right.\ }$$
-
-$$missing \space expression$$ (IV-2-a-tick)
+\{ B(t) + \mathrm{ILED}_t + \mathrm{TLIFE}_t,\,\text{same} + \mathrm{DLAG}_t - 1 \}
+$$
+*note that $y$ may be larger than $EOH$*
 
 ![](assets/case-2a-example-4.svg)
 
