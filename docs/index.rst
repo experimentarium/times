@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to TIMES - The Integrated MARKAL-EFOM System's documentation!
+Welcome to the documentation of TIMES - The Integrated MARKAL-EFOM System
 =====================================================================
 
 This documentation is composed of four Parts.
