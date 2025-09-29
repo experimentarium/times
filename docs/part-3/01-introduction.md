@@ -79,7 +79,7 @@ If you are using a non-default solver (e.g., CPLEX is the default for LP and MIP
 
 4. If using a non-default solver, upon completion use Windows Explorer to go to the GAMS system folder and run the GAMSINST program to set the default solver for each type to the solvers supported by your license GAMSLICE file by entering the associated number in the list and hitting return or just hitting return (if your solver is the default or not listed).
 
-Which solver to use is a function of the TIMES model variant to be solved and the solver(s) purchased by the user with GAMS. Basically the solvers used for TIMES fall into three categories, linear (LP), mixed integer (MIP) and non-linear (NLP), where {numref}`times-model-variants-and-solvers` provides a partial list of the GAMS solvers generally used with TIMES for each main model variant. For a complete list of the solvers available refer to the GAMS website. The various Model Instances mentioned in the table are discussed further in Section {numref}`%s <times-extensions>`, as well as in Parts [I](project:/part-1/index.md) and [II](project:/part-2/index.md).
+Which solver to use is a function of the TIMES model variant to be solved and the solver(s) purchased by the user with GAMS. Basically the solvers used for TIMES fall into three categories, linear (LP), mixed integer (MIP) and non-linear (NLP), where {numref}`times-model-variants-and-solvers` provides a partial list of the GAMS solvers generally used with TIMES for each main model variant. For a complete list of the solvers available refer to the GAMS website. The various Model Instances mentioned in the table are discussed further in Section {numref}`%s <times-extensions>`, as well as in [Part I](part1) and [Part II](part2).
 
 ```{list-table} TIMES Model Variants and GAMS Solvers
 :name: times-model-variants-and-solvers
@@ -124,7 +124,7 @@ Section {numref}`%s <source-code-and-model-run>` lays out more specifically how 
 
 [^10]: <https://iea-etsap.org/index.php/applications>
 
-[^11]: Note that as of December 2016 ANSWER will no longer be actively developed and only limited support will be provided, so although mentioned here in Part III, users should carefully consider their longer-term needs when considering using ANSWER as their TIMES model management platform going forward.
+[^11]: Note that as of December 2016 ANSWER will no longer be actively developed and only limited support will be provided, so although mentioned here in [Part III](part3), users should carefully consider their longer-term needs when considering using ANSWER as their TIMES model management platform going forward.
 
 [^12]: Anthony Brooke, David Kendrick, Alexander Meeraus, and Ramesh Raman, GAMS -- A User's Guide, December 1998, [www.gams.com](http://www.gams.com).
 

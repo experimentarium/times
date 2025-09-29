@@ -69,7 +69,7 @@ This equation is generated in each time period for which the ETL technology is a
 
 *Primal:* The level of this constraint must be zero in a feasible solution.
 
-*Dual variable:* The dual variables of mixed integer problems have limited usefulness, as discussed in Section 10.3 of PART I.
+*Dual variable:* The dual variables of mixed integer problems have limited usefulness, as discussed in Section {numref}`%s <important-remark-on-the-mip>` of PART I.
 
 **Equation**
 
@@ -132,7 +132,7 @@ $$missing \ expression$$
 
 *Primal:* The level of this constraint must be zero in a feasible solution.
 
-*Dual variable:* The dual variables of mixed integer problems have limited usefulness, as discussed in Section 10.3 of PART I.
+*Dual variable:* The dual variables of mixed integer problems have limited usefulness, as discussed in Section {numref}`%s <important-remark-on-the-mip>` of PART I.
 
 **Equation**
 

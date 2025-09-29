@@ -66,7 +66,7 @@ This notation often makes equations more legible and compact. A good example app
 
 **Related Variables: All**
 
-**Purpose**: the objective function is the criterion that is minimized by the TIMES model. It represents the total discounted cost of the entire, possibly multi-regional system over the selected planning horizon. It is also equal to the negative of the discounted total surplus (plus a constant), as discussed in PART I, chapters 3 and 4.
+**Purpose**: the objective function is the criterion that is minimized by the TIMES model. It represents the total discounted cost of the entire, possibly multi-regional system over the selected planning horizon. It is also equal to the negative of the discounted total surplus (plus a constant), as discussed in PART I, chapters {numref}`%s <economic-rationale-of-the-times>` and {numref}`%s <core-times-model-mathematics>`.
 
 ### Introduction and notation
 
@@ -162,7 +162,7 @@ $\left\langle E \right\rangle$ is the smallest integer larger than of equal to *
 
 #### Discounting options
 
-There are alternate discounting methods in TIMES. The default method is to assume that all payments occur at the beginning of some year. Alternate methods (activated by a switch, see PART III) assume that investments are incurred at the beginning of some year, but that all annual (or annualized) payments occur at the middle or at the end of the corresponding year. Section 0 explains the different methods.
+There are alternate discounting methods in TIMES. The default method is to assume that all payments occur at the beginning of some year. Alternate methods (activated by a switch, see [PART III](part3)) assume that investments are incurred at the beginning of some year, but that all annual (or annualized) payments occur at the middle or at the end of the corresponding year. Section 0 explains the different methods.
 
 #### Components of the Objective function
 
@@ -736,7 +736,7 @@ $y \leq EOH$ **(VI)**
 (cost-of-demand-reductions)=
 ### Cost of demand reductions ELASTCOST(y) 
 
-When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See PART I for a theoretical justification, and Appendix [D](times-demand-functions) for formulations involving more generalized demand functions.
+When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See [PART I](part1) for a theoretical justification, and Appendix [D](times-demand-functions) for formulations involving more generalized demand functions.
 
 $${ELASTCOST(y) = 
 }{\quad\sum_{j = 1}^{COM\_STEP_{lo}}{COM\_BPRICE_{T(y)} \times \left\{ \left( 1 - \frac{(j - 1/2) \times COM\_VOC_{lo,T(y)}}{COM\_STEP_{lo}} \right)^{\frac{1}{COM\_ELAST_{lo,T(y)}}} \right\}} \times VAR\_ELAST_{lo,j,T(y)}}$$
@@ -2075,6 +2075,7 @@ NCAP\_AFC_{r,v,t,p,c,s} \times \left( \begin{aligned}
 \\ \\
 \times COEF\_CPT_{r,v,p,t} \times PRC\_CAPACT_{r,p} \times G\_YRFR_{r,s}$$
 
+(equation-eq-capload)=
 ### Equation: EQ_CAPLOAD
 
 **Indices**: **region (r), vintage year (v), period (t), process (p), time slice (s), lim_type (l)**
@@ -2538,6 +2539,7 @@ VAR\_CUMCOM.UP_{r,c,'PRD',y1,y2} = COM\_CUMPRD_{r,y1,y2,c,'UP'}
 \\ \\ 
 VAR\_CUMCOM.FX_{r,c,'PRD',y1,y2} = COM\_CUMPRD_{r,y1,y2,c,'FX'}$$
 
+(equation-eq-cumret)=
 ### Equation: EQ_CUMRET
 
 **Indices**: **region (r), vintage year (v), period (t), process (p)**
@@ -2583,6 +2585,7 @@ VAR\_NCAP_{r,t,p} = \sum_{u \in unit}\left(VAR\_DNCAP_{r,t,p,u} \times NCAP\_DSC
 \\ \\
 \left(VAR\_SNCAP_{r,t,p}\quad if \space NCAP\_SEMI_{r,t,p} \space given \right)$$
 
+(equation-eq-dscone)=
 ### Equation: EQ_DSCONE 
 
 **Indices**: **region (r),** **milestoneyear (t), process (p)**
@@ -3766,6 +3769,7 @@ $$EQ(l)\_UCRTP_{uc\_n,r,t,p,'ACT',bd} \ni
 \\ \\
 + UC\_ACT_{uc\_n,'RHS',r,t,p,'ANNUAL'} \times (M(t)-M(t-1))$$
 
+(p64-user-constraints)=
 ## User Constraints
 
 This section on TIMES User Constraints explains the framework that may be employed by modellers to formulate additional linear constraints, which are not part of the generic constraint set of TIMES, without having to bother with any GAMS programming.
@@ -5163,6 +5167,7 @@ VAR\_UCTS.UP_{uc\_n,t,s} = UC\_RHSTS_{uc\_n,t,s,'UP'}
 \\ \\
 VAR\_UCTS.FX_{uc\_n,t,s} = UC\_RHSTS_{uc\_n,t,s,'FX'}$$
 
+(p646-user-constraints-modifiers)=
 ### User constraint modifiers
 
 #### Overview

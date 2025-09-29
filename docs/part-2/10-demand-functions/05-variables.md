@@ -48,9 +48,9 @@ The variables that are used to model the Demand Functions in TIMES are presented
 
 **Purpose:** To indicate how far the demand variation extends on the elasticity curve, by step.
 
-**Occurrence:** Each elastic demand is expressed as the sum of these variables. In the objective function, these variables are used to bear the cost of demand losses and revenues of demand gains as explained in Part I, Chapter 4.
+**Occurrence:** Each elastic demand is expressed as the sum of these variables. In the objective function, these variables are used to bear the cost of demand losses and revenues of demand gains as explained in Part I, Chapter {numref}`%s <core-times-model-mathematics>`.
 
-These variables are defined whenever a demand is declared to be price elastic, either to its own price or through cross-elastic substitution. These variables are indexed by j, where j runs over the number of steps used for discretizing the demand curve of demand commodity c. The jth variable stands for the portion of the demand that lies within discretization interval **j**, on side **bd** (**bd** indicates either increase or decrease of demand w.r.t. the reference case demand). In the objective function, these variables are used to represent the utility change caused by demand losses or gains, as explained in Part I, Chapter 4.
+These variables are defined whenever a demand is declared to be price elastic, either to its own price or through cross-elastic substitution. These variables are indexed by j, where j runs over the number of steps used for discretizing the demand curve of demand commodity c. The jth variable stands for the portion of the demand that lies within discretization interval **j**, on side **bd** (**bd** indicates either increase or decrease of demand w.r.t. the reference case demand). In the objective function, these variables are used to represent the utility change caused by demand losses or gains, as explained in Part I, Chapter {numref}`%s <core-times-model-mathematics>`.
 
 **Units:** Demand units: PJ, Bvkm, or any other unit in which the demand is tracked.
 
@@ -62,9 +62,9 @@ These variables are defined whenever a demand is declared to be price elastic, e
 
 **Purpose:** To indicate how far the demand variation extends on the elasticity curve.
 
-**Occurrence:** The utility change caused by all demand losses and gains as explained in Part I, Chapter 4.
+**Occurrence:** The utility change caused by all demand losses and gains as explained in Part I, Chapter {numref}`%s <core-times-model-mathematics>`.
 
-These variables are defined whenever any of the elastic demand formulations is used. These variables are indexed by **bd** (**bd** indicates either increase or decrease of demand w.r.t. the reference case demand). These variables are included in the objective function, to represent the total utility changes caused by demand losses or gains, as explained in Part I, Chapter 4.
+These variables are defined whenever any of the elastic demand formulations is used. These variables are indexed by **bd** (**bd** indicates either increase or decrease of demand w.r.t. the reference case demand). These variables are included in the objective function, to represent the total utility changes caused by demand losses or gains, as explained in Part I, Chapter {numref}`%s <core-times-model-mathematics>`.
 
 **Units:** Demand units: PJ, Bvkm, or any other unit in which the demand is tracked.
 
