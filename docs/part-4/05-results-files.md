@@ -522,8 +522,3 @@ The \<scenarioname\>.VDT file contains all the Reference Energy System (RES) top
 \"REG1\",\"COTEOIL\",\"DCOT\",\"OUT\"
 
 \"REG1\",\"COTEOIL\",\"DEMO\",\"OUT\"
-
-
-[^2]: The meaning of all the attributes, along with their qualifier indexes, as said above can be found in VEDA2.0, Information / TIMES Attributes.
-
-[^3]: <http://www.iea-etsap.org/Energy_Technologies/Energy_Technology.asp>
