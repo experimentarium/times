@@ -1989,3 +1989,8 @@ The declaration of discrete capacity for nuclear power plants (DemoS_012e) limit
 ![](assets/image223.png)
 
 Figure 191. New Electric Plant Capacity Investments - DemoS_011/012 Comparison
+
+
+[^2]: The meaning of all the attributes, along with their qualifier indexes, as said above can be found in VEDA2.0, Information / TIMES Attributes.
+
+[^3]: <http://www.iea-etsap.org/Energy_Technologies/Energy_Technology.asp>
