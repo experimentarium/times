@@ -15,6 +15,7 @@ The computational method is based on the equivalence theorem presented in chapte
 
 {numref}`eq-demand-curve` of Chapter {numref}`%s <economic-rationale-of-the-times>` provides a graphical illustration of this theorem in a case where only one commodity is considered.
 
+(p42-mathematics-of-the-times-equilibrium)=
 ## Mathematics of the TIMES equilibrium
 
 ### Defining demand functions

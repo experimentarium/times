@@ -1,3 +1,4 @@
+(pa4-appendix-b)=
 # Appendix B TIMES Results Files
 
 There are three files produced for the Results module by the GDX2VEDA utility: the \<scenarioname\>.VD data dump with the attributes, \<scenarioname\>.VDE (set elements), and \<scenarioname\>.VDS (sets definition). In addition, VEDA2.0 produces a \<scenarioname\>.VDT (topology) file with the RES connectivity information. These files are dumped in comma delimited format. They never require user intervention, though they may be processed by other software if desired. Snippets of each file are shown below, after a brief description of the layout of each.
@@ -521,8 +522,3 @@ The \<scenarioname\>.VDT file contains all the Reference Energy System (RES) top
 \"REG1\",\"COTEOIL\",\"DCOT\",\"OUT\"
 
 \"REG1\",\"COTEOIL\",\"DEMO\",\"OUT\"
-
-
-[^2]: The meaning of all the attributes, along with their qualifier indexes, as said above can be found in VEDA2.0, Information / TIMES Attributes.
-
-[^3]: <http://www.iea-etsap.org/Energy_Technologies/Energy_Technology.asp>

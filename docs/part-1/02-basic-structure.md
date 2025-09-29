@@ -37,7 +37,7 @@ In TIMES, special efforts have been made to decouple the specification of data f
 
 First, the fact that investments made in past years are recognized by TIMES makes it much easier to modify the choice of the initial and subsequent periods without major revisions of the database.
 
-Second, the specification of process and demand input data in TIMES is made by specifying the *calendar years* when the data apply, irrespective of how the model time periods have been defined. The model then takes care of interpolating and extrapolating the data for the *periods* chosen by the modeler for a particular model run. TIMES offers a particularly rich range of interpolation/extrapolation modes adapted to each type of data and freely overridden by the user. Section 3.1.1 of Part II discusses this feature.
+Second, the specification of process and demand input data in TIMES is made by specifying the *calendar years* when the data apply, irrespective of how the model time periods have been defined. The model then takes care of interpolating and extrapolating the data for the *periods* chosen by the modeler for a particular model run. TIMES offers a particularly rich range of interpolation/extrapolation modes adapted to each type of data and freely overridden by the user. Section {numref}`%s <inter-and-extrapolation-of-user>` of Part II discusses this feature.
 
 These two features combine to make a change in the definition of periods quite easy and error-free. For instance, if a modeler decides to change the initial year from 2010 to 2015, and perhaps change the number and durations of all other periods as well, only one type of data change is needed, namely to define the investments made from 2011 to 2015 as past investments. All other data specifications need not be altered[^6]. This feature represents a great simplification of the modeler's work. In particular, it enables the user to define time periods that have varying lengths, without changing the input data.
 
@@ -113,9 +113,9 @@ The *qualitative data* includes, for example, the list of commodities, and the l
 
 ## A brief overview of the TIMES attributes
 
-Due to the data driven nature of TIMES (see section {numref}`%s <data-driven-model-structure>`), all TIMES constraints are activated and defined by specifying some attributes. Attributes are attached to processes, to commodities, to flows, or to special variables that have been created to define new TIMES features. Indeed, TIMES has many new attributes that were not available in earlier versions, corresponding to powerful new features that confer additional modeling flexibility. The complete list of attributes is fully described in section 3 of PART II, and we provide below only succinct comments on the types of attribute attached to each entity of the RES or to the RES as a whole. Additional attribute definitions may also be included in the chapters describing new features or variants of the TIMES generator.
+Due to the data driven nature of TIMES (see section {numref}`%s <data-driven-model-structure>`), all TIMES constraints are activated and defined by specifying some attributes. Attributes are attached to processes, to commodities, to flows, or to special variables that have been created to define new TIMES features. Indeed, TIMES has many new attributes that were not available in earlier versions, corresponding to powerful new features that confer additional modeling flexibility. The complete list of attributes is fully described in section {numref}`%s <parameters>` of PART II, and we provide below only succinct comments on the types of attribute attached to each entity of the RES or to the RES as a whole. Additional attribute definitions may also be included in the chapters describing new features or variants of the TIMES generator.
 
-Attributes may be *cardinal* (numbers) or *ordinal* (lists, sets). For example, some ordinal attributes are defined for processes to describe subsets of flows that are then used to construct specific flow constraints as described in section {numref}`%s <constraints>`. PART II, section 2 shows the complete list of TIMES sets.
+Attributes may be *cardinal* (numbers) or *ordinal* (lists, sets). For example, some ordinal attributes are defined for processes to describe subsets of flows that are then used to construct specific flow constraints as described in section {numref}`%s <constraints>`. PART II, section {numref}`%s <sets>` shows the complete list of TIMES sets.
 
 The cardinal attributes are usually called *parameters*. We give below a brief idea of the main types of parameters available in the TIMES model generator.
 
@@ -145,7 +145,7 @@ All bounds may be of four types: lower (LO), upper (UP), equality (FX), or neutr
 
 #### Other parameters
 
-Features that were added to TIMES over the years require new parameters. For instance, the Climate Module of TIMES (chapter {numref}`%s <the-times-climate-module>`), the Lumpy Investment feature (chapter {numref}`%s <the-lumpy-investment-extension>`), and several others. These will be alluded to in the corresponding chapters of this Part I, and more completely described in section 2 and Appendices of Part II.
+Features that were added to TIMES over the years require new parameters. For instance, the Climate Module of TIMES (chapter {numref}`%s <the-times-climate-module>`), the Lumpy Investment feature (chapter {numref}`%s <the-lumpy-investment-extension>`), and several others. These will be alluded to in the corresponding chapters of this Part I, and more completely described in section {numref}`%s <sets>` and Appendices of Part II.
 
 An advanced feature allows the user to define certain process parameters as *vintaged* (i.e. dependent upon the date of installation of new capacity). For instance, the investment cost and fuel efficiency of a specific type of automobile will depend on the model year[^9].
 
@@ -190,15 +190,14 @@ Bounds may be defined for flows in similar variety that exists for commodities.
 
 ### Parameters attached to the entire RES
 
-These parameters include currency conversion factors (in a multi-regional model), region-specific time-slice definitions, a region-specific general discount rate, and reference year for calculating the discounted total cost (objective function). In addition, certain switches are needed to control the activation of the data interpolation procedure as well as special model features to be used. The complete set of switches is described in Part III.
-
+These parameters include currency conversion factors (in a multi-regional model), region-specific time-slice definitions, a region-specific general discount rate, and reference year for calculating the discounted total cost (objective function). In addition, certain switches are needed to control the activation of the data interpolation procedure as well as special model features to be used. The complete set of switches is described in [Part III](part3)
 ## Process and commodity classification
 
 Although TIMES does not explicitly differentiate processes or commodities that belong to different portions of the RES (with the notable exceptions of storage and trading processes), there are three ways in which some differentiation does occur.
 
 First, TIMES requires the definition of Primary Commodity Groups (*pcg*), i.e. subsets of commodities *of the same nature* entering or leaving a process. TIMES utilizes the pcg to define the activity of the process, and also its capacity. For instance, the *pcg* of an oil refinery is defined as the set of energy forms produced by the plant; and the activity of the refinery is thus simply the sum of all its energy outputs (excluding any outputs that are non energy).
 
-Besides establishing the process activity and capacity, these groups are convenient aids for defining certain complex quantities related to process flows, as discussed in chapter {numref}`%s <core-times-model-a-simplified>` and in PART II, section 2.1.
+Besides establishing the process activity and capacity, these groups are convenient aids for defining certain complex quantities related to process flows, as discussed in chapter {numref}`%s <core-times-model-a-simplified>` and in PART II, section {numref}`%s <indexes-one-dimensional-sets>`.
 
 Even though TIMES *does not require* that the user provide many set memberships, the TIMES reporting step does pass some set declarations to the VEDA-BE result-processing system[^10]to facilitate construction of results analysis tables. These include process subsets to distinguish demand devices, energy processes, material processes (by weight or volume), refineries, electric production plants, coupled heat and power plants, heating plants, storage technologies and distribution (link) technologies; and commodity subsets for energy, useful energy demands (split into six aggregate sub-sectors), environmental indicators, currencies, and materials.
 
