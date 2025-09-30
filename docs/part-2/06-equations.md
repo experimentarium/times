@@ -775,8 +775,8 @@ The salvage value (calculated at year *k*) of a unit investment made in
 year *k*,\
 and whose technical life is *TL*, is:
 
-$${S(k,TL,FDR) = 0 if\overset{\underset{}{}}{k} + TL \leq EOH}$$
-$${S(k,TL,FDR) = 1if\overset{\underset{}{}}{k} > EOH}$$
+$${S(k,TL,FDR) = 0 \quad if \space k + TL \leq EOH}$$
+$${S(k,TL,FDR) = 1 \quad if \space k > EOH}$$
 $${S(k,TL,FDR) = \frac{\left( (1 + d) \cdot \exp(FDR) \right)^{TL - EOH - 1 + k} - 1}{\left( (1 + d) \cdot \exp(FDR) \right)^{TL} - 1}\quad otherwise}$$
 
 where d is the general discount rate and FDR is the optional functional depreciation rate
@@ -807,9 +807,9 @@ The final result of these expressions is *Result 2* expressing the salvage value
 *Result 2*
 
 $$
-{SAL(k,TL) = 0\quad    if \quad\overset{\underset{}{}}{k} + TL \leq EOH
+{SAL(k,TL) = 0\quad    if \quad k + TL \leq EOH
 }$$
-$${SAL(k,TL) = \frac{CRF_{s}}{CRF}\quad if \quad\overset{\underset{}{}}{k} \geq EOH + 1
+$${SAL(k,TL) = \frac{CRF_{s}}{CRF}\quad if \quad k \geq EOH + 1
 }$$
 $${SAL(k,TL) = \frac{1 - (1 + d)^{EOH + 1 - k - TL}}{1 - (1 + d)^{- TL}} \times \frac{CRF_{s}}{CRF} \times \frac{S(k,TL,FDR)}{S(k,TL,0)}\quad otherwise}
 $$
