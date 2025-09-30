@@ -1874,7 +1874,7 @@ $${\sum_{\begin{aligned}
 \end{aligned} \right) \\
  & \times RTCS\_TSFR_{r,t,c,s,ts}
 \end{aligned} \right)}
-}+
+}
 \\ \\
 \left\{ \leq , = \right\}
 \\ \\
