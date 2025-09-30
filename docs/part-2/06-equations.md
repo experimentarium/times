@@ -32,24 +32,24 @@ $\sum_{c \in top}{A(r_{1},p_{1},c,'IN')}$, if the context is unambiguous. Either
 
 (The traditional mathematical notation would have been: $\sum_{\{ r_{1},p_{1},c,'IN'\} \in top}{A(r_{1},p,c_{1},'IN')}$, but this may have hidden the fact that $c$ is the only running index active in the sum).
 
-### Notation for logical conditions 
+### Notation for logical conditions
 
 We use similar simplifying notation in writing the logical conditions of each equation. A logical condition usually expresses that some parameter exists (i.e. has been given a value by the user), and/or that some indexes are restricted to certain subsets.
 
-A typical example of the former would be written as: $\ni$*ACTBND~r,t,p,s,bd~*, which reads: "the user has defined an activity bound for process *p* in region *r*, time-period *t*, timeslice *s* and sense *bd*". The indexes may sometimes be omitted, when they are the same as those attached to the equation name.
+A typical example of the former would be written as: $\ni ACTBND_{r,t,p,s,bd}$, which reads: "the user has defined an activity bound for process *p* in region *r*, time-period *t*, timeslice *s* and sense *bd*". The indexes may sometimes be omitted, when they are the same as those attached to the equation name.
 
-A typical example of the latter is the first condition for equation *EQ_ACTFLO~r,v,t,p,s~* (see section {numref}`%s <equation-eq-actflo>`), which we write simply as: $rtp\_vintyr$, which is short for: $\{ r,v,t,p\} \in rtp\_vintyr$, with the meaning that "some capacity of process *p* in region *r*, created at period *v*, exists at period *t*". Again here, the indices have been omitted from the notation since they are already listed as indices of the equation name.
+A typical example of the latter is the first condition for equation $EQ\_ACTFLO_{r,v,t,p,s}$ (see section {numref}`%s <equation-eq-actflo>`), which we write simply as: $rtp\_vintyr$, which is short for: $\{r,v,t,p\} \in rtp\_vintyr$, with the meaning that "some capacity of process *p* in region *r*, created at period *v*, exists at period *t*". Again here, the indices have been omitted from the notation since they are already listed as indices of the equation name.
 
 ### Using Indicator functions in arithmetic expressions
 
 There are situations where an expression A is either equal to B or to C, depending on whether a certain condition holds or not, i.e.:
 
-$${A = B if Cond}$$
-$${A = C if NOT Cond}$$
+$${A = B \space if \space Cond}$$
+$${A = C \space if \space NOT \space Cond}$$
 
 This may also be written as:
 
-$$A = B \times (Cond) + C \times (NOT Cond)$$
+$$A = B \times (Cond) + C \times (NOT \space Cond)$$
 
 where it is understood that the notation (Cond) is the *indicator function* of the logical condition, i.e. (Cond)=1 if Cond holds, and 0 if not.
 
