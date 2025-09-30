@@ -700,11 +700,9 @@ $$
 
 $$
 C = \left\langle \frac{D(t) - ILED_t}{TLIFE_t} \right\rangle
-$$
+$$ (IV-2-b-tick)
 
 *note that y may exceed EOH*
-
-(IV-2-b-tick)
 
 ![](assets/case-2b-example-4.svg)
 
