@@ -442,14 +442,16 @@ $$C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle$$
 [Step 1]{.underline}: Compute payment vector
 
 $$
-{For \space I = 1 \space to \space C}//
-{For \space J = 1 \space to \space DLIFE_{t}
-}//{For \space L = 1 \space to \space DELIF_{t}
-}//{P_{t}\left( B(t) + ILED_{t} + I \times TLIFE_{t} + DLAG_{t} + J + L - 2 \right): = 
-}//{same + \frac{NCAP\_DCOST_{B(t) + ILED_{t} + (I - 1) \times TLIFE_{t}}}{DLIFE_{t}}
-}//{Next \space L
-}//{Next \space J
-}//{Next \space I}
+\begin{align*}
+& For\space I = 1 \space to \space C \\
+&\mspace{36mu} For \space J = 1 \space to \space DLIFE_{t} \\
+&\mspace{72mu} For \space L = 1 \space to \space DELIF_{t} \\
+&\mspace{108mu} P_{t}\left( B(t) + ILED_{t} + I \times TLIFE_{t} + DLAG_{t} + J + L - 2 \right): = \\
+&\mspace{108mu} same + \frac{NCAP\_DCOST_{B(t) + ILED_{t} + (I - 1) \times TLIFE_{t}}}{DLIFE_{t}} \\
+&\mspace{72mu} Next \space L \\
+&\mspace{36mu} Next \space J \\
+& Next \space I
+\end{align*}
 $$
 
 **[END ALGORITHM]{.underline}**
@@ -542,7 +544,7 @@ $$C = \left\langle \frac{D(t)}{TLIFE_{t}} \right\rangle$$
 Useful range for $y$:
 
 $$
-\left \{ \left \langle B(t) - \frac{TLIFE_t}{2} \right \rangle, \left \langle B(t) - \frac{TLIFE_t}{2} \right \rangle + (C + 1) \times TLIFE_{t} \right \}                                                                              
+\left \{ \left \langle B(t) - \frac{TLIFE_t}{2} \right \rangle, \left \langle B(t) - \frac{TLIFE_t}{2} \right \rangle + (C + 1) \times TLIFE_{t} \right \}
 $$
 
 and
