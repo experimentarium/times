@@ -51,7 +51,7 @@ $$DAM(EM) = \sum_{i = 1}^{m}{MC_{i}^{lo} \cdot S_{i}^{lo}} + MC_{0} \cdot S^{mid
 
 where:
 
-- $MC_{i}^{lo}$ and $MC_{i}^{up}$ are the approximate marginal costs at each step below and above the reference level as shown in {eq}`2-8-7` below; and 
+- $MC_{i}^{lo}$ and $MC_{i}^{up}$ are the approximate marginal costs at each step below and above the reference level as shown in {eq}`2-8-7` below; and
 - $S_{i}^{lo}$, $S^{mid}$ and $S_{i}^{up}$ are the non-negative step variables for emissions. Apart from the final step, each step variable has an upper bound equal to the width of the interval. In this formulation we choose intervals of uniform width on each side of the reference level. However, the intervals below and above the reference level can have different sizes. The width of the middle interval is always the average of the widths below and above the reference level.
 
 The approximate marginal costs at each step can be assumed to be the marginal costs at the center of each step. If all the steps intervals are of equal size, the marginal costs for the steps below the reference level are obtained by the following formula:

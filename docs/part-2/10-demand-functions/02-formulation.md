@@ -13,6 +13,7 @@ Consider then a utility function of the general CES form:
 $$U_{k} = \left( \sum_{i}^{}{\alpha_{i}^{\frac{1}{\sigma}}x_{i}^{\frac{\sigma - 1}{\sigma}}} \right)^{\frac{\sigma}{\sigma - 1}}$$ (2-10-4)
 
 where:
+
 - $U_{k}$ is the total aggregate utility of demand *k*
 - $x_{i}$ is the demand for commodity *i* (component of the aggregate demand)
 - $α_{i}$ is a share parameter (the sum of which over *i* needs not be equal to 1)

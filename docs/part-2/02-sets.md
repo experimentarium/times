@@ -4,6 +4,7 @@
 Sets are used in TIMES to group elements or combinations of elements with the purpose of specifying qualitative characteristics of the energy system. One can distinguish between one-dimensional and multi-dimensional sets. The former sets contain single elements, e.g. the set $prc$ contains all processes of the model, while the elements of multi-dimensional sets are a combination of one-dimensional sets. An example for a multi-dimensional set is the set $top$, which specifies for a process the commodities entering and leaving that process.
 
 Two types of sets are employed in the TIMES framework: user input sets and internal sets. User input sets are created by the user, and used to describe qualitative information and characteristics of the depicted energy system. One can distinguish the following functions associated with user input sets:
+
 - definition of the elements or building blocks of the energy system model (i.e. regions, processes, commodities),
 - definition of the time horizon and the sub-annual time resolution,
 - definition of special characteristics of the elements of the energy system.
@@ -295,9 +296,10 @@ Apart from indexes that are under user control, some indexes have fixed elements
   - Years that can be used in the model; default range 1850-2200; under user control by the dollar control parameters \$SET BOTIME \<y\> and \$SET EOTIME \<y\> in the \<case\>.RUN file.
 ```
 
-##  User input sets
+## User input sets
 
 The user input sets contain the fundamental information regarding the structure and the characteristics of the underlying energy system model. The user input sets can be grouped according to the type of information related to them:
+
 - One dimensional sets defining the components of the energy system: regions, commodities, processes;
 - Sets defining the Reference Energy System (RES) within each region;
 - Sets defining the inter-connections (trade) between regions;
@@ -326,6 +328,7 @@ Example of internal and external regions in TIMES.
 #### Processes
 
 A process may represent an individual plant, e.g. a specific existing nuclear power plant, or a generic technology, e.g. the coal-fired IGCC technology. TIMES distinguishes three main types of processes:
+
 - Standard processes;
 - Inter-regional exchange processes, and
 - Storage processes.
@@ -333,6 +336,7 @@ A process may represent an individual plant, e.g. a specific existing nuclear po
 ##### Standard processes
 
 The so-called standard processes can be used to model the majority of the energy technologies, e.g., condensing power plants, heat plants, CHP plants, demand devices such as boilers, coal extraction processes, etc. Standard processes can be classified into the following groups:
+
 - PRE for generic energy processes;
 - PRW for material processing technologies (by weight);
 - PRV for material processing technologies (by volume);
@@ -529,6 +533,7 @@ All the input sets which are under user control in TIMES are listed in Table 4.
 **Remark**
 
 Sets are used in basically two ways:
+
 - as the domain over which summations must be effected in some mathematical expression, or
 - as the domain over which a particular expression or constraint must be enumerated (replicated).
 
@@ -727,7 +732,7 @@ $$EXPRESSION2_{c,io} = \sum_{r,p,c,io \in top}^{}{B(r)\sum_{p}^{}{A(r,p)}}$$
   - Union of the sets **pastyear** and **t** corresponding to all the years (periods) of a model run (thus actually an internal set).
 ```
 
-##  Definition of internal sets
+## Definition of internal sets
 
 The sets internally derived by the TIMES model generator are given in {numref}`internal-sets`. The list of internal sets presented here concentrates on the ones frequently used in the model generator and the ones used in the description of the model equations in Chapter {numref}`%s <equations>`. Some internal sets are omitted from {numref}`internal-sets` as they are strictly auxiliary sets of the preprocessor whose main purpose is the reduction of the computation time for preprocessor operations.
 

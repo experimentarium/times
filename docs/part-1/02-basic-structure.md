@@ -45,6 +45,7 @@ These two features combine to make a change in the definition of periods quite e
 ## The components of a Reference Energy System (RES): processes, commodities, flows
 
 The TIMES energy economy consists of three types of entities:
+
 - *Technologies* (also called *processes*) are representations of physical plants, vehicles, or other devices that transform some commodities into other commodities. They may be primary sources of commodities (e.g. mining processes, import processes), or transformation activities such as conversion plants that produce electricity, energy-processing plants such as refineries, or end-use demand devices such as cars and heating systems, that transform energy into a demand service;
 - *Commodities* consisting of energy carriers, energy services, materials, monetary flows, and emissions. A commodity is produced by one or more processes and/or consumed by other processes; and
 - *Commodity flows* are the links between processes and commodities. A flow is of the same nature as a commodity but is attached to a particular process, and represents one input or one output of that process. For instance, electricity produced by wind turbine type A at period *p*, time-slice *s*, in region *r*, is a commodity flow.
@@ -191,6 +192,7 @@ Bounds may be defined for flows in similar variety that exists for commodities.
 ### Parameters attached to the entire RES
 
 These parameters include currency conversion factors (in a multi-regional model), region-specific time-slice definitions, a region-specific general discount rate, and reference year for calculating the discounted total cost (objective function). In addition, certain switches are needed to control the activation of the data interpolation procedure as well as special model features to be used. The complete set of switches is described in [Part III](part3)
+
 ## Process and commodity classification
 
 Although TIMES does not explicitly differentiate processes or commodities that belong to different portions of the RES (with the notable exceptions of storage and trading processes), there are three ways in which some differentiation does occur.

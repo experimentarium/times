@@ -113,6 +113,7 @@ s.t. $E \times x = DEM\_T_{dm,t}$ (A)
 $A \times x = b$ (B)
 
 where
+
 - $x$ is the vector of TIMES variables
 - ${COST\_ T_{t}}_{}(x)$ is the annual undiscounted cost TIMES expression
 - $dfact_t$ is the discount factor for period $t$

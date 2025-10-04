@@ -53,7 +53,7 @@
   - Annual implied costs of endogenous trade, valued according to the marginal(s) of the trade equation of process p. Undiscounted
 * - Cost_NPV
   - p,c
-  - Total discounted costs by component. See Table XX below for components, and Part III, Section {numref}`%s <controls-affecting-solution-reporting>` for reporting options.
+  - Total discounted costs by component. See {numref}`Part III, section %s <controls-affecting-solution-reporting>` for reporting options.
 * - COST_Salv
   - p
   - Salvage value of investment cost, taxes and subsidies of process (p) with vintage period (v), for which the technical lifetime exceeds the end of the model horizon, value at year EOH+1.
@@ -92,7 +92,7 @@
   - Capacity upper limit
 * - Reg_ACost
   - r
-  - Regional total annualized costs by period and cost category. (See Table XX below for categories.)
+  - Regional total annualized costs by period and cost category.
 * - Reg_irec
   - r
   - Regional total discounted implied trade cost, derived by multiplying the shadow prices of the trade equations by the trade volumes. The sum of REG_IREC over regions is zero.
@@ -101,7 +101,7 @@
   - Regional total discounted system cost
 * - Reg_wobj
   - r
-  - Regional total discounted system cost by cost type (uc_n). (See Table XX below for cost types.)
+  - Regional total discounted system cost by cost type (uc_n).
 * - Time_NPV
   - 
   - Present value of the time in each model period (t) by region (r), with s=\'ANNUAL\' and uc_n=\'COST\'/\'LEVCOST\' depending on whether the \$SET ANNCOST LEV reporting option has been used.

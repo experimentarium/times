@@ -47,7 +47,7 @@ $$EQ\_DAMAGE_{r,t,c} \ni \left(rtc_{r,t,c} \land \exists(cur):DAM\_COST_{r,t,c,c
 $$\sum_{(jj,bd) \in dam\_num_{r,c,jj,bd}}
 \sum_{j \leq jj}VAR\_DAM_{r,t,c,bd,j}
 \left\{ = \right\}
-\sum_{com\_ts_{r,c,ts}} 
+\sum_{com\_ts_{r,c,ts}}
 \left (\begin{aligned}
 & DAM\_COEF_{r,t,c,ts} \times \\
 & \left (\begin{aligned}
@@ -76,7 +76,7 @@ $$EQ\_OBJDAM_{r,cur} \ni \left( rdcur_{r,cur} \right)$$
 
 **Case A: Linearized functions**
 
-$${\sum_{(t,c) \in \left\{rtc_{r,t,c}|(DAM\_COST_{r,t} > 0) \right\}} DAM\_COST_{r,t,c,cur} \times OBJ\_PVT_{r,t,cur} \times 
+$${\sum_{(t,c) \in \left\{rtc_{r,t,c}|(DAM\_COST_{r,t} > 0) \right\}} DAM\_COST_{r,t,c,cur} \times OBJ\_PVT_{r,t,cur} \times
 } \\ \\ {\left\lbrack \begin{aligned}
 & \sum_{\begin{matrix}
 jj \in dam\_num_{r,c,jj,'LO'} \\
@@ -106,7 +106,7 @@ j \leq ORD(jj)
 **\
 Case B: Non-linear functions**
 
-$${\sum_{(t,c) \in \left\{ rtc_{r,t,c}|(DAM\_COST_{r,t} > 0) \right\}}{DAM\_COST_{r,t,c,cur} \times OBJ\_PVT_{r,t,cur}} \times 
+$${\sum_{(t,c) \in \left\{ rtc_{r,t,c}|(DAM\_COST_{r,t} > 0) \right\}}{DAM\_COST_{r,t,c,cur} \times OBJ\_PVT_{r,t,cur}} \times
 } \\ \\ {\left\lbrack \begin{aligned}
 & \\
 & \frac{\left( \begin{aligned}
