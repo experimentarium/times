@@ -121,8 +121,7 @@ $$missing \ expression$$
 
 **Description:** The Cumulative Cost Interpolation constraint for an ETL technology.
 
-**Purpose and Occurrence:** This constraint defines the interpolated cumulative cost of investment in 
- capacity for a technology in a period (VAR_CCOST) in terms of the binary variables VAR_DELTA and the continuous variables VAR_LAMBD, and the internal model parameters ALPH and BETA, where ALPH and BETA represent the intercepts on the vertical axis and the slopes, respectively, of the line segments in the piecewise linear approximation of the cumulative cost curve. For a more precise definition, see "Equation" below. In combination with other ETL constraints, it is fundamental to ensuring the validity of the piecewise linear approximation of the cumulative cost curve. This equation is generated in each time for which the ETL technology is available.
+**Purpose and Occurrence:** This constraint defines the interpolated cumulative cost of investment in capacity for a technology in a period (VAR_CCOST) in terms of the binary variables VAR_DELTA and the continuous variables VAR_LAMBD, and the internal model parameters ALPH and BETA, where ALPH and BETA represent the intercepts on the vertical axis and the slopes, respectively, of the line segments in the piecewise linear approximation of the cumulative cost curve. For a more precise definition, see "Equation" below. In combination with other ETL constraints, it is fundamental to ensuring the validity of the piecewise linear approximation of the cumulative cost curve. This equation is generated in each time for which the ETL technology is available.
 
 **Units:** Money units, e.g., million 2000 US\$, or any other unit in which costs are tracked.
 
@@ -445,7 +444,7 @@ $$\sum_{(reg,t,prc \in {rtp})} (TL\_MRCLUST_{reg,p,prc} \times VAR\_NCAP_{reg,t,
 
 $$EQ\_OBJSAL_{r,cur}$$
 
-All the basic objective function term for calculating the salvage value (section 5.2.8)
+All the basic objective function term for calculating the salvage value ({numref}`section %s <salvage-value-salvage>`)
 
 $$ ... $$
 
@@ -455,7 +454,7 @@ $$+ \sum_{t,p \in teg} [OBJSIC_{r,t,p} \times VAR\_IC_{r,t,p}]$$
 
 ## EQ_OBJINV(r,cur)
 
-*- see EQ_OBJINV in section 5.2.2 for a general description without ETL*
+*- see EQ_OBJINV in {numref}`section %s <investment-costs-invcost>` for a general description without ETL*
 
 **Description:** Regional investment cost part of objective function adjusted to include the endogenously determined investment cost (VAR_IC) for new investments in learning technologies.
 
@@ -465,7 +464,7 @@ $$+ \sum_{t,p \in teg} [OBJSIC_{r,t,p} \times VAR\_IC_{r,t,p}]$$
 
 $$EQ\_OBJINV_{r,cur}$$
 
-All the basic objective function terms for investment costs (section 5.2.2)
+All the basic objective function terms for investment costs ({numref}`section %s <investment-costs-invcost>`)
 
 $$...$$
 
