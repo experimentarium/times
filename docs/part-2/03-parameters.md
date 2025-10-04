@@ -2189,7 +2189,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>\[0,∞);
   <br>default value: none
   <br>Default i/e: MIG
-  - The cost aggregations (agg) supported are listed in the set COSTAGG (see Table 1).
+  - The cost aggregations (agg) supported are listed in the set COSTAGG (see {numref}`sets-with-fixed-elements`).
   - Bound on regional costs by type of cost aggregation.
   - EQ_BNDCST, VAR_CUMCST
 * - REG_CUMCST
@@ -2199,7 +2199,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   <br>\[0,∞);
   <br>default value: none
   <br>Default i/e: N/A
-  - The cost aggregations (agg) supported are listed in the set COSTAGG (see Table 1).
+  - The cost aggregations (agg) supported are listed in the set COSTAGG (see {numref}`sets-with-fixed-elements`).
   - Cumulative bound on regional costs by type of cost aggregation.
   - EQ_BNDCST VAR_CUMCST
 * - REG_FIXT
@@ -2217,7 +2217,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
   - Integer value
   <br>\[open\];
   <br>default value: none
-  - See Part III, Table 15 for a list and descriptions of available options.
+  - See Part III, {numref}`rpt_opt-opt-settings` for a list and descriptions of available options.
   - Miscellaneous reporting options
   - <span>--</span>
 * - SHAPE
@@ -2937,7 +2937,8 @@ Indexing of auxiliary consumption/emission.
 (p331-overview-of-report)=
 ### Overview of report parameters
 
-The parameters generated internally by TIMES to document the results of a model run are listed in Table 15. These parameters can be imported into the **VEDA-BE** tool for further result analysis. They are converted out of the **GDX**[^32] file via the **gdx2veda** GAMS utility into a **VEDA-BE** compatible format according to the file **times2veda.vdd**[^33]. Note that some of the results are not transferred into parameters, but are directly accessed through the **times2veda.vdd** file (levels of commodity balances and peaking equation, total discounted value of objective function). The following naming conventions apply to the prefixes of the report parameters:
+The parameters generated internally by TIMES to document the results of a model run are listed in {numref}`times-report-parameters`. These parameters can be imported into the **VEDA-BE** tool for further result analysis. They are converted out of the **GDX**[^32] file via the **gdx2veda** GAMS utility into a **VEDA-BE** compatible format according to the file **times2veda.vdd**[^33]. Note that some of the results are not transferred into parameters, but are directly accessed through the **times2veda.vdd** file (levels of commodity balances and peaking equation, total discounted value of objective function). The following naming conventions apply to the prefixes of the report parameters:
+
 - CST\_: detailed annual undiscounted cost parameters; note that also the costs of past investments, which are constants in the objective function, are being reported;
 - $PAR\_$: various primal and dual solution parameters;
 - $EQ(l)\_$: directly accessed GAMS equation levels/marginals
@@ -3037,12 +3038,12 @@ The parameters generated internally by TIMES to document the results of a model 
   <br>(uc_n,r,c)
   - Cost_NPV
   - Total discounted costs by commodity (optional, activate by setting RPT_OPT(\'OBJ\',\'1\')=1):
-  <br>Total present value of commodity-related costs in the base year, by type (with types COM, ELS, DAM). See Part III, Section {numref}`%s <controls-affecting-solution-reporting>` on the reporting options, and Table 16 below for acronym explanations.
+  <br>Total present value of commodity-related costs in the base year, by type (with types COM, ELS, DAM). See Part III, Section {numref}`%s <controls-affecting-solution-reporting>` on the reporting options, and {numref}`acronyms-in-cost-reporting` below for acronym explanations.
 * - CST_PVP
   <br>(uc_n,r,p)
   - Cost_NPV
   - Total discounted costs by process (optional, activate by setting RPT_OPT(\'OBJ\',\'1\')=1):
-  <br>Total present value of process-related costs in the base year, by type (with types INV, INV+, FIX, ACT, FLO, IRE, where INV+ is only used for the split according to hurdle rate). See Part III, Section {numref}`%s <controls-affecting-solution-reporting>` on the reporting options, and Table 16 below for acronym explanations.
+  <br>Total present value of process-related costs in the base year, by type (with types INV, INV+, FIX, ACT, FLO, IRE, where INV+ is only used for the split according to hurdle rate). See Part III, Section {numref}`%s <controls-affecting-solution-reporting>` on the reporting options, and {numref}`acronyms-in-cost-reporting` below for acronym explanations.
 * - CST_SALV
   <br>(r,v,p)
   - Cost_Salv
@@ -3251,7 +3252,7 @@ The parameters generated internally by TIMES to document the results of a model 
   <br>(r,t,uc_n)
   - Reg_ACost
   - Regional total annualized costs by period:
-  <br>Total annualized costs in region (r) by period (t) and cost category. The cost categories are INV, INVX, FIX, FIXX, VAR, VARX, IRE, ELS and DAM (see Table 16 below for more information).
+  <br>Total annualized costs in region (r) by period (t) and cost category. The cost categories are INV, INVX, FIX, FIXX, VAR, VARX, IRE, ELS and DAM (see {numref}`acronyms-in-cost-reporting` below for more information).
 * - REG_IREC
   <br>(r)
   - Reg_irec
@@ -3266,7 +3267,7 @@ The parameters generated internally by TIMES to document the results of a model 
   <br>(r,uc_n,c)
   - Reg_wobj
   - Regional total discounted system cost by component:
-  <br>Discounted objective value (EQ_OBJ) for each region (r), by cost type (uc_n) and currency (c). The cost types are: INV, INVX, FIX, FIXX, VAR, VARX, ELS, DAM (see Table 16 below for more information).
+  <br>Discounted objective value (EQ_OBJ) for each region (r), by cost type (uc_n) and currency (c). The cost types are: INV, INVX, FIX, FIXX, VAR, VARX, ELS, DAM (see {numref}`acronyms-in-cost-reporting` below for more information).
 * - VAL_FLO
   <br>(r,v,t,p,c)
   - Val_Flo
