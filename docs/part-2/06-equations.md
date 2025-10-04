@@ -212,7 +212,7 @@ e) Taxes and subsidies on investments are treated exactly as investment costs in
 
 f) Since the model has the capability to represent *sunk* materials and energy carriers (i.e. those embedded in a technology at construction time, such as the uranium core of a nuclear reactor, or the steel imbedded in a car), these sunk commodities have an impact on cost. Two possibilities exist: if the material is one whose production is explicitly modeled in the RES, then there is no need to indicate the cost corresponding to the sunk material, which will be implicitly accounted for by the model just like any other flow. If on the other hand the material is not speci­fically modeled in the RES, then the cost of the sunk material should be included in the technology's investment cost, and will then be handled exactly as investment costs.
 
-**[The four investment cases]{.underline}**
+**The four investment cases**
 
 As mentioned above, the timing of the various types of payments and revenues is made as realistic and as smooth as possible. All investment decisions result in increments and/or decrements in the capacity of a process, at various times. These increments or decrements may occur, in some cases, in one large lump, for instance in the case of a large project (hydroelectric plant, aluminum plant, etc.), and, in other cases, in small additions or subtractions to capacity (e.g. buying or retiring cars, or heating devices). Depending on which case is considered, the assumption regarding the corresponding streams of payments (or revenues) differs markedly. Therefore, the distinction between small and large projects (called cases 1 and 2 below) will be crucial for writing the capital cost components of the objective function. A second distinction comes from the relative length of a project's technical life vs. that of the period when the investment occurs. Namely, if the life of an investment is less than the length of the period, then it is clear that the investment must be repeated all along the period. This is not so when the technical life extends beyond the period's end. Altogether, these two distinctions result in four mutually exclusive cases, each of which is treated separately. In what follows, we present the mathematical expression for the INVCOST component and one graphical example for each case.
 
@@ -297,19 +297,19 @@ $$ (I-2-a)
 
 This case is similar to case I.2.a, but the investment is repeated more than once over the period, each cycle being *TLIFE* years long. As in case I.2.a, each construction is spread over one lead time, *ILED*. In this case, the exact pattern of yearly investments is complex, so that we have to use an algorithm instead of a closed form summation.
 
-**[ALGORITHM]{.underline}** (Output: the vector of payments $P_t(y)$ at each year $y$, due to $VAR\_NCAP_t$)
+**ALGORITHM** (Output: the vector of payments $P_t(y)$ at each year $y$, due to $VAR\_NCAP_t$)
 
-**[Step 0:]{.underline}** Initialization ($NI(u)$ represents the amount of new investment made in year $u$)
+**Step 0:** Initialization ($NI(u)$ represents the amount of new investment made in year $u$)
 
 $$
 NI_t(u):=0 \quad \forall B(t) \leq u \leq B(t) + ILED_t + (C-1) \times TLIFE_t-1
 $$
 
-**[Step 1:]{.underline}** Compute number of repetitions of investment
+**Step 1:** Compute number of repetitions of investment
 
 $$C = \left\langle \frac{D(t)-ILED_t}{TLIFE_t} \right\rangle$$
 
-**[Step 2:]{.underline}** for each year $u$ in range:
+**Step 2:** for each year $u$ in range:
 
 $$B(t) \leq u \leq B(t) + ILED_t + (C-1) \cdot TLIFE_t - 1$$
 
@@ -321,7 +321,7 @@ $For \space I=1 \space to \space C$
      $Next \space u$
 $Next \space I$
 
-**[Step 3:]{.underline}** Compute payments incurred in year $y$, and resulting from variable $VAR\_NCAP_t$
+**Step 3:** Compute payments incurred in year $y$, and resulting from variable $VAR\_NCAP_t$
 
 For each $y$ in range:
 
@@ -331,7 +331,7 @@ Compute:
 
 $$P_t(y) = \sum_{u=Max\{B(t), y-ELIFE_t+1\}}^{y} {NI_t(u) \times VAR\_CAP_t \times CRF_s}$$
 
-**[END ALGORITHM]{.underline}**
+**END ALGORITHM**
 
 $$INVCOST(y) = \sum_{t \in MILESTONES,t \leq T(y)}{INDIC(2.b) \times P_{t}(y)}$$
 
@@ -429,9 +429,9 @@ $$
 
 Here too, the decommissioning takes place over *DLIFE*, but now, contrary to case 2.a, the process is repeated more than once in the period. The last investment has life extending over following periods, as in all similar cases. The resulting stream of yearly payments is complex, and therefore, we are forced to use an algorithm rather than a closed form summation. See also example below.
 
-**[ALGORITHM]{.underline}** (apply to each *t* such that $t \leq T(y)$)
+**ALGORITHM** (apply to each *t* such that $t \leq T(y)$)
 
-[Step 0]{.underline}: Initialization
+Step 0: Initialization
 
 $$P_{t}(y): = 0\quad\forall B(t) + ILED_{t} + TLIFE_{t} + DLAG_{t} \leq y \leq same + (C - 1) \times TLIFE_{t} + DLIFE_{t} + DELIF_{t} - 2$$
 
@@ -439,7 +439,7 @@ Where:
 
 $$C = \left\langle \frac{D(t) - ILED_{t}}{TLIFE_{t}} \right\rangle$$
 
-[Step 1]{.underline}: Compute payment vector
+Step 1: Compute payment vector
 
 $$
 \begin{align*}
@@ -454,7 +454,7 @@ $$
 \end{align*}
 $$
 
-**[END ALGORITHM]{.underline}**
+**END ALGORITHM**
 
 $INVDECOM(y) = \sum_{t \in MILESTONES,t \leq T(y)}{INDIC(III.2.b) \times P_{t}(y)} \times VAR\_NCAP_{t} \times CRF$
 **III.2.b**
