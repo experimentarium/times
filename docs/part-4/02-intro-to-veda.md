@@ -356,9 +356,9 @@ Transformation tables may be used only in scenario and transformation files. Val
 ><sup>2</sup> Comma separated elements and wild cards characters are allowed. The possible wild cards are:
 >
 > "\*" is used as wild card; for example \*GAS\* would refer to all elements that have GAS in the name with any possible characters before and after GAS.
-> 
+>
 > "-" before the text used for exclusions; for example, \*GAS\*,-ELCGAS would refer to all elements that have GAS in the name except for ELCGAS.
-> 
+>
 > "?" can be used to specify a single character; for example, ???GAS means there are 3 characters before GAS.
 
 (p246-advanced-tables)=

@@ -1,5 +1,5 @@
 (equations)=
-# Equations 
+# Equations
 
 This chapter is divided into four sections: the first section describes the main notational conventions adopted in writing the mathematical expressions of the entire chapter. The next two sections treat respectively the TIMES objective function and the standard linear constraints of the model. The fourth section is devoted to the facility for defining various kinds of user constraints. Additional constraints and objective function additions that are required for the Climate Module, Damage Cost and Endogenous Technology Learning options are described in Appendices [A](part2-climate-module), [B](damage-cost-functions) and [C](endogenous-technological-learning), respectively.
 
@@ -8,7 +8,7 @@ Each equation has a unique name and is described in a separate subsection. The e
 The mathematical formulation of an equation starts with the name of the equation in the format: $EQ\_XXX_{i,j,k,l}$, where $XXX$ is a unique equation identifier, and $i,j,k,..,$ are the *equation indexes*, among those described in {numref}`chapter %s <sets>`. Some equation names also include an index *l* controlling the sense of the equation. Next to the equation name is a *logical condition* that the equation indexes must satisfy. That condition constitutes the *domain of definition* of the equation. It is useful to remember that the equation is created in multiple instances, one for each combination of the equation indexes that satisfies the logical condition, and that each index in the equation's index list remains *fixed* in the expressions constituting each instance of the equation.
 
 (notational-conventions)=
-## Notational conventions 
+## Notational conventions
 
 We use the following mathematical symbols for the mathematical expressions and relations constituting the equations:
 
@@ -384,7 +384,7 @@ $$  (III-1-a)
 This cost expression is similar to I.1.b, but with payments shifted to the right by *TLIFE* (see example). The inner summation disappears because of the assumption that $DELIF=1$. Note also that past investments have no effect in this case, because this case does not arise when $D(t)=1$, which is always the case for past periods.
 
 $$
-INVDECOM(y) = 
+INVDECOM(y) =
 \sum_{\begin{aligned}
  & t \in MILESTONES \\
  & t \leq T(y)
@@ -392,7 +392,7 @@ INVDECOM(y) =
 \times \left\{ \begin{aligned}
  & 1 \quad if \space B(t) + \left[ \frac{TLIFE_t}{2} \right] \leq y \leq B(t) + \left[ \frac{TLIFE_t}{2} \right] + C \cdot TLIFE_t - 1 \\
  & 0 \quad otherwise
-\end{aligned} \right.\ 
+\end{aligned} \right.\
 $$
 
 where $C=\left\langle\frac{D(t)}{TLIFE_t}\right\rangle$
@@ -462,7 +462,7 @@ $INVDECOM(y) = \sum_{t \in MILESTONES,t \leq T(y)}{INDIC(III.2.b) \times P_{t}(y
 ![](assets/case-2b-example-3.svg)
 
 (fixed-annual-costs)=
-### Fixed annual costs: FIXCOST(y), SURVCOST(y) 
+### Fixed annual costs: FIXCOST(y), SURVCOST(y)
 
 The fixed annual costs are assumed to be paid in the same year as the actual operation of the facility. However, the spreading of the investment described in subsection 5.1.1 results in a tapering in and a tapering out of these costs. Taxes and subsidies on fixed annual costs are also accepted by the model.
 
@@ -565,10 +565,10 @@ The figure of the example shows that payments made in year $y$ may come from inv
 
 $$
 \begin{aligned}
-\mathrm{FIXCOST}(y) =\ & 
+\mathrm{FIXCOST}(y) =\ &
 \sum_{\substack{t \in \mathrm{MILESTONYR} \\ t \leq T(y)}}
 \mathrm{INDIC}(2.a) \times (\mathrm{VAR\_NCAP}_t) \times \mathrm{NCAP\_FOM}_{B(t)+\mathrm{ILED}_t} \\
-& \qquad \times 
+& \qquad \times
 \begin{cases}
 1 & \text{if } B(t) + \mathrm{ILED}_t \leq y \leq B(t) + \mathrm{ILED}_t + \mathrm{TLIFE}_t - 1 \\
 0 & \text{otherwise}
@@ -602,10 +602,10 @@ ii) $SURVCOST$ (Surveillance cost for same case 2.a. See same example)
 
 $$
 \begin{aligned}
-\mathrm{SURVCOST}(y) =\ & 
+\mathrm{SURVCOST}(y) =\ &
 \sum_{\substack{t \in \mathrm{MILESTONYR} \\ t \leq T(y)}}
 \mathrm{INDIC}(2.a) \times (\mathrm{VAR\_NCAP}_t) \times \mathrm{NCAP\_DLAGC}_{B(t)+\mathrm{ILED}_t} \\
-& \qquad \times 
+& \qquad \times
 \begin{cases}
 1 & \text{if } B(t) + \mathrm{ILED}_t + \mathrm{TLIFE}_t \leq y \leq B(t) + \mathrm{ILED}_t + \mathrm{TLIFE}_t + \mathrm{DLAG}_t - 1 \\
 0 & \text{otherwise}
@@ -681,10 +681,10 @@ $$ (IV-2-b)
 
 $$
 \begin{aligned}
-\mathrm{SURVCOST}(y) =\ & 
+\mathrm{SURVCOST}(y) =\ &
 \sum_{\substack{t \in \mathrm{MILESTONES} \\ t \leq T(y)}}
 \mathrm{INDIC}(2.b) \times (\mathrm{VAR\_NCAP}_t) \times \mathrm{NCAP\_DLAGC}_{B(t)+\mathrm{ILED}_t+I \cdot \mathrm{TLIFE}_t} \\
-& \qquad \times 
+& \qquad \times
 \begin{cases}
 1 & \text{if } B(t) + \mathrm{ILED}_t + (I+1) \cdot \mathrm{TLIFE}_t \leq y \leq \text{same} + \mathrm{DLAG}_t - 1 \text{ and } 0 \leq I \leq C-1 \\
 0 & \text{otherwise}
@@ -710,7 +710,7 @@ $$ (IV-2-b-tick)
 
 *Remark*: same as precedingly regarding the indexing of the cost attribute *NCAP_DLAGC*
 
-### Annual taxes/subsidies on capacity: FIXTAXSUB(Y) 
+### Annual taxes/subsidies on capacity: FIXTAXSUB(Y)
 
 It is assumed that these taxes (subsidies) are paid (accrued) at exactly the same time as the fixed annual costs. Therefore, the expressions **IV** of subsection 5.1.4 are valid, replacing the cost attributes by *NCAP_FTAX -- NCAP_FSUB*
 
@@ -734,11 +734,11 @@ $$
 $y \leq EOH$ **(VI)**
 
 (cost-of-demand-reductions)=
-### Cost of demand reductions ELASTCOST(y) 
+### Cost of demand reductions ELASTCOST(y)
 
 When elastic demands are used, the objective function also includes a cost resulting from the loss of welfare due to the reduction (or increase) of demands in a given run compared to the base run. See [PART I](part1) for a theoretical justification, and Appendix [D](times-demand-functions) for formulations involving more generalized demand functions.
 
-$${ELASTCOST(y) = 
+$${ELASTCOST(y) =
 }{\quad\sum_{j = 1}^{COM\_STEP_{lo}}{COM\_BPRICE_{T(y)} \times \left\{ \left( 1 - \frac{(j - 1/2) \times COM\_VOC_{lo,T(y)}}{COM\_STEP_{lo}} \right)^{\frac{1}{COM\_ELAST_{lo,T(y)}}} \right\}} \times VAR\_ELAST_{lo,j,T(y)}}$$
 
 $${- \sum_{j = 1}^{COM\_STEP_{up}}{COM\_BPRICE_{T(y)} \times \left\{ \left( 1 + \frac{(j - 1/2) \times COM\_VOC_{up,T(y)}}{COM\_STEP_{up}} \right)^{\frac{1}{COM\_ELAST_{up, ⥂ T(y)}}} \right\}} \times VAR\_ELAST_{up,j,T(y)}
@@ -932,7 +932,7 @@ $$
 \text{Note that } SAL(v, x) \text{ is always 0 whenever } v + TLIFE_t \leq EOH + 1
 $$
 (IX.1.a)
- 
+
 **Case 1.b:** ${ILED}_{t} \leq {ILED}_{Min,t}$ and ${TLIFE}_{t} + {ILED} < {D(t)}$
 
 **(Small Projects, repeated investments in period)**
@@ -1038,10 +1038,10 @@ The corrections needed for employing mid-year discounting in TIMES can be made i
 2. Second, make the necessary corrections to the discounting of all those cost components that cannot be assumed to be actually paid at the mid-point of the year.
 
 By going through the various cost components, the following conclusions hold for step 2:
-- All variable, fixed operation and surveillance costs can be assumed to be paid in the mid-point of each year, and no change is needed for them in the discounting. 
-- The lump-sum investment costs in Cases 1 *(NCAP_COST/D(T))* should be assumed to occur at the beginning of the investment year instead of the mid-point. 
-- All the lump-sum investment costs in Cases 2 *(NCAP_COST/ILED)* can be assumed to occur in the mid-point of each construction year. Therefore, no change is needed in the discounting of the annualized investment payments. 
-- Decommissioning costs in Cases 1 can be assumed to be paid in the mid-point of the year, because in these cases decommissioning is assumed to take exactly one year, and one may assume that, on the average, the costs occur at the mid-point. 
+- All variable, fixed operation and surveillance costs can be assumed to be paid in the mid-point of each year, and no change is needed for them in the discounting.
+- The lump-sum investment costs in Cases 1 *(NCAP_COST/D(T))* should be assumed to occur at the beginning of the investment year instead of the mid-point.
+- All the lump-sum investment costs in Cases 2 *(NCAP_COST/ILED)* can be assumed to occur in the mid-point of each construction year. Therefore, no change is needed in the discounting of the annualized investment payments.
+- Decommissioning costs in Cases 1 can be assumed to be paid in the mid-point of the year, because in these cases decommissioning is assumed to take exactly one year, and one may assume that, on the average, the costs occur at the mid-point.
 - The lump-sum decommissioning costs in Cases 2 *(NCAP_DCOST/DLIFE)* can be assumed to occur at the mid-point of each year within the decommissioning lifetime. Therefore, no change is needed in the discounting of the annualized payments.
 
 Consequently, the initial overall conclusion is that the only correction needed in the discounting of various cost components is related to the investment costs in Cases 1. If we assume that the Capital Recovery Factor used in the beginning-of-year discounting ($CRF_{beg}$) is still valid for mid-year discounting, we should simply shift the position of both the lump-sum investment and the annualized payments half a year backwards. In terms of discounting, this means that in Cases 1 the annualized investment payments should be multiplied by the factor $(1+d(y))^{0.5}$, where $d(y)$ is the **general discount rate**. Perhaps the simplest way to apply this correction in the objective function is to make the adjustment to the Capital Recovery Factor. Thus, for Cases 1 we could define a \'CRF corrected for mid-year discounting\' (*CRF~1,mid~*) as follows:
@@ -1279,14 +1279,15 @@ rtp\_vara_{r,t,p} \land rps\_prcts_{r,p,s} \land \left( p \in prc\_vint_{r,p} \v
 **Purpose**: This equation is generated when the process activity efficiency has been defined with the input attribute <i>ACT_EFF<sub>r,v,p,cg,s</sub></i> for a group of flows on the shadow side.
 
 **Remarks**:
-- The group cg in the equation may be either directly specified in ACT_EFF, or, if *ACT_EFF* is only specified for single commodity, determined as the commodity type, or, if *ACT_EFF* is specified for the reserved group name \'ACT\', determined as the default shadow group of the process. 
-- The parameter <i>ACT_EFF<sub>r,v,p,cg,s</sub></i> can be specified using any of the following as the cg: 
-	- commodity groups; these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
-	- commodity types (NRG/MAT/ENV/DEM/FIN); as above, these define a common efficiency for all member commodities in the group that are on the shadow side of the process; 
-	- the predefined commodity group \'ACT\'; this defines a common efficiency for all members of the default shadow group of the process; 
-	- single commodities on the shadow side without an associated group efficiency; these define commodity-specific efficiencies, and the shadow group will consist of all commodities of the same type; if no commodity efficiency is defined for some member in the group, the default efficiency 1 is assumed; 
-	- single commodities on the shadow side with an associated group efficiency; these define commodity-specific efficiencies as above, but are multiplied by the effi­ciency specified for the group; if no efficiency is defined for some member in the group, the group efficiency is applied directly to that member; 
-	- single commodities C that are members of the PCG of the process; these define commodity-specific multipliers for the process efficiency when producing the commodity C; if no efficiencies are additionally defined on the shadow side of the process, the whole standard shadow group of the process is assumed to be involved in the transformation (as when using 'ACT'), with the default efficiency of 1 on the shadow side. 
+
+- The group cg in the equation may be either directly specified in ACT_EFF, or, if *ACT_EFF* is only specified for single commodity, determined as the commodity type, or, if *ACT_EFF* is specified for the reserved group name \'ACT\', determined as the default shadow group of the process.
+- The parameter <i>ACT_EFF<sub>r,v,p,cg,s</sub></i> can be specified using any of the following as the cg:
+	- commodity groups; these define a common efficiency for all member commodities in the group that are on the shadow side of the process;
+	- commodity types (NRG/MAT/ENV/DEM/FIN); as above, these define a common efficiency for all member commodities in the group that are on the shadow side of the process;
+	- the predefined commodity group \'ACT\'; this defines a common efficiency for all members of the default shadow group of the process;
+	- single commodities on the shadow side without an associated group efficiency; these define commodity-specific efficiencies, and the shadow group will consist of all commodities of the same type; if no commodity efficiency is defined for some member in the group, the default efficiency 1 is assumed;
+	- single commodities on the shadow side with an associated group efficiency; these define commodity-specific efficiencies as above, but are multiplied by the effi­ciency specified for the group; if no efficiency is defined for some member in the group, the group efficiency is applied directly to that member;
+	- single commodities C that are members of the PCG of the process; these define commodity-specific multipliers for the process efficiency when producing the commodity C; if no efficiencies are additionally defined on the shadow side of the process, the whole standard shadow group of the process is assumed to be involved in the transformation (as when using 'ACT'), with the default efficiency of 1 on the shadow side.
 - The ACT_EFF parameter can also be shaped by using a FLO_FUNCX parameter of the following form: FLO_FUNCX(reg,datayear,p,CG,\'ACT\') = shape index. Here, the CG should correspond to the group of commodities on the shadow side involved in the EQE_ACTEFF equation (the group, commodity type, or \'ACT\' that was either explicitly or implicitly used in the ACT_EFF parameters that should be shaped).
 
 **Equation:**
@@ -1303,7 +1304,7 @@ $$\sum_{\begin{aligned}
  & \text{1 otherwise}
 \end{aligned} \right) \\
  & \times RTCS\_TSFR_{r,t,c,s,ts}
-\end{aligned} \right) = 
+\end{aligned} \right) =
 \\ \\
 \sum_{\begin{aligned}
  & rpc\_pg_{r,p,c} \\ & prc\_ts_{r,p,ts}
@@ -1330,7 +1331,7 @@ $$\sum_{\begin{aligned}
 \end{aligned} \right)$$
 
 (equation-eq-actflo)=
-### Equation: EQ_ACTFLO 
+### Equation: EQ_ACTFLO
 
 **Indice**s: **region (r), vintage year (v), milestone year (t), process (p), time slice (s)**
 
@@ -1375,29 +1376,29 @@ VAR\_ACT_{t,v} = \sum_{c \in prc\_actunt}{\frac{\sum_{ie \in rp\_aire}{VAR\_IRE_
 **Purpose**: This equation defines the variable proportional to the efficiency loss under partial loads, if endogenous partial load efficiencies are modeled for a process, or a corresponding cost penalty under partial loads.
 
 **Remarks:**
-- Endogenous partial load efficiencies can only be modeled for processes that have their efficiency modelled by the ACT_EFF parameter. 
-- The input parameter ACT_LOSPL(r,y,p,\'FX\') defines the proportional increase in specific fuel consumption at the minimum operating level, when modelling partial load efficiencies endogenously (for process p, vintage y, region r). 
-- The input parameter ACT_LOSPL(r,y,p,\'LO\') defines the minimum operating level used for the partial load efficiency function; default value is taken from ACT_UPS(r,y,p, \'ANNUAL\',\'FX\'), but if neither is specified, is set to 0.1. 
-- The input parameter ACT_LOSPL(r,y,p,\'UP\') defines the fraction of the feasible load range above the minimum operating level, below which the efficiency losses are assumed to occur; default value = 0.6. 
-- It is recommended that the minimum operating level is defined by the ACT_MINLD(r,v,p) parameter, which is then used as the default value for ACT_LOSPL(r,y,p,\'LO\'). However, if desired, the minimum level to be assumed can also be defined by explicitly specifying ACT_LOSPL(\'LO\'). 
+- Endogenous partial load efficiencies can only be modeled for processes that have their efficiency modelled by the ACT_EFF parameter.
+- The input parameter ACT_LOSPL(r,y,p,\'FX\') defines the proportional increase in specific fuel consumption at the minimum operating level, when modelling partial load efficiencies endogenously (for process p, vintage y, region r).
+- The input parameter ACT_LOSPL(r,y,p,\'LO\') defines the minimum operating level used for the partial load efficiency function; default value is taken from ACT_UPS(r,y,p, \'ANNUAL\',\'FX\'), but if neither is specified, is set to 0.1.
+- The input parameter ACT_LOSPL(r,y,p,\'UP\') defines the fraction of the feasible load range above the minimum operating level, below which the efficiency losses are assumed to occur; default value = 0.6.
+- It is recommended that the minimum operating level is defined by the ACT_MINLD(r,v,p) parameter, which is then used as the default value for ACT_LOSPL(r,y,p,\'LO\'). However, if desired, the minimum level to be assumed can also be defined by explicitly specifying ACT_LOSPL(\'LO\').
 - When the ACT_CSTPL input parameter is defined instead of (or as a supplement to) ACT_LOSPL, the cost coefficient is applied in the objective function directly to the <i>VAR_UPS<sub>r,v,t,p,s,'FX'</sub></i> variable as defined by the EQ_ACTPL equation.
 
 **Notation:**
-- <i>AF_MIN<sub>r,v,p,s</sub></i> minimum operating level of online capacity of process ***p***, vintage ***v*** in timeslice ***s***, as defined by ACT_MINLD (default) or ACT_LOSPL(\'LO\'); 
-- <i>PL_LDL<sub>p,v</sub></i> the load level below which partial load efficiency losses start to occur for process ***p***, vintage ***v***; 
-- *SUP(s)* is the set of timeslices above timeslice ***s*** in the timeslice tree, but including also ***s*** itself; 
+- <i>AF_MIN<sub>r,v,p,s</sub></i> minimum operating level of online capacity of process ***p***, vintage ***v*** in timeslice ***s***, as defined by ACT_MINLD (default) or ACT_LOSPL(\'LO\');
+- <i>PL_LDL<sub>p,v</sub></i> the load level below which partial load efficiency losses start to occur for process ***p***, vintage ***v***;
+- *SUP(s)* is the set of timeslices above timeslice ***s*** in the timeslice tree, but including also ***s*** itself;
 - *UPS(p)* is the set of timeslices with start-ups/shut-downs allowed for process *p*.
 
 **Equations:**
 
 $$EQ\_ACTPL_{r,v,t,p,s} \quad \ni (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_LOSPL_{r,v,p,'FX'} > 0))$$
 
-$$VAR\_UPS_{r,v,t,p,s,'FX'} \geq 
+$$VAR\_UPS_{r,v,t,p,s,'FX'} \geq
 \\ \\
 \left( \begin{aligned}
 & COEF\_CPT_{r,v,t,p}\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times \\
 & PL\_LDL_{r,v,p} \cdot PRC\_CAPACT_{r,p} \cdot G\_YRFR_{s} - VAR\_ACT_{r,v,t,p,s}
-\end{aligned} \right) 
+\end{aligned} \right)
 \\ \\
 \times \frac{AF\_MIN_{r,v,p,ANNUAL}}{PL\_LDL_{r,v,p} - AF\_MIN_{r,v,p,ANNUAL}}$$
 
@@ -1422,21 +1423,21 @@ $$VAR\_UPS_{r,v,t,p,s,'FX'} \geq
 
 **Equations:**
 
-$$EQ\_ACTRAMP_{r,v,t,p,s,'UP'} \quad \ni 
+$$EQ\_ACTRAMP_{r,v,t,p,s,'UP'} \quad \ni
 \\ \\
 (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,'UP'}> 0))$$
 
 $$\left(
 \begin{align} \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \frac{VAR\_ACT_{r,v,t,p,s-1}}{G\_YRFR_{r,s-1}} - \\ \left(VAR\_UPS_{r,v,t,p,s,'UP'} - VAR\_UPS_{r,v,t,p,s,'LO'} \right) \cdot \\ ACT\_UPS_{r,v,p,s,'FX'}
-\end{align}\right) \times 
+\end{align}\right) \times
 \\ \\
-\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s-1} \right)} \leq 
+\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s-1} \right)} \leq
 \\ \\
 \left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times
 \\ \\
 COEF\_CPT_{r,v,t,p} \times PRC\_CAPACT_{r,p} \times ACT\_UPS_{r,v,p,s,'UP'}$$
 
-$$EQ\_ACTRAMP_{r,v,t,p,s,'LO'} \quad \ni 
+$$EQ\_ACTRAMP_{r,v,t,p,s,'LO'} \quad \ni
 \\ \\
 (rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land (ACT\_UPS_{r,v,p,'LO'} > 0))$$
 
@@ -1444,13 +1445,13 @@ $$\left(
 \begin{align}\frac{VAR\_ACT_{r,v,t,p,s-1}}{G\_YRFR_{r,s-1}} - \frac{VAR\_ACT_{r,v,t,p,s}}{G\_YRFR_{r,s}} - \\ \left(VAR\_UPS_{r,v,t,p,s,'LO'} - VAR\_UPS_{r,v,t,p,s,'UP'} \right) \cdot \\ ACT\_UPS_{r,v,p,s,'FX'}
 \end{align} \right) \times
 \\ \\
-\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s-1} \right)} \leq 
+\frac{2 \cdot RS\_STGPRD_{r,s}}{8760 \times \left( G\_YRFR_{r,s} + G\_YRFR_{r,s-1} \right)} \leq
 \\ \\
-\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s - 1) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times 
+\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s - 1) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times
 \\ \\
 COEF\_CPT_{r,v,t,p} \times PRC\_CAPACT_{r,p} \times ACT\_UPS_{r,v,p,s,'LO'}$$
 
-### Equation: EQ_ACTRAMPC 
+### Equation: EQ_ACTRAMPC
 
 **Indice**s: **region (r), vintage year (v), period (t), process (p), time slice (s)**
 
@@ -1467,7 +1468,7 @@ COEF\_CPT_{r,v,t,p} \times PRC\_CAPACT_{r,p} \times ACT\_UPS_{r,v,p,s,'LO'}$$
 
 The following equation calculates the changes in the load <i>var_ldc<sub>r,v,t,p,s,bd</sub></i> during the dispatching phase:
 
-$$\left( \frac{var\_act_{r,v,t,p,s-1}}{G\_YRFR_{r,s-1}} - \frac{var\_act_{r,v,t,p,s}}{G\_YRFR_{r,s}} \right) \cdot \frac{1}{CAPACT_{r,p}} = 
+$$\left( \frac{var\_act_{r,v,t,p,s-1}}{G\_YRFR_{r,s-1}} - \frac{var\_act_{r,v,t,p,s}}{G\_YRFR_{r,s}} \right) \cdot \frac{1}{CAPACT_{r,p}} =
 \\ \\
 var\_ldc_{r,v,t,p,s,LO} - var\_ldc_{r,v,t,p,s,UP} - ACT\_MINLD_{r,v,p} \times
 \\ \\
@@ -1477,7 +1478,7 @@ In the above equation the variable <i>var_ldc<sub>r,v,t,p,s,'LO'</sub></i> holds
 
 Having calculated the changes in the dispatchable load, the associated ramping costs are entered into the objective function as the sum of the load changes <i>var_ldc<sub>r,v,t,p,s,'UP'</sub></i> multiplied by the cost attribute <i>ACT_CSTRMP<sub>r,v,p,'UP',cur</sub></i> for the ramping up costs, and the sum of the load changes <i>var_ldc<sub>r,v,t,p,s,'LO'</sub></i> multiplied by the cost attribute <i>ACT_CSTRMP<sub>r,v,p,'LO',cur</sub></i> for the ramping down costs. The costs are discounted to the base year:
 
-$$obj_{RMPC} = 
+$$obj_{RMPC} =
 \\ \\
 \sum_{r,t}\left(NPV_{r,t} \cdot \sum_{p,v,bd \in \{LO,UP\}}{ACT\_CSTRMP_{r,v,p,bd,cur} \cdot \sum_{s \in PRC\_TS_{r,p}}{var\_ldc_{r,v,t,p,s,bd}}} \right)$$
 
@@ -1507,9 +1508,9 @@ $$obj_{RMPC} =
 
 **Case A: Lower limit for consecutive on-line / off-line hours**
 
-$$EQ\_ACTUPC_{r,v,t,p,tsl,'UP',s}\quad \ni 
+$$EQ\_ACTUPC_{r,v,t,p,tsl,'UP',s}\quad \ni
 \\ \\
-(rtp\_vintyr_{r,v,t,p}\land prc\_ts_{r,p,s}\land ts\_group_{r,tsl,s}\land 
+(rtp\_vintyr_{r,v,t,p}\land prc\_ts_{r,p,s}\land ts\_group_{r,tsl,s}\land
 (ACT\_TIME_{r,t,p,'UP'}> 0))$$
 
 $$\sum_{ts \in C(P(s))}{VAR\_UPS_{r,v,t,p,ts'UP'}} \times
@@ -1518,27 +1519,27 @@ $$\sum_{ts \in C(P(s))}{VAR\_UPS_{r,v,t,p,ts'UP'}} \times
 \\ \\
 \left(VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right)$$
 
-$$EQ\_ACTUPC_{r,v,t,p,tsl,'LO',s}\quad \ni 
+$$EQ\_ACTUPC_{r,v,t,p,tsl,'LO',s}\quad \ni
 \\ \\
-(rtp\_vintyr_{r,v,t,p}\land prc\_ts_{r,p,s}\land ts\_group_{r,tsl,s}\land 
+(rtp\_vintyr_{r,v,t,p}\land prc\_ts_{r,p,s}\land ts\_group_{r,tsl,s}\land
 (ACT\_TIME_{r,t,p,'LO'}> 0))$$
 
 $$\sum_{ts \in C(P(s))}{VAR\_UPS_{r,v,t,p,ts,'LO'}} \times
 \\ \\
-({mod}(Hour(s) - Hour(ts),24) < ACT\_TIME_{r,v,p,'LO'}) \leq 
+({mod}(Hour(s) - Hour(ts),24) < ACT\_TIME_{r,v,p,'LO'}) \leq
 \\ \\
 \left( VAR\_UPS_{r,v,t,p,s,'N'} \right)$$
 
 **Case B: Maximum number of start-up cycles within parent timeslice cycle**
 
 $$EQ\_ACTUPC_{r,v,t,p,tsl,'N',s}\quad \ni (rtp\_vintyr_{r,v,t,p}\land \left( s\in \bigcup_{ts}\left\{P(ts)|prc\_ts_{r,p,ts} \right\} \right)
-\land 
+\land
 \\ \\
 ts\_group_{r,tsl,s}\land (ACT\_UPS_{r,v,p,'ANNUAL','N'}> 0))$$
 
 $$\sum_{ts \in C(s)}{VAR\_UPS_{r,v,t,p,ts,'UP'}} \leq
 \\ \\
-\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times 
+\left( VAR\_NCAP_{r,v,p} - \sum_{ts \in SUP(s) \cap UPS(p)}{VAR\_UPS_{r,v,t,p,ts,'N'}} \right) \times
 \\ \\
 ACT\_UPS_{r,v,p,'ANNUAL','N'}
 $$
@@ -1556,6 +1557,7 @@ $$
 **Purpose**: This equation establishes the relation between start-ups/shut-downs and the change in the amount of on-line capacity between successive timeslices. It is generated only when start-up costs have been defined for a standard process with *ACT_CSTUP*.
 
 **Notation:**
+
 - <i>UPS<sup>+</sup>(r,p,tsl)</i> is the set of timeslice levels with start-ups/shut-down costs defined for process p.
 
 **Equation:**
@@ -1579,6 +1581,7 @@ VAR\_UPS_{r,v,t,p,s-1,'N'} - VAR\_UPS_{r,v,t,p,s,'N'}$$
 **Purpose**: This equation ensures that startup costs are being consistently applied when start-up costs have been defined on multiple timeslice levels.
 
 **Notation:**
+
 - <i>UPS<sup>+</sup>(r,p,tsl)</i> is the set of timeslice levels with start-ups/shut-down costs defined for process **p**.
 - *P(r,s)* refers to the parent timeslice of ***s*** in region **r**.
 
@@ -1604,6 +1607,7 @@ $$VAR\_UPS_{r,v,t,p,s,'FX'}\quad \leq \quad\sum_{ts \in C(s)}{VAR\_UPS_{r,v,t,p,
 **Indices**: **region (r), vintage year (v), period (t), process (p), time slice (s)**
 
 **Type**: As determined by the bd index of the input parameter FLO_SHAR:
+
 -   *l* = \'G\' for **bd** = \'LO\' yields ≥,
 -   *l* = \'L\' for **bd** = \'UP\' yields ≤,
 -   *l* = \'E\' for **bd** = \'FX\' yields =.
@@ -1615,14 +1619,15 @@ $$VAR\_UPS_{r,v,t,p,s,'FX'}\quad \leq \quad\sum_{ts \in C(s)}{VAR\_UPS_{r,v,t,p,
 **Purpose**: A share equation between process flows/activity is generated a process (**p**) in region (**r**) for time period (**t**) and each time-slice (**s**). The equation is similar to the equations EQ(l)\_INSHR and EQ(l)\_OUTSHR, but is only generated when the input parameter <i>FLO_SHAR<sub>r,v,p,c,cg,s,bd</sub></i> is specified in a non-standard way, for a commodity **c** and group **cg** such that **c** is not a member of group **cg**, or such that **c**=**cg**.
 
 **Remarks**:
+
 - Internally, the non-standard *FLO_SHAR*s are converted into the corresponding *FLO_ASHAR* parameters.
-- In general, the constraint is generated on the level of the process flow variable for **c**, unless **c**=\'ACT\', which will result in an annual level constraint. 
-- When **c**=\'ACT\', the equation defines a bound on the amount of activity in proportion to the flows in the group **cg**, on the ANNUAL level. 
-- When **cg**=\'ACT\', the equation defines a bound on the amount of flow of **c** in proportion to the activity, on the level of the process flow variable for **c**. 
-- When **c**=**cg**, and **c** is a member of the default shadow group, the share equation is generated for the flow of **c** in the total flow of commodities in the SPG, and either on the group level or on the WEEKLY level, whichever is higher. This feature makes it easy to define e.g. daily share constraints for a DAYNITE level process, such as fuel shares for plug-in hybrid cars. 
+- In general, the constraint is generated on the level of the process flow variable for **c**, unless **c**=\'ACT\', which will result in an annual level constraint.
+- When **c**=\'ACT\', the equation defines a bound on the amount of activity in proportion to the flows in the group **cg**, on the ANNUAL level.
+- When **cg**=\'ACT\', the equation defines a bound on the amount of flow of **c** in proportion to the activity, on the level of the process flow variable for **c**.
+- When **c**=**cg**, and **c** is a member of the default shadow group, the share equation is generated for the flow of **c** in the total flow of commodities in the SPG, and either on the group level or on the WEEKLY level, whichever is higher. This feature makes it easy to define e.g. daily share constraints for a DAYNITE level process, such as fuel shares for plug-in hybrid cars.
 - When the process is a storage process, the only valid share specification is <i>FLO_SHAR<sub>r,v,p,c,'ACT',s,bd</sub></i>, where c is the discharge commodity of a timeslice storage. This generates a constraint between the output flow and the storage activity, which can be useful e.g. for preventing the use of the storage for a by-pass operation. The **cg** is set automatically to the SPG when the *FLO_SHAR* is converted into *FLO_ASHAR.*
 
-$$EQ(l)\_ASHAR_{r,v,t,p,c,cg,s}\ni 
+$$EQ(l)\_ASHAR_{r,v,t,p,c,cg,s}\ni
 \\ \\
 \left( \begin{align}
 & rtp\_vintyr_{r,v,t,p}\land \left( rpcs\_var_{r,p,c,s}\vee \left( (c ='ACT')\land annual_{s} \right) \right) \\
@@ -1677,8 +1682,9 @@ rpc\_stg_{r,p,c} \\ rpcs\_var_{r,p,c,ts}
 **Purpose**: The blending equations ensure that the characteristics of petroleum products (e.g. sulfur content, density, octane number, etc.) lie within specified limits, if desired.
 
 **Remarks**:
+
 - Parameter BL_COM contains the values of the blending specifications **spe** for the blending streams **opr**.
-- Parameter BL_SPEC contains the value of the specification **spe** of the blending product **ble**. 
+- Parameter BL_SPEC contains the value of the specification **spe** of the blending product **ble**.
 - The blending variables VAR_BLND are expressed in volume units. If the characteristics of the blending streams **opr** and the product **ble** are not given in volume units (indicated by input parameter REFUNIT), the user has to provide a conversion parameter CONVERT which contains the density and energy content (by weight or by volume) of each blending stream. The conversion parameters are used to derive the coefficients RU_CVT of the blending streams in the blending equation.
 
 **Equation:**
@@ -1753,7 +1759,7 @@ $$EQ(l)\_BLND_{r,t,ble,spe} \ni bl\_type_{r,ble,spe}
 
 **Equation:**
 
-$$EQ\_BNDCST_{r,y1,t,y2,agg,cur} \quad \ni 
+$$EQ\_BNDCST_{r,y1,t,y2,agg,cur} \quad \ni
 \\ \\
 \left( \left( \sum_{bd}{REG\_CUMCST_{r,y1,y2,agg,cur,bd}}< > 0 \right)\land \left(t = \underset{\left\{ tt|M(tt - 1) < y2 \right\}}{argmax}(M(tt)) \right) \right)
 \\ \\
@@ -1784,8 +1790,8 @@ VAR\_CUMCST_{r,y1,y2,agg,cur} =
 **Purpose:** If the bound on the net or gross production of a commodity is specified for a timeslice being above the timeslice level of the commodity, the equation described here is generated. The bound on the net or gross production of a commodity is directly applied to the variable (VAR_COMNET, VAR_COMPRD), if the bound parameter is specified for a commodity timeslice (**com_ts**).
 
 **Remarks:**
-- The internal set **rcs_comts** used in the equation contains all timeslices at or above the timeslice level being defined for the commodity. 
-- The internal set **rtcs_varc** used in the summation part of the equation contains all timeslices (out of **com_ts**) and periods for which the commodity is available. 
+- The internal set **rcs_comts** used in the equation contains all timeslices at or above the timeslice level being defined for the commodity.
+- The internal set **rtcs_varc** used in the summation part of the equation contains all timeslices (out of **com_ts**) and periods for which the commodity is available.
 - The internal set **ts_map(r,s,ts)** used in the summation part of the equation contains for a given timeslice (**s**) all timeslices (**ts**) being at or below **s** in the timeslice tree.
 
 **Interpretation of the results**:
@@ -1796,7 +1802,7 @@ Dual: marginal cost of increasing the bound by one unit
 
 **Equation**
 
-$$EQ(l)\_BND(NET/PRD)_{r,t,c,s} \ni 
+$$EQ(l)\_BND(NET/PRD)_{r,t,c,s} \ni
 \\ \\
 \left\{rcs\_comts_{r,c,s} \land (NOT \space com\_ts_{r,c,s}) \land COM\_BND(NET/PRD)_{r,t,c,s,bd} \right\}
 \\ \\
@@ -1829,24 +1835,24 @@ COM\_BND(NET/PRD)_{r,t,c,s,bd}$$
 **Special notation used for the equation formulation:**
 -   <i>SX<sub>r,v,p,c,s</sub></i> denotes an adjustment coefficient for storage inputs:
 
-$$SX_{r,v,p,c,s}\quad =\left\{ \begin{align} 
+$$SX_{r,v,p,c,s}\quad =\left\{ \begin{align}
 & 0 \space if \space top_{OUT}(c)\land top_{IN}(c)\land \neg NCAP\_AFCS_{r,v,p,cg,s} \\
 & \left(\frac{NCAP\_AFCS_{r,v,p,c,s}}{\sum_{rp\_pg_{r,p,cg}}{NCAP\_AFCS_{r,v,p,cg,s}}} \right)\quad \begin{matrix} if \space top_{OUT}(c)\land top_{IN}(c)\land  \\ NCAP\_AFCS_{r,v,p,c,s}\land \\ NCAP\_AFCS_{r,v,p,cg,s}
-\end{matrix} \\ 
+\end{matrix} \\
 & 1\space otherwise
 \end{align} \right\}$$
 
 -   <i>IX<sub>r,v,p,c,s</sub></i> denotes an adjustment coefficient for trade process exports:
 
-$$IX_{r,v,p,c,s}\quad =\left\{ \begin{align} 
+$$IX_{r,v,p,c,s}\quad =\left\{ \begin{align}
 & \left( \frac{NCAP\_AFCS_{r,v,p,c,s}}{\sum_{rp\_pg_{r,p,cg}}{NCAP\_AFCS_{r,v,p,cg,s}}} \right)\quad \begin{matrix} if \space imp(c) \land exp(c)\land  \\ NCAP\_AFCS_{r,v,p,c,s}\land \\ NCAP\_AFCS_{r,v,p,cg,s}
-\end{matrix} \\ 
+\end{matrix} \\
 & 1 \space otherwise
 \end{align} \right\}$$
 
 **Equation:**
 
-$$EQ(l)\_CAFLAC_{r,v,t,p,s}\quad \ni 
+$$EQ(l)\_CAFLAC_{r,v,t,p,s}\quad \ni
 \\ \\
 \left(\begin{align}
 & rtp\_vintyr_{r,v,t,p}\land NCAP\_AFCS_{r,v,p,s}\land  \\
@@ -1955,7 +1961,7 @@ Dual: The dual value is in case of an inequality constraint a negative number, w
 
 **Equation:**
 
-$${EQ(l)\_CAPACT_{r,v,t,p,s} \ni rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land rtp\_vara_{r,t,p} \land 
+$${EQ(l)\_CAPACT_{r,v,t,p,s} \ni rtp\_vintyr_{r,v,t,p} \land prc\_ts_{r,p,s} \land rtp\_vara_{r,t,p} \land
 } \\ \\ {\left( NCAP\_AF_{r,t,p,s} \vee NCAP\_AFS_{r,t,p,s} \vee NCAP\_AFA_{r,t,p} \right)
 } \\ \\
 {\left\{ \begin{aligned}
@@ -2098,6 +2104,7 @@ NCAP\_AFC_{r,v,t,p,c,s} \times \left( \begin{aligned}
 ![](assets/image31.png)
 
 **Notation:**
+
 - $AF\_MAX_{r,v,p,t,s}$ maximum operating level of online capacity of process ***p***, vintage ***v***, in period ***t*** and timeslice ***s***, as defined by NCAP_AF(\'UP\')
 - $AF\_MIN_{r,v,p,s}$ minimum operating level of online capacity of process ***p***, vintage ***v*** in timeslice ***s***, as defined by ACT_MINLD
 - *SUP(s)* is the set of timeslices above timeslice ***s*** in the timeslice tree, but including also ***s*** itself
@@ -2261,7 +2268,7 @@ p \in rpc\_stg_{r,p,c} \\
 \underset{\text{or, if } com\_lim_{com} = \text{FX/N:}}{VAR\_COMNET_{r,t,com,ts}} \\
 VAR\_COMPRD_{r,t,com,ts}
 \end{pmatrix} \times RTCS\_TSFR_{r,t,com,s,ts}} \\
- & 
+ &
 \end{aligned} \right)
 \\ \\
 + \sum_{j = 1}^{COM\_STEP_{r,c,'LO'}}{VAR\_ELAST_{r,t,c.s,j,'LO'}} - \sum_{j = 1}^{COM\_STEP_{r,c,'UP'}}{VAR\_ELAST_{r,t,c,s,j,'UP'}}
@@ -2440,7 +2447,7 @@ if \space t \geq v \land D(v) > IL + TL \land B(t) < E(v) + TL + DLAG + DLIFE
 $$EQE\_COMPRD_{r,t,c,s} \ni COM\_BNDPRD \vee COM\_CUMPRD
 \\ \\
 \vee COM\_CSTPRD \vee COM\_SUBPRD \vee COM\_TAXPRD
-\\ \\ 
+\\ \\
 COMSUP = VAR\_COMPRD_{r,t,c,s}$$
 
 ### Equation: EQ_CUMFLO
@@ -2505,6 +2512,7 @@ VAR\_CUMFLO.FX_{r,p,c,y1,y2} = FLO\_CUM_{r,p,c,y1,y2,'FX'}$$
 **Purpose**: This equation defines a variable representing the cumulative amount of net release or total gross production of a commodity, primarily for bounding the variable according to the bound parameter COM_CUMNET/PRD. The constraint concerns net release/production over an arbitrary number of consecutive years between the year (y1) and year (y2) as given in the parameter COM_CUMNET/PRD.
 
 **Remarks**:
+
 - It is possible to have multiple cumulative bounds of any type.
 - The total time span for calculating the cumulative production need not consist of an exact number of periods.
 - The cumulative bounds are expressed annually only.
@@ -2586,7 +2594,7 @@ VAR\_SCAP_{r,v,t,p} = VAR\_RCAP_{r,v,t,p} + \sum_{t - 1 \in \left\{ tt|rtp\_cpty
 **Equation:**
 
 $$EQ\_DSCNCAP_{r,t,p} \ni \left(rp\_dscncap_{r,p} \land rtp_{r,t,p} \right)
-\\ \\ 
+\\ \\
 VAR\_NCAP_{r,t,p} = \sum_{u \in unit}\left(VAR\_DNCAP_{r,t,p,u} \times NCAP\_DSC_{r,t,p,u} \right) +
 \\ \\
 \left(VAR\_SNCAP_{r,t,p}\quad if \space NCAP\_SEMI_{r,t,p} \space given \right)$$
@@ -2625,15 +2633,16 @@ $$EQ\_DSCONE_{r,t,p} \ni \left(rp\_dscncap_{r,p} \land rtp_{r,t,p} \right)
 **Purpose**: This equation defines the cumulative early retirement variable *VAR_SCAP* to be a multiple of a user-defined block size, specified by *RCAP_BLK*. The amount of capacity retired early can thus only take discrete values *n* × *RCAP_BLK, n=0,1,2,3,...*.
 
 **Remarks**:
+
 - Because the residual capacity can be defined rather freely by PRC_RESID, a forced component (*RTFORC*) is added into the cumulative retirements for processes having existing capacities defined with PRC_RESID, corresponding to the trajectory given by PRC_RESID. 
 - Because it should always be possible to retire the remaining residual capacity in full (regardless of the block size specified), that amount is added as a second alternative block size, which can only be retired in a multiple of 1.
 
 **Equation:**
 
 $$EQ\_DSCRET_{r,v,t,p} \quad \ni (rtp\_cptyr_{r,v,t,p} \land RCAP\_BLK_{r,v,p})
-\\ \\ 
+\\ \\
 VAR\_SCAP_{r,v,t,p} - RTFORC_{r,v,t,p} =
-\\ \\ 
+\\ \\
 RCAP\_BLK_{r,v,p} \times VAR\_DRCAP_{r,v,t,p,2} +
 \\ \\
 (NCAP\_PASTI_{r,v,p} - RTFORC_{r,v,t,p}) \times VAR\_DRCAP_{r,v,t,p,1}$$
@@ -2643,6 +2652,7 @@ RCAP\_BLK_{r,v,p} \times VAR\_DRCAP_{r,v,t,p,2} +
 **Indices: region (r), period (t), process (p), commodity group (cg), timeslice (s)**
 
 **Type**: Any type, as determined by the bound index **bd** of FLO_BND:
+
 - *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 - *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
@@ -2653,7 +2663,7 @@ RCAP\_BLK_{r,v,p} \times VAR\_DRCAP_{r,v,t,p,2} +
 - The constraint bounds the flows in a specific period (**t**) irrespectively of the vintage years of the process capacity.
 - The bound can be defined for a single commodity or a group of commodities linked to the process (**p**). In the latter case, a commodity group (**cg**) must be defined by the user (through **com_gmap**).
 - The constraint is generated if one of the following conditions is true:
-    - Process (**p**) is vintaged, or 
+    - Process (**p**) is vintaged, or
     - The sum of several process flows given by the commodity group (**cg**), and not only a single process flow, should be bounded, or
     - The timeslice resolution of the flow variables are below the timeslice (**s**) of the bound parameter.
 
@@ -2698,15 +2708,17 @@ where the equation sign is indicated by equation index **l** based on the bound 
 **Indices: region (r), period (t), process (p), commodity (c), timeslice (s)**
 
 **Type**: Any type, as determined by the bound index **bd** of FLO_FR:
+
 - *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 - *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
 
-Purpose: 
+Purpose:
 1) Relationship in period (**t**) between the total annual flow and the flow in a particular timeslice (**s**) for a specific process (**p**). This is the standard usage of the *FLO_FR* parameter, which may be used even for defining a full load curve for a process flow.
 2) Relationship in period (**t**) between the the flow level in a particular flow timeslice (**s**) and the average level under all timeslices under its parent timeslice for a specific process (**p**). This variant will only be used when *FLO_FR* is levelized to the flow timeslices (**rpcs_var**), which is triggered by defining any *FLO_FR* value for that process flow at the ANNUAL level.
 
 **Remarks:**
+
 - The sign of the equation determines whether the flow in a given timeslice is rigidly (=) or flexibly (≥ ; ≤) linked to the annual flow (or the parent flow level).
 - The constraint bounds the flows irrespectively of the vintage years of the process capacity.
 
@@ -2846,6 +2858,7 @@ The three equations in this section concern trade between regions. Since these e
 *Bounds*: The amount of commodity imported to a region from each exporting region can be directly constrained by the IRE_BND parameter.
 
 *Remarks*:
+
 - Note that there is a one-to-one correspondence between the VAR_IRE variables and the top_ire entries (one variable for the supply region/commodity and one variable for the demand region/commodity for each instance of top_ire).
 - In market-based trade, the VAR_IRE variables for the market region describe the net imports to, and exports from, the market region, not the total market volume.
 - There is no variable for the total volume of the commodity market in market-based trade. The total volume can only be addressed by means of UC_IRE parameters (summing over all imports to or exports from the market).
@@ -2873,6 +2886,7 @@ There are only three trade equations, namely a generic trade balance equation EQ
 **Units:** Units of commodity traded. Normally PJ for energy, Mton or kton for materials or emissions.
 
 **Remarks:**
+
 - Flows into individual regions may be limited by the IRE_BND and IRE_XBND parameters.
 - The equation has two flavors: The first one is for bilateral and unidirectional trade with a single destination region, and the second is for market-based trade and multidirectional trade from a single source region.
 
@@ -2882,7 +2896,7 @@ There are only three trade equations, namely a generic trade balance equation EQ
 
 $$EQ\_IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (rtp_{r,t,p} \land rpcs\_var_{r,p,c,s} \land rpc\_eqire_{r,p,c}) \right\}
 \\ \\
-\sum_{v \in rtp\_vintyr_{r,v,t,p}}{VAR\_IRE_{r,v,t,p,c,s,'IMP'}} = 
+\sum_{v \in rtp\_vintyr_{r,v,t,p}}{VAR\_IRE_{r,v,t,p,c,s,'IMP'}} =
 \\ \\ 
 {\sum_{(r2,c2) \in top\_ire_{r2,c2,r,c,p}}{\sum_{v \in rtp\_vintyr_{r2,v,t,p}}{\sum_{s2 \in IRE\_TSCVT_{r2,s2,r,s}}{\sum_{ts \in \left(
 \begin{aligned}
@@ -2896,6 +2910,7 @@ $$EQ\_IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (rtp_{r,t,p} \land rpcs\_var_{r,
 \end{aligned} \right)}}}}$$
 
 **Remarks:**
+
 - The IRE_TSCVT conversion coefficients are in practice provided only for some pairs of mapped timeslices between **r2** and **r**. Therefore, the timeslice conversion is actually done in two stages: First, the timeslices of the VAR_IRE variables are converted to the mapped timeslices, and then the mapped timeslices in **r2** to those in **r** as follows:
 - The mapping coefficients IRE_TSCVT do not have to be provided by the user if the timeslice definitions in both regions are identical.
 - If the timeslice definitions are different, the user provides the mapping coefficients IRE_TSCVT to convert the timeslice **s2** in region **r2** to the timeslice **s** in region **r**. Since the timeslice level of **s2** may be different from the timeslice level **ts** of the exchange variable in region **r2**, the parameter RTCS_TSFR is used to match **ts** and **s2**.
@@ -2918,8 +2933,8 @@ $$EQ\_IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (rtp_{r,t,p} \land rpcs\_var_{r,
  & \times RTCS\_TSFR_{r2,t,c,s2,ts}
 \end{aligned} \right)}}}
 \\ \\
-= 
-\\ \\ 
+=
+\\ \\
 \sum_{(r2,c2) \in top\_ire_{r2,c2,r,c,p}}{\sum_{v \in rtp\_vintyr_{r2,v,t,p}}{\sum_{s2 \in IRE\_TSCVT_{r2,s2,r,s}}{\sum_{ts \in \left(
 \begin{aligned}
  & rtpcs\_varf_{r2,t,p,c2,ts} \\
@@ -2932,6 +2947,7 @@ $$EQ\_IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (rtp_{r,t,p} \land rpcs\_var_{r,
 \end{aligned} \right)}}}$$
 
 **Remarks**:
+
 - The IRE_TSCVT conversion coefficients are in practice provided only for some pairs of mapped timeslices between ***r2*** and ***r***. Therefore, the timeslice conversion is actually done in two stages: First, the timeslices of the VAR_IRE variables are converted to the mapped timeslices, and then the mapped timeslices in ***r2*** to those in ***r***.
 - In the case of market-based trading, **prc_aoff** can be used to switch off the entire commodity market for periods that fall within a range of years. It is also possible to specify multiple entries of **prc_aoff**, if, for example trading should be possible only between selected years. 
 - The **top_ire** entry between the export and import commodity in the market region itself is automatically defined by the TIMES model generator when necessary, i.e. there is no need to provide it by the user.
@@ -2941,6 +2957,7 @@ $$EQ\_IRE_{r,t,p,c,s} \ni \left\{ r,t,p,c,s \in (rtp_{r,t,p} \land rpcs\_var_{r,
 **Indices: region (r), year (t), commodity (c), timeslice (s), region2 (all_r), import/export (ie)**
 
 **Type:** Any type, as determined by the bound index **bd** of IRE_BND:
+
 - l = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 - l = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - l = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
@@ -3046,6 +3063,7 @@ IRE\_CCVT_{all\_r,c2,r,c} \times IRE\_TSCVT_{all\_r,s2,r,s} \times
 **Indices: region (r), year (t), commodity (c), timeslice (s), imp/exp (ie)**
 
 **Type:** Any type, as determined by the bound index **bd** of IRE_XBND:
+
 - *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 - *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
@@ -3098,6 +3116,7 @@ $$\sum_{p \in rpc\_ire_{r,p,com,impex}} {\sum_{(ts,s2) \in \left(rs\_tree_{r,ts,
 **Indices: region (r), year (t), process (p), commodity (c), commodity group (cg), time-slice (s)**
 
 **Type:** Any type, as determined by the bound index **bd** of FLO_SHAR:
+
 - *l* = **\'**G**\'** for **bd** = **\'**LO**\'** (lower bound) yields $\geq$.
 - *l* = **\'**E**\'** for **bd** = **\'**FX**\'** (fixed bound) yields $=$.
 - *l* = **\'**L**\'** for **bd** = **\'**UP**\'** (upper bound) yields $\leq$.
@@ -3117,6 +3136,7 @@ $$\sum_{c \in cg}{FLO\_SHAR_{r,v,p,c,cg,s,'LO'}}\forall(FLO\_SHAR_{r,v,p,c,cg,s,
 \forall FLO\_SHAR > 0$$
 
 **Remarks**:
+
 - Exchanging `top(r,p,c,'IN') = Input` vs. `top(r,p,c'OUT') = Output` in this equation yields EQ(l)\_OUTSHR since **c** is only member of one **cg**.
 - The period index of the parameter FLO_SHAR is related to the vintage period (**v**) of the process, i.e., if the process is vintaged (**prc_vint**), a constraint will be generated for each period (**t**) the installation made in the vintage period (**v**) still exists (these period pairs are internally provided by the set **rtp_vintyr**).
 
@@ -3129,7 +3149,7 @@ Dual: The dual value describes, for a lower bound, the subsidy needed to guarant
 **Equation:**
 
 $$EQ(l)\_IN/OUTSHR_{r,v,t,p,c,cg,s} \ni (c \in cg) \land \left(t \in rtp\_vintyr_{r,v,t,p}\right) \land top_{r,p,c,'IN'/'OUT'} \land
-\\ \\ 
+\\ \\
 (s \in rps\_s1_{r,p,s}) \land FLO\_SHAR_{r,v,p,c,cg,s,bd}
 \\ \\
 FLO\_SHAR_{r,v,p,c,cg,s,bd} \times
@@ -3156,6 +3176,7 @@ FLO\_SHAR_{r,v,p,c,cg,s,bd} \times
 - In the description below, the production and consumption components resemble those of the EQ(l)\_COMBAL commodity balance equation, but with a peak contribution/co-incident factor applied to the terms. These factors are process dependent and as such are actually applied within the referenced expression during the summing operation.
 
 **Sets and parameters involved:**
+
 - **com_peak(r,cg)** is a flag that a peaking constraint is desired. It is optional if **com_pkts(r,cg,s)** is provided
 - **com_pkts(r,cg,s)** are the explicit time slices for which peaking constraints are to be constructed. A post-optimization QC check will be done to ensure that the timeslice with highest demand is in said list. Default is all **com_ts(r,c,s)**.
 - COM_PKRSV(r,t,c) is the peak reserve margin. Default 0.
@@ -3250,6 +3271,7 @@ $$EQ\_PEAK_{r,t,cg,s} \ni com\_peak_{r,cg} \land s \in com\_pkts_{r,cg,s}
 **Purpose**: Allows specifying an equality relationship between certain inputs and certain outputs of a process e.g. efficiencies at the flow level, or the modeling of emissions that are tied to the inputs. It is generated for each process for each time period and each time-slice in each region.
 
 **Remarks**:
+
 - Internal set **rps_s1(r,p,s)**: The finer of (set of time slices of the most finely divided member of the commodities within the shadow primary group (commodities being not part of primary commodity group and on the process side opposite to the primary commodity group) and the process timeslice level (**prc_tsl**)).
 - The flow variables of the commodities within the primary commodity group are modelled on the process level (**prc_tsl**). All other flow variables on the timeslice level of **rps_s1**.
 - The internal parameter COEF_PTRAN(r,v,t,p,cg1,c,cg2) is the coefficient of the flow variables of commodity **c** belonging to the commodity group **cg2**. While FLO_FUNC(r,v,p,cg1,cg2,s) establishes a relationship between the two commodity groups **cg1** and **cg2**, FLO_SUM(r,v,p,cg1,c,cg2,s) can be in addition specified as multiplier for the flow variables of **c** in **cg2**. COEF_PTRAN is derived from the user specified FLO_FUNC and FLO_SUM parameters based on the following rules:
@@ -3276,14 +3298,14 @@ VAR\_FLO_{r,v,t,p,c2,s} - \left(FLO\_FUNC_{r,v,t,p,c1,c2,s} + \frac{1}{VAR\_FLO_
 **Equation:**
 
 $$EQ\_PTRANS_{r,v,t,p,cg1,cg2,s1} \ni (r,v,t,p) \in \left(rp\_flo_{r,p} \cap rtp\_vintyr_{r,v,t,p} \right) \land s1 \in rps\_s1_{r,p,s1}
-\\ \\ 
+\\ \\
 \land \left( s2 \in ts\_map_{r,s2,s1} \land \left(
 \begin{aligned}
  & FLO\_SUM_{r,t,p,cg1,c,cg2,s2} \vee FLO\_FUNC_{r,t,p,cg1,cg2,s2} \\
  & \land NOT \space \left(FLO\_SUM_{r,t,p,cg1,c,cg2,s2} \vee FLO\_SUM_{r,t,p,cg2,c,cg1,s2} \right)
 \end{aligned} \right) \right)
 \\ \\
-\sum_{c \in cg2}{\sum_{\begin{matrix} s \in \\ \left(ts\_map_{r,s,s1} \cap rtpcs\_varf_{r,t,p,c,s} \right) \end{matrix}}{VAR\_FLO_{r,v,t,p,c,s} \times RTCS\_TSFR_{r,t,c,s1,s}}} = 
+\sum_{c \in cg2}{\sum_{\begin{matrix} s \in \\ \left(ts\_map_{r,s,s1} \cap rtpcs\_varf_{r,t,p,c,s} \right) \end{matrix}}{VAR\_FLO_{r,v,t,p,c,s} \times RTCS\_TSFR_{r,t,c,s1,s}}} =
 \\ \\
 \sum_{c \in cg1}{\sum_{\begin{matrix} s \in \\ \left(ts\_map_{r,s,s1} \cap rtpcs\_varf_{r,t,p,c,s} \right)\end{matrix}}\left(\begin{aligned} & COEF\_PTRAN_{r,v,t,p,cg1,c,cg2,s} \times \\ & VAR\_FLO_{r,v,t,p,c,s} \times RTCS\_TSFR_{r,t,c,s1,s} \end{aligned} \right)}
 \\ \\
@@ -3296,7 +3318,7 @@ $$COEF\_PTRAN_{r,v,t,p,cg1,c,cg2,ts}\quad ts \in rpcs\_varc_{r,p,c,ts}
 \frac{FLO\_FUNC_{r,v,t,p,cg1,cg2,s}}{FLO\_FUNC_{r,v,t,p,cg2,cg1,s} \times \left(if \space FLO\_SUM_{r,v,t,p,cg1,c,cg2,s} \right)} \times 
 \\ \\
 \left(if \space FLO\_FUNC_{r,v,t,p,cg1,cg2,s} \vee FLO\_FUNC_{r,v,t,p,cg2,cg1,s}
-\right) \times 
+\right) \times
 \\ \\
 \left(1 \space \times \left(if \space NOT \space FLO\_SUM_{r,v,t,p,cg1,c,cg2,s} \right) + FLO\_SUM_{r,v,t,p,cg1,c,cg2,s} \right)$$
 
@@ -3333,6 +3355,7 @@ RTP\_FFCX_{r,v,t,p,cg1,c,cg2}\quad \ni FLO\_FUNCX_{r,v,p,cg1,cg2} =
 **Purpose**: This equation bounds the investments into a retrofit (RF) and lifetime extension (LE) options defined for a host process according to the available capacity of the host process. The mapping of the RF/LE options is done be the attribute *PRC_REFIT(reg,prc,p).*
 
 **Remarks:**
+
 - Defining RF/LE options requires that early retirements are allowed in the model.
 - Each host process, for which some RF/LE options are to be included, can be modeled to have any number of different RF/LE options;
 - Each of the RF/LE options must be modeled in the same way as any new technologies (including the topology, process transformation parameters, availabilities, technical lifetime etc.);
@@ -3354,6 +3377,7 @@ $$EQL\_REFIT_{r,tt,t,prc} \ni \left\{ \exists p:\left(PRC\_REFIT_{r,prc,p} < > 0
 \sum_{v \in RTP\_CPTYR_{r,v,tt,prc}}{COEF\_CPT_{r,v,t,prc} \times \left( VAR\_SCAP_{r,v,tt,prc} - VAR\_SCAP_{r,v,tt - 1,prc} \right)}$$
 
 where
+
 - $RTP\_CPTYR_{r,v,t,p}$ is the TIMES capacity transfer mapping set
 - $COEF\_CPT_{r,v,t,p}$ is the TIMES capacity transfer coefficient parameter
 - $DIAG(tt,t)$ is the GAMS DIAG function, returning 1 iff *tt*=*t*
@@ -3407,6 +3431,7 @@ This block of equations implements the load shifting constraints. Enabling load-
 **Related variables**: **VAR_SIN, VAR_SOUT, VAR_UDP, VAR_UPS**
 
 **Notation:**
+
 - *P(s)* -- Set of parent timeslice of timeslice $s$ in the timeslice tree
 - *C(s)* -- Set of child timeslices of timeslice s in the timeslice tree
 - $S_i$ -- Set of timeslices belonging to season *i* (e.g. summer, winter)
@@ -3432,7 +3457,7 @@ B. **Maximum allowed deviations from nominal demand loads**
 
 As the model generator automatically aggregates the demand into *VAR_COMPRD* variables, on the process timeslices **s** the constraints for the maximum allowed deviations from the exogenous nominal demand levels can be formulated as follows:
 
-$$VAR\_SIN(r,t,p,com,s) + VAR\_SOUT(r,t,p,D,s)\quad \leq \quad STG\_SIFT(r,t,p,D,s)\space \times 
+$$VAR\_SIN(r,t,p,com,s) + VAR\_SOUT(r,t,p,D,s)\quad \leq \quad STG\_SIFT(r,t,p,D,s)\space \times
 \\ \\
 {\sum_{ts \in RS\_TREE_{r,s}}\left( \frac{RTCS\_TSFR_{r,t,D,s,ts}}{COM\_IE_{r,t,D,ts}} \times VAR\_COMPRD_{r,t,D,ts} \right)\quad\forall(r,t,s),\space s \in \left\{ ts|PRC\_TS_{r,p,ts} \right\}}$$
 
@@ -3466,7 +3491,7 @@ $$VAR\_DAC_{r,t,p,s,LO} - VAR\_DAC_{r,t,p,s - 1,LO} + VAR\_DAC_{r,t,p,s - 1,UP} 
 \\ \\
 = \quad\sum_{v}\left( VAR\_SIN_{r,v,t,p,com,s} - \space VAR\_SOUT_{r,v,t,p,D,s} \right)\quad\forall(r,t,s),s \in \left\{ ts|PRC\_TS_{r,p} \right\}$$
 
-$$VAR\_DAC_{r,t,p,s,UP} + VAR\_DAC_{r,t,p,s,LO} - 
+$$VAR\_DAC_{r,t,p,s,UP} + VAR\_DAC_{r,t,p,s,LO} -
 \\ \\
 \sum_{ts \in C\left(P(s) \right)}
 \begin{bmatrix}
@@ -3487,15 +3512,16 @@ $$VAR\_DAC_{r,t,p,s,UP} + VAR\_DAC_{r,t,p,s,LO} -
 **Purpose**: This equation approximates the impact of the storage degradation on the investment decision, by assuming a targeted maximum number of cycles per year, *STG_MAXCYC*(r,v,p)/*NCAP_TLIFE*(r,v,p), where *STG_MAXCYC* is the maximum number of cycles (e.g. 3000 or 4500) over the lifetime and *NCAP_TLIFE* is the technical lifetime of the storage process (e.g. 15 years).
 
 **Remarks:**
+
 - This feature becomes of importance if the investment in a storage process is related to the investment of another process, e.g. the battery of an electric car. In this example and in the case of excessive cycling, the optimiser will opt to pay the replacement cost of the battery than re-investing in a car, if the car has not reached the end of its lifetime.
 - If the number of cycles in a year exceeds the annual targeted cycles, then a replacement of the storage has implicitly happened and the replacement capacity that supports this extensive cycling is represented with variable *VAR_STGCC*, which is actually a virtual cariable (internally implemented with $VAR\_UPS_{r,v,t,p,s}$). The variable is included in the objective function multiplied with the annualised investment cost to account for the replacement cost of the storage.
 
 **Equation formulation:**
 
 $$\left(COEF\_CPT_{r,v,t,p} \cdot VAR\_NCAP_{r,v,p} + VAR\_STGCC_{r,v,t,p} \right) \times 
-\\ \\ 
+\\ \\
 \max_{s}\left( NCAP\_AF_{r,v,p,s} \right) \times PRC\_CAPACT_{r,p} \geq 
-\\ \\ 
+\\ \\
 \left(\frac{ncap\_tlife_{r,v,p}}{stg\_maxcyc_{r,v,p}} \times \frac{\sum_{c,s}{VAR\_SOUT_{r,v,t,p,c,s}}}{prc\_actflo_{r,v,p,c}} \right),\quad \forall(r,v,t,p) \in RTP\_VINTYR$$
 
 ### Equations: EQ_STGAUX
@@ -3514,7 +3540,7 @@ $$\left(COEF\_CPT_{r,v,t,p} \cdot VAR\_NCAP_{r,v,p} + VAR\_STGCC_{r,v,t,p} \righ
 
 $$EQ\_STGAUX_{r,v,t,p,c,s}\space \ni \left(rtp\_vintyr_{r,v,t,p} \land rpcs\_var_{r,p,c,s} \land prc\_map_{r,'STG',p} \land \neg rpc\_stg_{r,p,c} \right)
 \\ \\
-VAR\_FLO_{r,v,t,p,c,s} = 
+VAR\_FLO_{r,v,t,p,c,s} =
 \\ \\ 
 PRC\_ACTFLO_{r,v,p,c} \times \left(
 \begin{aligned}
@@ -3548,25 +3574,30 @@ PRC\_ACTFLO_{r,v,p,c} \times \left(
 **Related equations: EQ(*l*)\_COMBAL, EQ(*l*)\_CAPACT, EQ(*l*)\_STGIN/OUT**
 
 **Purpose**
+
 - The model allows two kinds of storage: inter-period storage (IPS), and storage across time-slices (or time-slice storage TSS). A special type of the TSS storage is a night-storage device, which may have an input commodity different from its output commodity. The input and output commodity of a night-storage device are given by the topology set **top**.
 - Storage processes are special, as they have the same commodity as input and output. Also, all other processes transform energy within their time-slices and time periods. Since topology (with the exception of night-storage devices) does not determine in/out, different variables have to be used for this purpose. Similarly, since the transformation is special, EQ_PTRANS is replaced by new equations for the two types of storage.
 
 **Sets**:
+
 - **prc_stgips(r,p,c)**: The set of inter-period storage processes. They are forced to operate annually.
 - **prc_stgtss(r,p,c)**: The set of time-slice storage processes. A storage process can operate only at one particular time slice level.
 - **prc_nstts(r,p,s):** The set contains the allowed charging timeslices for a night-storage device.
 
 **Variables:**
+
 - **VAR_SIN(r,v,t,p,c,s)** -- the average **in** flow to a process built in period **v**, during time-slice **s**, during each year of period **t**. This variable would appear on the consumption side of the balance equation, without any coefficients.
 - **VAR_SOUT(r,v,t,p,c,s)** -- the average **out** flow from a process built in period **v**, during time-slice **s**, during each year of period **t**. This variable would appear on the supply side of the balance equation, multiplied by *STG_EFF* and *COM_IE*.
 - **VAR_ACT(r,v,t,p,s)** -- the energy stored in a storage process at the beginning of time-slice **s** (for a timeslice storage) or end of period **t** (for an inter-period storage). Note that this is a special interpretation of \'activity\', to represent \'storage level.\' Therefore, EQ_ACTFLO will not be generated for storage processes.
 - In EQ_STGIPS only annual flows are allowed; the timeslice s index is set to ANNUAL in this case.
 
 **Equations:**
+
 - **EQ_STGTSS(r,t,p,s)** -- transforms input to output for the timeslice storage processes.
 - **EQ_STGIPS(r,t,p)** -- transforms input to output for the interperiod storage processes.
 
 **Parameters:**
+
 - **STG_LOSS(r,v,p,s)** -- annual energy loss from a storage technology, per unit of (average) energy stored.
 - **STG_CHRG(r,t,p,s)** -- exogenous charging of a storage technology. For timeslice storage this parameter can be specified for each period, while for interperiod storage this parameter can only be specified for the first period, to describe the initial content of the storage.
 
@@ -3577,7 +3608,7 @@ PRC\_ACTFLO_{r,v,p,c} \times \left(
 $$EQ\_STGTSS_{r,v,t,p,s}\forall(r,v,t,p,s) \in
 \\ \\
 \left(rtp\_vintyr_{r,v,t,p} \land rps\_stg_{r,p,s} \land prc\_map_{r,'STG',p} \right)
-\\ \\ 
+\\ \\
 VAR\_ACT_{r,v,t,p,s} =
 \\ \\
 \left\lbrack
@@ -3596,7 +3627,7 @@ VAR\_ACT_{r,v,t,p,s} =
  & - \left\lbrack \left( \frac{VAR\_ACT_{r,v,t,p,s} + VAR\_ACT_{r,v,t,p,s - 1}}{2} \right) \right\rbrack \\
  & \times STG\_LOSS_{r,v,p,s} \times \frac{G\_YRFR_{r,s}}{RS\_STGPRD_{r,s}}
 \end{aligned} \right\rbrack
-\\ \\ 
+\\ \\
 + STG\_CHRG_{r,t,p,s - 1}$$
 
 #### EQ_STGIPS: Storage between periods
@@ -3604,9 +3635,9 @@ VAR\_ACT_{r,v,t,p,s} =
 **Equation:**
 
 $$EQ\_STGIPS_{r,v,t,p}\forall(r,v,t,p) \in \left( rtp\_vintyr_{r,v,t,p} \cap prc\_map_{r,'STK',p} \right)
-\\ \\ 
+\\ \\
 VAR\_ACT_{r,v,t,p,'ANNUAL'} =
-\\ \\ 
+\\ \\
 \sum_{
 \begin{matrix}
 v \in rtp\_vintyr_{r,v,t - 1,p} \\ p \in prc\_vint
@@ -3615,20 +3646,20 @@ v \in rtp\_vintyr_{r,v,t - 1,p} \\ p \in prc\_vint
  & VAR\_ACT_{r,v,t - 1,p,'ANNUAL'} \\
  & \times (1 - STG\_LOSS_{r,v,p,'ANNUAL'})^{D(t)}
 \end{aligned} \right\rbrack +
-\\ \\ 
+\\ \\
 \sum_{p \notin prc\_vint}\left\lbrack
 \begin{aligned}
  & VAR\_ACT_{r,t - 1,t - 1,p,'ANNUAL'} \\
  & \times (1 - STG\_LOSS_{r,v,p,'ANNUAL'})^{D(t)}
 \end{aligned} \right\rbrack +
-\\ \\ 
+\\ \\
 \left\lbrack \sum_{
 \begin{matrix} y \in periodyr_{t,y} \\ c \in rpc\_stg_{r,p,c} \end{matrix}}{\left(
 \begin{aligned}
  & \sum_{c \in top_{IN}}\frac{VAR\_SIN_{r,v,t,p,c,'ANNUAL'}}{PRC\_ACTFLO_{r,v,p,c}} - \\
  & \sum_{c \in top_{OUT}}\frac{VAR\_SOUT_{r,v,t,p,c,'ANNUAL'}}{PRC\_ACTFLO_{r,v,p,c}}
 \end{aligned} \right) \times (1 - STG\_LOSS_{r,v,p,'ANNUAL'})^{(E(t) - y + 0.5)}} \right\rbrack
-\\ \\ 
+\\ \\
 + STG\_CHRG_{r,t,p,'ANNUAL'}\text{(when $ORD(t) = 1$)}$$
 
 ### Equations: EQ(*l*)\_STGIN / EQ(*l*)\_STGOUT
@@ -3636,6 +3667,7 @@ v \in rtp\_vintyr_{r,v,t - 1,p} \\ p \in prc\_vint
 **Indices: region (r), period (t), process (p), commodity (c), timeslice (s)**
 
 **Type**: Any type, as determined by the bound index **bd** of STGIN/OUT_BND:
+
 - *l* = 'G' for **bd** = 'LO' (lower bound) yields $\geq$.
 - *l* = 'E' for **bd** = 'FX' (fixed bound) yields $=$.
 - *l* = 'L' for **bd** = 'UP' (upper bound) yields $\leq$.
@@ -3671,9 +3703,9 @@ $$EQ(l)\_STGIN/OUT_{r,t,p,c,s} \ni \left\{
  & (r,t,p,c) \in rtpc_{r,t,p,c} \land STGIN/OUT\_BND_{r,t,p,c,s,bd} \land \\
  & s \in rps\_prcts_{r,p,s} \land \left( prc\_vint_{r,p} \vee \left(NOT\space prc\_ts_{r,p,s} \right) \right)
 \end{aligned} \right\}
-\\ \\ 
+\\ \\
 \sum_{ts \in \left(prc\_ts_{r,p,ts} \land ts\_map_{r,s,ts} \right)}{\sum_{v \in rtp\_vintyr_{r,v,t,p}}{VAR\_SIN/SOUT_{r,v,t,p,c,ts}}}
-\\ \\ 
+\\ \\
 ( \leq / \geq / = )STGIN/OUT\_BND_{r,t,p,c,s,bd}
 $$
 
@@ -3695,7 +3727,7 @@ where the equation sign is indicated by equation index **l** based on the bound 
 
 $$EQ\_STSBAL_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left(rtp\_vintyr_{r,v,t,p} \cap prc\_ts_{r,p,s} \cap \neg rps\_stg_{r,p,s} \right)
 \\ \\
-\sum_{rs\_below_{r,'ANNUAL',s}}{VAR\_ACT_{r,v,t,p,s}} = 
+\sum_{rs\_below_{r,'ANNUAL',s}}{VAR\_ACT_{r,v,t,p,s}} =
 \\ \\
 \sum_{rs\_below_{r,'ANNUAL',s - 1}}\left(
 \begin{aligned}
@@ -3704,7 +3736,7 @@ $$EQ\_STSBAL_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left(rtp\_vintyr_{r,v,t,p} \cap 
  & - \left(\frac{VAR\_ACT_{r,v,t,p,s} + VAR\_ACT_{r,v,t,p,s - 1}}{2} \right) \times STG\_LOSS_{r,v,p,s} \\
  & \times \frac{G\_YRFR_{r,s}}{RS\_STGPRD_{r,s}}
 \end{aligned} \right)
-\\ \\ 
+\\ \\
 + \sum_{s \in \left\{ sl|ANNUAL(sl) \right\}}\left\lbrack
 \begin{aligned} & \sum_{c \in \left\{
  \begin{aligned} & stgips \cap \\ & top_{'IN'} \end{aligned} \right\}} \frac{VAR\_SIN_{r,v,t,p,c,s}}{PRC\_ACTFLO_{r,v,p,c}} - \\
@@ -3717,6 +3749,7 @@ $$EQ\_STSBAL_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left(rtp\_vintyr_{r,v,t,p} \cap 
 **Indices: name (uc_n), region (r), period (t), process (p), type (uc_grptype), bound (bd)**
 
 **Type**: Any type, as determined by the bound index **bd** of **uc_dynbnd**:
+
 - *l* = \'N\' for **bd** = \'LO\' (lower bound) yields $\geq$.
 - *l* = \'N\' for **bd** = \'UP\' (upper bound) yields $\leq$.
 - *l* = \'E\' for **bd** = \'FX\' (fixed bound) yields $=$.
@@ -3726,6 +3759,7 @@ $$EQ\_STSBAL_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left(rtp\_vintyr_{r,v,t,p} \cap 
 **Purpose**: Dynamic bound on the growth/decay in the capacity (CAP), new capacity (NCAP) or activity level (ACT) of a particular process (**p**) between period (**t**) and previous period (**t--1**).
 
 **Remarks:**
+
 - The input set **uc_dynbnd** must be used for flagging the pairs (uc_n,bd) to be reserved for dynamic bound constraints.
 - The input parameters UC_CAP, UC_NCAP, and UC_ACT should be used for defining the growth/decay coefficients (side=\'LHS\') and RHS constants (side=\'RHS\').
 - The growth/decay coefficients (side=\'LHS\') are given as annual multipliers (e.g. 1.1 for a 10% annual growth). The RHS constants (side=\'RHS\') represent annual absolute values of additional growth/decay.
@@ -3737,7 +3771,7 @@ $$EQ\_STSBAL_{r,v,t,p,s}\forall(r,v,t,p,s) \in \left(rtp\_vintyr_{r,v,t,p} \cap 
 
 **Case A. For CAP:**
 
-$$EQ(l)\_UCRTP_{uc\_n,r,t,p,'CAP',bd} 
+$$EQ(l)\_UCRTP_{uc\_n,r,t,p,'CAP',bd}
 \\ \\
 \ni \left(rtp_{r,t,p} \land uc\_dynbnd_{uc\_n,bd} \land\left(\sum_{side}{\left(UC\_CAP_{uc\_n,side,r,t,p} \right) > 0} \right) \right)
 \\ \\
@@ -3745,13 +3779,13 @@ VAR\_CAP_{r,t,p}
 \\ \\
 \left\{ \leq ; = ; \geq \right\}
 \\ \\
-VAR\_CAP_{r,t-1,p} \times \left(UC\_CAP_{uc\_n,'LHS',r,t,p}\right)^{(M(t)-M(t-1))} + 
+VAR\_CAP_{r,t-1,p} \times \left(UC\_CAP_{uc\_n,'LHS',r,t,p}\right)^{(M(t)-M(t-1))} +
 \\ \\
 UC\_CAP_{uc\_n,'RHS',r,t,p} \times (M(t)-M(t-1))$$
 
 **Case B. For NCAP:**
 
-$$EQ(l)\_UCRTP_{uc\_n,r,t,p,'NCAP',bd} \ni 
+$$EQ(l)\_UCRTP_{uc\_n,r,t,p,'NCAP',bd} \ni
 \\ \\
 \left(rtp_{r,t,p} \land uc\_dynbn d_{uc\_n,bd} \land \left( \sum_{side}{\left(UC\_NCAP_{uc\_n,side,r,t,p} \right) > 0} \right) \right)
 \\ \\
@@ -3759,7 +3793,7 @@ VAR\_NCAP_{r,t,p}
 \\ \\
 \left\{ \leq ; = ; \geq \right\}
 \\ \\ 
-VAR\_NCAP_{r,t-1,p} \times \left(UC\_NCAP_{uc\_n,'LHS',r,t,p} \right)^{(M(t)-M(t-1))} + 
+VAR\_NCAP_{r,t-1,p} \times \left(UC\_NCAP_{uc\_n,'LHS',r,t,p} \right)^{(M(t)-M(t-1))} +
 \\ \\
 UC\_NCAP_{uc\_n,'RHS',r,t,p} \times (M(t)-M(t-1))$$
 
@@ -3868,7 +3902,7 @@ The alternative formulation is created when the dollar control parameter VAR_UC 
 
 Timeslice-dynamic user constraints establish a relationship between two successive timeslices within a timeslice cycle. The LHS expression $LHS_{r,t,s}$ is generated for timeslice **s**, whereas the RHS expression $RHS_{r,t,s-1}$ is generated for the preceding timeslice s - RS_STG(r,s) under the same parent timeslice. Timeslice-dynamic user constraints of type can thus be written as follows:
 
-$$EQ(l)\_UCRS_{r,uc\_n,t,tsl,s} \ni 
+$$EQ(l)\_UCRS_{r,uc\_n,t,tsl,s} \ni
 \\ \\
 \left\{
 \begin{aligned}
@@ -3887,7 +3921,7 @@ Dynamic user constraints establish a relationship between two *consecutive* peri
 
 Dynamic user constraints of type (**t,t+1**) can thus be written as follows:
 
-$$EQ(l)\_UC(R)SU(S)_{(r),uc\_n,t,(s)} \ni 
+$$EQ(l)\_UC(R)SU(S)_{(r),uc\_n,t,(s)} \ni
 \\ \\
 \left\{
 \begin{aligned}
@@ -3901,7 +3935,7 @@ $$EQ(l)\_UC(R)SU(S)_{(r),uc\_n,t,(s)} \ni
 
 Similarly, dynamic user constraints of type (**t--1,t**) can be written as follows:
 
-$$EQ(l)\_UC(R)SU(S)_{(r),uc\_n,t,(s)} \ni 
+$$EQ(l)\_UC(R)SU(S)_{(r),uc\_n,t,(s)} \ni
 \\ \\
 \left\{
 \begin{aligned}
@@ -3920,6 +3954,7 @@ To build a dynamic user constraint of type (**t--1,t**), between the periods **t
 The choice between the dynamic types (**t,t+1**) or (**t--1,t**) is usually only a matter of convenience. However, while using the (**t,t+1**) type requires explicit specification of **uc_t_succ**, for using the (**t--1,t**) type, any UC_ATTR on the RHS is sufficient to trigger that dynamic type and will cause auto-generation of **uc_t_succ** for all milestone years.
 
 For both types of dynamic constraints, only four combinations with respect to the region and timeslice domain are possible:
+
 - EQ(l)\_UCSU: dynamic user constraint summing **r** over **uc_r_sum** and **s** over **uc_ts_sum**,
 - EQ(l)\_UCRSU: dynamic user constraint being generated for each region **uc_r_each** and summing **s** over **uc_ts_sum**,
 - EQ(l)\_UCRSUS: dynamic user constraint being generated for each region **uc_r_each** and timeslice **uc_ts_each** and
@@ -3994,6 +4029,7 @@ In the following section, we give the full descriptions of the available user co
 We first show the complete list of user constraints in the three categories.
 
 The following types of LHS user constraints exist:
+
 - $EQ(l)\_UC_{uc_n~}$: user constraint summing over regions **uc_r_sum**, periods **uc_t_sum** and timeslices **uc_ts_sum**,
 - $EQ(l)\_UCR_{r,uc_n}$: user constraint generated for regions **uc_r_each** and summing over periods **uc_t_sum** and timeslices **uc_ts_sum**,
 - $EQ(l)\_UCT_{uc_n,t}$: user constraint generated for periods **uc_t_each** and summing over regions **uc_r_sum** and timeslices **uc_ts_sum**,
@@ -4002,6 +4038,7 @@ The following types of LHS user constraints exist:
 - $EQ(l)\_UCRTS_{r,uc_n,t,s}$: user constraint generated for regions **uc_r_each**, periods **uc_t_each** and timeslices **uc_ts_each**.
 
 The placeholder **l** reflects the equation type of the user constraint (**l**=E, G or L) corresponding to the bound type of the RHS constant. In case the dollar control parameter VAR_UC is set to YES, the user constraints are always strict equalities (**l**=E) with the RHS constants replaced by the following user constraint variables:
+
 - $VAR\_UC_{uc\_n}$: user constraint variable for EQE_UC,
 - $VAR\_UCR_{r,uc\_n}$: user constraint variable for EQE_UCR,
 - $VAR\_UCT_{uc\_n,t}$: user constraint variable for EQE_UCT,
@@ -4010,12 +4047,14 @@ The placeholder **l** reflects the equation type of the user constraint (**l**=E
 - $VAR\_UCRTS_{uc\_n,r,t,s}$: user constraint variable for EQE_UCRTS.
 
 The following types of dynamic user constraints and growth constraints exist:
+
 - $EQ(l)\_UCSU_{uc\_n,t}$: user constraint generated for periods **uc_t_succ**, summing over regions **uc_r_sum** and timeslices **uc_ts_sum**,
 - $EQ(l)\_UCRSU_{r,uc\_n,t}$: user constraint generated for regions **uc_r_each** and periods **uc_t_succ** and summing over timeslices **uc_ts_sum**,
 - $EQ(l)\_UCSUS_{uc\_n,t,s}$: user constraint generated for periods **uc_t_succ**, timeslices **uc_ts_each** and summing over regions **uc_r_sum**,
 - $EQ(l)\_UCRSUS_{r,uc\_n,t,s}$: user constraint generated for regions **uc_r_each**, periods **uc_t_succ** and timeslices **uc_ts_each**.
 
 The placeholder ***l*** reflects the equation type of the user constraint (***l***=E, G or L) corresponding to the bound type of the RHS constant. In case the dollar control parameter VAR_UC is set to YES, the user constraints are always strict equalities (***l***=E) with the RHS constants replaced by the following user constraint variables:
+
 - $VAR\_UCT_{uc\_n,t}$: user constraint variable for EQE_UCSU,
 - $VAR\_UCRT_{r,uc\_n,t}$: user constraint variable for EQE_UCRSU,
 - $VAR\_UCTS_{uc\_n,t,s}$: user constraint variable for EQE_UCSUS,
@@ -4028,11 +4067,13 @@ The following sets and parameters are related to the user constraint framework i
 **Sets**
 
 *Predefined internal sets:*
+
 - **side**: set having the two elements *LHS* and *RHS* (elements are fixed and not under user control),
-- **uc_grptype**: set having the elements *ACT*, *FLO*, *IRE*, *COMCON*, *COMNET*, *COMPRD*, *NCAP*, *CAP, UCN*, and used in the multi-dimensional set *UC_ATTR* (elements are fixed and not under user control), 
+- **uc_grptype**: set having the elements *ACT*, *FLO*, *IRE*, *COMCON*, *COMNET*, *COMPRD*, *NCAP*, *CAP, UCN*, and used in the multi-dimensional set *UC_ATTR* (elements are fixed and not under user control),
 - **uc_name**: set having the following attribute names as elements: *COST, SUB, TAX, DELIV, INVCOST, INVSUB, INVTAX, BUILDUP, CAPACT, CAPFLO, NEWFLO, ONLINE, EFF, NET, CUMSUM, PERDISC, PERIOD, GROWTH* and *SYNC*, used in the multi-dimensional set *UC_ATTR* (elements are fixed and not under user control).
 
 *User-specified sets:*
+
 - <b>uc_n</b>: unique name of the user constraint,
 - <b>uc_r_each<sub><i>r,uc_n</i></sub></b>: regions **r** for which the user constraint **uc_n** is generated,
 - <b>uc_r_sum<sub><i>r,uc_n</i></sub></b>: regions **r** being summed over in the user constraint **uc_n**,
@@ -4048,6 +4089,7 @@ If neither **uc_r_each** nor **uc_r_sum** are given, the default is set to all *
 **Parameters**
 
 *User-specified coefficients of variables:*
+
 - $UC\_ACT_{uc\_n,side,r,t,p,s}$: coefficient of the activity variable $VAR\_ACT_{r,v,t,p,s}$ in the user constraint **uc_n** on the LHS or RHS **side**,
 - $UC\_FLO_{uc\_n,side,r,t,p,c,s}$: coefficient of the flow variable $VAR\_FLO_{r,v,t,p,c,s}$ in the user constraint **uc_n** on the LHS or RHS **side**,
 - $UC\_IRE_{uc\_n,side,r,t,p,c,s,ie}$: coefficient of the inter-regional exchange variable $VAR\_IRE_{r,v,t,p,c,s,ie}$ in the user constraint **uc_n** on the LHS or RHS **side**,
@@ -4061,6 +4103,7 @@ If neither **uc_r_each** nor **uc_r_sum** are given, the default is set to all *
 - $UC\_CAP_{uc\_n,side,r,t,p}$: coefficient of the capacity variable $VAR\_CAP_{r,t,p}$ in the user constraint **uc_n** on the LHS or RHS **side**.
 
 *User-specified RHS constants:*
+
 - $UC\_RHS_{uc\_n,bd}$: RHS constant with bound type **bd** of the user constraint $EQl\_UC_{uc\_n}$ of type **l**,
 - $UC\_RHSR_{r,uc\_n,bd}$: RHS constant with bound type **bd** of the user constraint $EQl\_UCR_{r,uc\_n}$ of type **l**,
 - $UC\_RHST_{uc\_n,t,bd}$: RHS constant with bound type **bd** of the user constraint $EQl\_UCT_{uc\_n,t}$ of type **l**,
@@ -4097,7 +4140,7 @@ $$FLO_{r,t,s,'LHS'} =
 \end{aligned} \right) \right\rbrack \\ & \end{aligned} \right\}$$
 
 $$IRE_{r,t,s,'LHS'} =
-\\ \\ 
+\\ \\
 \sum_{\begin{matrix} (p,c,ts) \in \\ rtpcs_varf_{r,t,p,c,ts}\end{matrix}}{\sum_{v \in rtp\_vintyr_{r,v,t,p}}
 \sum_{\begin{matrix}ie \in \\ rpc\_ire_{r,p,c,ie}\end{matrix}}}
 \\ \\
@@ -4715,7 +4758,7 @@ $$UC\_RHSRT_{r,uc\_n,t,l} +
  & IRE\_GROW_{r,t+1,s,'RHS'} + COMNET\_GROW_{r,t+1,s,'RHS'}\\
  & + COMPRD\_GROW_{r,t+1,s,'RHS'}
 \end{aligned} \right)
-\\ \\ 
+\\ \\
 + \left(NCAP\_GROW_{r,t+1,'RHS'} + CAP\_GROW_{r,t+1,'RHS'} \right)$$
 
 When control parameter VAR_UC=YES, the user constraint is created as strict equality and the RHS constant UC_RHSRT is replaced by the variable VAR_UCRT. The bounds UC_RHSRT are then applied to the variable VAR_UCRT.
@@ -4786,7 +4829,7 @@ $$VAR\_UCRTS_{r,uc\_n,t,s} +
  & ACT\_GROW_{r,t+1,s,'RHS'} + FLO\_GROW_{r,t+1,s,'RHS'} + \\
  & IRE\_GROW_{r,t+1,s,'RHS'} + COMNET\_GROW_{r,t+1,s,'RHS'}\\
  & + COMPRD\_GROW_{r,t+1,s,'RHS'}
-\end{aligned} \right) 
+\end{aligned} \right)
 \\ \\
 + \left(NCAP\_GROW_{r,t+1,'RHS'} + CAP\_GROW_{r,t+1,'RHS'} \right)$$
 
@@ -4816,7 +4859,7 @@ $$\sum_{r \in uc\_r\_sum}\left( \begin{aligned}
  & ACT\_GROW_{r,t,s,'LHS'} + FLO\_GROW_{r,t,s,'LHS'} + \\
  & IRE\_GROW_{r,t,s,'LHS'} + COMNET\_GROW_{r,t,s,'LHS'}\\
  & + COMPRD\_GROW_{r,t,s,'LHS'}
-\end{aligned} \right) 
+\end{aligned} \right)
 \\ \\
 + \sum_{r \in uc\_r\_sum}\left(NCAP\_GROW_{r,t,'LHS'} + CAP\_GROW_{r,t,'LHS'} \right)$$
 
@@ -4824,28 +4867,28 @@ When control parameter VAR_UC=NO:
 
 $$\left\{ \leq ; = ; \geq \right\}$$
 
-$$UC\_RHSTS_{uc\_n,t,s,l} + 
+$$UC\_RHSTS_{uc\_n,t,s,l} +
 \\ \\
 \sum_{r \in uc\_r\_sum}\left(\begin{aligned}
  & ACT\_GROW_{r,t+1,s,'RHS'} + FLO\_GROW_{r,t+1,s,'RHS'} + \\
  & IRE\_GROW_{r,t+1,s,'RHS'} + COMNET\_GROW_{r,t+1,s,'RHS'}\\
  & + COMPRD\_GROW_{r,t+1,s,'RHS'}
 \end{aligned} \right)
-\\ \\ 
+\\ \\
 + \sum_{r \in uc\_r\_sum}\left(NCAP\_GROW_{r,t+1,'RHS'} + CAP\_GROW_{r,t+1,'RHS'} \right)$$
 
 When control parameter VAR_UC=YES, the user constraint is created as strict equality and the RHS constant UC_RHSTS is replaced by the variable VAR_UCTS. The bounds UC_RHSTS are then applied to the variable VAR_UCTS.
 
 $$=$$
 
-$$VAR\_UCTS_{uc\_n,t,s} + 
+$$VAR\_UCTS_{uc\_n,t,s} +
 \\ \\
 \sum_{r \in uc\_r\_sum}\left(\begin{aligned}
  & ACT\_GROW_{r,t+1,s,'RHS'} + FLO\_GROW_{r,t+1,s,'RHS'} + \\
  & IRE\_GROW_{r,t+1,s,'RHS'} + COMNET\_GROW_{r,t+1,s,'RHS'}\\
  & + COMPRD\_GROW_{r,t+1,s,'RHS'}
 \end{aligned} \right)
-\\ \\ 
+\\ \\
 + \sum_{r \in uc\_r\_sum}\left(NCAP\_GROW_{r,t+1,'RHS'} + CAP\_GROW_{r,t+1,'RHS'} \right)$$
 
 with
@@ -4983,13 +5026,13 @@ When control parameter VAR_UC=YES, the user constraint is created as strict equa
 
 $$=$$
 
-$$VAR\_UCT_{uc\_n,t} + 
+$$VAR\_UCT_{uc\_n,t} +
 \\ \\
 \sum_{\begin{matrix}r \in \\ uc\_r\_sum \end{matrix}}{\sum_{s \in uc\_ts\_sum}\left( \begin{aligned}
  & ACT\_GROW_{r,t-1,s,'RHS'} + FLO\_GROW_{r,t-1,s,'RHS'} + \\
  & IRE\_GROW_{r,t-1,s,'RHS'} + COMNET\_GROW_{r,t-1,s,'RHS'}\\
  & + COMPRD\_GROW_{r,t-1,s,'RHS'}
-\end{aligned} \right)} 
+\end{aligned} \right)}
 \\ \\
 + \sum_{r \in uc\_r\_sum}\left( NCAP\_GROW_{r,t-1,'RHS'} + CAP\_GROW_{r,t-1,'RHS'} \right)$$
 
@@ -5027,8 +5070,8 @@ When control parameter VAR_UC=NO:
 
 $$\left\{ \leq ; = ; \geq \right\}$$
 
-$$UC\_RHSRT_{r,uc\_n,t,l} + 
-\\ \\ 
+$$UC\_RHSRT_{r,uc\_n,t,l} +
+\\ \\
 \sum_{s \in uc\_ts\_sum}\left( \begin{aligned}
  & ACT\_GROW_{r,t-1,s,'RHS'} + FLO\_GROW_{r,t-1,s,'RHS'} + \\
  & IRE\_GROW_{r,t-1,s,'RHS'} + COMNET\_GROW_{r,t-1,s,'RHS'}\\
@@ -5041,7 +5084,7 @@ When control parameter VAR_UC=YES, the user constraint is created as strict equa
 
 $$=$$
 
-$$VAR\_UCRT_{r,uc\_n,t} + 
+$$VAR\_UCRT_{r,uc\_n,t} +
 \\ \\
 \sum_{s \in uc\_ts\_sum}\left(\begin{aligned}
  & ACT\_GROW_{r,t-1,s,'RHS'} + FLO\_GROW_{r,t-1,s,'RHS'} + \\
@@ -5085,13 +5128,13 @@ When control parameter VAR_UC=NO:
 
 $$\left\{ \leq ; = ; \geq \right\}$$
 
-$$UC\_RHSRTS_{r,uc\_n,t,s,l} + 
+$$UC\_RHSRTS_{r,uc\_n,t,s,l} +
 \\ \\
 \left( \begin{aligned}
  & ACT\_GROW_{r,t-1,s,'RHS'} + FLO\_GROW_{r,t-1,s,'RHS'} + \\
  & IRE\_GROW_{r,t-1,s,'RHS'} + COMNET\_GROW_{r,t-1,s,'RHS'}\\
  & + COMPRD\_GROW_{r,t-1,s,'RHS'}
-\end{aligned} \right) 
+\end{aligned} \right)
 \\ \\
 + \left( NCAP\_GROW_{r,t-1,'RHS'} + CAP\_GROW_{r,t-1,'RHS'} \right)$$
 
@@ -5157,7 +5200,7 @@ When control parameter VAR_UC=YES, the user constraint is created as strict equa
 
 $$=$$
 
-$$VAR\_UCTS_{uc\_n,t,s} + 
+$$VAR\_UCTS_{uc\_n,t,s} +
 \\ \\
 \sum_{r \in uc\_r\_sum}\left(\begin{aligned}
  & ACT\_GROW_{r,t-1,s,'RHS'} + FLO\_GROW_{r,t-1,s,'RHS'} + \\

@@ -53,6 +53,7 @@ Illustration of basic CHP characteristics supported in TIMES.
 #### Back-pressure turbine systems
 
 For modelling a fixed back-pressure turbine system in TIMES, the following approach is recommended:
+
 - Define the PCG of the process to consist of both the electricity and heat output commodities (using the set $prc\_actunt$);
 - Define the process type to be CHP (using the set $prc\_map$);
 - Use the electrical output as the basis of the process activity, and choose the capacity unit accordingly (using the parameter $PRC\_CAPACT$).
@@ -148,7 +149,7 @@ The {numref}`chp-efficiencies-modelling-alternatives` summarizes the different o
   - Applied to the PCG flows
 ```
 
-## Inter-regional exchange processes 
+## Inter-regional exchange processes
 
 ### Structure and types of endogenous trade
 
@@ -164,6 +165,7 @@ General structure of the pair-wise specification of the trading sub-network allo
 TIMES provides considerable flexibility in the definition of trading structures. Each sub-network defined for a single exchange process can have the general structure shown in {numref}`trading-subnetwork-exchange`. A trading structure that involves both several supply (export) regions and several demand (import) regions cannot be defined without introducing an intermediating \'market\' region ($R_M$). Whenever such an intermediate region is defined between (at least) two different regions, the model generator will assume that the structure is actually meant to ignore the intermediate node-region shown in {numref}`trading-subnetwork-exchange`, by generating a single trade balance equation directly between all the export and all the import flows. If the intermediate step should nonetheless be included, for example, to reflect a physical market hub in the region $R_M$, this can be accomplished by dividing the sub-network into two parts, by using two exchange processes. Consequently, depending on the user\'s choice, the trading relationships shown in {numref}`trading-subnetwork-exchange` can be modeled both with and without the intermediate transportation step through the market region.
 
 The general structure allowed for the trading sub-networks can be further divided into four cases, which will be discussed below in more detail:
+
 - Case 1: Bi-lateral trading.
 - Case 2: Unidirectional trade from some export regions into a single importing region
 - Case 3: Multi-directional trade from a single export region to several importing regions
@@ -198,11 +200,13 @@ General structure of unidirectional trade into a single import region (Case 2, l
 If the sets of supply and demand regions participating in the market should actually be disjoint, even in that case the user has to choose one of the regions to be used as the intermediate market region. The imports to or exports from the market region can then be switched off by using an $IRE\_XBND$ parameter, if that is considered necessary.
 
 <ins>Remarks on flexibility</ins>
+
 1. Any number of exchange processes can be defined for describing the total trade relationships of a single commodity (but see warning 1 below).
 2. The names of traded commodities can be different in each region participating in the trade. In addition, also the import and export names of the traded commodities can be different (but see warning 2 below). This could be useful e.g. in the case of electricity, for which it is common to assume that the export commodity is taken from the system after grid transport, while the import commodity is introduced into the system before the grid.
 3. Any number of commodities can be, in general imported to a region or exported from a region through the same process (but see warning 2 below).
 
 <ins>Warnings</ins>
+
 1. For each exchange process of any traded commodity, the total structure of the trading sub-network, as defined in $top\_ire$, must comply with one of the basic structures supported by TIMES (Cases 1--4). If, for example, several bi-lateral trading relationships are defined for the same commodity, they should, of course, not be defined under the same process, but each under a different process.
 2. If the export and import names for a market-based commodity ($c$) are different in the market region, no other commodities should be imported to the market region through the same exchange process as commodity $c$.
 3. The model generator combines the trading relationships of a single process into a single market whenever there is an intermediate region between two different regions. If, however, the intermediate exchange step should be explicitly included in the model, the trading sub-network should be divided between two different exchange processes.
@@ -242,12 +246,14 @@ These definitions are sufficient for setting up of the market-based trade. Addit
 ### Input sets and parameters specific to trade processes
 
 TIMES input SETs that have a special role in trade processes are the following:
+
 - $top\_ire(r1,c1,r2,c2,p)$: For bi-lateral trade, unidirectional trade into a single destination region, and multidirectional trade from a single source region, $top\_ire$ should contain the corresponding entries from the exporting region(s) $r1$ to the importing region(s) $r2$. <br>For market-based trade, $top\_ire$ must contain entries for each exporting region to the intermediate market region, and from the market region to each importing region. Each region may be both exporting and importing. One may thus force even a bi-lateral exchange to be modeled as market-based trade, by introducing an additional $top\_ire$ entry within the desired market region between the exported and imported commodity. Instead of two trade balance equations, only one market balance equation is then generated.
 - $prc\_aoff(r,p,y1,y2)$: Override used to control in what years (not periods) a process is unavailable. This set is not specifically related to exchange processes. However, in the case of market-based trading it can be used to switch off the entire commodity market for periods that fall within the range of years given by $prc\_aoff$. The market will be closed for all commodities exchanged through the process ($p$). If trading should be possible only between certain years, even multiple entries of $prc\_aoff$ can be specified.
 
 All the $top\_ire$ specifications are handled for the user by the user shell (VEDA/ANSWER) according to the characterization of the trade processes.
 
 *<ins>Additional remarks:</ins>*
+
 1. Commodity type can be used as the primary group of IRE processes. All commodities of that type, traded through the process, will then be included in the PCG.
 2. Topology entries are automatically created on the basis of $IRE\_FLOSUM$ and $FLO\_EMIS$ defined for IRE processes (the latter only for ENV commodities).
 3. In any non-bilateral trade, the marketplaces are automatically set by the model generator for any trade that involves an intermediate region between two different regions for the same exchange process ($p$) and same commodity ($c$), or if there are multiple destination (importing) regions for the same exporting region.
@@ -278,6 +284,7 @@ Input parameters specific to inter-regional exchange processes are listed in {nu
 ```
 
 *<ins>Remarks:</ins>*
+
 1. In market-based trading the $IRE\_FLO$ parameter is taken into account on the export side only (representing the efficiency from the export region to the common marketplace). By using this convention, any bi-lateral exchange can be represented by a fully equivalent market-based exchange simply by choosing one of the two regions to be the marketplace, and adding the corresponding entry to the set $rpc\_market(r,p,c)$. The efficiency of the exports from the market region itself to the marketplace should also be specified with an IRE_FLO parameter, when necessary ($r1=r2=$ market region).
 2. If the user wants to specify efficiency on the import side of a market-based exchange, this can be done by using an $IRE\_FLOSUM$ parameter on the import side.
 3. Similarly to any other pair of regions, the total amount of commodity imported to a region from the commodity market can be constrained by the $IRE\_BND$ parameter, by specifying the market region as the export region. Correspondingly, the total amount of commodity exported from a supply region to the marketplace can be constrained by the $IRE\_BND$ parameter by specifying the market region as the import region.
@@ -287,10 +294,12 @@ Input parameters specific to inter-regional exchange processes are listed in {nu
 In TIMES, capacity by default bounds only the activity. However, with the $NCAP\_AFC$ / $NCAP\_AFCS$ attributes, one can bound the import / export flows instead. Capacity then also refers to the nominal maximum import (or export) capacity, e.g. the capacity of a transmission line in either direction. One can thus simultaneously bound the import and export flows by the same capacity but with different availabilities, which can be useful with bi-directional exchange links with different availabilities in the import/export direction. All these availability factors can be defined either on a desired timeslice level ($NCAP\_AFC$), or on individual timeslices ($NCAP\_AFCS$).
 
 The rules for defining the availabilities for trade flows can be summarized as follows:
+
 - If the import/export commodities are different ($c1$/$c2$): Use $NCAP\_AFC(c1)$ for bounding the import flow and $NCAP\_AFC(c2)$ for bounding the export flow, or use $NCAP\_AFC('NRG')$ for applying the same availability to both flows.
 - If $input=output=c$, specifying ***either*** $NCAP\_AFC(c)$ ***or*** $NCAP\_AFC('NRG')$ alone applies to both imports and exports (unless the process type is DISTR, see Section {numref}`%s <notes-on-other-attributes>` below). However, if they are both specified, then $NCAP\_AFC(c)$ applies to the import flow while $NCAP\_AFC('NRG')$ applies to the export flow.
 
 *<ins>Remarks:</ins>*
+
 1. As any process has only a single capacity variable, the availabilities specified for the import/export flows are always proportional to the same overall capacity.
 2. Note that the availability factors defined by $NCAP\_AFC$ are multiplied by any $NCAP\_AF$/$NCAP\_AFS$/$NCAP\_AFA$ value if defined for the same timeslice.
 
@@ -339,14 +348,16 @@ There are important limitations of using the parameters for standard processes f
 ```
 
 Additional remarks with respect to inter-regional trade (IRE) processes:
+
 - By using the process type indicator \'DISTR\', the activity and capacity of an IRE process will be based on the import flow only, if the same commodity is both imported and exported. In this case also $NCAP\_AFC(c)$ will only apply to the import flow of $c$.
 - In peaking equations, IRE processes are by default taken into account by having gross imports on the supply side and gross exports on the consumption side. By defining the IRE process as a member of the set $PRC\_PKNO$, and also defining $NCAP\_PKCNT>0$, only the net imports are taken into account on the supply side, which can be useful for regions having trade flows passing through the region.
 
-## Storage processes 
+## Storage processes
 
 ### Overview
 
 The TIMES model generator provides tools for specifying the following types of storage processes:
+
 - Standard timeslice storage (STG without additional storage type qualifier)
 - Generalized timeslice storage (STG+STS)
 - Day/night storage (STG+NST, or just NST if at ANNUAL level)
@@ -389,6 +400,7 @@ The activity of an inter-period storage is measured at the end of each period. T
 Storage processes can have any amount of auxiliary input or output commodities, as long as they are distinct from the main storage commodity. The flows of the auxiliary commodities can only be defined to be fixedly proportional either to the activity, the main input flows, or the main output flows. The main flows of timeslice and inter-period storage processes are the flows of the charged and discharged commodities included in the set primary commodity group PCG of the process. In the day/night storage processes, the main flows consist of all commodities in the primary and shadow groups of the process (see documentation).
 
 The relation between the auxiliary flows and the activity or main flows should be defined by using the $PRC\_ACTFLO$ and the $FLO\_FUNC$ parameters. For example, if the main storage flows of the process consist of the commodity \'STORED\', and the auxiliary commodity is \'AUX\', the auxiliary flow can be defined in the three following ways, corresponding to the cases where the auxiliary flow is proportional to the activity, the input flow, or the output flow, respectively:
+
 - $PRC\_ACTFLO(r,t,p,'AUX')$ -- AUX proportional to activity
 - $FLO\_FUNC(r,t,p,'STORED','AUX',s)$ -- AUX proportional to input flow
 - $FLO\_FUNC(r,t,p,'AUX','STORED',s)$ -- AUX inversely proportional to output flow
@@ -396,6 +408,7 @@ The relation between the auxiliary flows and the activity or main flows should b
 These auxiliary storage flow relations have been implemented by adding a new TIMES equation $EQ\_STGAUX(r, v, t, p, c, s)$. As the auxiliary storage flows are represented by standard flow variables, any flow-related cost attributes and UC constraints can be additionally defined on these auxiliary flows. However, no transformation equations can be defined between any auxiliary storage flows. Therefore, if, for example, some auxiliary flows should also produce emissions, also these emissions should be defined on the basis of the activity or main flows, and not by defining a relation between the auxiliary flow and the emission flow. Consequently, it is required that all auxiliary commodity flows related to storage processes, whether energy, material, or emissions, are described by using the three types of relations shown above.
 
 A concrete example where these enhancements to the storage processes can be very useful is the modeling of waste management, and, in particular, the modeling of landfilling of different types of waste. Using inter-period storage processes for this purpose makes it possible to conveniently incorporate e.g. the following features in the waste management model:
+
 - Modeling of methane emissions from landfilling in a dynamic way by using first-order decay functions for the gradual waste decomposition (optionally with different rates of decay for different waste qualities);
 - Modeling of other waste management and emission reduction options both before and after landfilling;
 - Incorporating gate fees to landfill sites (by defining costs on an input-based auxiliary storage flow).
@@ -405,6 +418,7 @@ A concrete example where these enhancements to the storage processes can be very
 **<ins>Input sets</ins>**
 
 There is only one TIMES input set specifically related to storage: $prc\_nstts$. However, there are important storage-specific aspects related to each of the following input sets:
+
 - $prc\_map(r,prc\_grp,p)$: Defines the process as a storage process, where $prc\_grp$ equals STG/STS/NST/STK according to the desired storage type.
 - $prc\_actunt(r,p,cg,units\_act)$: Definition of the commodity/commodities in the PCG, i.e. those that are stored. Set of quadruples such that the members of the commodity group $cg$ is used to define the charged and discharged commodity of storage process $p$, with activity units $units\_act$, in region $r$. If the charged and discharged commodities are different, the group $cg$ should preferably contain both of them, but if the user shell does not allow that, the model generator will automatically assign to the PCG any commodities on the shadow side that are of the same type than those already in the PCG, and are not verified to be auxiliary commodities. A commodity type can also be used as the primary group of storage processes. All commodities of that type will then be included in the PCG.
 - $top(r,p,c,io)$: Definition of the charged ($io=IN$) discharged ($io=OUT$) and optional auxiliary input/output commodities for storage process $p$ in region $r$. The set $top\_ire$ should thus first and foremost contain the input/output indicators for the stored commodities defined by $prc\_actunt$ (see above), but should include also any auxiliary input/output commodities assumed for the process. When the charged and discharged commodity is the same, that commodity can optionally be defined only as an input or only as an output, and in that case it will be connected to the commodity balance equations either only on the production or only on the consumption side, instead of being connected on both sides.
@@ -457,11 +471,13 @@ The TIMES input parameters that are specific to storage processes or have a spec
 In TIMES, capacity by default bounds only the activity. For storage, this means the amount of stored energy. However, with the $NCAP\_AFC$/$NCAP\_AFCS$ attributes, one can bound the output (or input) flows instead. Capacity then also refers to the nominal output (or input) capacity, e.g. electrical capacity of a pumped hydro power plant. In addition, one can bound simultaneously both the output and input flows by the capacity, which can be useful if the charging rate is limited by the capacity as well. Moreover, one can simultaneously define a bound also for the activity (the amount stored) in proportion to the same capacity variable. All these availability factors can be defined either on a desired timeslice level ($NCAP\_AFC$), or on individual timeslices ($NCAP\_AFCS$).
 
 The rules for defining the availabilities for storage flows/activity can be summarized as follows:
+
 - If the input/output commodities are different ($c1$/$c2$): Use $NCAP\_AFC(c1)$ for bounding the input flow and $NCAP\_AFC(c2)$ for bounding the output flow.
 - If $input=output=c$, $NCAP\_AFC('NRG')$ will define the availability factor for both the input and output flow, while $NCAP\_AFC(c)$ will define the availability factor for the output flow only, overriding any $NCAP\_AFC('NRG')$ value if that is also specified (assuming NRG is the type of the stored commodity).
 - $NCAP\_AFC(r,y,p,'ACT',tsl)$ can additionally be used for bounding the activity (the amount stored); in this case one must bear in mind that any capacity expressed in power units (e.g. MW/GW) is assumed to represent a gross storage capacity equivalent to the amount produced by full power during one full year/week/day for SEASON/WEEKLY/DAYNITE level storage processes, respectively, assuming $STG\_EFF=1$. Knowing this, the availability factor can be adjusted to correspond to the assumed real storage capacity. For example, a capacity of 1 GW is assumed to represent a storage capacity of 24 GWh for a DAYNITE storage, and if the real daily storage capacity is, say 8 GWh/GW, the maximum availability factor should be $0.333/STG\_EFF$, on the DAYNITE level.
 
 *<ins>Remarks:</ins>*
+
 1. As any storage process has only a single capacity variable, the assumption is that the availabilities specified for the output/input flows and the activity are all proportional to the same capacity.
 2. Note that the availability factors defined by NCAP\_AFC are multiplied by any NCAP\_AF / NCAP\_AFS / NCAP\_AFA value if defined for the same timeslice.
 
@@ -526,6 +542,7 @@ In TIMES, load-shifting for demands can be modelled by introducing load shifting
 This approach based on a storage process may be more convenient than manual constraints, because for the process the user will also be able to define investment costs, fixed O&M cost and variable costs for the demand shifting operation, and one would able to refer to the process activity and capacity variables easily in additional user constraints, if needed. Unlike for normal storage, the activity of the load-shifting processes is defined to be the output flow, and so the capacity represents the maximum level of the shifted loads. Preventing load shifting in either direction in any individual time-slices would also be easy by bounding the corresponding process flows to zero using $STGIN\_BND$ / $STGOUT\_BND$.
 
 The following constraints can be modelled for load-shifting processes:
+
 - Maximum allowed fractions of loads shifted (required, defined by $STG\_SIFT$);
 - Seasonal balance equations (automatically generated);
 - Standard capacity-activity equations (optional, when the capacity is modelled);
@@ -534,6 +551,7 @@ The following constraints can be modelled for load-shifting processes:
 - Capacity bounds, activity bounds, flow bounds (optional).
 
 The following types of costs can be modelled for load-shifting processes:
+
 - Activity costs (cost on the discharge flow, using $ACT\_COST$);
 - Flow costs (cost on the charging and/or discharging flows, using $FLO\_COST$ and/or $FLO\_DELIV$);
 - Capacity cost (cost on the discharge load capacity, using $NCAP\_COST$);

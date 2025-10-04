@@ -55,6 +55,7 @@ This equation is generated in each time period for all indicators considered.
 *Dual variable:* The dual variables represent the marginal prices of the global emissions / forcing (when undiscounted).
 
 **Remarks**:
+
 - For CO<sub>2</sub>, the linear forcing function parameters $CM\_LINFOR_{t,cm\_emis,'FX'}$ and $CM\_LINFOR_{t,cm\_emis,'N'}$ are automatically calculated by the model generator from any user-defined $CM\_LINFOR_{t,cm\_emis,'LO'}$ and $CM\_LINFOR_{t,cm\_emis,'UP'}$.
 
 **Equation:**

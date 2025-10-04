@@ -453,7 +453,7 @@ The calculated salvage value associated with the ETL technologies. The internall
 
 $$+ \sum_{t,p \in teg} [OBJSIC_{r,t,p} \times VAR\_IC_{r,t,p}]$$
 
-## EQ_OBJINV(r,cur) 
+## EQ_OBJINV(r,cur)
 
 *- see EQ_OBJINV in section 5.2.2 for a general description without ETL*
 

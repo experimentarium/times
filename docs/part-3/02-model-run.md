@@ -25,6 +25,7 @@ In the second pass, GAMS then proceeds to execute the complied data and code to 
 :align: center
 VEDA-FE Case Manager Control Form.
 ```
+
 As a result of a model run a listing file (\<Case\>.LST), and a \<case\>.GDX file (GAMS dynamic data exchange file with all the model data and results) are created. The \<Case\>.LST file may contain compilation calls and execution path through the code, an echo print of the GAMS source code and the input data, a listing of the concrete model equations and variables, error messages, model statistics, model status, and solution dump. The amount of information displayed in the listing file can be adjusted by the user through GAMS options in the \<Case\>.RUN file.
 
 The \<Case\>.GDX file is an internal GAMS file. It is processed according to the information provided in the TIMES2VEDA.VDD to create results input files for the VEDA-BE software to analyze the model results in the \<case\>.VD\* text files. A dump of the solution results is also done to the \<case\>.ANT file for importing into ANSWER, if desired. At this point, model results can be imported into VEDA-BE and ANSWER respectively for post-process and analysis. More information on VEDA-BE and ANSWER results processing can be found in Part V and the separate ANSWER documentation respectively.
@@ -125,6 +126,7 @@ The TIMES model generator is comprised of a host of GAMS source code routines, w
 ```
 
 Note that these don't cover every single routine in the TIMES source code folder, but do cover most all of the core routines involved in the construction and reporting of the model. They guide the steps of the run process as follows:
+
 - **GAMS Compile:** As mentioned above, GAMS operates as a two-phase compile then execute system. As such it first reads and assembles all the control, data, and code files into a ready executable; substituting user and/or shell provided values for all GAMS environment switches and subroutine parameter references (the %EnvVar% and %Param% references in the source code) that determine the path through the code for the requested model instance and options desired. If there are inconsistencies in input data they may result in compile-time errors (e.g., \$170 for a domain definition error), causing a run to stop. See Section {numref}`%s <errors-and-their-resolution>` for more on identifying the source of such errors.
 - **Initialization:** Upon completion of the compile step, all possible GAMS sets and parameters of the TIMES model generator are declared and initialized, then established for this instance of the model from the user's data dictionary file(s) (\<Case\>.DD[^14]). Model units are also initialized using the UNITS.DEF file, which contains the short names for the most common sets of units that are normally used in TIMES models, and which can be adjusted by the user.
 - **Execution:** After the run has been prepared, the maindrv.mod routine controls all the remaining tasks of the model run. The basic steps are as follows.
@@ -227,6 +229,7 @@ The GAMS listing file echoes the model run. In this file GAMS reports the compil
 :name: request-equation-list-sol-print
 :align: center
 ```
+
 ```{figure} assets/image7.png
 :name: image-7
 :align: center
@@ -650,16 +653,19 @@ In order to assist the user with identifying accidental modelling errors, a numb
 ## Errors and their resolution
 
 Errors may be encountered during the compilation, execution (rarely), or solve stages of a TIMES model run. During the compilation step, if GAMS encounters any improperly defined item the run will be halted with a Domain or similar error and the user will need to examine the TIMES quality control LOG or GAMS listing (LST) files to ascertain the cause of the problem. While such problems are not normally encountered, some that might occur include:
+
 - an item name was mistyped and therefore not defined;
 - an item was previously defined in one scenario but defined differently in another;
 - an item was not properly declared for a particular parameters (e.g., a non-trade process using an IRE parameter), and
 - scenarios were specified for the run in the wrong order so a data reference is encountered before the declaration (e.g., a bound on a new technology option is provided before it has been identified).
 
 During the execution phase, if GAMS encounters any runtime errors it will halt and report where the error occurred in the LST file. While such problems are not normally encountered some causes of an execution error might be:
+
 - an explicit 0 is provided for an efficiency resulting in a divide by 0, and
 - there is a conflict between a lower and upper bound.
 
 Most commonly errors are encountered during the solve process, resulting in an infeasibility. Some causes of the model not being able to solve might be:
+
 - due to bounds, the energy system cannot be configured in such a way as to meet the limit;
 - owing to mis-specifying the demand serviced by a device, there is no or not enough capacity to satisfy said demand, and
 - the RES is not properly connected so a needed commodity is not able to reach the processes needing it.

@@ -15,6 +15,7 @@ $SET CLI YES
 ## Calibration
 
 The calibration of the Climate Module to historical values is an important aspect of using the module. The mass balance and temperature equations can be calibrated for the first period by using three alternative calibration years B(1)--1, m(1)--1, and m(1). Whenever D(1)=1, the first two alternatives are equal. The default calibrating year is m(1)--1. The alternative calibration years can be activated by using one of the following two settings in the run-file:
+
 - `$SET CM_CALIB B` ! Calibrate at the end of B(1)--1
 - `$SET CM_CALIB M` ! Calibrate at the end of m(1)
 
@@ -179,7 +180,7 @@ Units: Watts/m<sup>2</sup>.
 
 ### Parameters for the temperature equations
 
-- CM_CONST(SIGMA1) (also denoted $\sigma_1$): speed of adjustment parameter for atmospheric temperature. $1/\sigma_1$ represents the thermal capacity of the atmospheric + upper ocean layer (W-yr/m<sup>2</sup>/°C). Note however that when SIGMA1 is assumed stochastic, its multiple values are specified via the generic S_CM_CONST parameter described below. 
+- CM_CONST(SIGMA1) (also denoted $\sigma_1$): speed of adjustment parameter for atmospheric temperature. $1/\sigma_1$ represents the thermal capacity of the atmospheric + upper ocean layer (W-yr/m<sup>2</sup>/°C). Note however that when SIGMA1 is assumed stochastic, its multiple values are specified via the generic S_CM_CONST parameter described below.
 - CM_CONST(SIGMA2) (also denoted $\sigma_2$): ratio of the thermal capacity of the deep oceans to the transfer rate from shallow to deep ocean (W/m<sup>2</sup>/°C). 
 - CM_CONST(SIGMA3) (also denoted $\sigma_3$): $1/\sigma_3$ is the transfer rate (per year) from the upper level of the ocean to the deep ocean (yr<sup>-1</sup>). 
 - CM_CONST(GAMMA) (also denoted γ): radiative forcing sensitivity to a doubling of the atmospheric CO<sub>2</sub> concentration. Units: Watts/m<sup>2</sup>. 
@@ -317,6 +318,7 @@ CM_MAXC_M is indexed by year *y* and constraint type. The values are reported fo
 ## Default values of the climate parameters
 
 {numref}`cli-parameters` shows the default values of all parameters of the Climate Module except exogenous forcing. All defaults may be modified by the user.
+
 - CS and SIGMA1 may be assumed random, in which case the default values are not used. The user must specify their values explicitly using the appropriate parameter names described earlier.
 - The parameters highlighted blue are upper bounds on five climate variables (in this example, they are set high enough to be inoperative).
 - The three parameters highlighted pink concern the extension of emissions beyond EOH, as described in the separate note on this subject.

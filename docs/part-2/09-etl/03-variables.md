@@ -64,7 +64,7 @@ Finally, this binary variable appears in two constraints EQ_EXPE1 and EQ_EXPE2, 
 
 **Bounds:** This binary variable is not directly bounded.
 
-##  VAR_IC(r,t,p)
+## VAR_IC(r,t,p)
 
 **Description:** The portion of the cumulative cost of investment in capacity for an ETL technology (VAR_CCOST) that is incurred in period t.
 

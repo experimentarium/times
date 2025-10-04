@@ -20,6 +20,7 @@ A typical relationship between unit investment cost and cumulative investments i
 $$INVCOST_{t} = a \times C_{t}^{- b}$$ (11-1)
 
 where
+
 - $INVCOST$ [^37] is the unit cost of creating one unit of the technology, which is no longer a constant, but evolves as more units of the technology are produced;
 - $a$ is the value of $INVCOST$ for the first unit of the technology (when $C_{t}$ is equal to 1) and;
 - $b$ is the learning index, representing the speed of learning[^38].

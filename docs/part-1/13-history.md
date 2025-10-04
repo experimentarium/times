@@ -16,6 +16,7 @@ To overcome this shortcoming while embracing one of the main benefits arising fr
 The development of ANSWER, the first Windows interface for MARKAL, commenced at the Australian Bureau of Agricultural and Resource Economics (ABARE) in Canberra in early 1996 with primary responsibility taken by then ABARE staff member Ken Noble. By early 1998 the first production version of ANSWER-MARKAL was in use, including by most ETSAP Partners. In late 2003 Ken Noble retired from ABARE, established Noble-Soft Systems and became the owner of the ANSWER-MARKAL software, thereby ensuring its continuing development and support.
 
 By the late 1990\'s, the need to gather all the existing MARKAL features and to create many new ones was becoming pressing, and an international group of ETSAP researchers was formed to create what became the TIMES model generator. The main desired new features were as follows:
+
 - To allow time periods to be of unequal lengths, defined by the user;
 - To allow the user data to control the model structure;
 - To make data as independent as possible of the choice of the model periods (data decoupling), in particular to facilitate the recalibration of the model when the initial period is changed, but also to avoid having to redefine the data when period lengths are altered;
@@ -56,7 +57,7 @@ The TIMES and the MARKAL models share the same basic modeling paradigm. Both mod
 
 MARKAL has fixed length time periods, whereas TIMES allows the user to define period lengths in a completely flexible way. This is a major model difference, which indeed required a complete re-definition of the mathematics of most TIMES constraints and of the TIMES objective function. The variable period length feature is very useful in two instances: first if the user wishes to use a single year as initial period (quite useful for calibration purposes), and second when the user contemplates long horizons, where the first few periods may be described in some detail by relatively short periods (say 5 years), while the longer term may be regrouped into a few periods with long durations (perhaps 20 or more years).
 
-#### Data decoupling 
+#### Data decoupling
 
 This somewhat misunderstood feature does not confer additional power to TIMES, but it greatly simplifies the maintenance of the model database and allows the user great flexibility in modifying the new definition of the planning horizon. In TIMES all input data are specified by the user independently from the definition of the time periods employed for a particular model run. All time-dependent input data are specified by the year in which the data applies. The model then takes care of matching the data with the periods, wherever required. If necessary the data is interpolated (or extrapolated) by the model preprocessor code to provide data points at those time periods required for the current model run. In addition, the user has control over the interpolation and extrapolation of each time series.
 
