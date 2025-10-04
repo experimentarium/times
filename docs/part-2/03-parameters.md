@@ -23,6 +23,7 @@ Non-default interpolation/extrapolation can be requested for any parameter by pr
 control specification activates the interpolation/extrapolation rule for the time series, and is distinguished from actual time-series data by providing a special control label (\'**0**\') in the $YEAR$ index. The particular interpolation rule to apply is a function of the Option Code assigned to the control record for the parameter. Note that for log-linear interpolation the Option Code indicates the year from which the interpolation is switched from standard to log-linear mode. TIMES user shell(s) will provide mechanisms for imbedding the control label and setting the Option Code through easily understandable selections from a user-friendly drop-down list, making the specification simple and transparent to the user.
 
 The enhanced interpolation/extrapolation facility provides the user with the following options to control the interpolation and extrapolation of each individual time series:
+
 - Interpolation and extrapolation of data in the default way as predefined in TIMES. This option does not require any explicit action from the user.
 - No interpolation or extrapolation of data (only valid for non-cost parameters).
 - Interpolation between data points but no extrapolation (useful for many bounds). See option codes 1 and 11 in {numref}`ie-control-options` below.
@@ -239,9 +240,9 @@ The user has specified the following two SHAPE indexes and a control option for 
 NCAP_AFX('REG', '0', 'PRC1') = 1;
 NCAP_AFX('REG', '1995', 'PRC1') = 12;
 NCAP_AFX('REG', '2010', 'PRC1') = 13;
-``` 
- 
- In this case, all model years ($v$) between 1995 and 2010 will get the shape index 12. No extrapolation is done for model years ($v$) beyond 2010 or before 1995.
+```
+
+In this case, all model years ($v$) between 1995 and 2010 will get the shape index 12. No extrapolation is done for model years ($v$) beyond 2010 or before 1995.
 
 (inheritance-and-aggregation-of)=
 ### Inheritance and aggregation of timesliced input parameters
@@ -321,6 +322,7 @@ For brevity, the default interpolation/extrapolation method for each parameter i
 | \<number\>   | Option code for any other default method      |
 | none         | No default inter-/extrapolation               |
 | N/A          | Inter-/extrapolation not applicable           |
+
 :::
 
 ```{list-table} User input parameters in TIMES
@@ -3337,6 +3339,7 @@ Levelized cost can be calculated according to the following general formula:
 $$LEC = \frac{\sum_{t = 1}^{n}{\frac{IC_{t}}{(1 + r)^{t - 1}} + \frac{OC_{t} + VC_{t} + \sum_{i}^{}{FC_{i,t} + FD_{i,t}} + \sum_{j}^{}{ED_{j,t}}}{(1 + r)^{t - 0.5}} -}\frac{\sum_{k}^{}{BD_{k,t}}}{(1 + r)^{t - 0.5}}}{\sum_{t = 1}^{n}\frac{\sum_{m}^{}{MO_{m,t}}}{(1 + r)^{t - 0.5}}}$$ (3-1)
 
 where
+
 - $r$ = discount rate (e.g. 5%)
 - $IC_t$ = investment expenditure in (the beginning of) year $t$
 - $OC_t$ = fixed operating expenditure in year $t$
