@@ -12,8 +12,9 @@ author = 'IEA-ETSAP'
 release = '4.7.2'
 
 rst_prolog = """.. note::
-    This is work in progress and may not be in a usable state yet.
-    The original pdf/docx version of the Documentation can be found in an `ETSAP repository on GitHub <https://github.com/etsap-TIMES/TIMES_Documentation>`_.
+    This documentation was migrated to **Read the Docs** from the original PDF version to improve accessibility, searchability, and version control.
+    The migration was performed by `Olexandr Balyk <https://github.com/olejandro>`_ and `ESMIA Consultants <https://esmia.ca/en>`_.
+    The original version of the Documentation can be found in an `ETSAP repository on GitHub <https://github.com/etsap-TIMES/TIMES_Documentation>`_.
 """
 
 # -- General configuration ---------------------------------------------------
