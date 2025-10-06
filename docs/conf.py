@@ -11,9 +11,9 @@ copyright = '2023, IEA-ETSAP'
 author = 'IEA-ETSAP'
 release = '4.7.2'
 
-rst_prolog = """.. attention::
+rst_prolog = """.. note::
     This is work in progress and may not be in a usable state yet.
-    Please refer to https://github.com/etsap-TIMES/TIMES_Documentation for the official docs.
+    The original pdf/docx version of the Documentation can be found in an `ETSAP repository on GitHub <https://github.com/etsap-TIMES/TIMES_Documentation>`_.
 """
 
 # -- General configuration ---------------------------------------------------
