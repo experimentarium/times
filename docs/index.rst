@@ -16,6 +16,8 @@ This documentation is composed of four Parts.
 
 :doc:`Part IV <part-4/index>` provides a step-by-step introduction to building a TIMES model in the VEDA2.0 user interface for model management and results analysis. It first offers an orientation to the basic features of VEDA2.0, including software layout, data files and tables, and model management features, both for handling the input and examining the results. It then describes in detail twelve Demo models (available for download from the ETSAP website) that progressively introduce VEDA-TIMES principles and modeling techniques. [**Authors**: Gary Goldstein, Maurizio Gargiulo, and Amit Kanudia]
 
+This documentation was migrated to **Read the Docs** from the original PDF version to improve accessibility, searchability, and version control. The migration was performed by `Olexandr Balyk <https://github.com/olejandro>`_ and `ESMIA Consultants <https://esmia.ca/en>`_. The original version of the Documentation can be found in an `ETSAP repository on GitHub <https://github.com/etsap-TIMES/TIMES_Documentation>`_.
+
 .. toctree::
    :maxdepth: 3
    :titlesonly:
